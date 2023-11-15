@@ -1,0 +1,24 @@
+# IntelliJ project files
+.idea/
+
+# Eclipse project files
+.classpath
+.project
+.settings/
+
+# Dependencies
+node_modules/
+
+# Output of compilation
+dist/
+build/
+
+# VS Code configuration
+.vscode/
+
+# Compiled files
+bin/
+obj/
+
+# Visual Studio files
+.vs/
