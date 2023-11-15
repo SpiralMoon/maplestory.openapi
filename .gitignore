@@ -1,0 +1,11 @@
+# IntelliJ project files
+.idea/
+
+# Visual Studio files
+.vs/
+
+# VS Code
+.vscode/
+
+# Mac OS
+.DS_Store
