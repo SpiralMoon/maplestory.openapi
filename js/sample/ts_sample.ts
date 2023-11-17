@@ -1,5 +1,4 @@
-import {MapleStoryApi, MapleStoryApiError} from "../src";
-import {CubeHistoryResponseDto} from "../types";
+import {MapleStoryApi, MapleStoryApiError, CubeHistoryResponseDto} from "../src";
 
 const apiKey: string = '{Your API Key}';
 const api: MapleStoryApi = new MapleStoryApi(apiKey);

@@ -1,0 +1,38 @@
+name: Build and Publish JS
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build_and_publish_js:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: './js'
+    env:
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - name: Install dependencies
+        run: |
+          echo "Installing dependencies"
+          npm install
+
+      - name: Build
+        run: |
+          echo "Building Node.js project"
+          npm run build
+
+      - name: Publish to npm
+        run: |
+          echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" >> ~/.npmrc
+          echo "Publishing to npm"
+          npm publish
