@@ -1,10 +1,30 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <RepositoryUrl>git+https://github.com/SpiralMoon/maplestory.openapi.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageLicenseFile></PackageLicenseFile>
+    <PackageId>MapleStory.OpenAPI</PackageId>
+    <PackageVersion>1.0.0</PackageVersion>
+    <Authors>SpiralMoon</Authors>
+    <PackageProjectUrl>https://github.com/SpiralMoon/maplestory.openapi</PackageProjectUrl>
+    <Description>This C# library enables the use of the MapleStory OpenAPI provided by Nexon.</Description>
+    <Copyright>Copyright © 2023 SpiralMoon.</Copyright>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageTags>maplestory;maplestory openapi;maplestory api;cube;nexon;nexon developers</PackageTags>
+    <Version>$(PackageVersion)</Version>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
