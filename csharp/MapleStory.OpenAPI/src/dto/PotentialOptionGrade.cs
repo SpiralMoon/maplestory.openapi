@@ -1,4 +1,4 @@
-﻿namespace MapleStory.OpenAPI.src.dto
+﻿namespace MapleStory.OpenAPI.Dto
 {
     public enum PotentialOptionGrade
     {

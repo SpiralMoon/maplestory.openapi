@@ -1,5 +1,4 @@
-﻿using MapleStory.OpenAPI.src.dto;
-using MapleStory.OpenAPI.src;
+﻿using MapleStory.OpenAPI.Dto;
 using Newtonsoft.Json;
 using System.Web;
 

@@ -1,8 +1,8 @@
 ﻿using Newtonsoft.Json;
 
-namespace MapleStory.OpenAPI.src
+namespace MapleStory.OpenAPI
 {
-    public class MapleStoryAPIErrorBody
+    internal class MapleStoryAPIErrorBody
     {
         [JsonProperty("message")]
         public string Message;
