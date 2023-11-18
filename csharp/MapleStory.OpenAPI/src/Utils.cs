@@ -1,6 +1,6 @@
-﻿using MapleStory.OpenAPI.src.dto;
+﻿using MapleStory.OpenAPI.Dto;
 
-namespace MapleStory.OpenAPI.src
+namespace MapleStory.OpenAPI
 {
     public class Utils
     {

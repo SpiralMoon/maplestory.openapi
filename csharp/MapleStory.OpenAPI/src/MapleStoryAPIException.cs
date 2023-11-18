@@ -1,4 +1,4 @@
-﻿namespace MapleStory.OpenAPI.src
+﻿namespace MapleStory.OpenAPI
 {
     /// <summary>
     /// MapleStory OpenAPI exception.
@@ -10,7 +10,7 @@
 
         public int Status { get; }
 
-        public MapleStoryAPIException(MapleStoryAPIErrorBody error) : base(error.Message)
+        internal MapleStoryAPIException(MapleStoryAPIErrorBody error) : base(error.Message)
         {
             this.Message = error.Message;
             this.Status = error.Status;

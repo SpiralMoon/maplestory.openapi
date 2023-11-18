@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace MapleStory.OpenAPI.src.dto
+namespace MapleStory.OpenAPI.Dto
 {
     /// <summary>
     /// 큐브히스토리 응답 정보
