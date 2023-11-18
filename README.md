@@ -6,7 +6,7 @@ This library project enables the use of the MapleStory OpenAPI provided by Nexon
 
 1. **Java**: (coming soon)
 2. **JavaScript (TypeScript)**: [![npm](https://img.shields.io/npm/v/maplestory-openapi)](https://www.npmjs.com/package/maplestory-openapi)
-3. **C#**: (coming soon)
+3. **C#**: [![NuGet](https://img.shields.io/nuget/v/MapleStory.OpenAPI)](https://www.nuget.org/packages/MapleStory.OpenAPI)
 
 ## Installation
 
@@ -46,19 +46,15 @@ For detailed information on how to use the library in JavaScript/TypeScript, ref
 
 ### C#
 
-coming soon
+Add the latest version of the C# library to your NuGet project:
 
-[//]: # (Add the latest version of the C# library to your NuGet project:)
 
-[//]: # ()
-[//]: # (```xml)
+```xml
+<PackageReference Include="MapleStory.OpenAPI" Version="1.0.0" />
+```
 
-[//]: # (<PackageReference Include="MapleStory.Api.CSharp" Version="1.0.0" />)
 
-[//]: # (```)
-
-[//]: # ()
-[//]: # (For detailed information on how to use the library in C#, refer to the [HERE]&#40;./csharp/README.md&#41;.)
+For detailed information on how to use the library in C#, refer to the [HERE](./csharp/README.md).
 
 ## Features
 
