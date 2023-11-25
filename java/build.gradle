@@ -1,0 +1,95 @@
+plugins {
+    id 'java-library'
+    id 'signing'
+    id 'maven-publish'
+}
+
+group = 'dev.spiralmoon'
+version = '1.0.0'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compileOnly 'org.projectlombok:lombok:1.18.30'
+
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+
+    testImplementation platform('org.junit:junit-bom:5.9.1')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+
+    annotationProcessor 'org.projectlombok:lombok:1.18.30'
+}
+
+tasks.test {
+    useJUnitPlatform()
+}
+
+task sourcesJar(type: Jar) {
+    archiveClassifier.set('sources')
+    from sourceSets.main.allSource
+}
+
+task javadocJar(type: Jar) {
+    archiveClassifier.set('javadoc')
+    from tasks.javadoc.destinationDir
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+            artifact sourcesJar
+            artifact javadocJar
+
+            groupId = 'dev.spiralmoon'
+            version = '1.0.0'
+            artifactId = 'maplestory-openapi'
+
+            pom {
+                name.set('MapleStory OpenAPI')
+                description.set('This Java library enables the use of the MapleStory OpenAPI provided by Nexon.')
+                url.set('https://github.com/SpiralMoon/maplestory.openapi')
+
+                licenses {
+                    license {
+                        name.set('MIT License')
+                        url.set('https://opensource.org/licenses/MIT')
+                    }
+                }
+
+                developers {
+                    developer {
+                        id.set('SpiralMoon')
+                        name.set('SpiralMoon')
+                        email.set('dev.spiralmoon@gmail.com')
+                    }
+                }
+
+                scm {
+                    connection.set('scm:git:git://github.com/SpiralMoon/maplestory.openapi.git')
+                    developerConnection.set('scm:git:ssh://github.com:SpiralMoon/maplestory.openapi.git')
+                    url.set('https://github.com/SpiralMoon/maplestory.openapi')
+                }
+            }
+        }
+    }
+
+    repositories {
+        maven {
+            name 'OSSRH'
+            url uri('https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/')
+            credentials {
+                username = project.findProperty('ossrhUsername')?.toString()
+                password = project.findProperty('ossrhPassword')?.toString()
+            }
+        }
+    }
+}
+
+signing {
+    useGpgCmd()
+    sign publishing.publications.mavenJava
+}

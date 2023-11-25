@@ -6,7 +6,7 @@ import dev.spiralmoon.maplestory.api.dto.CubeHistoryDTO;
 
 import java.util.List;
 
-public class AsyncApiCallSample {
+class AsyncApiCallSample {
     public static void main(String[] args) {
         final String apiKey = "{Your API Key}";
         final MapleStoryApi api = new MapleStoryApi(apiKey);

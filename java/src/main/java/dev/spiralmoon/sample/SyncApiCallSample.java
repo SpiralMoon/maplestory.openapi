@@ -7,7 +7,7 @@ import dev.spiralmoon.maplestory.api.dto.CubeHistoryResponseDTO;
 
 import java.util.List;
 
-public class SyncApiCallSample {
+class SyncApiCallSample {
     public static void main(String[] args) {
         final String apiKey = "{Your API Key}";
         final MapleStoryApi api = new MapleStoryApi(apiKey);
