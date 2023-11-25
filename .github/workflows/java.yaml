@@ -23,12 +23,13 @@ jobs:
       - name: Set up JDK
         uses: actions/setup-java@v2
         with:
-          distribution: 'azul'
-          java-version: '1.8'
+          distribution: 'adopt'
+          java-version: '8.0.392+8'
 
       - name: Build
         run: |
           echo "Building Java project"
+          chmod +x ./gradlew
           ./gradlew build
 
       - name: Publish to Maven Repository
