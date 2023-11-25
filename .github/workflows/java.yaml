@@ -13,7 +13,7 @@ jobs:
     env:
       OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
       OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
-      GPG_KEYNAME: ${{ secrets.GPG_KEYNAME }}
+      GPG_SECRET_KEY: ${{ secrets.GPG_SECRET_KEY }}
       GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
 
     steps:
@@ -36,8 +36,8 @@ jobs:
         run: |
           echo "ossrhUsername=${OSSRH_USERNAME}" >> gradle.properties
           echo "ossrhPassword=${OSSRH_PASSWORD}" >> gradle.properties
-          echo "signing.gnupg.keyName=${GPG_KEYNAME}" >>  gradle.properties
-          echo "signing.gnupg.passphrase=${GPG_PASSPHRASE}" >> gradle.properties
+          echo "gpgSecretKey=${GPG_SECRET_KEY}" >>  gradle.properties
+          echo "gpgPassphrase=${GPG_PASSPHRASE}" >> gradle.properties
           echo "Publishing to Maven repository"
           ./gradlew publish
         env:

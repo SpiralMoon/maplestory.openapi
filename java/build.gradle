@@ -89,7 +89,10 @@ publishing {
     }
 }
 
+def gpgSecretKey = project.findProperty('gpgSecretKey')
+def gpgPassphrase = project.findProperty('gpgPassphrase')
+
 signing {
-    useGpgCmd()
+    useInMemoryPgpKeys(gpgSecretKey, gpgPassphrase)
     sign publishing.publications.mavenJava
 }
