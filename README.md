@@ -4,7 +4,7 @@ This library project enables the use of the MapleStory OpenAPI provided by Nexon
 
 ## Supported Languages
 
-1. **Java**: (coming soon)
+1. **Java**: [![Maven Central](https://img.shields.io/maven-central/v/dev.spiralmoon/maplestory-openapi)](https://search.maven.org/artifact/dev.spiralmoon/maplestory-openapi)
 2. **JavaScript (TypeScript)**: [![npm](https://img.shields.io/npm/v/maplestory-openapi)](https://www.npmjs.com/package/maplestory-openapi)
 3. **C#**: [![NuGet](https://img.shields.io/nuget/v/MapleStory.OpenAPI)](https://www.nuget.org/packages/MapleStory.OpenAPI)
 
@@ -14,25 +14,21 @@ This library project enables the use of the MapleStory OpenAPI provided by Nexon
 
 coming soon
 
-[//]: # (Include the latest version of the Java library in your Maven project by adding the following dependency:)
+Include the latest version of the Java library in your java project by adding the following dependency:
 
-[//]: # ()
-[//]: # (```xml)
+```xml
+<dependency>
+    <groupId>dev.spiralmoon</groupId>
+    <artifactId>maplestory-openapi</artifactId>
+    <version>1.0.0</version> <!-- Replace with the latest version -->
+</dependency>
+```
+or
+```groovy
+implementation 'dev.spiralmoon:maplestory-openapi:1.0.0' // Replace with the latest version
+```
 
-[//]: # (<dependency>)
-
-[//]: # (    <groupId>com.example</groupId>)
-
-[//]: # (    <artifactId>maplestory-api-java</artifactId>)
-
-[//]: # (    <version>1.0.0</version> <!-- Replace with the latest version -->)
-
-[//]: # (</dependency>)
-
-[//]: # (```)
-
-[//]: # ()
-[//]: # (For detailed information on how to use the library in Java, refer to the [HERE]&#40;./java/README.md&#41;.)
+For detailed information on how to use the library in Java, refer to the [HERE](./java/README.md).
 
 ### JavaScript (TypeScript)
 
