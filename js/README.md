@@ -4,6 +4,7 @@
 
 This JavaScript library enables the use of the MapleStory OpenAPI provided by Nexon.
 
+Packages written in other languages can be found [HERE](https://github.com/SpiralMoon/maplestory.openapi).
 
 ## Installation
 

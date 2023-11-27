@@ -9,6 +9,7 @@
     "nexon",
     "nexon developers"
   ],
+  "description": "This JavaScript library enables the use of the MapleStory OpenAPI provided by Nexon.",
   "homepage": "https://github.com/SpiralMoon/maplestory.openapi",
   "bugs": {
     "url": "https://github.com/SpiralMoon/maplestory.openapi/issues"
