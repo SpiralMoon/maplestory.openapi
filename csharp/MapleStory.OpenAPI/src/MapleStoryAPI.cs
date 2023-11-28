@@ -1,6 +1,7 @@
 ﻿using MapleStory.OpenAPI.Dto;
 using Newtonsoft.Json;
 using System.Web;
+using System;
 
 namespace MapleStory.OpenAPI
 {
@@ -123,7 +124,15 @@ namespace MapleStory.OpenAPI
         private void SetClient(HttpClient client)
         {
             client.Timeout = TimeSpan.FromMilliseconds(this.timeOut);
-            client.DefaultRequestHeaders.Add("authorization", this.apiKey);
+
+            try
+            {
+                client.DefaultRequestHeaders.Add("authorization", this.apiKey);
+            }
+            catch (FormatException)
+            {
+                throw new MapleStoryAPIException(401, "Unauthorized");
+            }
         }
 
         private static MapleStoryAPIException ParseError(string body)

@@ -10,6 +10,12 @@
 
         public int Status { get; }
 
+        internal MapleStoryAPIException(int status, string message): base(message)
+        {
+            this.Message = message;
+            this.Status = status;
+        }
+
         internal MapleStoryAPIException(MapleStoryAPIErrorBody error) : base(error.Message)
         {
             this.Message = error.Message;
