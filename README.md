@@ -12,8 +12,6 @@ This library project enables the use of the MapleStory OpenAPI provided by Nexon
 
 ### Java
 
-coming soon
-
 Include the latest version of the Java library in your java project by adding the following dependency:
 
 ```xml
