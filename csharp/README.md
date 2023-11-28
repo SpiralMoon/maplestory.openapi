@@ -6,6 +6,8 @@ This C# library enables the use of the MapleStory OpenAPI provided by Nexon.
 
 Packages written in other languages can be found [HERE](https://github.com/SpiralMoon/maplestory.openapi).
 
+(한국어 문서는 [이쪽](https://github.com/SpiralMoon/maplestory.openapi/blob/master/csharp/README-ko.md)입니다.)
+
 ## Installation
 
 Install the latest version of the C# library in your NuGet project:

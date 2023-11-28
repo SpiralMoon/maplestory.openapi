@@ -2,15 +2,15 @@
 
 [![Maven Central](https://img.shields.io/maven-central/v/dev.spiralmoon/maplestory-openapi)](https://search.maven.org/artifact/dev.spiralmoon/maplestory-openapi)
 
-This Java library enables the use of the MapleStory OpenAPI provided by Nexon.
+넥슨에서 제공하는 MapleStory OpenAPI를 Java 환경에서 사용할 수 있게 해주는 라이브러리입니다.
 
-Packages written in other languages can be found [HERE](https://github.com/SpiralMoon/maplestory.openapi).
+다른 언어로 작성된 패키지는 [여기](https://github.com/SpiralMoon/maplestory.openapi)에서 확인할 수 있습니다.
 
-(한국어 문서는 [이쪽](https://github.com/SpiralMoon/maplestory.openapi/blob/master/java/README-ko.md)입니다.)
+(English document is [HERE](https://github.com/SpiralMoon/maplestory.openapi/blob/master/java/README.md))
 
 ## Installation
 
-Install the latest version of the Java library in your java project:
+Java 기반 프로젝트에 아래 정보를 입력하여 패키지를 추가하세요:
 
 ```xml
 <dependency>
@@ -19,7 +19,7 @@ Install the latest version of the Java library in your java project:
     <version>1.0.0</version> <!-- Replace with the latest version -->
 </dependency>
 ```
-or 
+또는
 ```groovy
 implementation 'dev.spiralmoon:maplestory-openapi:1.0.0' // Replace with the latest version
 ```
@@ -66,17 +66,17 @@ class Sample {
 
 ### Exception Handling
 
-Handle `MapleStoryApiException` to safely make calls, ensuring that specific Status defined in the [MapleStory OpenAPI Guide](https://developers.nexon.com/Maplestory/guides) are not encountered.
+[MapleStory OpenAPI 가이드](https://developers.nexon.com/Maplestory/guides)에 서술된 에러 사유를 `MapleStoryApiException`를 통해 예외 처리 해야합니다.
 
-While `MapleStoryApi` is designed to prevent the occurrence of certain Status, exceptions may arise due to developer mistakes.
+`MapleStoryApi`는 특정 상태의 예외를 발생시키지 않도록 설계되었으나, 라이브러리를 사용하는 개발자의 실수로 인해 여전히 일부 상태의 예외가 발생할 수 있습니다.
 
-Therefore, it's recommended to use `MapleStoryApiException` for exception handling based on the Status list described in the table below.
+따라서 아래 표에 설명된 상태 목록을 기반으로 `MapleStoryApiException`를 예외 처리하시기 바랍니다.
 
-| Status | Message                                                 |
-|--------|---------------------------------------------------------|
-| 400    | Request format error (incorrect parameter input)        |
-| 401    | Unauthorized service (unsupported service, service type) |
-| 403    | Unauthorized AccessToken usage                          |
-| 429    | AccessToken's request allowance (Rate Limit) exceeded   |
-| 500    | Internal server error                                   |
-| 504    | Internal server processing timeout                      |
+| Status | Message                             |
+|--------|-------------------------------------|
+| 400    | 요청 형식 오류 (잘못된 파라미터 입력)              | 
+| 401    | 미승인 서비스 (미지원 service, service type) |
+| 403    | 허용되지 않은 AccessToken 사용              |
+| 429    | AccessToken의 요청 허용량(Rate Limit) 초과  |
+| 500    | 서버 내부 에러                            |
+| 504    | 서버 내부 처리 timeout                    |
