@@ -2,6 +2,8 @@
 
 This library project enables the use of the MapleStory OpenAPI provided by Nexon.
 
+(한국어 문서는 [이쪽](./README-ko.md)입니다.)
+
 ## Supported Languages
 
 1. **Java**: [![Maven Central](https://img.shields.io/maven-central/v/dev.spiralmoon/maplestory-openapi)](https://search.maven.org/artifact/dev.spiralmoon/maplestory-openapi)
@@ -53,8 +55,8 @@ For detailed information on how to use the library in C#, refer to the [HERE](./
 ## Features
 
 1. Get cube usage history
-2. Get star-force enhancement history (coming soon)
-3. Get character information (coming soon)
+2. ~~Get star-force enhancement history~~ (coming soon)
+3. ~~Get character information~~ (coming soon)
 
 ## Additional Information
 
