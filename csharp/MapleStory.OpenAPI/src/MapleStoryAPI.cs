@@ -27,6 +27,7 @@ namespace MapleStory.OpenAPI
         /// <summary>
         /// 오늘 날짜의 확률형 아이템 큐브의 사용 결과를 조회합니다.
         /// <para>데이터는 일단위로 갱신되며, 오전 4시 조회 시 전일 데이터를 조회할 수 있습니다.</para>
+        /// <para>데이터는 2022년 11월 25일부터 조회할 수 있습니다.</para>
         /// </summary>
         /// <param name="count">한번에 가져오려는 결과의 갯수(최소 10, 최대 1000) Default value : 10</param>
         public Task<CubeHistoryResponseDTO> GetCubeResult(int count)
@@ -43,6 +44,7 @@ namespace MapleStory.OpenAPI
         /// <summary>
         /// 지목한 날짜의 확률형 아이템 큐브의 사용 결과를 조회합니다.
         /// <para>데이터는 일단위로 갱신되며, 오전 4시 조회 시 전일 데이터를 조회할 수 있습니다.</para>
+        /// <para>데이터는 2022년 11월 25일부터 조회할 수 있습니다.</para>
         /// </summary>
         /// <param name="count">한번에 가져오려는 결과의 갯수(최소 10, 최대 1000) Default value : 10</param>
         /// <param name="year">조회할 연도</param>
@@ -88,6 +90,7 @@ namespace MapleStory.OpenAPI
         /// <summary>
         /// 확률형 아이템 큐브의 사용 결과를 조회합니다.
         /// <para>데이터는 일단위로 갱신되며, 오전 4시 조회 시 전일 데이터를 조회할 수 있습니다.</para>
+        /// <para>데이터는 2022년 11월 25일부터 조회할 수 있습니다.</para>
         /// </summary>
         /// <param name="count">한번에 가져오려는 결과의 갯수(최소 10, 최대 1000) Default value : 10</param>
         public async Task<CubeHistoryResponseDTO> GetCubeResult(int count, string cursor)
