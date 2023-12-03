@@ -1,7 +1,7 @@
 ﻿using MapleStory.OpenAPI.Dto;
 using Newtonsoft.Json;
 using System.Web;
-using System;
+using System.Text;
 
 namespace MapleStory.OpenAPI
 {
@@ -120,6 +120,43 @@ namespace MapleStory.OpenAPI
                 else
                 {
                     throw ParseError(body);
+                }
+            }
+        }
+
+        /// <summary>
+        /// 서버 점검 정보를 조회합니다.
+        /// </summary>
+        public async Task<InspectionInfoDTO> GetInspectionInfo()
+        {
+            using (var client = new HttpClient())
+            {
+                var baseUrl = "https://api.maplestory.nexon.com/";
+                var path = "soap/maplestory.asmx";
+                var uriBuilder = new UriBuilder($"{baseUrl}{path}");
+
+                client.DefaultRequestHeaders.Add("SOAPAction", "https://api.maplestory.nexon.com/soap/GetInspectionInfo");
+                client.Timeout = TimeSpan.FromMilliseconds(this.timeOut);
+
+                var soapEnvelop =
+                "<soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n" +
+                "  <soap:Body>\n" +
+                "    <GetInspectionInfo xmlns=\"https://api.maplestory.nexon.com/soap/\" />\n" +
+                "  </soap:Body>\n" +
+                "</soap:Envelope>";
+                var body = new StringContent(soapEnvelop, Encoding.UTF8, "text/xml");
+
+                var response = await client.PostAsync(uriBuilder.Uri, body);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var responseBody = await response.Content.ReadAsStringAsync();
+
+                    return new InspectionInfoDTO(responseBody);
+                }
+                else
+                {
+                    throw new MapleStoryAPIException(400, "Bad Request");
                 }
             }
         }
