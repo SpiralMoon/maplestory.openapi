@@ -19,4 +19,11 @@ public class MapleStoryApiException extends RuntimeException {
         this.message = error.getMessage();
         this.status = error.getStatus();
     }
+
+    public MapleStoryApiException(int status, String message) {
+        super(message);
+
+        this.message = message;
+        this.status = status;
+    }
 }

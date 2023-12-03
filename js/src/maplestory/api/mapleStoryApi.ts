@@ -1,11 +1,14 @@
 import {CubeHistoryResponseDto} from "./dto/cubeHistoryResponseDto";
+import {InspectionInfoDto} from "./dto/inspectionInfoDto";
 import {MapleStoryApiError} from "./mapleStoryApiError";
 import {CubeHistoryResponseDtoBody} from "./response/cubeHistoryResponseDtoBody";
+import {InspectionInfoSoapBody} from "./response/inspectionInfoSoapBody";
 
 import axios, {AxiosError} from "axios";
 import dayjs from "dayjs";
 import timezone from "dayjs/plugin/timezone";
 import utc from "dayjs/plugin/utc";
+import xml2js from 'xml2js';
 
 dayjs.extend(timezone);
 dayjs.extend(utc);
@@ -95,6 +98,48 @@ class MapleStoryApi {
 
 			throw e;
 		}
+	}
+
+	/**
+	 * 서버 점검 정보를 조회합니다.
+	 */
+	public async getInspectionInfo(): Promise<InspectionInfoDto> {
+
+		const xmlBuilder = new xml2js.Builder();
+		const soapEnvelop = {
+			'soap:Envelope': {
+				$: {
+					'xmlns:xsi': 'http://www.w3.org/2001/XMLSchema-instance',
+					'xmlns:xsd': 'http://www.w3.org/2001/XMLSchema',
+					'xmlns:soap': 'http://schemas.xmlsoap.org/soap/envelope/'
+				},
+				'soap:Body': {
+					'GetInspectionInfo': {
+						$: {
+							'xmlns': 'https://api.maplestory.nexon.com/soap/'
+						}
+					}
+				}
+			}
+		};
+
+		const baseUrl = 'https://api.maplestory.nexon.com/';
+		const path = 'soap/maplestory.asmx'
+		const headers = {
+			'SOAPAction': 'https://api.maplestory.nexon.com/soap/GetInspectionInfo',
+			'Content-Type': 'text/xml; charset=utf-8'
+		};
+		const body = xmlBuilder.buildObject(soapEnvelop);
+
+		const response = await axios.post<string>(path, body, {
+			baseURL: baseUrl,
+			timeout: this.timeout,
+			headers,
+		});
+
+		const xml = await xml2js.parseStringPromise(response.data) as InspectionInfoSoapBody;
+
+		return new InspectionInfoDto(xml);
 	}
 
 	private buildHeaders(): { [key: string]: string } {
