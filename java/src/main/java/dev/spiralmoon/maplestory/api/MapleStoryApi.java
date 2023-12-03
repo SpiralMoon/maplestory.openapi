@@ -4,16 +4,21 @@ import com.google.gson.Gson;
 import dev.spiralmoon.maplestory.api.callback.FailureCallback;
 import dev.spiralmoon.maplestory.api.callback.SuccessCallback;
 import dev.spiralmoon.maplestory.api.dto.CubeHistoryResponseDTO;
+import dev.spiralmoon.maplestory.api.dto.InspectionInfoDTO;
 import dev.spiralmoon.maplestory.api.template.CubeApi;
+import dev.spiralmoon.maplestory.api.template.InspectionInfoApi;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.SneakyThrows;
+import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -65,7 +70,7 @@ public class MapleStoryApi {
      *
      * @param count 한번에 가져오려는 결과의 갯수(최소 10, 최대 1000) Default value : 10
      */
-    public void getCubeResult(int count, SuccessCallback<CubeHistoryResponseDTO> onSuccess, FailureCallback onFailure)  {
+    public void getCubeResult(int count, SuccessCallback<CubeHistoryResponseDTO> onSuccess, FailureCallback onFailure) {
 
         final LocalDate kstNow = LocalDate.now(ZoneId.of("Asia/Seoul"));
         final int year = kstNow.getYear();
@@ -81,9 +86,9 @@ public class MapleStoryApi {
      * 데이터는 2022년 11월 25일부터 조회할 수 있습니다.<br>
      *
      * @param count 한번에 가져오려는 결과의 갯수(최소 10, 최대 1000) Default value : 10
-     * @param year 조회할 연도
+     * @param year  조회할 연도
      * @param month 조회할 월
-     * @param day 조회할 월의 날짜
+     * @param day   조회할 월의 날짜
      */
     public CubeHistoryResponseDTO getCubeResult(int count, int year, int month, int day) throws IOException {
 
@@ -119,9 +124,9 @@ public class MapleStoryApi {
      * 데이터는 2022년 11월 25일부터 조회할 수 있습니다.<br>
      *
      * @param count 한번에 가져오려는 결과의 갯수(최소 10, 최대 1000) Default value : 10
-     * @param year 조회할 연도
+     * @param year  조회할 연도
      * @param month 조회할 월
-     * @param day 조회할 월의 날짜
+     * @param day   조회할 월의 날짜
      */
     public void getCubeResult(int count, int year, int month, int day, SuccessCallback<CubeHistoryResponseDTO> onSuccess, FailureCallback onFailure) {
 
@@ -228,6 +233,85 @@ public class MapleStoryApi {
 
             @Override
             public void onFailure(Call<CubeHistoryResponseDTO> call, Throwable t) {
+                if (onFailure != null) {
+                    onFailure.callback(t);
+                }
+            }
+        });
+    }
+
+    /**
+     * 서버 점검 정보를 조회합니다.
+     */
+    public InspectionInfoDTO getInspectionInfo() throws IOException {
+
+        final String baseUrl = "https://api.maplestory.nexon.com/";
+        final Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(baseUrl)
+                .addConverterFactory(ScalarsConverterFactory.create())
+                .client(this.buildClient())
+                .build();
+
+        final String soapEnvelop =
+                "<soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n" +
+                "  <soap:Body>\n" +
+                "    <GetInspectionInfo xmlns=\"https://api.maplestory.nexon.com/soap/\" />\n" +
+                "  </soap:Body>\n" +
+                "</soap:Envelope>";
+        final RequestBody body = RequestBody.create(MediaType.parse("text/xml; charset=utf-8"), soapEnvelop);
+
+        final InspectionInfoApi inspectionInfoApi = retrofit.create(InspectionInfoApi.class);
+        final Call<String> call = inspectionInfoApi.getInspectionInfo(body);
+
+        final Response<String> response = call.execute();
+
+        if (!response.isSuccessful()) {
+            throw new MapleStoryApiException(400, "Bad Request");
+        }
+
+        return new InspectionInfoDTO(response.body());
+    }
+
+    /**
+     * 서버 점검 정보를 비동기로 조회합니다.
+     */
+    public void getInspectionInfo(SuccessCallback<InspectionInfoDTO> onSuccess, FailureCallback onFailure) {
+
+        final String baseUrl = "https://api.maplestory.nexon.com/";
+        final Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(baseUrl)
+                .addConverterFactory(ScalarsConverterFactory.create())
+                .client(this.buildClient())
+                .build();
+
+        final String soapEnvelop =
+                "<soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n" +
+                        "  <soap:Body>\n" +
+                        "    <GetInspectionInfo xmlns=\"https://api.maplestory.nexon.com/soap/\" />\n" +
+                        "  </soap:Body>\n" +
+                        "</soap:Envelope>";
+        final RequestBody body = RequestBody.create(MediaType.parse("text/xml; charset=utf-8"), soapEnvelop);
+
+        final InspectionInfoApi inspectionInfoApi = retrofit.create(InspectionInfoApi.class);
+        final Call<String> call = inspectionInfoApi.getInspectionInfo(body);
+
+        call.enqueue(new Callback<String>() {
+            @SneakyThrows
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                if (response.isSuccessful()) {
+                    if (onSuccess != null) {
+                        onSuccess.callback(new InspectionInfoDTO(response.body()));
+                    }
+                } else {
+                    if (onFailure != null) {
+                        onFailure.callback(parseError(response));
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
                 if (onFailure != null) {
                     onFailure.callback(t);
                 }
