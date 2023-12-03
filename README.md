@@ -2,6 +2,8 @@
 
 This library project enables the use of the MapleStory OpenAPI provided by Nexon.
 
+This library project is capable of retrieving only KMS(Korea MapleStory) data.
+
 (한국어 문서는 [이쪽](./README-ko.md)입니다.)
 
 ## Supported Languages
@@ -35,7 +37,7 @@ For detailed information on how to use the library in Java, refer to the [HERE](
 Install the latest version of the JavaScript/TypeScript library in your npm project:
 
 ```bash
-npm install maplestory-openapi@1.0.0
+npm install maplestory-openapi
 ```
 
 For detailed information on how to use the library in JavaScript/TypeScript, refer to the [HERE](./js/README.md).
@@ -57,6 +59,7 @@ For detailed information on how to use the library in C#, refer to the [HERE](./
 1. Get cube usage history
 2. ~~Get star-force enhancement history~~ (coming soon)
 3. ~~Get character information~~ (coming soon)
+4. Get server inspection information
 
 ## Additional Information
 

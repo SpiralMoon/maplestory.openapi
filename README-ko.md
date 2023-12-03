@@ -2,6 +2,8 @@
 
 넥슨에서 제공하는 MapleStory OpenAPI를 사용할 수 있게 해주는 라이브러리입니다.
 
+KMS(한국 메이플스토리)의 데이터만 조회할 수 있습니다.
+
 (English document is [HERE](./README.md))
 
 ## Supported Languages
@@ -35,7 +37,7 @@ Java 라이브러리를 사용하는 자세한 방법은 [여기](./java/README-
 npm 기반 프로젝트에 아래 정보를 입력하여 패키지를 추가하세요:
 
 ```bash
-npm install maplestory-openapi@1.0.0
+npm install maplestory-openapi
 ```
 
 Javascript/Typescript 라이브러리를 사용하는 자세한 방법은 [여기](./js/README-ko.md)에서 확인해주세요.
@@ -57,6 +59,7 @@ C# 라이브러리를 사용하는 자세한 방법은 [여기](./csharp/README-
 1. 큐브 사용기록 조회
 2. ~~스타포스 강화기록 조회~~ (추가 예정)
 3. ~~캐릭터 정보 조회~~ (추가 예정)
+4. 서버 점검 정보 조회
 
 ## Additional Information
 
