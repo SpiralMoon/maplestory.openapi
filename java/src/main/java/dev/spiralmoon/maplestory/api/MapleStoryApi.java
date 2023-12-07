@@ -34,7 +34,7 @@ public class MapleStoryApi {
 
     private final String apiKey;
 
-    private static final String baseUrl = "https://public.api.nexon.com/";
+    private static final String BASE_URL = "https://public.api.nexon.com/";
 
     // in milliseconds
     @Getter
@@ -101,7 +101,7 @@ public class MapleStoryApi {
         final String yyyyMMdd = date.format(formatter);
 
         final Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(baseUrl)
+                .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(this.buildClient())
                 .build();
@@ -139,7 +139,7 @@ public class MapleStoryApi {
         final String yyyyMMdd = date.format(formatter);
 
         final Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(baseUrl)
+                .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(this.buildClient())
                 .build();
@@ -181,7 +181,7 @@ public class MapleStoryApi {
     public CubeHistoryResponseDTO getCubeResult(int count, String cursor) throws IOException {
 
         final Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(baseUrl)
+                .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(this.buildClient())
                 .build();
@@ -208,7 +208,7 @@ public class MapleStoryApi {
     public void getCubeResult(int count, String cursor, SuccessCallback<CubeHistoryResponseDTO> onSuccess, FailureCallback onFailure) {
 
         final Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(baseUrl)
+                .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(this.buildClient())
                 .build();

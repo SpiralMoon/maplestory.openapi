@@ -17,7 +17,7 @@ class MapleStoryApi {
 
 	private readonly apiKey: string;
 
-	private static baseUrl: string = 'https://public.api.nexon.com/';
+	private static BASE_URL: string = 'https://public.api.nexon.com/';
 
 	private static kstOffset: number = 540;
 
@@ -82,7 +82,7 @@ class MapleStoryApi {
 		try {
 			const path = 'openapi/maplestory/v1/cube-use-results';
 			const response = await axios.get<CubeHistoryResponseDtoBody>(path, {
-				baseURL: MapleStoryApi.baseUrl,
+				baseURL: MapleStoryApi.BASE_URL,
 				timeout: this.timeout,
 				headers: this.buildHeaders(),
 				params: query

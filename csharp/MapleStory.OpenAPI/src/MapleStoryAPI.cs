@@ -13,7 +13,7 @@ namespace MapleStory.OpenAPI
     {
         private readonly string apiKey;
 
-        private static readonly string baseUrl = "https://public.api.nexon.com/";
+        private static readonly string BASE_URL = "https://public.api.nexon.com/";
 
         // in milliseconds
         private long timeOut { get; set; }
@@ -61,7 +61,7 @@ namespace MapleStory.OpenAPI
             using (var client = new HttpClient())
             {
                 var path = "openapi/maplestory/v1/cube-use-results";
-                var uriBuilder = new UriBuilder($"{baseUrl}{path}");
+                var uriBuilder = new UriBuilder($"{BASE_URL}{path}");
 
                 var query = HttpUtility.ParseQueryString(uriBuilder.Query);
                 query["count"] = count.ToString();
@@ -98,7 +98,7 @@ namespace MapleStory.OpenAPI
             using (var client = new HttpClient())
             {
                 var path = "openapi/maplestory/v1/cube-use-results";
-                var uriBuilder = new UriBuilder($"{baseUrl}{path}");
+                var uriBuilder = new UriBuilder($"{BASE_URL}{path}");
 
                 var query = HttpUtility.ParseQueryString(uriBuilder.Query);
                 query["count"] = count.ToString();
