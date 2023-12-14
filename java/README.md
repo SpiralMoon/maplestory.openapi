@@ -2,7 +2,7 @@
 
 [![Maven Central](https://img.shields.io/maven-central/v/dev.spiralmoon/maplestory-openapi)](https://search.maven.org/artifact/dev.spiralmoon/maplestory-openapi)
 
-This Java library enables the use of the MapleStory OpenAPI provided by Nexon.
+This Java library enables the use of the MapleStory OpenAPI of Nexon.
 
 Packages written in other languages can be found [HERE](https://github.com/SpiralMoon/maplestory.openapi).
 
@@ -26,6 +26,10 @@ implementation 'dev.spiralmoon:maplestory-openapi:1.1.0' // Replace with the lat
 
 ## Usage
 
+### API Key
+
+Before using the library, register your application and obtain an **api key** from the [Nexon Open API Console](https://openapi.nexon.com/my-application/).
+
 ### Sample Code
 
 ```java
@@ -46,7 +50,7 @@ class Sample {
             final CubeHistoryResponseDTO response = api.getCubeResult(1000, 2023, 10, 15);
 
             final int count = response.getCount();
-            final List<CubeHistoryDTO> cubeHistories = response.getCubeHistories();
+            final List<CubeHistoryDTO> cubeHistory = response.getCubeHistory();
             final String nextCursor = response.getNextCursor();
 
             System.out.println("You used " + count + " cubes.");
@@ -66,17 +70,18 @@ class Sample {
 
 ### Exception Handling
 
-Handle `MapleStoryApiException` to safely make calls, ensuring that specific Status defined in the [MapleStory OpenAPI Guide](https://developers.nexon.com/Maplestory/guides) are not encountered.
+Handle `MapleStoryApiException` to safely make calls, ensuring that specific Status defined in the [MapleStory OpenAPI Guide](https://openapi.nexon.com/guide/request-api) are not encountered.
 
 While `MapleStoryApi` is designed to prevent the occurrence of certain Status, exceptions may arise due to developer mistakes.
 
-Therefore, it's recommended to use `MapleStoryApiException` for exception handling based on the Status list described in the table below.
+Therefore, it's recommended to use `MapleStoryApiException` for exception handling based on the `MapleStoryApiErrorCode` list described in the table below.
 
-| Status | Message                                                 |
-|--------|---------------------------------------------------------|
-| 400    | Request format error (incorrect parameter input)        |
-| 401    | Unauthorized service (unsupported service, service type) |
-| 403    | Unauthorized AccessToken usage                          |
-| 429    | AccessToken's request allowance (Rate Limit) exceeded   |
-| 500    | Internal server error                                   |
-| 504    | Internal server processing timeout                      |
+| ErrorCode    | Description                                     |
+|--------------|-------------------------------------------------|
+| OPENAPI00001 | Internal server error                           |
+| OPENAPI00002 | Access denied                                   |
+| OPENAPI00003 | Invalid identifier                              |
+| OPENAPI00004 | Request format error (incorrect parameter input) |
+| OPENAPI00005 | Invalid api key                                 |
+| OPENAPI00006 | Invalid api path                                |
+| OPENAPI00007 | Request allowance (Rate Limit) exceeded         |

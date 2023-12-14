@@ -1,6 +1,8 @@
 # MapleStory OpenAPI Library
 
-넥슨에서 제공하는 MapleStory OpenAPI를 사용할 수 있게 해주는 라이브러리입니다.
+넥슨의 MapleStory OpenAPI를 사용할 수 있게 해주는 라이브러리입니다.
+
+라이브러리를 사용하기 전에 [Nexon Open API 콘솔](https://openapi.nexon.com/my-application/)에서 애플리케이션을 등록하고 **api key**를 발급 받으세요.
 
 KMS(한국 메이플스토리)의 데이터만 조회할 수 있습니다.
 
@@ -56,16 +58,18 @@ C# 라이브러리를 사용하는 자세한 방법은 [여기](./csharp/README-
 
 ## Features
 
-1. 큐브 사용기록 조회
-2. ~~스타포스 강화기록 조회~~ (추가 예정)
+1. 큐브 사용 기록 조회
+2. ~~스타포스 강화 기록 조회~~ (추가 예정)
 3. ~~캐릭터 정보 조회~~ (추가 예정)
 4. 서버 점검 정보 조회
 
 ## Additional Information
 
-1. 이 라이브러리는 [MapleStory OpenAPI spec](https://developers.nexon.com/Maplestory/apiList)의 기능을 사용할 수 있도록 만든 구현체입니다. 언어별 문서를 확인하여 사용법을 확인하세요.
-2. 데이터는 [NEXON DEVELOPERS](https://developers.nexon.com)에서 제공받고 있습니다.
-3. 다른 개발자의 참여를 환영합니다! 적극적으로 PR을 보내주세요.
+1. 이 라이브러리는 [MapleStory OpenAPI spec](https://openapi.nexon.com/game/maplestory)의 기능을 사용할 수 있도록 만든 구현체입니다. 언어별 문서를 확인하여 사용법을 확인하세요.
+2. 이 라이브러리는 언어별 네이밍 스타일가이드를 준수하였기 때문에 공식 문서의 네이밍 규칙과 약간의 차이가 있습니다. ex) 'cube_history' -> 'cubeHistory'
+3. 이 라이브러리에서 제공하는 메소드와 프로퍼티에 대한 주석은 공식 문서와 동기화하고 있습니다.
+4. 데이터는 [NEXON Open API](https://openapi.nexon.com)에서 제공받고 있습니다.
+5. 다른 개발자의 참여를 환영합니다! 적극적으로 PR을 보내주세요.
 
 ## License
 

@@ -1,6 +1,8 @@
 # MapleStory OpenAPI Library
 
-This library project enables the use of the MapleStory OpenAPI provided by Nexon.
+This library project enables the use of the MapleStory OpenAPI of Nexon.
+
+Before using the library, register your application and obtain an **api key** from the [Nexon Open API Console](https://openapi.nexon.com/my-application/).
 
 This library project is capable of retrieving only KMS(Korea MapleStory) data.
 
@@ -63,9 +65,11 @@ For detailed information on how to use the library in C#, refer to the [HERE](./
 
 ## Additional Information
 
-1. The implementation details of the API are documented on the [MapleStory OpenAPI spec](https://developers.nexon.com/Maplestory/apiList). Refer to the documentation for each language.
-2. Data based on [NEXON DEVELOPERS](https://developers.nexon.com)
-3. Contributions from other developers are welcome! Feel free to contribute by submitting pull requests.
+1. The implementation details of the API are documented on the [MapleStory OpenAPI spec](https://openapi.nexon.com/game/maplestory). Refer to the documentation for each language.
+2. This library adheres to language-specific naming style guides, resulting in slight differences from the naming conventions in the official documentation. ex) 'cube_history' -> 'cubeHistory'
+3. The comments for the methods and properties provided by this library are synchronized with the official documentation.
+4. Data based on [NEXON Open API](https://openapi.nexon.com)
+5. Contributions from other developers are welcome! Feel free to contribute by submitting pull requests.
 
 ## License
 
