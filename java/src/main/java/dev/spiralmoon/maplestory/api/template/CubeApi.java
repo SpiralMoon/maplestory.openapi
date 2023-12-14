@@ -8,9 +8,9 @@ import retrofit2.http.Query;
 
 public interface CubeApi {
 
-    @GET("openapi/maplestory/v1/cube-use-results")
-    Call<CubeHistoryResponseDTO> getCubeResultByDate(@Header("authorization") String authorization, @Query("count") int count, @Query("date") String date);
+    @GET("maplestory/v1/history/cube")
+    Call<CubeHistoryResponseDTO> getCubeResultByDate(@Header("x-nxopen-api-key") String apiKey, @Query("count") int count, @Query("date_kst") String date);
 
-    @GET("openapi/maplestory/v1/cube-use-results")
-    Call<CubeHistoryResponseDTO> getCubeResultByCursor(@Header("authorization") String authorization, @Query("count") int count, @Query("cursor") String cursor);
+    @GET("maplestory/v1/history/cube")
+    Call<CubeHistoryResponseDTO> getCubeResultByCursor(@Header("x-nxopen-api-key") String apiKey, @Query("count") int count, @Query("cursor") String cursor);
 }

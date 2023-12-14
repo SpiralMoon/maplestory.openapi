@@ -13,11 +13,15 @@ import xml2js from 'xml2js';
 dayjs.extend(timezone);
 dayjs.extend(utc);
 
+/**
+ * MapleStory OpenAPI client.<br>
+ * This is an implementation of <a href="https://openapi.nexon.com/game/maplestory">MapleStory API</a>
+ */
 class MapleStoryApi {
 
 	private readonly apiKey: string;
 
-	private static BASE_URL: string = 'https://public.api.nexon.com/';
+	private static BASE_URL: string = 'https://open.api.nexon.com/';
 
 	private static kstOffset: number = 540;
 
@@ -29,31 +33,34 @@ class MapleStoryApi {
 	}
 
 	/**
-	 * 오늘 날짜의 확률형 아이템 큐브의 사용 결과를 조회합니다.<br>
-	 * 데이터는 일단위로 갱신되며, 오전 4시 조회 시 전일 데이터를 조회할 수 있습니다.<br>
-	 * 데이터는 2022년 11월 25일부터 조회할 수 있습니다.<br>
+	 * 오늘 날짜의 큐브 사용 결과를 조회합니다.<br>
+	 * 큐브 사용 결과 데이터는 매일 오전 4시, 전일 데이터가 갱신됩니다.<br>
+	 * 큐브 사용 결과 데이터는 2022년 11월 25일부터 조회할 수 있습니다.<br>
+	 * e.g. 오늘 오후 3시 5분 큐브 확률 정보 조회 시, 어제의 큐브 확률 정보 데이터를 조회할 수 있습니다.<br>
 	 *
-	 * @param count 한번에 가져오려는 결과의 갯수(최소 10, 최대 1000) Default value : 10
+	 * @param count 한번에 가져오려는 결과의 개수(최소 10, 최대 1000)
 	 */
 	public async getCubeResult(count: number): Promise<CubeHistoryResponseDto>;
 
 	/**
-	 * 지목한 날짜의 확률형 아이템 큐브의 사용 결과를 조회합니다.<br>
-	 * 데이터는 일단위로 갱신되며, 오전 4시 조회 시 전일 데이터를 조회할 수 있습니다.<br>
-	 * 데이터는 2022년 11월 25일부터 조회할 수 있습니다.<br>
+	 * 지목한 날짜의 큐브 사용 결과를 조회합니다.<br>
+	 * 큐브 사용 결과 데이터는 매일 오전 4시, 전일 데이터가 갱신됩니다.<br>
+	 * 큐브 사용 결과 데이터는 2022년 11월 25일부터 조회할 수 있습니다.<br>
+	 * e.g. 오늘 오후 3시 5분 큐브 확률 정보 조회 시, 어제의 큐브 확률 정보 데이터를 조회할 수 있습니다.<br>
 	 *
-	 * @param count 한번에 가져오려는 결과의 갯수(최소 10, 최대 1000) Default value : 10
-	 * @param dateOptions 조회할 연월일 날짜 정보
+	 * @param count 한번에 가져오려는 결과의 개수(최소 10, 최대 1000)
+	 * @param dateOptions 조회 기준일 (KST)
 	 */
 	public async getCubeResult(count: number, dateOptions: DateOptions): Promise<CubeHistoryResponseDto>;
 
 	/**
-	 * 확률형 아이템 큐브의 사용 결과를 조회합니다.<br>
-	 * 데이터는 일단위로 갱신되며, 오전 4시 조회 시 전일 데이터를 조회할 수 있습니다.<br>
-	 * 데이터는 2022년 11월 25일부터 조회할 수 있습니다.<br>
+	 * 큐브 사용 결과를 조회합니다.<br>
+	 * 큐브 사용 결과 데이터는 매일 오전 4시, 전일 데이터가 갱신됩니다.<br>
+	 * 큐브 사용 결과 데이터는 2022년 11월 25일부터 조회할 수 있습니다.<br>
+	 * e.g. 오늘 오후 3시 5분 큐브 확률 정보 조회 시, 어제의 큐브 확률 정보 데이터를 조회할 수 있습니다.<br>
 	 *
-	 * @param count 한번에 가져오려는 결과의 갯수(최소 10, 최대 1000) Default value : 10
-	 * @param cursor
+	 * @param count 한번에 가져오려는 결과의 개수(최소 10, 최대 1000)
+	 * @param cursor 페이징 처리를 위한 cursor
 	 */
 	public async getCubeResult(count: number, cursor: string): Promise<CubeHistoryResponseDto>;
 
@@ -73,14 +80,14 @@ class MapleStoryApi {
 			}
 
 			const date = dayjs(`${year}-${month}-${day}`).utcOffset(MapleStoryApi.kstOffset);
-			query.date = date.format('YYYY-MM-DD')
+			query.date_kst = date.format('YYYYMMDD')
 		} else {
 			const now = dayjs().utcOffset(MapleStoryApi.kstOffset);
-			query.date = now.format('YYYY-MM-DD');
+			query.date_kst = now.format('YYYYMMDD');
 		}
 
 		try {
-			const path = 'openapi/maplestory/v1/cube-use-results';
+			const path = 'maplestory/v1/history/cube';
 			const response = await axios.get<CubeHistoryResponseDtoBody>(path, {
 				baseURL: MapleStoryApi.BASE_URL,
 				timeout: this.timeout,
@@ -144,7 +151,7 @@ class MapleStoryApi {
 
 	private buildHeaders(): { [key: string]: string } {
 		return {
-			'authorization': this.apiKey
+			'x-nxopen-api-key': this.apiKey
 		}
 	}
 }
@@ -157,13 +164,15 @@ type DateOptions = {
 
 type CubeApiQuery = {
 	count: number;
-	date?: string;
+	date_kst?: string;
 	cursor?: string;
 }
 
 type MapleStoryErrorBody = {
-	status: number;
-	message: string;
+	error: {
+		name: string;
+		message: string;
+	}
 }
 
-export {MapleStoryApi}
+export {MapleStoryApi, MapleStoryErrorBody}

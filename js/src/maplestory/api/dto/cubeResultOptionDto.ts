@@ -7,7 +7,7 @@ import {PotentialOptionGrade, potentialOptionGradeFromString} from "./potentialO
 class CubeResultOptionDto {
 
 	/**
-	 * 옵션 이름
+	 * 옵션 명
 	 */
 	value: string;
 

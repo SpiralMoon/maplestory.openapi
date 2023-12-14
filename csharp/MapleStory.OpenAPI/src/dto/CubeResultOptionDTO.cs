@@ -8,7 +8,7 @@ namespace MapleStory.OpenAPI.Dto
     public class CubeResultOptionDTO
     {
         /// <summary>
-        /// 옵션 이름
+        /// 옵션 명
         /// </summary>
         [JsonProperty("value")]
         public string Value { get; set; }

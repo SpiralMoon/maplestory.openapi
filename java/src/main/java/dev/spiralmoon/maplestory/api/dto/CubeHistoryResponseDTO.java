@@ -8,7 +8,7 @@ import lombok.ToString;
 import java.util.List;
 
 /**
- * 큐브히스토리 응답 정보
+ * 큐브 히스토리 응답 정보
  */
 @AllArgsConstructor
 @Data
@@ -24,8 +24,8 @@ public class CubeHistoryResponseDTO {
     /**
      * 큐브 히스토리
      */
-    @SerializedName("cube_histories")
-    private List<CubeHistoryDTO> cubeHistories;
+    @SerializedName("cube_history")
+    private List<CubeHistoryDTO> cubeHistory;
 
     /**
      * 페이징 처리를 위한 cursor

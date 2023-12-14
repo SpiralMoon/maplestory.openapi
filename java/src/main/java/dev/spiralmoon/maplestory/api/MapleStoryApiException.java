@@ -4,26 +4,26 @@ import lombok.Getter;
 
 /**
  * MapleStory OpenAPI exception.<br>
- * Please refer to <a href="https://developers.nexon.com/Maplestory/guides">MapleStory API guide</a> for the exception details.
+ * Please refer to <a href="https://openapi.nexon.com/guide/request-api/">MapleStory API guide</a> for the exception details.<br>
  */
 @Getter
 public class MapleStoryApiException extends RuntimeException {
 
     private final String message;
 
-    private final int status;
+    private final MapleStoryApiErrorCode errorCode;
 
-    public MapleStoryApiException(MapleStoryApiErrorBody error) {
-        super(error.getMessage());
+    public MapleStoryApiException(MapleStoryApiErrorBody errorBody) {
+        super(errorBody.getError().getMessage());
 
-        this.message = error.getMessage();
-        this.status = error.getStatus();
+        this.message = errorBody.getError().getMessage();
+        this.errorCode = MapleStoryApiErrorCode.fromString(errorBody.getError().getName());
     }
 
-    public MapleStoryApiException(int status, String message) {
+    public MapleStoryApiException(MapleStoryApiErrorCode errorCode, String message) {
         super(message);
 
         this.message = message;
-        this.status = status;
+        this.errorCode = errorCode;
     }
 }

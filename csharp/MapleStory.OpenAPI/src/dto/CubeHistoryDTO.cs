@@ -3,42 +3,54 @@
 namespace MapleStory.OpenAPI.Dto
 {
     /// <summary>
-    /// 큐브히스토리 정보
+    /// 큐브 히스토리
     /// </summary>
     public class CubeHistoryDTO
     {
         /// <summary>
-        /// 큐브 사용 내역에 대한 고유 식별자
+        /// 큐브 히스토리 식별자
         /// </summary>
         [JsonProperty("id")]
         public string Id { get; set; }
 
         /// <summary>
-        /// 캐릭터이름
+        /// 캐릭터 명
         /// </summary>
         [JsonProperty("character_name")]
         public string CharacterName { get; set; }
 
         /// <summary>
-        /// 월드 이름
+        /// 월드 명
         /// </summary>
         [JsonProperty("world_name")]
         public string WorldName { get; set; }
 
         /// <summary>
-        /// 큐브 사용 날짜
+        /// 사용 일시
         /// </summary>
-        [JsonProperty("create_date")]
-        public string CreateDate { get; set; }
+        [JsonProperty("date_create")]
+        public DateTimeOffset DateCreate
+        { 
+            get
+            {
+                return _dateCreate.ToOffset(TimeSpan.FromHours(9));
+            }
+            set
+            {
+                _dateCreate = value;
+            }
+        }
+
+        private DateTimeOffset _dateCreate;
 
         /// <summary>
-        /// 사용한 큐브
+        /// 사용 큐브
         /// </summary>
         [JsonProperty("cube_type")]
         public string CubeType { get; set; }
 
         /// <summary>
-        /// 큐브 사용 결과
+        /// 사용 결과
         /// </summary>
         [JsonProperty("item_upgrade_result")]
         public string ItemUpgradeResult { get; set; }
@@ -52,8 +64,8 @@ namespace MapleStory.OpenAPI.Dto
         /// <summary>
         /// 장비 분류
         /// </summary>
-        [JsonProperty("item_equip_part")]
-        public string ItemEquipPart { get; set; }
+        [JsonProperty("item_equipment_part")]
+        public string itemEquipmentPart { get; set; }
 
         /// <summary>
         /// 장비 레벨
@@ -62,7 +74,7 @@ namespace MapleStory.OpenAPI.Dto
         public int ItemLevel { get; set; }
 
         /// <summary>
-        /// 큐브를 사용한 장비
+        /// 큐브 사용한 장비
         /// </summary>
         [JsonProperty("target_item")]
         public string TargetItem { get; set; }
@@ -82,38 +94,38 @@ namespace MapleStory.OpenAPI.Dto
         /// <summary>
         /// 천장에 도달하여 확정 등급 상승한 여부
         /// </summary>
-        [JsonProperty("upgradeguarantee")]
+        [JsonProperty("upgradeGuarantee")]
         public bool UpgradeGuarantee { get; set; }
 
         /// <summary>
         /// 현재까지 쌓은 스택
         /// </summary>
-        [JsonProperty("upgradeguaranteecount")]
+        [JsonProperty("upgradeGuaranteeCount")]
         public int UpgradeGuaranteeCount { get; set; }
 
         /// <summary>
-        /// 큐브 사용 전 잠재능력 옵션
+        /// 사용 전 잠재능력 옵션
         /// </summary>
-        [JsonProperty("before_potential_options")]
-        public List<CubeResultOptionDTO> BeforePotentialOptions { get; set; }
+        [JsonProperty("before_potential_option")]
+        public List<CubeResultOptionDTO> BeforePotentialOption { get; set; }
 
         /// <summary>
-        /// 큐브 사용 전 에디셔널 잠재능력 옵션
+        /// 사용 전 에디셔널 잠재능력 옵션
         /// </summary>
-        [JsonProperty("before_additional_potential_options")]
-        public List<CubeResultOptionDTO> BeforeAdditionalPotentialOptions { get; set; }
+        [JsonProperty("before_additional_potential_option")]
+        public List<CubeResultOptionDTO> BeforeAdditionalPotentialOption { get; set; }
 
         /// <summary>
-        /// 큐브 사용 후 잠재능력 옵션
+        /// 사용 후 잠재능력 옵션
         /// </summary>
-        [JsonProperty("after_potential_options")]
-        public List<CubeResultOptionDTO> AfterPotentialOptions { get; set; }
+        [JsonProperty("after_potential_option")]
+        public List<CubeResultOptionDTO> AfterPotentialOption { get; set; }
 
         /// <summary>
-        /// 큐브 사용 후 에디셔널 잠재능력 옵션
+        /// 사용 후 에디셔널 잠재능력 옵션
         /// </summary>
-        [JsonProperty("after_additional_potential_options")]
-        public List<CubeResultOptionDTO> AfterAdditionalPotentialOptions { get; set; }
+        [JsonProperty("after_additional_potential_option")]
+        public List<CubeResultOptionDTO> AfterAdditionalPotentialOption { get; set; }
 
         /// <summary>
         /// 아이템 업그레이드 여부

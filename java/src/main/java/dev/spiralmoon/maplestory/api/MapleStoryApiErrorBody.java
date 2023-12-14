@@ -5,7 +5,13 @@ import lombok.Data;
 @Data
 class MapleStoryApiErrorBody {
 
-    private String message;
+    @Data
+    class Error {
 
-    private int status;
+        private String message;
+
+        private String name;
+    }
+
+    private Error error;
 }

@@ -7,13 +7,13 @@ namespace MapleStory.OpenAPI
 {
     /// <summary>
     /// MapleStory OpenAPI client.
-    /// <para>This is an implementation of <a href="https://developers.nexon.com/Maplestory/apiList">MapleStory API</a></para>
+    /// <para>This is an implementation of <a href="https://openapi.nexon.com/game/maplestory">MapleStory API</a></para>
     /// </summary>
     public class MapleStoryAPI
     {
         private readonly string apiKey;
 
-        private static readonly string BASE_URL = "https://public.api.nexon.com/";
+        private static readonly string BASE_URL = "https://open.api.nexon.com/";
 
         // in milliseconds
         private long timeOut { get; set; }
@@ -24,33 +24,32 @@ namespace MapleStory.OpenAPI
             this.timeOut = 5000;
         }
 
+
         /// <summary>
-        /// 오늘 날짜의 확률형 아이템 큐브의 사용 결과를 조회합니다.
-        /// <para>데이터는 일단위로 갱신되며, 오전 4시 조회 시 전일 데이터를 조회할 수 있습니다.</para>
-        /// <para>데이터는 2022년 11월 25일부터 조회할 수 있습니다.</para>
+        /// 오늘 날짜의 큐브 사용 결과를 조회합니다.
+        /// <para>큐브 사용 결과 데이터는 매일 오전 4시, 전일 데이터가 갱신됩니다.</para>
+        /// <para>큐브 사용 결과 데이터는 2022년 11월 25일부터 조회할 수 있습니다.</para>
+        /// <para>e.g. 오늘 오후 3시 5분 큐브 확률 정보 조회 시, 어제의 큐브 확률 정보 데이터를 조회할 수 있습니다.</para>
         /// </summary>
-        /// <param name="count">한번에 가져오려는 결과의 갯수(최소 10, 최대 1000) Default value : 10</param>
+        /// <param name="count">한번에 가져오려는 결과의 개수(최소 10, 최대 1000)</param>
         public Task<CubeHistoryResponseDTO> GetCubeResult(int count)
         {
-            var kstId = "Korea Standard Time";
-            var kstTimeZone = TimeZoneInfo.FindSystemTimeZoneById(kstId);
-
-            var utcNow = DateTime.UtcNow;
-            var kstNow = TimeZoneInfo.ConvertTimeFromUtc(utcNow, kstTimeZone);
-
+            var utcNow = DateTimeOffset.UtcNow;
+            var kstNow = utcNow.ToOffset(TimeSpan.FromHours(9));
+            
             return GetCubeResult(count, kstNow.Year, kstNow.Month, kstNow.Day);
         }
 
         /// <summary>
-        /// 지목한 날짜의 확률형 아이템 큐브의 사용 결과를 조회합니다.
-        /// <para>데이터는 일단위로 갱신되며, 오전 4시 조회 시 전일 데이터를 조회할 수 있습니다.</para>
-        /// <para>데이터는 2022년 11월 25일부터 조회할 수 있습니다.</para>
+        /// 지목한 날짜의 큐브 사용 결과를 조회합니다.
+        /// <para>큐브 사용 결과 데이터는 매일 오전 4시, 전일 데이터가 갱신됩니다.</para>
+        /// <para>큐브 사용 결과 데이터는 2022년 11월 25일부터 조회할 수 있습니다.</para>
+        /// <para>e.g. 오늘 오후 3시 5분 큐브 확률 정보 조회 시, 어제의 큐브 확률 정보 데이터를 조회할 수 있습니다.</para>
         /// </summary>
-        /// <param name="count">한번에 가져오려는 결과의 갯수(최소 10, 최대 1000) Default value : 10</param>
-        /// <param name="year">조회할 연도</param>
-        /// <param name="month">조회할 월</param>
-        /// <param name="day">조회할 월의 날짜</param>
-        /// <exception cref="ArgumentException"></exception>
+        /// <param name="count">한번에 가져오려는 결과의 개수(최소 10, 최대 1000)</param>
+        /// <param name="year">조회 기준일 (KST) 연도</param>
+        /// <param name="month">조회 기준일 (KST) 월</param>
+        /// <param name="day">조회 기준일 (KST) 월의 날짜</param>
         public async Task<CubeHistoryResponseDTO> GetCubeResult(int count, int year, int month, int day)
         {
             if (year <= 2022 && month <= 11 && day < 25)
@@ -60,12 +59,12 @@ namespace MapleStory.OpenAPI
 
             using (var client = new HttpClient())
             {
-                var path = "openapi/maplestory/v1/cube-use-results";
+                var path = "maplestory/v1/history/cube";
                 var uriBuilder = new UriBuilder($"{BASE_URL}{path}");
 
                 var query = HttpUtility.ParseQueryString(uriBuilder.Query);
                 query["count"] = count.ToString();
-                query["date"] = new DateTime(year, month, day).ToString("yyyy-MM-dd");
+                query["date_kst"] = new DateTime(year, month, day).ToString("yyyyMMdd");
 
                 uriBuilder.Query = query.ToString();
 
@@ -88,16 +87,33 @@ namespace MapleStory.OpenAPI
         }
 
         /// <summary>
-        /// 확률형 아이템 큐브의 사용 결과를 조회합니다.
-        /// <para>데이터는 일단위로 갱신되며, 오전 4시 조회 시 전일 데이터를 조회할 수 있습니다.</para>
-        /// <para>데이터는 2022년 11월 25일부터 조회할 수 있습니다.</para>
+        /// 지목한 날짜의 큐브 사용 결과를 조회합니다.
+        /// <para>큐브 사용 결과 데이터는 매일 오전 4시, 전일 데이터가 갱신됩니다.</para>
+        /// <para>큐브 사용 결과 데이터는 2022년 11월 25일부터 조회할 수 있습니다.</para>
+        /// <para>e.g. 오늘 오후 3시 5분 큐브 확률 정보 조회 시, 어제의 큐브 확률 정보 데이터를 조회할 수 있습니다.</para>
         /// </summary>
-        /// <param name="count">한번에 가져오려는 결과의 갯수(최소 10, 최대 1000) Default value : 10</param>
+        /// <param name="count">한번에 가져오려는 결과의 개수(최소 10, 최대 1000)</param>
+        /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
+        public Task<CubeHistoryResponseDTO> GetCubeResult(int count, DateTimeOffset dateTimeOffset)
+        {
+            var kstDate = dateTimeOffset.ToOffset(TimeSpan.FromHours(9));
+
+            return GetCubeResult(count, kstDate.Year, kstDate.Month, kstDate.Day);
+        }
+
+        /// <summary>
+        /// 큐브 사용 결과를 조회합니다.
+        /// <para>큐브 사용 결과 데이터는 매일 오전 4시, 전일 데이터가 갱신됩니다.</para>
+        /// <para>큐브 사용 결과 데이터는 2022년 11월 25일부터 조회할 수 있습니다.</para>
+        /// <para>e.g. 오늘 오후 3시 5분 큐브 확률 정보 조회 시, 어제의 큐브 확률 정보 데이터를 조회할 수 있습니다.</para>
+        /// </summary>
+        /// <param name="count">한번에 가져오려는 결과의 개수(최소 10, 최대 1000)</param>
+        /// <param name="cursor">페이징 처리를 위한 cursor</param>
         public async Task<CubeHistoryResponseDTO> GetCubeResult(int count, string cursor)
         {
             using (var client = new HttpClient())
             {
-                var path = "openapi/maplestory/v1/cube-use-results";
+                var path = "maplestory/v1/history/cube";
                 var uriBuilder = new UriBuilder($"{BASE_URL}{path}");
 
                 var query = HttpUtility.ParseQueryString(uriBuilder.Query);
@@ -156,7 +172,7 @@ namespace MapleStory.OpenAPI
                 }
                 else
                 {
-                    throw new MapleStoryAPIException(400, "Bad Request");
+                    throw new MapleStoryAPIException(MapleStoryAPIErrorCode.OPENAPI00003, "Bad Request");
                 }
             }
         }
@@ -164,15 +180,7 @@ namespace MapleStory.OpenAPI
         private void SetClient(HttpClient client)
         {
             client.Timeout = TimeSpan.FromMilliseconds(this.timeOut);
-
-            try
-            {
-                client.DefaultRequestHeaders.Add("authorization", this.apiKey);
-            }
-            catch (FormatException)
-            {
-                throw new MapleStoryAPIException(401, "Unauthorized");
-            }
+            client.DefaultRequestHeaders.Add("x-nxopen-api-key", this.apiKey);
         }
 
         private static MapleStoryAPIException ParseError(string body)

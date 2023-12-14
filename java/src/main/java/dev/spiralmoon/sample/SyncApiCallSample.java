@@ -9,7 +9,7 @@ import java.util.List;
 
 class SyncApiCallSample {
     public static void main(String[] args) {
-        final String apiKey = "{Your API Key}";
+        final String apiKey = "{Your API key}";
         final MapleStoryApi api = new MapleStoryApi(apiKey);
 
         // run your code
@@ -17,7 +17,7 @@ class SyncApiCallSample {
             final CubeHistoryResponseDTO response = api.getCubeResult(1000, 2023, 10, 15);
 
             final int count = response.getCount();
-            final List<CubeHistoryDTO> cubeHistories = response.getCubeHistories();
+            final List<CubeHistoryDTO> cubeHistory = response.getCubeHistory();
             final String nextCursor = response.getNextCursor();
 
             System.out.println("You used " + count + " cubes.");
@@ -29,6 +29,8 @@ class SyncApiCallSample {
             } else {
                 // handle
             }
+
+            exception.printStackTrace();
         }
     }
 }
