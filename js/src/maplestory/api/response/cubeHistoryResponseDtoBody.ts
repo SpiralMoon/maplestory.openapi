@@ -3,7 +3,7 @@ import {CubeHistoryDtoBody} from "./cubeHistoryDtoBody";
 type CubeHistoryResponseDtoBody = {
 	count: number;
 
-	cube_histories: CubeHistoryDtoBody[];
+	cube_history: CubeHistoryDtoBody[];
 
 	next_cursor: string;
 }

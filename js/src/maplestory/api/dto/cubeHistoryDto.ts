@@ -3,37 +3,37 @@ import {CubeHistoryDtoBody} from "../response/cubeHistoryDtoBody";
 import {PotentialOptionGrade, potentialOptionGradeFromString} from "./potentialOptionGrade";
 
 /**
- * 큐브히스토리 정보
+ * 큐브 히스토리
  */
 class CubeHistoryDto {
 
 	/**
-	 * 큐브 사용 내역에 대한 고유 식별자
+	 * 큐브 히스토리 식별자
 	 */
 	id: string;
 
 	/**
-	 * 캐릭터이름
+	 * 캐릭터 명
 	 */
 	characterName: string;
 
 	/**
-	 * 월드 이름
+	 * 월드 명
 	 */
 	worldName: string;
 
 	/**
-	 * 큐브 사용 날짜
+	 * 사용 일시
 	 */
-	createDate: string;
+	dateCreate: Date;
 
 	/**
-	 * 사용한 큐브
+	 * 사용 큐브
 	 */
 	cubeType: string;
 
 	/**
-	 * 큐브 사용 결과
+	 * 사용 결과
 	 */
 	itemUpgradeResult: string;
 
@@ -45,7 +45,7 @@ class CubeHistoryDto {
 	/**
 	 * 장비 분류
 	 */
-	itemEquipPart: string;
+	itemEquipmentPart: string;
 
 	/**
 	 * 장비 레벨
@@ -53,7 +53,7 @@ class CubeHistoryDto {
 	itemLevel: number;
 
 	/**
-	 * 큐브를 사용한 장비
+	 * 큐브 사용한 장비
 	 */
 	targetItem: string;
 
@@ -78,65 +78,65 @@ class CubeHistoryDto {
 	upgradeGuaranteeCount: number;
 
 	/**
-	 * 큐브 사용 전 잠재능력 옵션
+	 * 사용 전 잠재능력 옵션
 	 */
-	beforePotentialOptions: CubeResultOptionDto[];
+	beforePotentialOption: CubeResultOptionDto[];
 
 	/**
-	 * 큐브 사용 전 에디셔널 잠재능력 옵션
+	 * 사용 전 에디셔널 잠재능력 옵션
 	 */
-	beforeAdditionalPotentialOptions: CubeResultOptionDto[];
+	beforeAdditionalPotentialOption: CubeResultOptionDto[];
 
 	/**
-	 * 큐브 사용 후 잠재능력 옵션
+	 * 사용 후 잠재능력 옵션
 	 */
-	afterPotentialOptions: CubeResultOptionDto[];
+	afterPotentialOption: CubeResultOptionDto[];
 
 	/**
-	 * 큐브 사용 후 에디셔널 잠재능력 옵션
+	 * 사용 후 에디셔널 잠재능력 옵션
 	 */
-	afterAdditionalPotentialOptions: CubeResultOptionDto[];
+	afterAdditionalPotentialOption: CubeResultOptionDto[];
 
 	constructor(obj: CubeHistoryDtoBody) {
 		const {
 			id,
 			character_name,
 			world_name,
-			create_date,
+			date_create,
 			cube_type,
 			item_upgrade_result,
 			miracle_time_flag,
-			item_equip_part,
+			item_equipment_part,
 			item_level,
 			target_item,
 			potential_option_grade,
 			additional_potential_option_grade,
-			upgradeguarantee,
-			upgradeguaranteecount,
-			before_potential_options,
-			before_additional_potential_options,
-			after_potential_options,
-			after_additional_potential_options
+			upgrade_guarantee,
+			upgrade_guarantee_count,
+			before_potential_option,
+			before_additional_potential_option,
+			after_potential_option,
+			after_additional_potential_option
 		} = obj;
 
 		this.id = id;
 		this.characterName = character_name;
 		this.worldName = world_name;
-		this.createDate = create_date;
+		this.dateCreate = new Date(date_create);
 		this.cubeType = cube_type;
 		this.itemUpgradeResult = item_upgrade_result;
 		this.miracleTimeFlag = miracle_time_flag;
-		this.itemEquipPart = item_equip_part;
+		this.itemEquipmentPart = item_equipment_part;
 		this.itemLevel = item_level;
 		this.targetItem = target_item;
 		this.potentialOptionGrade = potential_option_grade;
 		this.additionalPotentialOptionGrade = additional_potential_option_grade;
-		this.upgradeGuarantee = upgradeguarantee;
-		this.upgradeGuaranteeCount = upgradeguaranteecount;
-		this.beforePotentialOptions = before_potential_options.map(origin => new CubeResultOptionDto(origin));
-		this.beforeAdditionalPotentialOptions = before_additional_potential_options.map(origin => new CubeResultOptionDto(origin));
-		this.afterPotentialOptions = after_potential_options.map(origin => new CubeResultOptionDto(origin));
-		this.afterAdditionalPotentialOptions = after_additional_potential_options.map(origin => new CubeResultOptionDto(origin));
+		this.upgradeGuarantee = upgrade_guarantee;
+		this.upgradeGuaranteeCount = upgrade_guarantee_count;
+		this.beforePotentialOption = before_potential_option.map(origin => new CubeResultOptionDto(origin));
+		this.beforeAdditionalPotentialOption = before_additional_potential_option.map(origin => new CubeResultOptionDto(origin));
+		this.afterPotentialOption = after_potential_option.map(origin => new CubeResultOptionDto(origin));
+		this.afterAdditionalPotentialOption = after_additional_potential_option.map(origin => new CubeResultOptionDto(origin));
 	}
 
 	get isItemUpgrade(): boolean {

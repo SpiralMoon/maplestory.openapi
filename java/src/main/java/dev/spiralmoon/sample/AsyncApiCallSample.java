@@ -11,12 +11,12 @@ class AsyncApiCallSample {
         final String apiKey = "{Your API Key}";
         final MapleStoryApi api = new MapleStoryApi(apiKey);
 
-        api.getCubeResult(1000, 2023, 10, 15,
+        api.getCubeResultAsync(1000, 2023, 10, 15,
                 (response) -> {
                     // run your code
 
                     final int count = response.getCount();
-                    final List<CubeHistoryDTO> cubeHistories = response.getCubeHistories();
+                    final List<CubeHistoryDTO> cubeHistory = response.getCubeHistory();
                     final String nextCursor = response.getNextCursor();
 
                     System.out.println("You used " + count + " cubes.");
@@ -28,6 +28,8 @@ class AsyncApiCallSample {
                     } else {
                         // handle
                     }
+
+                    throwable.printStackTrace();
                 });
     }
 }

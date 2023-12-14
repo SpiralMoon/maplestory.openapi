@@ -5,10 +5,12 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.ToString;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 /**
- * 큐브히스토리 정보
+ * 큐브 히스토리
  */
 @AllArgsConstructor
 @Data
@@ -16,37 +18,37 @@ import java.util.List;
 public class CubeHistoryDTO {
 
     /**
-     * 큐브 사용 내역에 대한 고유 식별자
+     * 큐브 히스토리 식별자
      */
     @SerializedName("id")
     private String id;
 
     /**
-     * 캐릭터이름
+     * 캐릭터 명
      */
     @SerializedName("character_name")
     private String characterName;
 
     /**
-     * 월드 이름
+     * 월드 명
      */
     @SerializedName("world_name")
     private String worldName;
 
     /**
-     * 큐브 사용 날짜
+     * 사용 일시
      */
-    @SerializedName("create_date")
-    private String createDate;
+    @SerializedName("date_create")
+    private String dateCreate;
 
     /**
-     * 사용한 큐브
+     * 사용 큐브
      */
     @SerializedName("cube_type")
     private String cubeType;
 
     /**
-     * 큐브 사용 결과
+     * 사용 결과
      */
     @SerializedName("item_upgrade_result")
     private String itemUpgradeResult;
@@ -60,8 +62,8 @@ public class CubeHistoryDTO {
     /**
      * 장비 분류
      */
-    @SerializedName("item_equip_part")
-    private String itemEquipPart;
+    @SerializedName("item_equipment_part")
+    private String itemEquipmentPart;
 
     /**
      * 장비 레벨
@@ -70,7 +72,7 @@ public class CubeHistoryDTO {
     private int itemLevel;
 
     /**
-     * 큐브를 사용한 장비
+     * 큐브 사용한 장비
      */
     @SerializedName("target_item")
     private String targetItem;
@@ -90,38 +92,38 @@ public class CubeHistoryDTO {
     /**
      * 천장에 도달하여 확정 등급 상승한 여부
      */
-    @SerializedName("upgradeguarantee")
+    @SerializedName("upgradeGuarantee")
     private boolean upgradeGuarantee;
 
     /**
      * 현재까지 쌓은 스택
      */
-    @SerializedName("upgradeguaranteecount")
+    @SerializedName("upgradeGuaranteeCount")
     private int upgradeGuaranteeCount;
 
     /**
-     * 큐브 사용 전 잠재능력 옵션
+     * 사용 전 잠재능력 옵션
      */
-    @SerializedName("before_potential_options")
-    private List<CubeResultOptionDTO> beforePotentialOptions;
+    @SerializedName("before_potential_option")
+    private List<CubeResultOptionDTO> beforePotentialOption;
 
     /**
-     * 큐브 사용 전 에디셔널 잠재능력 옵션
+     * 사용 전 에디셔널 잠재능력 옵션
      */
-    @SerializedName("before_additional_potential_options")
-    private List<CubeResultOptionDTO> beforeAdditionalPotentialOptions;
+    @SerializedName("before_additional_potential_option")
+    private List<CubeResultOptionDTO> beforeAdditionalPotentialOption;
 
     /**
-     * 큐브 사용 후 잠재능력 옵션
+     * 사용 후 잠재능력 옵션
      */
-    @SerializedName("after_potential_options")
-    private List<CubeResultOptionDTO> afterPotentialOptions;
+    @SerializedName("after_potential_option")
+    private List<CubeResultOptionDTO> afterPotentialOption;
 
     /**
-     * 큐브 사용 후 에디셔널 잠재능력 옵션
+     * 사용 후 에디셔널 잠재능력 옵션
      */
-    @SerializedName("after_additional_potential_options")
-    private List<CubeResultOptionDTO> afterAdditionalPotentialOptions;
+    @SerializedName("after_additional_potential_option")
+    private List<CubeResultOptionDTO> afterAdditionalPotentialOption;
 
     public boolean isItemUpgrade() {
         return this.itemUpgradeResult.equals("성공");
@@ -137,5 +139,10 @@ public class CubeHistoryDTO {
 
     public PotentialOptionGrade getAdditionalPotentialOptionGradeEnum() {
         return PotentialOptionGrade.fromString(this.potentialOptionGrade);
+    }
+
+    public LocalDateTime getDateCreate() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSX");
+        return LocalDateTime.parse(this.dateCreate, formatter);
     }
 }

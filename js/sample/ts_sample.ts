@@ -9,7 +9,7 @@ api.getCubeResult(1000, {
 	day: 15
 })
 	.then((dto: CubeHistoryResponseDto) => {
-		const {count, cubeHistories, nextCursor} = dto;
+		const {count, cubeHistory, nextCursor} = dto;
 
 		console.log('You used ' + count + ' cubes.');
 	})

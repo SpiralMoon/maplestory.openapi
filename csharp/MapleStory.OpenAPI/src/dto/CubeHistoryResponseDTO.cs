@@ -3,7 +3,7 @@
 namespace MapleStory.OpenAPI.Dto
 {
     /// <summary>
-    /// 큐브히스토리 응답 정보
+    /// 큐브 히스토리 응답 정보
     /// </summary>
     public class CubeHistoryResponseDTO
     {
@@ -16,8 +16,8 @@ namespace MapleStory.OpenAPI.Dto
         /// <summary>
         /// 큐브 히스토리
         /// </summary>
-        [JsonProperty("cube_histories")]
-        public List<CubeHistoryDTO> CubeHistories;
+        [JsonProperty("cube_history")]
+        public List<CubeHistoryDTO> CubeHistory;
 
         /// <summary>
         /// 페이징 처리를 위한 cursor

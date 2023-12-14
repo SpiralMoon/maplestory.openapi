@@ -22,19 +22,20 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.concurrent.TimeUnit;
 
 /**
  * MapleStory OpenAPI client.<br>
- * This is an implementation of <a href="https://developers.nexon.com/Maplestory/apiList">MapleStory API</a>
+ * This is an implementation of <a href="https://openapi.nexon.com/game/maplestory">MapleStory API</a>
  */
 public class MapleStoryApi {
 
     private final String apiKey;
 
-    private static final String BASE_URL = "https://public.api.nexon.com/";
+    private static final String BASE_URL = "https://open.api.nexon.com/";
 
     // in milliseconds
     @Getter
@@ -47,11 +48,12 @@ public class MapleStoryApi {
     }
 
     /**
-     * 오늘 날짜의 확률형 아이템 큐브의 사용 결과를 조회합니다.<br>
-     * 데이터는 일단위로 갱신되며, 오전 4시 조회 시 전일 데이터를 조회할 수 있습니다.<br>
-     * 데이터는 2022년 11월 25일부터 조회할 수 있습니다.<br>
+     * 오늘 날짜의 큐브 사용 결과를 조회합니다.<br>
+     * 큐브 사용 결과 데이터는 매일 오전 4시, 전일 데이터가 갱신됩니다.<br>
+     * 큐브 사용 결과 데이터는 2022년 11월 25일부터 조회할 수 있습니다.<br>
+     * e.g. 오늘 오후 3시 5분 큐브 확률 정보 조회 시, 어제의 큐브 확률 정보 데이터를 조회할 수 있습니다.<br>
      *
-     * @param count 한번에 가져오려는 결과의 갯수(최소 10, 최대 1000) Default value : 10
+     * @param count 한번에 가져오려는 결과의 개수(최소 10, 최대 1000)
      */
     public CubeHistoryResponseDTO getCubeResult(int count) throws IOException {
 
@@ -64,31 +66,33 @@ public class MapleStoryApi {
     }
 
     /**
-     * 오늘 날짜의 확률형 아이템 큐브의 사용 결과를 비동기로 조회합니다.<br>
-     * 데이터는 일단위로 갱신되며, 오전 4시 조회 시 전일 데이터를 조회할 수 있습니다.<br>
-     * 데이터는 2022년 11월 25일부터 조회할 수 있습니다.<br>
+     * 오늘 날짜의 큐브 사용 결과를 비동기로 조회합니다.<br>
+     * 큐브 사용 결과 데이터는 매일 오전 4시, 전일 데이터가 갱신됩니다.<br>
+     * 큐브 사용 결과 데이터는 2022년 11월 25일부터 조회할 수 있습니다.<br>
+     * e.g. 오늘 오후 3시 5분 큐브 확률 정보 조회 시, 어제의 큐브 확률 정보 데이터를 조회할 수 있습니다.<br>
      *
-     * @param count 한번에 가져오려는 결과의 갯수(최소 10, 최대 1000) Default value : 10
+     * @param count 한번에 가져오려는 결과의 개수(최소 10, 최대 1000)
      */
-    public void getCubeResult(int count, SuccessCallback<CubeHistoryResponseDTO> onSuccess, FailureCallback onFailure) {
+    public void getCubeResultAsync(int count, SuccessCallback<CubeHistoryResponseDTO> onSuccess, FailureCallback onFailure) {
 
         final LocalDate kstNow = LocalDate.now(ZoneId.of("Asia/Seoul"));
         final int year = kstNow.getYear();
         final int month = kstNow.getMonthValue();
         final int day = kstNow.getDayOfMonth();
 
-        this.getCubeResult(count, year, month, day, onSuccess, onFailure);
+        this.getCubeResultAsync(count, year, month, day, onSuccess, onFailure);
     }
 
     /**
-     * 지목한 날짜의 확률형 아이템 큐브의 사용 결과를 조회합니다.<br>
-     * 데이터는 일단위로 갱신되며, 오전 4시 조회 시 전일 데이터를 조회할 수 있습니다.<br>
-     * 데이터는 2022년 11월 25일부터 조회할 수 있습니다.<br>
+     * 지목한 날짜의 큐브 사용 결과를 조회합니다.<br>
+     * 큐브 사용 결과 데이터는 매일 오전 4시, 전일 데이터가 갱신됩니다.<br>
+     * 큐브 사용 결과 데이터는 2022년 11월 25일부터 조회할 수 있습니다.<br>
+     * e.g. 오늘 오후 3시 5분 큐브 확률 정보 조회 시, 어제의 큐브 확률 정보 데이터를 조회할 수 있습니다.<br>
      *
-     * @param count 한번에 가져오려는 결과의 갯수(최소 10, 최대 1000) Default value : 10
-     * @param year  조회할 연도
-     * @param month 조회할 월
-     * @param day   조회할 월의 날짜
+     * @param count 한번에 가져오려는 결과의 개수(최소 10, 최대 1000)
+     * @param year  조회 기준일 (KST) 연도
+     * @param month 조회 기준일 (KST) 월
+     * @param day   조회 기준일 (KST) 월의 날짜
      */
     public CubeHistoryResponseDTO getCubeResult(int count, int year, int month, int day) throws IOException {
 
@@ -97,7 +101,7 @@ public class MapleStoryApi {
         }
 
         final LocalDate date = LocalDate.of(year, month, day);
-        final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
         final String yyyyMMdd = date.format(formatter);
 
         final Retrofit retrofit = new Retrofit.Builder()
@@ -119,23 +123,37 @@ public class MapleStoryApi {
     }
 
     /**
-     * 지목한 날짜의 확률형 아이템 큐브의 사용 결과를 비동기로 조회합니다.<br>
-     * 데이터는 일단위로 갱신되며, 오전 4시 조회 시 전일 데이터를 조회할 수 있습니다.<br>
-     * 데이터는 2022년 11월 25일부터 조회할 수 있습니다.<br>
+     * 지목한 날짜의 큐브 사용 결과를 조회합니다.<br>
+     * 큐브 사용 결과 데이터는 매일 오전 4시, 전일 데이터가 갱신됩니다.<br>
+     * 큐브 사용 결과 데이터는 2022년 11월 25일부터 조회할 수 있습니다.<br>
+     * e.g. 오늘 오후 3시 5분 큐브 확률 정보 조회 시, 어제의 큐브 확률 정보 데이터를 조회할 수 있습니다.<br>
      *
-     * @param count 한번에 가져오려는 결과의 갯수(최소 10, 최대 1000) Default value : 10
-     * @param year  조회할 연도
-     * @param month 조회할 월
-     * @param day   조회할 월의 날짜
+     * @param count 한번에 가져오려는 결과의 개수(최소 10, 최대 1000)
+     * @param localDateTime  조회 기준일 (KST)
      */
-    public void getCubeResult(int count, int year, int month, int day, SuccessCallback<CubeHistoryResponseDTO> onSuccess, FailureCallback onFailure) {
+    public CubeHistoryResponseDTO getCubeResult(int count, LocalDateTime localDateTime) throws IOException {
+        return this.getCubeResult(count, localDateTime.getYear(), localDateTime.getMonthValue(), localDateTime.getDayOfMonth());
+    }
+
+    /**
+     * 지목한 날짜의 큐브 사용 결과를 비동기로 조회합니다.<br>
+     * 큐브 사용 결과 데이터는 매일 오전 4시, 전일 데이터가 갱신됩니다.<br>
+     * 큐브 사용 결과 데이터는 2022년 11월 25일부터 조회할 수 있습니다.<br>
+     * e.g. 오늘 오후 3시 5분 큐브 확률 정보 조회 시, 어제의 큐브 확률 정보 데이터를 조회할 수 있습니다.<br>
+     *
+     * @param count 한번에 가져오려는 결과의 개수(최소 10, 최대 1000)
+     * @param year  조회 기준일 (KST) 연도
+     * @param month 조회 기준일 (KST) 월
+     * @param day   조회 기준일 (KST) 월의 날짜
+     */
+    public void getCubeResultAsync(int count, int year, int month, int day, SuccessCallback<CubeHistoryResponseDTO> onSuccess, FailureCallback onFailure) {
 
         if (year <= 2022 && month <= 11 && day < 25) {
             throw new IllegalArgumentException("You can only retrieve data after 2022-11-25.");
         }
 
         final LocalDate date = LocalDate.of(year, month, day);
-        final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
         final String yyyyMMdd = date.format(formatter);
 
         final Retrofit retrofit = new Retrofit.Builder()
@@ -172,11 +190,26 @@ public class MapleStoryApi {
     }
 
     /**
-     * 확률형 아이템 큐브의 사용 결과를 조회합니다.<br>
-     * 데이터는 일단위로 갱신되며, 오전 4시 조회 시 전일 데이터를 조회할 수 있습니다.<br>
-     * 데이터는 2022년 11월 25일부터 조회할 수 있습니다.<br>
+     * 지목한 날짜의 큐브 사용 결과를 비동기로 조회합니다.<br>
+     * 큐브 사용 결과 데이터는 매일 오전 4시, 전일 데이터가 갱신됩니다.<br>
+     * 큐브 사용 결과 데이터는 2022년 11월 25일부터 조회할 수 있습니다.<br>
+     * e.g. 오늘 오후 3시 5분 큐브 확률 정보 조회 시, 어제의 큐브 확률 정보 데이터를 조회할 수 있습니다.<br>
      *
-     * @param count 한번에 가져오려는 결과의 갯수(최소 10, 최대 1000) Default value : 10
+     * @param count 한번에 가져오려는 결과의 개수(최소 10, 최대 1000)
+     * @param localDateTime  조회 기준일 (KST)
+     */
+    public void getCubeResultAsync(int count, LocalDateTime localDateTime, SuccessCallback<CubeHistoryResponseDTO> onSuccess, FailureCallback onFailure) {
+        this.getCubeResultAsync(count, localDateTime.getYear(), localDateTime.getMonthValue(), localDateTime.getDayOfMonth(), onSuccess, onFailure);
+    }
+
+    /**
+     * 큐브 사용 결과를 조회합니다.<br>
+     * 큐브 사용 결과 데이터는 매일 오전 4시, 전일 데이터가 갱신됩니다.<br>
+     * 큐브 사용 결과 데이터는 2022년 11월 25일부터 조회할 수 있습니다.<br>
+     * e.g. 오늘 오후 3시 5분 큐브 확률 정보 조회 시, 어제의 큐브 확률 정보 데이터를 조회할 수 있습니다.<br>
+     *
+     * @param count 한번에 가져오려는 결과의 개수(최소 10, 최대 1000)
+     * @param cursor 페이징 처리를 위한 cursor
      */
     public CubeHistoryResponseDTO getCubeResult(int count, String cursor) throws IOException {
 
@@ -199,13 +232,15 @@ public class MapleStoryApi {
     }
 
     /**
-     * 확률형 아이템 큐브의 사용 결과를 비동기로 조회합니다.<br>
-     * 데이터는 일단위로 갱신되며, 오전 4시 조회 시 전일 데이터를 조회할 수 있습니다.<br>
-     * 데이터는 2022년 11월 25일부터 조회할 수 있습니다.<br>
+     * 큐브 사용 결과를 비동기로 조회합니다.<br>
+     * 큐브 사용 결과 데이터는 매일 오전 4시, 전일 데이터가 갱신됩니다.<br>
+     * 큐브 사용 결과 데이터는 2022년 11월 25일부터 조회할 수 있습니다.<br>
+     * e.g. 오늘 오후 3시 5분 큐브 확률 정보 조회 시, 어제의 큐브 확률 정보 데이터를 조회할 수 있습니다.<br>
      *
-     * @param count 한번에 가져오려는 결과의 갯수(최소 10, 최대 1000) Default value : 10
+     * @param count 한번에 가져오려는 결과의 개수(최소 10, 최대 1000)
+     * @param cursor 페이징 처리를 위한 cursor
      */
-    public void getCubeResult(int count, String cursor, SuccessCallback<CubeHistoryResponseDTO> onSuccess, FailureCallback onFailure) {
+    public void getCubeResultAsync(int count, String cursor, SuccessCallback<CubeHistoryResponseDTO> onSuccess, FailureCallback onFailure) {
 
         final Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -266,7 +301,7 @@ public class MapleStoryApi {
         final Response<String> response = call.execute();
 
         if (!response.isSuccessful()) {
-            throw new MapleStoryApiException(400, "Bad Request");
+            throw new MapleStoryApiException(MapleStoryApiErrorCode.OPENAPI00003, "Bad Request");
         }
 
         return new InspectionInfoDTO(response.body());

@@ -14,7 +14,7 @@ import lombok.ToString;
 public class CubeResultOptionDTO {
 
     /**
-     * 옵션 이름
+     * 옵션 명
      */
     @SerializedName("value")
     private String value;

@@ -9,7 +9,7 @@ try
     var response = await api.GetCubeResult(1000, 2023, 10, 15);
 
     var count = response.Count;
-    var cubeHistories = response.CubeHistories;
+    var cubeHistory = response.CubeHistory;
     var nextCursor = response.NextCursor;
 
     Console.WriteLine("You used " + count + " cubes.");

@@ -4,10 +4,16 @@ namespace MapleStory.OpenAPI
 {
     internal class MapleStoryAPIErrorBody
     {
+        [JsonProperty("error")]
+        public Error Error;
+    }
+
+    internal class Error
+    {
         [JsonProperty("message")]
         public string Message;
 
-        [JsonProperty("status")]
-        public int Status;
+        [JsonProperty("name")]
+        public string Name;
     }
 }

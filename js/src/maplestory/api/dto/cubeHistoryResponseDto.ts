@@ -2,7 +2,7 @@ import {CubeHistoryDto} from "./cubeHistoryDto";
 import {CubeHistoryResponseDtoBody} from "../response/cubeHistoryResponseDtoBody";
 
 /**
- * 큐브히스토리 응답 정보
+ * 큐브 히스토리 응답 정보
  */
 class CubeHistoryResponseDto {
 
@@ -14,7 +14,7 @@ class CubeHistoryResponseDto {
 	/**
 	 * 큐브 히스토리
 	 */
-	cubeHistories: CubeHistoryDto[];
+	cubeHistory: CubeHistoryDto[];
 
 	/**
 	 * 페이징 처리를 위한 cursor
@@ -22,10 +22,10 @@ class CubeHistoryResponseDto {
 	nextCursor: string;
 
 	constructor(obj: CubeHistoryResponseDtoBody) {
-		const {count, cube_histories, next_cursor} = obj;
+		const {count, cube_history, next_cursor} = obj;
 
 		this.count = count;
-		this.cubeHistories = cube_histories.map(origin => new CubeHistoryDto(origin));
+		this.cubeHistory = cube_history.map(origin => new CubeHistoryDto(origin));
 		this.nextCursor = next_cursor;
 	}
 }
