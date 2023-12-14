@@ -1,14 +1,15 @@
 {
   "name": "maplestory-openapi",
-  "version": "1.1.0",
-  "description": "This JavaScript library enables the use of the MapleStory OpenAPI provided by Nexon.",
+  "version": "2.0.0",
+  "description": "This JavaScript library enables the use of the MapleStory OpenAPI of Nexon.",
   "keywords": [
     "maplestory",
     "maplestory openapi",
     "maplestory api",
     "cube",
     "nexon",
-    "nexon developers"
+    "nexon developers",
+    "nexon openapi"
   ],
   "homepage": "https://github.com/SpiralMoon/maplestory.openapi",
   "bugs": {
