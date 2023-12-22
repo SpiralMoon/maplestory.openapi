@@ -3,7 +3,7 @@ import {MapleStoryApi, MapleStoryApiError, CubeHistoryResponseDto} from "../src"
 const apiKey: string = '{Your API Key}';
 const api: MapleStoryApi = new MapleStoryApi(apiKey);
 
-api.getCubeResult(1000, {
+api.getCubeHistory(1000, {
 	year: 2023,
 	month: 10,
 	day: 15
