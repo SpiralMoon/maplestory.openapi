@@ -53,6 +53,10 @@ import {UnionDto} from "./dto/unionDto";
 import {UnionDtoBody} from "./response/unionDtoBody";
 import {UnionRaiderDto} from "./dto/unionRaiderDto";
 import {UnionRaiderDtoBody} from "./response/unionRaiderDtoBody";
+import {GuildDto} from "./dto/guildDto";
+import {GuildDtoBody} from "./response/guildDtoBody";
+import {GuildBasicDto} from "./dto/guildBasicDto";
+import {GuildBasicDtoBody} from "./response/guildBasicDtoBody";
 
 dayjs.extend(timezone);
 dayjs.extend(utc);
@@ -825,6 +829,72 @@ class MapleStoryApi {
             });
 
             return new UnionRaiderDto(response.data);
+        } catch (e: any) {
+            if (e instanceof AxiosError) {
+                const errorBody = (e as AxiosError<MapleStoryErrorBody>).response!.data;
+
+                throw new MapleStoryApiError(errorBody);
+            }
+
+            throw e;
+        }
+    }
+
+    //#endregion
+
+    //#region 길드 정보 조회
+
+    /**
+     * 길드 식별자(oguild_id) 정보를 조회합니다.
+     *
+     * @param guildName 길드 명
+     * @param worldName 월드 명
+     */
+    public async getGuild(guildName: string, worldName: string): Promise<GuildDto> {
+        try {
+            const path = 'maplestory/v1/guild/id';
+            const response = await axios.get<GuildDtoBody>(path, {
+                baseURL: MapleStoryApi.BASE_URL,
+                timeout: this.timeout,
+                headers: this.buildHeaders(),
+                params: {
+                    guild_name: guildName,
+                    world_name: worldName,
+                },
+            });
+
+            return new GuildDto(response.data);
+        } catch (e: any) {
+            if (e instanceof AxiosError) {
+                const errorBody = (e as AxiosError<MapleStoryErrorBody>).response!.data;
+
+                throw new MapleStoryApiError(errorBody);
+            }
+
+            throw e;
+        }
+    }
+
+    /**
+     * 길드 기본 정보를 조회합니다.
+     *
+     * @param guildId 길드 식별자
+     * @param date 조회 기준일 (KST)
+     */
+    public async getGuildBasic(guildId: string, date: string): Promise<GuildBasicDto> {
+        try {
+            const path = 'maplestory/v1/guild/basic';
+            const response = await axios.get<GuildBasicDtoBody>(path, {
+                baseURL: MapleStoryApi.BASE_URL,
+                timeout: this.timeout,
+                headers: this.buildHeaders(),
+                params: {
+                    oguild_id: guildId,
+                    date: date,
+                },
+            });
+
+            return new GuildBasicDto(response.data);
         } catch (e: any) {
             if (e instanceof AxiosError) {
                 const errorBody = (e as AxiosError<MapleStoryErrorBody>).response!.data;
