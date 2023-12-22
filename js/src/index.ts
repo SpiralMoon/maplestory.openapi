@@ -63,6 +63,8 @@ export * from './maplestory/api/dto/guildBasicDto';
 export * from './maplestory/api/dto/guildDto';
 export * from './maplestory/api/dto/guildRankingDto';
 export * from './maplestory/api/dto/guildRankingResponseDto';
+export * from './maplestory/api/dto/guildBasicDto';
+export * from './maplestory/api/dto/guildDto';
 export * from './maplestory/api/dto/guildSkillDto';
 export * from './maplestory/api/dto/inspectionInfoDto';
 export * from './maplestory/api/dto/overallRankingDto';
