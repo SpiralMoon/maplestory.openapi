@@ -57,6 +57,18 @@ import {GuildDto} from "./dto/guildDto";
 import {GuildDtoBody} from "./response/guildDtoBody";
 import {GuildBasicDto} from "./dto/guildBasicDto";
 import {GuildBasicDtoBody} from "./response/guildBasicDtoBody";
+import {OverallRankingResponseDto} from "./dto/overallRankingResponseDto";
+import {OverallRankingResponseDtoBody} from "./response/overallRankingResponseDtoBody";
+import {UnionRankingResponseDto} from "./dto/unionRankingResponseDto";
+import {UnionRankingResponseDtoBody} from "./response/unionRankingResponseDtoBody";
+import {GuildRankingResponseDto} from "./dto/guildRankingResponseDto";
+import {GuildRankingResponseDtoBody} from "./response/guildRankingResponseDtoBody";
+import {DojangRankingResponseDto} from "./dto/dojangRankingResponseDto";
+import {DojangRankingResponseDtoBody} from "./response/dojangRankingResponseDtoBody";
+import {TheSeedRankingResponseDto} from "./dto/theSeedRankingResponseDto";
+import {TheSeedRankingResponseDtoBody} from "./response/theSeedRankingResponseDtoBody";
+import {AchievementRankingResponseDto} from "./dto/achievementRankingResponseDto";
+import {AchievementRankingResponseDtoBody} from "./response/achievementRankingResponseDtoBody";
 
 dayjs.extend(timezone);
 dayjs.extend(utc);
@@ -974,6 +986,514 @@ class MapleStoryApi {
             });
 
             return new CubeHistoryResponseDto(response.data);
+        } catch (e: any) {
+            if (e instanceof AxiosError) {
+                const errorBody = (e as AxiosError<MapleStoryErrorBody>).response!.data;
+
+                throw new MapleStoryApiError(errorBody);
+            }
+
+            throw e;
+        }
+    }
+
+    //#endregion
+
+    //#region 랭킹 정보 조회
+
+    /**
+     * 종합 랭킹 정보를 조회합니다.
+     *
+     * @param date 조회 기준일 (KST)
+     * @param worldName 월드 명
+     * - 스카니아
+     * - 베라
+     * - 루나
+     * - 제니스
+     * - 크로아
+     * - 유니온
+     * - 엘리시움
+     * - 이노시스
+     * - 레드
+     * - 오로라
+     * - 아케인
+     * - 노바
+     * - 리부트
+     * - 리부트2
+     * - 버닝
+     * - 버닝2
+     * - 버닝3
+     * @param worldType 월드 타입
+     * - 0: 일반
+     * - 1: 리부트
+     * @param jobClass 직업 및 전직
+     * - 초보자-전체 전직
+     * - 전사-전체 전직
+     * - 전사-검사
+     * - 전사-파이터
+     * - 전사-페이지
+     * - 전사-스피어맨
+     * - 전사-크루세이더
+     * - 전사-나이트
+     * - 전사-버서커
+     * - 전사-히어로
+     * - 전사-팔라딘
+     * - 전사-다크나이트
+     * - 마법사-전체 전직
+     * - 마법사-매지션
+     * - 마법사-위자드(불,독)
+     * - 마법사-위자드(썬,콜)
+     * - 마법사-클레릭
+     * - 마법사-메이지(불,독)
+     * - 마법사-메이지(썬,콜)
+     * - 마법사-프리스트
+     * - 마법사-아크메이지(불,독)
+     * - 마법사-아크메이지(썬,콜)
+     * - 마법사-비숍
+     * - 궁수-전체 전직
+     * - 궁수-아처
+     * - 궁수-헌터
+     * - 궁수-사수
+     * - 궁수-레인저
+     * - 궁수-저격수
+     * - 궁수-보우마스터
+     * - 궁수-신궁
+     * - 궁수-아처(패스파인더)
+     * - 궁수-에인션트아처
+     * - 궁수-체이서
+     * - 궁수-패스파인더
+     * - 도적-전체 전직
+     * - 도적-로그
+     * - 도적-어쌔신
+     * - 도적-시프
+     * - 도적-허밋
+     * - 도적-시프마스터
+     * - 도적-나이트로드
+     * - 도적-섀도어
+     * - 도적-세미듀어러
+     * - 도적-듀어러
+     * - 도적-듀얼마스터
+     * - 도적-슬래셔
+     * - 도적-듀얼블레이더
+     * - 해적-전체 전직
+     * - 해적-해적
+     * - 해적-인파이터
+     * - 해적-건슬링거
+     * - 해적-캐논슈터
+     * - 해적-버커니어
+     * - 해적-발키리
+     * - 해적-캐논블래스터
+     * - 해적-바이퍼
+     * - 해적-캡틴
+     * - 해적-캐논마스터
+     * - 기사단-전체 전직
+     * - 기사단-노블레스
+     * - 기사단-소울마스터
+     * - 기사단-플레임위자드
+     * - 기사단-윈드브레이커
+     * - 기사단-나이트워커
+     * - 기사단-스트라이커
+     * - 기사단-미하일
+     * - 아란-전체 전직
+     * - 에반-전체 전직
+     * - 레지스탕스-전체 전직
+     * - 레지스탕스-시티즌
+     * - 레지스탕스-배틀메이지
+     * - 레지스탕스-와일드헌터
+     * - 레지스탕스-메카닉
+     * - 레지스탕스-데몬슬레이어
+     * - 레지스탕스-데몬어벤져
+     * - 레지스탕스-제논
+     * - 레지스탕스-블래스터
+     * - 메르세데스-전체 전직
+     * - 팬텀-전체 전직
+     * - 루미너스-전체 전직
+     * - 카이저-전체 전직
+     * - 엔젤릭버스터-전체 전직
+     * - 초월자-전체 전직
+     * - 초월자-제로
+     * - 은월-전체 전직
+     * - 프렌즈 월드-전체 전직
+     * - 프렌즈 월드-키네시스
+     * - 카데나-전체 전직
+     * - 일리움-전체 전직
+     * - 아크-전체 전직
+     * - 호영-전체 전직
+     * - 아델-전체 전직
+     * - 카인-전체 전직
+     * - 라라-전체 전직
+     * - 칼리-전체 전직
+     * @param ocid 캐릭터 식별자
+     * @param page 페이지 번호
+     */
+    public async getOverallRanking(
+        date: string,
+        worldName: string,
+        worldType: number,
+        jobClass: string,
+        ocid: string,
+        page: number
+    ): Promise<OverallRankingResponseDto> {
+        try {
+            const path = 'maplestory/v1/ranking/overall';
+            const response = await axios.get<OverallRankingResponseDtoBody>(path, {
+                baseURL: MapleStoryApi.BASE_URL,
+                timeout: this.timeout,
+                headers: this.buildHeaders(),
+                params: {
+                    date,
+                    world_name: worldName,
+                    world_type: worldType,
+                    class: jobClass,
+                    ocid,
+                    page,
+                },
+            });
+
+            return new OverallRankingResponseDto(response.data);
+        } catch (e: any) {
+            if (e instanceof AxiosError) {
+                const errorBody = (e as AxiosError<MapleStoryErrorBody>).response!.data;
+
+                throw new MapleStoryApiError(errorBody);
+            }
+
+            throw e;
+        }
+    }
+
+    /**
+     * 유니온 랭킹 정보를 조회합니다.
+     *
+     * @param date 조회 기준일 (KST)
+     * @param worldName 월드 명
+     * - 스카니아
+     * - 베라
+     * - 루나
+     * - 제니스
+     * - 크로아
+     * - 유니온
+     * - 엘리시움
+     * - 이노시스
+     * - 레드
+     * - 오로라
+     * - 아케인
+     * - 노바
+     * - 리부트
+     * - 리부트2
+     * - 버닝
+     * - 버닝2
+     * - 버닝3
+     * @param ocid 캐릭터 식별자
+     * @param page 페이지 번호
+     */
+    public async getUnionRanking(date: string, worldName: string, ocid: string, page: number): Promise<UnionRankingResponseDto> {
+        try {
+            const path = 'maplestory/v1/ranking/union';
+            const response = await axios.get<UnionRankingResponseDtoBody>(path, {
+                baseURL: MapleStoryApi.BASE_URL,
+                timeout: this.timeout,
+                headers: this.buildHeaders(),
+                params: {
+                    date,
+                    world_name: worldName,
+                    ocid,
+                    page,
+                },
+            });
+
+            return new UnionRankingResponseDto(response.data);
+        } catch (e: any) {
+            if (e instanceof AxiosError) {
+                const errorBody = (e as AxiosError<MapleStoryErrorBody>).response!.data;
+
+                throw new MapleStoryApiError(errorBody);
+            }
+
+            throw e;
+        }
+    }
+
+    /**
+     * 길드 랭킹 정보를 조회합니다.
+     *
+     * @param date 조회 기준일 (KST)
+     * @param worldName 월드 명
+     * - 스카니아
+     * - 베라
+     * - 루나
+     * - 제니스
+     * - 크로아
+     * - 유니온
+     * - 엘리시움
+     * - 이노시스
+     * - 레드
+     * - 오로라
+     * - 아케인
+     * - 노바
+     * - 리부트
+     * - 리부트2
+     * - 버닝
+     * - 버닝2
+     * - 버닝3
+     * @param rankingType 랭킹 타입 (0:주간 명성치, 1:플래그 레이스, 2:지하 수로)
+     * @param guildName 길드 명
+     * @param page 페이지 번호
+     */
+    public async getGuildRanking(date: string, worldName: string, rankingType: number, guildName: string, page: number): Promise<GuildRankingResponseDto> {
+        try {
+            const path = 'maplestory/v1/ranking/guild';
+            const response = await axios.get<GuildRankingResponseDtoBody>(path, {
+                baseURL: MapleStoryApi.BASE_URL,
+                timeout: this.timeout,
+                headers: this.buildHeaders(),
+                params: {
+                    date,
+                    world_name: worldName,
+                    ranking_type: rankingType,
+                    guild_name: guildName,
+                    page,
+                },
+            });
+
+            return new GuildRankingResponseDto(response.data);
+        } catch (e: any) {
+            if (e instanceof AxiosError) {
+                const errorBody = (e as AxiosError<MapleStoryErrorBody>).response!.data;
+
+                throw new MapleStoryApiError(errorBody);
+            }
+
+            throw e;
+        }
+    }
+
+    /**
+     * 무릉도장 랭킹 정보를 조회합니다.
+     *
+     * @param date 조회 기준일 (KST)
+     * @param worldName 월드 명
+     * - 스카니아
+     * - 베라
+     * - 루나
+     * - 제니스
+     * - 크로아
+     * - 유니온
+     * - 엘리시움
+     * - 이노시스
+     * - 레드
+     * - 오로라
+     * - 아케인
+     * - 노바
+     * - 리부트
+     * - 리부트2
+     * - 버닝
+     * - 버닝2
+     * - 버닝3
+     * @param difficulty 구간 (0:일반, 1:통달)
+     * @param className 직업 및 전직
+     * - 초보자-전체 전직
+     * - 전사-전체 전직
+     * - 전사-검사
+     * - 전사-파이터
+     * - 전사-페이지
+     * - 전사-스피어맨
+     * - 전사-크루세이더
+     * - 전사-나이트
+     * - 전사-버서커
+     * - 전사-히어로
+     * - 전사-팔라딘
+     * - 전사-다크나이트
+     * - 마법사-전체 전직
+     * - 마법사-매지션
+     * - 마법사-위자드(불,독)
+     * - 마법사-위자드(썬,콜)
+     * - 마법사-클레릭
+     * - 마법사-메이지(불,독)
+     * - 마법사-메이지(썬,콜)
+     * - 마법사-프리스트
+     * - 마법사-아크메이지(불,독)
+     * - 마법사-아크메이지(썬,콜)
+     * - 마법사-비숍
+     * - 궁수-전체 전직
+     * - 궁수-아처
+     * - 궁수-헌터
+     * - 궁수-사수
+     * - 궁수-레인저
+     * - 궁수-저격수
+     * - 궁수-보우마스터
+     * - 궁수-신궁
+     * - 궁수-아처(패스파인더)
+     * - 궁수-에인션트아처
+     * - 궁수-체이서
+     * - 궁수-패스파인더
+     * - 도적-전체 전직
+     * - 도적-로그
+     * - 도적-어쌔신
+     * - 도적-시프
+     * - 도적-허밋
+     * - 도적-시프마스터
+     * - 도적-나이트로드
+     * - 도적-섀도어
+     * - 도적-세미듀어러
+     * - 도적-듀어러
+     * - 도적-듀얼마스터
+     * - 도적-슬래셔
+     * - 도적-듀얼블레이더
+     * - 해적-전체 전직
+     * - 해적-해적
+     * - 해적-인파이터
+     * - 해적-건슬링거
+     * - 해적-캐논슈터
+     * - 해적-버커니어
+     * - 해적-발키리
+     * - 해적-캐논블래스터
+     * - 해적-바이퍼
+     * - 해적-캡틴
+     * - 해적-캐논마스터
+     * - 기사단-전체 전직
+     * - 기사단-노블레스
+     * - 기사단-소울마스터
+     * - 기사단-플레임위자드
+     * - 기사단-윈드브레이커
+     * - 기사단-나이트워커
+     * - 기사단-스트라이커
+     * - 기사단-미하일
+     * - 아란-전체 전직
+     * - 에반-전체 전직
+     * - 레지스탕스-전체 전직
+     * - 레지스탕스-시티즌
+     * - 레지스탕스-배틀메이지
+     * - 레지스탕스-와일드헌터
+     * - 레지스탕스-메카닉
+     * - 레지스탕스-데몬슬레이어
+     * - 레지스탕스-데몬어벤져
+     * - 레지스탕스-제논
+     * - 레지스탕스-블래스터
+     * - 메르세데스-전체 전직
+     * - 팬텀-전체 전직
+     * - 루미너스-전체 전직
+     * - 카이저-전체 전직
+     * - 엔젤릭버스터-전체 전직
+     * - 초월자-전체 전직
+     * - 초월자-제로
+     * - 은월-전체 전직
+     * - 프렌즈 월드-전체 전직
+     * - 프렌즈 월드-키네시스
+     * - 카데나-전체 전직
+     * - 일리움-전체 전직
+     * - 아크-전체 전직
+     * - 호영-전체 전직
+     * - 아델-전체 전직
+     * - 카인-전체 전직
+     * - 라라-전체 전직
+     * - 칼리-전체 전직
+     * @param ocid 캐릭터 식별자
+     * @param page 페이지 번호
+     */
+    public async getDojangRanking(date: string, worldName: string, difficulty: number, className: string, ocid: string, page: number): Promise<DojangRankingResponseDto> {
+        try {
+            const path = 'maplestory/v1/ranking/dojang';
+            const response = await axios.get<DojangRankingResponseDtoBody>(path, {
+                baseURL: MapleStoryApi.BASE_URL,
+                timeout: this.timeout,
+                headers: this.buildHeaders(),
+                params: {
+                    date,
+                    world_name: worldName,
+                    difficulty,
+                    class_name: className,
+                    ocid,
+                    page,
+                },
+            });
+
+            return new DojangRankingResponseDto(response.data);
+        } catch (e: any) {
+            if (e instanceof AxiosError) {
+                const errorBody = (e as AxiosError<MapleStoryErrorBody>).response!.data;
+
+                throw new MapleStoryApiError(errorBody);
+            }
+
+            throw e;
+        }
+    }
+
+    /**
+     * 더 시드 랭킹 정보를 조회합니다.
+     *
+     * @param date 조회 기준일 (KST)
+     * @param worldName 월드 명
+     * - 스카니아
+     * - 베라
+     * - 루나
+     * - 제니스
+     * - 크로아
+     * - 유니온
+     * - 엘리시움
+     * - 이노시스
+     * - 레드
+     * - 오로라
+     * - 아케인
+     * - 노바
+     * - 리부트
+     * - 리부트2
+     * - 버닝
+     * - 버닝2
+     * - 버닝3
+     * @param ocid 캐릭터 식별자
+     * @param page 페이지 번호
+     */
+    public async getSeedRanking(date: string, worldName: string, ocid: string, page: number): Promise<TheSeedRankingResponseDto> {
+        try {
+            const path = 'maplestory/v1/ranking/theseed';
+            const response = await axios.get<TheSeedRankingResponseDtoBody>(path, {
+                baseURL: MapleStoryApi.BASE_URL,
+                timeout: this.timeout,
+                headers: this.buildHeaders(),
+                params: {
+                    date,
+                    world_name: worldName,
+                    ocid,
+                    page,
+                },
+            });
+
+            return new TheSeedRankingResponseDto(response.data);
+        } catch (e: any) {
+            if (e instanceof AxiosError) {
+                const errorBody = (e as AxiosError<MapleStoryErrorBody>).response!.data;
+
+                throw new MapleStoryApiError(errorBody);
+            }
+
+            throw e;
+        }
+    }
+
+    /**
+     * 업적 랭킹 정보를 조회합니다.
+     *
+     * @param date 조회 기준일 (KST)
+     * @param ocid 캐릭터 식별자
+     * @param page 페이지 번호
+     */
+    public async getAchievementRanking(date: string, ocid: string, page: number): Promise<AchievementRankingResponseDto> {
+        try {
+            const path = 'maplestory/v1/ranking/achievement';
+            const response = await axios.get<AchievementRankingResponseDtoBody>(path, {
+                baseURL: MapleStoryApi.BASE_URL,
+                timeout: this.timeout,
+                headers: this.buildHeaders(),
+                params: {
+                    date,
+                    ocid,
+                    page,
+                },
+            });
+
+            return new AchievementRankingResponseDto(response.data);
         } catch (e: any) {
             if (e instanceof AxiosError) {
                 const errorBody = (e as AxiosError<MapleStoryErrorBody>).response!.data;
