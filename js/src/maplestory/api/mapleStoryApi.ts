@@ -49,6 +49,10 @@ import dayjs from "dayjs";
 import timezone from "dayjs/plugin/timezone";
 import utc from "dayjs/plugin/utc";
 import xml2js from 'xml2js';
+import {UnionDto} from "./dto/unionDto";
+import {UnionDtoBody} from "./response/unionDtoBody";
+import {UnionRaiderDto} from "./dto/unionRaiderDto";
+import {UnionRaiderDtoBody} from "./response/unionRaiderDtoBody";
 
 dayjs.extend(timezone);
 dayjs.extend(utc);
@@ -755,6 +759,72 @@ class MapleStoryApi {
             });
 
             return new CharacterDojangDto(response.data);
+        } catch (e: any) {
+            if (e instanceof AxiosError) {
+                const errorBody = (e as AxiosError<MapleStoryErrorBody>).response!.data;
+
+                throw new MapleStoryApiError(errorBody);
+            }
+
+            throw e;
+        }
+    }
+
+    //#endregion
+
+    //#region 유니온 정보 조회
+
+    /**
+     * 유니온 정보를 조회합니다.
+     *
+     * @param ocid 캐릭터 식별자
+     * @param date 조회 기준일 (KST)
+     */
+    public async getUnionInfo(ocid: string, date: string): Promise<UnionDto> {
+        try {
+            const path = 'maplestory/v1/user/union';
+            const response = await axios.get<UnionDtoBody>(path, {
+                baseURL: MapleStoryApi.BASE_URL,
+                timeout: this.timeout,
+                headers: this.buildHeaders(),
+                params: {
+                    ocid,
+                    date,
+                }
+            });
+
+            return new UnionDto(response.data);
+        } catch (e: any) {
+            if (e instanceof AxiosError) {
+                const errorBody = (e as AxiosError<MapleStoryErrorBody>).response!.data;
+
+                throw new MapleStoryApiError(errorBody);
+            }
+
+            throw e;
+        }
+    }
+
+    /**
+     * 유니온 공격대 정보를 조회합니다.
+     *
+     * @param ocid 캐릭터 식별자
+     * @param date 조회 기준일 (KST)
+     */
+    public async getUnionRaiderInfo(ocid: string, date: string): Promise<UnionRaiderDto> {
+        try {
+            const path = 'maplestory/v1/user/union-raider';
+            const response = await axios.get<UnionRaiderDtoBody>(path, {
+                baseURL: MapleStoryApi.BASE_URL,
+                timeout: this.timeout,
+                headers: this.buildHeaders(),
+                params: {
+                    ocid,
+                    date,
+                }
+            });
+
+            return new UnionRaiderDto(response.data);
         } catch (e: any) {
             if (e instanceof AxiosError) {
                 const errorBody = (e as AxiosError<MapleStoryErrorBody>).response!.data;
