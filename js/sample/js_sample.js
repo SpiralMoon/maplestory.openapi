@@ -3,7 +3,7 @@ const {MapleStoryApi, MapleStoryApiError} = require('../dist');
 const apiKey = '{Your API Key}';
 const api = new MapleStoryApi(apiKey);
 
-api.getCubeResult(1000, {
+api.getCubeHistory(1000, {
 	year: 2023,
 	month: 10,
 	day: 15
