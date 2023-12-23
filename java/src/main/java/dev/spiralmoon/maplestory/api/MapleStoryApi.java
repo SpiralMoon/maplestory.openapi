@@ -1961,6 +1961,1001 @@ public class MapleStoryApi {
         });
     }
 
+    //#region 랭킹 정보 조회
+
+    /**
+     * 종합 랭킹 정보를 조회합니다.
+     *
+     * @param worldName      월드 명<br>
+     *                       스카니아<br>
+     *                       베라<br>
+     *                       루나<br>
+     *                       제니스<br>
+     *                       크로아<br>
+     *                       유니온<br>
+     *                       엘리시움<br>
+     *                       이노시스<br>
+     *                       레드<br>
+     *                       오로라<br>
+     *                       아케인<br>
+     *                       노바<br>
+     *                       리부트<br>
+     *                       리부트2<br>
+     *                       버닝<br>
+     *                       버닝2<br>
+     *                       버닝3<br>
+     * @param worldType      월드 타입 (0:일반, 1:리부트) (기본 값은 0이며, worldName 입력 시 미 반영)
+     * @param characterClass 직업 및 전직<br>
+     *                       초보자-전체 전직<br>
+     *                       전사-전체 전직<br>
+     *                       전사-검사<br>
+     *                       전사-파이터<br>
+     *                       전사-페이지<br>
+     *                       전사-스피어맨<br>
+     *                       전사-크루세이더<br>
+     *                       전사-나이트<br>
+     *                       전사-버서커<br>
+     *                       전사-히어로<br>
+     *                       전사-팔라딘<br>
+     *                       전사-다크나이트<br>
+     *                       마법사-전체 전직<br>
+     *                       마법사-매지션<br>
+     *                       마법사-위자드(불,독)<br>
+     *                       마법사-위자드(썬,콜)<br>
+     *                       마법사-클레릭<br>
+     *                       마법사-메이지(불,독)<br>
+     *                       마법사-메이지(썬,콜)<br>
+     *                       마법사-프리스트<br>
+     *                       마법사-아크메이지(불,독)<br>
+     *                       마법사-아크메이지(썬,콜)<br>
+     *                       마법사-비숍<br>
+     *                       궁수-전체 전직<br>
+     *                       궁수-아처<br>
+     *                       궁수-헌터<br>
+     *                       궁수-사수<br>
+     *                       궁수-레인저<br>
+     *                       궁수-저격수<br>
+     *                       궁수-보우마스터<br>
+     *                       궁수-신궁<br>
+     *                       궁수-아처(패스파인더)<br>
+     *                       궁수-에인션트아처<br>
+     *                       궁수-체이서<br>
+     *                       궁수-패스파인더<br>
+     *                       도적-전체 전직<br>
+     *                       도적-로그<br>
+     *                       도적-어쌔신<br>
+     *                       도적-시프<br>
+     *                       도적-허밋<br>
+     *                       도적-시프마스터<br>
+     *                       도적-나이트로드<br>
+     *                       도적-섀도어<br>
+     *                       도적-세미듀어러<br>
+     *                       도적-듀어러<br>
+     *                       도적-듀얼마스터<br>
+     *                       도적-슬래셔<br>
+     *                       도적-듀얼블레이더<br>
+     *                       해적-전체 전직<br>
+     *                       해적-해적<br>
+     *                       해적-인파이터<br>
+     *                       해적-건슬링거<br>
+     *                       해적-캐논슈터<br>
+     *                       해적-버커니어<br>
+     *                       해적-발키리<br>
+     *                       해적-캐논블래스터<br>
+     *                       해적-바이퍼<br>
+     *                       해적-캡틴<br>
+     *                       해적-캐논마스터<br>
+     *                       기사단-전체 전직<br>
+     *                       기사단-노블레스<br>
+     *                       기사단-소울마스터<br>
+     *                       기사단-플레임위자드<br>
+     *                       기사단-윈드브레이커<br>
+     *                       기사단-나이트워커<br>
+     *                       기사단-스트라이커<br>
+     *                       기사단-미하일<br>
+     *                       아란-전체 전직<br>
+     *                       에반-전체 전직<br>
+     *                       레지스탕스-전체 전직<br>
+     *                       레지스탕스-시티즌<br>
+     *                       레지스탕스-배틀메이지<br>
+     *                       레지스탕스-와일드헌터<br>
+     *                       레지스탕스-메카닉<br>
+     *                       레지스탕스-데몬슬레이어<br>
+     *                       레지스탕스-데몬어벤져<br>
+     *                       레지스탕스-제논<br>
+     *                       레지스탕스-블래스터<br>
+     *                       메르세데스-전체 전직<br>
+     *                       팬텀-전체 전직<br>
+     *                       루미너스-전체 전직<br>
+     *                       카이저-전체 전직<br>
+     *                       엔젤릭버스터-전체 전직<br>
+     *                       초월자-전체 전직<br>
+     *                       초월자-제로<br>
+     *                       은월-전체 전직<br>
+     *                       프렌즈 월드-전체 전직<br>
+     *                       프렌즈 월드-키네시스<br>
+     *                       카데나-전체 전직<br>
+     *                       일리움-전체 전직<br>
+     *                       아크-전체 전직<br>
+     *                       호영-전체 전직<br>
+     *                       아델-전체 전직<br>
+     *                       카인-전체 전직<br>
+     *                       라라-전체 전직<br>
+     *                       칼리-전체 전직<br>
+     * @param ocid           캐릭터 식별자
+     * @param page           페이지 번호
+     * @param date           조회 기준일 (KST) - Example: 2023-12-22
+     */
+    public OverallRankingResponseDTO getOverallRanking(String worldName, Integer worldType, String characterClass, String ocid, Integer page, String date) throws IOException {
+
+        final Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(this.buildClient())
+                .build();
+
+        final RankingApi rankingApi = retrofit.create(RankingApi.class);
+        final Call<OverallRankingResponseDTO> call = rankingApi.getOverallRanking(this.apiKey, date, worldName, worldType, characterClass, ocid, page);
+
+        final Response<OverallRankingResponseDTO> response = call.execute();
+
+        if (!response.isSuccessful()) {
+            throw parseError(response);
+        }
+
+        return response.body();
+    }
+
+    /**
+     * 종합 랭킹 정보를 비동기로 조회합니다.
+     *
+     * @param worldName      월드 명<br>
+     *                       스카니아<br>
+     *                       베라<br>
+     *                       루나<br>
+     *                       제니스<br>
+     *                       크로아<br>
+     *                       유니온<br>
+     *                       엘리시움<br>
+     *                       이노시스<br>
+     *                       레드<br>
+     *                       오로라<br>
+     *                       아케인<br>
+     *                       노바<br>
+     *                       리부트<br>
+     *                       리부트2<br>
+     *                       버닝<br>
+     *                       버닝2<br>
+     *                       버닝3<br>
+     * @param worldType      월드 타입 (0:일반, 1:리부트) (기본 값은 0이며, worldName 입력 시 미 반영)
+     * @param characterClass 직업 및 전직<br>
+     *                       초보자-전체 전직<br>
+     *                       전사-전체 전직<br>
+     *                       전사-검사<br>
+     *                       전사-파이터<br>
+     *                       전사-페이지<br>
+     *                       전사-스피어맨<br>
+     *                       전사-크루세이더<br>
+     *                       전사-나이트<br>
+     *                       전사-버서커<br>
+     *                       전사-히어로<br>
+     *                       전사-팔라딘<br>
+     *                       전사-다크나이트<br>
+     *                       마법사-전체 전직<br>
+     *                       마법사-매지션<br>
+     *                       마법사-위자드(불,독)<br>
+     *                       마법사-위자드(썬,콜)<br>
+     *                       마법사-클레릭<br>
+     *                       마법사-메이지(불,독)<br>
+     *                       마법사-메이지(썬,콜)<br>
+     *                       마법사-프리스트<br>
+     *                       마법사-아크메이지(불,독)<br>
+     *                       마법사-아크메이지(썬,콜)<br>
+     *                       마법사-비숍<br>
+     *                       궁수-전체 전직<br>
+     *                       궁수-아처<br>
+     *                       궁수-헌터<br>
+     *                       궁수-사수<br>
+     *                       궁수-레인저<br>
+     *                       궁수-저격수<br>
+     *                       궁수-보우마스터<br>
+     *                       궁수-신궁<br>
+     *                       궁수-아처(패스파인더)<br>
+     *                       궁수-에인션트아처<br>
+     *                       궁수-체이서<br>
+     *                       궁수-패스파인더<br>
+     *                       도적-전체 전직<br>
+     *                       도적-로그<br>
+     *                       도적-어쌔신<br>
+     *                       도적-시프<br>
+     *                       도적-허밋<br>
+     *                       도적-시프마스터<br>
+     *                       도적-나이트로드<br>
+     *                       도적-섀도어<br>
+     *                       도적-세미듀어러<br>
+     *                       도적-듀어러<br>
+     *                       도적-듀얼마스터<br>
+     *                       도적-슬래셔<br>
+     *                       도적-듀얼블레이더<br>
+     *                       해적-전체 전직<br>
+     *                       해적-해적<br>
+     *                       해적-인파이터<br>
+     *                       해적-건슬링거<br>
+     *                       해적-캐논슈터<br>
+     *                       해적-버커니어<br>
+     *                       해적-발키리<br>
+     *                       해적-캐논블래스터<br>
+     *                       해적-바이퍼<br>
+     *                       해적-캡틴<br>
+     *                       해적-캐논마스터<br>
+     *                       기사단-전체 전직<br>
+     *                       기사단-노블레스<br>
+     *                       기사단-소울마스터<br>
+     *                       기사단-플레임위자드<br>
+     *                       기사단-윈드브레이커<br>
+     *                       기사단-나이트워커<br>
+     *                       기사단-스트라이커<br>
+     *                       기사단-미하일<br>
+     *                       아란-전체 전직<br>
+     *                       에반-전체 전직<br>
+     *                       레지스탕스-전체 전직<br>
+     *                       레지스탕스-시티즌<br>
+     *                       레지스탕스-배틀메이지<br>
+     *                       레지스탕스-와일드헌터<br>
+     *                       레지스탕스-메카닉<br>
+     *                       레지스탕스-데몬슬레이어<br>
+     *                       레지스탕스-데몬어벤져<br>
+     *                       레지스탕스-제논<br>
+     *                       레지스탕스-블래스터<br>
+     *                       메르세데스-전체 전직<br>
+     *                       팬텀-전체 전직<br>
+     *                       루미너스-전체 전직<br>
+     *                       카이저-전체 전직<br>
+     *                       엔젤릭버스터-전체 전직<br>
+     *                       초월자-전체 전직<br>
+     *                       초월자-제로<br>
+     *                       은월-전체 전직<br>
+     *                       프렌즈 월드-전체 전직<br>
+     *                       프렌즈 월드-키네시스<br>
+     *                       카데나-전체 전직<br>
+     *                       일리움-전체 전직<br>
+     *                       아크-전체 전직<br>
+     *                       호영-전체 전직<br>
+     *                       아델-전체 전직<br>
+     *                       카인-전체 전직<br>
+     *                       라라-전체 전직<br>
+     *                       칼리-전체 전직<br>
+     * @param ocid           캐릭터 식별자
+     * @param page           페이지 번호
+     * @param date           조회 기준일 (KST) - Example: 2023-12-22
+     */
+    public void getOverallRankingAsync(String worldName, Integer worldType, String characterClass, String ocid, Integer page, String date, SuccessCallback<OverallRankingResponseDTO> onSuccess, FailureCallback onFailure) {
+
+        final Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(this.buildClient())
+                .build();
+
+        final RankingApi rankingApi = retrofit.create(RankingApi.class);
+        final Call<OverallRankingResponseDTO> call = rankingApi.getOverallRanking(this.apiKey, date, worldName, worldType, characterClass, ocid, page);
+
+        call.enqueue(new Callback<OverallRankingResponseDTO>() {
+            @SneakyThrows
+            @Override
+            public void onResponse(Call<OverallRankingResponseDTO> call, Response<OverallRankingResponseDTO> response) {
+                if (response.isSuccessful()) {
+                    if (onSuccess != null) {
+                        onSuccess.callback(response.body());
+                    }
+                } else {
+                    if (onFailure != null) {
+                        onFailure.callback(parseError(response));
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<OverallRankingResponseDTO> call, Throwable t) {
+                if (onFailure != null) {
+                    onFailure.callback(t);
+                }
+            }
+        });
+    }
+
+    /**
+     * 유니온 랭킹 정보를 조회합니다.
+     *
+     * @param worldName 월드 명<br>
+     *                  스카니아<br>
+     *                  베라<br>
+     *                  루나<br>
+     *                  제니스<br>
+     *                  크로아<br>
+     *                  유니온<br>
+     *                  엘리시움<br>
+     *                  이노시스<br>
+     *                  레드<br>
+     *                  오로라<br>
+     *                  아케인<br>
+     *                  노바<br>
+     *                  리부트<br>
+     *                  리부트2<br>
+     *                  버닝<br>
+     *                  버닝2<br>
+     *                  버닝3<br>
+     * @param ocid      캐릭터 식별자
+     * @param page      페이지 번호
+     * @param date      조회 기준일 (KST) - Example: 2023-12-21
+     */
+    public UnionRankingResponseDTO getUnionRanking(String worldName, String ocid, Integer page, String date) throws IOException {
+
+        final Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(this.buildClient())
+                .build();
+
+        final RankingApi rankingApi = retrofit.create(RankingApi.class);
+        final Call<UnionRankingResponseDTO> call = rankingApi.getUnionRanking(this.apiKey, date, worldName, ocid, page);
+
+        final Response<UnionRankingResponseDTO> response = call.execute();
+
+        if (!response.isSuccessful()) {
+            throw parseError(response);
+        }
+
+        return response.body();
+    }
+
+    /**
+     * 유니온 랭킹 정보를 비동기로 조회합니다.
+     *
+     * @param worldName 월드 명<br>
+     *                  스카니아<br>
+     *                  베라<br>
+     *                  루나<br>
+     *                  제니스<br>
+     *                  크로아<br>
+     *                  유니온<br>
+     *                  엘리시움<br>
+     *                  이노시스<br>
+     *                  레드<br>
+     *                  오로라<br>
+     *                  아케인<br>
+     *                  노바<br>
+     *                  리부트<br>
+     *                  리부트2<br>
+     *                  버닝<br>
+     *                  버닝2<br>
+     *                  버닝3<br>
+     * @param ocid      캐릭터 식별자
+     * @param page      페이지 번호
+     * @param date      조회 기준일 (KST) - Example: 2023-12-21
+     */
+    public void getUnionRankingAsync(String worldName, String ocid, Integer page, String date, SuccessCallback<UnionRankingResponseDTO> onSuccess, FailureCallback onFailure) {
+
+        final Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(this.buildClient())
+                .build();
+
+        final RankingApi rankingApi = retrofit.create(RankingApi.class);
+        final Call<UnionRankingResponseDTO> call = rankingApi.getUnionRanking(this.apiKey, date, worldName, ocid, page);
+
+        call.enqueue(new Callback<UnionRankingResponseDTO>() {
+            @SneakyThrows
+            @Override
+            public void onResponse(Call<UnionRankingResponseDTO> call, Response<UnionRankingResponseDTO> response) {
+                if (response.isSuccessful()) {
+                    if (onSuccess != null) {
+                        onSuccess.callback(response.body());
+                    }
+                } else {
+                    if (onFailure != null) {
+                        onFailure.callback(parseError(response));
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<UnionRankingResponseDTO> call, Throwable t) {
+                if (onFailure != null) {
+                    onFailure.callback(t);
+                }
+            }
+        });
+    }
+
+    /**
+     * 길드 랭킹 정보를 조회합니다.
+     *
+     * @param worldName   월드 명<br>
+     *                    스카니아<br>
+     *                    베라<br>
+     *                    루나<br>
+     *                    제니스<br>
+     *                    크로아<br>
+     *                    유니온<br>
+     *                    엘리시움<br>
+     *                    이노시스<br>
+     *                    레드<br>
+     *                    오로라<br>
+     *                    아케인<br>
+     *                    노바<br>
+     *                    리부트<br>
+     *                    리부트2<br>
+     *                    버닝<br>
+     *                    버닝2<br>
+     *                    버닝3<br>
+     * @param rankingType 랭킹 타입 (0:주간 명성치, 1:플래그 레이스, 2:지하 수로)
+     * @param guildName   길드 명
+     * @param page        페이지 번호
+     * @param date        조회 기준일 (KST) - Example: 2023-12-22
+     */
+    public GuildRankingResponseDTO getGuildRanking(String worldName, Integer rankingType, String guildName, Integer page, String date) throws IOException {
+
+        final Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(this.buildClient())
+                .build();
+
+        final RankingApi rankingApi = retrofit.create(RankingApi.class);
+        final Call<GuildRankingResponseDTO> call = rankingApi.getGuildRanking(this.apiKey, date, worldName, rankingType, guildName, page);
+
+        final Response<GuildRankingResponseDTO> response = call.execute();
+
+        if (!response.isSuccessful()) {
+            throw parseError(response);
+        }
+
+        return response.body();
+    }
+
+    /**
+     * 길드 랭킹 정보를 비동기로 조회합니다.
+     *
+     * @param worldName   월드 명<br>
+     *                    스카니아<br>
+     *                    베라<br>
+     *                    루나<br>
+     *                    제니스<br>
+     *                    크로아<br>
+     *                    유니온<br>
+     *                    엘리시움<br>
+     *                    이노시스<br>
+     *                    레드<br>
+     *                    오로라<br>
+     *                    아케인<br>
+     *                    노바<br>
+     *                    리부트<br>
+     *                    리부트2<br>
+     *                    버닝<br>
+     *                    버닝2<br>
+     *                    버닝3<br>
+     * @param rankingType 랭킹 타입 (0:주간 명성치, 1:플래그 레이스, 2:지하 수로)
+     * @param guildName   길드 명
+     * @param page        페이지 번호
+     * @param date        조회 기준일 (KST) - Example: 2023-12-22
+     */
+    public void getGuildRankingAsync(String worldName, Integer rankingType, String guildName, Integer page, String date, SuccessCallback<GuildRankingResponseDTO> onSuccess, FailureCallback onFailure) {
+
+        final Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(this.buildClient())
+                .build();
+
+        final RankingApi rankingApi = retrofit.create(RankingApi.class);
+        final Call<GuildRankingResponseDTO> call = rankingApi.getGuildRanking(this.apiKey, date, worldName, rankingType, guildName, page);
+
+        call.enqueue(new Callback<GuildRankingResponseDTO>() {
+            @SneakyThrows
+            @Override
+            public void onResponse(Call<GuildRankingResponseDTO> call, Response<GuildRankingResponseDTO> response) {
+                if (response.isSuccessful()) {
+                    if (onSuccess != null) {
+                        onSuccess.callback(response.body());
+                    }
+                } else {
+                    if (onFailure != null) {
+                        onFailure.callback(parseError(response));
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<GuildRankingResponseDTO> call, Throwable t) {
+                if (onFailure != null) {
+                    onFailure.callback(t);
+                }
+            }
+        });
+    }
+
+    /**
+     * 무릉도장 랭킹 정보를 조회합니다.
+     *
+     * @param worldName      월드 명<br>
+     *                       스카니아<br>
+     *                       베라<br>
+     *                       루나<br>
+     *                       제니스<br>
+     *                       크로아<br>
+     *                       유니온<br>
+     *                       엘리시움<br>
+     *                       이노시스<br>
+     *                       레드<br>
+     *                       오로라<br>
+     *                       아케인<br>
+     *                       노바<br>
+     *                       리부트<br>
+     *                       리부트2<br>
+     *                       버닝<br>
+     *                       버닝2<br>
+     *                       버닝3<br>
+     * @param difficulty     구간 (0:일반, 1:통달)
+     * @param characterClass 직업 및 전직
+     * @param characterClass 직업 및 전직<br>
+     *                       초보자-전체 전직<br>
+     *                       전사-전체 전직<br>
+     *                       전사-검사<br>
+     *                       전사-파이터<br>
+     *                       전사-페이지<br>
+     *                       전사-스피어맨<br>
+     *                       전사-크루세이더<br>
+     *                       전사-나이트<br>
+     *                       전사-버서커<br>
+     *                       전사-히어로<br>
+     *                       전사-팔라딘<br>
+     *                       전사-다크나이트<br>
+     *                       마법사-전체 전직<br>
+     *                       마법사-매지션<br>
+     *                       마법사-위자드(불,독)<br>
+     *                       마법사-위자드(썬,콜)<br>
+     *                       마법사-클레릭<br>
+     *                       마법사-메이지(불,독)<br>
+     *                       마법사-메이지(썬,콜)<br>
+     *                       마법사-프리스트<br>
+     *                       마법사-아크메이지(불,독)<br>
+     *                       마법사-아크메이지(썬,콜)<br>
+     *                       마법사-비숍<br>
+     *                       궁수-전체 전직<br>
+     *                       궁수-아처<br>
+     *                       궁수-헌터<br>
+     *                       궁수-사수<br>
+     *                       궁수-레인저<br>
+     *                       궁수-저격수<br>
+     *                       궁수-보우마스터<br>
+     *                       궁수-신궁<br>
+     *                       궁수-아처(패스파인더)<br>
+     *                       궁수-에인션트아처<br>
+     *                       궁수-체이서<br>
+     *                       궁수-패스파인더<br>
+     *                       도적-전체 전직<br>
+     *                       도적-로그<br>
+     *                       도적-어쌔신<br>
+     *                       도적-시프<br>
+     *                       도적-허밋<br>
+     *                       도적-시프마스터<br>
+     *                       도적-나이트로드<br>
+     *                       도적-섀도어<br>
+     *                       도적-세미듀어러<br>
+     *                       도적-듀어러<br>
+     *                       도적-듀얼마스터<br>
+     *                       도적-슬래셔<br>
+     *                       도적-듀얼블레이더<br>
+     *                       해적-전체 전직<br>
+     *                       해적-해적<br>
+     *                       해적-인파이터<br>
+     *                       해적-건슬링거<br>
+     *                       해적-캐논슈터<br>
+     *                       해적-버커니어<br>
+     *                       해적-발키리<br>
+     *                       해적-캐논블래스터<br>
+     *                       해적-바이퍼<br>
+     *                       해적-캡틴<br>
+     *                       해적-캐논마스터<br>
+     *                       기사단-전체 전직<br>
+     *                       기사단-노블레스<br>
+     *                       기사단-소울마스터<br>
+     *                       기사단-플레임위자드<br>
+     *                       기사단-윈드브레이커<br>
+     *                       기사단-나이트워커<br>
+     *                       기사단-스트라이커<br>
+     *                       기사단-미하일<br>
+     *                       아란-전체 전직<br>
+     *                       에반-전체 전직<br>
+     *                       레지스탕스-전체 전직<br>
+     *                       레지스탕스-시티즌<br>
+     *                       레지스탕스-배틀메이지<br>
+     *                       레지스탕스-와일드헌터<br>
+     *                       레지스탕스-메카닉<br>
+     *                       레지스탕스-데몬슬레이어<br>
+     *                       레지스탕스-데몬어벤져<br>
+     *                       레지스탕스-제논<br>
+     *                       레지스탕스-블래스터<br>
+     *                       메르세데스-전체 전직<br>
+     *                       팬텀-전체 전직<br>
+     *                       루미너스-전체 전직<br>
+     *                       카이저-전체 전직<br>
+     *                       엔젤릭버스터-전체 전직<br>
+     *                       초월자-전체 전직<br>
+     *                       초월자-제로<br>
+     *                       은월-전체 전직<br>
+     *                       프렌즈 월드-전체 전직<br>
+     *                       프렌즈 월드-키네시스<br>
+     *                       카데나-전체 전직<br>
+     *                       일리움-전체 전직<br>
+     *                       아크-전체 전직<br>
+     *                       호영-전체 전직<br>
+     *                       아델-전체 전직<br>
+     *                       카인-전체 전직<br>
+     *                       라라-전체 전직<br>
+     *                       칼리-전체 전직<br>
+     * @param ocid           캐릭터 식별자
+     * @param page           페이지 번호
+     * @param date           조회 기준일 (KST) - Example: 2023-12-22
+     */
+    public DojangRankingResponseDTO getDojangRanking(String worldName, Integer difficulty, String characterClass, String ocid, Integer page, String date) throws IOException {
+
+        final Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(this.buildClient())
+                .build();
+
+        final RankingApi rankingApi = retrofit.create(RankingApi.class);
+        final Call<DojangRankingResponseDTO> call = rankingApi.getDojangRanking(this.apiKey, date, worldName, difficulty, characterClass, ocid, page);
+
+        final Response<DojangRankingResponseDTO> response = call.execute();
+
+        if (!response.isSuccessful()) {
+            throw parseError(response);
+        }
+
+        return response.body();
+    }
+
+    /**
+     * 무릉도장 랭킹 정보를 비동기로 조회합니다.
+     *
+     * @param worldName      월드 명<br>
+     *                       스카니아<br>
+     *                       베라<br>
+     *                       루나<br>
+     *                       제니스<br>
+     *                       크로아<br>
+     *                       유니온<br>
+     *                       엘리시움<br>
+     *                       이노시스<br>
+     *                       레드<br>
+     *                       오로라<br>
+     *                       아케인<br>
+     *                       노바<br>
+     *                       리부트<br>
+     *                       리부트2<br>
+     *                       버닝<br>
+     *                       버닝2<br>
+     *                       버닝3<br>
+     * @param difficulty     구간 (0:일반, 1:통달)
+     * @param characterClass 직업 및 전직
+     * @param characterClass 직업 및 전직<br>
+     *                       초보자-전체 전직<br>
+     *                       전사-전체 전직<br>
+     *                       전사-검사<br>
+     *                       전사-파이터<br>
+     *                       전사-페이지<br>
+     *                       전사-스피어맨<br>
+     *                       전사-크루세이더<br>
+     *                       전사-나이트<br>
+     *                       전사-버서커<br>
+     *                       전사-히어로<br>
+     *                       전사-팔라딘<br>
+     *                       전사-다크나이트<br>
+     *                       마법사-전체 전직<br>
+     *                       마법사-매지션<br>
+     *                       마법사-위자드(불,독)<br>
+     *                       마법사-위자드(썬,콜)<br>
+     *                       마법사-클레릭<br>
+     *                       마법사-메이지(불,독)<br>
+     *                       마법사-메이지(썬,콜)<br>
+     *                       마법사-프리스트<br>
+     *                       마법사-아크메이지(불,독)<br>
+     *                       마법사-아크메이지(썬,콜)<br>
+     *                       마법사-비숍<br>
+     *                       궁수-전체 전직<br>
+     *                       궁수-아처<br>
+     *                       궁수-헌터<br>
+     *                       궁수-사수<br>
+     *                       궁수-레인저<br>
+     *                       궁수-저격수<br>
+     *                       궁수-보우마스터<br>
+     *                       궁수-신궁<br>
+     *                       궁수-아처(패스파인더)<br>
+     *                       궁수-에인션트아처<br>
+     *                       궁수-체이서<br>
+     *                       궁수-패스파인더<br>
+     *                       도적-전체 전직<br>
+     *                       도적-로그<br>
+     *                       도적-어쌔신<br>
+     *                       도적-시프<br>
+     *                       도적-허밋<br>
+     *                       도적-시프마스터<br>
+     *                       도적-나이트로드<br>
+     *                       도적-섀도어<br>
+     *                       도적-세미듀어러<br>
+     *                       도적-듀어러<br>
+     *                       도적-듀얼마스터<br>
+     *                       도적-슬래셔<br>
+     *                       도적-듀얼블레이더<br>
+     *                       해적-전체 전직<br>
+     *                       해적-해적<br>
+     *                       해적-인파이터<br>
+     *                       해적-건슬링거<br>
+     *                       해적-캐논슈터<br>
+     *                       해적-버커니어<br>
+     *                       해적-발키리<br>
+     *                       해적-캐논블래스터<br>
+     *                       해적-바이퍼<br>
+     *                       해적-캡틴<br>
+     *                       해적-캐논마스터<br>
+     *                       기사단-전체 전직<br>
+     *                       기사단-노블레스<br>
+     *                       기사단-소울마스터<br>
+     *                       기사단-플레임위자드<br>
+     *                       기사단-윈드브레이커<br>
+     *                       기사단-나이트워커<br>
+     *                       기사단-스트라이커<br>
+     *                       기사단-미하일<br>
+     *                       아란-전체 전직<br>
+     *                       에반-전체 전직<br>
+     *                       레지스탕스-전체 전직<br>
+     *                       레지스탕스-시티즌<br>
+     *                       레지스탕스-배틀메이지<br>
+     *                       레지스탕스-와일드헌터<br>
+     *                       레지스탕스-메카닉<br>
+     *                       레지스탕스-데몬슬레이어<br>
+     *                       레지스탕스-데몬어벤져<br>
+     *                       레지스탕스-제논<br>
+     *                       레지스탕스-블래스터<br>
+     *                       메르세데스-전체 전직<br>
+     *                       팬텀-전체 전직<br>
+     *                       루미너스-전체 전직<br>
+     *                       카이저-전체 전직<br>
+     *                       엔젤릭버스터-전체 전직<br>
+     *                       초월자-전체 전직<br>
+     *                       초월자-제로<br>
+     *                       은월-전체 전직<br>
+     *                       프렌즈 월드-전체 전직<br>
+     *                       프렌즈 월드-키네시스<br>
+     *                       카데나-전체 전직<br>
+     *                       일리움-전체 전직<br>
+     *                       아크-전체 전직<br>
+     *                       호영-전체 전직<br>
+     *                       아델-전체 전직<br>
+     *                       카인-전체 전직<br>
+     *                       라라-전체 전직<br>
+     *                       칼리-전체 전직<br>
+     * @param ocid           캐릭터 식별자
+     * @param page           페이지 번호
+     * @param date           조회 기준일 (KST) - Example: 2023-12-22
+     */
+    public void getDojangRankingAsync(String worldName, Integer difficulty, String characterClass, String ocid, Integer page, String date, SuccessCallback<DojangRankingResponseDTO> onSuccess, FailureCallback onFailure) {
+
+        final Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(this.buildClient())
+                .build();
+
+        final RankingApi rankingApi = retrofit.create(RankingApi.class);
+        final Call<DojangRankingResponseDTO> call = rankingApi.getDojangRanking(this.apiKey, date, worldName, difficulty, characterClass, ocid, page);
+
+        call.enqueue(new Callback<DojangRankingResponseDTO>() {
+            @SneakyThrows
+            @Override
+            public void onResponse(Call<DojangRankingResponseDTO> call, Response<DojangRankingResponseDTO> response) {
+                if (response.isSuccessful()) {
+                    if (onSuccess != null) {
+                        onSuccess.callback(response.body());
+                    }
+                } else {
+                    if (onFailure != null) {
+                        onFailure.callback(parseError(response));
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<DojangRankingResponseDTO> call, Throwable t) {
+                if (onFailure != null) {
+                    onFailure.callback(t);
+                }
+            }
+        });
+    }
+
+    /**
+     * 더 시드 랭킹 정보를 조회합니다.
+     *
+     * @param worldName 월드 명<br>
+     *                  스카니아<br>
+     *                  베라<br>
+     *                  루나<br>
+     *                  제니스<br>
+     *                  크로아<br>
+     *                  유니온<br>
+     *                  엘리시움<br>
+     *                  이노시스<br>
+     *                  레드<br>
+     *                  오로라<br>
+     *                  아케인<br>
+     *                  노바<br>
+     *                  리부트<br>
+     *                  리부트2<br>
+     *                  버닝<br>
+     *                  버닝2<br>
+     *                  버닝3<br>
+     * @param ocid      캐릭터 식별자
+     * @param page      페이지 번호
+     * @param date      조회 기준일 (KST) - Example: 2023-12-22
+     */
+    public TheSeedRankingResponseDTO getTheSeedRanking(String worldName, String ocid, Integer page, String date) throws IOException {
+
+        final Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(this.buildClient())
+                .build();
+
+        final RankingApi rankingApi = retrofit.create(RankingApi.class);
+        final Call<TheSeedRankingResponseDTO> call = rankingApi.getTheSeedRanking(this.apiKey, date, worldName, ocid, page);
+
+        final Response<TheSeedRankingResponseDTO> response = call.execute();
+
+        if (!response.isSuccessful()) {
+            throw parseError(response);
+        }
+
+        return response.body();
+    }
+
+    /**
+     * 더 시드 랭킹 정보를 비동기로 조회합니다.
+     *
+     * @param worldName 월드 명<br>
+     *                  스카니아<br>
+     *                  베라<br>
+     *                  루나<br>
+     *                  제니스<br>
+     *                  크로아<br>
+     *                  유니온<br>
+     *                  엘리시움<br>
+     *                  이노시스<br>
+     *                  레드<br>
+     *                  오로라<br>
+     *                  아케인<br>
+     *                  노바<br>
+     *                  리부트<br>
+     *                  리부트2<br>
+     *                  버닝<br>
+     *                  버닝2<br>
+     *                  버닝3<br>
+     * @param ocid      캐릭터 식별자
+     * @param page      페이지 번호
+     * @param date      조회 기준일 (KST) - Example: 2023-12-22
+     */
+    public void getTheSeedRankingAsync(String worldName, String ocid, Integer page, String date, SuccessCallback<TheSeedRankingResponseDTO> onSuccess, FailureCallback onFailure) {
+
+        final Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(this.buildClient())
+                .build();
+
+        final RankingApi rankingApi = retrofit.create(RankingApi.class);
+        final Call<TheSeedRankingResponseDTO> call = rankingApi.getTheSeedRanking(this.apiKey, date, worldName, ocid, page);
+
+        call.enqueue(new Callback<TheSeedRankingResponseDTO>() {
+            @SneakyThrows
+            @Override
+            public void onResponse(Call<TheSeedRankingResponseDTO> call, Response<TheSeedRankingResponseDTO> response) {
+                if (response.isSuccessful()) {
+                    if (onSuccess != null) {
+                        onSuccess.callback(response.body());
+                    }
+                } else {
+                    if (onFailure != null) {
+                        onFailure.callback(parseError(response));
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<TheSeedRankingResponseDTO> call, Throwable t) {
+                if (onFailure != null) {
+                    onFailure.callback(t);
+                }
+            }
+        });
+    }
+
+    /**
+     * 업적 랭킹 정보를 조회합니다.
+     *
+     * @param ocid 캐릭터 식별자
+     * @param page 페이지 번호
+     * @param date 조회 기준일 (KST) - Example: 2023-12-22
+     */
+    public AchievementRankingResponseDTO getAchievementRanking(String ocid, Integer page, String date) throws IOException {
+
+        final Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(this.buildClient())
+                .build();
+
+        final RankingApi rankingApi = retrofit.create(RankingApi.class);
+        final Call<AchievementRankingResponseDTO> call = rankingApi.getAchievementRanking(this.apiKey, date, ocid, page);
+
+        final Response<AchievementRankingResponseDTO> response = call.execute();
+
+        if (!response.isSuccessful()) {
+            throw parseError(response);
+        }
+
+        return response.body();
+    }
+
+    /**
+     * 업적 랭킹 정보를 비동기로 조회합니다.
+     *
+     * @param ocid 캐릭터 식별자
+     * @param page 페이지 번호
+     * @param date 조회 기준일 (KST) - Example: 2023-12-22
+     */
+    public void getAchievementRankingAsync(String ocid, Integer page, String date, SuccessCallback<AchievementRankingResponseDTO> onSuccess, FailureCallback onFailure) {
+
+        final Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(this.buildClient())
+                .build();
+
+        final RankingApi rankingApi = retrofit.create(RankingApi.class);
+        final Call<AchievementRankingResponseDTO> call = rankingApi.getAchievementRanking(this.apiKey, date, ocid, page);
+
+        call.enqueue(new Callback<AchievementRankingResponseDTO>() {
+            @SneakyThrows
+            @Override
+            public void onResponse(Call<AchievementRankingResponseDTO> call, Response<AchievementRankingResponseDTO> response) {
+                if (response.isSuccessful()) {
+                    if (onSuccess != null) {
+                        onSuccess.callback(response.body());
+                    }
+                } else {
+                    if (onFailure != null) {
+                        onFailure.callback(parseError(response));
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<AchievementRankingResponseDTO> call, Throwable t) {
+                if (onFailure != null) {
+                    onFailure.callback(t);
+                }
+            }
+        });
+    }
+
+
+    //#endregion
+
     /**
      * 서버 점검 정보를 조회합니다.
      */
