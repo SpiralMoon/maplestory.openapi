@@ -1218,6 +1218,123 @@ namespace MapleStory.OpenAPI
 
         #endregion
 
+        #region 길드 정보 조회
+
+        /// <summary>
+        /// 길드 식별자(oguild_id) 정보를 조회합니다.
+        /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
+        /// <para>- 오전 1시부터 전일 데이터 조회가 가능합니다</para>
+        /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
+        /// </summary>
+        /// <param name="oGuildId">길드 식별자</param>
+        /// <param name="guildName">길드 명</param>
+        /// <param name="wolrdName">월드 명
+        /// <para>스카니아</para>
+        /// <para>베라</para>
+        /// <para>루나</para>
+        /// <para>제니스</para>
+        /// <para>크로아</para>
+        /// <para>유니온</para>
+        /// <para>엘리시움</para>
+        /// <para>이노시스</para>
+        /// <para>레드</para>
+        /// <para>오로라</para>
+        /// <para>아케인</para>
+        /// <para>노바</para>
+        /// <para>리부트</para>
+        /// <para>리부트2</para>
+        /// <para>버닝</para>
+        /// <para>버닝2</para>
+        /// <para>버닝3</para>
+        /// </param>
+        public async Task<GuildDTO> GetGuild(string oGuildId, string? guildName, string? wolrdName)
+        {
+            using (var client = new HttpClient())
+            {
+                var path = "maplestory/v1/guild/id";
+                var uriBuilder = new UriBuilder($"{BASE_URL}{path}");
+
+                var query = HttpUtility.ParseQueryString(uriBuilder.Query);
+                query["oguild_id"] = oGuildId;
+                query["guild_name"] = guildName;
+                query["world_name"] = wolrdName;
+
+                uriBuilder.Query = query.ToString();
+
+                SetClient(client);
+
+                var response = await client.GetAsync(uriBuilder.Uri);
+                var body = await response.Content.ReadAsStringAsync();
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var result = JsonConvert.DeserializeObject<GuildDTO>(body);
+
+                    return result;
+                }
+                else
+                {
+                    throw ParseError(body);
+                }
+            }
+        }
+
+        /// <summary>
+        /// 길드 기본 정보를 조회합니다.
+        /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
+        /// <para>- 오전 1시부터 전일 데이터 조회가 가능합니다</para>
+        /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
+        /// </summary>
+        /// <param name="oGuildId">길드 식별자</param>
+        public Task<GuildBasicDTO> GetGuildBasic(string oGuildId)
+        {
+            return GetGuildBasic(oGuildId, now);
+        }
+
+        /// <summary>
+        /// 길드 기본 정보를 조회합니다.
+        /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
+        /// <para>- 오전 1시부터 전일 데이터 조회가 가능합니다</para>
+        /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
+        /// </summary>
+        /// <param name="oGuildId">길드 식별자</param>
+        /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
+        /// <returns>길드 기본 정보</returns>
+        public async Task<GuildBasicDTO> GetGuildBasic(string oGuildId, DateTimeOffset dateTimeOffset)
+        {
+            using (var client = new HttpClient())
+            {
+                var path = "maplestory/v1/guild/basic";
+                var uriBuilder = new UriBuilder($"{BASE_URL}{path}");
+
+                var date = ToDateString(MinDate(2023, 12, 21), dateTimeOffset);
+
+                var query = HttpUtility.ParseQueryString(uriBuilder.Query);
+                query["oguild_id"] = oGuildId;
+                query["date"] = date;
+
+                uriBuilder.Query = query.ToString();
+
+                SetClient(client);
+
+                var response = await client.GetAsync(uriBuilder.Uri);
+                var body = await response.Content.ReadAsStringAsync();
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var result = JsonConvert.DeserializeObject<GuildBasicDTO>(body);
+
+                    return result;
+                }
+                else
+                {
+                    throw ParseError(body);
+                }
+            }
+        }
+
+        #endregion
+
         /// <summary>
         /// 오늘 날짜의 큐브 사용 결과를 조회합니다.
         /// <para>큐브 사용 결과 데이터는 매일 오전 4시, 전일 데이터가 갱신됩니다.</para>
