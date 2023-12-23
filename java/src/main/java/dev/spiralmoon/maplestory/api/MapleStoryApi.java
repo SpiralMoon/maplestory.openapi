@@ -7,6 +7,7 @@ import dev.spiralmoon.maplestory.api.dto.*;
 import dev.spiralmoon.maplestory.api.template.CharacterApi;
 import dev.spiralmoon.maplestory.api.template.CubeApi;
 import dev.spiralmoon.maplestory.api.template.InspectionInfoApi;
+import dev.spiralmoon.maplestory.api.template.UnionApi;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.SneakyThrows;
@@ -1416,6 +1417,144 @@ public class MapleStoryApi {
 
             @Override
             public void onFailure(Call<CharacterDojangDTO> call, Throwable t) {
+                if (onFailure != null) {
+                    onFailure.callback(t);
+                }
+            }
+        });
+    }
+
+    //#endregion
+
+    //#region 유니온 정보 조회
+
+    /**
+     * 유니온 레벨 및 유니온 등급 정보를 조회합니다.
+     *
+     * @param ocid 캐릭터 식별자
+     * @param date 조회 기준일 (KST) - Example: 2023-12-21
+     */
+    public UnionDTO getUnion(String ocid, String date) throws IOException {
+
+        final Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(this.buildClient())
+                .build();
+
+        final UnionApi unionApi = retrofit.create(UnionApi.class);
+        final Call<UnionDTO> call = unionApi.getUnion(this.apiKey, ocid, date);
+
+        final Response<UnionDTO> response = call.execute();
+
+        if (!response.isSuccessful()) {
+            throw parseError(response);
+        }
+
+        return response.body();
+    }
+
+    /**
+     * 유니온 레벨 및 유니온 등급 정보를 비동기로 조회합니다.
+     *
+     * @param ocid 캐릭터 식별자
+     * @param date 조회 기준일 (KST) - Example: 2023-12-21
+     */
+    public void getUnionAsync(String ocid, String date, SuccessCallback<UnionDTO> onSuccess, FailureCallback onFailure) {
+
+        final Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(this.buildClient())
+                .build();
+
+        final UnionApi unionApi = retrofit.create(UnionApi.class);
+        final Call<UnionDTO> call = unionApi.getUnion(this.apiKey, ocid, date);
+
+        call.enqueue(new Callback<UnionDTO>() {
+            @SneakyThrows
+            @Override
+            public void onResponse(Call<UnionDTO> call, Response<UnionDTO> response) {
+                if (response.isSuccessful()) {
+                    if (onSuccess != null) {
+                        onSuccess.callback(response.body());
+                    }
+                } else {
+                    if (onFailure != null) {
+                        onFailure.callback(parseError(response));
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<UnionDTO> call, Throwable t) {
+                if (onFailure != null) {
+                    onFailure.callback(t);
+                }
+            }
+        });
+    }
+
+    /**
+     * 유니온에 배치된 공격대원 효과 및 공격대 점령 효과 등 상세 정보를 조회합니다.
+     *
+     * @param ocid 캐릭터 식별자
+     * @param date 조회 기준일 (KST) - Example: 2023-12-21
+     */
+    public UnionRaiderDTO getUnionRaider(String ocid, String date) throws IOException {
+
+        final Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(this.buildClient())
+                .build();
+
+        final UnionApi unionApi = retrofit.create(UnionApi.class);
+        final Call<UnionRaiderDTO> call = unionApi.getUnionRaider(this.apiKey, ocid, date);
+
+        final Response<UnionRaiderDTO> response = call.execute();
+
+        if (!response.isSuccessful()) {
+            throw parseError(response);
+        }
+
+        return response.body();
+    }
+
+    /**
+     * 유니온에 배치된 공격대원 효과 및 공격대 점령 효과 등 상세 정보를 비동기로 조회합니다.
+     *
+     * @param ocid 캐릭터 식별자
+     * @param date 조회 기준일 (KST) - Example: 2023-12-21
+     */
+    public void getUnionRaiderAsync(String ocid, String date, SuccessCallback<UnionRaiderDTO> onSuccess, FailureCallback onFailure) {
+
+        final Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(this.buildClient())
+                .build();
+
+        final UnionApi unionApi = retrofit.create(UnionApi.class);
+        final Call<UnionRaiderDTO> call = unionApi.getUnionRaider(this.apiKey, ocid, date);
+
+        call.enqueue(new Callback<UnionRaiderDTO>() {
+            @SneakyThrows
+            @Override
+            public void onResponse(Call<UnionRaiderDTO> call, Response<UnionRaiderDTO> response) {
+                if (response.isSuccessful()) {
+                    if (onSuccess != null) {
+                        onSuccess.callback(response.body());
+                    }
+                } else {
+                    if (onFailure != null) {
+                        onFailure.callback(parseError(response));
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<UnionRaiderDTO> call, Throwable t) {
                 if (onFailure != null) {
                     onFailure.callback(t);
                 }
