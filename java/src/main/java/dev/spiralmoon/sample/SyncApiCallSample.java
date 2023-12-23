@@ -5,6 +5,7 @@ import dev.spiralmoon.maplestory.api.MapleStoryApiException;
 import dev.spiralmoon.maplestory.api.dto.CubeHistoryDTO;
 import dev.spiralmoon.maplestory.api.dto.CubeHistoryResponseDTO;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 class SyncApiCallSample {
@@ -12,9 +13,12 @@ class SyncApiCallSample {
         final String apiKey = "{Your API key}";
         final MapleStoryApi api = new MapleStoryApi(apiKey);
 
+        final LocalDateTime localDateTime = LocalDateTime.of(2023, 10, 15, 0, 0);
+
         // run your code
         try {
-            final CubeHistoryResponseDTO response = api.getCubeResult(1000, 2023, 10, 15);
+
+            final CubeHistoryResponseDTO response = api.getCubeHistory(1000, localDateTime);
 
             final int count = response.getCount();
             final List<CubeHistoryDTO> cubeHistory = response.getCubeHistory();

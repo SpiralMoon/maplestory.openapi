@@ -4,6 +4,7 @@ import dev.spiralmoon.maplestory.api.MapleStoryApi;
 import dev.spiralmoon.maplestory.api.MapleStoryApiException;
 import dev.spiralmoon.maplestory.api.dto.CubeHistoryDTO;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 class AsyncApiCallSample {
@@ -11,7 +12,9 @@ class AsyncApiCallSample {
         final String apiKey = "{Your API Key}";
         final MapleStoryApi api = new MapleStoryApi(apiKey);
 
-        api.getCubeResultAsync(1000, 2023, 10, 15,
+        final LocalDateTime localDateTime = LocalDateTime.of(2023, 10, 15, 0, 0);
+
+        api.getCubeHistoryAsync(1000, localDateTime,
                 (response) -> {
                     // run your code
 

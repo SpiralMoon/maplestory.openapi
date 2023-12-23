@@ -9,7 +9,6 @@ import lombok.ToString;
  * 업적 랭킹 응답 정보
  */
 @AllArgsConstructor
-@Data
 @ToString
 public class AchievementRankingResponseDTO extends RankingResponseDTO<AchievementRankingDTO> {
 

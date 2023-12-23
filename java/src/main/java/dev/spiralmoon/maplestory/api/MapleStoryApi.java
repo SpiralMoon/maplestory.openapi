@@ -6,6 +6,7 @@ import dev.spiralmoon.maplestory.api.callback.SuccessCallback;
 import dev.spiralmoon.maplestory.api.dto.*;
 import dev.spiralmoon.maplestory.api.template.*;
 import lombok.Getter;
+import lombok.NonNull;
 import lombok.Setter;
 import lombok.SneakyThrows;
 import okhttp3.MediaType;
@@ -48,7 +49,10 @@ public class MapleStoryApi {
     //#region 캐릭터 정보 조회
 
     /**
-     * 캐릭터 식별자(ocid)를 조회합니다.
+     * 캐릭터 식별자(ocid)를 조회합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param characterName 캐릭터 명
      */
@@ -73,7 +77,10 @@ public class MapleStoryApi {
     }
 
     /**
-     * 캐릭터 식별자(ocid)를 비동기로 조회합니다.
+     * 캐릭터 식별자(ocid)를 비동기로 조회합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param characterName 캐릭터 명
      */
@@ -113,12 +120,28 @@ public class MapleStoryApi {
     }
 
     /**
-     * 기본 정보를 조회합니다.
+     * 기본 정보를 조회합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid 캐릭터 식별자
-     * @param date 조회 기준일 (KST) - Example: 2023-12-21
      */
-    public CharacterBasicDTO getCharacterBasic(String ocid, String date) throws IOException {
+    public CharacterBasicDTO getCharacterBasic(String ocid) throws IOException {
+        return this.getCharacterBasic(ocid, now());
+    }
+
+    /**
+     * 기본 정보를 조회합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     *
+     * @param ocid          캐릭터 식별자
+     * @param localDateTime 조회 기준일 (KST)
+     */
+    public CharacterBasicDTO getCharacterBasic(String ocid, LocalDateTime localDateTime) throws IOException {
+        final String date = toDateString(minDate(2023, 12, 21), localDateTime);
 
         final Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -139,12 +162,30 @@ public class MapleStoryApi {
     }
 
     /**
-     * 기본 정보를 비동기로 조회합니다.
+     * 기본 정보를 비동기로 조회합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
-     * @param ocid 캐릭터 식별자
-     * @param date 조회 기준일 (KST) - Example: 2023-12-21
+     * @param ocid      캐릭터 식별자
+     * @param onSuccess 성공 시 콜백
+     * @param onFailure 실패 시 콜백
      */
-    public void getCharacterBasicAsync(String ocid, String date, SuccessCallback<CharacterBasicDTO> onSuccess, FailureCallback onFailure) {
+    public void getCharacterBasicAsync(String ocid, SuccessCallback<CharacterBasicDTO> onSuccess, FailureCallback onFailure) {
+        this.getCharacterBasicAsync(ocid, now(), onSuccess, onFailure);
+    }
+
+    /**
+     * 기본 정보를 비동기로 조회합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     *
+     * @param ocid          캐릭터 식별자
+     * @param localDateTime 조회 기준일 (KST)
+     */
+    public void getCharacterBasicAsync(String ocid, LocalDateTime localDateTime, SuccessCallback<CharacterBasicDTO> onSuccess, FailureCallback onFailure) {
+        final String date = toDateString(minDate(2023, 12, 21), localDateTime);
 
         final Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -180,12 +221,28 @@ public class MapleStoryApi {
     }
 
     /**
-     * 인기도 정보를 조회합니다.
+     * 인기도 정보를 조회합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid 캐릭터 식별자
-     * @param date 조회 기준일 (KST) - Example: 2023-12-21
      */
-    public CharacterPopularityDTO getCharacterPopularity(String ocid, String date) throws IOException {
+    public CharacterPopularityDTO getCharacterPopularity(String ocid) throws IOException {
+        return this.getCharacterPopularity(ocid, now());
+    }
+
+    /**
+     * 인기도 정보를 조회합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     *
+     * @param ocid          캐릭터 식별자
+     * @param localDateTime 조회 기준일 (KST)
+     */
+    public CharacterPopularityDTO getCharacterPopularity(String ocid, LocalDateTime localDateTime) throws IOException {
+        final String date = toDateString(minDate(2023, 12, 21), localDateTime);
 
         final Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -206,12 +263,28 @@ public class MapleStoryApi {
     }
 
     /**
-     * 인기도 정보를 비동기로 조회합니다.
+     * 인기도 정보를 비동기로 조회합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid 캐릭터 식별자
-     * @param date 조회 기준일 (KST) - Example: 2023-12-21
      */
-    public void getCharacterPopularityAsync(String ocid, String date, SuccessCallback<CharacterPopularityDTO> onSuccess, FailureCallback onFailure) {
+    public void getCharacterPopularityAsync(String ocid, SuccessCallback<CharacterPopularityDTO> onSuccess, FailureCallback onFailure) {
+        this.getCharacterPopularityAsync(ocid, now(), onSuccess, onFailure);
+    }
+
+    /**
+     * 인기도 정보를 비동기로 조회합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     *
+     * @param ocid          캐릭터 식별자
+     * @param localDateTime 조회 기준일 (KST)
+     */
+    public void getCharacterPopularityAsync(String ocid, LocalDateTime localDateTime, SuccessCallback<CharacterPopularityDTO> onSuccess, FailureCallback onFailure) {
+        final String date = toDateString(minDate(2023, 12, 21), localDateTime);
 
         final Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -247,12 +320,28 @@ public class MapleStoryApi {
     }
 
     /**
-     * 종합 능력치 정보를 조회합니다.
+     * 종합 능력치 정보를 조회합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid 캐릭터 식별자
-     * @param date 조회 기준일 (KST) - Example: 2023-12-21
      */
-    public CharacterStatDTO getCharacterStat(String ocid, String date) throws IOException {
+    public CharacterStatDTO getCharacterStat(String ocid) throws IOException {
+        return this.getCharacterStat(ocid, now());
+    }
+
+    /**
+     * 종합 능력치 정보를 조회합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     *
+     * @param ocid          캐릭터 식별자
+     * @param localDateTime 조회 기준일 (KST)
+     */
+    public CharacterStatDTO getCharacterStat(String ocid, LocalDateTime localDateTime) throws IOException {
+        final String date = toDateString(minDate(2023, 12, 21), localDateTime);
 
         final Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -273,12 +362,27 @@ public class MapleStoryApi {
     }
 
     /**
-     * 종합 능력치 정보를 비동기로 조회합니다.
+     * 종합 능력치 정보를 비동기로 조회합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid 캐릭터 식별자
-     * @param date 조회 기준일 (KST) - Example: 2023-12-21
      */
-    public void getCharacterStatAsync(String ocid, String date, SuccessCallback<CharacterStatDTO> onSuccess, FailureCallback onFailure) {
+    public void getCharacterStatAsync(String ocid, SuccessCallback<CharacterStatDTO> onSuccess, FailureCallback onFailure) {
+        this.getCharacterStatAsync(ocid, now(), onSuccess, onFailure);
+    }
+
+    /**
+     * 종합 능력치 정보를 비동기로 조회합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     *
+     * @param ocid 캐릭터 식별자
+     */
+    public void getCharacterStatAsync(String ocid, LocalDateTime localDateTime, SuccessCallback<CharacterStatDTO> onSuccess, FailureCallback onFailure) {
+        final String date = toDateString(minDate(2023, 12, 21), localDateTime);
 
         final Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -314,12 +418,28 @@ public class MapleStoryApi {
     }
 
     /**
-     * 하이퍼스탯 정보를 조회합니다.
+     * 하이퍼스탯 정보를 조회합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid 캐릭터 식별자
-     * @param date 조회 기준일 (KST) - Example: 2023-12-21
      */
-    public CharacterHyperStatDTO getCharacterHyperStat(String ocid, String date) throws IOException {
+    public CharacterHyperStatDTO getCharacterHyperStat(String ocid) throws IOException {
+        return this.getCharacterHyperStat(ocid, now());
+    }
+
+    /**
+     * 하이퍼스탯 정보를 조회합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     *
+     * @param ocid          캐릭터 식별자
+     * @param localDateTime 조회 기준일 (KST)
+     */
+    public CharacterHyperStatDTO getCharacterHyperStat(String ocid, LocalDateTime localDateTime) throws IOException {
+        final String date = toDateString(minDate(2023, 12, 21), localDateTime);
 
         final Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -340,12 +460,29 @@ public class MapleStoryApi {
     }
 
     /**
-     * 하이퍼스탯 정보를 비동기로 조회합니다.
+     * 하이퍼스탯 정보를 비동기로 조회합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid 캐릭터 식별자
-     * @param date 조회 기준일 (KST) - Example: 2023-12-21
      */
-    public void getCharacterHyperStatAsync(String ocid, String date, SuccessCallback<CharacterHyperStatDTO> onSuccess, FailureCallback onFailure) {
+    public void getCharacterHyperStatAsync(String ocid, SuccessCallback<CharacterHyperStatDTO> onSuccess, FailureCallback onFailure) {
+        this.getCharacterHyperStatAsync(ocid, now(), onSuccess, onFailure);
+    }
+
+    /**
+     * 하이퍼스탯 정보를 비동기로 조회합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     *
+     * @param ocid          캐릭터 식별자
+     * @param localDateTime 조회 기준일 (KST)
+     */
+    public void getCharacterHyperStatAsync(String ocid, LocalDateTime localDateTime, SuccessCallback<CharacterHyperStatDTO> onSuccess, FailureCallback onFailure) {
+
+        final String date = toDateString(minDate(2023, 12, 21), localDateTime);
 
         final Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -381,12 +518,28 @@ public class MapleStoryApi {
     }
 
     /**
-     * 성향 정보를 조회합니다.
+     * 성향 정보를 조회합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid 캐릭터 식별자
-     * @param date 조회 기준일 (KST) - Example: 2023-12-21
      */
-    public CharacterPropensityDTO getCharacterPropensity(String ocid, String date) throws IOException {
+    public CharacterPropensityDTO getCharacterPropensity(String ocid) throws IOException {
+        return this.getCharacterPropensity(ocid, now());
+    }
+
+    /**
+     * 성향 정보를 조회합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     *
+     * @param ocid          캐릭터 식별자
+     * @param localDateTime 조회 기준일 (KST)
+     */
+    public CharacterPropensityDTO getCharacterPropensity(String ocid, LocalDateTime localDateTime) throws IOException {
+        final String date = toDateString(minDate(2023, 12, 21), localDateTime);
 
         final Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -407,12 +560,29 @@ public class MapleStoryApi {
     }
 
     /**
-     * 성향 정보를 비동기로 조회합니다.
+     * 성향 정보를 비동기로 조회합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid 캐릭터 식별자
-     * @param date 조회 기준일 (KST) - Example: 2023-12-21
      */
-    public void getCharacterPropensityAsync(String ocid, String date, SuccessCallback<CharacterPropensityDTO> onSuccess, FailureCallback onFailure) {
+    public void getCharacterPropensityAsync(String ocid, SuccessCallback<CharacterPropensityDTO> onSuccess, FailureCallback onFailure) {
+        this.getCharacterPropensityAsync(ocid, now(), onSuccess, onFailure);
+    }
+
+    /**
+     * 성향 정보를 비동기로 조회합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     *
+     * @param ocid          캐릭터 식별자
+     * @param localDateTime 조회 기준일 (KST)
+     */
+    public void getCharacterPropensityAsync(String ocid, LocalDateTime localDateTime, SuccessCallback<CharacterPropensityDTO> onSuccess, FailureCallback onFailure) {
+
+        final String date = toDateString(minDate(2023, 12, 21), localDateTime);
 
         final Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -448,12 +618,28 @@ public class MapleStoryApi {
     }
 
     /**
-     * 어빌리티 정보를 조회합니다.
+     * 어빌리티 정보를 조회합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid 캐릭터 식별자
-     * @param date 조회 기준일 (KST) - Example: 2023-12-21
      */
-    public CharacterAbilityDTO getCharacterAbility(String ocid, String date) throws IOException {
+    public CharacterAbilityDTO getCharacterAbility(String ocid) throws IOException {
+        return getCharacterAbility(ocid, now());
+    }
+
+    /**
+     * 어빌리티 정보를 조회합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     *
+     * @param ocid 캐릭터 식별자
+     */
+    public CharacterAbilityDTO getCharacterAbility(String ocid, LocalDateTime localDateTime) throws IOException {
+
+        final String date = toDateString(minDate(2023, 12, 21), localDateTime);
 
         final Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -474,12 +660,29 @@ public class MapleStoryApi {
     }
 
     /**
-     * 어빌리티 정보를 비동기로 조회합니다.
+     * 어빌리티 정보를 비동기로 조회합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid 캐릭터 식별자
-     * @param date 조회 기준일 (KST) - Example: 2023-12-21
      */
-    public void getCharacterAbilityAsync(String ocid, String date, SuccessCallback<CharacterAbilityDTO> onSuccess, FailureCallback onFailure) {
+    public void getCharacterAbilityAsync(String ocid, SuccessCallback<CharacterAbilityDTO> onSuccess, FailureCallback onFailure) {
+        this.getCharacterAbilityAsync(ocid, now(), onSuccess, onFailure);
+    }
+
+    /**
+     * 어빌리티 정보를 비동기로 조회합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     *
+     * @param ocid          캐릭터 식별자
+     * @param localDateTime 조회 기준일 (KST) - Example: 2023-12-21
+     */
+    public void getCharacterAbilityAsync(String ocid, LocalDateTime localDateTime, SuccessCallback<CharacterAbilityDTO> onSuccess, FailureCallback onFailure) {
+
+        final String date = toDateString(minDate(2023, 12, 21), localDateTime);
 
         final Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -515,12 +718,29 @@ public class MapleStoryApi {
     }
 
     /**
-     * 장착한 장비 중 캐시 장비를 제외한 나머지 장비 정보를 조회합니다.
+     * 장착한 장비 중 캐시 장비를 제외한 나머지 장비 정보를 조회합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid 캐릭터 식별자
-     * @param date 조회 기준일 (KST) - Example: 2023-12-21
      */
-    public CharacterItemEquipmentDTO getCharacterItemEquipment(String ocid, String date) throws IOException {
+    public CharacterItemEquipmentDTO getCharacterItemEquipment(String ocid) throws IOException {
+        return this.getCharacterItemEquipment(ocid, now());
+    }
+
+    /**
+     * 장착한 장비 중 캐시 장비를 제외한 나머지 장비 정보를 조회합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     *
+     * @param ocid          캐릭터 식별자
+     * @param localDateTime 조회 기준일 (KST) - Example: 2023-12-21
+     */
+    public CharacterItemEquipmentDTO getCharacterItemEquipment(String ocid, LocalDateTime localDateTime) throws IOException {
+
+        final String date = toDateString(minDate(2023, 12, 21), localDateTime);
 
         final Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -541,12 +761,28 @@ public class MapleStoryApi {
     }
 
     /**
-     * 장착한 장비 중 캐시 장비를 제외한 나머지 장비 정보를 비동기로 조회합니다.
+     * 장착한 장비 중 캐시 장비를 제외한 나머지 장비 정보를 비동기로 조회합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid 캐릭터 식별자
-     * @param date 조회 기준일 (KST) - Example: 2023-12-21
      */
-    public void getCharacterItemEquipmentAsync(String ocid, String date, SuccessCallback<CharacterItemEquipmentDTO> onSuccess, FailureCallback onFailure) {
+    public void getCharacterItemEquipmentAsync(String ocid, SuccessCallback<CharacterItemEquipmentDTO> onSuccess, FailureCallback onFailure) {
+        this.getCharacterItemEquipmentAsync(ocid, now(), onSuccess, onFailure);
+    }
+
+    /**
+     * 장착한 장비 중 캐시 장비를 제외한 나머지 장비 정보를 비동기로 조회합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     *
+     * @param ocid          캐릭터 식별자
+     * @param localDateTime 조회 기준일 (KST) - Example: 2023-12-21
+     */
+    public void getCharacterItemEquipmentAsync(String ocid, LocalDateTime localDateTime, SuccessCallback<CharacterItemEquipmentDTO> onSuccess, FailureCallback onFailure) {
+        final String date = toDateString(minDate(2023, 12, 21), localDateTime);
 
         final Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -582,12 +818,28 @@ public class MapleStoryApi {
     }
 
     /**
-     * 장착한 캐시 장비 정보를 조회합니다.
+     * 장착한 캐시 장비 정보를 조회합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid 캐릭터 식별자
-     * @param date 조회 기준일 (KST) - Example: 2023-12-21
      */
-    public CharacterAndroidCashItemEquipmentDTO getCharacterCashItemEquipment(String ocid, String date) throws IOException {
+    public CharacterAndroidCashItemEquipmentDTO getCharacterCashItemEquipment(String ocid) throws IOException {
+        return this.getCharacterCashItemEquipment(ocid, now());
+    }
+
+    /**
+     * 장착한 캐시 장비 정보를 조회합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     *
+     * @param ocid          캐릭터 식별자
+     * @param localDateTime 조회 기준일 (KST) - Example: 2023-12-21
+     */
+    public CharacterAndroidCashItemEquipmentDTO getCharacterCashItemEquipment(String ocid, LocalDateTime localDateTime) throws IOException {
+        final String date = toDateString(minDate(2023, 12, 21), localDateTime);
 
         final Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -608,12 +860,29 @@ public class MapleStoryApi {
     }
 
     /**
-     * 장착한 캐시 장비 정보를 비동기로 조회합니다.
+     * 장착한 캐시 장비 정보를 비동기로 조회합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid 캐릭터 식별자
-     * @param date 조회 기준일 (KST) - Example: 2023-12-21
      */
-    public void getCharacterCashItemEquipmentAsync(String ocid, String date, SuccessCallback<CharacterAndroidCashItemEquipmentDTO> onSuccess, FailureCallback onFailure) {
+    public void getCharacterCashItemEquipmentAsync(String ocid, SuccessCallback<CharacterAndroidCashItemEquipmentDTO> onSuccess, FailureCallback onFailure) {
+        this.getCharacterCashItemEquipmentAsync(ocid, now(), onSuccess, onFailure);
+    }
+
+    /**
+     * 장착한 캐시 장비 정보를 비동기로 조회합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     *
+     * @param ocid          캐릭터 식별자
+     * @param localDateTime 조회 기준일 (KST) - Example: 2023-12-21
+     */
+    public void getCharacterCashItemEquipmentAsync(String ocid, LocalDateTime localDateTime, SuccessCallback<CharacterAndroidCashItemEquipmentDTO> onSuccess, FailureCallback onFailure) {
+
+        final String date = toDateString(minDate(2023, 12, 21), localDateTime);
 
         final Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -649,12 +918,29 @@ public class MapleStoryApi {
     }
 
     /**
-     * 장착한 심볼 정보를 조회합니다.
+     * 장착한 심볼 정보를 조회합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid 캐릭터 식별자
-     * @param date 조회 기준일 (KST) - Example: 2023-12-21
      */
-    public CharacterSymbolEquipmentDTO getCharacterSymbolEquipment(String ocid, String date) throws IOException {
+    public CharacterSymbolEquipmentDTO getCharacterSymbolEquipment(String ocid) throws IOException {
+        return this.getCharacterSymbolEquipment(ocid, now());
+    }
+
+    /**
+     * 장착한 심볼 정보를 조회합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     *
+     * @param ocid          캐릭터 식별자
+     * @param localDateTime 조회 기준일 (KST) - Example: 2023-12-21
+     */
+    public CharacterSymbolEquipmentDTO getCharacterSymbolEquipment(String ocid, LocalDateTime localDateTime) throws IOException {
+
+        final String date = toDateString(minDate(2023, 12, 21), localDateTime);
 
         final Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -675,12 +961,29 @@ public class MapleStoryApi {
     }
 
     /**
-     * 장착한 심볼 정보를 비동기로 조회합니다.
+     * 장착한 심볼 정보를 비동기로 조회합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid 캐릭터 식별자
-     * @param date 조회 기준일 (KST) - Example: 2023-12-21
      */
-    public void getCharacterSymbolEquipmentAsync(String ocid, String date, SuccessCallback<CharacterSymbolEquipmentDTO> onSuccess, FailureCallback onFailure) {
+    public void getCharacterSymbolEquipmentAsync(String ocid, SuccessCallback<CharacterSymbolEquipmentDTO> onSuccess, FailureCallback onFailure) {
+        this.getCharacterSymbolEquipmentAsync(ocid, now(), onSuccess, onFailure);
+    }
+
+    /**
+     * 장착한 심볼 정보를 비동기로 조회합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     *
+     * @param ocid          캐릭터 식별자
+     * @param localDateTime 조회 기준일 (KST) - Example: 2023-12-21
+     */
+    public void getCharacterSymbolEquipmentAsync(String ocid, LocalDateTime localDateTime, SuccessCallback<CharacterSymbolEquipmentDTO> onSuccess, FailureCallback onFailure) {
+
+        final String date = toDateString(minDate(2023, 12, 21), localDateTime);
 
         final Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -716,12 +1019,28 @@ public class MapleStoryApi {
     }
 
     /**
-     * 적용받고 있는 세트 효과 정보를 조회합니다.
+     * 적용받고 있는 세트 효과 정보를 조회합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid 캐릭터 식별자
-     * @param date 조회 기준일 (KST) - Example: 2023-12-21
      */
-    public CharacterSetEffectDTO getCharacterSetEffect(String ocid, String date) throws IOException {
+    public CharacterSetEffectDTO getCharacterSetEffectAsync(String ocid) throws IOException {
+        return this.getCharacterSetEffectAsync(ocid, now());
+    }
+
+    /**
+     * 적용받고 있는 세트 효과 정보를 조회합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     *
+     * @param ocid 캐릭터 식별자
+     */
+    public CharacterSetEffectDTO getCharacterSetEffectAsync(String ocid, LocalDateTime localDateTime) throws IOException {
+
+        final String date = toDateString(minDate(2023, 12, 21), localDateTime);
 
         final Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -742,12 +1061,29 @@ public class MapleStoryApi {
     }
 
     /**
-     * 적용받고 있는 세트 효과 정보를 비동기로 조회합니다.
+     * 적용받고 있는 세트 효과 정보를 비동기로 조회합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid 캐릭터 식별자
-     * @param date 조회 기준일 (KST) - Example: 2023-12-21
      */
-    public void getCharacterSetEffectAsync(String ocid, String date, SuccessCallback<CharacterSetEffectDTO> onSuccess, FailureCallback onFailure) {
+    public void getCharacterSetEffectAsync(String ocid, SuccessCallback<CharacterSetEffectDTO> onSuccess, FailureCallback onFailure) {
+        this.getCharacterSetEffectAsync(ocid, now(), onSuccess, onFailure);
+    }
+
+    /**
+     * 적용받고 있는 세트 효과 정보를 비동기로 조회합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     *
+     * @param ocid          캐릭터 식별자
+     * @param localDateTime 조회 기준일 (KST) - Example: 2023-12-21
+     */
+    public void getCharacterSetEffectAsync(String ocid, LocalDateTime localDateTime, SuccessCallback<CharacterSetEffectDTO> onSuccess, FailureCallback onFailure) {
+
+        final String date = toDateString(minDate(2023, 12, 21), localDateTime);
 
         final Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -783,12 +1119,29 @@ public class MapleStoryApi {
     }
 
     /**
-     * 장착 중인 헤어, 성형, 피부 정보를 조회합니다.
+     * 장착 중인 헤어, 성형, 피부 정보를 조회합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid 캐릭터 식별자
-     * @param date 조회 기준일 (KST) - Example: 2023-12-21
      */
-    public CharacterBeautyEquipmentDTO getCharacterBeautyEquipment(String ocid, String date) throws IOException {
+    public CharacterBeautyEquipmentDTO getCharacterBeautyEquipment(String ocid) throws IOException {
+        return this.getCharacterBeautyEquipment(ocid, now());
+    }
+
+    /**
+     * 장착 중인 헤어, 성형, 피부 정보를 조회합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     *
+     * @param ocid          캐릭터 식별자
+     * @param localDateTime 조회 기준일 (KST) - Example: 2023-12-21
+     */
+    public CharacterBeautyEquipmentDTO getCharacterBeautyEquipment(String ocid, LocalDateTime localDateTime) throws IOException {
+
+        final String date = toDateString(minDate(2023, 12, 21), localDateTime);
 
         final Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -809,12 +1162,29 @@ public class MapleStoryApi {
     }
 
     /**
-     * 장착 중인 헤어, 성형, 피부 정보를 비동기로 조회합니다.
+     * 장착 중인 헤어, 성형, 피부 정보를 비동기로 조회합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid 캐릭터 식별자
-     * @param date 조회 기준일 (KST) - Example: 2023-12-21
      */
-    public void getCharacterBeautyEquipmentAsync(String ocid, String date, SuccessCallback<CharacterBeautyEquipmentDTO> onSuccess, FailureCallback onFailure) {
+    public void getCharacterBeautyEquipmentAsync(String ocid, SuccessCallback<CharacterBeautyEquipmentDTO> onSuccess, FailureCallback onFailure) {
+        this.getCharacterBeautyEquipmentAsync(ocid, now(), onSuccess, onFailure);
+    }
+
+    /**
+     * 장착 중인 헤어, 성형, 피부 정보를 비동기로 조회합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     *
+     * @param ocid          캐릭터 식별자
+     * @param localDateTime 조회 기준일 (KST) - Example: 2023-12-21
+     */
+    public void getCharacterBeautyEquipmentAsync(String ocid, LocalDateTime localDateTime, SuccessCallback<CharacterBeautyEquipmentDTO> onSuccess, FailureCallback onFailure) {
+
+        final String date = toDateString(minDate(2023, 12, 21), localDateTime);
 
         final Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -850,12 +1220,28 @@ public class MapleStoryApi {
     }
 
     /**
-     * 장착한 안드로이드 정보를 조회합니다.
+     * 장착한 안드로이드 정보를 조회합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid 캐릭터 식별자
-     * @param date 조회 기준일 (KST) - Example: 2023-12-21
      */
-    public CharacterAndroidEquipmentDTO getCharacterAndroidEquipment(String ocid, String date) throws IOException {
+    public CharacterAndroidEquipmentDTO getCharacterAndroidEquipment(String ocid) throws IOException {
+        return getCharacterAndroidEquipment(ocid, now());
+    }
+
+    /**
+     * 장착한 안드로이드 정보를 조회합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     *
+     * @param ocid          캐릭터 식별자
+     * @param localDateTime 조회 기준일 (KST) - Example: 2023-12-21
+     */
+    public CharacterAndroidEquipmentDTO getCharacterAndroidEquipment(String ocid, LocalDateTime localDateTime) throws IOException {
+        final String date = toDateString(minDate(2023, 12, 21), localDateTime);
 
         final Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -876,12 +1262,29 @@ public class MapleStoryApi {
     }
 
     /**
-     * 장착한 안드로이드 정보를 비동기로 조회합니다.
+     * 장착한 안드로이드 정보를 비동기로 조회합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid 캐릭터 식별자
-     * @param date 조회 기준일 (KST) - Example: 2023-12-21
      */
-    public void getCharacterAndroidEquipmentAsync(String ocid, String date, SuccessCallback<CharacterAndroidEquipmentDTO> onSuccess, FailureCallback onFailure) {
+    public void getCharacterAndroidEquipmentAsync(String ocid, SuccessCallback<CharacterAndroidEquipmentDTO> onSuccess, FailureCallback onFailure) {
+        this.getCharacterAndroidEquipmentAsync(ocid, now(), onSuccess, onFailure);
+    }
+
+    /**
+     * 장착한 안드로이드 정보를 비동기로 조회합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     *
+     * @param ocid          캐릭터 식별자
+     * @param localDateTime 조회 기준일 (KST) - Example: 2023-12-21
+     */
+    public void getCharacterAndroidEquipmentAsync(String ocid, LocalDateTime localDateTime, SuccessCallback<CharacterAndroidEquipmentDTO> onSuccess, FailureCallback onFailure) {
+
+        final String date = toDateString(minDate(2023, 12, 21), localDateTime);
 
         final Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -917,12 +1320,29 @@ public class MapleStoryApi {
     }
 
     /**
-     * 장착한 펫 및 펫 스킬, 장비 정보를 조회합니다.
+     * 장착한 펫 및 펫 스킬, 장비 정보를 조회합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid 캐릭터 식별자
-     * @param date 조회 기준일 (KST) - Example: 2023-12-21
      */
-    public CharacterPetEquipmentDTO getCharacterPetEquipment(String ocid, String date) throws IOException {
+    public CharacterPetEquipmentDTO getCharacterPetEquipment(String ocid) throws IOException {
+        return this.getCharacterPetEquipment(ocid, now());
+    }
+
+    /**
+     * 장착한 펫 및 펫 스킬, 장비 정보를 조회합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     *
+     * @param ocid          캐릭터 식별자
+     * @param localDateTime 조회 기준일 (KST) - Example: 2023-12-21
+     */
+    public CharacterPetEquipmentDTO getCharacterPetEquipment(String ocid, LocalDateTime localDateTime) throws IOException {
+
+        final String date = toDateString(minDate(2023, 12, 21), localDateTime);
 
         final Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -943,12 +1363,29 @@ public class MapleStoryApi {
     }
 
     /**
-     * 장착한 펫 및 펫 스킬, 장비 정보를 비동기로 조회합니다.
+     * 장착한 펫 및 펫 스킬, 장비 정보를 비동기로 조회합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid 캐릭터 식별자
-     * @param date 조회 기준일 (KST) - Example: 2023-12-21
      */
-    public void getCharacterPetEquipmentAsync(String ocid, String date, SuccessCallback<CharacterPetEquipmentDTO> onSuccess, FailureCallback onFailure) {
+    public void getCharacterPetEquipmentAsync(String ocid, SuccessCallback<CharacterPetEquipmentDTO> onSuccess, FailureCallback onFailure) {
+        this.getCharacterPetEquipmentAsync(ocid, now(), onSuccess, onFailure);
+    }
+
+    /**
+     * 장착한 펫 및 펫 스킬, 장비 정보를 비동기로 조회합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     *
+     * @param ocid          캐릭터 식별자
+     * @param localDateTime 조회 기준일 (KST) - Example: 2023-12-21
+     */
+    public void getCharacterPetEquipmentAsync(String ocid, LocalDateTime localDateTime, SuccessCallback<CharacterPetEquipmentDTO> onSuccess, FailureCallback onFailure) {
+
+        final String date = toDateString(minDate(2023, 12, 21), localDateTime);
 
         final Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -984,10 +1421,12 @@ public class MapleStoryApi {
     }
 
     /**
-     * 캐릭터 스킬과 하이퍼 스킬 정보를 조회합니다.
+     * 캐릭터 스킬과 하이퍼 스킬 정보를 조회합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid                캐릭터 식별자
-     * @param date                조회 기준일 (KST) - Example: 2023-12-21
      * @param characterSkillGrade 조회하고자 하는 전직 차수<br>
      *                            0: 0차 스킬 및 제로 공용스킬<br>
      *                            1: 1차 스킬<br>
@@ -1001,7 +1440,34 @@ public class MapleStoryApi {
      *                            5: 5차 스킬<br>
      *                            6: 6차 스킬<br>
      */
-    public CharacterSkillDTO getCharacterSkill(String ocid, String date, String characterSkillGrade) throws IOException {
+    public CharacterSkillDTO getCharacterSkill(String ocid, String characterSkillGrade) throws IOException {
+        return this.getCharacterSkill(ocid, now(), characterSkillGrade);
+    }
+
+    /**
+     * 캐릭터 스킬과 하이퍼 스킬 정보를 조회합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     *
+     * @param ocid                캐릭터 식별자
+     * @param localDateTime       조회 기준일 (KST) - Example: 2023-12-21
+     * @param characterSkillGrade 조회하고자 하는 전직 차수<br>
+     *                            0: 0차 스킬 및 제로 공용스킬<br>
+     *                            1: 1차 스킬<br>
+     *                            1.5: 1.5차 스킬<br>
+     *                            2: 2차 스킬<br>
+     *                            2.5: 2.5차 스킬<br>
+     *                            3: 3차 스킬<br>
+     *                            4: 4차 스킬 및 제로 알파/베타 스킬<br>
+     *                            hyperpassive: 하이퍼 패시브 스킬<br>
+     *                            hyperactive: 하이퍼 액티브 스킬<br>
+     *                            5: 5차 스킬<br>
+     *                            6: 6차 스킬<br>
+     */
+    public CharacterSkillDTO getCharacterSkill(String ocid, LocalDateTime localDateTime, String characterSkillGrade) throws IOException {
+
+        final String date = toDateString(minDate(2023, 12, 21), localDateTime);
 
         final Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -1022,10 +1488,12 @@ public class MapleStoryApi {
     }
 
     /**
-     * 캐릭터 스킬과 하이퍼 스킬 정보를 비동기로 조회합니다.
+     * 캐릭터 스킬과 하이퍼 스킬 정보를 비동기로 조회합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid                캐릭터 식별자
-     * @param date                조회 기준일 (KST) - Example: 2023-12-21
      * @param characterSkillGrade 조회하고자 하는 전직 차수<br>
      *                            0: 0차 스킬 및 제로 공용스킬<br>
      *                            1: 1차 스킬<br>
@@ -1039,7 +1507,34 @@ public class MapleStoryApi {
      *                            5: 5차 스킬<br>
      *                            6: 6차 스킬<br>
      */
-    public void getCharacterSkillAsync(String ocid, String date, String characterSkillGrade, SuccessCallback<CharacterSkillDTO> onSuccess, FailureCallback onFailure) {
+    public void getCharacterSkillAsync(String ocid, String characterSkillGrade, SuccessCallback<CharacterSkillDTO> onSuccess, FailureCallback onFailure) {
+        this.getCharacterSkillAsync(ocid, now(), characterSkillGrade, onSuccess, onFailure);
+    }
+
+    /**
+     * 캐릭터 스킬과 하이퍼 스킬 정보를 비동기로 조회합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     *
+     * @param ocid                캐릭터 식별자
+     * @param localDateTime       조회 기준일 (KST) - Example: 2023-12-21
+     * @param characterSkillGrade 조회하고자 하는 전직 차수<br>
+     *                            0: 0차 스킬 및 제로 공용스킬<br>
+     *                            1: 1차 스킬<br>
+     *                            1.5: 1.5차 스킬<br>
+     *                            2: 2차 스킬<br>
+     *                            2.5: 2.5차 스킬<br>
+     *                            3: 3차 스킬<br>
+     *                            4: 4차 스킬 및 제로 알파/베타 스킬<br>
+     *                            hyperpassive: 하이퍼 패시브 스킬<br>
+     *                            hyperactive: 하이퍼 액티브 스킬<br>
+     *                            5: 5차 스킬<br>
+     *                            6: 6차 스킬<br>
+     */
+    public void getCharacterSkillAsync(String ocid, LocalDateTime localDateTime, String characterSkillGrade, SuccessCallback<CharacterSkillDTO> onSuccess, FailureCallback onFailure) {
+
+        final String date = toDateString(minDate(2023, 12, 21), localDateTime);
 
         final Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -1075,12 +1570,28 @@ public class MapleStoryApi {
     }
 
     /**
-     * 장착 링크 스킬 정보를 조회합니다.
+     * 장착 링크 스킬 정보를 조회합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid 캐릭터 식별자
-     * @param date 조회 기준일 (KST) - Example: 2023-12-21
      */
-    public CharacterLinkSkillDTO getCharacterLinkSkill(String ocid, String date) throws IOException {
+    public CharacterLinkSkillDTO getCharacterLinkSkill(String ocid) throws IOException {
+        return this.getCharacterLinkSkill(ocid, now());
+    }
+
+    /**
+     * 장착 링크 스킬 정보를 조회합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     *
+     * @param ocid          캐릭터 식별자
+     * @param localDateTime 조회 기준일 (KST) - Example: 2023-12-21
+     */
+    public CharacterLinkSkillDTO getCharacterLinkSkill(String ocid, LocalDateTime localDateTime) throws IOException {
+        final String date = toDateString(minDate(2023, 12, 21), localDateTime);
 
         final Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -1101,14 +1612,29 @@ public class MapleStoryApi {
     }
 
     /**
-     * 장착 링크 스킬 정보를 비동기로 조회합니다.
+     * 장착 링크 스킬 정보를 비동기로 조회합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
-     * @param ocid      캐릭터 식별자
-     * @param date      조회 기준일 (KST) - Example: 2023-12-21
-     * @param onSuccess 성공 시 호출될 콜백
-     * @param onFailure 실패 시 호출될 콜백
+     * @param ocid 캐릭터 식별자
      */
-    public void getCharacterLinkSkillAsync(String ocid, String date, SuccessCallback<CharacterLinkSkillDTO> onSuccess, FailureCallback onFailure) {
+    public void getCharacterLinkSkillAsync(String ocid, SuccessCallback<CharacterLinkSkillDTO> onSuccess, FailureCallback onFailure) {
+        this.getCharacterLinkSkillAsync(ocid, now(), onSuccess, onFailure);
+    }
+
+    /**
+     * 장착 링크 스킬 정보를 비동기로 조회합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     *
+     * @param ocid          캐릭터 식별자
+     * @param localDateTime 조회 기준일 (KST) - Example: 2023-12-21
+     */
+    public void getCharacterLinkSkillAsync(String ocid, LocalDateTime localDateTime, SuccessCallback<CharacterLinkSkillDTO> onSuccess, FailureCallback onFailure) {
+
+        final String date = toDateString(minDate(2023, 12, 21), localDateTime);
 
         final Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -1144,12 +1670,28 @@ public class MapleStoryApi {
     }
 
     /**
-     * V매트릭스 슬롯 정보와 장착한 V코어 정보를 조회합니다.
+     * V매트릭스 슬롯 정보와 장착한 V코어 정보를 조회합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid 캐릭터 식별자
-     * @param date 조회 기준일 (KST) - Example: 2023-12-21
      */
-    public CharacterVMatrixDTO getCharacterVMatrix(String ocid, String date) throws IOException {
+    public CharacterVMatrixDTO getCharacterVMatrix(String ocid) throws IOException {
+        return this.getCharacterVMatrix(ocid, now());
+    }
+
+    /**
+     * V매트릭스 슬롯 정보와 장착한 V코어 정보를 조회합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     *
+     * @param ocid          캐릭터 식별자
+     * @param localDateTime 조회 기준일 (KST) - Example: 2023-12-21
+     */
+    public CharacterVMatrixDTO getCharacterVMatrix(String ocid, LocalDateTime localDateTime) throws IOException {
+        final String date = toDateString(minDate(2023, 12, 21), localDateTime); // 이름은 date로 고정
 
         final Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -1170,14 +1712,28 @@ public class MapleStoryApi {
     }
 
     /**
-     * V매트릭스 슬롯 정보와 장착한 V코어 정보를 비동기로 조회합니다.
+     * V매트릭스 슬롯 정보와 장착한 V코어 정보를 비동기로 조회합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
-     * @param ocid      캐릭터 식별자
-     * @param date      조회 기준일 (KST) - Example: 2023-12-21
-     * @param onSuccess 성공 시 호출될 콜백
-     * @param onFailure 실패 시 호출될 콜백
+     * @param ocid 캐릭터 식별자
      */
-    public void getCharacterVMatrixAsync(String ocid, String date, SuccessCallback<CharacterVMatrixDTO> onSuccess, FailureCallback onFailure) {
+    public void getCharacterVMatrixAsync(String ocid, SuccessCallback<CharacterVMatrixDTO> onSuccess, FailureCallback onFailure) {
+        this.getCharacterVMatrixAsync(ocid, now(), onSuccess, onFailure);
+    }
+
+    /**
+     * V매트릭스 슬롯 정보와 장착한 V코어 정보를 비동기로 조회합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     *
+     * @param ocid          캐릭터 식별자
+     * @param localDateTime 조회 기준일 (KST) - Example: 2023-12-21
+     */
+    public void getCharacterVMatrixAsync(String ocid, LocalDateTime localDateTime, SuccessCallback<CharacterVMatrixDTO> onSuccess, FailureCallback onFailure) {
+        final String date = toDateString(minDate(2023, 12, 21), localDateTime);
 
         final Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -1213,12 +1769,28 @@ public class MapleStoryApi {
     }
 
     /**
-     * HEXA 매트릭스에 장착한 HEXA 코어 정보를 조회합니다.
+     * HEXA 매트릭스에 장착한 HEXA 코어 정보를 조회합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid 캐릭터 식별자
-     * @param date 조회 기준일 (KST) - Example: 2023-12-21
      */
-    public CharacterHexaMatrixDTO getCharacterHexaMatrix(String ocid, String date) throws IOException {
+    public CharacterHexaMatrixDTO getCharacterHexaMatrix(String ocid) throws IOException {
+        return this.getCharacterHexaMatrix(ocid, now());
+    }
+
+    /**
+     * HEXA 매트릭스에 장착한 HEXA 코어 정보를 조회합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     *
+     * @param ocid          캐릭터 식별자
+     * @param localDateTime 조회 기준일 (KST) - Example: 2023-12-21
+     */
+    public CharacterHexaMatrixDTO getCharacterHexaMatrix(String ocid, LocalDateTime localDateTime) throws IOException {
+        final String date = toDateString(minDate(2023, 12, 21), localDateTime);
 
         final Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -1239,14 +1811,28 @@ public class MapleStoryApi {
     }
 
     /**
-     * HEXA 매트릭스에 장착한 HEXA 코어 정보를 비동기로 조회합니다.
+     * HEXA 매트릭스에 장착한 HEXA 코어 정보를 비동기로 조회합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
-     * @param ocid      캐릭터 식별자
-     * @param date      조회 기준일 (KST) - Example: 2023-12-21
-     * @param onSuccess 성공 시 호출될 콜백
-     * @param onFailure 실패 시 호출될 콜백
+     * @param ocid 캐릭터 식별자
      */
-    public void getCharacterHexaMatrixAsync(String ocid, String date, SuccessCallback<CharacterHexaMatrixDTO> onSuccess, FailureCallback onFailure) {
+    public void getCharacterHexaMatrixAsync(String ocid, SuccessCallback<CharacterHexaMatrixDTO> onSuccess, FailureCallback onFailure) {
+        getCharacterHexaMatrixAsync(ocid, now(), onSuccess, onFailure);
+    }
+
+    /**
+     * HEXA 매트릭스에 장착한 HEXA 코어 정보를 비동기로 조회합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     *
+     * @param ocid          캐릭터 식별자
+     * @param localDateTime 조회 기준일 (KST) - Example: 2023-12-21
+     */
+    public void getCharacterHexaMatrixAsync(String ocid, LocalDateTime localDateTime, SuccessCallback<CharacterHexaMatrixDTO> onSuccess, FailureCallback onFailure) {
+        final String date = toDateString(minDate(2023, 12, 21), localDateTime);
 
         final Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -1282,12 +1868,28 @@ public class MapleStoryApi {
     }
 
     /**
-     * HEXA 매트릭스에 설정한 HEXA 스탯 정보를 조회합니다.
+     * HEXA 매트릭스에 설정한 HEXA 스탯 정보를 조회합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid 캐릭터 식별자
-     * @param date 조회 기준일 (KST) - Example: 2023-12-21
      */
-    public CharacterHexaMatrixStatDTO getCharacterHexaMatrixStat(String ocid, String date) throws IOException {
+    public CharacterHexaMatrixStatDTO getCharacterHexaMatrixStat(String ocid) throws IOException {
+        return this.getCharacterHexaMatrixStat(ocid, now());
+    }
+
+    /**
+     * HEXA 매트릭스에 설정한 HEXA 스탯 정보를 조회합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     *
+     * @param ocid          캐릭터 식별자
+     * @param localDateTime 조회 기준일 (KST) - Example: 2023-12-21
+     */
+    public CharacterHexaMatrixStatDTO getCharacterHexaMatrixStat(String ocid, LocalDateTime localDateTime) throws IOException {
+        final String date = toDateString(minDate(2023, 12, 21), localDateTime);
 
         final Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -1308,14 +1910,28 @@ public class MapleStoryApi {
     }
 
     /**
-     * HEXA 매트릭스에 설정한 HEXA 스탯 정보를 비동기로 조회합니다.
+     * HEXA 매트릭스에 설정한 HEXA 스탯 정보를 비동기로 조회합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
-     * @param ocid      캐릭터 식별자
-     * @param date      조회 기준일 (KST) - Example: 2023-12-21
-     * @param onSuccess 성공 시 호출될 콜백
-     * @param onFailure 실패 시 호출될 콜백
+     * @param ocid 캐릭터 식별자
      */
-    public void getCharacterHexaMatrixStatAsync(String ocid, String date, SuccessCallback<CharacterHexaMatrixStatDTO> onSuccess, FailureCallback onFailure) {
+    public void getCharacterHexaMatrixStatAsync(String ocid, SuccessCallback<CharacterHexaMatrixStatDTO> onSuccess, FailureCallback onFailure) {
+        this.getCharacterHexaMatrixStatAsync(ocid, now(), onSuccess, onFailure);
+    }
+
+    /**
+     * HEXA 매트릭스에 설정한 HEXA 스탯 정보를 비동기로 조회합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     *
+     * @param ocid          캐릭터 식별자
+     * @param localDateTime 조회 기준일 (KST) - Example: 2023-12-21
+     */
+    public void getCharacterHexaMatrixStatAsync(String ocid, LocalDateTime localDateTime, SuccessCallback<CharacterHexaMatrixStatDTO> onSuccess, FailureCallback onFailure) {
+        final String date = toDateString(minDate(2023, 12, 21), localDateTime);
 
         final Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -1351,13 +1967,28 @@ public class MapleStoryApi {
     }
 
     /**
-     * 캐릭터 무릉도장 최고 기록 정보를 조회합니다.
+     * 캐릭터 무릉도장 최고 기록 정보를 조회합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
-     * @param ocid      캐릭터 식별자
-     * @param worldName 월드 이름
-     * @param date      조회 기준일 (KST) - Example: 2023-12-21
+     * @param ocid 캐릭터 식별자
      */
-    public CharacterDojangDTO getCharacterDojang(String ocid, String worldName, String date) throws IOException {
+    public CharacterDojangDTO getCharacterDojang(String ocid) throws IOException {
+        return this.getCharacterDojang(ocid, now());
+    }
+
+    /**
+     * 캐릭터 무릉도장 최고 기록 정보를 조회합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     *
+     * @param ocid          캐릭터 식별자
+     * @param localDateTime 조회 기준일 (KST) - Example: 2023-12-21
+     */
+    public CharacterDojangDTO getCharacterDojang(String ocid, LocalDateTime localDateTime) throws IOException {
+        final String date = toDateString(minDate(2023, 12, 21), localDateTime);
 
         final Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -1366,7 +1997,7 @@ public class MapleStoryApi {
                 .build();
 
         final CharacterApi characterApi = retrofit.create(CharacterApi.class);
-        final Call<CharacterDojangDTO> call = characterApi.getCharacterDojang(this.apiKey, ocid, worldName, date);
+        final Call<CharacterDojangDTO> call = characterApi.getCharacterDojang(this.apiKey, ocid, date);
 
         final Response<CharacterDojangDTO> response = call.execute();
 
@@ -1378,15 +2009,28 @@ public class MapleStoryApi {
     }
 
     /**
-     * 캐릭터 무릉도장 최고 기록 정보를 비동기로 조회합니다.
+     * 캐릭터 무릉도장 최고 기록 정보를 비동기로 조회합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
-     * @param ocid      캐릭터 식별자
-     * @param worldName 월드 이름
-     * @param date      조회 기준일 (KST) - Example: 2023-12-21
-     * @param onSuccess 성공 시 호출될 콜백
-     * @param onFailure 실패 시 호출될 콜백
+     * @param ocid 캐릭터 식별자
      */
-    public void getCharacterDojangAsync(String ocid, String worldName, String date, SuccessCallback<CharacterDojangDTO> onSuccess, FailureCallback onFailure) {
+    public void getCharacterDojangAsync(String ocid, SuccessCallback<CharacterDojangDTO> onSuccess, FailureCallback onFailure) {
+        getCharacterDojangAsync(ocid, now(), onSuccess, onFailure);
+    }
+
+    /**
+     * 캐릭터 무릉도장 최고 기록 정보를 비동기로 조회합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     *
+     * @param ocid          캐릭터 식별자
+     * @param localDateTime 조회 기준일 (KST) - Example: 2023-12-21
+     */
+    public void getCharacterDojangAsync(String ocid, LocalDateTime localDateTime, SuccessCallback<CharacterDojangDTO> onSuccess, FailureCallback onFailure) {
+        final String date = toDateString(minDate(2023, 12, 21), localDateTime);
 
         final Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -1395,7 +2039,7 @@ public class MapleStoryApi {
                 .build();
 
         final CharacterApi characterApi = retrofit.create(CharacterApi.class);
-        final Call<CharacterDojangDTO> call = characterApi.getCharacterDojang(this.apiKey, ocid, worldName, date);
+        final Call<CharacterDojangDTO> call = characterApi.getCharacterDojang(this.apiKey, ocid, date);
 
         call.enqueue(new Callback<CharacterDojangDTO>() {
             @SneakyThrows
@@ -1426,12 +2070,28 @@ public class MapleStoryApi {
     //#region 유니온 정보 조회
 
     /**
-     * 유니온 레벨 및 유니온 등급 정보를 조회합니다.
+     * 유니온 레벨 및 유니온 등급 정보를 조회합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid 캐릭터 식별자
-     * @param date 조회 기준일 (KST) - Example: 2023-12-21
      */
-    public UnionDTO getUnion(String ocid, String date) throws IOException {
+    public UnionDTO getUnion(String ocid) throws IOException {
+        return this.getUnion(ocid, now());
+    }
+
+    /**
+     * 유니온 레벨 및 유니온 등급 정보를 조회합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     *
+     * @param ocid          캐릭터 식별자
+     * @param localDateTime 조회 기준일 (KST)
+     */
+    public UnionDTO getUnion(String ocid, LocalDateTime localDateTime) throws IOException {
+        final String date = toDateString(minDate(2023, 12, 21), localDateTime);
 
         final Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -1452,12 +2112,28 @@ public class MapleStoryApi {
     }
 
     /**
-     * 유니온 레벨 및 유니온 등급 정보를 비동기로 조회합니다.
+     * 유니온 레벨 및 유니온 등급 정보를 비동기로 조회합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid 캐릭터 식별자
-     * @param date 조회 기준일 (KST) - Example: 2023-12-21
      */
-    public void getUnionAsync(String ocid, String date, SuccessCallback<UnionDTO> onSuccess, FailureCallback onFailure) {
+    public void getUnionAsync(String ocid, SuccessCallback<UnionDTO> onSuccess, FailureCallback onFailure) {
+        this.getUnionAsync(ocid, now(), onSuccess, onFailure);
+    }
+
+    /**
+     * 유니온 레벨 및 유니온 등급 정보를 비동기로 조회합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     *
+     * @param ocid          캐릭터 식별자
+     * @param localDateTime 조회 기준일 (KST)
+     */
+    public void getUnionAsync(String ocid, LocalDateTime localDateTime, SuccessCallback<UnionDTO> onSuccess, FailureCallback onFailure) {
+        final String date = toDateString(minDate(2023, 12, 21), localDateTime);
 
         final Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -1493,12 +2169,28 @@ public class MapleStoryApi {
     }
 
     /**
-     * 유니온에 배치된 공격대원 효과 및 공격대 점령 효과 등 상세 정보를 조회합니다.
+     * 유니온에 배치된 공격대원 효과 및 공격대 점령 효과 등 상세 정보를 조회합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid 캐릭터 식별자
-     * @param date 조회 기준일 (KST) - Example: 2023-12-21
      */
-    public UnionRaiderDTO getUnionRaider(String ocid, String date) throws IOException {
+    public UnionRaiderDTO getUnionRaider(String ocid) throws IOException {
+        return this.getUnionRaider(ocid, now());
+    }
+
+    /**
+     * 유니온에 배치된 공격대원 효과 및 공격대 점령 효과 등 상세 정보를 조회합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     *
+     * @param ocid          캐릭터 식별자
+     * @param localDateTime 조회 기준일 (KST)
+     */
+    public UnionRaiderDTO getUnionRaider(String ocid, LocalDateTime localDateTime) throws IOException {
+        final String date = toDateString(minDate(2023, 12, 21), localDateTime);
 
         final Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -1519,12 +2211,28 @@ public class MapleStoryApi {
     }
 
     /**
-     * 유니온에 배치된 공격대원 효과 및 공격대 점령 효과 등 상세 정보를 비동기로 조회합니다.
+     * 유니온에 배치된 공격대원 효과 및 공격대 점령 효과 등 상세 정보를 비동기로 조회합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid 캐릭터 식별자
-     * @param date 조회 기준일 (KST) - Example: 2023-12-21
      */
-    public void getUnionRaiderAsync(String ocid, String date, SuccessCallback<UnionRaiderDTO> onSuccess, FailureCallback onFailure) {
+    public void getUnionRaiderAsync(String ocid, SuccessCallback<UnionRaiderDTO> onSuccess, FailureCallback onFailure) {
+        this.getUnionRaiderAsync(ocid, now(), onSuccess, onFailure);
+    }
+
+    /**
+     * 유니온에 배치된 공격대원 효과 및 공격대 점령 효과 등 상세 정보를 비동기로 조회합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     *
+     * @param ocid          캐릭터 식별자
+     * @param localDateTime 조회 기준일 (KST)
+     */
+    public void getUnionRaiderAsync(String ocid, LocalDateTime localDateTime, SuccessCallback<UnionRaiderDTO> onSuccess, FailureCallback onFailure) {
+        final String date = toDateString(minDate(2023, 12, 21), localDateTime);
 
         final Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -1564,7 +2272,10 @@ public class MapleStoryApi {
     //#region 길드 정보 조회
 
     /**
-     * 길드 식별자(oguild_id) 정보를 조회합니다.
+     * 길드 식별자(oguild_id) 정보를 조회합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param guildName 길드 명
      * @param worldName 월드 명<br>
@@ -1607,7 +2318,10 @@ public class MapleStoryApi {
     }
 
     /**
-     * 길드 식별자(oguild_id) 정보를 비동기로 조회합니다.
+     * 길드 식별자(oguild_id) 정보를 비동기로 조회합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param guildName 길드 명
      * @param worldName 월드 명<br>
@@ -1665,12 +2379,28 @@ public class MapleStoryApi {
     }
 
     /**
-     * 길드 기본 정보를 조회합니다.
+     * 길드 기본 정보를 조회합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param oguildId 길드 식별자
-     * @param date     조회 기준일 (KST) - Example: 2023-12-21
      */
-    public GuildBasicDTO getGuildBasic(String oguildId, String date) throws IOException {
+    public GuildBasicDTO getGuildBasic(String oguildId) throws IOException {
+        return this.getGuildBasic(oguildId, now());
+    }
+
+    /**
+     * 길드 기본 정보를 조회합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     *
+     * @param oguildId      길드 식별자
+     * @param localDateTime 조회 기준일 (KST)
+     */
+    public GuildBasicDTO getGuildBasic(String oguildId, LocalDateTime localDateTime) throws IOException {
+        final String date = toDateString(minDate(2023, 12, 21), localDateTime);
 
         final Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -1691,12 +2421,28 @@ public class MapleStoryApi {
     }
 
     /**
-     * 길드 기본 정보를 비동기로 조회합니다.
+     * 길드 기본 정보를 비동기로 조회합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param oguildId 길드 식별자
-     * @param date     조회 기준일 (KST) - Example: 2023-12-21
      */
-    public void getGuildBasicAsync(String oguildId, String date, SuccessCallback<GuildBasicDTO> onSuccess, FailureCallback onFailure) {
+    public void getGuildBasicAsync(String oguildId, SuccessCallback<GuildBasicDTO> onSuccess, FailureCallback onFailure) {
+        this.getGuildBasicAsync(oguildId, now(), onSuccess, onFailure);
+    }
+
+    /**
+     * 길드 기본 정보를 비동기로 조회합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     *
+     * @param oguildId      길드 식별자
+     * @param localDateTime 조회 기준일 (KST)
+     */
+    public void getGuildBasicAsync(String oguildId, LocalDateTime localDateTime, SuccessCallback<GuildBasicDTO> onSuccess, FailureCallback onFailure) {
+        final String date = toDateString(minDate(2023, 12, 21), localDateTime);
 
         final Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -1733,62 +2479,44 @@ public class MapleStoryApi {
 
     //#endregion
 
+    //#region 확률 정보 조회
+
     /**
      * 오늘 날짜의 큐브 사용 결과를 조회합니다.<br>
-     * 큐브 사용 결과 데이터는 매일 오전 4시, 전일 데이터가 갱신됩니다.<br>
-     * 큐브 사용 결과 데이터는 2022년 11월 25일부터 조회할 수 있습니다.<br>
-     * e.g. 오늘 오후 3시 5분 큐브 확률 정보 조회 시, 어제의 큐브 확률 정보 데이터를 조회할 수 있습니다.<br>
+     * - 데이터는 매일 오전 4시, 전일 데이터가 갱신됩니다.<br>
+     * - e.g. 오늘 오후 3시 5분 큐브 확률 정보 조회 시, 어제의 큐브 확률 정보 데이터를 조회할 수 있습니다.<br>
+     * - 2022년 11월 25일 데이터부터 조회할 수 있습니다.<br>
      *
      * @param count 한번에 가져오려는 결과의 개수(최소 10, 최대 1000)
      */
-    public CubeHistoryResponseDTO getCubeResult(int count) throws IOException {
-
-        final LocalDate kstNow = LocalDate.now(ZoneId.of("Asia/Seoul"));
-        final int year = kstNow.getYear();
-        final int month = kstNow.getMonthValue();
-        final int day = kstNow.getDayOfMonth();
-
-        return this.getCubeResult(count, year, month, day);
+    public CubeHistoryResponseDTO getCubeHistory(int count) throws IOException {
+        return this.getCubeHistory(count, now());
     }
 
     /**
      * 오늘 날짜의 큐브 사용 결과를 비동기로 조회합니다.<br>
-     * 큐브 사용 결과 데이터는 매일 오전 4시, 전일 데이터가 갱신됩니다.<br>
-     * 큐브 사용 결과 데이터는 2022년 11월 25일부터 조회할 수 있습니다.<br>
-     * e.g. 오늘 오후 3시 5분 큐브 확률 정보 조회 시, 어제의 큐브 확률 정보 데이터를 조회할 수 있습니다.<br>
+     * - 데이터는 매일 오전 4시, 전일 데이터가 갱신됩니다.<br>
+     * - e.g. 오늘 오후 3시 5분 큐브 확률 정보 조회 시, 어제의 큐브 확률 정보 데이터를 조회할 수 있습니다.<br>
+     * - 2022년 11월 25일 데이터부터 조회할 수 있습니다.<br>
      *
      * @param count 한번에 가져오려는 결과의 개수(최소 10, 최대 1000)
      */
-    public void getCubeResultAsync(int count, SuccessCallback<CubeHistoryResponseDTO> onSuccess, FailureCallback onFailure) {
-
-        final LocalDate kstNow = LocalDate.now(ZoneId.of("Asia/Seoul"));
-        final int year = kstNow.getYear();
-        final int month = kstNow.getMonthValue();
-        final int day = kstNow.getDayOfMonth();
-
-        this.getCubeResultAsync(count, year, month, day, onSuccess, onFailure);
+    public void getCubeHistoryAsync(int count, SuccessCallback<CubeHistoryResponseDTO> onSuccess, FailureCallback onFailure) {
+        this.getCubeHistoryAsync(count, now(), onSuccess, onFailure);
     }
 
     /**
      * 지목한 날짜의 큐브 사용 결과를 조회합니다.<br>
-     * 큐브 사용 결과 데이터는 매일 오전 4시, 전일 데이터가 갱신됩니다.<br>
-     * 큐브 사용 결과 데이터는 2022년 11월 25일부터 조회할 수 있습니다.<br>
-     * e.g. 오늘 오후 3시 5분 큐브 확률 정보 조회 시, 어제의 큐브 확률 정보 데이터를 조회할 수 있습니다.<br>
+     * - 데이터는 매일 오전 4시, 전일 데이터가 갱신됩니다.<br>
+     * - e.g. 오늘 오후 3시 5분 큐브 확률 정보 조회 시, 어제의 큐브 확률 정보 데이터를 조회할 수 있습니다.<br>
+     * - 2022년 11월 25일 데이터부터 조회할 수 있습니다.<br>
      *
-     * @param count 한번에 가져오려는 결과의 개수(최소 10, 최대 1000)
-     * @param year  조회 기준일 (KST) 연도
-     * @param month 조회 기준일 (KST) 월
-     * @param day   조회 기준일 (KST) 월의 날짜
+     * @param count         한번에 가져오려는 결과의 개수(최소 10, 최대 1000)
+     * @param localDateTime 조회 기준일 (KST)
      */
-    public CubeHistoryResponseDTO getCubeResult(int count, int year, int month, int day) throws IOException {
+    public CubeHistoryResponseDTO getCubeHistory(int count, LocalDateTime localDateTime) throws IOException {
 
-        if (year <= 2022 && month <= 11 && day < 25) {
-            throw new IllegalArgumentException("You can only retrieve data after 2022-11-25.");
-        }
-
-        final LocalDate date = LocalDate.of(year, month, day);
-        final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
-        final String yyyyMMdd = date.format(formatter);
+        final String date = toDateString(minDate(2022, 11, 25), localDateTime);
 
         final Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -1797,7 +2525,7 @@ public class MapleStoryApi {
                 .build();
 
         final CubeApi cubeApi = retrofit.create(CubeApi.class);
-        final Call<CubeHistoryResponseDTO> call = cubeApi.getCubeResultByDate(this.apiKey, count, yyyyMMdd);
+        final Call<CubeHistoryResponseDTO> call = cubeApi.getCubeHistoryByDate(this.apiKey, count, date);
 
         final Response<CubeHistoryResponseDTO> response = call.execute();
 
@@ -1809,38 +2537,17 @@ public class MapleStoryApi {
     }
 
     /**
-     * 지목한 날짜의 큐브 사용 결과를 조회합니다.<br>
-     * 큐브 사용 결과 데이터는 매일 오전 4시, 전일 데이터가 갱신됩니다.<br>
-     * 큐브 사용 결과 데이터는 2022년 11월 25일부터 조회할 수 있습니다.<br>
-     * e.g. 오늘 오후 3시 5분 큐브 확률 정보 조회 시, 어제의 큐브 확률 정보 데이터를 조회할 수 있습니다.<br>
+     * 지목한 날짜의 큐브 사용 결과를 비동기로 조회합니다.<br>
+     * - 데이터는 매일 오전 4시, 전일 데이터가 갱신됩니다.<br>
+     * - e.g. 오늘 오후 3시 5분 큐브 확률 정보 조회 시, 어제의 큐브 확률 정보 데이터를 조회할 수 있습니다.<br>
+     * - 2022년 11월 25일 데이터부터 조회할 수 있습니다.<br>
      *
      * @param count         한번에 가져오려는 결과의 개수(최소 10, 최대 1000)
      * @param localDateTime 조회 기준일 (KST)
      */
-    public CubeHistoryResponseDTO getCubeResult(int count, LocalDateTime localDateTime) throws IOException {
-        return this.getCubeResult(count, localDateTime.getYear(), localDateTime.getMonthValue(), localDateTime.getDayOfMonth());
-    }
+    public void getCubeHistoryAsync(int count, LocalDateTime localDateTime, SuccessCallback<CubeHistoryResponseDTO> onSuccess, FailureCallback onFailure) {
 
-    /**
-     * 지목한 날짜의 큐브 사용 결과를 비동기로 조회합니다.<br>
-     * 큐브 사용 결과 데이터는 매일 오전 4시, 전일 데이터가 갱신됩니다.<br>
-     * 큐브 사용 결과 데이터는 2022년 11월 25일부터 조회할 수 있습니다.<br>
-     * e.g. 오늘 오후 3시 5분 큐브 확률 정보 조회 시, 어제의 큐브 확률 정보 데이터를 조회할 수 있습니다.<br>
-     *
-     * @param count 한번에 가져오려는 결과의 개수(최소 10, 최대 1000)
-     * @param year  조회 기준일 (KST) 연도
-     * @param month 조회 기준일 (KST) 월
-     * @param day   조회 기준일 (KST) 월의 날짜
-     */
-    public void getCubeResultAsync(int count, int year, int month, int day, SuccessCallback<CubeHistoryResponseDTO> onSuccess, FailureCallback onFailure) {
-
-        if (year <= 2022 && month <= 11 && day < 25) {
-            throw new IllegalArgumentException("You can only retrieve data after 2022-11-25.");
-        }
-
-        final LocalDate date = LocalDate.of(year, month, day);
-        final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
-        final String yyyyMMdd = date.format(formatter);
+        final String date = toDateString(minDate(2022, 11, 25), localDateTime);
 
         final Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -1849,7 +2556,7 @@ public class MapleStoryApi {
                 .build();
 
         final CubeApi cubeApi = retrofit.create(CubeApi.class);
-        final Call<CubeHistoryResponseDTO> call = cubeApi.getCubeResultByDate(this.apiKey, count, yyyyMMdd);
+        final Call<CubeHistoryResponseDTO> call = cubeApi.getCubeHistoryByDate(this.apiKey, count, date);
 
         call.enqueue(new Callback<CubeHistoryResponseDTO>() {
             @SneakyThrows
@@ -1873,31 +2580,18 @@ public class MapleStoryApi {
                 }
             }
         });
-    }
-
-    /**
-     * 지목한 날짜의 큐브 사용 결과를 비동기로 조회합니다.<br>
-     * 큐브 사용 결과 데이터는 매일 오전 4시, 전일 데이터가 갱신됩니다.<br>
-     * 큐브 사용 결과 데이터는 2022년 11월 25일부터 조회할 수 있습니다.<br>
-     * e.g. 오늘 오후 3시 5분 큐브 확률 정보 조회 시, 어제의 큐브 확률 정보 데이터를 조회할 수 있습니다.<br>
-     *
-     * @param count         한번에 가져오려는 결과의 개수(최소 10, 최대 1000)
-     * @param localDateTime 조회 기준일 (KST)
-     */
-    public void getCubeResultAsync(int count, LocalDateTime localDateTime, SuccessCallback<CubeHistoryResponseDTO> onSuccess, FailureCallback onFailure) {
-        this.getCubeResultAsync(count, localDateTime.getYear(), localDateTime.getMonthValue(), localDateTime.getDayOfMonth(), onSuccess, onFailure);
     }
 
     /**
      * 큐브 사용 결과를 조회합니다.<br>
-     * 큐브 사용 결과 데이터는 매일 오전 4시, 전일 데이터가 갱신됩니다.<br>
-     * 큐브 사용 결과 데이터는 2022년 11월 25일부터 조회할 수 있습니다.<br>
-     * e.g. 오늘 오후 3시 5분 큐브 확률 정보 조회 시, 어제의 큐브 확률 정보 데이터를 조회할 수 있습니다.<br>
+     * - 데이터는 매일 오전 4시, 전일 데이터가 갱신됩니다.<br>
+     * - e.g. 오늘 오후 3시 5분 큐브 확률 정보 조회 시, 어제의 큐브 확률 정보 데이터를 조회할 수 있습니다.<br>
+     * - 2022년 11월 25일 데이터부터 조회할 수 있습니다.<br>
      *
      * @param count  한번에 가져오려는 결과의 개수(최소 10, 최대 1000)
      * @param cursor 페이징 처리를 위한 cursor
      */
-    public CubeHistoryResponseDTO getCubeResult(int count, String cursor) throws IOException {
+    public CubeHistoryResponseDTO getCubeHistory(int count, String cursor) throws IOException {
 
         final Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -1906,7 +2600,7 @@ public class MapleStoryApi {
                 .build();
 
         final CubeApi cubeApi = retrofit.create(CubeApi.class);
-        final Call<CubeHistoryResponseDTO> call = cubeApi.getCubeResultByCursor(this.apiKey, count, cursor);
+        final Call<CubeHistoryResponseDTO> call = cubeApi.getCubeHistoryByCursor(this.apiKey, count, cursor);
 
         final Response<CubeHistoryResponseDTO> response = call.execute();
 
@@ -1918,15 +2612,14 @@ public class MapleStoryApi {
     }
 
     /**
-     * 큐브 사용 결과를 비동기로 조회합니다.<br>
-     * 큐브 사용 결과 데이터는 매일 오전 4시, 전일 데이터가 갱신됩니다.<br>
-     * 큐브 사용 결과 데이터는 2022년 11월 25일부터 조회할 수 있습니다.<br>
-     * e.g. 오늘 오후 3시 5분 큐브 확률 정보 조회 시, 어제의 큐브 확률 정보 데이터를 조회할 수 있습니다.<br>
+     * - 데이터는 매일 오전 4시, 전일 데이터가 갱신됩니다.<br>
+     * - e.g. 오늘 오후 3시 5분 큐브 확률 정보 조회 시, 어제의 큐브 확률 정보 데이터를 조회할 수 있습니다.<br>
+     * - 2022년 11월 25일 데이터부터 조회할 수 있습니다.<br>
      *
      * @param count  한번에 가져오려는 결과의 개수(최소 10, 최대 1000)
      * @param cursor 페이징 처리를 위한 cursor
      */
-    public void getCubeResultAsync(int count, String cursor, SuccessCallback<CubeHistoryResponseDTO> onSuccess, FailureCallback onFailure) {
+    public void getCubeHistoryAsync(int count, String cursor, SuccessCallback<CubeHistoryResponseDTO> onSuccess, FailureCallback onFailure) {
 
         final Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -1935,7 +2628,7 @@ public class MapleStoryApi {
                 .build();
 
         final CubeApi cubeApi = retrofit.create(CubeApi.class);
-        final Call<CubeHistoryResponseDTO> call = cubeApi.getCubeResultByCursor(this.apiKey, count, cursor);
+        final Call<CubeHistoryResponseDTO> call = cubeApi.getCubeHistoryByCursor(this.apiKey, count, cursor);
 
         call.enqueue(new Callback<CubeHistoryResponseDTO>() {
             @SneakyThrows
@@ -1961,10 +2654,15 @@ public class MapleStoryApi {
         });
     }
 
+    //#endregion
+
     //#region 랭킹 정보 조회
 
     /**
-     * 종합 랭킹 정보를 조회합니다.
+     * 종합 랭킹 정보를 조회합니다.<br>
+     * - 2023년 12월 22일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param worldName      월드 명<br>
      *                       스카니아<br>
@@ -2084,9 +2782,140 @@ public class MapleStoryApi {
      *                       칼리-전체 전직<br>
      * @param ocid           캐릭터 식별자
      * @param page           페이지 번호
-     * @param date           조회 기준일 (KST) - Example: 2023-12-22
      */
-    public OverallRankingResponseDTO getOverallRanking(String worldName, Integer worldType, String characterClass, String ocid, Integer page, String date) throws IOException {
+    public OverallRankingResponseDTO getOverallRanking(String worldName, Integer worldType, String characterClass, String ocid, Integer page) throws IOException {
+        return this.getOverallRanking(worldName, worldType, characterClass, ocid, page, now());
+    }
+
+    /**
+     * 종합 랭킹 정보를 조회합니다.<br>
+     * - 2023년 12월 22일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     *
+     * @param worldName      월드 명<br>
+     *                       스카니아<br>
+     *                       베라<br>
+     *                       루나<br>
+     *                       제니스<br>
+     *                       크로아<br>
+     *                       유니온<br>
+     *                       엘리시움<br>
+     *                       이노시스<br>
+     *                       레드<br>
+     *                       오로라<br>
+     *                       아케인<br>
+     *                       노바<br>
+     *                       리부트<br>
+     *                       리부트2<br>
+     *                       버닝<br>
+     *                       버닝2<br>
+     *                       버닝3<br>
+     * @param worldType      월드 타입 (0:일반, 1:리부트) (기본 값은 0이며, worldName 입력 시 미 반영)
+     * @param characterClass 직업 및 전직<br>
+     *                       초보자-전체 전직<br>
+     *                       전사-전체 전직<br>
+     *                       전사-검사<br>
+     *                       전사-파이터<br>
+     *                       전사-페이지<br>
+     *                       전사-스피어맨<br>
+     *                       전사-크루세이더<br>
+     *                       전사-나이트<br>
+     *                       전사-버서커<br>
+     *                       전사-히어로<br>
+     *                       전사-팔라딘<br>
+     *                       전사-다크나이트<br>
+     *                       마법사-전체 전직<br>
+     *                       마법사-매지션<br>
+     *                       마법사-위자드(불,독)<br>
+     *                       마법사-위자드(썬,콜)<br>
+     *                       마법사-클레릭<br>
+     *                       마법사-메이지(불,독)<br>
+     *                       마법사-메이지(썬,콜)<br>
+     *                       마법사-프리스트<br>
+     *                       마법사-아크메이지(불,독)<br>
+     *                       마법사-아크메이지(썬,콜)<br>
+     *                       마법사-비숍<br>
+     *                       궁수-전체 전직<br>
+     *                       궁수-아처<br>
+     *                       궁수-헌터<br>
+     *                       궁수-사수<br>
+     *                       궁수-레인저<br>
+     *                       궁수-저격수<br>
+     *                       궁수-보우마스터<br>
+     *                       궁수-신궁<br>
+     *                       궁수-아처(패스파인더)<br>
+     *                       궁수-에인션트아처<br>
+     *                       궁수-체이서<br>
+     *                       궁수-패스파인더<br>
+     *                       도적-전체 전직<br>
+     *                       도적-로그<br>
+     *                       도적-어쌔신<br>
+     *                       도적-시프<br>
+     *                       도적-허밋<br>
+     *                       도적-시프마스터<br>
+     *                       도적-나이트로드<br>
+     *                       도적-섀도어<br>
+     *                       도적-세미듀어러<br>
+     *                       도적-듀어러<br>
+     *                       도적-듀얼마스터<br>
+     *                       도적-슬래셔<br>
+     *                       도적-듀얼블레이더<br>
+     *                       해적-전체 전직<br>
+     *                       해적-해적<br>
+     *                       해적-인파이터<br>
+     *                       해적-건슬링거<br>
+     *                       해적-캐논슈터<br>
+     *                       해적-버커니어<br>
+     *                       해적-발키리<br>
+     *                       해적-캐논블래스터<br>
+     *                       해적-바이퍼<br>
+     *                       해적-캡틴<br>
+     *                       해적-캐논마스터<br>
+     *                       기사단-전체 전직<br>
+     *                       기사단-노블레스<br>
+     *                       기사단-소울마스터<br>
+     *                       기사단-플레임위자드<br>
+     *                       기사단-윈드브레이커<br>
+     *                       기사단-나이트워커<br>
+     *                       기사단-스트라이커<br>
+     *                       기사단-미하일<br>
+     *                       아란-전체 전직<br>
+     *                       에반-전체 전직<br>
+     *                       레지스탕스-전체 전직<br>
+     *                       레지스탕스-시티즌<br>
+     *                       레지스탕스-배틀메이지<br>
+     *                       레지스탕스-와일드헌터<br>
+     *                       레지스탕스-메카닉<br>
+     *                       레지스탕스-데몬슬레이어<br>
+     *                       레지스탕스-데몬어벤져<br>
+     *                       레지스탕스-제논<br>
+     *                       레지스탕스-블래스터<br>
+     *                       메르세데스-전체 전직<br>
+     *                       팬텀-전체 전직<br>
+     *                       루미너스-전체 전직<br>
+     *                       카이저-전체 전직<br>
+     *                       엔젤릭버스터-전체 전직<br>
+     *                       초월자-전체 전직<br>
+     *                       초월자-제로<br>
+     *                       은월-전체 전직<br>
+     *                       프렌즈 월드-전체 전직<br>
+     *                       프렌즈 월드-키네시스<br>
+     *                       카데나-전체 전직<br>
+     *                       일리움-전체 전직<br>
+     *                       아크-전체 전직<br>
+     *                       호영-전체 전직<br>
+     *                       아델-전체 전직<br>
+     *                       카인-전체 전직<br>
+     *                       라라-전체 전직<br>
+     *                       칼리-전체 전직<br>
+     * @param ocid           캐릭터 식별자
+     * @param page           페이지 번호
+     * @param localDateTime  조회 기준일 (KST) - Example: 2023-12-22
+     */
+    public OverallRankingResponseDTO getOverallRanking(String worldName, Integer worldType, String characterClass, String ocid, Integer page, LocalDateTime localDateTime) throws IOException {
+
+        final String date = toDateString(minDate(2023, 12, 22), localDateTime);
 
         final Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -2107,7 +2936,10 @@ public class MapleStoryApi {
     }
 
     /**
-     * 종합 랭킹 정보를 비동기로 조회합니다.
+     * 종합 랭킹 정보를 비동기로 조회합니다.<br>
+     * - 2023년 12월 22일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param worldName      월드 명<br>
      *                       스카니아<br>
@@ -2227,9 +3059,140 @@ public class MapleStoryApi {
      *                       칼리-전체 전직<br>
      * @param ocid           캐릭터 식별자
      * @param page           페이지 번호
-     * @param date           조회 기준일 (KST) - Example: 2023-12-22
      */
-    public void getOverallRankingAsync(String worldName, Integer worldType, String characterClass, String ocid, Integer page, String date, SuccessCallback<OverallRankingResponseDTO> onSuccess, FailureCallback onFailure) {
+    public void getOverallRankingAsync(String worldName, Integer worldType, String characterClass, String ocid, Integer page, SuccessCallback<OverallRankingResponseDTO> onSuccess, FailureCallback onFailure) {
+        this.getOverallRankingAsync(worldName, worldType, characterClass, ocid, page, now(), onSuccess, onFailure);
+    }
+
+    /**
+     * 종합 랭킹 정보를 비동기로 조회합니다.<br>
+     * - 2023년 12월 22일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     *
+     * @param worldName      월드 명<br>
+     *                       스카니아<br>
+     *                       베라<br>
+     *                       루나<br>
+     *                       제니스<br>
+     *                       크로아<br>
+     *                       유니온<br>
+     *                       엘리시움<br>
+     *                       이노시스<br>
+     *                       레드<br>
+     *                       오로라<br>
+     *                       아케인<br>
+     *                       노바<br>
+     *                       리부트<br>
+     *                       리부트2<br>
+     *                       버닝<br>
+     *                       버닝2<br>
+     *                       버닝3<br>
+     * @param worldType      월드 타입 (0:일반, 1:리부트) (기본 값은 0이며, worldName 입력 시 미 반영)
+     * @param characterClass 직업 및 전직<br>
+     *                       초보자-전체 전직<br>
+     *                       전사-전체 전직<br>
+     *                       전사-검사<br>
+     *                       전사-파이터<br>
+     *                       전사-페이지<br>
+     *                       전사-스피어맨<br>
+     *                       전사-크루세이더<br>
+     *                       전사-나이트<br>
+     *                       전사-버서커<br>
+     *                       전사-히어로<br>
+     *                       전사-팔라딘<br>
+     *                       전사-다크나이트<br>
+     *                       마법사-전체 전직<br>
+     *                       마법사-매지션<br>
+     *                       마법사-위자드(불,독)<br>
+     *                       마법사-위자드(썬,콜)<br>
+     *                       마법사-클레릭<br>
+     *                       마법사-메이지(불,독)<br>
+     *                       마법사-메이지(썬,콜)<br>
+     *                       마법사-프리스트<br>
+     *                       마법사-아크메이지(불,독)<br>
+     *                       마법사-아크메이지(썬,콜)<br>
+     *                       마법사-비숍<br>
+     *                       궁수-전체 전직<br>
+     *                       궁수-아처<br>
+     *                       궁수-헌터<br>
+     *                       궁수-사수<br>
+     *                       궁수-레인저<br>
+     *                       궁수-저격수<br>
+     *                       궁수-보우마스터<br>
+     *                       궁수-신궁<br>
+     *                       궁수-아처(패스파인더)<br>
+     *                       궁수-에인션트아처<br>
+     *                       궁수-체이서<br>
+     *                       궁수-패스파인더<br>
+     *                       도적-전체 전직<br>
+     *                       도적-로그<br>
+     *                       도적-어쌔신<br>
+     *                       도적-시프<br>
+     *                       도적-허밋<br>
+     *                       도적-시프마스터<br>
+     *                       도적-나이트로드<br>
+     *                       도적-섀도어<br>
+     *                       도적-세미듀어러<br>
+     *                       도적-듀어러<br>
+     *                       도적-듀얼마스터<br>
+     *                       도적-슬래셔<br>
+     *                       도적-듀얼블레이더<br>
+     *                       해적-전체 전직<br>
+     *                       해적-해적<br>
+     *                       해적-인파이터<br>
+     *                       해적-건슬링거<br>
+     *                       해적-캐논슈터<br>
+     *                       해적-버커니어<br>
+     *                       해적-발키리<br>
+     *                       해적-캐논블래스터<br>
+     *                       해적-바이퍼<br>
+     *                       해적-캡틴<br>
+     *                       해적-캐논마스터<br>
+     *                       기사단-전체 전직<br>
+     *                       기사단-노블레스<br>
+     *                       기사단-소울마스터<br>
+     *                       기사단-플레임위자드<br>
+     *                       기사단-윈드브레이커<br>
+     *                       기사단-나이트워커<br>
+     *                       기사단-스트라이커<br>
+     *                       기사단-미하일<br>
+     *                       아란-전체 전직<br>
+     *                       에반-전체 전직<br>
+     *                       레지스탕스-전체 전직<br>
+     *                       레지스탕스-시티즌<br>
+     *                       레지스탕스-배틀메이지<br>
+     *                       레지스탕스-와일드헌터<br>
+     *                       레지스탕스-메카닉<br>
+     *                       레지스탕스-데몬슬레이어<br>
+     *                       레지스탕스-데몬어벤져<br>
+     *                       레지스탕스-제논<br>
+     *                       레지스탕스-블래스터<br>
+     *                       메르세데스-전체 전직<br>
+     *                       팬텀-전체 전직<br>
+     *                       루미너스-전체 전직<br>
+     *                       카이저-전체 전직<br>
+     *                       엔젤릭버스터-전체 전직<br>
+     *                       초월자-전체 전직<br>
+     *                       초월자-제로<br>
+     *                       은월-전체 전직<br>
+     *                       프렌즈 월드-전체 전직<br>
+     *                       프렌즈 월드-키네시스<br>
+     *                       카데나-전체 전직<br>
+     *                       일리움-전체 전직<br>
+     *                       아크-전체 전직<br>
+     *                       호영-전체 전직<br>
+     *                       아델-전체 전직<br>
+     *                       카인-전체 전직<br>
+     *                       라라-전체 전직<br>
+     *                       칼리-전체 전직<br>
+     * @param ocid           캐릭터 식별자
+     * @param page           페이지 번호
+     * @param localDateTime  조회 기준일 (KST) - Example: 2023-12-22
+     */
+    public void getOverallRankingAsync(String worldName, Integer worldType, String characterClass, String ocid, Integer page, LocalDateTime localDateTime, SuccessCallback<OverallRankingResponseDTO> onSuccess, FailureCallback onFailure) {
+
+        final String date = toDateString(minDate(2023, 12, 22), localDateTime);
 
         final Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -2265,7 +3228,10 @@ public class MapleStoryApi {
     }
 
     /**
-     * 유니온 랭킹 정보를 조회합니다.
+     * 유니온 랭킹 정보를 조회합니다.<br>
+     * - 2023년 12월 22일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param worldName 월드 명<br>
      *                  스카니아<br>
@@ -2287,9 +3253,42 @@ public class MapleStoryApi {
      *                  버닝3<br>
      * @param ocid      캐릭터 식별자
      * @param page      페이지 번호
-     * @param date      조회 기준일 (KST) - Example: 2023-12-21
      */
-    public UnionRankingResponseDTO getUnionRanking(String worldName, String ocid, Integer page, String date) throws IOException {
+    public UnionRankingResponseDTO getUnionRanking(String worldName, String ocid, Integer page) throws IOException {
+        return this.getUnionRanking(worldName, ocid, page, now());
+    }
+
+    /**
+     * 유니온 랭킹 정보를 조회합니다.<br>
+     * - 2023년 12월 22일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     *
+     * @param worldName     월드 명<br>
+     *                      스카니아<br>
+     *                      베라<br>
+     *                      루나<br>
+     *                      제니스<br>
+     *                      크로아<br>
+     *                      유니온<br>
+     *                      엘리시움<br>
+     *                      이노시스<br>
+     *                      레드<br>
+     *                      오로라<br>
+     *                      아케인<br>
+     *                      노바<br>
+     *                      리부트<br>
+     *                      리부트2<br>
+     *                      버닝<br>
+     *                      버닝2<br>
+     *                      버닝3<br>
+     * @param ocid          캐릭터 식별자
+     * @param page          페이지 번호
+     * @param localDateTime 조회 기준일 (KST) - Example: 2023-12-21
+     */
+    public UnionRankingResponseDTO getUnionRanking(String worldName, String ocid, Integer page, LocalDateTime localDateTime) throws IOException {
+
+        final String date = toDateString(minDate(2023, 12, 22), localDateTime);
 
         final Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -2310,7 +3309,10 @@ public class MapleStoryApi {
     }
 
     /**
-     * 유니온 랭킹 정보를 비동기로 조회합니다.
+     * 유니온 랭킹 정보를 비동기로 조회합니다.<br>
+     * - 2023년 12월 22일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param worldName 월드 명<br>
      *                  스카니아<br>
@@ -2332,9 +3334,42 @@ public class MapleStoryApi {
      *                  버닝3<br>
      * @param ocid      캐릭터 식별자
      * @param page      페이지 번호
-     * @param date      조회 기준일 (KST) - Example: 2023-12-21
      */
-    public void getUnionRankingAsync(String worldName, String ocid, Integer page, String date, SuccessCallback<UnionRankingResponseDTO> onSuccess, FailureCallback onFailure) {
+    public void getUnionRankingAsync(String worldName, String ocid, Integer page, SuccessCallback<UnionRankingResponseDTO> onSuccess, FailureCallback onFailure) {
+        this.getUnionRankingAsync(worldName, ocid, page, now(), onSuccess, onFailure);
+    }
+
+    /**
+     * 유니온 랭킹 정보를 비동기로 조회합니다.<br>
+     * - 2023년 12월 22일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     *
+     * @param worldName     월드 명<br>
+     *                      스카니아<br>
+     *                      베라<br>
+     *                      루나<br>
+     *                      제니스<br>
+     *                      크로아<br>
+     *                      유니온<br>
+     *                      엘리시움<br>
+     *                      이노시스<br>
+     *                      레드<br>
+     *                      오로라<br>
+     *                      아케인<br>
+     *                      노바<br>
+     *                      리부트<br>
+     *                      리부트2<br>
+     *                      버닝<br>
+     *                      버닝2<br>
+     *                      버닝3<br>
+     * @param ocid          캐릭터 식별자
+     * @param page          페이지 번호
+     * @param localDateTime 조회 기준일 (KST) - Example: 2023-12-21
+     */
+    public void getUnionRankingAsync(String worldName, String ocid, Integer page, LocalDateTime localDateTime, SuccessCallback<UnionRankingResponseDTO> onSuccess, FailureCallback onFailure) {
+
+        final String date = toDateString(minDate(2023, 12, 22), localDateTime);
 
         final Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -2370,7 +3405,10 @@ public class MapleStoryApi {
     }
 
     /**
-     * 길드 랭킹 정보를 조회합니다.
+     * 길드 랭킹 정보를 조회합니다.<br>
+     * - 2023년 12월 22일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param worldName   월드 명<br>
      *                    스카니아<br>
@@ -2393,9 +3431,43 @@ public class MapleStoryApi {
      * @param rankingType 랭킹 타입 (0:주간 명성치, 1:플래그 레이스, 2:지하 수로)
      * @param guildName   길드 명
      * @param page        페이지 번호
-     * @param date        조회 기준일 (KST) - Example: 2023-12-22
      */
-    public GuildRankingResponseDTO getGuildRanking(String worldName, Integer rankingType, String guildName, Integer page, String date) throws IOException {
+    public GuildRankingResponseDTO getGuildRanking(String worldName, Integer rankingType, String guildName, Integer page) throws IOException {
+        return this.getGuildRanking(worldName, rankingType, guildName, page, now());
+    }
+
+    /**
+     * 길드 랭킹 정보를 조회합니다.<br>
+     * - 2023년 12월 22일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     *
+     * @param worldName     월드 명<br>
+     *                      스카니아<br>
+     *                      베라<br>
+     *                      루나<br>
+     *                      제니스<br>
+     *                      크로아<br>
+     *                      유니온<br>
+     *                      엘리시움<br>
+     *                      이노시스<br>
+     *                      레드<br>
+     *                      오로라<br>
+     *                      아케인<br>
+     *                      노바<br>
+     *                      리부트<br>
+     *                      리부트2<br>
+     *                      버닝<br>
+     *                      버닝2<br>
+     *                      버닝3<br>
+     * @param rankingType   랭킹 타입 (0:주간 명성치, 1:플래그 레이스, 2:지하 수로)
+     * @param guildName     길드 명
+     * @param page          페이지 번호
+     * @param localDateTime 조회 기준일 (KST) - Example: 2023-12-22
+     */
+    public GuildRankingResponseDTO getGuildRanking(String worldName, Integer rankingType, String guildName, Integer page, LocalDateTime localDateTime) throws IOException {
+
+        final String date = toDateString(minDate(2023, 12, 22), localDateTime);
 
         final Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -2416,7 +3488,10 @@ public class MapleStoryApi {
     }
 
     /**
-     * 길드 랭킹 정보를 비동기로 조회합니다.
+     * 길드 랭킹 정보를 비동기로 조회합니다.<br>
+     * - 2023년 12월 22일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param worldName   월드 명<br>
      *                    스카니아<br>
@@ -2439,9 +3514,43 @@ public class MapleStoryApi {
      * @param rankingType 랭킹 타입 (0:주간 명성치, 1:플래그 레이스, 2:지하 수로)
      * @param guildName   길드 명
      * @param page        페이지 번호
-     * @param date        조회 기준일 (KST) - Example: 2023-12-22
      */
-    public void getGuildRankingAsync(String worldName, Integer rankingType, String guildName, Integer page, String date, SuccessCallback<GuildRankingResponseDTO> onSuccess, FailureCallback onFailure) {
+    public void getGuildRankingAsync(String worldName, Integer rankingType, String guildName, Integer page, SuccessCallback<GuildRankingResponseDTO> onSuccess, FailureCallback onFailure) {
+        this.getGuildRankingAsync(worldName, rankingType, guildName, page, now(), onSuccess, onFailure);
+    }
+
+    /**
+     * 길드 랭킹 정보를 비동기로 조회합니다.<br>
+     * - 2023년 12월 22일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     *
+     * @param worldName     월드 명<br>
+     *                      스카니아<br>
+     *                      베라<br>
+     *                      루나<br>
+     *                      제니스<br>
+     *                      크로아<br>
+     *                      유니온<br>
+     *                      엘리시움<br>
+     *                      이노시스<br>
+     *                      레드<br>
+     *                      오로라<br>
+     *                      아케인<br>
+     *                      노바<br>
+     *                      리부트<br>
+     *                      리부트2<br>
+     *                      버닝<br>
+     *                      버닝2<br>
+     *                      버닝3<br>
+     * @param rankingType   랭킹 타입 (0:주간 명성치, 1:플래그 레이스, 2:지하 수로)
+     * @param guildName     길드 명
+     * @param page          페이지 번호
+     * @param localDateTime 조회 기준일 (KST) - Example: 2023-12-22
+     */
+    public void getGuildRankingAsync(String worldName, Integer rankingType, String guildName, Integer page, LocalDateTime localDateTime, SuccessCallback<GuildRankingResponseDTO> onSuccess, FailureCallback onFailure) {
+
+        final String date = toDateString(minDate(2023, 12, 22), localDateTime);
 
         final Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -2477,7 +3586,10 @@ public class MapleStoryApi {
     }
 
     /**
-     * 무릉도장 랭킹 정보를 조회합니다.
+     * 무릉도장 랭킹 정보를 조회합니다.<br>
+     * - 2023년 12월 22일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param worldName      월드 명<br>
      *                       스카니아<br>
@@ -2598,9 +3710,141 @@ public class MapleStoryApi {
      *                       칼리-전체 전직<br>
      * @param ocid           캐릭터 식별자
      * @param page           페이지 번호
-     * @param date           조회 기준일 (KST) - Example: 2023-12-22
      */
-    public DojangRankingResponseDTO getDojangRanking(String worldName, Integer difficulty, String characterClass, String ocid, Integer page, String date) throws IOException {
+    public DojangRankingResponseDTO getDojangRanking(String worldName, Integer difficulty, String characterClass, String ocid, Integer page) throws IOException {
+        return this.getDojangRanking(worldName, difficulty, characterClass, ocid, page, now());
+    }
+
+    /**
+     * 무릉도장 랭킹 정보를 조회합니다.<br>
+     * - 2023년 12월 22일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     *
+     * @param worldName      월드 명<br>
+     *                       스카니아<br>
+     *                       베라<br>
+     *                       루나<br>
+     *                       제니스<br>
+     *                       크로아<br>
+     *                       유니온<br>
+     *                       엘리시움<br>
+     *                       이노시스<br>
+     *                       레드<br>
+     *                       오로라<br>
+     *                       아케인<br>
+     *                       노바<br>
+     *                       리부트<br>
+     *                       리부트2<br>
+     *                       버닝<br>
+     *                       버닝2<br>
+     *                       버닝3<br>
+     * @param difficulty     구간 (0:일반, 1:통달)
+     * @param characterClass 직업 및 전직
+     * @param characterClass 직업 및 전직<br>
+     *                       초보자-전체 전직<br>
+     *                       전사-전체 전직<br>
+     *                       전사-검사<br>
+     *                       전사-파이터<br>
+     *                       전사-페이지<br>
+     *                       전사-스피어맨<br>
+     *                       전사-크루세이더<br>
+     *                       전사-나이트<br>
+     *                       전사-버서커<br>
+     *                       전사-히어로<br>
+     *                       전사-팔라딘<br>
+     *                       전사-다크나이트<br>
+     *                       마법사-전체 전직<br>
+     *                       마법사-매지션<br>
+     *                       마법사-위자드(불,독)<br>
+     *                       마법사-위자드(썬,콜)<br>
+     *                       마법사-클레릭<br>
+     *                       마법사-메이지(불,독)<br>
+     *                       마법사-메이지(썬,콜)<br>
+     *                       마법사-프리스트<br>
+     *                       마법사-아크메이지(불,독)<br>
+     *                       마법사-아크메이지(썬,콜)<br>
+     *                       마법사-비숍<br>
+     *                       궁수-전체 전직<br>
+     *                       궁수-아처<br>
+     *                       궁수-헌터<br>
+     *                       궁수-사수<br>
+     *                       궁수-레인저<br>
+     *                       궁수-저격수<br>
+     *                       궁수-보우마스터<br>
+     *                       궁수-신궁<br>
+     *                       궁수-아처(패스파인더)<br>
+     *                       궁수-에인션트아처<br>
+     *                       궁수-체이서<br>
+     *                       궁수-패스파인더<br>
+     *                       도적-전체 전직<br>
+     *                       도적-로그<br>
+     *                       도적-어쌔신<br>
+     *                       도적-시프<br>
+     *                       도적-허밋<br>
+     *                       도적-시프마스터<br>
+     *                       도적-나이트로드<br>
+     *                       도적-섀도어<br>
+     *                       도적-세미듀어러<br>
+     *                       도적-듀어러<br>
+     *                       도적-듀얼마스터<br>
+     *                       도적-슬래셔<br>
+     *                       도적-듀얼블레이더<br>
+     *                       해적-전체 전직<br>
+     *                       해적-해적<br>
+     *                       해적-인파이터<br>
+     *                       해적-건슬링거<br>
+     *                       해적-캐논슈터<br>
+     *                       해적-버커니어<br>
+     *                       해적-발키리<br>
+     *                       해적-캐논블래스터<br>
+     *                       해적-바이퍼<br>
+     *                       해적-캡틴<br>
+     *                       해적-캐논마스터<br>
+     *                       기사단-전체 전직<br>
+     *                       기사단-노블레스<br>
+     *                       기사단-소울마스터<br>
+     *                       기사단-플레임위자드<br>
+     *                       기사단-윈드브레이커<br>
+     *                       기사단-나이트워커<br>
+     *                       기사단-스트라이커<br>
+     *                       기사단-미하일<br>
+     *                       아란-전체 전직<br>
+     *                       에반-전체 전직<br>
+     *                       레지스탕스-전체 전직<br>
+     *                       레지스탕스-시티즌<br>
+     *                       레지스탕스-배틀메이지<br>
+     *                       레지스탕스-와일드헌터<br>
+     *                       레지스탕스-메카닉<br>
+     *                       레지스탕스-데몬슬레이어<br>
+     *                       레지스탕스-데몬어벤져<br>
+     *                       레지스탕스-제논<br>
+     *                       레지스탕스-블래스터<br>
+     *                       메르세데스-전체 전직<br>
+     *                       팬텀-전체 전직<br>
+     *                       루미너스-전체 전직<br>
+     *                       카이저-전체 전직<br>
+     *                       엔젤릭버스터-전체 전직<br>
+     *                       초월자-전체 전직<br>
+     *                       초월자-제로<br>
+     *                       은월-전체 전직<br>
+     *                       프렌즈 월드-전체 전직<br>
+     *                       프렌즈 월드-키네시스<br>
+     *                       카데나-전체 전직<br>
+     *                       일리움-전체 전직<br>
+     *                       아크-전체 전직<br>
+     *                       호영-전체 전직<br>
+     *                       아델-전체 전직<br>
+     *                       카인-전체 전직<br>
+     *                       라라-전체 전직<br>
+     *                       칼리-전체 전직<br>
+     * @param ocid           캐릭터 식별자
+     * @param page           페이지 번호
+     * @param localDateTime  조회 기준일 (KST) - Example: 2023-12-22
+     */
+    public DojangRankingResponseDTO getDojangRanking(String worldName, Integer difficulty, String characterClass, String ocid, Integer page, LocalDateTime localDateTime) throws IOException {
+
+        final String date = toDateString(minDate(2023, 12, 22), localDateTime);
 
         final Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -2621,7 +3865,10 @@ public class MapleStoryApi {
     }
 
     /**
-     * 무릉도장 랭킹 정보를 비동기로 조회합니다.
+     * 무릉도장 랭킹 정보를 비동기로 조회합니다.<br>
+     * - 2023년 12월 22일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param worldName      월드 명<br>
      *                       스카니아<br>
@@ -2742,9 +3989,141 @@ public class MapleStoryApi {
      *                       칼리-전체 전직<br>
      * @param ocid           캐릭터 식별자
      * @param page           페이지 번호
-     * @param date           조회 기준일 (KST) - Example: 2023-12-22
      */
-    public void getDojangRankingAsync(String worldName, Integer difficulty, String characterClass, String ocid, Integer page, String date, SuccessCallback<DojangRankingResponseDTO> onSuccess, FailureCallback onFailure) {
+    public void getDojangRankingAsync(String worldName, Integer difficulty, String characterClass, String ocid, Integer page, SuccessCallback<DojangRankingResponseDTO> onSuccess, FailureCallback onFailure) {
+        this.getDojangRankingAsync(worldName, difficulty, characterClass, ocid, page, now(), onSuccess, onFailure);
+    }
+
+    /**
+     * 무릉도장 랭킹 정보를 비동기로 조회합니다.<br>
+     * - 2023년 12월 22일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     *
+     * @param worldName      월드 명<br>
+     *                       스카니아<br>
+     *                       베라<br>
+     *                       루나<br>
+     *                       제니스<br>
+     *                       크로아<br>
+     *                       유니온<br>
+     *                       엘리시움<br>
+     *                       이노시스<br>
+     *                       레드<br>
+     *                       오로라<br>
+     *                       아케인<br>
+     *                       노바<br>
+     *                       리부트<br>
+     *                       리부트2<br>
+     *                       버닝<br>
+     *                       버닝2<br>
+     *                       버닝3<br>
+     * @param difficulty     구간 (0:일반, 1:통달)
+     * @param characterClass 직업 및 전직
+     * @param characterClass 직업 및 전직<br>
+     *                       초보자-전체 전직<br>
+     *                       전사-전체 전직<br>
+     *                       전사-검사<br>
+     *                       전사-파이터<br>
+     *                       전사-페이지<br>
+     *                       전사-스피어맨<br>
+     *                       전사-크루세이더<br>
+     *                       전사-나이트<br>
+     *                       전사-버서커<br>
+     *                       전사-히어로<br>
+     *                       전사-팔라딘<br>
+     *                       전사-다크나이트<br>
+     *                       마법사-전체 전직<br>
+     *                       마법사-매지션<br>
+     *                       마법사-위자드(불,독)<br>
+     *                       마법사-위자드(썬,콜)<br>
+     *                       마법사-클레릭<br>
+     *                       마법사-메이지(불,독)<br>
+     *                       마법사-메이지(썬,콜)<br>
+     *                       마법사-프리스트<br>
+     *                       마법사-아크메이지(불,독)<br>
+     *                       마법사-아크메이지(썬,콜)<br>
+     *                       마법사-비숍<br>
+     *                       궁수-전체 전직<br>
+     *                       궁수-아처<br>
+     *                       궁수-헌터<br>
+     *                       궁수-사수<br>
+     *                       궁수-레인저<br>
+     *                       궁수-저격수<br>
+     *                       궁수-보우마스터<br>
+     *                       궁수-신궁<br>
+     *                       궁수-아처(패스파인더)<br>
+     *                       궁수-에인션트아처<br>
+     *                       궁수-체이서<br>
+     *                       궁수-패스파인더<br>
+     *                       도적-전체 전직<br>
+     *                       도적-로그<br>
+     *                       도적-어쌔신<br>
+     *                       도적-시프<br>
+     *                       도적-허밋<br>
+     *                       도적-시프마스터<br>
+     *                       도적-나이트로드<br>
+     *                       도적-섀도어<br>
+     *                       도적-세미듀어러<br>
+     *                       도적-듀어러<br>
+     *                       도적-듀얼마스터<br>
+     *                       도적-슬래셔<br>
+     *                       도적-듀얼블레이더<br>
+     *                       해적-전체 전직<br>
+     *                       해적-해적<br>
+     *                       해적-인파이터<br>
+     *                       해적-건슬링거<br>
+     *                       해적-캐논슈터<br>
+     *                       해적-버커니어<br>
+     *                       해적-발키리<br>
+     *                       해적-캐논블래스터<br>
+     *                       해적-바이퍼<br>
+     *                       해적-캡틴<br>
+     *                       해적-캐논마스터<br>
+     *                       기사단-전체 전직<br>
+     *                       기사단-노블레스<br>
+     *                       기사단-소울마스터<br>
+     *                       기사단-플레임위자드<br>
+     *                       기사단-윈드브레이커<br>
+     *                       기사단-나이트워커<br>
+     *                       기사단-스트라이커<br>
+     *                       기사단-미하일<br>
+     *                       아란-전체 전직<br>
+     *                       에반-전체 전직<br>
+     *                       레지스탕스-전체 전직<br>
+     *                       레지스탕스-시티즌<br>
+     *                       레지스탕스-배틀메이지<br>
+     *                       레지스탕스-와일드헌터<br>
+     *                       레지스탕스-메카닉<br>
+     *                       레지스탕스-데몬슬레이어<br>
+     *                       레지스탕스-데몬어벤져<br>
+     *                       레지스탕스-제논<br>
+     *                       레지스탕스-블래스터<br>
+     *                       메르세데스-전체 전직<br>
+     *                       팬텀-전체 전직<br>
+     *                       루미너스-전체 전직<br>
+     *                       카이저-전체 전직<br>
+     *                       엔젤릭버스터-전체 전직<br>
+     *                       초월자-전체 전직<br>
+     *                       초월자-제로<br>
+     *                       은월-전체 전직<br>
+     *                       프렌즈 월드-전체 전직<br>
+     *                       프렌즈 월드-키네시스<br>
+     *                       카데나-전체 전직<br>
+     *                       일리움-전체 전직<br>
+     *                       아크-전체 전직<br>
+     *                       호영-전체 전직<br>
+     *                       아델-전체 전직<br>
+     *                       카인-전체 전직<br>
+     *                       라라-전체 전직<br>
+     *                       칼리-전체 전직<br>
+     * @param ocid           캐릭터 식별자
+     * @param page           페이지 번호
+     * @param localDateTime  조회 기준일 (KST) - Example: 2023-12-22
+     */
+    public void getDojangRankingAsync(String worldName, Integer difficulty, String characterClass, String ocid, Integer page, LocalDateTime localDateTime, SuccessCallback<DojangRankingResponseDTO> onSuccess, FailureCallback onFailure) {
+
+        final String date = toDateString(minDate(2023, 12, 22), localDateTime);
 
         final Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -2780,7 +4159,10 @@ public class MapleStoryApi {
     }
 
     /**
-     * 더 시드 랭킹 정보를 조회합니다.
+     * 더 시드 랭킹 정보를 조회합니다.<br>
+     * - 2023년 12월 22일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param worldName 월드 명<br>
      *                  스카니아<br>
@@ -2802,9 +4184,41 @@ public class MapleStoryApi {
      *                  버닝3<br>
      * @param ocid      캐릭터 식별자
      * @param page      페이지 번호
-     * @param date      조회 기준일 (KST) - Example: 2023-12-22
      */
-    public TheSeedRankingResponseDTO getTheSeedRanking(String worldName, String ocid, Integer page, String date) throws IOException {
+    public TheSeedRankingResponseDTO getTheSeedRanking(String worldName, String ocid, Integer page) throws IOException {
+        return this.getTheSeedRanking(worldName, ocid, page, now());
+    }
+
+    /**
+     * 더 시드 랭킹 정보를 조회합니다.<br>
+     * - 2023년 12월 22일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     *
+     * @param worldName     월드 명<br>
+     *                      스카니아<br>
+     *                      베라<br>
+     *                      루나<br>
+     *                      제니스<br>
+     *                      크로아<br>
+     *                      유니온<br>
+     *                      엘리시움<br>
+     *                      이노시스<br>
+     *                      레드<br>
+     *                      오로라<br>
+     *                      아케인<br>
+     *                      노바<br>
+     *                      리부트<br>
+     *                      리부트2<br>
+     *                      버닝<br>
+     *                      버닝2<br>
+     *                      버닝3<br>
+     * @param ocid          캐릭터 식별자
+     * @param page          페이지 번호
+     * @param localDateTime 조회 기준일 (KST) - Example: 2023-12-22
+     */
+    public TheSeedRankingResponseDTO getTheSeedRanking(String worldName, String ocid, Integer page, LocalDateTime localDateTime) throws IOException {
+        final String date = toDateString(minDate(2023, 12, 22), localDateTime);
 
         final Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -2813,19 +4227,14 @@ public class MapleStoryApi {
                 .build();
 
         final RankingApi rankingApi = retrofit.create(RankingApi.class);
-        final Call<TheSeedRankingResponseDTO> call = rankingApi.getTheSeedRanking(this.apiKey, date, worldName, ocid, page);
-
-        final Response<TheSeedRankingResponseDTO> response = call.execute();
-
-        if (!response.isSuccessful()) {
-            throw parseError(response);
-        }
-
-        return response.body();
+        return rankingApi.getTheSeedRanking(this.apiKey, date, worldName, ocid, page).execute().body();
     }
 
     /**
-     * 더 시드 랭킹 정보를 비동기로 조회합니다.
+     * 더 시드 랭킹 정보를 비동기로 조회합니다.<br>
+     * - 2023년 12월 22일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param worldName 월드 명<br>
      *                  스카니아<br>
@@ -2847,9 +4256,41 @@ public class MapleStoryApi {
      *                  버닝3<br>
      * @param ocid      캐릭터 식별자
      * @param page      페이지 번호
-     * @param date      조회 기준일 (KST) - Example: 2023-12-22
      */
-    public void getTheSeedRankingAsync(String worldName, String ocid, Integer page, String date, SuccessCallback<TheSeedRankingResponseDTO> onSuccess, FailureCallback onFailure) {
+    public void getTheSeedRankingAsync(String worldName, String ocid, Integer page, SuccessCallback<TheSeedRankingResponseDTO> onSuccess, FailureCallback onFailure) {
+        this.getTheSeedRankingAsync(worldName, ocid, page, now(), onSuccess, onFailure);
+    }
+
+    /**
+     * 더 시드 랭킹 정보를 비동기로 조회합니다.<br>
+     * - 2023년 12월 22일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     *
+     * @param worldName     월드 명<br>
+     *                      스카니아<br>
+     *                      베라<br>
+     *                      루나<br>
+     *                      제니스<br>
+     *                      크로아<br>
+     *                      유니온<br>
+     *                      엘리시움<br>
+     *                      이노시스<br>
+     *                      레드<br>
+     *                      오로라<br>
+     *                      아케인<br>
+     *                      노바<br>
+     *                      리부트<br>
+     *                      리부트2<br>
+     *                      버닝<br>
+     *                      버닝2<br>
+     *                      버닝3<br>
+     * @param ocid          캐릭터 식별자
+     * @param page          페이지 번호
+     * @param localDateTime 조회 기준일 (KST) - Example: 2023-12-22
+     */
+    public void getTheSeedRankingAsync(String worldName, String ocid, Integer page, LocalDateTime localDateTime, SuccessCallback<TheSeedRankingResponseDTO> onSuccess, FailureCallback onFailure) {
+        final String date = toDateString(minDate(2023, 12, 22), localDateTime);
 
         final Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -2885,13 +4326,30 @@ public class MapleStoryApi {
     }
 
     /**
-     * 업적 랭킹 정보를 조회합니다.
+     * 업적 랭킹 정보를 조회합니다.<br>
+     * - 2023년 12월 22일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid 캐릭터 식별자
      * @param page 페이지 번호
-     * @param date 조회 기준일 (KST) - Example: 2023-12-22
      */
-    public AchievementRankingResponseDTO getAchievementRanking(String ocid, Integer page, String date) throws IOException {
+    public AchievementRankingResponseDTO getAchievementRanking(String ocid, Integer page) throws IOException {
+        return this.getAchievementRanking(ocid, page, now());
+    }
+
+    /**
+     * 업적 랭킹 정보를 조회합니다.<br>
+     * - 2023년 12월 22일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     *
+     * @param ocid          캐릭터 식별자
+     * @param page          페이지 번호
+     * @param localDateTime 조회 기준일 (KST) - Example: 2023-12-22
+     */
+    public AchievementRankingResponseDTO getAchievementRanking(String ocid, Integer page, LocalDateTime localDateTime) throws IOException {
+        final String date = toDateString(minDate(2023, 12, 22), localDateTime);
 
         final Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -2912,13 +4370,30 @@ public class MapleStoryApi {
     }
 
     /**
-     * 업적 랭킹 정보를 비동기로 조회합니다.
+     * 업적 랭킹 정보를 비동기로 조회합니다.<br>
+     * - 2023년 12월 22일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid 캐릭터 식별자
      * @param page 페이지 번호
-     * @param date 조회 기준일 (KST) - Example: 2023-12-22
      */
-    public void getAchievementRankingAsync(String ocid, Integer page, String date, SuccessCallback<AchievementRankingResponseDTO> onSuccess, FailureCallback onFailure) {
+    public void getAchievementRankingAsync(String ocid, Integer page, SuccessCallback<AchievementRankingResponseDTO> onSuccess, FailureCallback onFailure) {
+        this.getAchievementRankingAsync(ocid, page, now(), onSuccess, onFailure);
+    }
+
+    /**
+     * 업적 랭킹 정보를 비동기로 조회합니다.<br>
+     * - 2023년 12월 22일 데이터부터 조회할 수 있습니다.<br>
+     * - 오전 1시부터 전일 데이터 조회가 가능합니다<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     *
+     * @param ocid          캐릭터 식별자
+     * @param page          페이지 번호
+     * @param localDateTime 조회 기준일 (KST) - Example: 2023-12-22
+     */
+    public void getAchievementRankingAsync(String ocid, Integer page, LocalDateTime localDateTime, SuccessCallback<AchievementRankingResponseDTO> onSuccess, FailureCallback onFailure) {
+        final String date = toDateString(minDate(2023, 12, 22), localDateTime);
 
         final Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -2952,7 +4427,6 @@ public class MapleStoryApi {
             }
         });
     }
-
 
     //#endregion
 
@@ -3047,6 +4521,38 @@ public class MapleStoryApi {
         final MapleStoryApiErrorBody error = gson.fromJson(response.errorBody().string(), MapleStoryApiErrorBody.class);
 
         return new MapleStoryApiException(error);
+    }
+
+    private static LocalDateTime now() {
+        return LocalDateTime.now(ZoneId.of("Asia/Seoul"));
+    }
+
+    private static LocalDateTime minDate(int year, int month, int day) {
+        return LocalDateTime.of(year, month, day, 0, 0, 0, 0);
+    }
+
+    private static String toDateString(@NonNull LocalDateTime minDate, @NonNull LocalDateTime date) {
+
+        if (date == null) {
+            date = now();
+        }
+
+        final int minYear = minDate.getYear();
+        final int minMonth = minDate.getMonthValue();
+        final int minDay = minDate.getDayOfMonth();
+
+        final int year = date.getYear();
+        final int month = date.getMonthValue();
+        final int day = date.getDayOfMonth();
+
+        if (year < minYear || (year == minYear && month < minMonth) || (year == minYear && month == minMonth && day < minDay)) {
+            throw new IllegalArgumentException(String.format("You can only retrieve data after %d-%02d-%02d.", minYear, minMonth, minDay));
+        }
+
+        final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        final String yyyyMMdd = date.format(formatter);
+
+        return yyyyMMdd;
     }
 }
 
