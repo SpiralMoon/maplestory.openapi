@@ -4,10 +4,7 @@ import com.google.gson.Gson;
 import dev.spiralmoon.maplestory.api.callback.FailureCallback;
 import dev.spiralmoon.maplestory.api.callback.SuccessCallback;
 import dev.spiralmoon.maplestory.api.dto.*;
-import dev.spiralmoon.maplestory.api.template.CharacterApi;
-import dev.spiralmoon.maplestory.api.template.CubeApi;
-import dev.spiralmoon.maplestory.api.template.InspectionInfoApi;
-import dev.spiralmoon.maplestory.api.template.UnionApi;
+import dev.spiralmoon.maplestory.api.template.*;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.SneakyThrows;
@@ -1555,6 +1552,178 @@ public class MapleStoryApi {
 
             @Override
             public void onFailure(Call<UnionRaiderDTO> call, Throwable t) {
+                if (onFailure != null) {
+                    onFailure.callback(t);
+                }
+            }
+        });
+    }
+
+    //#endregion
+
+    //#region 길드 정보 조회
+
+    /**
+     * 길드 식별자(oguild_id) 정보를 조회합니다.
+     *
+     * @param guildName 길드 명
+     * @param worldName 월드 명<br>
+     *                  스카니아<br>
+     *                  베라<br>
+     *                  루나<br>
+     *                  제니스<br>
+     *                  크로아<br>
+     *                  유니온<br>
+     *                  엘리시움<br>
+     *                  이노시스<br>
+     *                  레드<br>
+     *                  오로라<br>
+     *                  아케인<br>
+     *                  노바<br>
+     *                  리부트<br>
+     *                  리부트2<br>
+     *                  버닝<br>
+     *                  버닝2<br>
+     *                  버닝3<br>
+     */
+    public GuildDTO getGuild(String guildName, String worldName) throws IOException {
+
+        final Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(this.buildClient())
+                .build();
+
+        final GuildApi guildApi = retrofit.create(GuildApi.class);
+        final Call<GuildDTO> call = guildApi.getGuild(this.apiKey, guildName, worldName);
+
+        final Response<GuildDTO> response = call.execute();
+
+        if (!response.isSuccessful()) {
+            throw parseError(response);
+        }
+
+        return response.body();
+    }
+
+    /**
+     * 길드 식별자(oguild_id) 정보를 비동기로 조회합니다.
+     *
+     * @param guildName 길드 명
+     * @param worldName 월드 명<br>
+     *                  스카니아<br>
+     *                  베라<br>
+     *                  루나<br>
+     *                  제니스<br>
+     *                  크로아<br>
+     *                  유니온<br>
+     *                  엘리시움<br>
+     *                  이노시스<br>
+     *                  레드<br>
+     *                  오로라<br>
+     *                  아케인<br>
+     *                  노바<br>
+     *                  리부트<br>
+     *                  리부트2<br>
+     *                  버닝<br>
+     *                  버닝2<br>
+     *                  버닝3<br>
+     */
+    public void getGuildAsync(String guildName, String worldName, SuccessCallback<GuildDTO> onSuccess, FailureCallback onFailure) {
+
+        final Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(this.buildClient())
+                .build();
+
+        final GuildApi guildApi = retrofit.create(GuildApi.class);
+        final Call<GuildDTO> call = guildApi.getGuild(this.apiKey, guildName, worldName);
+
+        call.enqueue(new Callback<GuildDTO>() {
+            @SneakyThrows
+            @Override
+            public void onResponse(Call<GuildDTO> call, Response<GuildDTO> response) {
+                if (response.isSuccessful()) {
+                    if (onSuccess != null) {
+                        onSuccess.callback(response.body());
+                    }
+                } else {
+                    if (onFailure != null) {
+                        onFailure.callback(parseError(response));
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<GuildDTO> call, Throwable t) {
+                if (onFailure != null) {
+                    onFailure.callback(t);
+                }
+            }
+        });
+    }
+
+    /**
+     * 길드 기본 정보를 조회합니다.
+     *
+     * @param oguildId 길드 식별자
+     * @param date     조회 기준일 (KST) - Example: 2023-12-21
+     */
+    public GuildBasicDTO getGuildBasic(String oguildId, String date) throws IOException {
+
+        final Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(this.buildClient())
+                .build();
+
+        final GuildApi guildApi = retrofit.create(GuildApi.class);
+        final Call<GuildBasicDTO> call = guildApi.getGuildBasic(this.apiKey, oguildId, date);
+
+        final Response<GuildBasicDTO> response = call.execute();
+
+        if (!response.isSuccessful()) {
+            throw parseError(response);
+        }
+
+        return response.body();
+    }
+
+    /**
+     * 길드 기본 정보를 비동기로 조회합니다.
+     *
+     * @param oguildId 길드 식별자
+     * @param date     조회 기준일 (KST) - Example: 2023-12-21
+     */
+    public void getGuildBasicAsync(String oguildId, String date, SuccessCallback<GuildBasicDTO> onSuccess, FailureCallback onFailure) {
+
+        final Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(this.buildClient())
+                .build();
+
+        final GuildApi guildApi = retrofit.create(GuildApi.class);
+        final Call<GuildBasicDTO> call = guildApi.getGuildBasic(this.apiKey, oguildId, date);
+
+        call.enqueue(new Callback<GuildBasicDTO>() {
+            @SneakyThrows
+            @Override
+            public void onResponse(Call<GuildBasicDTO> call, Response<GuildBasicDTO> response) {
+                if (response.isSuccessful()) {
+                    if (onSuccess != null) {
+                        onSuccess.callback(response.body());
+                    }
+                } else {
+                    if (onFailure != null) {
+                        onFailure.callback(parseError(response));
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<GuildBasicDTO> call, Throwable t) {
                 if (onFailure != null) {
                     onFailure.callback(t);
                 }
