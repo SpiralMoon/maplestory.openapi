@@ -35,7 +35,7 @@ namespace MapleStory.OpenAPI
             this.timeOut = 5000;
         }
 
-        //#region 캐릭터 정보 조회
+        #region 캐릭터 정보 조회
 
         /// <summary>
         /// 캐릭터 식별자(ocid)를 조회합니다.
@@ -1108,7 +1108,115 @@ namespace MapleStory.OpenAPI
             }
         }
 
-        //#endregion
+        #endregion
+
+        #region 유니온 정보 조회
+
+        /// <summary>
+        /// 유니온 레벨 및 유니온 등급 정보를 조회합니다.
+        /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
+        /// <para>- 오전 1시부터 전일 데이터 조회가 가능합니다</para>
+        /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
+        /// </summary>
+        /// <param name="ocid">캐릭터 식별자</param>
+        public Task<UnionDTO> GetUnion(string ocid)
+        {
+            return GetUnion(ocid, now);
+        }
+
+        /// <summary>
+        /// 유니온 레벨 및 유니온 등급 정보를 조회합니다.
+        /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
+        /// <para>- 오전 1시부터 전일 데이터 조회가 가능합니다</para>
+        /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
+        /// </summary>
+        /// <param name="ocid">캐릭터 식별자</param>
+        /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
+        public async Task<UnionDTO> GetUnion(string ocid, DateTimeOffset dateTimeOffset)
+        {
+            using (var client = new HttpClient())
+            {
+                var path = "maplestory/v1/union";
+                var uriBuilder = new UriBuilder($"{BASE_URL}{path}");
+
+                var date = ToDateString(MinDate(2023, 12, 21), dateTimeOffset);
+
+                var query = HttpUtility.ParseQueryString(uriBuilder.Query);
+                query["ocid"] = ocid;
+                query["date"] = date;
+
+                uriBuilder.Query = query.ToString();
+
+                this.SetClient(client);
+
+                var response = await client.GetAsync(uriBuilder.Uri);
+                var body = await response.Content.ReadAsStringAsync();
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var result = JsonConvert.DeserializeObject<UnionDTO>(body);
+                    return result;
+                }
+                else
+                {
+                    throw ParseError(body);
+                }
+            }
+        }
+
+        /// <summary>
+        /// 유니온에 배치된 공격대원 효과 및 공격대 점령 효과 등 상세 정보를 조회합니다.
+        /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
+        /// <para>- 오전 1시부터 전일 데이터 조회가 가능합니다</para>
+        /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
+        /// </summary>
+        /// <param name="ocid">캐릭터 식별자</param>
+        public Task<UnionRaiderDTO> GetUnionRaider(string ocid)
+        {
+            return GetUnionRaider(ocid, now);
+        }
+
+        /// <summary>
+        /// 유니온에 배치된 공격대원 효과 및 공격대 점령 효과 등 상세 정보를 조회합니다.
+        /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
+        /// <para>- 오전 1시부터 전일 데이터 조회가 가능합니다</para>
+        /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
+        /// </summary>
+        /// <param name="ocid">캐릭터 식별자</param>
+        /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
+        public async Task<UnionRaiderDTO> GetUnionRaider(string ocid, DateTimeOffset dateTimeOffset)
+        {
+            using (var client = new HttpClient())
+            {
+                var path = "maplestory/v1/union-raider";
+                var uriBuilder = new UriBuilder($"{BASE_URL}{path}");
+
+                var date = ToDateString(MinDate(2023, 12, 21), dateTimeOffset);
+
+                var query = HttpUtility.ParseQueryString(uriBuilder.Query);
+                query["ocid"] = ocid;
+                query["date"] = date;
+
+                uriBuilder.Query = query.ToString();
+
+                this.SetClient(client);
+
+                var response = await client.GetAsync(uriBuilder.Uri);
+                var body = await response.Content.ReadAsStringAsync();
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var result = JsonConvert.DeserializeObject<UnionRaiderDTO>(body);
+                    return result;
+                }
+                else
+                {
+                    throw ParseError(body);
+                }
+            }
+        }
+
+        #endregion
 
         /// <summary>
         /// 오늘 날짜의 큐브 사용 결과를 조회합니다.
