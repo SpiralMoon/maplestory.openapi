@@ -24,12 +24,12 @@ Include the latest version of the Java library in your java project by adding th
 <dependency>
     <groupId>dev.spiralmoon</groupId>
     <artifactId>maplestory-openapi</artifactId>
-    <version>2.0.0</version> <!-- Replace with the latest version -->
+    <version>2.1.0</version> <!-- Replace with the latest version -->
 </dependency>
 ```
 or
 ```groovy
-implementation 'dev.spiralmoon:maplestory-openapi:2.0.0' // Replace with the latest version
+implementation 'dev.spiralmoon:maplestory-openapi:2.1.0' // Replace with the latest version
 ```
 
 For detailed information on how to use the library in Java, refer to the [HERE](./java/README.md).
@@ -50,18 +50,21 @@ Add the latest version of the C# library to your NuGet project:
 
 
 ```xml
-<PackageReference Include="MapleStory.OpenAPI" Version="2.0.0" />
+<PackageReference Include="MapleStory.OpenAPI" Version="2.1.0" />
 ```
 
 
 For detailed information on how to use the library in C#, refer to the [HERE](./csharp/README.md).
 
 ## Features
+This library supports all apis published in the link below.
 
-1. Get cube usage history
-2. ~~Get star-force enhancement history~~ (coming soon)
-3. ~~Get character information~~ (coming soon)
-4. Get server inspection information
+1. [Get character information](https://openapi.nexon.com/game/maplestory/?id=22)
+2. [Get union information](https://openapi.nexon.com/game/maplestory/?id=23)
+3. [Get guild information](https://openapi.nexon.com/game/maplestory/?id=24)
+4. [Get probability information](https://openapi.nexon.com/game/maplestory/?id=25)
+5. [Get ranking information](https://openapi.nexon.com/game/maplestory/?id=26)
+6. [Get server inspection information](https://api.maplestory.nexon.com/soap/maplestory.asmx?op=GetInspectionInfo)
 
 ## Additional Information
 

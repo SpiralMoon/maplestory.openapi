@@ -24,12 +24,12 @@ Java 기반 프로젝트에 아래 정보를 입력하여 패키지를 추가하
 <dependency>
     <groupId>dev.spiralmoon</groupId>
     <artifactId>maplestory-openapi</artifactId>
-    <version>2.0.0</version> <!-- Replace with the latest version -->
+    <version>2.1.0</version> <!-- Replace with the latest version -->
 </dependency>
 ```
 또는
 ```groovy
-implementation 'dev.spiralmoon:maplestory-openapi:2.0.0' // Replace with the latest version
+implementation 'dev.spiralmoon:maplestory-openapi:2.1.0' // Replace with the latest version
 ```
 
 Java 라이브러리를 사용하는 자세한 방법은 [여기](./java/README-ko.md)에서 확인해주세요.
@@ -50,7 +50,7 @@ NuGet 기반 프로젝트에 아래 정보를 입력하여 패키지를 추가�
 
 
 ```xml
-<PackageReference Include="MapleStory.OpenAPI" Version="2.0.0" />
+<PackageReference Include="MapleStory.OpenAPI" Version="2.1.0" />
 ```
 
 
@@ -58,10 +58,14 @@ C# 라이브러리를 사용하는 자세한 방법은 [여기](./csharp/README-
 
 ## Features
 
-1. 큐브 사용 기록 조회
-2. ~~스타포스 강화 기록 조회~~ (추가 예정)
-3. ~~캐릭터 정보 조회~~ (추가 예정)
-4. 서버 점검 정보 조회
+이 라이브러리는 아래 링크에 기재된 모든 API를 지원합니다.
+
+1. [캐릭터 정보 조회](https://openapi.nexon.com/game/maplestory/?id=22)
+2. [유니온 정보 조회](https://openapi.nexon.com/game/maplestory/?id=23)
+3. [길드 정보 조회](https://openapi.nexon.com/game/maplestory/?id=24)
+4. [확률 정보 조회](https://openapi.nexon.com/game/maplestory/?id=25)
+5. [랭킹 정보 조회](https://openapi.nexon.com/game/maplestory/?id=26)
+6. [서버 점검 정보 조회](https://api.maplestory.nexon.com/soap/maplestory.asmx?op=GetInspectionInfo)
 
 ## Additional Information
 
