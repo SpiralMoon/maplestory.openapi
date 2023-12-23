@@ -1,5 +1,8 @@
 import {CharacterPopularityDtoBody} from "../response/characterPopularityDtoBody";
 
+/**
+ * 캐릭터 인기도 정보
+ */
 class CharacterPopularityDto {
 
 	/**

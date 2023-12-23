@@ -13,15 +13,27 @@ import lombok.ToString;
 @ToString
 public class CharacterPetEquipmentAutoSkillDTO {
 
+    /**
+     * 첫 번째 슬롯에 등록된 자동 스킬
+     */
     @SerializedName("skill_1")
     private String skill1;
 
+    /**
+     * 첫 번째 슬롯에 등록된 자동 스킬 아이콘
+     */
     @SerializedName("skill_1_icon")
     private String skill1Icon;
 
+    /**
+     * 두 번째 슬롯에 등록된 자동 스킬
+     */
     @SerializedName("skill_2")
     private String skill2;
 
+    /**
+     * 두 번째 슬롯에 등록된 자동 스킬 아이콘
+     */
     @SerializedName("skill_2_icon")
     private String skill2Icon;
 }

@@ -13,9 +13,15 @@ import lombok.ToString;
 @ToString
 public class CharacterPetEquipmentItemOptionDTO {
 
+    /**
+     * 옵션 타입
+     */
     @SerializedName("option_type")
     private String optionType;
 
+    /**
+     * 옵션 값
+     */
     @SerializedName("option_value")
     private String optionValue;
 }

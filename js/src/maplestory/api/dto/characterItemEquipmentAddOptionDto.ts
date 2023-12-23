@@ -1,6 +1,5 @@
 import {
     CharacterItemEquipmentAddOptionDtoBody,
-    CharacterItemEquipmentBaseOptionDtoBody,
 } from "../response/characterItemEquipmentDtoBody";
 
 /**

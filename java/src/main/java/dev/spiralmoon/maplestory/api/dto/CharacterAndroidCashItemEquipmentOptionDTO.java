@@ -1,10 +1,16 @@
 package dev.spiralmoon.maplestory.api.dto;
 
 import com.google.gson.annotations.SerializedName;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.ToString;
 
 /**
  * 캐릭터 안드로이드 캐시 아이템 옵션 정보
  */
+@AllArgsConstructor
+@Data
+@ToString
 public class CharacterAndroidCashItemEquipmentOptionDTO {
 
     /**

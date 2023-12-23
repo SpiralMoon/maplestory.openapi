@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.ToString;
 
-
 /**
  * 종합 랭킹 응답 정보
  */

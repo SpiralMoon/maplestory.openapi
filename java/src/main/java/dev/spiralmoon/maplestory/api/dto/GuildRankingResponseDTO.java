@@ -12,5 +12,4 @@ import lombok.ToString;
 @ToString
 public class GuildRankingResponseDTO extends RankingResponseDTO<GuildRankingDTO> {
 
-
 }

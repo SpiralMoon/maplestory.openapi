@@ -5,6 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.ToString;
 
+/**
+ * 캐릭터 현재 스탯 정보
+ */
 @AllArgsConstructor
 @Data
 @ToString

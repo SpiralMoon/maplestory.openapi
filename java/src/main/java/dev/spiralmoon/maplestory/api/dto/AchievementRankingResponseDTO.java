@@ -2,7 +2,6 @@ package dev.spiralmoon.maplestory.api.dto;
 
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.ToString;
 
 /**
