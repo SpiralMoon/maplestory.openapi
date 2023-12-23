@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using System.Web;
 using System.Text;
+using System;
 
 namespace MapleStory.OpenAPI
 {
@@ -1335,38 +1336,30 @@ namespace MapleStory.OpenAPI
 
         #endregion
 
+        #region 확률 정보 조회
+
         /// <summary>
         /// 오늘 날짜의 큐브 사용 결과를 조회합니다.
-        /// <para>큐브 사용 결과 데이터는 매일 오전 4시, 전일 데이터가 갱신됩니다.</para>
-        /// <para>큐브 사용 결과 데이터는 2022년 11월 25일부터 조회할 수 있습니다.</para>
+        /// <para>데이터는 매일 오전 4시, 전일 데이터가 갱신됩니다.</para>
         /// <para>e.g. 오늘 오후 3시 5분 큐브 확률 정보 조회 시, 어제의 큐브 확률 정보 데이터를 조회할 수 있습니다.</para>
+        /// <para>2022년 11월 25일 데이터부터 조회할 수 있습니다.</para>
         /// </summary>
         /// <param name="count">한번에 가져오려는 결과의 개수(최소 10, 최대 1000)</param>
-        public Task<CubeHistoryResponseDTO> GetCubeResult(int count)
+        public Task<CubeHistoryResponseDTO> GetCubeHistory(int count)
         {
-            var utcNow = DateTimeOffset.UtcNow;
-            var kstNow = utcNow.ToOffset(TimeSpan.FromHours(9));
-            
-            return GetCubeResult(count, kstNow.Year, kstNow.Month, kstNow.Day);
+            return GetCubeHistory(count, now);
         }
 
         /// <summary>
         /// 지목한 날짜의 큐브 사용 결과를 조회합니다.
-        /// <para>큐브 사용 결과 데이터는 매일 오전 4시, 전일 데이터가 갱신됩니다.</para>
-        /// <para>큐브 사용 결과 데이터는 2022년 11월 25일부터 조회할 수 있습니다.</para>
+        /// <para>데이터는 매일 오전 4시, 전일 데이터가 갱신됩니다.</para>
         /// <para>e.g. 오늘 오후 3시 5분 큐브 확률 정보 조회 시, 어제의 큐브 확률 정보 데이터를 조회할 수 있습니다.</para>
+        /// <para>2022년 11월 25일 데이터부터 조회할 수 있습니다.</para>
         /// </summary>
         /// <param name="count">한번에 가져오려는 결과의 개수(최소 10, 최대 1000)</param>
-        /// <param name="year">조회 기준일 (KST) 연도</param>
-        /// <param name="month">조회 기준일 (KST) 월</param>
-        /// <param name="day">조회 기준일 (KST) 월의 날짜</param>
-        public async Task<CubeHistoryResponseDTO> GetCubeResult(int count, int year, int month, int day)
+        /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
+        public async Task<CubeHistoryResponseDTO> GetCubeHistory(int count, DateTimeOffset dateTimeOffset)
         {
-            if (year <= 2022 && month <= 11 && day < 25)
-            {
-                throw new ArgumentException("You can only retrieve data after 2022-11-25.");
-            }
-
             using (var client = new HttpClient())
             {
                 var path = "maplestory/v1/history/cube";
@@ -1374,7 +1367,7 @@ namespace MapleStory.OpenAPI
 
                 var query = HttpUtility.ParseQueryString(uriBuilder.Query);
                 query["count"] = count.ToString();
-                query["date_kst"] = new DateTime(year, month, day).ToString("yyyyMMdd");
+                query["date_kst"] = ToDateString(MinDate(2022, 11, 25), dateTimeOffset);
 
                 uriBuilder.Query = query.ToString();
 
@@ -1397,29 +1390,14 @@ namespace MapleStory.OpenAPI
         }
 
         /// <summary>
-        /// 지목한 날짜의 큐브 사용 결과를 조회합니다.
-        /// <para>큐브 사용 결과 데이터는 매일 오전 4시, 전일 데이터가 갱신됩니다.</para>
-        /// <para>큐브 사용 결과 데이터는 2022년 11월 25일부터 조회할 수 있습니다.</para>
-        /// <para>e.g. 오늘 오후 3시 5분 큐브 확률 정보 조회 시, 어제의 큐브 확률 정보 데이터를 조회할 수 있습니다.</para>
-        /// </summary>
-        /// <param name="count">한번에 가져오려는 결과의 개수(최소 10, 최대 1000)</param>
-        /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
-        public Task<CubeHistoryResponseDTO> GetCubeResult(int count, DateTimeOffset dateTimeOffset)
-        {
-            var kstDate = dateTimeOffset.ToOffset(TimeSpan.FromHours(9));
-
-            return GetCubeResult(count, kstDate.Year, kstDate.Month, kstDate.Day);
-        }
-
-        /// <summary>
         /// 큐브 사용 결과를 조회합니다.
-        /// <para>큐브 사용 결과 데이터는 매일 오전 4시, 전일 데이터가 갱신됩니다.</para>
-        /// <para>큐브 사용 결과 데이터는 2022년 11월 25일부터 조회할 수 있습니다.</para>
+        /// <para>데이터는 매일 오전 4시, 전일 데이터가 갱신됩니다.</para>
         /// <para>e.g. 오늘 오후 3시 5분 큐브 확률 정보 조회 시, 어제의 큐브 확률 정보 데이터를 조회할 수 있습니다.</para>
+        /// <para>2022년 11월 25일 데이터부터 조회할 수 있습니다.</para>
         /// </summary>
         /// <param name="count">한번에 가져오려는 결과의 개수(최소 10, 최대 1000)</param>
         /// <param name="cursor">페이징 처리를 위한 cursor</param>
-        public async Task<CubeHistoryResponseDTO> GetCubeResult(int count, string cursor)
+        public async Task<CubeHistoryResponseDTO> GetCubeHistory(int count, string cursor)
         {
             using (var client = new HttpClient())
             {
@@ -1449,6 +1427,8 @@ namespace MapleStory.OpenAPI
                 }
             }
         }
+
+        #endregion
 
         #region 랭킹 정보 조회
 

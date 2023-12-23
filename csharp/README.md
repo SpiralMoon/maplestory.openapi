@@ -29,11 +29,12 @@ using MapleStory.OpenAPI;
 
 var apiKey = "{Your API Key}";
 var api = new MapleStoryAPI(apiKey);
+var dateTimeOffset = new DateTimeOffset(2023, 10, 15, 0, 0, 0, TimeSpan.FromHours(9));
 
 // run your code
 try
 {
-    var response = await api.GetCubeResult(1000, 2023, 10, 15);
+    var response = await api.GetCubeHistory(1000, dateTimeOffset);
 
     var count = response.Count;
     var cubeHistory = response.CubeHistory;
