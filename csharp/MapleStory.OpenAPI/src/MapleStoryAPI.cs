@@ -1367,7 +1367,7 @@ namespace MapleStory.OpenAPI
 
                 var query = HttpUtility.ParseQueryString(uriBuilder.Query);
                 query["count"] = count.ToString();
-                query["date_kst"] = ToDateString(MinDate(2022, 11, 25), dateTimeOffset);
+                query["date"] = ToDateString(MinDate(2022, 11, 25), dateTimeOffset);
 
                 uriBuilder.Query = query.ToString();
 

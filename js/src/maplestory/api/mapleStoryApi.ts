@@ -1132,7 +1132,7 @@ class MapleStoryApi {
         if (typeof parameter === 'string') {
             query.cursor = parameter;
         } else if (typeof parameter === 'object') {
-            query.date_kst = MapleStoryApi.toDateString({
+            query.date = MapleStoryApi.toDateString({
                 year: 2022,
                 month: 11,
                 day: 25
@@ -1971,7 +1971,7 @@ type CharacterSkillApiQuery = {
 
 type CubeApiQuery = {
     count: number;
-    date_kst?: string;
+    date?: string;
     cursor?: string;
 }
 
