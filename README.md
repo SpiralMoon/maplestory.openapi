@@ -24,12 +24,12 @@ Include the latest version of the Java library in your java project by adding th
 <dependency>
     <groupId>dev.spiralmoon</groupId>
     <artifactId>maplestory-openapi</artifactId>
-    <version>2.1.0</version> <!-- Replace with the latest version -->
+    <version>2.1.1</version> <!-- Replace with the latest version -->
 </dependency>
 ```
 or
 ```groovy
-implementation 'dev.spiralmoon:maplestory-openapi:2.1.0' // Replace with the latest version
+implementation 'dev.spiralmoon:maplestory-openapi:2.1.1' // Replace with the latest version
 ```
 
 For detailed information on how to use the library in Java, refer to the [HERE](./java/README.md).
@@ -50,7 +50,7 @@ Add the latest version of the C# library to your NuGet project:
 
 
 ```xml
-<PackageReference Include="MapleStory.OpenAPI" Version="2.1.0" />
+<PackageReference Include="MapleStory.OpenAPI" Version="2.1.1" />
 ```
 
 

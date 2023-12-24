@@ -16,12 +16,12 @@ Java 기반 프로젝트에 아래 정보를 입력하여 패키지를 추가하
 <dependency>
     <groupId>dev.spiralmoon</groupId>
     <artifactId>maplestory-openapi</artifactId>
-    <version>2.1.0</version> <!-- Replace with the latest version -->
+    <version>2.1.1</version> <!-- Replace with the latest version -->
 </dependency>
 ```
 또는
 ```groovy
-implementation 'dev.spiralmoon:maplestory-openapi:2.1.0' // Replace with the latest version
+implementation 'dev.spiralmoon:maplestory-openapi:2.1.1' // Replace with the latest version
 ```
 
 ## Usage
