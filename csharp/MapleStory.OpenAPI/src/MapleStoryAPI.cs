@@ -1435,7 +1435,7 @@ namespace MapleStory.OpenAPI
         /// <summary>
         /// 종합 랭킹 정보를 조회합니다.
         /// <para>- 2023년 12월 22일 데이터부터 조회할 수 있습니다.</para>
-        /// <para>- 오전 1시부터 전일 데이터 조회가 가능합니다</para>
+        /// <para>- 오전 8시 30분부터 오늘의 랭킹 정보를 조회할 수 있습니다.</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
         /// </summary>
         /// <param name="worldName">월드 명
@@ -1566,7 +1566,7 @@ namespace MapleStory.OpenAPI
         /// <summary>
         /// 종합 랭킹 정보를 조회합니다.
         /// <para>- 2023년 12월 22일 데이터부터 조회할 수 있습니다.</para>
-        /// <para>- 오전 1시부터 전일 데이터 조회가 가능합니다</para>
+        /// <para>- 오전 8시 30분부터 오늘의 랭킹 정보를 조회할 수 있습니다.</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
         /// </summary>
         /// <param name="worldName">월드 명
@@ -1745,7 +1745,7 @@ namespace MapleStory.OpenAPI
         /// <summary>
         /// 유니온 랭킹 정보를 조회합니다.
         /// <para>- 2023년 12월 22일 데이터부터 조회할 수 있습니다.</para>
-        /// <para>- 오전 1시부터 전일 데이터 조회가 가능합니다</para>
+        /// <para>- 오전 8시 30분부터 오늘의 랭킹 정보를 조회할 수 있습니다.</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
         /// </summary>
         /// <param name="worldName">월드 명
@@ -1777,7 +1777,7 @@ namespace MapleStory.OpenAPI
         /// <summary>
         /// 유니온 랭킹 정보를 조회합니다.
         /// <para>- 2023년 12월 22일 데이터부터 조회할 수 있습니다.</para>
-        /// <para>- 오전 1시부터 전일 데이터 조회가 가능합니다</para>
+        /// <para>- 오전 8시 30분부터 오늘의 랭킹 정보를 조회할 수 있습니다.</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
         /// </summary>
         /// <param name="worldName">월드 명
@@ -1850,7 +1850,7 @@ namespace MapleStory.OpenAPI
         /// <summary>
         /// 길드 랭킹 정보를 조회합니다.
         /// <para>- 2023년 12월 22일 데이터부터 조회할 수 있습니다.</para>
-        /// <para>- 오전 1시부터 전일 데이터 조회가 가능합니다</para>
+        /// <para>- 오전 8시 30분부터 오늘의 랭킹 정보를 조회할 수 있습니다.</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
         /// </summary>
         /// <param name="worldName">월드 명
@@ -1883,7 +1883,7 @@ namespace MapleStory.OpenAPI
         /// <summary>
         /// 길드 랭킹 정보를 조회합니다.
         /// <para>- 2023년 12월 22일 데이터부터 조회할 수 있습니다.</para>
-        /// <para>- 오전 1시부터 전일 데이터 조회가 가능합니다</para>
+        /// <para>- 오전 8시 30분부터 오늘의 랭킹 정보를 조회할 수 있습니다.</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
         /// </summary>
         /// <param name="worldName">월드 명
@@ -1961,7 +1961,7 @@ namespace MapleStory.OpenAPI
         /// <summary>
         /// 무릉도장 랭킹 정보를 조회합니다.
         /// <para>- 2023년 12월 22일 데이터부터 조회할 수 있습니다.</para>
-        /// <para>- 오전 1시부터 전일 데이터 조회가 가능합니다</para>
+        /// <para>- 오전 8시 30분부터 오늘의 랭킹 정보를 조회할 수 있습니다.</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
         /// </summary>
         /// <param name="worldName">월드 명
@@ -2092,7 +2092,7 @@ namespace MapleStory.OpenAPI
         /// <summary>
         /// 무릉도장 랭킹 정보를 조회합니다.
         /// <para>- 2023년 12월 22일 데이터부터 조회할 수 있습니다.</para>
-        /// <para>- 오전 1시부터 전일 데이터 조회가 가능합니다</para>
+        /// <para>- 오전 8시 30분부터 오늘의 랭킹 정보를 조회할 수 있습니다.</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
         /// </summary>
         /// <param name="worldName">월드 명
@@ -2269,7 +2269,7 @@ namespace MapleStory.OpenAPI
         /// <summary>
         /// 더 시드 랭킹 정보를 조회합니다.
         /// <para>- 2023년 12월 22일 데이터부터 조회할 수 있습니다.</para>
-        /// <para>- 오전 1시부터 전일 데이터 조회가 가능합니다</para>
+        /// <para>- 오전 8시 30분부터 오늘의 랭킹 정보를 조회할 수 있습니다.</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
         /// </summary>
         /// <param name="worldName">월드 명
@@ -2301,7 +2301,7 @@ namespace MapleStory.OpenAPI
         /// <summary>
         /// 더 시드 랭킹 정보를 조회합니다.
         /// <para>- 2023년 12월 22일 데이터부터 조회할 수 있습니다.</para>
-        /// <para>- 오전 1시부터 전일 데이터 조회가 가능합니다</para>
+        /// <para>- 오전 8시 30분부터 오늘의 랭킹 정보를 조회할 수 있습니다.</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
         /// </summary>
         /// <param name="worldName">월드 명
@@ -2374,7 +2374,7 @@ namespace MapleStory.OpenAPI
         /// <summary>
         /// 업적 랭킹 정보를 조회합니다.
         /// <para>- 2023년 12월 22일 데이터부터 조회할 수 있습니다.</para>
-        /// <para>- 오전 1시부터 전일 데이터 조회가 가능합니다</para>
+        /// <para>- 오전 8시 30분부터 오늘의 랭킹 정보를 조회할 수 있습니다.</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
         /// </summary>
         /// <param name="ocid">캐릭터 식별자</param>
@@ -2387,7 +2387,7 @@ namespace MapleStory.OpenAPI
         /// <summary>
         /// 업적 랭킹 정보를 조회합니다.
         /// <para>- 2023년 12월 22일 데이터부터 조회할 수 있습니다.</para>
-        /// <para>- 오전 1시부터 전일 데이터 조회가 가능합니다</para>
+        /// <para>- 오전 8시 30분부터 오늘의 랭킹 정보를 조회할 수 있습니다.</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
         /// </summary>
         /// <param name="ocid">캐릭터 식별자</param>
@@ -2433,7 +2433,6 @@ namespace MapleStory.OpenAPI
                 }
             }
         }
-
 
         #endregion
 

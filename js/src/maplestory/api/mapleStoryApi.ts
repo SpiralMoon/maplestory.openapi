@@ -1472,9 +1472,6 @@ class MapleStoryApi {
 
     /**
      * 서버 점검 정보를 조회합니다.
-     * - 2023년 12월 22일 데이터부터 조회할 수 있습니다.
-     * - 오전 8시 30분부터 오늘의 랭킹 정보를 조회할 수 있습니다.
-     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
      */
     public async getInspectionInfo(): Promise<InspectionInfoDto> {
 
