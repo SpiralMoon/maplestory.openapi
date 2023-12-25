@@ -1,11 +1,11 @@
 import os
 
-from maplestory_openapi.maplestory_api import MaplestoryApi
+from maplestory_openapi.api.maplestory_api import MapleStoryApi
 from dotenv import load_dotenv
 
 load_dotenv()
 
-api = MaplestoryApi(
+api = MapleStoryApi(
     api_key=os.environ.get('NEXON_API_KEY'), timeout=5000)
 ocid = api.get_character_id('아델')
 basic = api.get_character_basic(ocid)

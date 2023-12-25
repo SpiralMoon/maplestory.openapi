@@ -1,7 +1,8 @@
+from dataclasses import dataclass
 from datetime import datetime, timedelta
+from zoneinfo import ZoneInfo
 from typing import Any
 from pydantic import BaseModel
-from zoneinfo import ZoneInfo
 import requests
 
 from maplestory_openapi.api.dto.character_basic import CharacterBasic
@@ -13,9 +14,12 @@ from maplestory_openapi.api.dto.character_ability import CharacterAbility
 from maplestory_openapi.api.dto.character_item_equipment import CharacterItemEquipment
 from maplestory_openapi.api.dto.character_cashitem_equipment import CharacterCashitemEquipment
 from maplestory_openapi.api.dto.character_symbol_equipment import CharacterSymbolEquipment
+from maplestory_openapi.api.maplestory_api_error import MapleStoryApiError, MapleStoryApiException
+
+from maplestory_openapi.api.utils.date import get_proper_default_datetime
 
 
-class MaplestoryApi(BaseModel):
+class MapleStoryApi(BaseModel):
     api_key: str
     BASE_URL: str = 'https://open.api.nexon.com/'
     timeout: int
@@ -35,6 +39,7 @@ class MaplestoryApi(BaseModel):
 
         @param character_name (str): 캐릭터 이름
         """
+
         path = 'maplestory/v1/id'
         query = {
             'character_name': character_name,
@@ -42,7 +47,7 @@ class MaplestoryApi(BaseModel):
         r = self.fetch(path, query)
         return r.get('ocid')
 
-    def get_character_basic(self, ocid: str, date: datetime = datetime.now()) -> CharacterBasic:
+    def get_character_basic(self, ocid: str, date: datetime = get_proper_default_datetime()) -> CharacterBasic:
         """기본 정보를 조회합니다.
 
         - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
@@ -72,7 +77,7 @@ class MaplestoryApi(BaseModel):
             character_image=r.get('character_image'),
         )
 
-    def get_character_popularity(self, ocid: str, date: datetime = datetime.now()) -> CharacterPopularity:
+    def get_character_popularity(self, ocid: str, date: datetime = get_proper_default_datetime()) -> CharacterPopularity:
         """인기도 정보를 조회합니다.
 
         - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
@@ -94,7 +99,7 @@ class MaplestoryApi(BaseModel):
             popularity=r.get('popularity'),
         )
 
-    def get_character_stat(self, ocid: str, date: datetime = datetime.now()) -> CharacterStat:
+    def get_character_stat(self, ocid: str, date: datetime = get_proper_default_datetime()) -> CharacterStat:
         """종합능력치 정보를 조회합니다.
 
         - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
@@ -118,7 +123,7 @@ class MaplestoryApi(BaseModel):
             remain_ap=r.get('remain_ap'),
         )
 
-    def get_character_hyper_stat(self, ocid: str, date: datetime = datetime.now()) -> CharacterHyperStat:
+    def get_character_hyper_stat(self, ocid: str, date: datetime = get_proper_default_datetime()) -> CharacterHyperStat:
         """하이퍼스탯 정보를 조회합니다.
 
         - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
@@ -151,7 +156,7 @@ class MaplestoryApi(BaseModel):
                 'hyper_stat_preset_3_remain_point'),
         )
 
-    def get_character_propensity(self, ocid: str, date: datetime = datetime.now()) -> CharacterPropensity:
+    def get_character_propensity(self, ocid: str, date: datetime = get_proper_default_datetime()) -> CharacterPropensity:
         """성향 정보를 조회합니다.
 
         - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
@@ -178,7 +183,7 @@ class MaplestoryApi(BaseModel):
             charm_level=r.get('charm_level'),
         )
 
-    def get_character_ability(self, ocid: str, date: datetime = datetime.now()) -> CharacterAbility:
+    def get_character_ability(self, ocid: str, date: datetime = get_proper_default_datetime()) -> CharacterAbility:
         """어빌리티 정보를 조회합니다.
 
         - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
@@ -202,7 +207,7 @@ class MaplestoryApi(BaseModel):
             remain_fame=r.get('remain_fame'),
         )
 
-    def get_character_item_equipment(self, ocid: str, date: datetime = datetime.now()) -> CharacterItemEquipment:
+    def get_character_item_equipment(self, ocid: str, date: datetime = get_proper_default_datetime()) -> CharacterItemEquipment:
         """장착한 장비 중 캐시 장비를 제외한 나머지 장비 정보를 조회합니다.
 
         - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
@@ -229,7 +234,7 @@ class MaplestoryApi(BaseModel):
             mechanic_equipment=r.get('mechanic_equipment'),
         )
 
-    def get_character_cashitem_equipment(self, ocid: str, date: datetime = datetime.now()) -> CharacterCashitemEquipment:
+    def get_character_cashitem_equipment(self, ocid: str, date: datetime = get_proper_default_datetime()) -> CharacterCashitemEquipment:
         """장착한 캐시 장비 정보를 조회합니다.
 
         - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
@@ -262,7 +267,7 @@ class MaplestoryApi(BaseModel):
                 'additional_cash_item_equipment_preset_3'),
         )
 
-    def get_character_symbol_equipment(self, ocid: str, date: datetime = datetime.now()) -> CharacterSymbolEquipment:
+    def get_character_symbol_equipment(self, ocid: str, date: datetime = get_proper_default_datetime()) -> CharacterSymbolEquipment:
         """장착한 심볼 정보를 조회합니다.
 
         - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
@@ -285,7 +290,7 @@ class MaplestoryApi(BaseModel):
         )
 
     def fetch(self, path: str, query: dict) -> Any:
-        return requests.get(
+        r = requests.get(
             f'{self.BASE_URL}{path}',
             params=query,
             headers={
@@ -294,12 +299,22 @@ class MaplestoryApi(BaseModel):
             timeout=self.timeout,
         ).json()
 
-    def to_date_string(self, min_date: datetime, date: datetime) -> str:
-        min_date = min_date.astimezone(ZoneInfo('Asia/Seoul'))
-        target_date = date.astimezone(ZoneInfo('Asia/Seoul'))
-        max_date = datetime.now(tz=ZoneInfo('Asia/Seoul')) - timedelta(days=1)
+        if (r.get('error')):
+            raise MapleStoryApiException(MapleStoryApiError(**r.get('error')))
+
+        return r
+
+    def to_date_string(self, min: datetime, date: datetime = get_proper_default_datetime()) -> str:
+        min_date = self.get_kst_datetime(min)
+        target_date = self.get_kst_datetime(date)
         if target_date < min_date:
-            return min_date.strftime('%Y-%m-%d')
-        if target_date > max_date:
-            return max_date.strftime('%Y-%m-%d')
-        return date.strftime('%Y-%m-%d')
+            raise ValueError(
+                f'You can only retrieve data after {min_date.strftime("%Y-%m-%d")}')
+        return target_date.strftime('%Y-%m-%d')
+
+    def get_kst_datetime(self, date: datetime = get_proper_default_datetime()) -> datetime:
+        """datetime 객체를 KST datetime 객체로 변환합니다.
+
+        datetime.astimezone()을 사용하면 지역에 따라 다른 결과가 나오고 date.replace()에도 버그가 존재하므로 datetime으로 재설정합니다.
+        """
+        return datetime(year=date.year, month=date.month, day=date.day, tzinfo=ZoneInfo('Asia/Seoul'))
