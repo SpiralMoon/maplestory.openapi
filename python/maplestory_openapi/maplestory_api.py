@@ -27,6 +27,14 @@ class MaplestoryApi(BaseModel):
         )
 
     def get_character_id(self, character_name: str) -> str:
+        """캐릭터 식별자(ocid)를 조회합니다.
+
+        - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
+        - 오전 1시부터 전일 데이터 조회가 가능합니다
+        - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
+
+        @param character_name (str): 캐릭터 이름
+        """
         path = 'maplestory/v1/id'
         query = {
             'character_name': character_name,
@@ -35,6 +43,15 @@ class MaplestoryApi(BaseModel):
         return r.get('ocid')
 
     def get_character_basic(self, ocid: str, date: datetime = datetime.now()) -> CharacterBasic:
+        """기본 정보를 조회합니다.
+
+        - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
+        - 오전 1시부터 전일 데이터 조회가 가능합니다
+        - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
+
+        @param ocid(str): 캐릭터 식별자(ocid)
+        @param date(datetime): 조회 기준일 (KST)
+        """
         path = 'maplestory/v1/character/basic'
         query = {
             'ocid': ocid,
@@ -47,13 +64,24 @@ class MaplestoryApi(BaseModel):
             world_name=r.get('world_name'),
             character_gender=r.get('character_gender'),
             character_class=r.get('character_class'),
+            character_class_level=r.get('character_class_level'),
             character_level=r.get('character_level'),
+            character_exp=r.get('character_exp'),
             character_exp_rate=r.get('character_exp_rate'),
             character_guild_name=r.get('character_guild_name'),
             character_image=r.get('character_image'),
         )
 
     def get_character_popularity(self, ocid: str, date: datetime = datetime.now()) -> CharacterPopularity:
+        """인기도 정보를 조회합니다.
+
+        - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
+        - 오전 1시부터 전일 데이터 조회가 가능합니다
+        - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
+
+        @param ocid(str): 캐릭터 식별자(ocid)
+        @param date(datetime): 조회 기준일 (KST)
+        """
         path = 'maplestory/v1/character/popularity'
         query = {
             'ocid': ocid,
@@ -67,6 +95,15 @@ class MaplestoryApi(BaseModel):
         )
 
     def get_character_stat(self, ocid: str, date: datetime = datetime.now()) -> CharacterStat:
+        """종합능력치 정보를 조회합니다.
+
+        - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
+        - 오전 1시부터 전일 데이터 조회가 가능합니다
+        - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
+
+        @param ocid(str): 캐릭터 식별자(ocid)
+        @param date(datetime): 조회 기준일 (KST)
+        """
         path = 'maplestory/v1/character/stat'
         query = {
             'ocid': ocid,
@@ -82,6 +119,15 @@ class MaplestoryApi(BaseModel):
         )
 
     def get_character_hyper_stat(self, ocid: str, date: datetime = datetime.now()) -> CharacterHyperStat:
+        """하이퍼스탯 정보를 조회합니다.
+
+        - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
+        - 오전 1시부터 전일 데이터 조회가 가능합니다
+        - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
+
+        @param ocid(str): 캐릭터 식별자(ocid)
+        @param date(datetime): 조회 기준일 (KST)
+        """
         path = 'maplestory/v1/character/hyper-stat'
         query = {
             'ocid': ocid,
@@ -106,6 +152,15 @@ class MaplestoryApi(BaseModel):
         )
 
     def get_character_propensity(self, ocid: str, date: datetime = datetime.now()) -> CharacterPropensity:
+        """성향 정보를 조회합니다.
+
+        - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
+        - 오전 1시부터 전일 데이터 조회가 가능합니다
+        - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
+
+        @param ocid(str): 캐릭터 식별자(ocid)
+        @param date(datetime): 조회 기준일 (KST)
+        """
         path = 'maplestory/v1/character/propensity'
         query = {
             'ocid': ocid,
@@ -124,6 +179,15 @@ class MaplestoryApi(BaseModel):
         )
 
     def get_character_ability(self, ocid: str, date: datetime = datetime.now()) -> CharacterAbility:
+        """어빌리티 정보를 조회합니다.
+
+        - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
+        - 오전 1시부터 전일 데이터 조회가 가능합니다
+        - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
+
+        @param ocid(str): 캐릭터 식별자(ocid)
+        @param date(datetime): 조회 기준일 (KST)
+        """
         path = 'maplestory/v1/character/ability'
         query = {
             'ocid': ocid,
@@ -139,6 +203,15 @@ class MaplestoryApi(BaseModel):
         )
 
     def get_character_item_equipment(self, ocid: str, date: datetime = datetime.now()) -> CharacterItemEquipment:
+        """장착한 장비 중 캐시 장비를 제외한 나머지 장비 정보를 조회합니다.
+
+        - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
+        - 오전 1시부터 전일 데이터 조회가 가능합니다
+        - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
+
+        @param ocid(str): 캐릭터 식별자(ocid)
+        @param date(datetime): 조회 기준일 (KST)
+        """
         path = 'maplestory/v1/character/item-equipment'
         query = {
             'ocid': ocid,
@@ -157,6 +230,15 @@ class MaplestoryApi(BaseModel):
         )
 
     def get_character_cashitem_equipment(self, ocid: str, date: datetime = datetime.now()) -> CharacterCashitemEquipment:
+        """장착한 캐시 장비 정보를 조회합니다.
+
+        - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
+        - 오전 1시부터 전일 데이터 조회가 가능합니다
+        - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
+
+        @param ocid(str): 캐릭터 식별자(ocid)
+        @param date(datetime): 조회 기준일 (KST)
+        """
         path = 'maplestory/v1/character/cashitem-equipment'
         query = {
             'ocid': ocid,
@@ -181,6 +263,15 @@ class MaplestoryApi(BaseModel):
         )
 
     def get_character_symbol_equipment(self, ocid: str, date: datetime = datetime.now()) -> CharacterSymbolEquipment:
+        """장착한 심볼 정보를 조회합니다.
+
+        - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
+        - 오전 1시부터 전일 데이터 조회가 가능합니다
+        - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
+
+        @param ocid(str): 캐릭터 식별자(ocid)
+        @param date(datetime): 조회 기준일 (KST)
+        """
         path = 'maplestory/v1/character/symbol-equipment'
         query = {
             'ocid': ocid,
