@@ -13,7 +13,7 @@
 NuGet 기반 프로젝트에 아래 정보를 입력하여 패키지를 추가하세요:
 
 ```xml
-<PackageReference Include="MapleStory.OpenAPI" Version="2.1.1" />
+<PackageReference Include="MapleStory.OpenAPI" Version="2.2.0" />
 ```
 
 ## Usage

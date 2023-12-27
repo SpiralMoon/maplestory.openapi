@@ -13,7 +13,7 @@ Packages written in other languages can be found [HERE](https://github.com/Spira
 Install the latest version of the JavaScript/TypeScript library in your npm project:
 
 ```bash
-npm install maplestory-openapi@2.1.1 # Replace with the latest version
+npm install maplestory-openapi@2.2.0 # Replace with the latest version
 ```
 
 ## Usage

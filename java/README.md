@@ -16,12 +16,12 @@ Install the latest version of the Java library in your java project:
 <dependency>
     <groupId>dev.spiralmoon</groupId>
     <artifactId>maplestory-openapi</artifactId>
-    <version>2.1.1</version> <!-- Replace with the latest version -->
+    <version>2.2.0</version> <!-- Replace with the latest version -->
 </dependency>
 ```
 or 
 ```groovy
-implementation 'dev.spiralmoon:maplestory-openapi:2.1.1' // Replace with the latest version
+implementation 'dev.spiralmoon:maplestory-openapi:2.2.0' // Replace with the latest version
 ```
 
 ## Usage
