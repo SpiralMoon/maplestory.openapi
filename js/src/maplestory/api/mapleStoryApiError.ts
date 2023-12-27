@@ -1,25 +1,24 @@
-import {MapleStoryErrorBody} from "./mapleStoryApi";
+import { MapleStoryErrorBody } from './mapleStoryApi';
 
 /**
  * MapleStory OpenAPI error.<br>
  * Please refer to <a href="https://openapi.nexon.com/guide/request-api/">MapleStory API guide</a> for the error details.
  */
 class MapleStoryApiError extends Error {
+  readonly name = 'MapleStoryApiError';
 
-	readonly name = 'MapleStoryApiError';
+  readonly errorCode: MapleStoryApiErrorCode;
 
-	readonly errorCode: MapleStoryApiErrorCode;
+  readonly message: string;
 
-	readonly message: string;
+  constructor(errorBody: MapleStoryErrorBody) {
+    const { name, message } = errorBody.error;
 
-	constructor(errorBody: MapleStoryErrorBody) {
-		const {name, message} = errorBody.error;
+    super(message);
 
-		super(message);
-
-		this.errorCode = errorMap[name];
-		this.message = message;
-	}
+    this.errorCode = errorMap[name];
+    this.message = message;
+  }
 }
 
 /**
@@ -27,25 +26,25 @@ class MapleStoryApiError extends Error {
  * Please refer to <a href="https://openapi.nexon.com/guide/request-api/">MapleStory API guide</a> for the error code details.
  */
 enum MapleStoryApiErrorCode {
-	OPENAPI00001,
-	OPENAPI00002,
-	OPENAPI00003,
-	OPENAPI00004,
-	OPENAPI00005,
-	OPENAPI00006,
-	OPENAPI00007,
+  OPENAPI00001,
+  OPENAPI00002,
+  OPENAPI00003,
+  OPENAPI00004,
+  OPENAPI00005,
+  OPENAPI00006,
+  OPENAPI00007,
 }
 
 const errorMap: {
-	[key: string]: MapleStoryApiErrorCode
+  [key: string]: MapleStoryApiErrorCode;
 } = {
-	['OPENAPI00001']: MapleStoryApiErrorCode.OPENAPI00001,
-	['OPENAPI00002']: MapleStoryApiErrorCode.OPENAPI00002,
-	['OPENAPI00003']: MapleStoryApiErrorCode.OPENAPI00003,
-	['OPENAPI00004']: MapleStoryApiErrorCode.OPENAPI00004,
-	['OPENAPI00005']: MapleStoryApiErrorCode.OPENAPI00005,
-	['OPENAPI00006']: MapleStoryApiErrorCode.OPENAPI00006,
-	['OPENAPI00007']: MapleStoryApiErrorCode.OPENAPI00007,
-}
+  ['OPENAPI00001']: MapleStoryApiErrorCode.OPENAPI00001,
+  ['OPENAPI00002']: MapleStoryApiErrorCode.OPENAPI00002,
+  ['OPENAPI00003']: MapleStoryApiErrorCode.OPENAPI00003,
+  ['OPENAPI00004']: MapleStoryApiErrorCode.OPENAPI00004,
+  ['OPENAPI00005']: MapleStoryApiErrorCode.OPENAPI00005,
+  ['OPENAPI00006']: MapleStoryApiErrorCode.OPENAPI00006,
+  ['OPENAPI00007']: MapleStoryApiErrorCode.OPENAPI00007,
+};
 
-export {MapleStoryApiError, MapleStoryApiErrorCode};
+export { MapleStoryApiError, MapleStoryApiErrorCode };

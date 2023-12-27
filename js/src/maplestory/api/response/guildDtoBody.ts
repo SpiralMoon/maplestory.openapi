@@ -1,5 +1,5 @@
 type GuildDtoBody = {
-    oguild_id: string;
-}
+  oguild_id: string;
+};
 
-export type {GuildDtoBody};
+export type { GuildDtoBody };

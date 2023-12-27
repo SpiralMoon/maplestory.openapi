@@ -1,20 +1,19 @@
-import {GuildDtoBody} from "../response/guildDtoBody";
+import { GuildDtoBody } from '../response/guildDtoBody';
 
 /**
  * 길드 식별자 정보
  */
 class GuildDto {
+  /**
+   * 길드 식별자
+   */
+  oguildId: string;
 
-    /**
-     * 길드 식별자
-     */
-    oguildId: string;
+  constructor(obj: GuildDtoBody) {
+    const { oguild_id } = obj;
 
-    constructor(obj: GuildDtoBody) {
-        const {oguild_id} = obj;
-
-        this.oguildId = oguild_id;
-    }
+    this.oguildId = oguild_id;
+  }
 }
 
-export {GuildDto};
+export { GuildDto };

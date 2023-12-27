@@ -1,5 +1,6 @@
-type RankingResponseDtoBody<Ranking extends { date: string; ranking: number; }> = {
+type RankingResponseDtoBody<Ranking extends { date: string; ranking: number }> =
+  {
     ranking: Ranking[];
-};
+  };
 
-export {RankingResponseDtoBody};
+export { RankingResponseDtoBody };

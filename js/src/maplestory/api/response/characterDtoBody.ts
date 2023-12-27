@@ -1,5 +1,5 @@
 type CharacterDtoBody = {
-	ocid: string;
+  ocid: string;
 };
 
-export type {CharacterDtoBody}
+export type { CharacterDtoBody };

@@ -1,11 +1,11 @@
-import {CubeHistoryDtoBody} from "./cubeHistoryDtoBody";
+import { CubeHistoryDtoBody } from './cubeHistoryDtoBody';
 
 type CubeHistoryResponseDtoBody = {
-	count: number;
+  count: number;
 
-	cube_history: CubeHistoryDtoBody[];
+  cube_history: CubeHistoryDtoBody[];
 
-	next_cursor: string;
-}
+  next_cursor: string;
+};
 
-export type {CubeHistoryResponseDtoBody};
+export type { CubeHistoryResponseDtoBody };
