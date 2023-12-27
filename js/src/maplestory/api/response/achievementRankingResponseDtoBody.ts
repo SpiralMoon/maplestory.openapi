@@ -1,16 +1,17 @@
-import {RankingResponseDtoBody} from "./rankingResponseDtoBody";
+import { RankingResponseDtoBody } from './rankingResponseDtoBody';
 
-type AchievementRankingResponseDtoBody = RankingResponseDtoBody<AchievementRankingDtoBody>;
+type AchievementRankingResponseDtoBody =
+  RankingResponseDtoBody<AchievementRankingDtoBody>;
 
 type AchievementRankingDtoBody = {
-    date: string;
-    ranking: number;
-    character_name: string;
-    world_name: string;
-    class_name: string;
-    sub_class_name: string;
-    trophy_grade: string;
-    trophy_score: number;
-}
+  date: string;
+  ranking: number;
+  character_name: string;
+  world_name: string;
+  class_name: string;
+  sub_class_name: string;
+  trophy_grade: string;
+  trophy_score: number;
+};
 
-export type {AchievementRankingResponseDtoBody, AchievementRankingDtoBody};
+export type { AchievementRankingResponseDtoBody, AchievementRankingDtoBody };

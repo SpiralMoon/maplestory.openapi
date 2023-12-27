@@ -1,21 +1,20 @@
-import {OverallRankingDto} from "./overallRankingDto";
-import {OverallRankingResponseDtoBody} from "../response/overallRankingResponseDtoBody";
+import { OverallRankingDto } from './overallRankingDto';
+import { OverallRankingResponseDtoBody } from '../response/overallRankingResponseDtoBody';
 
 /**
  * 종합 랭킹 응답 정보
  */
 class OverallRankingResponseDto {
+  /**
+   * 종합 랭킹 정보
+   */
+  ranking: OverallRankingDto[];
 
-    /**
-     * 종합 랭킹 정보
-     */
-    ranking: OverallRankingDto[];
+  constructor(obj: OverallRankingResponseDtoBody) {
+    const { ranking } = obj;
 
-    constructor(obj: OverallRankingResponseDtoBody) {
-        const {ranking} = obj;
-
-        this.ranking = ranking.map(rank => new OverallRankingDto(rank));
-    }
+    this.ranking = ranking.map((rank) => new OverallRankingDto(rank));
+  }
 }
 
-export {OverallRankingResponseDto};
+export { OverallRankingResponseDto };

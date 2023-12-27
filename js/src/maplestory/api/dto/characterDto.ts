@@ -1,20 +1,19 @@
-import {CharacterDtoBody} from "../response/characterDtoBody";
+import { CharacterDtoBody } from '../response/characterDtoBody';
 
 /**
  * 캐릭터 식별 정보
  */
 class CharacterDto {
+  /**
+   * 캐릭터 식별자
+   */
+  ocid: string;
 
-	/**
-	 * 캐릭터 식별자
-	 */
-	ocid: string;
+  constructor(obj: CharacterDtoBody) {
+    const { ocid } = obj;
 
-	constructor(obj: CharacterDtoBody) {
-		const {ocid} = obj;
-
-		this.ocid = ocid;
-	}
+    this.ocid = ocid;
+  }
 }
 
-export {CharacterDto}
+export { CharacterDto };

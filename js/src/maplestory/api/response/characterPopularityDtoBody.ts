@@ -1,6 +1,6 @@
 type CharacterPopularityDtoBody = {
-	date: string;
-	popularity: number;
+  date: string;
+  popularity: number;
 };
 
-export type {CharacterPopularityDtoBody};
+export type { CharacterPopularityDtoBody };

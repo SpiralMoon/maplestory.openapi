@@ -1,21 +1,20 @@
-import {GuildRankingDto} from "./guildRankingDto";
-import {GuildRankingResponseDtoBody} from "../response/guildRankingResponseDtoBody";
+import { GuildRankingDto } from './guildRankingDto';
+import { GuildRankingResponseDtoBody } from '../response/guildRankingResponseDtoBody';
 
 /**
  * 길드 랭킹 응답 정보
  */
 class GuildRankingResponseDto {
+  /**
+   * 길드 랭킹 정보
+   */
+  ranking: GuildRankingDto[];
 
-    /**
-     * 길드 랭킹 정보
-     */
-    ranking: GuildRankingDto[];
+  constructor(obj: GuildRankingResponseDtoBody) {
+    const { ranking } = obj;
 
-    constructor(obj: GuildRankingResponseDtoBody) {
-        const {ranking} = obj;
-
-        this.ranking = ranking.map(rank => new GuildRankingDto(rank));
-    }
+    this.ranking = ranking.map((rank) => new GuildRankingDto(rank));
+  }
 }
 
-export {GuildRankingResponseDto};
+export { GuildRankingResponseDto };
