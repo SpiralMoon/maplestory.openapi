@@ -19,17 +19,6 @@ namespace MapleStory.OpenAPI
         // in milliseconds
         private long timeOut { get; set; }
 
-        private DateTimeOffset now
-        {
-            get
-            {
-                var utcNow = DateTimeOffset.UtcNow;
-                var kstNow = utcNow.ToOffset(TimeSpan.FromHours(9));
-
-                return kstNow;
-            }
-        }
-
         public MapleStoryAPI (string apiKey)
         {
             this.apiKey = apiKey;
@@ -84,7 +73,12 @@ namespace MapleStory.OpenAPI
         /// <param name="characterName">캐릭터 식별자</param>
         public Task<CharacterBasicDTO> GetCharacterBasic(string ocid)
         {
-            return GetCharacterBasic(ocid, now);
+            return GetCharacterBasic(ocid, GetProperDefaultDateTimeOffset(new LatestApiUpdateTimeOption
+            {
+                Hour = 1,
+                Minute = 0,
+                DateOffset = 1
+            }));
         }
 
         /// <summary>
@@ -137,7 +131,12 @@ namespace MapleStory.OpenAPI
         /// <param name="ocid">캐릭터 식별자</param>
         public Task<CharacterPopularityDTO> GetCharacterPopularity(string ocid)
         {
-            return GetCharacterPopularity(ocid, now);
+            return GetCharacterPopularity(ocid, GetProperDefaultDateTimeOffset(new LatestApiUpdateTimeOption
+            {
+                Hour = 1,
+                Minute = 0,
+                DateOffset = 1
+            }));
         }
 
         /// <summary>
@@ -189,7 +188,12 @@ namespace MapleStory.OpenAPI
         /// </summary>
         public Task<CharacterStatDTO> GetCharacterStat(string ocid)
         {
-            return GetCharacterStat(ocid, now);
+            return GetCharacterStat(ocid, GetProperDefaultDateTimeOffset(new LatestApiUpdateTimeOption
+            {
+                Hour = 1,
+                Minute = 0,
+                DateOffset = 1
+            }));
         }
 
         /// <summary>
@@ -242,7 +246,12 @@ namespace MapleStory.OpenAPI
         /// <param name="ocid">캐릭터 식별자</param>
         public Task<CharacterHyperStatDTO> GetCharacterHyperStat(string ocid)
         {
-            return GetCharacterHyperStat(ocid, now);
+            return GetCharacterHyperStat(ocid, GetProperDefaultDateTimeOffset(new LatestApiUpdateTimeOption
+            {
+                Hour = 1,
+                Minute = 0,
+                DateOffset = 1
+            }));
         }
 
         /// <summary>
@@ -295,7 +304,12 @@ namespace MapleStory.OpenAPI
         /// <param name="ocid">캐릭터 식별자</param>
         public Task<CharacterPropensityDTO> GetCharacterPropensity(string ocid)
         {
-            return GetCharacterPropensity(ocid, now);
+            return GetCharacterPropensity(ocid, GetProperDefaultDateTimeOffset(new LatestApiUpdateTimeOption
+            {
+                Hour = 1,
+                Minute = 0,
+                DateOffset = 1
+            }));
         }
 
         /// <summary>
@@ -348,7 +362,12 @@ namespace MapleStory.OpenAPI
         /// <param name="ocid">캐릭터 식별자</param>
         public Task<CharacterAbilityDTO> GetCharacterAbility(string ocid)
         {
-            return GetCharacterAbility(ocid, now);
+            return GetCharacterAbility(ocid, GetProperDefaultDateTimeOffset(new LatestApiUpdateTimeOption
+            {
+                Hour = 1,
+                Minute = 0,
+                DateOffset = 1
+            }));
         }
 
         /// <summary>
@@ -401,7 +420,12 @@ namespace MapleStory.OpenAPI
         /// <param name="ocid">캐릭터 식별자</param>
         public Task<CharacterItemEquipmentDTO> GetCharacterItemEquipment(string ocid)
         {
-            return GetCharacterItemEquipment(ocid, now);
+            return GetCharacterItemEquipment(ocid, GetProperDefaultDateTimeOffset(new LatestApiUpdateTimeOption
+            {
+                Hour = 1,
+                Minute = 0,
+                DateOffset = 1
+            }));
         }
 
         /// <summary>
@@ -454,7 +478,12 @@ namespace MapleStory.OpenAPI
         /// <param name="ocid">캐릭터 식별자</param>
         public Task<CharacterAndroidCashItemEquipmentDTO> GetCharacterCashItemEquipment(string ocid)
         {
-            return GetCharacterCashItemEquipment(ocid, now);
+            return GetCharacterCashItemEquipment(ocid, GetProperDefaultDateTimeOffset(new LatestApiUpdateTimeOption
+            {
+                Hour = 1,
+                Minute = 0,
+                DateOffset = 1
+            }));
         }
 
         /// <summary>
@@ -507,7 +536,12 @@ namespace MapleStory.OpenAPI
         /// <param name="ocid">캐릭터 식별자</param>
         public Task<CharacterSymbolEquipmentDTO> GetCharacterSymbolEquipment(string ocid)
         {
-            return GetCharacterSymbolEquipment(ocid, now);
+            return GetCharacterSymbolEquipment(ocid, GetProperDefaultDateTimeOffset(new LatestApiUpdateTimeOption
+            {
+                Hour = 1,
+                Minute = 0,
+                DateOffset = 1
+            }));
         }
 
         /// <summary>
@@ -560,7 +594,12 @@ namespace MapleStory.OpenAPI
         /// <param name="ocid">캐릭터 식별자</param>
         public Task<CharacterSetEffectDTO> GetCharacterSetEffectAsync(string ocid)
         {
-            return GetCharacterSetEffectAsync(ocid, now);
+            return GetCharacterSetEffectAsync(ocid, GetProperDefaultDateTimeOffset(new LatestApiUpdateTimeOption
+            {
+                Hour = 1,
+                Minute = 0,
+                DateOffset = 1
+            }));
         }
 
         /// <summary>
@@ -613,7 +652,12 @@ namespace MapleStory.OpenAPI
         /// <param name="ocid">캐릭터 식별자</param>
         public Task<CharacterBeautyEquipmentDTO> GetCharacterBeautyEquipment(string ocid)
         {
-            return GetCharacterBeautyEquipment(ocid, now);
+            return GetCharacterBeautyEquipment(ocid, GetProperDefaultDateTimeOffset(new LatestApiUpdateTimeOption
+            {
+                Hour = 1,
+                Minute = 0,
+                DateOffset = 1
+            }));
         }
 
         /// <summary>
@@ -666,7 +710,12 @@ namespace MapleStory.OpenAPI
         /// <param name="ocid">캐릭터 식별자</param>
         public Task<CharacterAndroidEquipmentDTO> GetCharacterAndroidEquipment(string ocid)
         {
-            return GetCharacterAndroidEquipment(ocid, now);
+            return GetCharacterAndroidEquipment(ocid, GetProperDefaultDateTimeOffset(new LatestApiUpdateTimeOption
+            {
+                Hour = 1,
+                Minute = 0,
+                DateOffset = 1
+            }));
         }
 
         /// <summary>
@@ -719,7 +768,12 @@ namespace MapleStory.OpenAPI
         /// <param name="ocid">캐릭터 식별자</param>
         public Task<CharacterPetEquipmentDTO> GetCharacterPetEquipment(string ocid)
         {
-            return GetCharacterPetEquipment(ocid, now);
+            return GetCharacterPetEquipment(ocid, GetProperDefaultDateTimeOffset(new LatestApiUpdateTimeOption
+            {
+                Hour = 1,
+                Minute = 0,
+                DateOffset = 1
+            }));
         }
 
         /// <summary>
@@ -785,7 +839,12 @@ namespace MapleStory.OpenAPI
         /// </param>
         public Task<CharacterSkillDTO> GetCharacterSkill(string ocid, string characterSkillGrade)
         {
-            return GetCharacterSkill(ocid, characterSkillGrade, now);
+            return GetCharacterSkill(ocid, characterSkillGrade, GetProperDefaultDateTimeOffset(new LatestApiUpdateTimeOption
+            {
+                Hour = 1,
+                Minute = 0,
+                DateOffset = 1
+            }));
         }
 
         /// <summary>
@@ -853,7 +912,12 @@ namespace MapleStory.OpenAPI
         /// <param name="ocid">캐릭터 식별자</param>
         public Task<CharacterLinkSkillDTO> GetCharacterLinkSkill(string ocid)
         {
-            return GetCharacterLinkSkill(ocid, now);
+            return GetCharacterLinkSkill(ocid, GetProperDefaultDateTimeOffset(new LatestApiUpdateTimeOption
+            {
+                Hour = 1,
+                Minute = 0,
+                DateOffset = 1
+            }));
         }
 
         /// <summary>
@@ -906,7 +970,12 @@ namespace MapleStory.OpenAPI
         /// <param name="ocid">캐릭터 식별자</param>
         public Task<CharacterVMatrixDTO> GetCharacterVMatrix(string ocid)
         {
-            return GetCharacterVMatrix(ocid, now);
+            return GetCharacterVMatrix(ocid, GetProperDefaultDateTimeOffset(new LatestApiUpdateTimeOption
+            {
+                Hour = 1,
+                Minute = 0,
+                DateOffset = 1
+            }));
         }
 
         /// <summary>
@@ -959,7 +1028,12 @@ namespace MapleStory.OpenAPI
         /// <param name="ocid">캐릭터 식별자</param>
         public Task<CharacterHexaMatrixDTO> GetCharacterHexaMatrix(string ocid)
         {
-            return GetCharacterHexaMatrix(ocid, now);
+            return GetCharacterHexaMatrix(ocid, GetProperDefaultDateTimeOffset(new LatestApiUpdateTimeOption
+            {
+                Hour = 1,
+                Minute = 0,
+                DateOffset = 1
+            }));
         }
 
         /// <summary>
@@ -1012,7 +1086,12 @@ namespace MapleStory.OpenAPI
         /// <param name="ocid">캐릭터 식별자</param>
         public Task<CharacterHexaMatrixStatDTO> GetCharacterHexaMatrixStat(string ocid)
         {
-            return GetCharacterHexaMatrixStat(ocid, now);
+            return GetCharacterHexaMatrixStat(ocid, GetProperDefaultDateTimeOffset(new LatestApiUpdateTimeOption
+            {
+                Hour = 1,
+                Minute = 0,
+                DateOffset = 1
+            }));
         }
 
         /// <summary>
@@ -1065,7 +1144,12 @@ namespace MapleStory.OpenAPI
         /// <param name="ocid">캐릭터 식별자</param>
         public Task<CharacterDojangDTO> GetCharacterDojang(string ocid)
         {
-            return GetCharacterDojang(ocid, now);
+            return GetCharacterDojang(ocid, GetProperDefaultDateTimeOffset(new LatestApiUpdateTimeOption
+            {
+                Hour = 1,
+                Minute = 0,
+                DateOffset = 1
+            }));
         }
 
         /// <summary>
@@ -1122,7 +1206,12 @@ namespace MapleStory.OpenAPI
         /// <param name="ocid">캐릭터 식별자</param>
         public Task<UnionDTO> GetUnion(string ocid)
         {
-            return GetUnion(ocid, now);
+            return GetUnion(ocid, GetProperDefaultDateTimeOffset(new LatestApiUpdateTimeOption
+            {
+                Hour = 1,
+                Minute = 0,
+                DateOffset = 1
+            }));
         }
 
         /// <summary>
@@ -1174,7 +1263,12 @@ namespace MapleStory.OpenAPI
         /// <param name="ocid">캐릭터 식별자</param>
         public Task<UnionRaiderDTO> GetUnionRaider(string ocid)
         {
-            return GetUnionRaider(ocid, now);
+            return GetUnionRaider(ocid, GetProperDefaultDateTimeOffset(new LatestApiUpdateTimeOption
+            {
+                Hour = 1,
+                Minute = 0,
+                DateOffset = 1
+            }));
         }
 
         /// <summary>
@@ -1289,7 +1383,12 @@ namespace MapleStory.OpenAPI
         /// <param name="oGuildId">길드 식별자</param>
         public Task<GuildBasicDTO> GetGuildBasic(string oGuildId)
         {
-            return GetGuildBasic(oGuildId, now);
+            return GetGuildBasic(oGuildId, GetProperDefaultDateTimeOffset(new LatestApiUpdateTimeOption
+            {
+                Hour = 1,
+                Minute = 0,
+                DateOffset = 1
+            }));
         }
 
         /// <summary>
@@ -1339,7 +1438,7 @@ namespace MapleStory.OpenAPI
         #region 확률 정보 조회
 
         /// <summary>
-        /// 오늘 날짜의 큐브 사용 결과를 조회합니다.
+        /// 큐브 사용 결과를 조회합니다.
         /// <para>데이터는 매일 오전 4시, 전일 데이터가 갱신됩니다.</para>
         /// <para>e.g. 오늘 오후 3시 5분 큐브 확률 정보 조회 시, 어제의 큐브 확률 정보 데이터를 조회할 수 있습니다.</para>
         /// <para>2022년 11월 25일 데이터부터 조회할 수 있습니다.</para>
@@ -1347,7 +1446,12 @@ namespace MapleStory.OpenAPI
         /// <param name="count">한번에 가져오려는 결과의 개수(최소 10, 최대 1000)</param>
         public Task<CubeHistoryResponseDTO> GetCubeHistory(int count)
         {
-            return GetCubeHistory(count, now);
+            return GetCubeHistory(count, GetProperDefaultDateTimeOffset(new LatestApiUpdateTimeOption
+            {
+                Hour = 4,
+                Minute = 0,
+                DateOffset = 1
+            }));
         }
 
         /// <summary>
@@ -1560,7 +1664,12 @@ namespace MapleStory.OpenAPI
         /// <param name="page">페이지 번호</param>
         public Task<OverallRankingResponseDTO> GetOverallRanking(string? worldName, int? worldType, string? characterClass, string? ocid, int? page)
         {
-            return GetOverallRanking(worldName, worldType, characterClass, ocid, page, now);
+            return GetOverallRanking(worldName, worldType, characterClass, ocid, page, GetProperDefaultDateTimeOffset(new LatestApiUpdateTimeOption
+            {
+                Hour = 8,
+                Minute = 30,
+                DateOffset = 0
+            }));
         }
 
         /// <summary>
@@ -1771,7 +1880,12 @@ namespace MapleStory.OpenAPI
         /// <param name="page">페이지 번호</param>
         public Task<UnionRankingResponseDTO> GetUnionRanking(string? worldName, string? ocid, int? page)
         {
-            return GetUnionRanking(worldName, ocid, page, now);
+            return GetUnionRanking(worldName, ocid, page, GetProperDefaultDateTimeOffset(new LatestApiUpdateTimeOption
+            {
+                Hour = 8,
+                Minute = 30,
+                DateOffset = 0
+            }));
         }
 
         /// <summary>
@@ -1877,7 +1991,12 @@ namespace MapleStory.OpenAPI
         /// <param name="page">페이지 번호</param>
         public Task<GuildRankingResponseDTO> GetGuildRanking(string? worldName, int? rankingType, string? guildName, int? page)
         {
-            return GetGuildRanking(worldName, rankingType, guildName, page, now);
+            return GetGuildRanking(worldName, rankingType, guildName, page, GetProperDefaultDateTimeOffset(new LatestApiUpdateTimeOption
+            {
+                Hour = 8,
+                Minute = 30,
+                DateOffset = 0
+            }));
         }
 
         /// <summary>
@@ -2086,7 +2205,12 @@ namespace MapleStory.OpenAPI
         /// <param name="page">페이지 번호</param>
         public Task<DojangRankingResponseDTO> GetDojangRanking(string? worldName, int difficulty, string? characterClass, string ocid, int? page)
         {
-            return GetDojangRanking(worldName, difficulty, characterClass, ocid, page, now);
+            return GetDojangRanking(worldName, difficulty, characterClass, ocid, page, GetProperDefaultDateTimeOffset(new LatestApiUpdateTimeOption
+            {
+                Hour = 8,
+                Minute = 30,
+                DateOffset = 0
+            }));
         }
 
         /// <summary>
@@ -2295,7 +2419,12 @@ namespace MapleStory.OpenAPI
         /// <param name="page">페이지 번호</param>
         public Task<TheSeedRankingResponseDTO> GetTheSeedRanking(string? worldName, string? ocid, int? page)
         {
-            return GetTheSeedRanking(worldName, ocid, page, now);
+            return GetTheSeedRanking(worldName, ocid, page, GetProperDefaultDateTimeOffset(new LatestApiUpdateTimeOption
+            {
+                Hour = 8,
+                Minute = 30,
+                DateOffset = 0
+            }));
         }
 
         /// <summary>
@@ -2381,7 +2510,12 @@ namespace MapleStory.OpenAPI
         /// <param name="page">페이지 번호</param>
         public Task<AchievementRankingResponseDTO> GetAchievementRanking(string? ocid, int? page)
         {
-            return GetAchievementRanking(ocid, page, now);
+            return GetAchievementRanking(ocid, page, GetProperDefaultDateTimeOffset(new LatestApiUpdateTimeOption
+            {
+                Hour = 8,
+                Minute = 30,
+                DateOffset = 0
+            }));
         }
 
         /// <summary>
@@ -2484,6 +2618,38 @@ namespace MapleStory.OpenAPI
             return new DateTimeOffset(year, month, day, 0, 0, 0, TimeSpan.FromHours(9));
         }
 
+        /// <summary>
+        /// API 서버의 데이터 갱신 시간에 따라 데이터를 조회 가능한 최신 날짜를 반환합니다.
+        /// </summary>
+        /// <param name="option"></param>
+        private static DateTimeOffset GetProperDefaultDateTimeOffset(LatestApiUpdateTimeOption option)
+        {
+            var utcNow = DateTimeOffset.UtcNow;
+            var kstNow = utcNow.ToOffset(TimeSpan.FromHours(9));
+
+            var hour = option.Hour;
+            var minute = option.Minute;
+            var dateOffset = option.DateOffset;
+
+            DateTimeOffset adjustedDateTimeOffset;
+
+            if (kstNow > kstNow.Date.AddHours(hour).AddMinutes(minute))
+            {
+                adjustedDateTimeOffset = kstNow;
+            }
+            else
+            {
+                adjustedDateTimeOffset = kstNow.AddDays(-1);
+            }
+
+            return adjustedDateTimeOffset.AddDays(-dateOffset ?? 0);
+        }
+
+        /// <summary>
+        /// 날짜 정보를 API 서버에서 요구하는 포맷으로 변환합니다.
+        /// </summary>
+        /// <param name="minDate">API 호출 가능한 최소 날짜</param>
+        /// <param name="date">조회 하려는 날짜</param>
         private static string ToDateString(DateTimeOffset minDate, DateTimeOffset date)
         {
             var minYear = minDate.Year;
@@ -2510,5 +2676,14 @@ namespace MapleStory.OpenAPI
 
             return new MapleStoryAPIException(error);
         }
+    }
+
+    struct LatestApiUpdateTimeOption
+    {
+        public int Hour { get; set; }
+
+        public int Minute { get; set; }
+
+        public int? DateOffset { get; set; }
     }
 }

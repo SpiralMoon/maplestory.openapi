@@ -5,10 +5,7 @@ import dev.spiralmoon.maplestory.api.callback.FailureCallback;
 import dev.spiralmoon.maplestory.api.callback.SuccessCallback;
 import dev.spiralmoon.maplestory.api.dto.*;
 import dev.spiralmoon.maplestory.api.template.*;
-import lombok.Getter;
-import lombok.NonNull;
-import lombok.Setter;
-import lombok.SneakyThrows;
+import lombok.*;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.RequestBody;
@@ -127,7 +124,7 @@ public class MapleStoryApi {
      * @param ocid 캐릭터 식별자
      */
     public CharacterBasicDTO getCharacterBasic(String ocid) throws IOException {
-        return this.getCharacterBasic(ocid, now());
+        return this.getCharacterBasic(ocid, getProperDefaultDateTime(new LatestApiUpdateTimeOption(1, 0, 1)));
     }
 
     /**
@@ -171,7 +168,7 @@ public class MapleStoryApi {
      * @param onFailure 실패 시 콜백
      */
     public void getCharacterBasicAsync(String ocid, SuccessCallback<CharacterBasicDTO> onSuccess, FailureCallback onFailure) {
-        this.getCharacterBasicAsync(ocid, now(), onSuccess, onFailure);
+        this.getCharacterBasicAsync(ocid, getProperDefaultDateTime(new LatestApiUpdateTimeOption(1, 0, 1)), onSuccess, onFailure);
     }
 
     /**
@@ -228,7 +225,7 @@ public class MapleStoryApi {
      * @param ocid 캐릭터 식별자
      */
     public CharacterPopularityDTO getCharacterPopularity(String ocid) throws IOException {
-        return this.getCharacterPopularity(ocid, now());
+        return this.getCharacterPopularity(ocid, getProperDefaultDateTime(new LatestApiUpdateTimeOption(1, 0, 1)));
     }
 
     /**
@@ -270,7 +267,7 @@ public class MapleStoryApi {
      * @param ocid 캐릭터 식별자
      */
     public void getCharacterPopularityAsync(String ocid, SuccessCallback<CharacterPopularityDTO> onSuccess, FailureCallback onFailure) {
-        this.getCharacterPopularityAsync(ocid, now(), onSuccess, onFailure);
+        this.getCharacterPopularityAsync(ocid, getProperDefaultDateTime(new LatestApiUpdateTimeOption(1, 0, 1)), onSuccess, onFailure);
     }
 
     /**
@@ -327,7 +324,7 @@ public class MapleStoryApi {
      * @param ocid 캐릭터 식별자
      */
     public CharacterStatDTO getCharacterStat(String ocid) throws IOException {
-        return this.getCharacterStat(ocid, now());
+        return this.getCharacterStat(ocid, getProperDefaultDateTime(new LatestApiUpdateTimeOption(1, 0, 1)));
     }
 
     /**
@@ -369,7 +366,7 @@ public class MapleStoryApi {
      * @param ocid 캐릭터 식별자
      */
     public void getCharacterStatAsync(String ocid, SuccessCallback<CharacterStatDTO> onSuccess, FailureCallback onFailure) {
-        this.getCharacterStatAsync(ocid, now(), onSuccess, onFailure);
+        this.getCharacterStatAsync(ocid, getProperDefaultDateTime(new LatestApiUpdateTimeOption(1, 0, 1)), onSuccess, onFailure);
     }
 
     /**
@@ -425,7 +422,7 @@ public class MapleStoryApi {
      * @param ocid 캐릭터 식별자
      */
     public CharacterHyperStatDTO getCharacterHyperStat(String ocid) throws IOException {
-        return this.getCharacterHyperStat(ocid, now());
+        return this.getCharacterHyperStat(ocid, getProperDefaultDateTime(new LatestApiUpdateTimeOption(1, 0, 1)));
     }
 
     /**
@@ -467,7 +464,7 @@ public class MapleStoryApi {
      * @param ocid 캐릭터 식별자
      */
     public void getCharacterHyperStatAsync(String ocid, SuccessCallback<CharacterHyperStatDTO> onSuccess, FailureCallback onFailure) {
-        this.getCharacterHyperStatAsync(ocid, now(), onSuccess, onFailure);
+        this.getCharacterHyperStatAsync(ocid, getProperDefaultDateTime(new LatestApiUpdateTimeOption(1, 0, 1)), onSuccess, onFailure);
     }
 
     /**
@@ -525,7 +522,7 @@ public class MapleStoryApi {
      * @param ocid 캐릭터 식별자
      */
     public CharacterPropensityDTO getCharacterPropensity(String ocid) throws IOException {
-        return this.getCharacterPropensity(ocid, now());
+        return this.getCharacterPropensity(ocid, getProperDefaultDateTime(new LatestApiUpdateTimeOption(1, 0, 1)));
     }
 
     /**
@@ -567,7 +564,7 @@ public class MapleStoryApi {
      * @param ocid 캐릭터 식별자
      */
     public void getCharacterPropensityAsync(String ocid, SuccessCallback<CharacterPropensityDTO> onSuccess, FailureCallback onFailure) {
-        this.getCharacterPropensityAsync(ocid, now(), onSuccess, onFailure);
+        this.getCharacterPropensityAsync(ocid, getProperDefaultDateTime(new LatestApiUpdateTimeOption(1, 0, 1)), onSuccess, onFailure);
     }
 
     /**
@@ -625,7 +622,7 @@ public class MapleStoryApi {
      * @param ocid 캐릭터 식별자
      */
     public CharacterAbilityDTO getCharacterAbility(String ocid) throws IOException {
-        return getCharacterAbility(ocid, now());
+        return getCharacterAbility(ocid, getProperDefaultDateTime(new LatestApiUpdateTimeOption(1, 0, 1)));
     }
 
     /**
@@ -667,7 +664,7 @@ public class MapleStoryApi {
      * @param ocid 캐릭터 식별자
      */
     public void getCharacterAbilityAsync(String ocid, SuccessCallback<CharacterAbilityDTO> onSuccess, FailureCallback onFailure) {
-        this.getCharacterAbilityAsync(ocid, now(), onSuccess, onFailure);
+        this.getCharacterAbilityAsync(ocid, getProperDefaultDateTime(new LatestApiUpdateTimeOption(1, 0, 1)), onSuccess, onFailure);
     }
 
     /**
@@ -725,7 +722,7 @@ public class MapleStoryApi {
      * @param ocid 캐릭터 식별자
      */
     public CharacterItemEquipmentDTO getCharacterItemEquipment(String ocid) throws IOException {
-        return this.getCharacterItemEquipment(ocid, now());
+        return this.getCharacterItemEquipment(ocid, getProperDefaultDateTime(new LatestApiUpdateTimeOption(1, 0, 1)));
     }
 
     /**
@@ -768,7 +765,7 @@ public class MapleStoryApi {
      * @param ocid 캐릭터 식별자
      */
     public void getCharacterItemEquipmentAsync(String ocid, SuccessCallback<CharacterItemEquipmentDTO> onSuccess, FailureCallback onFailure) {
-        this.getCharacterItemEquipmentAsync(ocid, now(), onSuccess, onFailure);
+        this.getCharacterItemEquipmentAsync(ocid, getProperDefaultDateTime(new LatestApiUpdateTimeOption(1, 0, 1)), onSuccess, onFailure);
     }
 
     /**
@@ -825,7 +822,7 @@ public class MapleStoryApi {
      * @param ocid 캐릭터 식별자
      */
     public CharacterAndroidCashItemEquipmentDTO getCharacterCashItemEquipment(String ocid) throws IOException {
-        return this.getCharacterCashItemEquipment(ocid, now());
+        return this.getCharacterCashItemEquipment(ocid, getProperDefaultDateTime(new LatestApiUpdateTimeOption(1, 0, 1)));
     }
 
     /**
@@ -867,7 +864,7 @@ public class MapleStoryApi {
      * @param ocid 캐릭터 식별자
      */
     public void getCharacterCashItemEquipmentAsync(String ocid, SuccessCallback<CharacterAndroidCashItemEquipmentDTO> onSuccess, FailureCallback onFailure) {
-        this.getCharacterCashItemEquipmentAsync(ocid, now(), onSuccess, onFailure);
+        this.getCharacterCashItemEquipmentAsync(ocid, getProperDefaultDateTime(new LatestApiUpdateTimeOption(1, 0, 1)), onSuccess, onFailure);
     }
 
     /**
@@ -925,7 +922,7 @@ public class MapleStoryApi {
      * @param ocid 캐릭터 식별자
      */
     public CharacterSymbolEquipmentDTO getCharacterSymbolEquipment(String ocid) throws IOException {
-        return this.getCharacterSymbolEquipment(ocid, now());
+        return this.getCharacterSymbolEquipment(ocid, getProperDefaultDateTime(new LatestApiUpdateTimeOption(1, 0, 1)));
     }
 
     /**
@@ -968,7 +965,7 @@ public class MapleStoryApi {
      * @param ocid 캐릭터 식별자
      */
     public void getCharacterSymbolEquipmentAsync(String ocid, SuccessCallback<CharacterSymbolEquipmentDTO> onSuccess, FailureCallback onFailure) {
-        this.getCharacterSymbolEquipmentAsync(ocid, now(), onSuccess, onFailure);
+        this.getCharacterSymbolEquipmentAsync(ocid, getProperDefaultDateTime(new LatestApiUpdateTimeOption(1, 0, 1)), onSuccess, onFailure);
     }
 
     /**
@@ -1026,7 +1023,7 @@ public class MapleStoryApi {
      * @param ocid 캐릭터 식별자
      */
     public CharacterSetEffectDTO getCharacterSetEffectAsync(String ocid) throws IOException {
-        return this.getCharacterSetEffectAsync(ocid, now());
+        return this.getCharacterSetEffectAsync(ocid, getProperDefaultDateTime(new LatestApiUpdateTimeOption(1, 0, 1)));
     }
 
     /**
@@ -1068,7 +1065,7 @@ public class MapleStoryApi {
      * @param ocid 캐릭터 식별자
      */
     public void getCharacterSetEffectAsync(String ocid, SuccessCallback<CharacterSetEffectDTO> onSuccess, FailureCallback onFailure) {
-        this.getCharacterSetEffectAsync(ocid, now(), onSuccess, onFailure);
+        this.getCharacterSetEffectAsync(ocid, getProperDefaultDateTime(new LatestApiUpdateTimeOption(1, 0, 1)), onSuccess, onFailure);
     }
 
     /**
@@ -1126,7 +1123,7 @@ public class MapleStoryApi {
      * @param ocid 캐릭터 식별자
      */
     public CharacterBeautyEquipmentDTO getCharacterBeautyEquipment(String ocid) throws IOException {
-        return this.getCharacterBeautyEquipment(ocid, now());
+        return this.getCharacterBeautyEquipment(ocid, getProperDefaultDateTime(new LatestApiUpdateTimeOption(1, 0, 1)));
     }
 
     /**
@@ -1169,7 +1166,7 @@ public class MapleStoryApi {
      * @param ocid 캐릭터 식별자
      */
     public void getCharacterBeautyEquipmentAsync(String ocid, SuccessCallback<CharacterBeautyEquipmentDTO> onSuccess, FailureCallback onFailure) {
-        this.getCharacterBeautyEquipmentAsync(ocid, now(), onSuccess, onFailure);
+        this.getCharacterBeautyEquipmentAsync(ocid, getProperDefaultDateTime(new LatestApiUpdateTimeOption(1, 0, 1)), onSuccess, onFailure);
     }
 
     /**
@@ -1227,7 +1224,7 @@ public class MapleStoryApi {
      * @param ocid 캐릭터 식별자
      */
     public CharacterAndroidEquipmentDTO getCharacterAndroidEquipment(String ocid) throws IOException {
-        return getCharacterAndroidEquipment(ocid, now());
+        return getCharacterAndroidEquipment(ocid, getProperDefaultDateTime(new LatestApiUpdateTimeOption(1, 0, 1)));
     }
 
     /**
@@ -1269,7 +1266,7 @@ public class MapleStoryApi {
      * @param ocid 캐릭터 식별자
      */
     public void getCharacterAndroidEquipmentAsync(String ocid, SuccessCallback<CharacterAndroidEquipmentDTO> onSuccess, FailureCallback onFailure) {
-        this.getCharacterAndroidEquipmentAsync(ocid, now(), onSuccess, onFailure);
+        this.getCharacterAndroidEquipmentAsync(ocid, getProperDefaultDateTime(new LatestApiUpdateTimeOption(1, 0, 1)), onSuccess, onFailure);
     }
 
     /**
@@ -1327,7 +1324,7 @@ public class MapleStoryApi {
      * @param ocid 캐릭터 식별자
      */
     public CharacterPetEquipmentDTO getCharacterPetEquipment(String ocid) throws IOException {
-        return this.getCharacterPetEquipment(ocid, now());
+        return this.getCharacterPetEquipment(ocid, getProperDefaultDateTime(new LatestApiUpdateTimeOption(1, 0, 1)));
     }
 
     /**
@@ -1370,7 +1367,7 @@ public class MapleStoryApi {
      * @param ocid 캐릭터 식별자
      */
     public void getCharacterPetEquipmentAsync(String ocid, SuccessCallback<CharacterPetEquipmentDTO> onSuccess, FailureCallback onFailure) {
-        this.getCharacterPetEquipmentAsync(ocid, now(), onSuccess, onFailure);
+        this.getCharacterPetEquipmentAsync(ocid, getProperDefaultDateTime(new LatestApiUpdateTimeOption(1, 0, 1)), onSuccess, onFailure);
     }
 
     /**
@@ -1440,7 +1437,7 @@ public class MapleStoryApi {
      *                            6: 6차 스킬<br>
      */
     public CharacterSkillDTO getCharacterSkill(String ocid, String characterSkillGrade) throws IOException {
-        return this.getCharacterSkill(ocid, now(), characterSkillGrade);
+        return this.getCharacterSkill(ocid, getProperDefaultDateTime(new LatestApiUpdateTimeOption(1, 0, 1)), characterSkillGrade);
     }
 
     /**
@@ -1507,7 +1504,7 @@ public class MapleStoryApi {
      *                            6: 6차 스킬<br>
      */
     public void getCharacterSkillAsync(String ocid, String characterSkillGrade, SuccessCallback<CharacterSkillDTO> onSuccess, FailureCallback onFailure) {
-        this.getCharacterSkillAsync(ocid, now(), characterSkillGrade, onSuccess, onFailure);
+        this.getCharacterSkillAsync(ocid, getProperDefaultDateTime(new LatestApiUpdateTimeOption(1, 0, 1)), characterSkillGrade, onSuccess, onFailure);
     }
 
     /**
@@ -1577,7 +1574,7 @@ public class MapleStoryApi {
      * @param ocid 캐릭터 식별자
      */
     public CharacterLinkSkillDTO getCharacterLinkSkill(String ocid) throws IOException {
-        return this.getCharacterLinkSkill(ocid, now());
+        return this.getCharacterLinkSkill(ocid, getProperDefaultDateTime(new LatestApiUpdateTimeOption(1, 0, 1)));
     }
 
     /**
@@ -1619,7 +1616,7 @@ public class MapleStoryApi {
      * @param ocid 캐릭터 식별자
      */
     public void getCharacterLinkSkillAsync(String ocid, SuccessCallback<CharacterLinkSkillDTO> onSuccess, FailureCallback onFailure) {
-        this.getCharacterLinkSkillAsync(ocid, now(), onSuccess, onFailure);
+        this.getCharacterLinkSkillAsync(ocid, getProperDefaultDateTime(new LatestApiUpdateTimeOption(1, 0, 1)), onSuccess, onFailure);
     }
 
     /**
@@ -1677,7 +1674,7 @@ public class MapleStoryApi {
      * @param ocid 캐릭터 식별자
      */
     public CharacterVMatrixDTO getCharacterVMatrix(String ocid) throws IOException {
-        return this.getCharacterVMatrix(ocid, now());
+        return this.getCharacterVMatrix(ocid, getProperDefaultDateTime(new LatestApiUpdateTimeOption(1, 0, 1)));
     }
 
     /**
@@ -1719,7 +1716,7 @@ public class MapleStoryApi {
      * @param ocid 캐릭터 식별자
      */
     public void getCharacterVMatrixAsync(String ocid, SuccessCallback<CharacterVMatrixDTO> onSuccess, FailureCallback onFailure) {
-        this.getCharacterVMatrixAsync(ocid, now(), onSuccess, onFailure);
+        this.getCharacterVMatrixAsync(ocid, getProperDefaultDateTime(new LatestApiUpdateTimeOption(1, 0, 1)), onSuccess, onFailure);
     }
 
     /**
@@ -1776,7 +1773,7 @@ public class MapleStoryApi {
      * @param ocid 캐릭터 식별자
      */
     public CharacterHexaMatrixDTO getCharacterHexaMatrix(String ocid) throws IOException {
-        return this.getCharacterHexaMatrix(ocid, now());
+        return this.getCharacterHexaMatrix(ocid, getProperDefaultDateTime(new LatestApiUpdateTimeOption(1, 0, 1)));
     }
 
     /**
@@ -1818,7 +1815,7 @@ public class MapleStoryApi {
      * @param ocid 캐릭터 식별자
      */
     public void getCharacterHexaMatrixAsync(String ocid, SuccessCallback<CharacterHexaMatrixDTO> onSuccess, FailureCallback onFailure) {
-        getCharacterHexaMatrixAsync(ocid, now(), onSuccess, onFailure);
+        getCharacterHexaMatrixAsync(ocid, getProperDefaultDateTime(new LatestApiUpdateTimeOption(1, 0, 1)), onSuccess, onFailure);
     }
 
     /**
@@ -1875,7 +1872,7 @@ public class MapleStoryApi {
      * @param ocid 캐릭터 식별자
      */
     public CharacterHexaMatrixStatDTO getCharacterHexaMatrixStat(String ocid) throws IOException {
-        return this.getCharacterHexaMatrixStat(ocid, now());
+        return this.getCharacterHexaMatrixStat(ocid, getProperDefaultDateTime(new LatestApiUpdateTimeOption(1, 0, 1)));
     }
 
     /**
@@ -1917,7 +1914,7 @@ public class MapleStoryApi {
      * @param ocid 캐릭터 식별자
      */
     public void getCharacterHexaMatrixStatAsync(String ocid, SuccessCallback<CharacterHexaMatrixStatDTO> onSuccess, FailureCallback onFailure) {
-        this.getCharacterHexaMatrixStatAsync(ocid, now(), onSuccess, onFailure);
+        this.getCharacterHexaMatrixStatAsync(ocid, getProperDefaultDateTime(new LatestApiUpdateTimeOption(1, 0, 1)), onSuccess, onFailure);
     }
 
     /**
@@ -1974,7 +1971,7 @@ public class MapleStoryApi {
      * @param ocid 캐릭터 식별자
      */
     public CharacterDojangDTO getCharacterDojang(String ocid) throws IOException {
-        return this.getCharacterDojang(ocid, now());
+        return this.getCharacterDojang(ocid, getProperDefaultDateTime(new LatestApiUpdateTimeOption(1, 0, 1)));
     }
 
     /**
@@ -2016,7 +2013,7 @@ public class MapleStoryApi {
      * @param ocid 캐릭터 식별자
      */
     public void getCharacterDojangAsync(String ocid, SuccessCallback<CharacterDojangDTO> onSuccess, FailureCallback onFailure) {
-        getCharacterDojangAsync(ocid, now(), onSuccess, onFailure);
+        getCharacterDojangAsync(ocid, getProperDefaultDateTime(new LatestApiUpdateTimeOption(1, 0, 1)), onSuccess, onFailure);
     }
 
     /**
@@ -2077,7 +2074,7 @@ public class MapleStoryApi {
      * @param ocid 캐릭터 식별자
      */
     public UnionDTO getUnion(String ocid) throws IOException {
-        return this.getUnion(ocid, now());
+        return this.getUnion(ocid, getProperDefaultDateTime(new LatestApiUpdateTimeOption(1, 0, 1)));
     }
 
     /**
@@ -2119,7 +2116,7 @@ public class MapleStoryApi {
      * @param ocid 캐릭터 식별자
      */
     public void getUnionAsync(String ocid, SuccessCallback<UnionDTO> onSuccess, FailureCallback onFailure) {
-        this.getUnionAsync(ocid, now(), onSuccess, onFailure);
+        this.getUnionAsync(ocid, getProperDefaultDateTime(new LatestApiUpdateTimeOption(1, 0, 1)), onSuccess, onFailure);
     }
 
     /**
@@ -2176,7 +2173,7 @@ public class MapleStoryApi {
      * @param ocid 캐릭터 식별자
      */
     public UnionRaiderDTO getUnionRaider(String ocid) throws IOException {
-        return this.getUnionRaider(ocid, now());
+        return this.getUnionRaider(ocid, getProperDefaultDateTime(new LatestApiUpdateTimeOption(1, 0, 1)));
     }
 
     /**
@@ -2218,7 +2215,7 @@ public class MapleStoryApi {
      * @param ocid 캐릭터 식별자
      */
     public void getUnionRaiderAsync(String ocid, SuccessCallback<UnionRaiderDTO> onSuccess, FailureCallback onFailure) {
-        this.getUnionRaiderAsync(ocid, now(), onSuccess, onFailure);
+        this.getUnionRaiderAsync(ocid, getProperDefaultDateTime(new LatestApiUpdateTimeOption(1, 0, 1)), onSuccess, onFailure);
     }
 
     /**
@@ -2386,7 +2383,7 @@ public class MapleStoryApi {
      * @param oguildId 길드 식별자
      */
     public GuildBasicDTO getGuildBasic(String oguildId) throws IOException {
-        return this.getGuildBasic(oguildId, now());
+        return this.getGuildBasic(oguildId, getProperDefaultDateTime(new LatestApiUpdateTimeOption(1, 0, 1)));
     }
 
     /**
@@ -2428,7 +2425,7 @@ public class MapleStoryApi {
      * @param oguildId 길드 식별자
      */
     public void getGuildBasicAsync(String oguildId, SuccessCallback<GuildBasicDTO> onSuccess, FailureCallback onFailure) {
-        this.getGuildBasicAsync(oguildId, now(), onSuccess, onFailure);
+        this.getGuildBasicAsync(oguildId, getProperDefaultDateTime(new LatestApiUpdateTimeOption(1, 0, 1)), onSuccess, onFailure);
     }
 
     /**
@@ -2481,7 +2478,7 @@ public class MapleStoryApi {
     //#region 확률 정보 조회
 
     /**
-     * 오늘 날짜의 큐브 사용 결과를 조회합니다.<br>
+     * 큐브 사용 결과를 조회합니다.<br>
      * - 데이터는 매일 오전 4시, 전일 데이터가 갱신됩니다.<br>
      * - e.g. 오늘 오후 3시 5분 큐브 확률 정보 조회 시, 어제의 큐브 확률 정보 데이터를 조회할 수 있습니다.<br>
      * - 2022년 11월 25일 데이터부터 조회할 수 있습니다.<br>
@@ -2489,11 +2486,11 @@ public class MapleStoryApi {
      * @param count 한번에 가져오려는 결과의 개수(최소 10, 최대 1000)
      */
     public CubeHistoryResponseDTO getCubeHistory(int count) throws IOException {
-        return this.getCubeHistory(count, now());
+        return this.getCubeHistory(count, getProperDefaultDateTime(new LatestApiUpdateTimeOption(4, 0, 1)));
     }
 
     /**
-     * 오늘 날짜의 큐브 사용 결과를 비동기로 조회합니다.<br>
+     * 큐브 사용 결과를 비동기로 조회합니다.<br>
      * - 데이터는 매일 오전 4시, 전일 데이터가 갱신됩니다.<br>
      * - e.g. 오늘 오후 3시 5분 큐브 확률 정보 조회 시, 어제의 큐브 확률 정보 데이터를 조회할 수 있습니다.<br>
      * - 2022년 11월 25일 데이터부터 조회할 수 있습니다.<br>
@@ -2501,7 +2498,7 @@ public class MapleStoryApi {
      * @param count 한번에 가져오려는 결과의 개수(최소 10, 최대 1000)
      */
     public void getCubeHistoryAsync(int count, SuccessCallback<CubeHistoryResponseDTO> onSuccess, FailureCallback onFailure) {
-        this.getCubeHistoryAsync(count, now(), onSuccess, onFailure);
+        this.getCubeHistoryAsync(count, getProperDefaultDateTime(new LatestApiUpdateTimeOption(4, 0, 1)), onSuccess, onFailure);
     }
 
     /**
@@ -2783,7 +2780,7 @@ public class MapleStoryApi {
      * @param page           페이지 번호
      */
     public OverallRankingResponseDTO getOverallRanking(String worldName, Integer worldType, String characterClass, String ocid, Integer page) throws IOException {
-        return this.getOverallRanking(worldName, worldType, characterClass, ocid, page, now());
+        return this.getOverallRanking(worldName, worldType, characterClass, ocid, page, getProperDefaultDateTime(new LatestApiUpdateTimeOption(8, 30, 0)));
     }
 
     /**
@@ -3060,7 +3057,7 @@ public class MapleStoryApi {
      * @param page           페이지 번호
      */
     public void getOverallRankingAsync(String worldName, Integer worldType, String characterClass, String ocid, Integer page, SuccessCallback<OverallRankingResponseDTO> onSuccess, FailureCallback onFailure) {
-        this.getOverallRankingAsync(worldName, worldType, characterClass, ocid, page, now(), onSuccess, onFailure);
+        this.getOverallRankingAsync(worldName, worldType, characterClass, ocid, page, getProperDefaultDateTime(new LatestApiUpdateTimeOption(8, 30, 0)), onSuccess, onFailure);
     }
 
     /**
@@ -3254,7 +3251,7 @@ public class MapleStoryApi {
      * @param page      페이지 번호
      */
     public UnionRankingResponseDTO getUnionRanking(String worldName, String ocid, Integer page) throws IOException {
-        return this.getUnionRanking(worldName, ocid, page, now());
+        return this.getUnionRanking(worldName, ocid, page, getProperDefaultDateTime(new LatestApiUpdateTimeOption(8, 30, 0)));
     }
 
     /**
@@ -3335,7 +3332,7 @@ public class MapleStoryApi {
      * @param page      페이지 번호
      */
     public void getUnionRankingAsync(String worldName, String ocid, Integer page, SuccessCallback<UnionRankingResponseDTO> onSuccess, FailureCallback onFailure) {
-        this.getUnionRankingAsync(worldName, ocid, page, now(), onSuccess, onFailure);
+        this.getUnionRankingAsync(worldName, ocid, page, getProperDefaultDateTime(new LatestApiUpdateTimeOption(8, 30, 0)), onSuccess, onFailure);
     }
 
     /**
@@ -3432,7 +3429,7 @@ public class MapleStoryApi {
      * @param page        페이지 번호
      */
     public GuildRankingResponseDTO getGuildRanking(String worldName, Integer rankingType, String guildName, Integer page) throws IOException {
-        return this.getGuildRanking(worldName, rankingType, guildName, page, now());
+        return this.getGuildRanking(worldName, rankingType, guildName, page, getProperDefaultDateTime(new LatestApiUpdateTimeOption(8, 30, 0)));
     }
 
     /**
@@ -3515,7 +3512,7 @@ public class MapleStoryApi {
      * @param page        페이지 번호
      */
     public void getGuildRankingAsync(String worldName, Integer rankingType, String guildName, Integer page, SuccessCallback<GuildRankingResponseDTO> onSuccess, FailureCallback onFailure) {
-        this.getGuildRankingAsync(worldName, rankingType, guildName, page, now(), onSuccess, onFailure);
+        this.getGuildRankingAsync(worldName, rankingType, guildName, page, getProperDefaultDateTime(new LatestApiUpdateTimeOption(8, 30, 0)), onSuccess, onFailure);
     }
 
     /**
@@ -3711,7 +3708,7 @@ public class MapleStoryApi {
      * @param page           페이지 번호
      */
     public DojangRankingResponseDTO getDojangRanking(String worldName, Integer difficulty, String characterClass, String ocid, Integer page) throws IOException {
-        return this.getDojangRanking(worldName, difficulty, characterClass, ocid, page, now());
+        return this.getDojangRanking(worldName, difficulty, characterClass, ocid, page, getProperDefaultDateTime(new LatestApiUpdateTimeOption(8, 30, 0)));
     }
 
     /**
@@ -3990,7 +3987,7 @@ public class MapleStoryApi {
      * @param page           페이지 번호
      */
     public void getDojangRankingAsync(String worldName, Integer difficulty, String characterClass, String ocid, Integer page, SuccessCallback<DojangRankingResponseDTO> onSuccess, FailureCallback onFailure) {
-        this.getDojangRankingAsync(worldName, difficulty, characterClass, ocid, page, now(), onSuccess, onFailure);
+        this.getDojangRankingAsync(worldName, difficulty, characterClass, ocid, page, getProperDefaultDateTime(new LatestApiUpdateTimeOption(8, 30, 0)), onSuccess, onFailure);
     }
 
     /**
@@ -4185,7 +4182,7 @@ public class MapleStoryApi {
      * @param page      페이지 번호
      */
     public TheSeedRankingResponseDTO getTheSeedRanking(String worldName, String ocid, Integer page) throws IOException {
-        return this.getTheSeedRanking(worldName, ocid, page, now());
+        return this.getTheSeedRanking(worldName, ocid, page, getProperDefaultDateTime(new LatestApiUpdateTimeOption(8, 30, 0)));
     }
 
     /**
@@ -4257,7 +4254,7 @@ public class MapleStoryApi {
      * @param page      페이지 번호
      */
     public void getTheSeedRankingAsync(String worldName, String ocid, Integer page, SuccessCallback<TheSeedRankingResponseDTO> onSuccess, FailureCallback onFailure) {
-        this.getTheSeedRankingAsync(worldName, ocid, page, now(), onSuccess, onFailure);
+        this.getTheSeedRankingAsync(worldName, ocid, page, getProperDefaultDateTime(new LatestApiUpdateTimeOption(8, 30, 0)), onSuccess, onFailure);
     }
 
     /**
@@ -4334,7 +4331,7 @@ public class MapleStoryApi {
      * @param page 페이지 번호
      */
     public AchievementRankingResponseDTO getAchievementRanking(String ocid, Integer page) throws IOException {
-        return this.getAchievementRanking(ocid, page, now());
+        return this.getAchievementRanking(ocid, page, getProperDefaultDateTime(new LatestApiUpdateTimeOption(8, 30, 0)));
     }
 
     /**
@@ -4378,7 +4375,7 @@ public class MapleStoryApi {
      * @param page 페이지 번호
      */
     public void getAchievementRankingAsync(String ocid, Integer page, SuccessCallback<AchievementRankingResponseDTO> onSuccess, FailureCallback onFailure) {
-        this.getAchievementRankingAsync(ocid, page, now(), onSuccess, onFailure);
+        this.getAchievementRankingAsync(ocid, page, getProperDefaultDateTime(new LatestApiUpdateTimeOption(8, 30, 0)), onSuccess, onFailure);
     }
 
     /**
@@ -4522,19 +4519,46 @@ public class MapleStoryApi {
         return new MapleStoryApiException(error);
     }
 
-    private static LocalDateTime now() {
-        return LocalDateTime.now(ZoneId.of("Asia/Seoul"));
-    }
-
     private static LocalDateTime minDate(int year, int month, int day) {
         return LocalDateTime.of(year, month, day, 0, 0, 0, 0);
     }
 
-    private static String toDateString(@NonNull LocalDateTime minDate, @NonNull LocalDateTime date) {
+    /**
+     * API 서버의 데이터 갱신 시간에 따라 데이터를 조회 가능한 최신 날짜를 반환합니다.
+     *
+     * @param option
+     */
+    private static LocalDateTime getProperDefaultDateTime(LatestApiUpdateTimeOption option) {
 
-        if (date == null) {
-            date = now();
+        final int hour = option.getHour();
+        final int minute = option.getMinute();
+        final Integer dateOffset = option.getDateOffset();
+
+        final LocalDateTime kstNow = LocalDateTime.now(ZoneId.of("Asia/Seoul"));
+        final LocalDateTime updateDate = LocalDateTime
+                .now(ZoneId.of("Asia/Seoul"))
+                .withHour(hour)
+                .withMinute(minute);
+
+        LocalDateTime adjustedDateTime;
+
+        if (kstNow.isAfter(updateDate)) {
+            adjustedDateTime = kstNow;
+        } else {
+            adjustedDateTime = kstNow.minusDays(1);
         }
+
+        return adjustedDateTime.minusDays(dateOffset != null ? dateOffset : 0);
+    }
+
+    /**
+     * 날짜 정보를 API 서버에서 요구하는 포맷으로 변환합니다.
+     *
+     * @param minDate API 호출 가능한 최소 날짜
+     * @param date    조회 하려는 날짜
+     * @return
+     */
+    private static String toDateString(@NonNull LocalDateTime minDate, @NonNull LocalDateTime date) {
 
         final int minYear = minDate.getYear();
         final int minMonth = minDate.getMonthValue();
@@ -4553,5 +4577,19 @@ public class MapleStoryApi {
 
         return yyyyMMdd;
     }
+}
+
+/**
+ * API 서버의 데이터 갱신 시각과 조회 가능한 최근 날짜와 현재 날짜와의 차이
+ */
+@AllArgsConstructor
+@Data
+class LatestApiUpdateTimeOption {
+
+    private int hour;
+
+    private int minute;
+
+    private Integer dateOffset;
 }
 

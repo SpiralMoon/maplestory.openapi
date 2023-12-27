@@ -1,5 +1,5 @@
 import axios, { AxiosError } from 'axios';
-import dayjs from 'dayjs';
+import dayjs, { Dayjs } from 'dayjs';
 import timezone from 'dayjs/plugin/timezone';
 import utc from 'dayjs/plugin/utc';
 import xml2js from 'xml2js';
@@ -134,15 +134,24 @@ class MapleStoryApi {
    * @param ocid 캐릭터 식별자
    * @param dateOptions 조회 기준일 (KST)
    */
-  public async getCharacterBasic(ocid: string, dateOptions?: DateOptions): Promise<CharacterBasicDto> {
-
+  public async getCharacterBasic(
+    ocid: string,
+    dateOptions: DateOptions = MapleStoryApi.getProperDefaultDateOptions({
+      hour:1,
+      minute: 0,
+      dateOffset: 1
+    }),
+  ): Promise<CharacterBasicDto> {
     const query: CharacterApiQuery = {
       ocid: ocid,
-      date: MapleStoryApi.toDateString({
-        year: 2023,
-        month: 12,
-        day: 21
-      }, dateOptions)
+      date: MapleStoryApi.toDateString(
+        {
+          year: 2023,
+          month: 12,
+          day: 21,
+        },
+        dateOptions,
+      ),
     };
 
     try {
@@ -151,7 +160,7 @@ class MapleStoryApi {
         baseURL: MapleStoryApi.BASE_URL,
         timeout: this.timeout,
         headers: this.buildHeaders(),
-        params: query
+        params: query,
       });
 
       return new CharacterBasicDto(response.data);
@@ -193,7 +202,11 @@ class MapleStoryApi {
    */
   public async getCharacterPopularity(
     ocid: string,
-    dateOptions?: DateOptions,
+    dateOptions: DateOptions = MapleStoryApi.getProperDefaultDateOptions({
+      hour:1,
+      minute: 0,
+      dateOffset: 1
+    }),
   ): Promise<CharacterPopularityDto> {
     const query: CharacterApiQuery = {
       ocid: ocid,
@@ -203,6 +216,7 @@ class MapleStoryApi {
           month: 12,
           day: 21,
         },
+        
         dateOptions,
       ),
     };
@@ -239,7 +253,11 @@ class MapleStoryApi {
    */
   public async getCharacterStat(
     ocid: string,
-    dateOptions?: DateOptions,
+    dateOptions: DateOptions = MapleStoryApi.getProperDefaultDateOptions({
+      hour:1,
+      minute: 0,
+      dateOffset: 1
+    }),
   ): Promise<CharacterStatDto> {
     const query: CharacterApiQuery = {
       ocid: ocid,
@@ -249,6 +267,7 @@ class MapleStoryApi {
           month: 12,
           day: 21,
         },
+        
         dateOptions,
       ),
     };
@@ -285,7 +304,11 @@ class MapleStoryApi {
    */
   public async getCharacterHyperStat(
     ocid: string,
-    dateOptions?: DateOptions,
+    dateOptions: DateOptions = MapleStoryApi.getProperDefaultDateOptions({
+      hour:1,
+      minute: 0,
+      dateOffset: 1
+    }),
   ): Promise<CharacterHyperStatDto> {
     const query: CharacterApiQuery = {
       ocid: ocid,
@@ -295,6 +318,7 @@ class MapleStoryApi {
           month: 12,
           day: 21,
         },
+        
         dateOptions,
       ),
     };
@@ -331,7 +355,11 @@ class MapleStoryApi {
    */
   public async getCharacterPropensity(
     ocid: string,
-    dateOptions?: DateOptions,
+    dateOptions: DateOptions = MapleStoryApi.getProperDefaultDateOptions({
+      hour:1,
+      minute: 0,
+      dateOffset: 1
+    }),
   ): Promise<CharacterPropensityDto> {
     const query: CharacterApiQuery = {
       ocid: ocid,
@@ -377,7 +405,11 @@ class MapleStoryApi {
    */
   public async getCharacterAbility(
     ocid: string,
-    dateOptions?: DateOptions,
+    dateOptions: DateOptions = MapleStoryApi.getProperDefaultDateOptions({
+      hour:1,
+      minute: 0,
+      dateOffset: 1
+    }),
   ): Promise<CharacterAbilityDto> {
     const query: CharacterApiQuery = {
       ocid: ocid,
@@ -387,6 +419,7 @@ class MapleStoryApi {
           month: 12,
           day: 21,
         },
+
         dateOptions,
       ),
     };
@@ -423,7 +456,11 @@ class MapleStoryApi {
    */
   public async getCharacterItemEquipment(
     ocid: string,
-    dateOptions?: DateOptions,
+    dateOptions: DateOptions = MapleStoryApi.getProperDefaultDateOptions({
+      hour:1,
+      minute: 0,
+      dateOffset: 1
+    }),
   ): Promise<CharacterItemEquipmentDto> {
     const query: CharacterApiQuery = {
       ocid: ocid,
@@ -433,6 +470,7 @@ class MapleStoryApi {
           month: 12,
           day: 21,
         },
+
         dateOptions,
       ),
     };
@@ -469,7 +507,11 @@ class MapleStoryApi {
    */
   public async getCharacterCashItemEquipment(
     ocid: string,
-    dateOptions?: DateOptions,
+    dateOptions: DateOptions = MapleStoryApi.getProperDefaultDateOptions({
+      hour:1,
+      minute: 0,
+      dateOffset: 1
+    }),
   ): Promise<CharacterCashItemEquipmentDto> {
     const query: CharacterApiQuery = {
       ocid: ocid,
@@ -518,7 +560,11 @@ class MapleStoryApi {
    */
   public async getCharacterSymbolEquipment(
     ocid: string,
-    dateOptions?: DateOptions,
+    dateOptions: DateOptions = MapleStoryApi.getProperDefaultDateOptions({
+      hour:1,
+      minute: 0,
+      dateOffset: 1
+    }),
   ): Promise<CharacterSymbolEquipmentDto> {
     const query: CharacterApiQuery = {
       ocid: ocid,
@@ -528,6 +574,7 @@ class MapleStoryApi {
           month: 12,
           day: 21,
         },
+
         dateOptions,
       ),
     };
@@ -564,7 +611,11 @@ class MapleStoryApi {
    */
   public async getCharacterSetEffect(
     ocid: string,
-    dateOptions?: DateOptions,
+    dateOptions: DateOptions = MapleStoryApi.getProperDefaultDateOptions({
+      hour:1,
+      minute: 0,
+      dateOffset: 1
+    }),
   ): Promise<CharacterSetEffectDto> {
     const query: CharacterApiQuery = {
       ocid: ocid,
@@ -574,6 +625,7 @@ class MapleStoryApi {
           month: 12,
           day: 21,
         },
+
         dateOptions,
       ),
     };
@@ -610,7 +662,11 @@ class MapleStoryApi {
    */
   public async getCharacterBeautyEquipment(
     ocid: string,
-    dateOptions?: DateOptions,
+    dateOptions: DateOptions = MapleStoryApi.getProperDefaultDateOptions({
+      hour:1,
+      minute: 0,
+      dateOffset: 1
+    }),
   ): Promise<CharacterBeautyEquipmentDto> {
     const query: CharacterApiQuery = {
       ocid: ocid,
@@ -656,7 +712,11 @@ class MapleStoryApi {
    */
   public async getCharacterAndroidEquipment(
     ocid: string,
-    dateOptions?: DateOptions,
+    dateOptions: DateOptions = MapleStoryApi.getProperDefaultDateOptions({
+      hour:1,
+      minute: 0,
+      dateOffset: 1
+    }),
   ): Promise<CharacterAndroidEquipmentDto> {
     const query: CharacterApiQuery = {
       ocid: ocid,
@@ -702,7 +762,11 @@ class MapleStoryApi {
    */
   public async getCharacterPetEquipment(
     ocid: string,
-    dateOptions?: DateOptions,
+    dateOptions: DateOptions = MapleStoryApi.getProperDefaultDateOptions({
+      hour:1,
+      minute: 0,
+      dateOffset: 1
+    }),
   ): Promise<CharacterPetEquipmentDto> {
     const query: CharacterApiQuery = {
       ocid: ocid,
@@ -712,6 +776,7 @@ class MapleStoryApi {
           month: 12,
           day: 21,
         },
+
         dateOptions,
       ),
     };
@@ -761,7 +826,11 @@ class MapleStoryApi {
   public async getCharacterSkill(
     ocid: string,
     characterSkillGrade: string,
-    dateOptions?: DateOptions,
+    dateOptions: DateOptions = MapleStoryApi.getProperDefaultDateOptions({
+      hour:1,
+      minute: 0,
+      dateOffset: 1
+    }),
   ): Promise<CharacterSkillDto> {
     const query: CharacterSkillApiQuery = {
       ocid: ocid,
@@ -772,6 +841,7 @@ class MapleStoryApi {
           month: 12,
           day: 21,
         },
+
         dateOptions,
       ),
     };
@@ -808,7 +878,11 @@ class MapleStoryApi {
    */
   public async getCharacterLinkSkill(
     ocid: string,
-    dateOptions?: DateOptions,
+    dateOptions: DateOptions = MapleStoryApi.getProperDefaultDateOptions({
+      hour:1,
+      minute: 0,
+      dateOffset: 1
+    }),
   ): Promise<CharacterLinkSkillDto> {
     const query: CharacterApiQuery = {
       ocid: ocid,
@@ -818,6 +892,7 @@ class MapleStoryApi {
           month: 12,
           day: 21,
         },
+
         dateOptions,
       ),
     };
@@ -854,7 +929,11 @@ class MapleStoryApi {
    */
   public async getCharacterVMatrix(
     ocid: string,
-    dateOptions?: DateOptions,
+    dateOptions: DateOptions = MapleStoryApi.getProperDefaultDateOptions({
+      hour:1,
+      minute: 0,
+      dateOffset: 1
+    }),
   ): Promise<CharacterVMatrixDto> {
     const query: CharacterApiQuery = {
       ocid: ocid,
@@ -900,7 +979,11 @@ class MapleStoryApi {
    */
   public async getCharacterHexaMatrix(
     ocid: string,
-    dateOptions?: DateOptions,
+    dateOptions: DateOptions = MapleStoryApi.getProperDefaultDateOptions({
+      hour:1,
+      minute: 0,
+      dateOffset: 1
+    }),
   ): Promise<CharacterHexaMatrixDto> {
     const query: CharacterApiQuery = {
       ocid: ocid,
@@ -910,6 +993,7 @@ class MapleStoryApi {
           month: 12,
           day: 21,
         },
+
         dateOptions,
       ),
     };
@@ -946,7 +1030,11 @@ class MapleStoryApi {
    */
   public async getCharacterHexaMatrixStat(
     ocid: string,
-    dateOptions?: DateOptions,
+    dateOptions: DateOptions = MapleStoryApi.getProperDefaultDateOptions({
+      hour:1,
+      minute: 0,
+      dateOffset: 1
+    }),
   ): Promise<CharacterHexaMatrixStatDto> {
     const query: CharacterApiQuery = {
       ocid: ocid,
@@ -956,6 +1044,7 @@ class MapleStoryApi {
           month: 12,
           day: 21,
         },
+
         dateOptions,
       ),
     };
@@ -992,7 +1081,11 @@ class MapleStoryApi {
    */
   public async getCharacterDojang(
     ocid: string,
-    dateOptions?: DateOptions,
+    dateOptions: DateOptions = MapleStoryApi.getProperDefaultDateOptions({
+      hour:1,
+      minute: 0,
+      dateOffset: 1
+    }),
   ): Promise<CharacterDojangDto> {
     const query: CharacterApiQuery = {
       ocid: ocid,
@@ -1002,6 +1095,7 @@ class MapleStoryApi {
           month: 12,
           day: 21,
         },
+
         dateOptions,
       ),
     };
@@ -1038,11 +1132,15 @@ class MapleStoryApi {
    * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
    *
    * @param ocid 캐릭터 식별자
-   * @param dateOption 조회 기준일 (KST)
+   * @param dateOptions 조회 기준일 (KST)
    */
   public async getUnionInfo(
     ocid: string,
-    dateOption?: DateOptions,
+    dateOptions: DateOptions = MapleStoryApi.getProperDefaultDateOptions({
+      hour:1,
+      minute: 0,
+      dateOffset: 1
+    }),
   ): Promise<UnionDto> {
     const query: UnionApiQuery = {
       ocid: ocid,
@@ -1052,7 +1150,7 @@ class MapleStoryApi {
           month: 12,
           day: 21,
         },
-        dateOption,
+        dateOptions,
       ),
     };
 
@@ -1084,11 +1182,15 @@ class MapleStoryApi {
    * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
    *
    * @param ocid 캐릭터 식별자
-   * @param dateOption 조회 기준일 (KST)
+   * @param dateOptions 조회 기준일 (KST)
    */
   public async getUnionRaiderInfo(
     ocid: string,
-    dateOption?: DateOptions,
+    dateOptions: DateOptions = MapleStoryApi.getProperDefaultDateOptions({
+      hour:1,
+      minute: 0,
+      dateOffset: 1
+    }),
   ): Promise<UnionRaiderDto> {
     const query: UnionApiQuery = {
       ocid: ocid,
@@ -1098,7 +1200,7 @@ class MapleStoryApi {
           month: 12,
           day: 21,
         },
-        dateOption,
+        dateOptions,
       ),
     };
 
@@ -1108,10 +1210,7 @@ class MapleStoryApi {
         baseURL: MapleStoryApi.BASE_URL,
         timeout: this.timeout,
         headers: this.buildHeaders(),
-        params: {
-          ocid,
-          date: dateOption,
-        },
+        params: query
       });
 
       return new UnionRaiderDto(response.data);
@@ -1178,7 +1277,11 @@ class MapleStoryApi {
    */
   public async getGuildBasic(
     guildId: string,
-    dateOptions?: DateOptions,
+    dateOptions: DateOptions = MapleStoryApi.getProperDefaultDateOptions({
+      hour:1,
+      minute: 0,
+      dateOffset: 1
+    }),
   ): Promise<GuildBasicDto> {
     const query: GuildApiQuery = {
       oguild_id: guildId,
@@ -1218,7 +1321,7 @@ class MapleStoryApi {
   //#region 확률 정보 조회
 
   /**
-   * 오늘 날짜의 큐브 사용 결과를 조회합니다.
+   * 큐브 사용 결과를 조회합니다.
    * - 데이터는 매일 오전 4시, 전일 데이터가 갱신됩니다.
    * - e.g. 오늘 오후 3시 5분 큐브 확률 정보 조회 시, 어제의 큐브 확률 정보 데이터를 조회할 수 있습니다.
    * - 2022년 11월 25일 데이터부터 조회할 수 있습니다.
@@ -1272,7 +1375,11 @@ class MapleStoryApi {
           month: 11,
           day: 25,
         },
-        parameter,
+        parameter ?? MapleStoryApi.getProperDefaultDateOptions({
+          hour:4,
+          minute: 0,
+          dateOffset: 1
+        }),
       );
     }
 
@@ -1313,7 +1420,11 @@ class MapleStoryApi {
    */
   public async getOverallRanking(
     filterOptions?: OverallRankingApiFilterOptions,
-    dateOptions?: DateOptions,
+    dateOptions: DateOptions = MapleStoryApi.getProperDefaultDateOptions({
+      hour:8,
+      minute: 30,
+      dateOffset: 0
+    }),
   ): Promise<OverallRankingResponseDto> {
     const query: OverallRankingApiQuery = {
       date: MapleStoryApi.toDateString(
@@ -1369,7 +1480,11 @@ class MapleStoryApi {
    */
   public async getUnionRanking(
     filterOptions?: UnionRankingApiFilterOptions,
-    dateOptions?: DateOptions,
+    dateOptions: DateOptions = MapleStoryApi.getProperDefaultDateOptions({
+      hour:8,
+      minute: 30,
+      dateOffset: 0
+    }),
   ): Promise<UnionRankingResponseDto> {
     const query: UnionRankingApiQuery = {
       date: MapleStoryApi.toDateString(
@@ -1422,7 +1537,11 @@ class MapleStoryApi {
    */
   public async getGuildRanking(
     filterOptions?: GuildRankingApiFilterOptions,
-    dateOptions?: DateOptions,
+    dateOptions: DateOptions = MapleStoryApi.getProperDefaultDateOptions({
+      hour:8,
+      minute: 30,
+      dateOffset: 0
+    }),
   ): Promise<GuildRankingResponseDto> {
     const query: GuildRankingApiQuery = {
       date: MapleStoryApi.toDateString(
@@ -1477,7 +1596,11 @@ class MapleStoryApi {
    */
   public async getDojangRanking(
     filterOptions?: DojangRankingApiFilterOptions,
-    dateOptions?: DateOptions,
+    dateOptions: DateOptions = MapleStoryApi.getProperDefaultDateOptions({
+      hour:8,
+      minute: 30,
+      dateOffset: 0
+    }),
   ): Promise<DojangRankingResponseDto> {
     const query: DojangRankingApiQuery = {
       date: MapleStoryApi.toDateString(
@@ -1534,7 +1657,11 @@ class MapleStoryApi {
    */
   public async getSeedRanking(
     filterOptions?: TheSeedRankingApiFilterOptions,
-    dateOptions?: DateOptions,
+    dateOptions: DateOptions = MapleStoryApi.getProperDefaultDateOptions({
+      hour:8,
+      minute: 30,
+      dateOffset: 0
+    }),
   ): Promise<TheSeedRankingResponseDto> {
     const query: TheSeedRankingApiQuery = {
       date: MapleStoryApi.toDateString(
@@ -1587,7 +1714,11 @@ class MapleStoryApi {
    */
   public async getAchievementRanking(
     filterOptions?: AchievementRankingApiFilterOptions,
-    dateOptions?: DateOptions,
+    dateOptions: DateOptions = MapleStoryApi.getProperDefaultDateOptions({
+      hour:8,
+      minute: 30,
+      dateOffset: 0
+    }),
   ): Promise<AchievementRankingResponseDto> {
     const query: AchievementRankingApiQuery = {
       date: MapleStoryApi.toDateString(
@@ -1682,34 +1813,66 @@ class MapleStoryApi {
     };
   }
 
-  private static toDateString(
-    minDateOptions: DateOptions,
-    dateOptions?: DateOptions,
-  ): string | never {
-    let date;
+  /**
+   * API 서버의 데이터 갱신 시간에 따라 데이터가 조회 가능한 최신 날짜를 반환합니다.
+   *
+   * @param options
+   * @private
+   */
+  private static getProperDefaultDateOptions(
+    options: LatestApiUpdateTimeOptions,
+  ): DateOptions {
+    const { hour, minute, dateOffset } = options;
 
-    if (dateOptions) {
-      const { year: minYear, month: minMonth, day: minDay } = minDateOptions;
-      const { year, month, day } = dateOptions;
+    const kstNow = dayjs().utcOffset(MapleStoryApi.kstOffset);
+    const updateDate = dayjs()
+      .utcOffset(MapleStoryApi.kstOffset)
+      .hour(hour)
+      .minute(minute);
 
-      if (
-        year < minYear ||
-        (year === minYear && month < minMonth) ||
-        (year === minYear && month === minMonth && day < minDay)
-      ) {
-        throw new Error(
-          `You can only retrieve data after ${minYear}-${minMonth}-${minDay}.`,
-        );
-      }
+    let adjustedDate: Dayjs;
 
-      date = dayjs(`${year}-${month}-${day}`).utcOffset(
-        MapleStoryApi.kstOffset,
-      );
+    if (kstNow.isAfter(updateDate)) {
+      adjustedDate = kstNow;
     } else {
-      date = dayjs().utcOffset(MapleStoryApi.kstOffset);
+      adjustedDate = kstNow.subtract(1, 'day');
     }
 
-    return date.format('YYYY-MM-DD');
+    adjustedDate = adjustedDate.subtract(dateOffset ?? 0, 'day');
+
+    return {
+      year: adjustedDate.year(),
+      month: adjustedDate.month() + 1,
+      day: adjustedDate.date()
+    };
+  }
+
+  /**
+   * 날짜 정보를 API 서버에서 요구하는 포맷으로 변환합니다.
+   *
+   * @param minDateOptions API 호출 가능한 최소 날짜
+   * @param dateOptions 조회 하려는 날짜
+   * @private
+   */
+  private static toDateString(
+    minDateOptions: DateOptions,
+    dateOptions: DateOptions,
+  ): string | never {
+
+    const { year: minYear, month: minMonth, day: minDay } = minDateOptions;
+    const { year, month, day } = dateOptions;
+
+    if (
+      year < minYear ||
+      (year === minYear && month < minMonth) ||
+      (year === minYear && month === minMonth && day < minDay)
+    ) {
+      throw new Error(
+        `You can only retrieve data after ${dayjs(`${minYear}-${minMonth}-${minDay}`).format('YYYY-MM-DD')}.`,
+      );
+    }
+
+    return dayjs(`${year}-${month}-${day}`).utcOffset(MapleStoryApi.kstOffset).format('YYYY-MM-DD');
   }
 }
 
@@ -2121,6 +2284,15 @@ type DateOptions = {
   year: number;
   month: number;
   day: number;
+};
+
+/**
+ * API 서버의 데이터 갱신 시각과 조회 가능한 최근 날짜와 현재 날짜와의 차이
+ */
+type LatestApiUpdateTimeOptions = {
+  hour: number;
+  minute: number;
+  dateOffset?: number;
 };
 
 type CharacterApiQuery = {
