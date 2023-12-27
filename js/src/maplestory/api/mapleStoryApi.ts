@@ -216,7 +216,6 @@ class MapleStoryApi {
           month: 12,
           day: 21,
         },
-        
         dateOptions,
       ),
     };
@@ -993,7 +992,6 @@ class MapleStoryApi {
           month: 12,
           day: 21,
         },
-
         dateOptions,
       ),
     };
@@ -1044,7 +1042,6 @@ class MapleStoryApi {
           month: 12,
           day: 21,
         },
-
         dateOptions,
       ),
     };
@@ -1095,7 +1092,6 @@ class MapleStoryApi {
           month: 12,
           day: 21,
         },
-
         dateOptions,
       ),
     };

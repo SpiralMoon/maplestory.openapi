@@ -93,7 +93,7 @@ namespace MapleStory.OpenAPI
         {
             using (var client = new HttpClient())
             {
-                var path = "maplestory/v1/id";
+                var path = "maplestory/v1/character/basic";
                 var uriBuilder = new UriBuilder($"{BASE_URL}{path}");
 
                 var date = ToDateString(MinDate(2023, 12, 21), dateTimeOffset);
@@ -498,7 +498,7 @@ namespace MapleStory.OpenAPI
         {
             using (var client = new HttpClient())
             {
-                var path = "maplestory/v1/character/cashiteme-quipment";
+                var path = "maplestory/v1/character/cashitem-equipment";
                 var uriBuilder = new UriBuilder($"{BASE_URL}{path}");
 
                 var date = ToDateString(MinDate(2023, 12, 21), dateTimeOffset);
@@ -1321,7 +1321,6 @@ namespace MapleStory.OpenAPI
         /// <para>- 오전 1시부터 전일 데이터 조회가 가능합니다</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
         /// </summary>
-        /// <param name="oGuildId">길드 식별자</param>
         /// <param name="guildName">길드 명</param>
         /// <param name="wolrdName">월드 명
         /// <para>스카니아</para>
@@ -1342,7 +1341,7 @@ namespace MapleStory.OpenAPI
         /// <para>버닝2</para>
         /// <para>버닝3</para>
         /// </param>
-        public async Task<GuildDTO> GetGuild(string oGuildId, string? guildName, string? wolrdName)
+        public async Task<GuildDTO> GetGuild(string guildName, string wolrdName)
         {
             using (var client = new HttpClient())
             {
@@ -1350,7 +1349,7 @@ namespace MapleStory.OpenAPI
                 var uriBuilder = new UriBuilder($"{BASE_URL}{path}");
 
                 var query = HttpUtility.ParseQueryString(uriBuilder.Query);
-                query["oguild_id"] = oGuildId;
+
                 query["guild_name"] = guildName;
                 query["world_name"] = wolrdName;
 
@@ -1915,7 +1914,7 @@ namespace MapleStory.OpenAPI
         /// </param>
         /// <param name="ocid">캐릭터 식별자</param>
         /// <param name="page">페이지 번호</param>
-        /// <param name="dateTimeOffset">조회 기준일 (KST) - Example: 2023-12-22</param>
+        /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
         public async Task<UnionRankingResponseDTO> GetUnionRanking(string? worldName, string? ocid, int? page, DateTimeOffset dateTimeOffset)
         {
             using (var client = new HttpClient())
@@ -1989,7 +1988,7 @@ namespace MapleStory.OpenAPI
         /// <param name="rankingType">랭킹 타입 (0:주간 명성치, 1:플래그 레이스, 2:지하 수로)</param>
         /// <param name="guildName">길드 명</param>
         /// <param name="page">페이지 번호</param>
-        public Task<GuildRankingResponseDTO> GetGuildRanking(string? worldName, int? rankingType, string? guildName, int? page)
+        public Task<GuildRankingResponseDTO> GetGuildRanking(string? worldName, int rankingType, string? guildName, int? page)
         {
             return GetGuildRanking(worldName, rankingType, guildName, page, GetProperDefaultDateTimeOffset(new LatestApiUpdateTimeOption
             {
@@ -2027,8 +2026,8 @@ namespace MapleStory.OpenAPI
         /// <param name="rankingType">랭킹 타입 (0:주간 명성치, 1:플래그 레이스, 2:지하 수로)</param>
         /// <param name="guildName">길드 명</param>
         /// <param name="page">페이지 번호</param>
-        /// <param name="dateTimeOffset">조회 기준일 (KST) - Example: 2023-12-22</param>
-        public async Task<GuildRankingResponseDTO> GetGuildRanking(string? worldName, int? rankingType, string? guildName, int? page, DateTimeOffset dateTimeOffset)
+        /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
+        public async Task<GuildRankingResponseDTO> GetGuildRanking(string? worldName, int rankingType, string? guildName, int? page, DateTimeOffset dateTimeOffset)
         {
             using (var client = new HttpClient())
             {
@@ -2039,14 +2038,12 @@ namespace MapleStory.OpenAPI
 
                 var query = HttpUtility.ParseQueryString(uriBuilder.Query);
                 query["date"] = date;
+                query["ranking_type"] = rankingType.ToString();
+
 
                 if (worldName != null)
                 {
                     query["world_name"] = worldName;
-                }
-                if (rankingType != null)
-                {
-                    query["ranking_type"] = rankingType.ToString();
                 }
                 if (guildName != null)
                 {
@@ -2339,7 +2336,7 @@ namespace MapleStory.OpenAPI
         /// </param>
         /// <param name="ocid">캐릭터 식별자</param>
         /// <param name="page">페이지 번호</param>
-        /// <param name="dateTimeOffset">조회 기준일 (KST) - Example: 2023-12-22</param>
+        /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
         public async Task<DojangRankingResponseDTO> GetDojangRanking(string? worldName, int difficulty, string? characterClass, string? ocid, int? page, DateTimeOffset dateTimeOffset)
         {
             using (var client = new HttpClient())
@@ -2454,7 +2451,7 @@ namespace MapleStory.OpenAPI
         /// </param>
         /// <param name="ocid">캐릭터 식별자</param>
         /// <param name="page">페이지 번호</param>
-        /// <param name="dateTimeOffset">조회 기준일 (KST) - Example: 2023-12-22</param>
+        /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
         public async Task<TheSeedRankingResponseDTO> GetTheSeedRanking(string? worldName, string? ocid, int? page, DateTimeOffset dateTimeOffset)
         {
             using (var client = new HttpClient())
@@ -2526,7 +2523,7 @@ namespace MapleStory.OpenAPI
         /// </summary>
         /// <param name="ocid">캐릭터 식별자</param>
         /// <param name="page">페이지 번호</param>
-        /// <param name="dateTimeOffset">조회 기준일 (KST) - Example: 2023-12-22</param>
+        /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
         public async Task<AchievementRankingResponseDTO> GetAchievementRanking(string? ocid, int? page, DateTimeOffset dateTimeOffset)
         {
             using (var client = new HttpClient())

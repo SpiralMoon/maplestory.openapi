@@ -39,7 +39,7 @@ public interface RankingApi {
             @Header("x-nxopen-api-key") String apiKey,
             @Query("date") String date,
             @Query("world_name") String worldName,
-            @Query("ranking_type") Integer rankingType,
+            @Query("ranking_type") int rankingType,
             @Query("guild_name") String guildName,
             @Query("page") Integer page
     );
@@ -52,7 +52,7 @@ public interface RankingApi {
             @Header("x-nxopen-api-key") String apiKey,
             @Query("date") String date,
             @Query("world_name") String worldName,
-            @Query("difficulty") Integer difficulty,
+            @Query("difficulty") int difficulty,
             @Query("class") String characterClass,
             @Query("ocid") String ocid,
             @Query("page") Integer page
