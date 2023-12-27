@@ -176,22 +176,6 @@ class MapleStoryApi {
   }
 
   /**
-   * 기본 정보를 조회합니다.
-   * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
-   * - 오전 1시부터 전일 데이터 조회가 가능합니다
-   * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
-   *
-   * @param ocid 캐릭터 식별자
-   * @param dateOptions 조회 기준일 (KST)
-   */
-  public async getCharacterBasicInfo(
-    ocid: string,
-    dateOptions?: DateOptions,
-  ): Promise<CharacterBasicDto> {
-    return this.getCharacterBasic(ocid, dateOptions);
-  }
-
-  /**
    * 인기도 정보를 조회합니다.
    * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
    * - 오전 1시부터 전일 데이터 조회가 가능합니다
