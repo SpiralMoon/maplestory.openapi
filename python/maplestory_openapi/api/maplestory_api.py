@@ -15,6 +15,7 @@ from maplestory_openapi.api.dto.character_cashitem_equipment import CharacterCas
 from maplestory_openapi.api.dto.character_symbol_equipment import CharacterSymbolEquipment
 from maplestory_openapi.api.dto.character_set_effect import CharacterSetEffect
 from maplestory_openapi.api.dto.character_beauty_equipment import CharacterBeautyEquipment
+from maplestory_openapi.api.dto.character_android_equipment import CharacterAndroidEquipment
 from maplestory_openapi.api.maplestory_api_error import MapleStoryApiError, MapleStoryApiException
 
 from maplestory_openapi.api.utils.date import get_proper_default_datetime
@@ -256,6 +257,24 @@ class MapleStoryApi(BaseModel):
         }
         r = self.fetch(path, query)
         return CharacterBeautyEquipment(**r)
+
+    def get_character_android_equipment(self, ocid: str, date: datetime = get_proper_default_datetime()) -> CharacterAndroidEquipment:
+        """장착한 안드로이드 정보를 조회합니다..
+
+        - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
+        - 오전 1시부터 전일 데이터 조회가 가능합니다.
+        - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시기 바랍니다.
+
+        @param ocid(str): 캐릭터 식별자(ocid)
+        @param date(datetime): 조회 기준일(KST)
+        """
+        path = 'maplestory/v1/character/android-equipment'
+        query = {
+            'ocid': ocid,
+            'date': self.to_date_string(datetime(2023, 12, 21), date),
+        }
+        r = self.fetch(path, query)
+        return CharacterAndroidEquipment(**r)
 
     def fetch(self, path: str, query: dict) -> Any:
         r = requests.get(
