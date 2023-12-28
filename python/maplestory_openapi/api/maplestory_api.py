@@ -63,18 +63,7 @@ class MapleStoryApi(BaseModel):
         }
         r = self.fetch(path, query)
 
-        return CharacterBasic(
-            character_name=r.get('character_name'),
-            world_name=r.get('world_name'),
-            character_gender=r.get('character_gender'),
-            character_class=r.get('character_class'),
-            character_class_level=r.get('character_class_level'),
-            character_level=r.get('character_level'),
-            character_exp=r.get('character_exp'),
-            character_exp_rate=r.get('character_exp_rate'),
-            character_guild_name=r.get('character_guild_name'),
-            character_image=r.get('character_image'),
-        )
+        return CharacterBasic(**r)
 
     def get_character_popularity(self, ocid: str, date: datetime = get_proper_default_datetime()) -> CharacterPopularity:
         """인기도 정보를 조회합니다.
@@ -115,12 +104,7 @@ class MapleStoryApi(BaseModel):
         }
         r = self.fetch(path, query)
 
-        return CharacterStat(
-            date=r.get('date'),
-            character_class=r.get('character_class'),
-            final_stat=r.get('final_stat'),
-            remain_ap=r.get('remain_ap'),
-        )
+        return CharacterStat(**r)
 
     def get_character_hyper_stat(self, ocid: str, date: datetime = get_proper_default_datetime()) -> CharacterHyperStat:
         """하이퍼스탯 정보를 조회합니다.
@@ -139,21 +123,7 @@ class MapleStoryApi(BaseModel):
         }
         r = self.fetch(path, query)
 
-        return CharacterHyperStat(
-            date=r.get('date'),
-            character_class=r.get('character_class'),
-            use_preset_no=r.get('use_preset_no'),
-            use_available_hyper_stat=r.get('use_available_hyper_stat'),
-            hyper_stat_preset_1=r.get('hyper_stat_preset_1'),
-            hyper_stat_preset_1_remain_point=r.get(
-                'hyper_stat_preset_1_remain_point'),
-            hyper_stat_preset_2=r.get('hyper_stat_preset_2'),
-            hyper_stat_preset_2_remain_point=r.get(
-                'hyper_stat_preset_2_remain_point'),
-            hyper_stat_preset_3=r.get('hyper_stat_preset_3'),
-            hyper_stat_preset_3_remain_point=r.get(
-                'hyper_stat_preset_3_remain_point'),
-        )
+        return CharacterHyperStat(**r)
 
     def get_character_propensity(self, ocid: str, date: datetime = get_proper_default_datetime()) -> CharacterPropensity:
         """성향 정보를 조회합니다.
@@ -172,15 +142,7 @@ class MapleStoryApi(BaseModel):
         }
         r = self.fetch(path, query)
 
-        return CharacterPropensity(
-            date=r.get('date'),
-            charisma_level=r.get('charisma_level'),
-            sensibility_level=r.get('sensibility_level'),
-            insight_level=r.get('insight_level'),
-            willingness_level=r.get('willingness_level'),
-            handicraft_level=r.get('handicraft_level'),
-            charm_level=r.get('charm_level'),
-        )
+        return CharacterPropensity(**r)
 
     def get_character_ability(self, ocid: str, date: datetime = get_proper_default_datetime()) -> CharacterAbility:
         """어빌리티 정보를 조회합니다.
@@ -199,12 +161,7 @@ class MapleStoryApi(BaseModel):
         }
         r = self.fetch(path, query)
 
-        return CharacterAbility(
-            date=r.get('date'),
-            ability_grade=r.get('ability_grade'),
-            ability_info=r.get('ability_info'),
-            remain_fame=r.get('remain_fame'),
-        )
+        return CharacterAbility(**r)
 
     def get_character_item_equipment(self, ocid: str, date: datetime = get_proper_default_datetime()) -> CharacterItemEquipment:
         """장착한 장비 중 캐시 장비를 제외한 나머지 장비 정보를 조회합니다.
@@ -223,15 +180,7 @@ class MapleStoryApi(BaseModel):
         }
         r = self.fetch(path, query)
 
-        return CharacterItemEquipment(
-            date=r.get('date'),
-            character_gender=r.get('character_gender'),
-            character_class=r.get('character_class'),
-            item_equipment=r.get('item_equipment'),
-            title=r.get('title'),
-            dragon_equipment=r.get('dragon_equipment'),
-            mechanic_equipment=r.get('mechanic_equipment'),
-        )
+        return CharacterItemEquipment(**r)
 
     def get_character_cashitem_equipment(self, ocid: str, date: datetime = get_proper_default_datetime()) -> CharacterCashitemEquipment:
         """장착한 캐시 장비 정보를 조회합니다.
@@ -250,21 +199,7 @@ class MapleStoryApi(BaseModel):
         }
         r = self.fetch(path, query)
 
-        return CharacterCashitemEquipment(
-            date=r.get('date'),
-            character_gender=r.get('character_gender'),
-            character_class=r.get('character_class'),
-            preset_no=r.get('preset_no'),
-            cash_item_equipment_preset_1=r.get('cash_item_equipment_preset_1'),
-            cash_item_equipment_preset_2=r.get('cash_item_equipment_preset_2'),
-            cash_item_equipment_preset_3=r.get('cash_item_equipment_preset_3'),
-            additional_cash_item_equipment_preset_1=r.get(
-                'additional_cash_item_equipment_preset_1'),
-            additional_cash_item_equipment_preset_2=r.get(
-                'additional_cash_item_equipment_preset_2'),
-            additional_cash_item_equipment_preset_3=r.get(
-                'additional_cash_item_equipment_preset_3'),
-        )
+        return CharacterCashitemEquipment(**r)
 
     def get_character_symbol_equipment(self, ocid: str, date: datetime = get_proper_default_datetime()) -> CharacterSymbolEquipment:
         """장착한 심볼 정보를 조회합니다.
@@ -282,11 +217,7 @@ class MapleStoryApi(BaseModel):
             'date': self.to_date_string(datetime(2023, 12, 21), date)
         }
         r = self.fetch(path, query)
-        return CharacterSymbolEquipment(
-            date=r.get('date'),
-            character_class=r.get('character_class'),
-            symbol=r.get('symbol'),
-        )
+        return CharacterSymbolEquipment(**r)
 
     def fetch(self, path: str, query: dict) -> Any:
         r = requests.get(
