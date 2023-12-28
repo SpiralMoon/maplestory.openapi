@@ -7,7 +7,8 @@ load_dotenv()
 
 api = MapleStoryApi(
     api_key=os.environ.get('NEXON_API_KEY'), timeout=5000)
-ocid = api.get_character_id('아델')
+character_name = '아델'
+ocid = api.get_character_id(character_name)
 # basic = api.get_character_basic(ocid)
 # popularity = api.get_character_popularity(ocid)
 # stat = api.get_character_stat(ocid)
@@ -25,6 +26,7 @@ ocid = api.get_character_id('아델')
 # link_skill = api.get_character_link_skill(ocid)
 # vmatrix = api.get_character_vmatrix(ocid)
 # hexamatrix = api.get_character_hexamatrix(ocid)
-hexamatrix_stat = api.get_character_hexamatrix_stat(ocid)
+# hexamatrix_stat = api.get_character_hexamatrix_stat(ocid)
+dojang = api.get_character_dojang(ocid)
 
-print(hexamatrix_stat)
+print(dojang)
