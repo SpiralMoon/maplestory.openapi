@@ -21,6 +21,7 @@ from maplestory_openapi.api.dto.character_skill import CharacterSkill
 from maplestory_openapi.api.dto.character_link_skill import CharacterLinkSkill
 from maplestory_openapi.api.dto.character_vmatrix import CharacterVMatrix
 from maplestory_openapi.api.dto.character_hexamatrix import CharacterHexaMatrix
+from maplestory_openapi.api.dto.character_hexamatrix_stat import CharacterHexaMatrixStat
 from maplestory_openapi.api.maplestory_api_error import MapleStoryApiError, MapleStoryApiException
 from maplestory_openapi.api.utils.date import get_proper_default_datetime
 
@@ -382,6 +383,23 @@ class MapleStoryApi(BaseModel):
         }
         r = self.fetch(path, query)
         return CharacterHexaMatrix(**r)
+
+    def get_character_hexamatrix_stat(self, ocid: str, date: datetime = get_proper_default_datetime()) -> CharacterHexaMatrixStat:
+        """HEXA 매트릭스에 설정한 HEXA 스탯 정보를 조회합니다.
+
+        - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
+        - 오전 0시부터 전일 데이터 조회가 가능합니다.
+        - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신시 유의해 주시기 바랍니다.
+
+        @param ocid(str): 캐릭터 식별자(ocid)
+        """
+        path = 'maplestory/v1/character/hexamatrix-stat'
+        query = {
+            'ocid': ocid,
+            'date': self.to_date_string(datetime(2023, 12, 21), date),
+        }
+        r = self.fetch(path, query)
+        return CharacterHexaMatrixStat(**r)
 
     def fetch(self, path: str, query: dict) -> Any:
         r = requests.get(
