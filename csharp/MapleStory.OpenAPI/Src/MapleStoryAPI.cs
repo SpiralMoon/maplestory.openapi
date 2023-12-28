@@ -1437,6 +1437,98 @@ namespace MapleStory.OpenAPI
         #region 확률 정보 조회
 
         /// <summary>
+        /// 스타포스 강화 결과를 조회합니다.
+        /// <para>스타포스 확률 정보는 최대 5분 후 확인 가능합니다.</para>
+        /// <para>2023년 12월 27일 데이터부터 조회할 수 있습니다.</para>
+        /// </summary>
+        /// <param name="count">한번에 가져오려는 결과의 개수(최소 10, 최대 1000)</param>
+        public Task<StarforceHistoryResponseDTO> GetStarforceHistory(int count)
+        {
+            return GetStarforceHistory(count, GetProperDefaultDateTimeOffset(new LatestApiUpdateTimeOption
+            {
+                Hour = 0,
+                Minute = 0,
+                DateOffset = 0
+            }));
+        }
+
+        /// <summary>
+        /// 지목한 날짜의 스타포스 강화 결과를 조회합니다.
+        /// <para>스타포스 확률 정보는 최대 5분 후 확인 가능합니다.</para>
+        /// <para>2023년 12월 27일 데이터부터 조회할 수 있습니다.</para>
+        /// </summary>
+        /// <param name="count">한번에 가져오려는 결과의 개수(최소 10, 최대 1000)</param>
+        /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
+        public async Task<StarforceHistoryResponseDTO> GetStarforceHistory(int count, DateTimeOffset dateTimeOffset)
+        {
+            using (var client = new HttpClient())
+            {
+                var path = "maplestory/v1/history/starforce";
+                var uriBuilder = new UriBuilder($"{BASE_URL}{path}");
+
+                var query = HttpUtility.ParseQueryString(uriBuilder.Query);
+                query["count"] = count.ToString();
+                query["date"] = ToDateString(MinDate(2023, 12, 27), dateTimeOffset);
+
+                uriBuilder.Query = query.ToString();
+
+                this.SetClient(client);
+
+                var response = await client.GetAsync(uriBuilder.Uri);
+                var body = await response.Content.ReadAsStringAsync();
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var result = JsonConvert.DeserializeObject<StarforceHistoryResponseDTO>(body);
+
+                    return result;
+                }
+                else
+                {
+                    throw ParseError(body);
+                }
+            }
+        }
+
+        /// <summary>
+        /// 스타포스 강화 결과를 조회합니다.
+        /// <para>스타포스 확률 정보는 최대 5분 후 확인 가능합니다.</para>
+        /// <para>2023년 12월 27일 데이터부터 조회할 수 있습니다.</para>
+        /// </summary>
+        /// <param name="count">한번에 가져오려는 결과의 개수(최소 10, 최대 1000)</param>
+        /// <param name="cursor">페이징 처리를 위한 cursor</param>
+        public async Task<StarforceHistoryResponseDTO> GetStarforceHistory(int count, string cursor)
+        {
+            using (var client = new HttpClient())
+            {
+                var path = "maplestory/v1/history/starforce";
+                var uriBuilder = new UriBuilder($"{BASE_URL}{path}");
+
+                var query = HttpUtility.ParseQueryString(uriBuilder.Query);
+                query["count"] = count.ToString();
+                query["cursor"] = cursor;
+
+                uriBuilder.Query = query.ToString();
+
+                this.SetClient(client);
+
+                var response = await client.GetAsync(uriBuilder.Uri);
+                var body = await response.Content.ReadAsStringAsync();
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var result = JsonConvert.DeserializeObject<StarforceHistoryResponseDTO>(body);
+
+                    return result;
+                }
+                else
+                {
+                    throw ParseError(body);
+                }
+            }
+        }
+
+        /// <summary>
         /// 큐브 사용 결과를 조회합니다.
         /// <para>데이터는 매일 오전 4시, 전일 데이터가 갱신됩니다.</para>
         /// <para>e.g. 오늘 오후 3시 5분 큐브 확률 정보 조회 시, 어제의 큐브 확률 정보 데이터를 조회할 수 있습니다.</para>
