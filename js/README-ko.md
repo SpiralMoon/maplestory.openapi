@@ -13,7 +13,7 @@
 npm 기반 프로젝트에 아래 정보를 입력하여 패키지를 추가하세요:
 
 ```bash
-npm install maplestory-openapi@2.2.0 # Replace with the latest version
+npm install maplestory-openapi@2.2.1 # Replace with the latest version
 ```
 
 ## Usage
