@@ -42,5 +42,10 @@ oguild_id = api.get_guild_id(
 # cube_history_next = api.get_cube_history(
 #     count=10, date=None, cursor=cube_history.next_cursor)
 
+# overall_ranking = api.get_overall_ranking()
+# guild_ranking = api.get_guild_ranking(ranking_type=1)
+# dojang_ranking = api.get_dojang_ranking()
+# theseed_ranking = api.get_theseed_ranking()
+achievement_ranking = api.get_achievement_ranking()
 
 print(basic)
