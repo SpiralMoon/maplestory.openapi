@@ -63,12 +63,12 @@ class GuildBasicDto {
   /**
    * 조합형 길드 마크
    */
-  guildMark: string;
+  guildMark: string | null;
 
   /**
    * 커스텀 길드 마크 (base64 인코딩 형식)
    */
-  guildMarkCustom: string;
+  guildMarkCustom: string | null;
 
   constructor(obj: GuildBasicDtoBody) {
     const {

@@ -1,5 +1,5 @@
-import { StarforceHistoryDto } from './starforceHistoryDto'
-import { StarforceHistoryResponseDtoBody } from '../response/starforceHistoryResponseDtoBody'
+import { StarforceHistoryDto } from './starforceHistoryDto';
+import { StarforceHistoryResponseDtoBody } from '../response/starforceHistoryResponseDtoBody';
 
 /**
  * 스타포스 히스토리 응답 정보
@@ -18,13 +18,15 @@ class StarforceHistoryResponseDto {
   /**
    * 페이징 처리를 위한 cursor
    */
-  nextCursor: string;
+  nextCursor: string | null;
 
   constructor(obj: StarforceHistoryResponseDtoBody) {
     const { count, starforce_history, next_cursor } = obj;
 
     this.count = count;
-    this.starforceHistory = starforce_history.map((origin) => new StarforceHistoryDto(origin));
+    this.starforceHistory = starforce_history.map(
+      (origin) => new StarforceHistoryDto(origin),
+    );
     this.nextCursor = next_cursor;
   }
 }

@@ -49,7 +49,7 @@ class CharacterBasicDto {
   /**
    * 캐릭터 소속 길드 명
    */
-  characterGuildName: string;
+  characterGuildName: string | null;
 
   /**
    * 캐릭터 외형 이미지

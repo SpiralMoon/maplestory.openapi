@@ -29,7 +29,7 @@ class UnionRaiderBlockDto {
   /**
    * 블록이 차지하고 있는 영역 좌표들 (null:미 배치 시)
    */
-  blockPosition: UnionRaiderBlockPositionDto[];
+  blockPosition: UnionRaiderBlockPositionDto[] | null;
 
   constructor(obj: UnionRaiderBlockDtoBody) {
     const {
@@ -46,9 +46,11 @@ class UnionRaiderBlockDto {
     this.blockControlPoint = new UnionRaiderBlockControlPointDto(
       block_control_point,
     );
-    this.blockPosition = block_position.map(
-      (position) => new UnionRaiderBlockPositionDto(position),
-    );
+    this.blockPosition = block_position
+      ? block_position.map(
+          (position) => new UnionRaiderBlockPositionDto(position),
+        )
+      : null;
   }
 }
 

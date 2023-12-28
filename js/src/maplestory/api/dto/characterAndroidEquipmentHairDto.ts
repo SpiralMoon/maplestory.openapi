@@ -17,7 +17,7 @@ class CharacterAndroidEquipmentHairDto {
   /**
    * 안드로이드 헤어 믹스 컬러
    */
-  mixColor: string;
+  mixColor: string | null;
 
   /**
    * 안드로이드 헤어 믹스 컬러의 염색 비율

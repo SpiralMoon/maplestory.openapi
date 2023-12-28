@@ -13,20 +13,20 @@ type CharacterItemEquipmentInfoDtoBody = {
   equipment_slot: string;
   item_name: string;
   item_icon: string;
-  item_description: string;
+  item_description: string | null;
   item_shape_name: string;
   item_shape_icon: string;
-  gender: string;
+  item_gender: string | null;
   item_total_option: CharacterItemEquipmentOptionDtoBody;
   item_base_option: CharacterItemEquipmentBaseOptionDtoBody;
-  potential_option_grade: string;
-  additional_potential_option_grade: string;
-  potential_option_1: string;
-  potential_option_2: string;
-  potential_option_3: string;
-  additional_potential_option_1: string;
-  additional_potential_option_2: string;
-  additional_potential_option_3: string;
+  potential_option_grade: string | null;
+  additional_potential_option_grade: string | null;
+  potential_option_1: string | null;
+  potential_option_2: string | null;
+  potential_option_3: string | null;
+  additional_potential_option_1: string | null;
+  additional_potential_option_2: string | null;
+  additional_potential_option_3: string | null;
   equipment_level_increase: number;
   item_exceptional_option: CharacterItemEquipmentOptionDtoBody;
   item_add_option: CharacterItemEquipmentAddOptionDtoBody;
@@ -37,14 +37,14 @@ type CharacterItemEquipmentInfoDtoBody = {
   golden_hammer_flag: string;
   scroll_resilience_count: string;
   scroll_upgradeable_count: string;
-  soul_name: string;
-  soul_option: string;
+  soul_name: string | null;
+  soul_option: string | null;
   item_etc_option: CharacterItemEquipmentOptionDtoBody;
   starforce: string;
   starforce_scroll_flag: string;
   item_starforce_option: CharacterItemEquipmentOptionDtoBody;
   special_ring_level: number;
-  date_expire: string;
+  date_expire: string | null;
 };
 
 type CharacterItemEquipmentOptionDtoBody = {
@@ -159,7 +159,7 @@ type CharacterItemEquipmentTitleDtoBody = {
   title_name: string;
   title_icon: string;
   title_description: string;
-  date_expire: string;
+  date_expire: string | null;
   date_option_expire: string | null;
 };
 

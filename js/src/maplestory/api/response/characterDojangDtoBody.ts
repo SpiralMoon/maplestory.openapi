@@ -3,7 +3,7 @@ type CharacterDojangDtoBody = {
   character_class: string;
   world_name: string;
   dojang_best_floor: number;
-  date_dojang_record: string;
+  date_dojang_record: string | null;
   dojang_best_time: number;
 };
 

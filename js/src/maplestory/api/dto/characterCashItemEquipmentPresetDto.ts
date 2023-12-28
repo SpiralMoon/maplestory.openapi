@@ -29,7 +29,7 @@ class CharacterCashItemEquipmentPresetDto {
   /**
    * 캐시 장비 설명
    */
-  cashItemDescription: string;
+  cashItemDescription: string | null;
 
   /**
    * 캐시 장비 옵션
@@ -39,22 +39,22 @@ class CharacterCashItemEquipmentPresetDto {
   /**
    * 캐시 장비 유효 기간 (KST)
    */
-  dateExpire: string;
+  dateExpire: string | null;
 
   /**
    * 캐시 장비 옵션 유효 기간 (KST, 시간 단위 데이터로 분은 일괄 0으로 표기)
    */
-  dateOptionExpire: string;
+  dateOptionExpire: string | null;
 
   /**
    * 캐시 장비 라벨 정보
    */
-  cashItemLabel: string;
+  cashItemLabel: string | null;
 
   /**
    * 캐시 장비 컬러링프리즘 정보
    */
-  cashItemColoringPrism: CharacterCashItemEquipmentColoringPrismDto;
+  cashItemColoringPrism: CharacterCashItemEquipmentColoringPrismDto | null;
 
   /**
    * 다른 프리셋에서 장비 추가 장착 없이 1번 프리셋의 장비 공유를 비활성화 했는지 여부
@@ -87,9 +87,9 @@ class CharacterCashItemEquipmentPresetDto {
     this.dateExpire = date_expire;
     this.dateOptionExpire = date_option_expire;
     this.cashItemLabel = cash_item_label;
-    this.cashItemColoringPrism = new CharacterCashItemEquipmentColoringPrismDto(
-      cash_item_coloring_prism,
-    );
+    this.cashItemColoringPrism = cash_item_coloring_prism
+      ? new CharacterCashItemEquipmentColoringPrismDto(cash_item_coloring_prism)
+      : null;
     this.basePresetItemDisableFlag = base_preset_item_disable_flag;
   }
 }

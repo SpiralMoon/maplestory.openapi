@@ -22,12 +22,17 @@ class CharacterItemEquipmentTitleDto {
   /**
    * 칭호 유효 기간
    */
-  dateExpire: Date;
+  dateExpire: Date | null;
 
   /**
    * 칭호 옵션 유효 기간
    */
-  dateOptionExpire?: Date;
+  dateOptionExpire: Date | null = null;
+
+  /**
+   * 칭호 옵션 유효 기간 만료 여부
+   */
+  isOptionExpired: boolean | null = null;
 
   constructor(obj: CharacterItemEquipmentTitleDtoBody) {
     const {
@@ -41,10 +46,15 @@ class CharacterItemEquipmentTitleDto {
     this.titleName = title_name;
     this.titleIcon = title_icon;
     this.titleDescription = title_description;
-    this.dateExpire = new Date(date_expire);
-    this.dateOptionExpire = date_option_expire
-      ? new Date(date_option_expire)
-      : undefined;
+    this.dateExpire = date_expire ? new Date(date_expire) : null;
+
+    if (date_option_expire === 'expired') {
+      this.isOptionExpired = true;
+    } else if (typeof date_option_expire === 'string') {
+      this.dateOptionExpire = date_option_expire
+        ? new Date(date_option_expire)
+        : null;
+    }
   }
 }
 

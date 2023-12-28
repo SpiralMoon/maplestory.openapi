@@ -42,17 +42,17 @@ class CharacterBeautyEquipmentDto {
   /**
    * 제로인 경우 베타, 엔젤릭버스터인 경우 드레스 업 모드에 적용 중인 헤어 정보
    */
-  additionalCharacterHair: CharacterBeautyEquipmentHairDto;
+  additionalCharacterHair: CharacterBeautyEquipmentHairDto | null;
 
   /**
    * 제로인 경우 베타, 엔젤릭버스터인 경우 드레스 업 모드에 적용 중인 성형 정보
    */
-  additionalCharacterFace: CharacterBeautyEquipmentFaceDto;
+  additionalCharacterFace: CharacterBeautyEquipmentFaceDto | null;
 
   /**
    * 제로인 경우 베타, 엔젤릭버스터인 경우 드레스 업 모드에 적용 중인 피부 명
    */
-  additionalCharacterSkinName: string;
+  additionalCharacterSkinName: string | null;
 
   constructor(obj: CharacterBeautyEquipmentDtoBody) {
     const {
@@ -73,12 +73,12 @@ class CharacterBeautyEquipmentDto {
     this.characterHair = new CharacterBeautyEquipmentHairDto(character_hair);
     this.characterFace = new CharacterBeautyEquipmentFaceDto(character_face);
     this.characterSkinName = character_skin_name;
-    this.additionalCharacterHair = new CharacterBeautyEquipmentHairDto(
-      additional_character_hair,
-    );
-    this.additionalCharacterFace = new CharacterBeautyEquipmentFaceDto(
-      additional_character_face,
-    );
+    this.additionalCharacterHair = additional_character_hair
+      ? new CharacterBeautyEquipmentHairDto(additional_character_hair)
+      : null;
+    this.additionalCharacterFace = additional_character_face
+      ? new CharacterBeautyEquipmentFaceDto(additional_character_face)
+      : null;
     this.additionalCharacterSkinName = additional_character_skin_name;
   }
 }

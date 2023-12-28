@@ -8,17 +8,17 @@ class CharacterPetEquipmentItemDto {
   /**
    * 아이템 명
    */
-  itemName: string;
+  itemName: string | null;
 
   /**
    * 아이템 아이콘
    */
-  itemIcon: string;
+  itemIcon: string | null;
 
   /**
    * 아이템 설명
    */
-  itemDescription: string;
+  itemDescription: string | null;
 
   /**
    * 아이템 표기상 옵션

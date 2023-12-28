@@ -15,37 +15,37 @@ class CharacterAndroidEquipmentDto {
   /**
    * 안드로이드 명
    */
-  androidName: string;
+  androidName: string | null;
 
   /**
    * 안드로이드 닉네임
    */
-  androidNickname: string;
+  androidNickname: string | null;
 
   /**
    * 안드로이드 아이콘
    */
-  androidIcon: string;
+  androidIcon: string | null;
 
   /**
    * 안드로이드 아이템 설명
    */
-  androidDescription: string;
+  androidDescription: string | null;
 
   /**
    * 안드로이드 헤어 정보
    */
-  androidHair: CharacterAndroidEquipmentHairDto;
+  androidHair: CharacterAndroidEquipmentHairDto | null;
 
   /**
    * 안드로이드 성형 정보
    */
-  androidFace: CharacterAndroidEquipmentFaceDto;
+  androidFace: CharacterAndroidEquipmentFaceDto | null;
 
   /**
    * 안드로이드 피부 명
    */
-  androidSkinName: string;
+  androidSkinName: string | null;
 
   /**
    * 안드로이드 캐시 아이템 장착 정보
@@ -55,7 +55,7 @@ class CharacterAndroidEquipmentDto {
   /**
    * 안드로이드 이어센서 클립 적용 여부
    */
-  androidEarSensorClipFlag: string;
+  androidEarSensorClipFlag: string | null;
 
   constructor(obj: CharacterAndroidEquipmentDtoBody) {
     const {
@@ -76,13 +76,17 @@ class CharacterAndroidEquipmentDto {
     this.androidNickname = android_nickname;
     this.androidIcon = android_icon;
     this.androidDescription = android_description;
-    this.androidHair = new CharacterAndroidEquipmentHairDto(android_hair);
-    this.androidFace = new CharacterAndroidEquipmentFaceDto(android_face);
+    this.androidHair = android_hair
+      ? new CharacterAndroidEquipmentHairDto(android_hair)
+      : null;
+    this.androidFace = android_face
+      ? new CharacterAndroidEquipmentFaceDto(android_face)
+      : null;
     this.androidSkinName = android_skin_name;
     this.androidCashItemEquipment = android_cash_item_equipment.map(
       (equipment) => new CharacterAndroidCashItemEquipmentDto(equipment),
     );
-    this.androidEarSensorClipFlag = android_ear_sensor_clip_flag;
+    this.androidEarSensorClipFlag = android_ear_sensor_clip_flag ?? null;
   }
 }
 

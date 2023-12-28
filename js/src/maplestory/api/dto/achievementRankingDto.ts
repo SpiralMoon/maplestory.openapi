@@ -1,4 +1,4 @@
-import { AchievementRankingDtoBody } from '../response/achievementRankingResponseDtoBody'
+import { AchievementRankingDtoBody } from '../response/achievementRankingResponseDtoBody';
 
 /**
  * 업적 랭킹 정보
