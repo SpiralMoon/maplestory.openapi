@@ -31,6 +31,8 @@ from maplestory_openapi.api.dto.union_raider import UnionRaider
 from maplestory_openapi.api.dto.guild import Guild
 from maplestory_openapi.api.dto.guild_basic import GuildBasic
 
+from maplestory_openapi.api.dto.cube_history import CubeHistory
+
 from maplestory_openapi.api.maplestory_api_error import MapleStoryApiError, MapleStoryApiException
 from maplestory_openapi.api.utils.date import get_proper_default_datetime
 
@@ -498,6 +500,27 @@ class MapleStoryApi(BaseModel):
         }
         r = self.fetch(path, query)
         return GuildBasic(**r)
+
+    def get_cube_history(self, count, date: datetime | None, cursor: str | None) -> CubeHistory:
+        """큐브 사용 결과를 조회합니다.
+
+        - 데이터는 매일 오전 4시, 전일 데이터가 갱신됩니다.
+        - 2022년 11월 25일 데이터부터 조회할 수 있습니다.
+
+        @param count(int): 한번에 가져오려는 결과의 갯수(최소 10, 최대 1000)
+        @param date(datetime): 조회 기준일(KST) (cursor가 없는 경우 필수이며 cursor와 함께 사용 불가)
+        @param cursor(str): 페이징 처리를 위한 cursor (date가 없는 경우 필수이며 date와 함께 사용 불가)
+        """
+        path = 'maplestory/v1/history/cube'
+        query = {
+            'count': count,
+            'date': self.to_date_string(datetime(2022, 11, 25), date),
+        } if date else {
+            'count': count,
+            'cursor': cursor,
+        }
+        r = self.fetch(path, query)
+        return CubeHistory(**r)
 
     def fetch(self, path: str, query: dict) -> Any:
         r = requests.get(

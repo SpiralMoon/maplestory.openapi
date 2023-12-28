@@ -1,3 +1,4 @@
+from datetime import datetime
 import os
 
 from maplestory_openapi.api.maplestory_api import MapleStoryApi
@@ -36,5 +37,10 @@ oguild_id = api.get_guild_id(
     guild_name=basic.character_guild_name, world_name=basic.world_name).oguild_id
 # guild = api.get_guild_basic(oguild_id)
 
+# cube_history = api.get_cube_history(
+#     count=10, date=datetime(2023, 7, 16), cursor=None)
+# cube_history_next = api.get_cube_history(
+#     count=10, date=None, cursor=cube_history.next_cursor)
 
-# print(oguild_id, guild)
+
+print(basic)
