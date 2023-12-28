@@ -2478,6 +2478,174 @@ public class MapleStoryApi {
     //#region 확률 정보 조회
 
     /**
+     * 스타포스 강화 결과를 조회합니다.<br>
+     * - 스타포스 확률 정보는 최대 5분 후 확인 가능합니다.<br>
+     * - 2023년 12월 27일 데이터부터 조회할 수 있습니다.<br>
+     *
+     * @param count 한번에 가져오려는 결과의 개수(최소 10, 최대 1000)
+     */
+    public StarforceHistoryResponseDTO getStarforceHistory(int count) throws IOException {
+        return this.getStarforceHistory(count, getProperDefaultDateTime(new LatestApiUpdateTimeOption(0, 0, 0)));
+    }
+
+    /**
+     * 스타포스 강화 결과를 조회합니다.<br>
+     * - 스타포스 확률 정보는 최대 5분 후 확인 가능합니다.<br>
+     * - 2023년 12월 27일 데이터부터 조회할 수 있습니다.<br>
+     *
+     * @param count 한번에 가져오려는 결과의 개수(최소 10, 최대 1000)
+     */
+    public void getStarforceHistoryAsync(int count, SuccessCallback<StarforceHistoryResponseDTO> onSuccess, FailureCallback onFailure) {
+        this.getStarforceHistoryAsync(count, getProperDefaultDateTime(new LatestApiUpdateTimeOption(0, 0, 0)), onSuccess, onFailure);
+    }
+
+    /**
+     * 지목한 날짜의 스타포스 강화 결과를 조회합니다.<br>
+     * - 스타포스 확률 정보는 최대 5분 후 확인 가능합니다.<br>
+     * - 2023년 12월 27일 데이터부터 조회할 수 있습니다.<br>
+     *
+     * @param count         한번에 가져오려는 결과의 개수(최소 10, 최대 1000)
+     * @param localDateTime 조회 기준일 (KST)
+     */
+    public StarforceHistoryResponseDTO getStarforceHistory(int count, @NonNull LocalDateTime localDateTime) throws IOException {
+
+        final String date = toDateString(minDate(2023, 12, 27), localDateTime);
+
+        final Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(this.buildClient())
+                .build();
+
+        final StarforceApi starforceApi = retrofit.create(StarforceApi.class);
+        final Call<StarforceHistoryResponseDTO> call = starforceApi.getStarforceHistoryByDate(this.apiKey, count, date);
+
+        final Response<StarforceHistoryResponseDTO> response = call.execute();
+
+        if (!response.isSuccessful()) {
+            throw parseError(response);
+        }
+
+        return response.body();
+    }
+
+    /**
+     * 지목한 날짜의 스타포스 강화 결과를 비동기로 조회합니다.<br>
+     * - 스타포스 확률 정보는 최대 5분 후 확인 가능합니다.<br>
+     * - 2023년 12월 27일 데이터부터 조회할 수 있습니다.<br>
+     *
+     * @param count         한번에 가져오려는 결과의 개수(최소 10, 최대 1000)
+     * @param localDateTime 조회 기준일 (KST)
+     */
+    public void getStarforceHistoryAsync(int count, @NonNull LocalDateTime localDateTime, SuccessCallback<StarforceHistoryResponseDTO> onSuccess, FailureCallback onFailure) {
+
+        final String date = toDateString(minDate(2023, 12, 27), localDateTime);
+
+        final Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(this.buildClient())
+                .build();
+
+        final StarforceApi starforceApi = retrofit.create(StarforceApi.class);
+        final Call<StarforceHistoryResponseDTO> call = starforceApi.getStarforceHistoryByDate(this.apiKey, count, date);
+
+        call.enqueue(new Callback<StarforceHistoryResponseDTO>() {
+            @SneakyThrows
+            @Override
+            public void onResponse(Call<StarforceHistoryResponseDTO> call, Response<StarforceHistoryResponseDTO> response) {
+                if (response.isSuccessful()) {
+                    if (onSuccess != null) {
+                        onSuccess.callback(response.body());
+                    }
+                } else {
+                    if (onFailure != null) {
+                        onFailure.callback(parseError(response));
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<StarforceHistoryResponseDTO> call, Throwable t) {
+                if (onFailure != null) {
+                    onFailure.callback(t);
+                }
+            }
+        });
+    }
+
+    /**
+     * 지목한 날짜의 스타포스 강화 결과를 조회합니다.<br>
+     * - 스타포스 확률 정보는 최대 5분 후 확인 가능합니다.<br>
+     * - 2023년 12월 27일 데이터부터 조회할 수 있습니다.<br>
+     *
+     * @param count  한번에 가져오려는 결과의 개수(최소 10, 최대 1000)
+     * @param cursor 페이징 처리를 위한 cursor
+     */
+    public StarforceHistoryResponseDTO getStarforceHistory(int count, @NonNull String cursor) throws IOException {
+
+        final Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(this.buildClient())
+                .build();
+
+        final StarforceApi starforceApi = retrofit.create(StarforceApi.class);
+        final Call<StarforceHistoryResponseDTO> call = starforceApi.getStarforceHistoryByCursor(this.apiKey, count, cursor);
+
+        final Response<StarforceHistoryResponseDTO> response = call.execute();
+
+        if (!response.isSuccessful()) {
+            throw parseError(response);
+        }
+
+        return response.body();
+    }
+
+    /**
+     * 스타포스 강화 결과를 조회합니다.<br>
+     * - 스타포스 확률 정보는 최대 5분 후 확인 가능합니다.<br>
+     * - 2023년 12월 27일 데이터부터 조회할 수 있습니다.<br>
+     *
+     * @param count  한번에 가져오려는 결과의 개수(최소 10, 최대 1000)
+     * @param cursor 페이징 처리를 위한 cursor
+     */
+    public void getStarforceHistoryAsync(int count, @NonNull String cursor, SuccessCallback<StarforceHistoryResponseDTO> onSuccess, FailureCallback onFailure) {
+
+        final Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(this.buildClient())
+                .build();
+
+        final StarforceApi starforceApi = retrofit.create(StarforceApi.class);
+        final Call<StarforceHistoryResponseDTO> call = starforceApi.getStarforceHistoryByCursor(this.apiKey, count, cursor);
+
+        call.enqueue(new Callback<StarforceHistoryResponseDTO>() {
+            @SneakyThrows
+            @Override
+            public void onResponse(Call<StarforceHistoryResponseDTO> call, Response<StarforceHistoryResponseDTO> response) {
+                if (response.isSuccessful()) {
+                    if (onSuccess != null) {
+                        onSuccess.callback(response.body());
+                    }
+                } else {
+                    if (onFailure != null) {
+                        onFailure.callback(parseError(response));
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<StarforceHistoryResponseDTO> call, Throwable t) {
+                if (onFailure != null) {
+                    onFailure.callback(t);
+                }
+            }
+        });
+    }
+
+    /**
      * 큐브 사용 결과를 조회합니다.<br>
      * - 데이터는 매일 오전 4시, 전일 데이터가 갱신됩니다.<br>
      * - e.g. 오늘 오후 3시 5분 큐브 확률 정보 조회 시, 어제의 큐브 확률 정보 데이터를 조회할 수 있습니다.<br>
