@@ -23,6 +23,10 @@ from maplestory_openapi.api.dto.character_vmatrix import CharacterVMatrix
 from maplestory_openapi.api.dto.character_hexamatrix import CharacterHexaMatrix
 from maplestory_openapi.api.dto.character_hexamatrix_stat import CharacterHexaMatrixStat
 from maplestory_openapi.api.dto.character_dojang import CharacterDojang
+
+from maplestory_openapi.api.dto.union import Union
+from maplestory_openapi.api.dto.union_raider import UnionRaider
+
 from maplestory_openapi.api.maplestory_api_error import MapleStoryApiError, MapleStoryApiException
 from maplestory_openapi.api.utils.date import get_proper_default_datetime
 
@@ -420,6 +424,40 @@ class MapleStoryApi(BaseModel):
         }
         r = self.fetch(path, query)
         return CharacterDojang(**r)
+
+    def get_union(self, ocid: str, date: datetime = get_proper_default_datetime()) -> Union:
+        """유니온 레벨 및 유니온 등급 정보를 조회합니다.
+
+        - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
+        - 오전 0시부터 전일 데이터 조회가 가능합니다.
+
+        @param ocid (str): 캐릭터 식별자(ocid)
+        @param date (datetime): 조회 기준일(KST)
+        """
+        path = 'maplestory/v1/user/union'
+        query = {
+            'ocid': ocid,
+            'date': self.to_date_string(datetime(2023, 12, 21), date),
+        }
+        r = self.fetch(path, query)
+        return Union(**r)
+
+    def get_union_raider(self, ocid: str, date: datetime = get_proper_default_datetime()) -> UnionRaider:
+        """유니온에 배치된 공격대원 효과 및 공격대 점령 효과 등 상세 정보를 조회합니다.
+
+        - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
+        - 오전 0시부터 전일 데이터 조회가 가능합니다.
+
+        @param ocid (str): 캐릭터 식별자(ocid)
+        @param date (datetime): 조회 기준일(KST)
+        """
+        path = 'maplestory/v1/user/union-raider'
+        query = {
+            'ocid': ocid,
+            'date': self.to_date_string(datetime(2023, 12, 21), date),
+        }
+        r = self.fetch(path, query)
+        return UnionRaider(**r)
 
     def fetch(self, path: str, query: dict) -> Any:
         r = requests.get(
