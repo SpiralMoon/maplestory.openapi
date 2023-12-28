@@ -4,6 +4,7 @@ from typing import Any
 from pydantic import BaseModel
 import requests
 
+from maplestory_openapi.api.dto.character import Character
 from maplestory_openapi.api.dto.character_basic import CharacterBasic
 from maplestory_openapi.api.dto.character_popularity import CharacterPopularity
 from maplestory_openapi.api.dto.character_stat import CharacterStat
@@ -27,6 +28,9 @@ from maplestory_openapi.api.dto.character_dojang import CharacterDojang
 from maplestory_openapi.api.dto.union import Union
 from maplestory_openapi.api.dto.union_raider import UnionRaider
 
+from maplestory_openapi.api.dto.guild import Guild
+from maplestory_openapi.api.dto.guild_basic import GuildBasic
+
 from maplestory_openapi.api.maplestory_api_error import MapleStoryApiError, MapleStoryApiException
 from maplestory_openapi.api.utils.date import get_proper_default_datetime
 
@@ -42,7 +46,7 @@ class MapleStoryApi(BaseModel):
             timeout=timeout,
         )
 
-    def get_character_id(self, character_name: str) -> str:
+    def get_character_id(self, character_name: str) -> Character:
         """캐릭터 식별자(ocid)를 조회합니다.
 
         - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
@@ -57,7 +61,7 @@ class MapleStoryApi(BaseModel):
             'character_name': character_name,
         }
         r = self.fetch(path, query)
-        return r.get('ocid')
+        return Character(**r)
 
     def get_character_basic(self, ocid: str, date: datetime = get_proper_default_datetime()) -> CharacterBasic:
         """기본 정보를 조회합니다.
@@ -414,8 +418,8 @@ class MapleStoryApi(BaseModel):
         - 오전 0시부터 전일 데이터 조회가 가능합니다.
         - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신시 유의해 주시기 바랍니다.
 
-        @param ocid (str): 캐릭터 식별자(ocid)
-        @param date (datetime): 조회 기준일(KST)
+        @param ocid(str): 캐릭터 식별자(ocid)
+        @param date(datetime): 조회 기준일(KST)
         """
         path = 'maplestory/v1/character/dojang'
         query = {
@@ -431,8 +435,8 @@ class MapleStoryApi(BaseModel):
         - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
         - 오전 0시부터 전일 데이터 조회가 가능합니다.
 
-        @param ocid (str): 캐릭터 식별자(ocid)
-        @param date (datetime): 조회 기준일(KST)
+        @param ocid(str): 캐릭터 식별자(ocid)
+        @param date(datetime): 조회 기준일(KST)
         """
         path = 'maplestory/v1/user/union'
         query = {
@@ -448,8 +452,8 @@ class MapleStoryApi(BaseModel):
         - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
         - 오전 0시부터 전일 데이터 조회가 가능합니다.
 
-        @param ocid (str): 캐릭터 식별자(ocid)
-        @param date (datetime): 조회 기준일(KST)
+        @param ocid(str): 캐릭터 식별자(ocid)
+        @param date(datetime): 조회 기준일(KST)
         """
         path = 'maplestory/v1/user/union-raider'
         query = {
@@ -458,6 +462,42 @@ class MapleStoryApi(BaseModel):
         }
         r = self.fetch(path, query)
         return UnionRaider(**r)
+
+    def get_guild_id(self, guild_name: str, world_name: str) -> Guild:
+        """길드 식별자(gcid) 정보를 조회합니다.
+
+        - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
+        - 오전 1시부터 전일 데이터 조회가 가능합니다
+        - 길드 식별자(gcid)는 길드명과 월드명으로 조회할 수 있습니다.
+
+        @param guild_name (str): 길드 명
+        @param world_name (str): 월드 명
+        - 스카니아, 베라, 루나, 제니스, 크로아, 유니온, 엘리시움, 이노시스, 레드, 오로라, 아케인, 노바, 리부트, 리부트2, 버닝, 버닝2, 버닝3
+        """
+        path = 'maplestory/v1/guild/id'
+        query = {
+            'guild_name': guild_name,
+            'world_name': world_name,
+        }
+        r = self.fetch(path, query)
+        return Guild(**r)
+
+    def get_guild_basic(self, oguid_id: str, date: datetime = get_proper_default_datetime()) -> GuildBasic:
+        """길드 기본 정보를 조회합니다.
+
+        - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
+        - 오전 1시부터 전일 데이터 조회가 가능합니다
+
+        @param oguild_id (str): 길드 식별자
+        @param date(datetime): 조회 기준일(KST)
+        """
+        path = 'maplestory/v1/guild/basic'
+        query = {
+            'oguild_id': oguid_id,
+            'date': self.to_date_string(datetime(2023, 12, 21), date),
+        }
+        r = self.fetch(path, query)
+        return GuildBasic(**r)
 
     def fetch(self, path: str, query: dict) -> Any:
         r = requests.get(
