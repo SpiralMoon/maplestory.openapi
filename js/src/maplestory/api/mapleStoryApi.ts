@@ -817,7 +817,7 @@ class MapleStoryApi {
   ): Promise<CharacterSkillDto> {
     const query: CharacterSkillApiQuery = {
       ocid: ocid,
-      character_skill_grade: '0',
+      character_skill_grade: characterSkillGrade,
       date: MapleStoryApi.toDateString(
         {
           year: 2023,
