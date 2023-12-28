@@ -17,6 +17,7 @@ from maplestory_openapi.api.dto.character_set_effect import CharacterSetEffect
 from maplestory_openapi.api.dto.character_beauty_equipment import CharacterBeautyEquipment
 from maplestory_openapi.api.dto.character_android_equipment import CharacterAndroidEquipment
 from maplestory_openapi.api.dto.character_pet_equipment import CharacterPetEquipment
+from maplestory_openapi.api.dto.character_skill import CharacterSkill
 from maplestory_openapi.api.maplestory_api_error import MapleStoryApiError, MapleStoryApiException
 
 from maplestory_openapi.api.utils.date import get_proper_default_datetime
@@ -294,6 +295,37 @@ class MapleStoryApi(BaseModel):
         }
         r = self.fetch(path, query)
         return CharacterPetEquipment(**r)
+
+    def get_character_skill(self, ocid: str, character_skill_grade: str, date: datetime = get_proper_default_datetime()) -> CharacterSkill:
+        """캐릭터 스킬과 하이퍼 스킬 정보를 조회합니다.
+
+        - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
+        - 오전 0시부터 전일 데이터 조회가 가능합니다.
+        - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신시 유의해 주시기 바랍니다.
+
+        @param ocid(str): 캐릭터 식별자(ocid)
+        @param date(datetime): 조회 기준일(KST)
+        @param character_skill_grade(str): 조회하고자 하는 전직 차수
+        - 0: 0차 스킬 및 제로 공용스킬
+        - 1: 1차 스킬
+        - 1.5: 1.5차 스킬
+        - 2: 2차 스킬
+        - 2.5: 2.5차 스킬
+        - 3: 3차 스킬
+        - 4: 4차 스킬 및 제로 알파/베타 스킬
+        - hyperpassive: 하이퍼 패시브 스킬
+        - hyperactive: 하이퍼 액티브 스킬
+        - 5: 5차 스킬
+        - 6: 6차 스킬
+        """
+        path = 'maplestory/v1/character/skill'
+        query = {
+            'ocid': ocid,
+            'date': self.to_date_string(datetime(2023, 12, 21), date),
+            'character_skill_grade': character_skill_grade,
+        }
+        r = self.fetch(path, query)
+        return CharacterSkill(**r)
 
     def fetch(self, path: str, query: dict) -> Any:
         r = requests.get(
