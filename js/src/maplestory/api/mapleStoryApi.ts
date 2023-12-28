@@ -69,6 +69,8 @@ import { TheSeedRankingResponseDtoBody } from './response/theSeedRankingResponse
 import { UnionDtoBody } from './response/unionDtoBody';
 import { UnionRaiderDtoBody } from './response/unionRaiderDtoBody';
 import { UnionRankingResponseDtoBody } from './response/unionRankingResponseDtoBody';
+import { StarforceHistoryResponseDto } from './dto/starforceHistoryResponseDto'
+import { StarforceHistoryResponseDtoBody } from './response/starforceHistoryResponseDtoBody'
 
 dayjs.extend(timezone);
 dayjs.extend(utc);
@@ -1301,6 +1303,87 @@ class MapleStoryApi {
   //#region 확률 정보 조회
 
   /**
+   * 스타포스 강화 결과를 조회합니다.
+   * - 스타포스 확률 정보는 최대 5분 후 확인 가능합니다.
+   * - 2023년 12월 27일 데이터부터 조회할 수 있습니다.
+   *
+   * @param count 한번에 가져오려는 결과의 개수(최소 10, 최대 1000)
+   */
+  public async getStarforceHistory(count: number): Promise<StarforceHistoryResponseDto>;
+
+  /**
+   * 지목한 날짜의 스타포스 강화 결과를 조회합니다.
+   * - 스타포스 확률 정보는 최대 5분 후 확인 가능합니다.
+   * - 2023년 12월 27일 데이터부터 조회할 수 있습니다.
+   *
+   * @param count 한번에 가져오려는 결과의 개수(최소 10, 최대 1000)
+   * @param dateOptions 조회 기준일 (KST)
+   */
+  public async getStarforceHistory(
+    count: number,
+    dateOptions: DateOptions,
+  ): Promise<StarforceHistoryResponseDto>;
+
+  /**
+   * 스타포스 강화 결과를 조회합니다.
+   * - 스타포스 확률 정보는 최대 5분 후 확인 가능합니다.
+   * - 2023년 12월 27일 데이터부터 조회할 수 있습니다.
+   *
+   * @param count 한번에 가져오려는 결과의 개수(최소 10, 최대 1000)
+   * @param cursor 페이징 처리를 위한 cursor
+   */
+  public async getStarforceHistory(
+    count: number,
+    cursor: string,
+  ): Promise<StarforceHistoryResponseDto>;
+
+  public async getStarforceHistory(
+    count: number,
+    parameter?: DateOptions | string,
+  ): Promise<StarforceHistoryResponseDto> {
+    const query: StarforceApiQuery = {
+      count,
+    };
+
+    if (typeof parameter === 'string') {
+      query.cursor = parameter;
+    } else if (typeof parameter === 'object') {
+      query.date = MapleStoryApi.toDateString(
+        {
+          year: 2023,
+          month: 12,
+          day: 27,
+        },
+        parameter ?? MapleStoryApi.getProperDefaultDateOptions({
+          hour: 0,
+          minute: 0,
+          dateOffset: 0
+        }),
+      );
+    }
+
+    try {
+      const path = 'maplestory/v1/history/starforce';
+      const response = await axios.get<StarforceHistoryResponseDtoBody>(path, {
+        baseURL: MapleStoryApi.BASE_URL,
+        timeout: this.timeout,
+        headers: this.buildHeaders(),
+        params: query,
+      });
+
+      return new StarforceHistoryResponseDto(response.data);
+    } catch (e: unknown) {
+      if (e instanceof AxiosError) {
+        const errorBody = (e as AxiosError<MapleStoryErrorBody>).response!.data;
+
+        throw new MapleStoryApiError(errorBody);
+      }
+
+      throw e;
+    }
+  }
+
+  /**
    * 큐브 사용 결과를 조회합니다.
    * - 데이터는 매일 오전 4시, 전일 데이터가 갱신됩니다.
    * - e.g. 오늘 오후 3시 5분 큐브 확률 정보 조회 시, 어제의 큐브 확률 정보 데이터를 조회할 수 있습니다.
@@ -2284,6 +2367,12 @@ type CharacterSkillApiQuery = {
   ocid: string;
   date: string;
   character_skill_grade: string;
+};
+
+type StarforceApiQuery = {
+  count: number;
+  date?: string;
+  cursor?: string;
 };
 
 type CubeApiQuery = {
