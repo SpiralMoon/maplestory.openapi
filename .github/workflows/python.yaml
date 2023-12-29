@@ -9,8 +9,6 @@ jobs:
     defaults:
       run:
         working-directory: './python'
-    env:
-      PYPI_API_TOKEN: ${{ secrets.PYPI_API_TOKEN }}
 
     steps:
       - name: Setup repository
