@@ -32,6 +32,7 @@ from maplestory_openapi.api.dto.guild.guild import Guild
 from maplestory_openapi.api.dto.guild.guild_basic import GuildBasic
 
 from maplestory_openapi.api.dto.history.cube_history import CubeHistory
+from maplestory_openapi.api.dto.history.starforce_history import StarforceHistory
 
 from maplestory_openapi.api.dto.ranking.overall_ranking import OverallRanking
 from maplestory_openapi.api.dto.ranking.guild_ranking import GuildRanking
@@ -527,6 +528,25 @@ class MapleStoryApi(BaseModel):
         }
         r = self.fetch(path, query)
         return CubeHistory(**r)
+
+    def get_starforce_history(self, count, date: datetime | None = None, cursor: str | None = None) -> StarforceHistory:
+        """스타포스 강화 결과를 조회합니다.
+
+        - 스타포스 확률 정보는 최대 5분 후 확인 가능합니다.
+        - 2023년 12월 27일 데이터부터 조회할 수 있습니다.
+
+        @param count(int): 한번에 가져오려는 결과의 갯수(최소 10, 최대 1000)
+        @param date(datetime): 조회 기준일(KST) (cursor가 없는 경우 필수이며 cursor와 함께 사용 불가)
+        @param cursor(str): 페이징 처리를 위한 cursor (date가 없는 경우 필수이며 date와 함께 사용 불가)
+        """
+        path = 'maplestory/v1/history/starforce'
+        query = {
+            'count': count,
+            'date': self.to_date_string(datetime(2023, 12, 27), date) if date else date,
+            'cursor': cursor,
+        }
+        r = self.fetch(path, query)
+        return StarforceHistory(**r)
 
     def get_overall_ranking(self, world_name: str | None = None, world_type: int | None = None, class_name: str | None = None, ocid: str | None = None, page: int = 1,  date: datetime = get_proper_default_datetime(update_hour=8, update_minute=30, day_offset=0), ) -> OverallRanking:
         """종합 랭킹 정보를 조회합니다.

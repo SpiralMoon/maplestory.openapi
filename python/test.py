@@ -41,7 +41,10 @@ oguild_id = api.get_guild_id(
 #     count=10, date=datetime(2023, 7, 16), cursor=None)
 # cube_history_next = api.get_cube_history(
 #     count=10, date=None, cursor=cube_history.next_cursor)
-
+# starforce_history = api.get_starforce_history(
+#     count=10, date=datetime(2023, 12, 28), cursor=None)
+# starforce_history_next = api.get_starforce_history(
+#     count=10, cursor=starforce_history.next_cursor)
 
 # overall_ranking = api.get_overall_ranking()
 # union_ranking = api.get_union_ranking()
@@ -50,4 +53,4 @@ oguild_id = api.get_guild_id(
 # theseed_ranking = api.get_theseed_ranking()
 # achievement_ranking = api.get_achievement_ranking()
 
-print()
+print(basic)
