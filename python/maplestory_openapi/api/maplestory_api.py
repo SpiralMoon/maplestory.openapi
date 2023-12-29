@@ -558,6 +558,30 @@ class MapleStoryApi(BaseModel):
         r = self.fetch(path, query)
         return OverallRanking(**r)
 
+    def get_union_ranking(self, world_name: str | None = None, ocid: str | None = None, page: int = 1,  date: datetime = get_proper_default_datetime(update_hour=8, update_minute=30, day_offset=0), ) -> UnionRanking:
+        """유니온 랭킹 정보를 조회합니다.
+
+        - 2023년 12월 22일 데이터부터 조회할 수 있습니다.
+        - 오전 8시 30분부터 오늘의 랭킹 정보를 조회할 수 있습니다.
+        - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
+
+        @param date(datetime): 조회 기준일(KST)
+        @param world_name(str): 월드 명
+        - 스카니아, 베라, 루나, 제니스, 크로아, 유니온, 엘리시움, 이노시스, 레드, 오로라, 아케인, 노바, 리부트, 리부트2, 버닝, 버닝2, 버닝3
+
+        @param ocid(str): 캐릭터 식별자
+        @param page(int): 페이지 번호
+        """
+        path = 'maplestory/v1/ranking/union'
+        query = {
+            'date': self.to_date_string(datetime(2023, 12, 22), date),
+            'world_name': world_name,
+            'ocid': ocid,
+            'page': page,
+        }
+        r = self.fetch(path, query)
+        return UnionRanking(**r)
+
     def get_guild_ranking(self, ranking_type: int, world_name: str | None = None, guild_name: str | None = None, page: int = 1,  date: datetime = get_proper_default_datetime(update_hour=8, update_minute=30, day_offset=0), ) -> GuildRanking:
         """길드 랭킹 정보를 조회합니다.
 
