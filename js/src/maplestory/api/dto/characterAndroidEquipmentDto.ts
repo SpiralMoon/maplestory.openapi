@@ -35,12 +35,12 @@ class CharacterAndroidEquipmentDto {
   /**
    * 안드로이드 헤어 정보
    */
-  androidHair: CharacterAndroidEquipmentHairDto | null;
+  androidHair: CharacterAndroidEquipmentHairDto;
 
   /**
    * 안드로이드 성형 정보
    */
-  androidFace: CharacterAndroidEquipmentFaceDto | null;
+  androidFace: CharacterAndroidEquipmentFaceDto;
 
   /**
    * 안드로이드 피부 명
@@ -76,12 +76,8 @@ class CharacterAndroidEquipmentDto {
     this.androidNickname = android_nickname;
     this.androidIcon = android_icon;
     this.androidDescription = android_description;
-    this.androidHair = android_hair
-      ? new CharacterAndroidEquipmentHairDto(android_hair)
-      : null;
-    this.androidFace = android_face
-      ? new CharacterAndroidEquipmentFaceDto(android_face)
-      : null;
+    this.androidHair = new CharacterAndroidEquipmentHairDto(android_hair);
+    this.androidFace = new CharacterAndroidEquipmentFaceDto(android_face);
     this.androidSkinName = android_skin_name;
     this.androidCashItemEquipment = android_cash_item_equipment.map(
       (equipment) => new CharacterAndroidCashItemEquipmentDto(equipment),

@@ -4,23 +4,23 @@ type CharacterAndroidEquipmentDtoBody = {
   android_nickname: string | null;
   android_icon: string | null;
   android_description: string | null;
-  android_hair: CharacterAndroidEquipmentHairDtoBody | null;
-  android_face: CharacterAndroidEquipmentFaceDtoBody | null;
+  android_hair: CharacterAndroidEquipmentHairDtoBody;
+  android_face: CharacterAndroidEquipmentFaceDtoBody;
   android_skin_name: string | null;
   android_cash_item_equipment: CharacterAndroidCashItemEquipmentDtoBody[];
   android_ear_sensor_clip_flag: string | null;
 };
 
 type CharacterAndroidEquipmentHairDtoBody = {
-  hair_name: string;
-  base_color: string;
+  hair_name: string | null;
+  base_color: string | null;
   mix_color: string | null;
   mix_rate: string;
 };
 
 type CharacterAndroidEquipmentFaceDtoBody = {
-  face_name: string;
-  base_color: string;
+  face_name: string | null;
+  base_color: string | null;
   mix_color: string | null;
   mix_rate: string;
 };

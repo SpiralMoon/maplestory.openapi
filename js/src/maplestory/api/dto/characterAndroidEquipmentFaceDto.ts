@@ -7,12 +7,12 @@ class CharacterAndroidEquipmentFaceDto {
   /**
    * 안드로이드 성형 명
    */
-  faceName: string;
+  faceName: string | null;
 
   /**
    * 안드로이드 성형 베이스 컬러
    */
-  baseColor: string;
+  baseColor: string | null;
 
   /**
    * 안드로이드 성형 믹스 컬러
