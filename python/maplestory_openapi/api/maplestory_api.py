@@ -73,7 +73,7 @@ class MapleStoryApi(BaseModel):
         r = self.fetch(path, query)
         return Character(**r)
 
-    def get_character_basic(self, ocid: str, date: datetime = get_proper_default_datetime()) -> CharacterBasic:
+    def get_character_basic(self, ocid: str, date: datetime = get_proper_default_datetime(update_hour=1, day_offset=1)) -> CharacterBasic:
         """기본 정보를 조회합니다.
 
         - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
@@ -92,7 +92,7 @@ class MapleStoryApi(BaseModel):
 
         return CharacterBasic(**r)
 
-    def get_character_popularity(self, ocid: str, date: datetime = get_proper_default_datetime()) -> CharacterPopularity:
+    def get_character_popularity(self, ocid: str, date: datetime = get_proper_default_datetime(update_hour=1, day_offset=1)) -> CharacterPopularity:
         """인기도 정보를 조회합니다.
 
         - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
@@ -114,7 +114,7 @@ class MapleStoryApi(BaseModel):
             popularity=r.get('popularity'),
         )
 
-    def get_character_stat(self, ocid: str, date: datetime = get_proper_default_datetime()) -> CharacterStat:
+    def get_character_stat(self, ocid: str, date: datetime = get_proper_default_datetime(update_hour=1, day_offset=1)) -> CharacterStat:
         """종합능력치 정보를 조회합니다.
 
         - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
@@ -133,7 +133,7 @@ class MapleStoryApi(BaseModel):
 
         return CharacterStat(**r)
 
-    def get_character_hyper_stat(self, ocid: str, date: datetime = get_proper_default_datetime()) -> CharacterHyperStat:
+    def get_character_hyper_stat(self, ocid: str, date: datetime = get_proper_default_datetime(update_hour=1, day_offset=1)) -> CharacterHyperStat:
         """하이퍼스탯 정보를 조회합니다.
 
         - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
@@ -152,7 +152,7 @@ class MapleStoryApi(BaseModel):
 
         return CharacterHyperStat(**r)
 
-    def get_character_propensity(self, ocid: str, date: datetime = get_proper_default_datetime()) -> CharacterPropensity:
+    def get_character_propensity(self, ocid: str, date: datetime = get_proper_default_datetime(update_hour=1, day_offset=1)) -> CharacterPropensity:
         """성향 정보를 조회합니다.
 
         - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
@@ -171,7 +171,7 @@ class MapleStoryApi(BaseModel):
 
         return CharacterPropensity(**r)
 
-    def get_character_ability(self, ocid: str, date: datetime = get_proper_default_datetime()) -> CharacterAbility:
+    def get_character_ability(self, ocid: str, date: datetime = get_proper_default_datetime(update_hour=1, day_offset=1)) -> CharacterAbility:
         """어빌리티 정보를 조회합니다.
 
         - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
@@ -190,7 +190,7 @@ class MapleStoryApi(BaseModel):
 
         return CharacterAbility(**r)
 
-    def get_character_item_equipment(self, ocid: str, date: datetime = get_proper_default_datetime()) -> CharacterItemEquipment:
+    def get_character_item_equipment(self, ocid: str, date: datetime = get_proper_default_datetime(update_hour=1, day_offset=1)) -> CharacterItemEquipment:
         """장착한 장비 중 캐시 장비를 제외한 나머지 장비 정보를 조회합니다.
 
         - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
@@ -209,7 +209,7 @@ class MapleStoryApi(BaseModel):
 
         return CharacterItemEquipment(**r)
 
-    def get_character_cashitem_equipment(self, ocid: str, date: datetime = get_proper_default_datetime()) -> CharacterCashitemEquipment:
+    def get_character_cashitem_equipment(self, ocid: str, date: datetime = get_proper_default_datetime(update_hour=1, day_offset=1)) -> CharacterCashitemEquipment:
         """장착한 캐시 장비 정보를 조회합니다.
 
         - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
@@ -228,7 +228,7 @@ class MapleStoryApi(BaseModel):
 
         return CharacterCashitemEquipment(**r)
 
-    def get_character_symbol_equipment(self, ocid: str, date: datetime = get_proper_default_datetime()) -> CharacterSymbolEquipment:
+    def get_character_symbol_equipment(self, ocid: str, date: datetime = get_proper_default_datetime(update_hour=1, day_offset=1)) -> CharacterSymbolEquipment:
         """장착한 심볼 정보를 조회합니다.
 
         - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
@@ -246,7 +246,7 @@ class MapleStoryApi(BaseModel):
         r = self.fetch(path, query)
         return CharacterSymbolEquipment(**r)
 
-    def get_character_set_effect(self, ocid: str, date: datetime = get_proper_default_datetime()) -> CharacterSetEffect:
+    def get_character_set_effect(self, ocid: str, date: datetime = get_proper_default_datetime(update_hour=1, day_offset=1)) -> CharacterSetEffect:
         """적용받고 있는 세트 효과 정보를 조회합니다
 
         - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
@@ -264,7 +264,7 @@ class MapleStoryApi(BaseModel):
         r = self.fetch(path, query)
         return CharacterSetEffect(**r)
 
-    def get_character_beauty_equipment(self, ocid: str, date: datetime = get_proper_default_datetime()) -> CharacterBeautyEquipment:
+    def get_character_beauty_equipment(self, ocid: str, date: datetime = get_proper_default_datetime(update_hour=1, day_offset=1)) -> CharacterBeautyEquipment:
         """캐릭터 헤어, 성형, 피부 정보를 조회합니다.
 
         - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
@@ -282,7 +282,7 @@ class MapleStoryApi(BaseModel):
         r = self.fetch(path, query)
         return CharacterBeautyEquipment(**r)
 
-    def get_character_android_equipment(self, ocid: str, date: datetime = get_proper_default_datetime()) -> CharacterAndroidEquipment:
+    def get_character_android_equipment(self, ocid: str, date: datetime = get_proper_default_datetime(update_hour=1, day_offset=1)) -> CharacterAndroidEquipment:
         """장착한 안드로이드 정보를 조회합니다.
 
         - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
@@ -300,7 +300,7 @@ class MapleStoryApi(BaseModel):
         r = self.fetch(path, query)
         return CharacterAndroidEquipment(**r)
 
-    def get_character_pet_equipment(self, ocid: str, date: datetime = get_proper_default_datetime()) -> CharacterPetEquipment:
+    def get_character_pet_equipment(self, ocid: str, date: datetime = get_proper_default_datetime(update_hour=1, day_offset=1)) -> CharacterPetEquipment:
         """장착한 펫 및 펫 스킬, 장비 정보를 조회합니다.
 
         - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
@@ -318,7 +318,7 @@ class MapleStoryApi(BaseModel):
         r = self.fetch(path, query)
         return CharacterPetEquipment(**r)
 
-    def get_character_skill(self, ocid: str, character_skill_grade: str, date: datetime = get_proper_default_datetime()) -> CharacterSkill:
+    def get_character_skill(self, ocid: str, character_skill_grade: str, date: datetime = get_proper_default_datetime(day_offset=1)) -> CharacterSkill:
         """캐릭터 스킬과 하이퍼 스킬 정보를 조회합니다.
 
         - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
@@ -349,7 +349,7 @@ class MapleStoryApi(BaseModel):
         r = self.fetch(path, query)
         return CharacterSkill(**r)
 
-    def get_character_link_skill(self, ocid: str, date: datetime = get_proper_default_datetime()) -> CharacterLinkSkill:
+    def get_character_link_skill(self, ocid: str, date: datetime = get_proper_default_datetime(day_offset=1)) -> CharacterLinkSkill:
         """장착 링크 스킬 정보를 조회합니다.
 
         - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
@@ -367,7 +367,7 @@ class MapleStoryApi(BaseModel):
         r = self.fetch(path, query)
         return CharacterLinkSkill(**r)
 
-    def get_character_vmatrix(self, ocid: str, date: datetime = get_proper_default_datetime()) -> CharacterVMatrix:
+    def get_character_vmatrix(self, ocid: str, date: datetime = get_proper_default_datetime(day_offset=1)) -> CharacterVMatrix:
         """V매트릭스 슬롯 정보와 장착한 V코어 정보를 조회합니다.
 
         - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
@@ -385,7 +385,7 @@ class MapleStoryApi(BaseModel):
         r = self.fetch(path, query)
         return CharacterVMatrix(**r)
 
-    def get_character_hexamatrix(self, ocid: str, date: datetime = get_proper_default_datetime()) -> CharacterHexaMatrix:
+    def get_character_hexamatrix(self, ocid: str, date: datetime = get_proper_default_datetime(day_offset=1)) -> CharacterHexaMatrix:
         """HEXA 매트릭스에 장착한 HEXA 코어 정보를 조회합니다.
 
         - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
@@ -403,7 +403,7 @@ class MapleStoryApi(BaseModel):
         r = self.fetch(path, query)
         return CharacterHexaMatrix(**r)
 
-    def get_character_hexamatrix_stat(self, ocid: str, date: datetime = get_proper_default_datetime()) -> CharacterHexaMatrixStat:
+    def get_character_hexamatrix_stat(self, ocid: str, date: datetime = get_proper_default_datetime(day_offset=1)) -> CharacterHexaMatrixStat:
         """HEXA 매트릭스에 설정한 HEXA 스탯 정보를 조회합니다.
 
         - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
@@ -421,7 +421,7 @@ class MapleStoryApi(BaseModel):
         r = self.fetch(path, query)
         return CharacterHexaMatrixStat(**r)
 
-    def get_character_dojang(self, ocid: str, date: datetime = get_proper_default_datetime()) -> CharacterDojang:
+    def get_character_dojang(self, ocid: str, date: datetime = get_proper_default_datetime(day_offset=1)) -> CharacterDojang:
         """캐릭터 무릉도장 최고 기록 정보를 조회합니다.
 
         - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
@@ -439,7 +439,7 @@ class MapleStoryApi(BaseModel):
         r = self.fetch(path, query)
         return CharacterDojang(**r)
 
-    def get_union(self, ocid: str, date: datetime = get_proper_default_datetime()) -> Union:
+    def get_union(self, ocid: str, date: datetime = get_proper_default_datetime(day_offset=1)) -> Union:
         """유니온 레벨 및 유니온 등급 정보를 조회합니다.
 
         - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
@@ -456,7 +456,7 @@ class MapleStoryApi(BaseModel):
         r = self.fetch(path, query)
         return Union(**r)
 
-    def get_union_raider(self, ocid: str, date: datetime = get_proper_default_datetime()) -> UnionRaider:
+    def get_union_raider(self, ocid: str, date: datetime = get_proper_default_datetime(day_offset=1)) -> UnionRaider:
         """유니온에 배치된 공격대원 효과 및 공격대 점령 효과 등 상세 정보를 조회합니다.
 
         - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
@@ -492,7 +492,7 @@ class MapleStoryApi(BaseModel):
         r = self.fetch(path, query)
         return Guild(**r)
 
-    def get_guild_basic(self, oguid_id: str, date: datetime = get_proper_default_datetime()) -> GuildBasic:
+    def get_guild_basic(self, oguid_id: str, date: datetime = get_proper_default_datetime(update_hour=1, day_offset=1)) -> GuildBasic:
         """길드 기본 정보를 조회합니다.
 
         - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
@@ -528,7 +528,7 @@ class MapleStoryApi(BaseModel):
         r = self.fetch(path, query)
         return CubeHistory(**r)
 
-    def get_overall_ranking(self, world_name: str | None = None, world_type: int | None = None, class_name: str | None = None, ocid: str | None = None, page: int = 1,  date: datetime = get_proper_default_datetime(), ) -> OverallRanking:
+    def get_overall_ranking(self, world_name: str | None = None, world_type: int | None = None, class_name: str | None = None, ocid: str | None = None, page: int = 1,  date: datetime = get_proper_default_datetime(update_hour=8, update_minute=30, day_offset=0), ) -> OverallRanking:
         """종합 랭킹 정보를 조회합니다.
 
         - 2023년 12월 22일 데이터부터 조회할 수 있습니다.
@@ -558,7 +558,7 @@ class MapleStoryApi(BaseModel):
         r = self.fetch(path, query)
         return OverallRanking(**r)
 
-    def get_guild_ranking(self, ranking_type: int, world_name: str | None = None, guild_name: str | None = None, page: int = 1,  date: datetime = get_proper_default_datetime(), ) -> GuildRanking:
+    def get_guild_ranking(self, ranking_type: int, world_name: str | None = None, guild_name: str | None = None, page: int = 1,  date: datetime = get_proper_default_datetime(update_hour=8, update_minute=30, day_offset=0), ) -> GuildRanking:
         """길드 랭킹 정보를 조회합니다.
 
         - 2023년 12월 22일 데이터부터 조회할 수 있습니다.
@@ -585,7 +585,7 @@ class MapleStoryApi(BaseModel):
         r = self.fetch(path, query)
         return GuildRanking(**r)
 
-    def get_dojang_ranking(self, world_name: str | None = None, class_name: str | None = None, ocid: str | None = None, page: int = 1, difficulty: int = 1,  date: datetime = get_proper_default_datetime(), ) -> DojangRanking:
+    def get_dojang_ranking(self, world_name: str | None = None, class_name: str | None = None, ocid: str | None = None, page: int = 1, difficulty: int = 1,  date: datetime = get_proper_default_datetime(update_hour=8, update_minute=30, day_offset=0), ) -> DojangRanking:
         """무릉도장 랭킹 정보를 조회합니다.
 
         - 2023년 12월 22일 데이터부터 조회할 수 있습니다.
@@ -615,7 +615,7 @@ class MapleStoryApi(BaseModel):
         r = self.fetch(path, query)
         return DojangRanking(**r)
 
-    def get_theseed_ranking(self, world_name: str | None = None, ocid: str | None = None, page: int = 1, date: datetime = get_proper_default_datetime(), ) -> TheSeedRanking:
+    def get_theseed_ranking(self, world_name: str | None = None, ocid: str | None = None, page: int = 1, date: datetime = get_proper_default_datetime(update_hour=8, update_minute=30, day_offset=0), ) -> TheSeedRanking:
         """더 시드 랭킹 정보를 조회합니다.
 
         - 2023년 12월 22일 데이터부터 조회할 수 있습니다.
@@ -638,7 +638,7 @@ class MapleStoryApi(BaseModel):
         r = self.fetch(path, query)
         return TheSeedRanking(**r)
 
-    def get_achievement_ranking(self, ocid: str | None = None, page: int = 1, date: datetime = get_proper_default_datetime()) -> AchievementRanking:
+    def get_achievement_ranking(self, ocid: str | None = None, page: int = 1, date: datetime = get_proper_default_datetime(update_hour=8, update_minute=30, day_offset=0)) -> AchievementRanking:
         """업적 랭킹 정보를 조회합니다.
 
         - 2023년 12월 22일 데이터부터 조회할 수 있습니다.
@@ -673,7 +673,7 @@ class MapleStoryApi(BaseModel):
 
         return r
 
-    def to_date_string(self, min: datetime, date: datetime = get_proper_default_datetime()) -> str:
+    def to_date_string(self, min: datetime, date: datetime) -> str:
         min_date = self.get_kst_datetime(min)
         target_date = self.get_kst_datetime(date)
         if target_date < min_date:
@@ -681,7 +681,7 @@ class MapleStoryApi(BaseModel):
                 f'You can only retrieve data after {min_date.strftime("%Y-%m-%d")}')
         return target_date.strftime('%Y-%m-%d')
 
-    def get_kst_datetime(self, date: datetime = get_proper_default_datetime()) -> datetime:
+    def get_kst_datetime(self, date: datetime) -> datetime:
         """datetime 객체를 KST datetime 객체로 변환합니다.
 
         datetime.astimezone()을 사용하면 지역에 따라 다른 결과가 나오고 date.replace()에도 버그가 존재하므로 datetime으로 재설정합니다.
