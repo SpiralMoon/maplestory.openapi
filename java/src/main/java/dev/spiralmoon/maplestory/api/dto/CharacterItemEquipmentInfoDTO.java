@@ -1,6 +1,7 @@
 package dev.spiralmoon.maplestory.api.dto;
 
 import com.google.gson.annotations.SerializedName;
+import dev.spiralmoon.maplestory.api.Utils;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.ToString;
@@ -232,12 +233,7 @@ public class CharacterItemEquipmentInfoDTO {
     @SerializedName("date_expire")
     private String dateExpire;
 
-    public LocalDateTime getDateExpire() {
-        if (this.dateExpire != null) {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mmXXX");
-            return LocalDateTime.parse(this.dateExpire, formatter);
-        } else {
-            return null;
-        }
+    private LocalDateTime getDateExpire() {
+        return this.dateExpire != null ? Utils.toLocalDateTime(this.dateExpire) : null;
     }
 }
