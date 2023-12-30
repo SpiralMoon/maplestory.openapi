@@ -74,6 +74,54 @@ public class CharacterItemEquipmentInfoDTO {
     private CharacterItemEquipmentBaseOptionDTO itemBaseOption;
 
     /**
+     * 잠재능력 등급
+     */
+    @SerializedName("potential_option_grade")
+    private String potentialOptionGrade;
+
+    /**
+     * 에디셔널 잠재능력 등급
+     */
+    @SerializedName("additional_potential_option_grade")
+    private String additionalPotentialOptionGrade;
+
+    /**
+     * 잠재능력 첫 번째 옵션
+     */
+    @SerializedName("potential_option_1")
+    private String potentialOption1;
+
+    /**
+     * 잠재능력 두 번째 옵션
+     */
+    @SerializedName("potential_option_2")
+    private String potentialOption2;
+
+    /**
+     * 잠재능력 세 번째 옵션
+     */
+    @SerializedName("potential_option_3")
+    private String potentialOption3;
+
+    /**
+     * 에디셔널 잠재능력 첫 번째 옵션
+     */
+    @SerializedName("additional_potential_option_1")
+    private String additionalPotentialOption1;
+
+    /**
+     * 에디셔널 잠재능력 두 번째 옵션
+     */
+    @SerializedName("additional_potential_option_2")
+    private String additionalPotentialOption2;
+
+    /**
+     * 에디셔널 잠재능력  세 번째 옵션
+     */
+    @SerializedName("additional_potential_option_3")
+    private String additionalPotentialOption3;
+
+    /**
      * 착용 레벨 증가
      */
     @SerializedName("equipment_level_increase")
