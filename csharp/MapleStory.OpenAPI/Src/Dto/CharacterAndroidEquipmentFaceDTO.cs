@@ -11,19 +11,19 @@ namespace MapleStory.OpenAPI.Dto
         /// 안드로이드 성형 명
         /// </summary>
         [JsonProperty("face_name")]
-        public string FaceName { get; set; }
+        public string? FaceName { get; set; }
 
         /// <summary>
         /// 안드로이드 성형 베이스 컬러
         /// </summary>
         [JsonProperty("base_color")]
-        public string BaseColor { get; set; }
+        public string? BaseColor { get; set; }
 
         /// <summary>
         /// 안드로이드 성형 믹스 컬러
         /// </summary>
         [JsonProperty("mix_color")]
-        public string MixColor { get; set; }
+        public string? MixColor { get; set; }
 
         /// <summary>
         /// 안드로이드 성형 믹스 컬러의 염색 비율

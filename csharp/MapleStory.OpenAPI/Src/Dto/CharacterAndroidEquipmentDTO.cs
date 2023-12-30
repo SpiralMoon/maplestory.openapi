@@ -17,25 +17,25 @@ namespace MapleStory.OpenAPI.Dto
         /// 안드로이드 명
         /// </summary>
         [JsonProperty("android_name")]
-        public string AndroidName { get; set; }
+        public string? AndroidName { get; set; }
 
         /// <summary>
         /// 안드로이드 닉네임
         /// </summary>
         [JsonProperty("android_nickname")]
-        public string AndroidNickname { get; set; }
+        public string? AndroidNickname { get; set; }
 
         /// <summary>
         /// 안드로이드 아이콘
         /// </summary>
         [JsonProperty("android_icon")]
-        public string AndroidIcon { get; set; }
+        public string? AndroidIcon { get; set; }
 
         /// <summary>
         /// 안드로이드 아이템 설명
         /// </summary>
         [JsonProperty("android_description")]
-        public string AndroidDescription { get; set; }
+        public string? AndroidDescription { get; set; }
 
         /// <summary>
         /// 안드로이드 헤어 정보
@@ -53,7 +53,7 @@ namespace MapleStory.OpenAPI.Dto
         /// 안드로이드 피부 명
         /// </summary>
         [JsonProperty("android_skin_name")]
-        public string AndroidSkinName { get; set; }
+        public string? AndroidSkinName { get; set; }
 
         /// <summary>
         /// 안드로이드 캐시 아이템 장착 정보
@@ -65,6 +65,6 @@ namespace MapleStory.OpenAPI.Dto
         /// 안드로이드 이어센서 클립 적용 여부
         /// </summary>
         [JsonProperty("android_ear_sensor_clip_flag")]
-        public string AndroidEarSensorClipFlag { get; set; }
+        public string? AndroidEarSensorClipFlag { get; set; }
     }
 }

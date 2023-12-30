@@ -51,20 +51,20 @@ namespace MapleStory.OpenAPI.Dto
         /// (제로인 경우 베타, 엔젤릭버스터인 경우 드레스 업 모드)
         /// </summary>
         [JsonProperty("additional_character_hair")]
-        public CharacterBeautyEquipmentHairDTO AdditionalCharacterHair { get; set; }
+        public CharacterBeautyEquipmentHairDTO? AdditionalCharacterHair { get; set; }
 
         /// <summary>
         /// 드레스 업 모드에 적용 중인 성형 정보
         /// (제로인 경우 베타, 엔젤릭버스터인 경우 드레스 업 모드)
         /// </summary>
         [JsonProperty("additional_character_face")]
-        public CharacterBeautyEquipmentFaceDTO AdditionalCharacterFace { get; set; }
+        public CharacterBeautyEquipmentFaceDTO? AdditionalCharacterFace { get; set; }
 
         /// <summary>
         /// 드레스 업 모드에 적용 중인 피부 명
         /// (제로인 경우 베타, 엔젤릭버스터인 경우 드레스 업 모드)
         /// </summary>
         [JsonProperty("additional_character_skin_name")]
-        public string AdditionalCharacterSkinName { get; set; }
+        public string? AdditionalCharacterSkinName { get; set; }
     }
 }

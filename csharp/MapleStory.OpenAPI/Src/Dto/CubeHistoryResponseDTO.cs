@@ -23,6 +23,6 @@ namespace MapleStory.OpenAPI.Dto
         /// 페이징 처리를 위한 cursor
         /// </summary>
         [JsonProperty("next_cursor")]
-        public string  NextCursor;
+        public string?  NextCursor;
     }
 }

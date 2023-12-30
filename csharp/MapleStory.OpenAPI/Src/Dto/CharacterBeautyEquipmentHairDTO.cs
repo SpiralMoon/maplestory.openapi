@@ -23,7 +23,7 @@ namespace MapleStory.OpenAPI.Dto
         /// 헤어 믹스 컬러
         /// </summary>
         [JsonProperty("mix_color")]
-        public string MixColor { get; set; }
+        public string? MixColor { get; set; }
 
         /// <summary>
         /// 헤어 믹스 컬러의 염색 비율

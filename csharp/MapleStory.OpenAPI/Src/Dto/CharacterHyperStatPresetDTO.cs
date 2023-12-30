@@ -17,7 +17,7 @@ namespace MapleStory.OpenAPI.Dto
         /// 스탯 투자 포인트
         /// </summary>
         [JsonProperty("stat_point")]
-        public long StatPoint { get; set; }
+        public long? StatPoint { get; set; }
 
         /// <summary>
         /// 스탯 레벨
@@ -29,6 +29,6 @@ namespace MapleStory.OpenAPI.Dto
         /// 스탯 상승량
         /// </summary>
         [JsonProperty("stat_increase")]
-        public string StatIncrease { get; set; }
+        public string? StatIncrease { get; set; }
     }
 }

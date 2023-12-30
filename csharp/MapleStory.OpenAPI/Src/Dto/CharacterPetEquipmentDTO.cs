@@ -53,7 +53,7 @@ namespace MapleStory.OpenAPI.Dto
         /// 펫1 원더 펫 종류
         /// </summary>
         [JsonProperty("pet_1_pet_type")]
-        public string Pet1PetType { get; set; }
+        public string? Pet1PetType { get; set; }
 
         /// <summary>
         /// 펫1 펫 보유 스킬
@@ -107,7 +107,7 @@ namespace MapleStory.OpenAPI.Dto
         /// 펫2 원더 펫 종류
         /// </summary>
         [JsonProperty("pet_2_pet_type")]
-        public string Pet2PetType { get; set; }
+        public string? Pet2PetType { get; set; }
 
         /// <summary>
         /// 펫2 펫 보유 스킬
@@ -161,7 +161,7 @@ namespace MapleStory.OpenAPI.Dto
         /// 펫3 원더 펫 종류
         /// </summary>
         [JsonProperty("pet_3_pet_type")]
-        public string Pet3PetType { get; set; }
+        public string? Pet3PetType { get; set; }
 
         /// <summary>
         /// 펫3 펫 보유 스킬

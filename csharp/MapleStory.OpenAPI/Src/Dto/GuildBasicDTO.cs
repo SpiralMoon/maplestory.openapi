@@ -77,12 +77,12 @@ namespace MapleStory.OpenAPI.Dto
         /// 조합형 길드 마크
         /// </summary>
         [JsonProperty("guild_mark")]
-        public string GuildMark { get; set; }
+        public string? GuildMark { get; set; }
 
         /// <summary>
         /// 커스텀 길드 마크 (base64 인코딩 형식)
         /// </summary>
         [JsonProperty("guild_mark_custom")]
-        public string GuildMarkCustom { get; set; }
+        public string? GuildMarkCustom { get; set; }
     }
 }

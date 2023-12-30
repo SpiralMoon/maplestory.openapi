@@ -17,6 +17,6 @@ namespace MapleStory.OpenAPI.Dto
         /// HEXA 코어 정보
         /// </summary>
         [JsonProperty("character_hexa_core_equipment")]
-        public List<CharacterHexaMatrixEquipmentDTO> CharacterHexaCoreEquipment { get; set; }
+        public List<CharacterHexaMatrixEquipmentDTO>? CharacterHexaCoreEquipment { get; set; }
     }
 }

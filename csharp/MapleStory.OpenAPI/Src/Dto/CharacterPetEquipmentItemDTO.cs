@@ -11,19 +11,19 @@ namespace MapleStory.OpenAPI.Dto
         /// 아이템 명
         /// </summary>
         [JsonProperty("item_name")]
-        public string ItemName { get; set; }
+        public string? ItemName { get; set; }
 
         /// <summary>
         /// 아이템 아이콘
         /// </summary>
         [JsonProperty("item_icon")]
-        public string ItemIcon { get; set; }
+        public string? ItemIcon { get; set; }
 
         /// <summary>
         /// 아이템 설명
         /// </summary>
         [JsonProperty("item_description")]
-        public string ItemDescription { get; set; }
+        public string? ItemDescription { get; set; }
 
         /// <summary>
         /// 아이템 표기상 옵션

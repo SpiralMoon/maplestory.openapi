@@ -65,7 +65,7 @@ namespace MapleStory.OpenAPI.Dto
         /// 캐릭터 소속 길드 명
         /// </summary>
         [JsonProperty("character_guild_name")]
-        public string CharacterGuildName { get; set; }
+        public string? CharacterGuildName { get; set; }
 
         /// <summary>
         /// 캐릭터 외형 이미지

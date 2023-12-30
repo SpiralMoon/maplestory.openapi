@@ -35,7 +35,7 @@ namespace MapleStory.OpenAPI.Dto
         /// 장비 설명
         /// </summary>
         [JsonProperty("item_description")]
-        public string ItemDescription { get; set; }
+        public string? ItemDescription { get; set; }
 
         /// <summary>
         /// 장비 외형
@@ -66,6 +66,54 @@ namespace MapleStory.OpenAPI.Dto
         /// </summary>
         [JsonProperty("item_base_option")]
         public CharacterItemEquipmentBaseOptionDTO ItemBaseOption { get; set; }
+
+        /// <summary>
+        /// 잠재능력 등급
+        /// </summary>
+        [JsonProperty("potential_option_grade")]
+        public string? PotentialOptionGrade;
+
+        /// <summary>
+        /// 에디셔널 잠재능력 등급
+        /// </summary>
+        [JsonProperty("additional_potential_option_grade")]
+        public string? AdditionalPotentialOptionGrade;
+
+        /// <summary>
+        /// 잠재능력 첫 번째 옵션
+        /// </summary>
+        [JsonProperty("potential_option_1")]
+        public string? PotentialOption1;
+
+        /// <summary>
+        /// 잠재능력 두 번째 옵션
+        /// </summary>
+        [JsonProperty("potential_option_2")]
+        public string? PotentialOption2;
+
+        /// <summary>
+        /// 잠재능력 세 번째 옵션
+        /// </summary>
+        [JsonProperty("potential_option_3")]
+        public string? PotentialOption3;
+
+        /// <summary>
+        /// 에디셔널 잠재능력 첫 번째 옵션
+        /// </summary>
+        [JsonProperty("additional_potential_option_1")]
+        public string? AdditionalPotentialOption1;
+
+        /// <summary>
+        /// 에디셔널 잠재능력 두 번째 옵션
+        /// </summary>
+        [JsonProperty("additional_potential_option_2")]
+        public string? AdditionalPotentialOption2;
+
+        /// <summary>
+        /// 에디셔널 잠재능력  세 번째 옵션
+        /// </summary>
+        [JsonProperty("additional_potential_option_3")]
+        public string? AdditionalPotentialOption3;
 
         /// <summary>
         /// 착용 레벨 증가
@@ -131,13 +179,13 @@ namespace MapleStory.OpenAPI.Dto
         /// 소울 명
         /// </summary>
         [JsonProperty("soul_name")]
-        public string SoulName { get; set; }
+        public string? SoulName { get; set; }
 
         /// <summary>
         /// 소울 옵션
         /// </summary>
         [JsonProperty("soul_option")]
-        public string SoulOption { get; set; }
+        public string? SoulOption { get; set; }
 
         /// <summary>
         /// 장비 기타 옵션 정보
@@ -173,6 +221,6 @@ namespace MapleStory.OpenAPI.Dto
         /// 장비 유효 기간(KST)
         /// </summary>
         [JsonProperty("date_expire")]
-        public string DateExpire { get; set; }
+        public string? DateExpire { get; set; }
     }
 }
