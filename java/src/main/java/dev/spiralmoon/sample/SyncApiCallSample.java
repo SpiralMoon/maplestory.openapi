@@ -2,8 +2,8 @@ package dev.spiralmoon.sample;
 
 import dev.spiralmoon.maplestory.api.MapleStoryApi;
 import dev.spiralmoon.maplestory.api.MapleStoryApiException;
-import dev.spiralmoon.maplestory.api.dto.CubeHistoryDTO;
-import dev.spiralmoon.maplestory.api.dto.CubeHistoryResponseDTO;
+import dev.spiralmoon.maplestory.api.dto.history.CubeHistoryDTO;
+import dev.spiralmoon.maplestory.api.dto.history.CubeHistoryResponseDTO;
 
 import java.time.LocalDateTime;
 import java.util.List;

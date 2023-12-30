@@ -1,6 +1,6 @@
 package dev.spiralmoon.maplestory.api.template;
 
-import dev.spiralmoon.maplestory.api.dto.*;
+import dev.spiralmoon.maplestory.api.dto.character.*;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Header;

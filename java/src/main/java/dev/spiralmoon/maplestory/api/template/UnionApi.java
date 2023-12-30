@@ -1,6 +1,7 @@
 package dev.spiralmoon.maplestory.api.template;
 
-import dev.spiralmoon.maplestory.api.dto.*;
+import dev.spiralmoon.maplestory.api.dto.union.UnionDTO;
+import dev.spiralmoon.maplestory.api.dto.union.UnionRaiderDTO;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Header;

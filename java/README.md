@@ -35,8 +35,8 @@ Before using the library, register your application and obtain an **api key** fr
 ```java
 import dev.spiralmoon.maplestory.api.MapleStoryApi;
 import dev.spiralmoon.maplestory.api.MapleStoryApiException;
-import dev.spiralmoon.maplestory.api.dto.CubeHistoryDTO;
-import dev.spiralmoon.maplestory.api.dto.CubeHistoryResponseDTO;
+import dev.spiralmoon.maplestory.api.dto.history.CubeHistoryDTO;
+import dev.spiralmoon.maplestory.api.dto.history.CubeHistoryResponseDTO;
 
 import java.util.List;
 

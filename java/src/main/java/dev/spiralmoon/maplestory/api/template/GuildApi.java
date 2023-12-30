@@ -1,7 +1,7 @@
 package dev.spiralmoon.maplestory.api.template;
 
-import dev.spiralmoon.maplestory.api.dto.GuildBasicDTO;
-import dev.spiralmoon.maplestory.api.dto.GuildDTO;
+import dev.spiralmoon.maplestory.api.dto.guild.GuildBasicDTO;
+import dev.spiralmoon.maplestory.api.dto.guild.GuildDTO;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
