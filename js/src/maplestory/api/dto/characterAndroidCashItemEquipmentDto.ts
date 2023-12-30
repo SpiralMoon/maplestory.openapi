@@ -29,7 +29,7 @@ class CharacterAndroidCashItemEquipmentDto {
   /**
    * 안드로이드 캐시 아이템 설명
    */
-  cashItemDescription: string;
+  cashItemDescription: string | null;
 
   /**
    * 안드로이드 캐시 아이템 옵션
@@ -39,22 +39,22 @@ class CharacterAndroidCashItemEquipmentDto {
   /**
    * 안드로이드 캐시 아이템 유효 기간 (KST)
    */
-  dateExpire: Date;
+  dateExpire: Date | null;
 
   /**
    * 안드로이드 캐시 아이템 옵션 유효 기간 (KST, 시간 단위 데이터로 분은 일괄 0으로 표기)
    */
-  dateOptionExpire: Date;
+  dateOptionExpire: Date | null;
 
   /**
    * 안드로이드 캐시 아이템 라벨 정보 (스페셜라벨, 레드라벨, 블랙라벨, 마스터라벨)
    */
-  cashItemLabel: string;
+  cashItemLabel: string | null;
 
   /**
    * 안드로이드 캐시 아이템 컬러링프리즘 정보
    */
-  cashItemColoringPrism: CharacterAndroidCashItemEquipmentColoringPrismDto;
+  cashItemColoringPrism: CharacterAndroidCashItemEquipmentColoringPrismDto | null;
 
   constructor(obj: CharacterAndroidCashItemEquipmentDtoBody) {
     const {
@@ -78,13 +78,16 @@ class CharacterAndroidCashItemEquipmentDto {
     this.cashItemOption = cash_item_option.map(
       (option) => new CharacterAndroidCashItemEquipmentOptionDto(option),
     );
-    this.dateExpire = new Date(date_expire);
-    this.dateOptionExpire = new Date(date_option_expire);
+    this.dateExpire = date_expire ? new Date(date_expire) : null;
+    this.dateOptionExpire = date_option_expire
+      ? new Date(date_option_expire)
+      : null;
     this.cashItemLabel = cash_item_label;
-    this.cashItemColoringPrism =
-      new CharacterAndroidCashItemEquipmentColoringPrismDto(
-        cash_item_coloring_prism,
-      );
+    this.cashItemColoringPrism = cash_item_coloring_prism
+      ? new CharacterAndroidCashItemEquipmentColoringPrismDto(
+          cash_item_coloring_prism,
+        )
+      : null;
   }
 }
 

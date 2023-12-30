@@ -44,7 +44,7 @@ class CharacterPetEquipmentDto {
   /**
    * 펫1 원더 펫 종류
    */
-  pet1PetType: string;
+  pet1PetType: string | null;
 
   /**
    * 펫1 펫 보유 스킬
@@ -89,7 +89,7 @@ class CharacterPetEquipmentDto {
   /**
    * 펫2 원더 펫 종류
    */
-  pet2PetType: string;
+  pet2PetType: string | null;
 
   /**
    * 펫2 펫 보유 스킬
@@ -134,7 +134,7 @@ class CharacterPetEquipmentDto {
   /**
    * 펫3 원더 펫 종류
    */
-  pet3PetType: string;
+  pet3PetType: string | null;
 
   /**
    * 펫3 펫 보유 스킬

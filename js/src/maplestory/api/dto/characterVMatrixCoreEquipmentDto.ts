@@ -37,12 +37,12 @@ class CharacterVMatrixCodeEquipmentDto {
   /**
    * (강화 코어인 경우) 코어에 해당하는 두 번째 스킬 명
    */
-  vCoreSkill2?: string;
+  vCoreSkill2: string | null;
 
   /**
    * (강화 코어인 경우) 코어에 해당하는 세 번째 스킬 명
    */
-  vCoreSkill3?: string;
+  vCoreSkill3: string | null;
 
   constructor(obj: CharacterVMatrixCoreEquipmentDtoBody) {
     const {

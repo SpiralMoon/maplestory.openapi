@@ -35,7 +35,7 @@ namespace MapleStory.OpenAPI.Dto
         /// 안드로이드 캐시 아이템 설명
         /// </summary>
         [JsonProperty("cash_item_description")]
-        public string CashItemDescription { get; set; }
+        public string? CashItemDescription { get; set; }
 
         /// <summary>
         /// 안드로이드 캐시 아이템 옵션
@@ -47,24 +47,24 @@ namespace MapleStory.OpenAPI.Dto
         /// 안드로이드 캐시 아이템 유효 기간 (KST)
         /// </summary>
         [JsonProperty("date_expire")]
-        public string DateExpire { get; set; }
+        public string? DateExpire { get; set; }
 
         /// <summary>
         /// 안드로이드 캐시 아이템 옵션 유효 기간 (KST)
         /// </summary>
         [JsonProperty("date_option_expire")]
-        public string DateOptionExpire { get; set; }
+        public string? DateOptionExpire { get; set; }
 
         /// <summary>
         /// 안드로이드 캐시 아이템 라벨 정보 (스페셜라벨, 레드라벨, 블랙라벨, 마스터라벨)
         /// </summary>
         [JsonProperty("cash_item_label")]
-        public string CashItemLabel { get; set; }
+        public string? CashItemLabel { get; set; }
 
         /// <summary>
         /// 안드로이드 캐시 아이템 컬러링프리즘 정보
         /// </summary>
         [JsonProperty("cash_item_coloring_prism")]
-        public CharacterAndroidCashItemEquipmentColoringPrismDTO CashItemColoringPrism { get; set; }
+        public CharacterAndroidCashItemEquipmentColoringPrismDTO? CashItemColoringPrism { get; set; }
     }
 }

@@ -16,12 +16,12 @@ type CharacterCashItemEquipmentPresetDtoBody = {
   cash_item_equipment_slot: string;
   cash_item_name: string;
   cash_item_icon: string;
-  cash_item_description: string;
+  cash_item_description: string | null;
   cash_item_option: CharacterCashItemEquipmentOptionDtoBody[];
-  date_expire: string;
-  date_option_expire: string;
-  cash_item_label: string;
-  cash_item_coloring_prism: CharacterCashItemEquipmentColoringPrismDtoBody;
+  date_expire: string | null;
+  date_option_expire: string | null;
+  cash_item_label: string | null;
+  cash_item_coloring_prism: CharacterCashItemEquipmentColoringPrismDtoBody | null;
   base_preset_item_disable_flag: string;
 };
 

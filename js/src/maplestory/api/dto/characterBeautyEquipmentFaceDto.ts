@@ -17,7 +17,7 @@ class CharacterBeautyEquipmentFaceDto {
   /**
    * 성형 믹스 컬러
    */
-  mixColor: string;
+  mixColor: string | null;
 
   /**
    * 성형 믹스 컬러의 염색 비율

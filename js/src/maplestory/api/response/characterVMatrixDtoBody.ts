@@ -12,8 +12,8 @@ type CharacterVMatrixCoreEquipmentDtoBody = {
   v_core_type: string;
   v_core_level: number;
   v_core_skill_1: string;
-  v_core_skill_2?: string;
-  v_core_skill_3?: string;
+  v_core_skill_2: string | null;
+  v_core_skill_3: string | null;
 };
 
 export type { CharacterVMatrixDtoBody, CharacterVMatrixCoreEquipmentDtoBody };

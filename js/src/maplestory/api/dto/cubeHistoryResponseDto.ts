@@ -18,7 +18,7 @@ class CubeHistoryResponseDto {
   /**
    * 페이징 처리를 위한 cursor
    */
-  nextCursor: string;
+  nextCursor: string | null;
 
   constructor(obj: CubeHistoryResponseDtoBody) {
     const { count, cube_history, next_cursor } = obj;

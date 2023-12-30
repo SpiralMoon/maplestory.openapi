@@ -1,4 +1,4 @@
-import { StarforceEventDtoBody } from './starforceEventDtoBody'
+import { StarforceEventDtoBody } from './starforceEventDtoBody';
 
 type StarforceHistoryDtoBody = {
   id: string;

@@ -12,7 +12,7 @@ class CharacterHyperStatInfoDto {
   /**
    * 스탯 투자 포인트
    */
-  statPoint: number;
+  statPoint: number | null;
 
   /**
    * 스탯 레벨
@@ -22,7 +22,7 @@ class CharacterHyperStatInfoDto {
   /**
    * 스탯 상승량
    */
-  statIncrease: string;
+  statIncrease: string | null;
 
   constructor(obj: CharacterHyperStatInfoDtoBody) {
     const { stat_type, stat_point, stat_level, stat_increase } = obj;

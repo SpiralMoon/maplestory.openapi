@@ -13,9 +13,9 @@ type CharacterHyperStatDtoBody = {
 
 type CharacterHyperStatInfoDtoBody = {
   stat_type: string;
-  stat_point: number;
+  stat_point: number | null;
   stat_level: number;
-  stat_increase: string;
+  stat_increase: string | null;
 };
 
 export type { CharacterHyperStatDtoBody, CharacterHyperStatInfoDtoBody };

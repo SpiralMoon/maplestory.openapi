@@ -15,22 +15,22 @@ class CharacterAndroidEquipmentDto {
   /**
    * 안드로이드 명
    */
-  androidName: string;
+  androidName: string | null;
 
   /**
    * 안드로이드 닉네임
    */
-  androidNickname: string;
+  androidNickname: string | null;
 
   /**
    * 안드로이드 아이콘
    */
-  androidIcon: string;
+  androidIcon: string | null;
 
   /**
    * 안드로이드 아이템 설명
    */
-  androidDescription: string;
+  androidDescription: string | null;
 
   /**
    * 안드로이드 헤어 정보
@@ -45,7 +45,7 @@ class CharacterAndroidEquipmentDto {
   /**
    * 안드로이드 피부 명
    */
-  androidSkinName: string;
+  androidSkinName: string | null;
 
   /**
    * 안드로이드 캐시 아이템 장착 정보
@@ -55,7 +55,7 @@ class CharacterAndroidEquipmentDto {
   /**
    * 안드로이드 이어센서 클립 적용 여부
    */
-  androidEarSensorClipFlag: string;
+  androidEarSensorClipFlag: string | null;
 
   constructor(obj: CharacterAndroidEquipmentDtoBody) {
     const {
@@ -82,7 +82,7 @@ class CharacterAndroidEquipmentDto {
     this.androidCashItemEquipment = android_cash_item_equipment.map(
       (equipment) => new CharacterAndroidCashItemEquipmentDto(equipment),
     );
-    this.androidEarSensorClipFlag = android_ear_sensor_clip_flag;
+    this.androidEarSensorClipFlag = android_ear_sensor_clip_flag ?? null;
   }
 }
 

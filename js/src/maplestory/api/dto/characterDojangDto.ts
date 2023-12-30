@@ -27,7 +27,7 @@ class CharacterDojangDto {
   /**
    * 무릉도장 최고 기록 달성 일 (KST, 일 단위 데이터로 시, 분은 일괄 0으로 표기)
    */
-  dateDojangRecord: Date;
+  dateDojangRecord: Date | null;
 
   /**
    * 무릉도장 최고 층수 클리어에 걸린 시간 (초)
@@ -48,7 +48,9 @@ class CharacterDojangDto {
     this.characterClass = character_class;
     this.worldName = world_name;
     this.dojangBestFloor = dojang_best_floor;
-    this.dateDojangRecord = new Date(date_dojang_record);
+    this.dateDojangRecord = date_dojang_record
+      ? new Date(date_dojang_record)
+      : null;
     this.dojangBestTime = dojang_best_time;
   }
 }

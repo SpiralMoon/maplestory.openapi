@@ -65,6 +65,6 @@ namespace MapleStory.OpenAPI.Dto
         /// 길드 명
         /// </summary>
         [JsonProperty("character_guildname")]
-        public string CharacterGuildName { get; set; }
+        public string? CharacterGuildName { get; set; }
     }
 }

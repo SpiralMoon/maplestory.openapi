@@ -35,7 +35,7 @@ namespace MapleStory.OpenAPI.Dto
         /// 캐시 장비 설명
         /// </summary>
         [JsonProperty("cash_item_description")]
-        public string CashItemDescription { get; set; }
+        public string? CashItemDescription { get; set; }
 
         /// <summary>
         /// 캐시 장비 옵션 목록
@@ -47,25 +47,25 @@ namespace MapleStory.OpenAPI.Dto
         /// 캐시 장비 유효 기간 (KST)
         /// </summary>
         [JsonProperty("date_expire")]
-        public string DateExpire { get; set; }
+        public string? DateExpire { get; set; }
 
         /// <summary>
         /// 캐시 장비 옵션 유효 기간 (KST, 시간 단위 데이터로 분은 일괄 0으로 표기)
         /// </summary>
         [JsonProperty("date_option_expire")]
-        public string DateOptionExpire { get; set; }
+        public string? DateOptionExpire { get; set; }
 
         /// <summary>
         /// 캐시 장비 라벨 정보
         /// </summary>
         [JsonProperty("cash_item_label")]
-        public string CashItemLabel { get; set; }
+        public string? CashItemLabel { get; set; }
 
         /// <summary>
         /// 캐시 장비 컬러링프리즘 정보
         /// </summary>
         [JsonProperty("cash_item_coloring_prism")]
-        public CharacterCashItemEquipmentColoringPrismDTO CashItemColoringPrism { get; set; }
+        public CharacterCashItemEquipmentColoringPrismDTO? CashItemColoringPrism { get; set; }
 
         /// <summary>
         /// 다른 프리셋에서 장비 추가 장착 없이 1번 프리셋의 장비 공유를 비활성화 했는지 여부

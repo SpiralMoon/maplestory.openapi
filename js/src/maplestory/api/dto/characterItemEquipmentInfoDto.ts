@@ -30,7 +30,7 @@ class CharacterItemEquipmentInfoDto {
   /**
    * 장비 설명
    */
-  itemDescription: string;
+  itemDescription: string | null;
 
   /**
    * 장비 외형
@@ -45,7 +45,7 @@ class CharacterItemEquipmentInfoDto {
   /**
    * 전용 성별
    */
-  gender: string;
+  itemGender: string | null;
 
   /**
    * 장비 최종 옵션
@@ -60,42 +60,42 @@ class CharacterItemEquipmentInfoDto {
   /**
    * 잠재능력 등급
    */
-  potentialOptionGrade: string;
+  potentialOptionGrade: string | null;
 
   /**
    * 에디셔널 잠재능력 등급
    */
-  additionalPotentialOptionGrade: string;
+  additionalPotentialOptionGrade: string | null;
 
   /**
    * 잠재능력 첫 번째 옵션
    */
-  potentialOption1: string;
+  potentialOption1: string | null;
 
   /**
    * 잠재능력 두 번째 옵션
    */
-  potentialOption2: string;
+  potentialOption2: string | null;
 
   /**
    * 잠재능력 세 번째 옵션
    */
-  potentialOption3: string;
+  potentialOption3: string | null;
 
   /**
    * 에디셔널 잠재능력 첫 번째 옵션
    */
-  additionalPotentialOption1: string;
+  additionalPotentialOption1: string | null;
 
   /**
    * 에디셔널 잠재능력 두 번째 옵션
    */
-  additionalPotentialOption2: string;
+  additionalPotentialOption2: string | null;
 
   /**
    * 에디셔널 잠재능력 세 번째 옵션
    */
-  additionalPotentialOption3: string;
+  additionalPotentialOption3: string | null;
 
   /**
    * 착용 레벨 증가
@@ -150,12 +150,12 @@ class CharacterItemEquipmentInfoDto {
   /**
    * 소울 명
    */
-  soulName: string;
+  soulName: string | null;
 
   /**
    * 소울 옵션
    */
-  soulOption: string;
+  soulOption: string | null;
 
   /**
    * 장비 기타 옵션
@@ -185,7 +185,7 @@ class CharacterItemEquipmentInfoDto {
   /**
    * 장비 유효 기간
    */
-  dateExpire: Date;
+  dateExpire: Date | null;
 
   constructor(obj: CharacterItemEquipmentInfoDtoBody) {
     const {
@@ -196,7 +196,7 @@ class CharacterItemEquipmentInfoDto {
       item_description,
       item_shape_name,
       item_shape_icon,
-      gender,
+      item_gender,
       item_total_option,
       item_base_option,
       potential_option_grade,
@@ -234,7 +234,7 @@ class CharacterItemEquipmentInfoDto {
     this.itemDescription = item_description;
     this.itemShapeName = item_shape_name;
     this.itemShapeIcon = item_shape_icon;
-    this.gender = gender;
+    this.itemGender = item_gender;
     this.itemTotalOption = new CharacterItemEquipmentTotalOptionDto(
       item_total_option,
     );
@@ -274,7 +274,7 @@ class CharacterItemEquipmentInfoDto {
       item_starforce_option,
     );
     this.specialRingLevel = special_ring_level;
-    this.dateExpire = new Date(date_expire);
+    this.dateExpire = date_expire ? new Date(date_expire) : null;
   }
 }
 

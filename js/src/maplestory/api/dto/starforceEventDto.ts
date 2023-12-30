@@ -1,4 +1,4 @@
-import { StarforceEventDtoBody } from '../response/starforceEventDtoBody'
+import { StarforceEventDtoBody } from '../response/starforceEventDtoBody';
 
 /**
  * 스타포스 강화 이벤트 정보
@@ -25,7 +25,12 @@ class StarforceEventDto {
   starforceEventRange: string;
 
   constructor(obj: StarforceEventDtoBody) {
-    const { success_rate, cost_discount_rate, plus_value, starforce_event_range} = obj;
+    const {
+      success_rate,
+      cost_discount_rate,
+      plus_value,
+      starforce_event_range,
+    } = obj;
 
     this.successRate = success_rate;
     this.costDiscountRate = cost_discount_rate;

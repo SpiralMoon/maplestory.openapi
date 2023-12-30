@@ -47,12 +47,12 @@ namespace MapleStory.OpenAPI.Dto
         /// 강화 코어인 경우 코어에 해당하는 두 번째 스킬 명
         /// </summary>
         [JsonProperty("v_core_skill_2")]
-        public string VCoreSkill2 { get; set; }
+        public string? VCoreSkill2 { get; set; }
 
         /// <summary>
         /// 강화 코어인 경우 코어에 해당하는 세 번째 스킬 명
         /// </summary>
         [JsonProperty("v_core_skill_3")]
-        public string VCoreSkill3 { get; set; }
+        public string? VCoreSkill3 { get; set; }
     }
 }

@@ -35,7 +35,7 @@ namespace MapleStory.OpenAPI.Dto
         /// 무릉도장 최고 기록 달성 일 (KST)
         /// </summary>
         [JsonProperty("date_dojang_record")]
-        public string DateDojangRecord { get; set; }
+        public string? DateDojangRecord { get; set; }
 
         /// <summary>
         /// 무릉도장 최고 층수 클리어에 걸린 시간 (초)

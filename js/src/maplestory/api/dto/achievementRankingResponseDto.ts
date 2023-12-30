@@ -1,6 +1,5 @@
-import { AchievementRankingDto } from './achievementRankingDto'
-import { AchievementRankingResponseDtoBody } from '../response/achievementRankingResponseDtoBody'
-
+import { AchievementRankingDto } from './achievementRankingDto';
+import { AchievementRankingResponseDtoBody } from '../response/achievementRankingResponseDtoBody';
 
 /**
  * 업적 랭킹 응답 정보

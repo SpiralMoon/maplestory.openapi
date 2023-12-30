@@ -52,7 +52,7 @@ class OverallRankingDto {
   /**
    * 길드 명
    */
-  characterGuildName: string;
+  characterGuildName: string | null;
 
   constructor(obj: OverallRankingDtoBody) {
     const {

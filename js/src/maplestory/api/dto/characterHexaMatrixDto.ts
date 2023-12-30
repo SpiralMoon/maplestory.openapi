@@ -13,7 +13,7 @@ class CharacterHexaMatrixDto {
   /**
    * HEXA 코어 정보
    */
-  characterHexaCoreEquipment: CharacterHexaMatrixEquipmentDto[];
+  characterHexaCoreEquipment: CharacterHexaMatrixEquipmentDto[] | null;
 
   constructor(obj: CharacterHexaMatrixDtoBody) {
     const { date, character_hexa_core_equipment } = obj;

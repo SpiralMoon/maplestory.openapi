@@ -1,11 +1,10 @@
-import { StarforceEventDto } from './starforceEventDto'
-import { StarforceHistoryDtoBody } from '../response/starforceHistoryDtoBody'
+import { StarforceEventDto } from './starforceEventDto';
+import { StarforceHistoryDtoBody } from '../response/starforceHistoryDtoBody';
 
 /**
  * 스타포스 히스토리
  */
 class StarforceHistoryDto {
-
   /**
    *스타포스 히스토리 식별자
    */
@@ -128,7 +127,9 @@ class StarforceHistoryDto {
     this.worldName = world_name;
     this.targetItem = target_item;
     this.dateCreate = new Date(date_create);
-    this.starforceEventList = starforce_event_list.map(event => new StarforceEventDto(event));
+    this.starforceEventList = starforce_event_list.map(
+      (event) => new StarforceEventDto(event),
+    );
   }
 }
 

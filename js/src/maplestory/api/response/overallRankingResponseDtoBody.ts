@@ -13,7 +13,7 @@ type OverallRankingDtoBody = {
   character_level: number;
   character_exp: number;
   character_popularity: number;
-  character_guildname: string;
+  character_guildname: string | null;
 };
 
 export type { OverallRankingResponseDtoBody, OverallRankingDtoBody };
