@@ -57,11 +57,13 @@ class MapleStoryApi(BaseModel):
             timeout=timeout,
         )
 
+    #region 캐릭터 정보 조회
+
     def get_character_id(self, character_name: str) -> Character:
         """캐릭터 식별자(ocid)를 조회합니다.
 
         - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
-        - 오전 1시부터 전일 데이터 조회가 가능합니다
+        - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)
         - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
 
         @param character_name (str): 캐릭터 이름
@@ -78,7 +80,7 @@ class MapleStoryApi(BaseModel):
         """기본 정보를 조회합니다.
 
         - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
-        - 오전 1시부터 전일 데이터 조회가 가능합니다
+        - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)
         - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
 
         @param ocid(str): 캐릭터 식별자(ocid)
@@ -97,7 +99,7 @@ class MapleStoryApi(BaseModel):
         """인기도 정보를 조회합니다.
 
         - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
-        - 오전 1시부터 전일 데이터 조회가 가능합니다
+        - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)
         - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
 
         @param ocid(str): 캐릭터 식별자(ocid)
@@ -119,7 +121,7 @@ class MapleStoryApi(BaseModel):
         """종합능력치 정보를 조회합니다.
 
         - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
-        - 오전 1시부터 전일 데이터 조회가 가능합니다
+        - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)
         - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
 
         @param ocid(str): 캐릭터 식별자(ocid)
@@ -138,7 +140,7 @@ class MapleStoryApi(BaseModel):
         """하이퍼스탯 정보를 조회합니다.
 
         - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
-        - 오전 1시부터 전일 데이터 조회가 가능합니다
+        - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)
         - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
 
         @param ocid(str): 캐릭터 식별자(ocid)
@@ -157,7 +159,7 @@ class MapleStoryApi(BaseModel):
         """성향 정보를 조회합니다.
 
         - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
-        - 오전 1시부터 전일 데이터 조회가 가능합니다
+        - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)
         - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
 
         @param ocid(str): 캐릭터 식별자(ocid)
@@ -176,7 +178,7 @@ class MapleStoryApi(BaseModel):
         """어빌리티 정보를 조회합니다.
 
         - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
-        - 오전 1시부터 전일 데이터 조회가 가능합니다
+        - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)
         - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
 
         @param ocid(str): 캐릭터 식별자(ocid)
@@ -195,7 +197,7 @@ class MapleStoryApi(BaseModel):
         """장착한 장비 중 캐시 장비를 제외한 나머지 장비 정보를 조회합니다.
 
         - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
-        - 오전 1시부터 전일 데이터 조회가 가능합니다
+        - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)
         - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
 
         @param ocid(str): 캐릭터 식별자(ocid)
@@ -214,7 +216,7 @@ class MapleStoryApi(BaseModel):
         """장착한 캐시 장비 정보를 조회합니다.
 
         - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
-        - 오전 1시부터 전일 데이터 조회가 가능합니다
+        - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)
         - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
 
         @param ocid(str): 캐릭터 식별자(ocid)
@@ -233,7 +235,7 @@ class MapleStoryApi(BaseModel):
         """장착한 심볼 정보를 조회합니다.
 
         - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
-        - 오전 1시부터 전일 데이터 조회가 가능합니다
+        - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)
         - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
 
         @param ocid(str): 캐릭터 식별자(ocid)
@@ -251,7 +253,7 @@ class MapleStoryApi(BaseModel):
         """적용받고 있는 세트 효과 정보를 조회합니다
 
         - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
-        - 오전 1시부터 전일 데이터 조회가 가능합니다.
+        - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.).
         - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시기 바랍니다.
 
         @param ocid(str): 캐릭터 식별자(ocid)
@@ -269,7 +271,7 @@ class MapleStoryApi(BaseModel):
         """캐릭터 헤어, 성형, 피부 정보를 조회합니다.
 
         - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
-        - 오전 1시부터 전일 데이터 조회가 가능합니다.
+        - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.).
         - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시기 바랍니다.
 
         @param ocid(str): 캐릭터 식별자(ocid)
@@ -287,7 +289,7 @@ class MapleStoryApi(BaseModel):
         """장착한 안드로이드 정보를 조회합니다.
 
         - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
-        - 오전 1시부터 전일 데이터 조회가 가능합니다.
+        - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.).
         - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시기 바랍니다.
 
         @param ocid(str): 캐릭터 식별자(ocid)
@@ -305,7 +307,7 @@ class MapleStoryApi(BaseModel):
         """장착한 펫 및 펫 스킬, 장비 정보를 조회합니다.
 
         - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
-        - 오전 1시부터 전일 데이터 조회가 가능합니다.
+        - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.).
         - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시기 바랍니다.
 
         @param ocid(str): 캐릭터 식별자(ocid)
@@ -440,11 +442,16 @@ class MapleStoryApi(BaseModel):
         r = self.fetch(path, query)
         return CharacterDojang(**r)
 
+    #endregion
+
+    #region 유니온 정보 조회
+
     def get_union(self, ocid: str, date: datetime = get_proper_default_datetime(day_offset=1)) -> Union:
         """유니온 레벨 및 유니온 등급 정보를 조회합니다.
 
         - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
-        - 오전 0시부터 전일 데이터 조회가 가능합니다.
+        - 유니온 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)
+        - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
 
         @param ocid(str): 캐릭터 식별자(ocid)
         @param date(datetime): 조회 기준일(KST)
@@ -461,7 +468,8 @@ class MapleStoryApi(BaseModel):
         """유니온에 배치된 공격대원 효과 및 공격대 점령 효과 등 상세 정보를 조회합니다.
 
         - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
-        - 오전 0시부터 전일 데이터 조회가 가능합니다.
+        - 유니온 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)
+        - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
 
         @param ocid(str): 캐릭터 식별자(ocid)
         @param date(datetime): 조회 기준일(KST)
@@ -474,11 +482,15 @@ class MapleStoryApi(BaseModel):
         r = self.fetch(path, query)
         return UnionRaider(**r)
 
+    #endregion
+
+    #region 길드 정보 조회
+
     def get_guild_id(self, guild_name: str, world_name: str) -> Guild:
         """길드 식별자(gcid) 정보를 조회합니다.
 
         - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
-        - 오전 1시부터 전일 데이터 조회가 가능합니다
+        - 길드 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)
         - 길드 식별자(gcid)는 길드명과 월드명으로 조회할 수 있습니다.
 
         @param guild_name (str): 길드 명
@@ -497,7 +509,7 @@ class MapleStoryApi(BaseModel):
         """길드 기본 정보를 조회합니다.
 
         - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
-        - 오전 1시부터 전일 데이터 조회가 가능합니다
+        - 길드 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)
 
         @param oguild_id (str): 길드 식별자
         @param date(datetime): 조회 기준일(KST)
@@ -509,6 +521,10 @@ class MapleStoryApi(BaseModel):
         }
         r = self.fetch(path, query)
         return GuildBasic(**r)
+
+    #endregion
+
+    #region 확률 정보 조회
 
     def get_cube_history(self, count, date: datetime | None = None, cursor: str | None = None) -> CubeHistory:
         """큐브 사용 결과를 조회합니다.
@@ -547,6 +563,10 @@ class MapleStoryApi(BaseModel):
         }
         r = self.fetch(path, query)
         return StarforceHistory(**r)
+
+    #endregion
+
+    #region 랭킹 정보 조회
 
     def get_overall_ranking(self, world_name: str | None = None, world_type: int | None = None, class_name: str | None = None, ocid: str | None = None, page: int = 1,  date: datetime = get_proper_default_datetime(update_hour=8, update_minute=30, day_offset=0), ) -> OverallRanking:
         """종합 랭킹 정보를 조회합니다.
@@ -701,6 +721,8 @@ class MapleStoryApi(BaseModel):
         }
         r = self.fetch(path, query)
         return AchievementRanking(**r)
+
+    #endregion
 
     def fetch(self, path: str, query: dict) -> Any:
         r = requests.get(
