@@ -476,7 +476,7 @@ namespace MapleStory.OpenAPI
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
         /// </summary>
         /// <param name="ocid">캐릭터 식별자</param>
-        public Task<CharacterAndroidCashItemEquipmentDTO> GetCharacterCashItemEquipment(string ocid)
+        public Task<CharacterCashItemEquipmentDTO> GetCharacterCashItemEquipment(string ocid)
         {
             return GetCharacterCashItemEquipment(ocid, GetProperDefaultDateTimeOffset(new LatestApiUpdateTimeOption
             {
@@ -494,7 +494,7 @@ namespace MapleStory.OpenAPI
         /// </summary>
         /// <param name="ocid">캐릭터 식별자</param>
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
-        public async Task<CharacterAndroidCashItemEquipmentDTO> GetCharacterCashItemEquipment(string ocid, DateTimeOffset dateTimeOffset)
+        public async Task<CharacterCashItemEquipmentDTO> GetCharacterCashItemEquipment(string ocid, DateTimeOffset dateTimeOffset)
         {
             using (var client = new HttpClient())
             {
@@ -516,7 +516,7 @@ namespace MapleStory.OpenAPI
 
                 if (response.IsSuccessStatusCode)
                 {
-                    var result = JsonConvert.DeserializeObject<CharacterAndroidCashItemEquipmentDTO>(body);
+                    var result = JsonConvert.DeserializeObject<CharacterCashItemEquipmentDTO>(body);
 
                     return result;
                 }
