@@ -2,8 +2,8 @@ from datetime import datetime
 from pydantic import BaseModel
 
 
-class CharacterHyperStatInfo(BaseModel):
-    """캐릭터 하이퍼스탯 상세 정보
+class CharacterHyperStatPreset(BaseModel):
+    """캐릭터 하이퍼스탯 프리셋 정보
 
     stat_type(str): 스탯 종류
     stat_point(int): 스탯 투자 포인트
@@ -23,20 +23,20 @@ class CharacterHyperStat(BaseModel):
     character_class(str): 캐릭터 직업
     use_preset_no(str): 적용 중인 프리셋 번호
     use_available_hyper_stat(int): 사용 가능한 최대 하이퍼스탯 포인트
-    hyper_stat_preset_1(list[CharacterHyperStatInfo]): 프리셋 1번 하이퍼 스탯 정보
+    hyper_stat_preset_1(list[CharacterHyperStatPreset]): 프리셋 1번 하이퍼 스탯 정보
     hyper_stat_preset_1_remain_point(int): 프리셋 1번 하이퍼 스탯 잔여 포인트
-    hyper_stat_preset_2(list[CharacterHyperStatInfo]): 프리셋 2번 하이퍼 스탯 정보
+    hyper_stat_preset_2(list[CharacterHyperStatPreset]): 프리셋 2번 하이퍼 스탯 정보
     hyper_stat_preset_2_remain_point(int): 프리셋 2번 하이퍼 스탯 잔여 포인트
-    hyper_stat_preset_3(list[CharacterHyperStatInfo]): 프리셋 3번 하이퍼 스탯 정보
+    hyper_stat_preset_3(list[CharacterHyperStatPreset]): 프리셋 3번 하이퍼 스탯 정보
     hyper_stat_preset_3_remain_point(int): 프리셋 3번 하이퍼 스탯 잔여 포인트
     """
     date: datetime
     character_class: str
     use_preset_no: str
     use_available_hyper_stat: int
-    hyper_stat_preset_1: list[CharacterHyperStatInfo]
+    hyper_stat_preset_1: list[CharacterHyperStatPreset]
     hyper_stat_preset_1_remain_point: int
-    hyper_stat_preset_2: list[CharacterHyperStatInfo]
+    hyper_stat_preset_2: list[CharacterHyperStatPreset]
     hyper_stat_preset_2_remain_point: int
-    hyper_stat_preset_3: list[CharacterHyperStatInfo]
+    hyper_stat_preset_3: list[CharacterHyperStatPreset]
     hyper_stat_preset_3_remain_point: int

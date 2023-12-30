@@ -26,7 +26,7 @@ export * from './maplestory/api/dto/characterHexaMatrixEquipmentLinkedSkillDto';
 export * from './maplestory/api/dto/characterHexaMatrixStatCoreDto';
 export * from './maplestory/api/dto/characterHexaMatrixStatDto';
 export * from './maplestory/api/dto/characterHyperStatDto';
-export * from './maplestory/api/dto/characterHyperStatInfoDto';
+export * from './maplestory/api/dto/characterHyperStatPresetDto';
 export * from './maplestory/api/dto/characterItemEquipmentAddOptionDto';
 export * from './maplestory/api/dto/characterItemEquipmentBaseOptionDto';
 export * from './maplestory/api/dto/characterItemEquipmentDto';
