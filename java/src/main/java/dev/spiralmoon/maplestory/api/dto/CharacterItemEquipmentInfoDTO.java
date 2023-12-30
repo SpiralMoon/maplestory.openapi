@@ -5,6 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.ToString;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 /**
  * 캐릭터 장비 아이템 상세 정보
  */
@@ -228,4 +231,13 @@ public class CharacterItemEquipmentInfoDTO {
      */
     @SerializedName("date_expire")
     private String dateExpire;
+
+    public LocalDateTime getDateExpire() {
+        if (this.dateExpire != null) {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mmXXX");
+            return LocalDateTime.parse(this.dateExpire, formatter);
+        } else {
+            return null;
+        }
+    }
 }

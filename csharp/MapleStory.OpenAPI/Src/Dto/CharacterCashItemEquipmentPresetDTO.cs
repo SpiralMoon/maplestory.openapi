@@ -46,14 +46,56 @@ namespace MapleStory.OpenAPI.Dto
         /// <summary>
         /// 캐시 장비 유효 기간 (KST)
         /// </summary>
+        public DateTimeOffset? DateExpire
+        {
+            get
+            {
+                if (_dateExpire != null)
+                {
+                    return DateTimeOffset.Parse(_dateExpire).ToOffset(TimeSpan.FromHours(9));
+                }
+
+                return null;
+            }
+        }
+
         [JsonProperty("date_expire")]
-        public string? DateExpire { get; set; }
+        private string? _dateExpire { get; set; }
 
         /// <summary>
         /// 캐시 장비 옵션 유효 기간 (KST, 시간 단위 데이터로 분은 일괄 0으로 표기)
         /// </summary>
+        public DateTimeOffset? DateOptionExpire
+        {
+            get
+            {
+                if (_dateOptionExpire != null && _dateOptionExpire != "expired")
+                {
+                    return DateTimeOffset.Parse(_dateOptionExpire).ToOffset(TimeSpan.FromHours(9));
+                }
+
+                return null;
+            }
+        }
+
         [JsonProperty("date_option_expire")]
-        public string? DateOptionExpire { get; set; }
+        private string? _dateOptionExpire { get; set; }
+
+        /// <summary>
+        /// 캐시 장비 옵션 유효 기간 만료 여부
+        /// </summary>
+        public bool? IsOptionExpired
+        {
+            get
+            {
+                if (_dateOptionExpire == null)
+                {
+                    return null;
+                }
+
+                return _dateOptionExpire == "expired";
+            }
+        }
 
         /// <summary>
         /// 캐시 장비 라벨 정보

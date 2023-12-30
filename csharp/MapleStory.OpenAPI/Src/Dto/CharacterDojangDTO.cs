@@ -11,7 +11,19 @@ namespace MapleStory.OpenAPI.Dto
         /// 조회 기준일 (KST)
         /// </summary>
         [JsonProperty("date")]
-        public string Date { get; set; }
+        public DateTimeOffset Date
+        {
+            get
+            {
+                return _date.ToOffset(TimeSpan.FromHours(9));
+            }
+            set
+            {
+                _date = value;
+            }
+        }
+
+        private DateTimeOffset _date;
 
         /// <summary>
         /// 캐릭터 직업
@@ -35,7 +47,19 @@ namespace MapleStory.OpenAPI.Dto
         /// 무릉도장 최고 기록 달성 일 (KST)
         /// </summary>
         [JsonProperty("date_dojang_record")]
-        public string? DateDojangRecord { get; set; }
+        public DateTimeOffset? DateDojangRecord
+        {
+            get
+            {
+                return _dateDojangRecord?.ToOffset(TimeSpan.FromHours(9));
+            }
+            set
+            {
+                _dateDojangRecord = value;
+            }
+        }
+
+        private DateTimeOffset? _dateDojangRecord;
 
         /// <summary>
         /// 무릉도장 최고 층수 클리어에 걸린 시간 (초)

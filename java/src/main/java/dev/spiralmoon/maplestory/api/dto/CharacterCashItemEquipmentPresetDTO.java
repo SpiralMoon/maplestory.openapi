@@ -1,10 +1,12 @@
 package dev.spiralmoon.maplestory.api.dto;
 
 import com.google.gson.annotations.SerializedName;
+import dev.spiralmoon.maplestory.api.Utils;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.ToString;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -80,4 +82,28 @@ public class CharacterCashItemEquipmentPresetDTO {
      */
     @SerializedName("base_preset_item_disable_flag")
     private String basePresetItemDisableFlag;
+
+    private LocalDateTime getDateExpire() {
+        return this.dateExpire != null ? Utils.toLocalDateTime(this.dateExpire) : null;
+    }
+
+    private LocalDateTime getDateOptionExpire() {
+        if (this.dateOptionExpire != null && !"expired".equals(this.dateOptionExpire)) {
+            return Utils.toLocalDateTime(this.dateOptionExpire);
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * 캐시 장비 옵션 유효 기간 만료 여부
+     */
+    private Boolean isOptionExpired() {
+
+        if (this.dateOptionExpire == null) {
+            return null;
+        }
+
+        return "expired".equals(this.dateOptionExpire);
+    }
 }

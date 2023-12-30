@@ -1,9 +1,13 @@
 package dev.spiralmoon.maplestory.api.dto;
 
 import com.google.gson.annotations.SerializedName;
+import dev.spiralmoon.maplestory.api.Utils;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.ToString;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  * 캐릭터의 무릉도장 정보
@@ -48,4 +52,8 @@ public class CharacterDojangDTO {
      */
     @SerializedName("dojang_best_time")
     private long dojangBestTime;
+
+    public LocalDateTime getDojangRecord() {
+        return this.dateDojangRecord != null ? Utils.toLocalDateTime(this.dateDojangRecord) : null;
+    }
 }

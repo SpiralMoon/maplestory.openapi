@@ -46,14 +46,56 @@ namespace MapleStory.OpenAPI.Dto
         /// <summary>
         /// 안드로이드 캐시 아이템 유효 기간 (KST)
         /// </summary>
+        public DateTimeOffset? DateExpire
+        {
+            get
+            {
+                if (_dateExpire != null)
+                {
+                    return DateTimeOffset.Parse(_dateExpire).ToOffset(TimeSpan.FromHours(9));
+                }
+
+                return null;
+            }
+        }
+
         [JsonProperty("date_expire")]
-        public string? DateExpire { get; set; }
+        private string? _dateExpire { get; set; }
 
         /// <summary>
         /// 안드로이드 캐시 아이템 옵션 유효 기간 (KST)
         /// </summary>
+        public DateTimeOffset? DateOptionExpire
+        {
+            get
+            {
+                if (_dateOptionExpire != null && _dateOptionExpire != "expired")
+                {
+                    return DateTimeOffset.Parse(_dateOptionExpire).ToOffset(TimeSpan.FromHours(9));
+                }
+
+                return null;
+            }
+        }
+
         [JsonProperty("date_option_expire")]
-        public string? DateOptionExpire { get; set; }
+        private string? _dateOptionExpire { get; set; }
+
+        /// <summary>
+        /// 안드로이드 캐시 아이템 옵션 유효 기간 만료 여부
+        /// </summary>
+        public bool? IsOptionExpired
+        {
+            get
+            {
+                if (_dateOptionExpire == null)
+                {
+                    return null;
+                }
+
+                return _dateOptionExpire == "expired";
+            }
+        }
 
         /// <summary>
         /// 안드로이드 캐시 아이템 라벨 정보 (스페셜라벨, 레드라벨, 블랙라벨, 마스터라벨)

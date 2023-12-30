@@ -1,9 +1,12 @@
 package dev.spiralmoon.maplestory.api.dto;
 
 import com.google.gson.annotations.SerializedName;
+import dev.spiralmoon.maplestory.api.Utils;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.ToString;
+
+import java.time.LocalDateTime;
 
 /**
  * 더 시드 랭킹 정보
@@ -67,4 +70,8 @@ public class TheSeedRankingDTO {
      */
     @SerializedName("theseed_time_record")
     private int theSeedTimeRecord;
+
+    public LocalDateTime getDate() {
+        return Utils.toLocalDateTime(this.date);
+    }
 }

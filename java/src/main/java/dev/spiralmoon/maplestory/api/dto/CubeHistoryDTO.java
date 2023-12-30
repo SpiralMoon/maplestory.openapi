@@ -1,6 +1,7 @@
 package dev.spiralmoon.maplestory.api.dto;
 
 import com.google.gson.annotations.SerializedName;
+import dev.spiralmoon.maplestory.api.Utils;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.ToString;
@@ -142,7 +143,6 @@ public class CubeHistoryDTO {
     }
 
     public LocalDateTime getDateCreate() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSX");
-        return LocalDateTime.parse(this.dateCreate, formatter);
+        return Utils.toLocalDateTime(this.dateCreate);
     }
 }

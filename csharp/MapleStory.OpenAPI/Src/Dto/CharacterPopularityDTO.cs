@@ -11,7 +11,19 @@ namespace MapleStory.OpenAPI.Dto
         /// 조회 기준일 (KST, 일 단위 데이터로 시, 분은 일괄 0으로 표기)
         /// </summary>
         [JsonProperty("date")]
-        public string Date { get; set; }
+        public DateTimeOffset Date
+        {
+            get
+            {
+                return _date.ToOffset(TimeSpan.FromHours(9));
+            }
+            set
+            {
+                _date = value;
+            }
+        }
+
+        private DateTimeOffset _date;
 
         /// <summary>
         /// 캐릭터 인기도

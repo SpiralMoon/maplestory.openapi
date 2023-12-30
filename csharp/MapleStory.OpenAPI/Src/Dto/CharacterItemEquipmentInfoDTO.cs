@@ -221,6 +221,18 @@ namespace MapleStory.OpenAPI.Dto
         /// 장비 유효 기간(KST)
         /// </summary>
         [JsonProperty("date_expire")]
-        public string? DateExpire { get; set; }
+        public DateTimeOffset? DateExpire
+        {
+            get
+            {
+                return _dateExpire?.ToOffset(TimeSpan.FromHours(9));
+            }
+            set
+            {
+                _dateExpire = value;
+            }
+        }
+
+        private DateTimeOffset? _dateExpire;
     }
 }

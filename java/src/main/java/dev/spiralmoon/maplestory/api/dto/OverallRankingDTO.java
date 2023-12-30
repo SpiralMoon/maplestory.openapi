@@ -1,9 +1,12 @@
 package dev.spiralmoon.maplestory.api.dto;
 
 import com.google.gson.annotations.SerializedName;
+import dev.spiralmoon.maplestory.api.Utils;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.ToString;
+
+import java.time.LocalDateTime;
 
 /**
  * 종합 랭킹 정보
@@ -72,4 +75,8 @@ public class OverallRankingDTO {
      */
     @SerializedName("character_guildname")
     private String characterGuildName;
+
+    public LocalDateTime getDate() {
+        return Utils.toLocalDateTime(this.date);
+    }
 }

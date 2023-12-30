@@ -11,7 +11,19 @@ namespace MapleStory.OpenAPI.Dto
         /// 조회 기준일 (KST)
         /// </summary>
         [JsonProperty("date")]
-        public string Date { get; set; }
+        public DateTimeOffset Date
+        {
+            get
+            {
+                return _date.ToOffset(TimeSpan.FromHours(9));
+            }
+            set
+            {
+                _date = value;
+            }
+        }
+
+        private DateTimeOffset _date;
 
         /// <summary>
         /// 펫1 명
@@ -65,7 +77,19 @@ namespace MapleStory.OpenAPI.Dto
         /// 펫1 마법의 시간 (KST, 시간 단위 데이터로 분은 일괄 0으로 표기)
         /// </summary>
         [JsonProperty("pet_1_date_expire")]
-        public string Pet1DateExpire { get; set; }
+        public DateTimeOffset Pet1DateExpire
+        {
+            get
+            {
+                return _pet1DateExpire.ToOffset(TimeSpan.FromHours(9));
+            }
+            set
+            {
+                _pet1DateExpire = value;
+            }
+        }
+
+        private DateTimeOffset _pet1DateExpire;
 
         /// <summary>
         /// 펫2 명
@@ -119,7 +143,19 @@ namespace MapleStory.OpenAPI.Dto
         /// 펫2 마법의 시간 (KST, 시간 단위 데이터로 분은 일괄 0으로 표기)
         /// </summary>
         [JsonProperty("pet_2_date_expire")]
-        public string Pet2DateExpire { get; set; }
+        public DateTimeOffset Pet2DateExpire
+        {
+            get
+            {
+                return _pet2DateExpire.ToOffset(TimeSpan.FromHours(9));
+            }
+            set
+            {
+                _pet2DateExpire = value;
+            }
+        }
+
+        private DateTimeOffset _pet2DateExpire;
 
         /// <summary>
         /// 펫3 명
@@ -173,6 +209,18 @@ namespace MapleStory.OpenAPI.Dto
         /// 펫3 마법의 시간 (KST, 시간 단위 데이터로 분은 일괄 0으로 표기)
         /// </summary>
         [JsonProperty("pet_3_date_expire")]
-        public string Pet3DateExpire { get; set; }
+        public DateTimeOffset Pet3DateExpire
+        {
+            get
+            {
+                return _pet3DateExpire.ToOffset(TimeSpan.FromHours(9));
+            }
+            set
+            {
+                _pet3DateExpire = value;
+            }
+        }
+
+        private DateTimeOffset _pet3DateExpire;
     }
 }
