@@ -10,8 +10,8 @@ namespace MapleStory.OpenAPI.Dto
         /// <summary>
         /// 캐릭터 식별자
         /// </summary>
-        [JsonProperty("character_name")]
+        [JsonProperty("ocid")]
 
-        public string Ocid { get; set; }
+        public string OCID { get; set; }
     }
 }
