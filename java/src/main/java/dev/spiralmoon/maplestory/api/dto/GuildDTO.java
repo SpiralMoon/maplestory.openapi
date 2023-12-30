@@ -17,5 +17,5 @@ public class GuildDTO {
      * 길드 식별자
      */
     @SerializedName("oguild_id")
-    private String oguildId;
+    private String oGuildId;
 }
