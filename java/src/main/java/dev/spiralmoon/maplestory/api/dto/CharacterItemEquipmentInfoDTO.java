@@ -58,8 +58,8 @@ public class CharacterItemEquipmentInfoDTO {
     /**
      * 전용 성별
      */
-    @SerializedName("gender")
-    private String gender;
+    @SerializedName("item_gender")
+    private String itemGender;
 
     /**
      * 장비 최종 옵션 정보

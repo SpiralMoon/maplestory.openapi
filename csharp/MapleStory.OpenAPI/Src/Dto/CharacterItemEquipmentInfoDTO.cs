@@ -52,8 +52,8 @@ namespace MapleStory.OpenAPI.Dto
         /// <summary>
         /// 전용 성별
         /// </summary>
-        [JsonProperty("gender")]
-        public string Gender { get; set; }
+        [JsonProperty("item_gender")]
+        public string? ItemGender { get; set; }
 
         /// <summary>
         /// 장비 최종 옵션 정보
