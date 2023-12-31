@@ -13,7 +13,7 @@ Packages written in other languages can be found [HERE](https://github.com/Spira
 Install the latest version of the C# library in your NuGet project:
 
 ```xml
-<PackageReference Include="MapleStory.OpenAPI" Version="2.2.0" />
+<PackageReference Include="MapleStory.OpenAPI" Version="2.3.0" />
 ```
 
 ## Usage
