@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build_and_publish_js:
+  build_and_publish_python:
     runs-on: ubuntu-latest
     defaults:
       run:
