@@ -82,8 +82,8 @@ namespace MapleStory.OpenAPI.Dto
         /// <summary>
         /// 노블레스 스킬 목록
         /// </summary>
-        [JsonProperty("guild_nobless_skill")]
-        public List<GuildSkillDTO> GuildNoblessSkill { get; set; }
+        [JsonProperty("guild_noblesse_skill")]
+        public List<GuildSkillDTO> GuildNoblesseSkill { get; set; }
 
         /// <summary>
         /// 조합형 길드 마크

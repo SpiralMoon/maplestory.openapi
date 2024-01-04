@@ -79,8 +79,8 @@ public class GuildBasicDTO {
     /**
      * 노블레스 스킬 목록
      */
-    @SerializedName("guild_nobless_skill")
-    private List<GuildSkillDTO> guildNoblessSkill;
+    @SerializedName("guild_noblesse_skill")
+    private List<GuildSkillDTO> guildNoblesseSkill;
 
     /**
      * 조합형 길드 마크
