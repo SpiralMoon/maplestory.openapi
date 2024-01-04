@@ -21,7 +21,7 @@ Before using the library, register your application and obtain an **api key** fr
 ### Sample Code
 
 ```python
-from maplestory-openapi import MapleStoryApi
+from maplestory_openapi import MapleStoryApi
 
 api_key = '{Your API Key}'
 api = MapleStoryApi(api_key=api_key)
