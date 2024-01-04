@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build_and_publish_js:
+  build_and_publish_python:
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -20,15 +20,10 @@ jobs:
           python-version: 3.9
 
       - name: Install dependencies
-        run: |
-          pip3 install -r requirements.txt
-          pip3 install wheel
+        run: pip3 install wheel twine
 
       - name: Build package
         run: python3 setup.py sdist bdist_wheel
 
       - name: Publish package distributions to PyPI
-        uses: pypa/gh-action-pypi-publish@release/v1
-        with:
-          user: __token__
-          password: ${{ secrets.PYPI_API_TOKEN }}
+        run: twine upload --repository-url https://upload.pypi.org/legacy/ -u __token__ -p ${{ secrets.PYPI_API_TOKEN }} dist/*
