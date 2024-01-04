@@ -58,7 +58,7 @@ class GuildBasicDto {
   /**
    * 노블레스 스킬 목록
    */
-  guildNoblessSkill: GuildSkillDto[];
+  guildNoblesseSkill: GuildSkillDto[];
 
   /**
    * 조합형 길드 마크
@@ -82,7 +82,7 @@ class GuildBasicDto {
       guild_member_count,
       guild_member,
       guild_skill,
-      guild_nobless_skill,
+      guild_noblesse_skill,
       guild_mark,
       guild_mark_custom,
     } = obj;
@@ -97,7 +97,7 @@ class GuildBasicDto {
     this.guildMemberCount = guild_member_count;
     this.guildMember = guild_member;
     this.guildSkill = guild_skill.map((skill) => new GuildSkillDto(skill));
-    this.guildNoblessSkill = guild_nobless_skill.map(
+    this.guildNoblesseSkill = guild_noblesse_skill.map(
       (skill) => new GuildSkillDto(skill),
     );
     this.guildMark = guild_mark;

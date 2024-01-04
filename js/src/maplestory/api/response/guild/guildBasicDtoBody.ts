@@ -9,7 +9,7 @@ type GuildBasicDtoBody = {
   guild_member_count: number;
   guild_member: string[];
   guild_skill: GuildSkillDtoBody[];
-  guild_nobless_skill: GuildSkillDtoBody[];
+  guild_noblesse_skill: GuildSkillDtoBody[];
   guild_mark: string | null;
   guild_mark_custom: string | null;
 };
