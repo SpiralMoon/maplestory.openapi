@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='maplestory_openapi',
-    version='0.0.1',
+    version='2.3.0',
     description='MapleStory OpenAPI',
     author='so99ynoodles',
     url='https://github.com/SpiralMoon/maplestory.openapi',
