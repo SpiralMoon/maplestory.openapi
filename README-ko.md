@@ -9,7 +9,7 @@
 [![npm](https://img.shields.io/npm/v/maplestory-openapi)](https://www.npmjs.com/package/maplestory-openapi)
 [![Maven Central](https://img.shields.io/maven-central/v/dev.spiralmoon/maplestory-openapi)](https://search.maven.org/artifact/dev.spiralmoon/maplestory-openapi)
 [![NuGet](https://img.shields.io/nuget/v/MapleStory.OpenAPI)](https://www.nuget.org/packages/MapleStory.OpenAPI)
-[![PyPi](https://img.shields.io/pypi/v/maplestory_openpai)](https://img.shields.io/pypi/v/maplestory_openpai)
+[![PyPi](https://img.shields.io/pypi/v/maplestory-openpai)](https://img.shields.io/pypi/v/maplestory-openpai)
 
 <div align="center">
     <img src="./logo.png" width="120" height="120"/>
@@ -66,7 +66,7 @@
         </td>
         <td align="center">
           <a href="https://pypi.org/project/maplestory_openapi" target="_blank" rel="noreferrer">
-            <img src="https://img.shields.io/pypi/v/maplestory_openpai?label=" alt="python"/>
+            <img src="https://img.shields.io/pypi/v/maplestory-openpai?label=" alt="python"/>
           </a>
         </td>
       </tr>

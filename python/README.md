@@ -1,6 +1,6 @@
 # MapleStory OpenAPI Python Library
 
-[![PyPi](https://img.shields.io/pypi/v/maplestory-openpai)](https://img.shields.io/pypi/v/maplestory_openpai)
+[![PyPi](https://img.shields.io/pypi/v/maplestory-openpai)](https://img.shields.io/pypi/v/maplestory-openpai)
 
 This Python library enables the use of the MapleStory OpenAPI of Nexon.
 
@@ -13,7 +13,7 @@ Packages written in other languages can be found [HERE](https://github.com/Spira
 Install the latest version of the Python library in your python project:
 
 ```bash
-pip install maplestory_openapi
+pip install maplestory-openapi
 ```
 
 ## Usage

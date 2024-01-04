@@ -1,6 +1,6 @@
 # MapleStory OpenAPI Python Library
 
-[![PyPi](https://img.shields.io/pypi/v/maplestory-openpai)](https://img.shields.io/pypi/v/maplestory_openpai)
+[![PyPi](https://img.shields.io/pypi/v/maplestory-openpai)](https://img.shields.io/pypi/v/maplestory-openpai)
 
 넥슨의 MapleStory OpenAPI를 Python 환경에서 사용할 수 있게 해주는 라이브러리입니다.
 
@@ -13,7 +13,7 @@
 python 기반 프로젝트에 아래 정보를 입력하여 패키지를 추가하세요:
 
 ```bash
-pip install maplestory_openapi
+pip install maplestory-openapi
 ```
 
 ## Usage
