@@ -1,6 +1,6 @@
 # MapleStory OpenAPI Python Library
 
-[![PyPi](https://img.shields.io/pypi/v/maplestory-openpai)](https://img.shields.io/pypi/v/maplestory-openpai)
+[![PyPi](https://img.shields.io/pypi/v/maplestory-openapi)](https://img.shields.io/pypi/v/maplestory-openapi)
 
 This Python library enables the use of the MapleStory OpenAPI of Nexon.
 
