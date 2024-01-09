@@ -23,5 +23,5 @@ class CharacterBasic(BaseModel):
     character_level: int
     character_exp: int
     character_exp_rate: str
-    character_guild_name: str
+    character_guild_name: str | None
     character_image: str
