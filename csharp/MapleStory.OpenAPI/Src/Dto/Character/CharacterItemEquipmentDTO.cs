@@ -53,12 +53,12 @@ namespace MapleStory.OpenAPI.Dto
         /// 에반 드래곤 장비 정보 (에반인 경우 응답)
         /// </summary>
         [JsonProperty("dragon_equipment")]
-        public List<CharacterItemEquipmentInfoDTO> DragonEquipment { get; set; }
+        public List<CharacterItemEquipmentDragonInfoDTO> DragonEquipment { get; set; }
 
         /// <summary>
         /// 메카닉 장비 정보 (메카닉인 경우 응답)
         /// </summary>
         [JsonProperty("mechanic_equipment")]
-        public List<CharacterItemEquipmentInfoDTO> MechanicEquipment { get; set; }
+        public List<CharacterItemEquipmentMechanicInfoDTO> MechanicEquipment { get; set; }
     }
 }

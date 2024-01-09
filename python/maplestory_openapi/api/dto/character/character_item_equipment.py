@@ -275,6 +275,128 @@ class CharacterItemEquipmentInfo(BaseModel):
     date_expire: datetime | None
 
 
+class CharacterItemEquipmentDragonInfo(BaseModel):
+    """
+    item_equipment_part(str): 장비 부위 명
+    item_equipment_slot(str): 장비 슬롯 위치
+    item_name(str): 장비 명
+    item_icon(str): 장비 아이콘
+    item_description(str): 장비 설명
+    item_shape_name(str): 장비 외형
+    item_shape_icon(str): 장비 외형 아이콘
+    item_gender(str): 장비 전용 성별
+    item_total_option(CharacterItemEquipmentTotalOption): 장비 최종 옵션
+    item_base_option(CharacterItemEquipmentBaseOption): 장비 기본 옵션
+    equipment_level_increase(int): 장비 레벨 증가
+    item_exceptional_option(CharacterItemEquipmentExceptionalOption): 장비 익셉셔널 옵션
+    item_add_option(CharacterItemEquipmentAddOption): 장비 추가 옵션
+    growth_exp(int): 성장 경험치
+    growth_level(int): 성장 레벨
+    scroll_upgrade(str): 업그레이드 횟수
+    cuttable_count(int): 가위 사용 가능 횟수 (교환 불가 장비, 가위 횟수가 없는 교환 가능 장비는 255)
+    golden_hammer_flag(str): 황금 망치 재련 적용 (1:적용, 이외 미 적용)
+    scroll_resilience_count(str): 복구 가능 횟수
+    scroll_upgradeable_count(str): 업그레이드 가능 횟수
+    soul_name(str): 소울 명
+    soul_option(str): 소울 옵션
+    item_etc_option(CharacterItemEquipmentEtcOption): 장비 기타 옵션
+    starforce(str): 스타포스 강화 단계
+    starforce_scroll_flag(str): 놀라운 장비 강화 주문서 사용 여부 (0:미사용, 1:사용)
+    item_starforce_option(CharacterItemEquipmentStarforceOption): 장비 스타포스 옵션
+    special_ring_level(int): 특수 반지 레벨
+    date_expire(datetime): 장비 유효 기간
+    """
+    item_equipment_part: str
+    item_equipment_slot: str
+    item_name: str
+    item_icon: str
+    item_description: str | None
+    item_shape_name: str
+    item_shape_icon: str
+    item_gender: str | None
+    item_total_option: CharacterItemEquipmentTotalOption
+    item_base_option: CharacterItemEquipmentBaseOption
+    equipment_level_increase: int
+    item_exceptional_option: CharacterItemEquipmentExceptionalOption
+    item_add_option: CharacterItemEquipmentAddOption
+    growth_exp: int
+    growth_level: int
+    scroll_upgrade: str
+    cuttable_count: int
+    golden_hammer_flag: str
+    scroll_resilience_count: str
+    scroll_upgradeable_count: str
+    soul_name: str | None
+    soul_option: str | None
+    item_etc_option: CharacterItemEquipmentEtcOption
+    starforce: str
+    starforce_scroll_flag: str
+    item_starforce_option: CharacterItemEquipmentStarforceOption
+    special_ring_level: int
+    date_expire: datetime | None
+
+
+class CharacterItemEquipmentMechanicInfo(BaseModel):
+    """
+    item_equipment_part(str): 장비 부위 명
+    item_equipment_slot(str): 장비 슬롯 위치
+    item_name(str): 장비 명
+    item_icon(str): 장비 아이콘
+    item_description(str): 장비 설명
+    item_shape_name(str): 장비 외형
+    item_shape_icon(str): 장비 외형 아이콘
+    item_gender(str): 장비 전용 성별
+    item_total_option(CharacterItemEquipmentTotalOption): 장비 최종 옵션
+    item_base_option(CharacterItemEquipmentBaseOption): 장비 기본 옵션
+    equipment_level_increase(int): 장비 레벨 증가
+    item_exceptional_option(CharacterItemEquipmentExceptionalOption): 장비 익셉셔널 옵션
+    item_add_option(CharacterItemEquipmentAddOption): 장비 추가 옵션
+    growth_exp(int): 성장 경험치
+    growth_level(int): 성장 레벨
+    scroll_upgrade(str): 업그레이드 횟수
+    cuttable_count(int): 가위 사용 가능 횟수 (교환 불가 장비, 가위 횟수가 없는 교환 가능 장비는 255)
+    golden_hammer_flag(str): 황금 망치 재련 적용 (1:적용, 이외 미 적용)
+    scroll_resilience_count(str): 복구 가능 횟수
+    scroll_upgradeable_count(str): 업그레이드 가능 횟수
+    soul_name(str): 소울 명
+    soul_option(str): 소울 옵션
+    item_etc_option(CharacterItemEquipmentEtcOption): 장비 기타 옵션
+    starforce(str): 스타포스 강화 단계
+    starforce_scroll_flag(str): 놀라운 장비 강화 주문서 사용 여부 (0:미사용, 1:사용)
+    item_starforce_option(CharacterItemEquipmentStarforceOption): 장비 스타포스 옵션
+    special_ring_level(int): 특수 반지 레벨
+    date_expire(datetime): 장비 유효 기간
+    """
+    item_equipment_part: str
+    item_equipment_slot: str
+    item_name: str
+    item_icon: str
+    item_description: str | None
+    item_shape_name: str
+    item_shape_icon: str
+    item_gender: str | None
+    item_total_option: CharacterItemEquipmentTotalOption
+    item_base_option: CharacterItemEquipmentBaseOption
+    equipment_level_increase: int
+    item_exceptional_option: CharacterItemEquipmentExceptionalOption
+    item_add_option: CharacterItemEquipmentAddOption
+    growth_exp: int
+    growth_level: int
+    scroll_upgrade: str
+    cuttable_count: int
+    golden_hammer_flag: str
+    scroll_resilience_count: str
+    scroll_upgradeable_count: str
+    soul_name: str | None
+    soul_option: str | None
+    item_etc_option: CharacterItemEquipmentEtcOption
+    starforce: str
+    starforce_scroll_flag: str
+    item_starforce_option: CharacterItemEquipmentStarforceOption
+    special_ring_level: int
+    date_expire: datetime | None
+
+
 class CharacterItemEquipmentTitle(BaseModel):
     """캐릭터 칭호 아이템 정보
 
@@ -306,6 +428,6 @@ class CharacterItemEquipment(BaseModel):
     character_gender: str
     character_class: str
     item_equipment: list[CharacterItemEquipmentInfo]
-    dragon_equipment: list[CharacterItemEquipmentInfo] | None
-    mechanic_equipment: list[CharacterItemEquipmentInfo] | None
     title: CharacterItemEquipmentTitle | None
+    dragon_equipment: list[CharacterItemEquipmentDragonInfo]
+    mechanic_equipment: list[CharacterItemEquipmentMechanicInfo]

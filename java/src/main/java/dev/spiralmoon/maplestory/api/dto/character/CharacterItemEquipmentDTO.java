@@ -51,13 +51,13 @@ public class CharacterItemEquipmentDTO {
      * 에반 드래곤 장비 정보 (에반인 경우 응답)
      */
     @SerializedName("dragon_equipment")
-    private List<CharacterItemEquipmentInfoDTO> dragonEquipment;
+    private List<CharacterItemEquipmentDragonInfoDTO> dragonEquipment;
 
     /**
      * 메카닉 장비 정보 (메카닉인 경우 응답)
      */
     @SerializedName("mechanic_equipment")
-    private List<CharacterItemEquipmentInfoDTO> mechanicEquipment;
+    private List<CharacterItemEquipmentMechanicInfoDTO> mechanicEquipment;
 
     public LocalDateTime getDate() {
         return Utils.toLocalDateTime(this.date);
