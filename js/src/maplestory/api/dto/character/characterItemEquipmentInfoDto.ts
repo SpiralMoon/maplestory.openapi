@@ -6,6 +6,9 @@ import { CharacterItemEquipmentStarforceOptionDto } from './characterItemEquipme
 import { CharacterItemEquipmentTotalOptionDto } from './characterItemEquipmentTotalOptionDto';
 import { CharacterItemEquipmentInfoDtoBody } from '../../response/character/characterItemEquipmentDtoBody';
 
+/**
+ * 캐릭터 장비 아이템 상세 정보
+ */
 class CharacterItemEquipmentInfoDto {
   /**
    * 장비 부위 명
@@ -15,7 +18,7 @@ class CharacterItemEquipmentInfoDto {
   /**
    * 장비 슬롯 위치
    */
-  equipmentSlot: string;
+  itemEquipmentSlot: string;
 
   /**
    * 장비 명
@@ -190,7 +193,7 @@ class CharacterItemEquipmentInfoDto {
   constructor(obj: CharacterItemEquipmentInfoDtoBody) {
     const {
       item_equipment_part,
-      equipment_slot,
+      item_equipment_slot,
       item_name,
       item_icon,
       item_description,
@@ -228,7 +231,7 @@ class CharacterItemEquipmentInfoDto {
     } = obj;
 
     this.itemEquipmentPart = item_equipment_part;
-    this.equipmentSlot = equipment_slot;
+    this.itemEquipmentSlot = item_equipment_slot;
     this.itemName = item_name;
     this.itemIcon = item_icon;
     this.itemDescription = item_description;

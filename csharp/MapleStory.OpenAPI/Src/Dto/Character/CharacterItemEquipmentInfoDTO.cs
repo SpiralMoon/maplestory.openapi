@@ -16,8 +16,8 @@ namespace MapleStory.OpenAPI.Dto
         /// <summary>
         /// 장비 슬롯 위치
         /// </summary>
-        [JsonProperty("equipment_slot")]
-        public string EquipmentSlot { get; set; }
+        [JsonProperty("item_equipment_slot")]
+        public string ItemEquipmentSlot { get; set; }
 
         /// <summary>
         /// 장비 명

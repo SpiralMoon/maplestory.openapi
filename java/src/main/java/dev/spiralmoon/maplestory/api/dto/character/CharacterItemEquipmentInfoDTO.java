@@ -25,8 +25,8 @@ public class CharacterItemEquipmentInfoDTO {
     /**
      * 장비 슬롯 위치
      */
-    @SerializedName("equipment_slot")
-    private String equipmentSlot;
+    @SerializedName("item_equipment_slot")
+    private String itemEquipmentSlot;
 
     /**
      * 장비 명
