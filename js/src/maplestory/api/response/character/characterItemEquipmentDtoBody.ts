@@ -3,14 +3,14 @@ type CharacterItemEquipmentDtoBody = {
   character_gender: string;
   character_class: string;
   item_equipment: CharacterItemEquipmentInfoDtoBody[];
-  title: CharacterItemEquipmentTitleDtoBody;
-  dragon_equipment?: CharacterItemEquipmentInfoDtoBody[];
-  mechanic_equipment?: CharacterItemEquipmentInfoDtoBody[];
+  title: CharacterItemEquipmentTitleDtoBody | null;
+  dragon_equipment: CharacterItemEquipmentInfoDtoBody[];
+  mechanic_equipment: CharacterItemEquipmentInfoDtoBody[];
 };
 
 type CharacterItemEquipmentInfoDtoBody = {
   item_equipment_part: string;
-  equipment_slot: string;
+  item_equipment_slot: string;
   item_name: string;
   item_icon: string;
   item_description: string | null;
@@ -46,6 +46,40 @@ type CharacterItemEquipmentInfoDtoBody = {
   special_ring_level: number;
   date_expire: string | null;
 };
+
+type CharacterItemEquipmentMechanicInfoDtoBody = {
+  item_equipment_part: string;
+  item_equipment_slot: string;
+  item_name: string;
+  item_icon: string;
+  item_description: string | null;
+  item_shape_name: string;
+  item_shape_icon: string;
+  item_gender: string | null;
+  item_total_option: CharacterItemEquipmentOptionDtoBody;
+  item_base_option: CharacterItemEquipmentBaseOptionDtoBody;
+  equipment_level_increase: number;
+  item_exceptional_option: CharacterItemEquipmentOptionDtoBody;
+  item_add_option: CharacterItemEquipmentAddOptionDtoBody;
+  growth_exp: number;
+  growth_level: number;
+  scroll_upgrade: string;
+  cuttable_count: string;
+  golden_hammer_flag: string;
+  scroll_resilience_count: string;
+  scroll_upgradeable_count: string;
+  soul_name: string | null;
+  soul_option: string | null;
+  item_etc_option: CharacterItemEquipmentOptionDtoBody;
+  starforce: string;
+  starforce_scroll_flag: string;
+  item_starforce_option: CharacterItemEquipmentOptionDtoBody;
+  special_ring_level: number;
+  date_expire: string | null;
+};
+
+type CharacterItemEquipmentDragonInfoDtoBody =
+  CharacterItemEquipmentMechanicInfoDtoBody;
 
 type CharacterItemEquipmentOptionDtoBody = {
   str: string;
@@ -174,4 +208,6 @@ export type {
   CharacterItemEquipmentAddOptionDtoBody,
   CharacterItemEquipmentEtcOptionDtoBody,
   CharacterItemEquipmentStarforceOptionDtoBody,
+  CharacterItemEquipmentDragonInfoDtoBody,
+  CharacterItemEquipmentMechanicInfoDtoBody,
 };

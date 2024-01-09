@@ -7,9 +7,9 @@ import { CharacterItemEquipmentTotalOptionDto } from './characterItemEquipmentTo
 import { CharacterItemEquipmentInfoDtoBody } from '../../response/character/characterItemEquipmentDtoBody';
 
 /**
- * 캐릭터 장비 아이템 상세 정보
+ * 메카닉 장비 정보
  */
-class CharacterItemEquipmentInfoDto {
+class CharacterItemEquipmentMechanicInfoDto {
   /**
    * 장비 부위 명
    */
@@ -59,46 +59,6 @@ class CharacterItemEquipmentInfoDto {
    * 장비 기본 옵션
    */
   itemBaseOption: CharacterItemEquipmentBaseOptionDto;
-
-  /**
-   * 잠재능력 등급
-   */
-  potentialOptionGrade: string | null;
-
-  /**
-   * 에디셔널 잠재능력 등급
-   */
-  additionalPotentialOptionGrade: string | null;
-
-  /**
-   * 잠재능력 첫 번째 옵션
-   */
-  potentialOption1: string | null;
-
-  /**
-   * 잠재능력 두 번째 옵션
-   */
-  potentialOption2: string | null;
-
-  /**
-   * 잠재능력 세 번째 옵션
-   */
-  potentialOption3: string | null;
-
-  /**
-   * 에디셔널 잠재능력 첫 번째 옵션
-   */
-  additionalPotentialOption1: string | null;
-
-  /**
-   * 에디셔널 잠재능력 두 번째 옵션
-   */
-  additionalPotentialOption2: string | null;
-
-  /**
-   * 에디셔널 잠재능력 세 번째 옵션
-   */
-  additionalPotentialOption3: string | null;
 
   /**
    * 착용 레벨 증가
@@ -202,14 +162,6 @@ class CharacterItemEquipmentInfoDto {
       item_gender,
       item_total_option,
       item_base_option,
-      potential_option_grade,
-      additional_potential_option_grade,
-      potential_option_1,
-      potential_option_2,
-      potential_option_3,
-      additional_potential_option_1,
-      additional_potential_option_2,
-      additional_potential_option_3,
       equipment_level_increase,
       item_exceptional_option,
       item_add_option,
@@ -244,14 +196,6 @@ class CharacterItemEquipmentInfoDto {
     this.itemBaseOption = new CharacterItemEquipmentBaseOptionDto(
       item_base_option,
     );
-    this.potentialOptionGrade = potential_option_grade;
-    this.additionalPotentialOptionGrade = additional_potential_option_grade;
-    this.potentialOption1 = potential_option_1;
-    this.potentialOption2 = potential_option_2;
-    this.potentialOption3 = potential_option_3;
-    this.additionalPotentialOption1 = additional_potential_option_1;
-    this.additionalPotentialOption2 = additional_potential_option_2;
-    this.additionalPotentialOption3 = additional_potential_option_3;
     this.equipmentLevelIncrease = equipment_level_increase;
     this.itemExceptionalOption = new CharacterItemEquipmentExceptionalOptionDto(
       item_exceptional_option,
@@ -281,4 +225,4 @@ class CharacterItemEquipmentInfoDto {
   }
 }
 
-export { CharacterItemEquipmentInfoDto };
+export { CharacterItemEquipmentMechanicInfoDto };

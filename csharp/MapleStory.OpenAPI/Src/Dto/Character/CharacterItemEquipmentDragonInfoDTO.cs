@@ -3,9 +3,9 @@
 namespace MapleStory.OpenAPI.Dto
 {
     /// <summary>
-    /// 캐릭터 장비 아이템 상세 정보
+    /// 에반 드래곤 장비 정보
     /// </summary>
-    public class CharacterItemEquipmentInfoDTO
+    public class CharacterItemEquipmentDragonInfoDTO
     {
         /// <summary>
         /// 장비 부위 명
@@ -66,54 +66,6 @@ namespace MapleStory.OpenAPI.Dto
         /// </summary>
         [JsonProperty("item_base_option")]
         public CharacterItemEquipmentBaseOptionDTO ItemBaseOption { get; set; }
-
-        /// <summary>
-        /// 잠재능력 등급
-        /// </summary>
-        [JsonProperty("potential_option_grade")]
-        public string? PotentialOptionGrade;
-
-        /// <summary>
-        /// 에디셔널 잠재능력 등급
-        /// </summary>
-        [JsonProperty("additional_potential_option_grade")]
-        public string? AdditionalPotentialOptionGrade;
-
-        /// <summary>
-        /// 잠재능력 첫 번째 옵션
-        /// </summary>
-        [JsonProperty("potential_option_1")]
-        public string? PotentialOption1;
-
-        /// <summary>
-        /// 잠재능력 두 번째 옵션
-        /// </summary>
-        [JsonProperty("potential_option_2")]
-        public string? PotentialOption2;
-
-        /// <summary>
-        /// 잠재능력 세 번째 옵션
-        /// </summary>
-        [JsonProperty("potential_option_3")]
-        public string? PotentialOption3;
-
-        /// <summary>
-        /// 에디셔널 잠재능력 첫 번째 옵션
-        /// </summary>
-        [JsonProperty("additional_potential_option_1")]
-        public string? AdditionalPotentialOption1;
-
-        /// <summary>
-        /// 에디셔널 잠재능력 두 번째 옵션
-        /// </summary>
-        [JsonProperty("additional_potential_option_2")]
-        public string? AdditionalPotentialOption2;
-
-        /// <summary>
-        /// 에디셔널 잠재능력  세 번째 옵션
-        /// </summary>
-        [JsonProperty("additional_potential_option_3")]
-        public string? AdditionalPotentialOption3;
 
         /// <summary>
         /// 착용 레벨 증가
