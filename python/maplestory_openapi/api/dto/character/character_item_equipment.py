@@ -287,7 +287,7 @@ class CharacterItemEquipmentTitle(BaseModel):
     title_name: str
     title_icon: str
     title_description: str
-    date_expire: datetime | None
+    date_expire: datetime | str | None
     date_option_expire: datetime | None
 
 
