@@ -29,7 +29,7 @@ class CharacterItemEquipmentDto {
   /**
    * 칭호 정보
    */
-  title: CharacterItemEquipmentTitleDto;
+  title: CharacterItemEquipmentTitleDto | null;
 
   /**
    * 에반 드래곤 장비 정보 (에반인 경우 응답)
@@ -58,7 +58,6 @@ class CharacterItemEquipmentDto {
     this.itemEquipment = item_equipment.map(
       (equipment) => new CharacterItemEquipmentInfoDto(equipment),
     );
-    this.title = new CharacterItemEquipmentTitleDto(title);
     this.dragonEquipment = dragon_equipment
       ? dragon_equipment.map(
           (equipment) => new CharacterItemEquipmentInfoDto(equipment),
@@ -69,6 +68,7 @@ class CharacterItemEquipmentDto {
           (equipment) => new CharacterItemEquipmentInfoDto(equipment),
         )
       : undefined;
+    this.title = title ? new CharacterItemEquipmentTitleDto(title) : null;
   }
 }
 

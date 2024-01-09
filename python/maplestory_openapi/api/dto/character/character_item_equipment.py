@@ -306,6 +306,6 @@ class CharacterItemEquipment(BaseModel):
     character_gender: str
     character_class: str
     item_equipment: list[CharacterItemEquipmentInfo]
-    title: CharacterItemEquipmentTitle
     dragon_equipment: list[CharacterItemEquipmentInfo] | None
     mechanic_equipment: list[CharacterItemEquipmentInfo] | None
+    title: CharacterItemEquipmentTitle | None

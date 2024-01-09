@@ -47,7 +47,7 @@ namespace MapleStory.OpenAPI.Dto
         /// 칭호 정보
         /// </summary>
         [JsonProperty("title")]
-        public CharacterItemEquipmentTitleDTO Title { get; set; }
+        public CharacterItemEquipmentTitleDTO? Title { get; set; }
 
         /// <summary>
         /// 에반 드래곤 장비 정보 (에반인 경우 응답)

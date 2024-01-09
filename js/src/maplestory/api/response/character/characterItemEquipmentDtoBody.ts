@@ -3,9 +3,9 @@ type CharacterItemEquipmentDtoBody = {
   character_gender: string;
   character_class: string;
   item_equipment: CharacterItemEquipmentInfoDtoBody[];
-  title: CharacterItemEquipmentTitleDtoBody;
   dragon_equipment?: CharacterItemEquipmentInfoDtoBody[];
   mechanic_equipment?: CharacterItemEquipmentInfoDtoBody[];
+  title: CharacterItemEquipmentTitleDtoBody | null;
 };
 
 type CharacterItemEquipmentInfoDtoBody = {
