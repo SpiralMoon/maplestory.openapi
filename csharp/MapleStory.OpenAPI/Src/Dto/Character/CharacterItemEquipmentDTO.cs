@@ -38,10 +38,34 @@ namespace MapleStory.OpenAPI.Dto
         public string CharacterClass { get; set; }
 
         /// <summary>
-        /// 장비 정보 리스트
+        /// 적용 중인 장비 프리셋 번호
+        /// </summary>
+        [JsonProperty("preset_no")]
+        public int? PresetNo { get; set; }
+
+        /// <summary>
+        /// 장비 정보
         /// </summary>
         [JsonProperty("item_equipment")]
         public List<CharacterItemEquipmentInfoDTO> ItemEquipment { get; set; }
+
+        /// <summary>
+        /// 1번 프리셋 장비 정보
+        /// </summary>
+        [JsonProperty("item_equipment_preset_1")]
+        public List<CharacterItemEquipmentInfoDTO>? ItemEquipmentPreset1 { get; set; }
+
+        /// <summary>
+        /// 2번 프리셋 장비 정보
+        /// </summary>
+        [JsonProperty("item_equipment_preset_2")]
+        public List<CharacterItemEquipmentInfoDTO>? ItemEquipmentPreset2 { get; set; }
+
+        /// <summary>
+        /// 3번 프리셋 장비 정보
+        /// </summary>
+        [JsonProperty("item_equipment_preset_3")]
+        public List<CharacterItemEquipmentInfoDTO>? ItemEquipmentPreset3 { get; set; }
 
         /// <summary>
         /// 칭호 정보
