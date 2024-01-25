@@ -41,6 +41,30 @@ public class CharacterAbilityDTO {
     @SerializedName("remain_fame")
     private long remainFame;
 
+    /**
+     * 적용 중인 어빌리티 프리셋 번호
+     */
+    @SerializedName("preset_no")
+    private Integer presetNo;
+
+    /**
+     * 어빌리티 1번 프리셋 전체 정보
+     */
+    @SerializedName("ability_preset_1")
+    private CharacterAbilityPresetDTO abilityPreset1;
+
+    /**
+     * 어빌리티 2번 프리셋 전체 정보
+     */
+    @SerializedName("ability_preset_2")
+    private CharacterAbilityPresetDTO abilityPreset2;
+
+    /**
+     * 어빌리티 3번 프리셋 전체 정보
+     */
+    @SerializedName("ability_preset_3")
+    private CharacterAbilityPresetDTO abilityPreset3;
+
     public LocalDateTime getDate() {
         return Utils.toLocalDateTime(this.date);
     }
