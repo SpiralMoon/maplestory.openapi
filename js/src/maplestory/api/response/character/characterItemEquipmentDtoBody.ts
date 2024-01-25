@@ -2,7 +2,11 @@ type CharacterItemEquipmentDtoBody = {
   date: string;
   character_gender: string;
   character_class: string;
+  preset_no: number | null;
   item_equipment: CharacterItemEquipmentInfoDtoBody[];
+  item_equipment_preset_1: CharacterItemEquipmentInfoDtoBody[] | null;
+  item_equipment_preset_2: CharacterItemEquipmentInfoDtoBody[] | null;
+  item_equipment_preset_3: CharacterItemEquipmentInfoDtoBody[] | null;
   title: CharacterItemEquipmentTitleDtoBody | null;
   dragon_equipment: CharacterItemEquipmentInfoDtoBody[];
   mechanic_equipment: CharacterItemEquipmentInfoDtoBody[];

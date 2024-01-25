@@ -24,9 +24,29 @@ class CharacterItemEquipmentDto {
   characterClass: string;
 
   /**
-   * 장비 정보 배열
+   * 적용 중인 장비 프리셋 번호
+   */
+  presetNo: number | null;
+
+  /**
+   * 장비 정보
    */
   itemEquipment: CharacterItemEquipmentInfoDto[];
+
+  /**
+   * 1번 프리셋 장비 정보
+   */
+  itemEquipmentPreset1: CharacterItemEquipmentInfoDto[] | null;
+
+  /**
+   * 2번 프리셋 장비 정보
+   */
+  itemEquipmentPreset2: CharacterItemEquipmentInfoDto[] | null;
+
+  /**
+   * 3번 프리셋 장비 정보
+   */
+  itemEquipmentPreset3: CharacterItemEquipmentInfoDto[] | null;
 
   /**
    * 칭호 정보
@@ -48,7 +68,11 @@ class CharacterItemEquipmentDto {
       date,
       character_gender,
       character_class,
+      preset_no,
       item_equipment,
+      item_equipment_preset_1,
+      item_equipment_preset_2,
+      item_equipment_preset_3,
       title,
       dragon_equipment,
       mechanic_equipment,
@@ -57,9 +81,19 @@ class CharacterItemEquipmentDto {
     this.date = new Date(date);
     this.characterGender = character_gender;
     this.characterClass = character_class;
+    this.presetNo = preset_no;
     this.itemEquipment = item_equipment.map(
       (equipment) => new CharacterItemEquipmentInfoDto(equipment),
     );
+    this.itemEquipmentPreset1 = item_equipment_preset_1 ? item_equipment_preset_1.map(
+      (equipment) => new CharacterItemEquipmentInfoDto(equipment),
+    ) : null;
+    this.itemEquipmentPreset2 = item_equipment_preset_2 ? item_equipment_preset_2.map(
+      (equipment) => new CharacterItemEquipmentInfoDto(equipment),
+    ): null;
+    this.itemEquipmentPreset3 = item_equipment_preset_3 ? item_equipment_preset_3.map(
+      (equipment) => new CharacterItemEquipmentInfoDto(equipment),
+    ): null;
     this.title = title ? new CharacterItemEquipmentTitleDto(title) : null;
     this.dragonEquipment = dragon_equipment.map(
       (equipment) => new CharacterItemEquipmentDragonInfoDto(equipment),
