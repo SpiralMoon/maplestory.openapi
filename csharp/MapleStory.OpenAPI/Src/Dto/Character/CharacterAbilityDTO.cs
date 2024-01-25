@@ -42,5 +42,29 @@ namespace MapleStory.OpenAPI.Dto
         /// </summary>
         [JsonProperty("remain_fame")]
         public long RemainFame { get; set; }
+
+        /// <summary>
+        /// 적용 중인 어빌리티 프리셋 번호
+        /// </summary>
+        [JsonProperty("preset_no")]
+        public int? PresetNo;
+
+        /// <summary>
+        /// 어빌리티 1번 프리셋 전체 정보
+        /// </summary>
+        [JsonProperty("ability_preset_1")]
+        public CharacterAbilityPresetDTO? AbilityPreset1;
+
+        /// <summary>
+        /// 어빌리티 2번 프리셋 전체 정보
+        /// </summary>
+        [JsonProperty("ability_preset_2")]
+        public CharacterAbilityPresetDTO? AbilityPreset2;
+
+        /// <summary>
+        /// 어빌리티 3번 프리셋 전체 정보
+        /// </summary>
+        [JsonProperty("ability_preset_3")]
+        public CharacterAbilityPresetDTO? AbilityPreset3;
     }
 }
