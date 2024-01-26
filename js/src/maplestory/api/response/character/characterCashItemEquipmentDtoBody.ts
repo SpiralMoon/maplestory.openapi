@@ -24,7 +24,7 @@ type CharacterCashItemEquipmentPresetDtoBody = {
   date_option_expire: string | null;
   cash_item_label: string | null;
   cash_item_coloring_prism: CharacterCashItemEquipmentColoringPrismDtoBody | null;
-  base_preset_item_disable_flag: string;
+  item_gender: string | null;
 };
 
 type CharacterCashItemEquipmentOptionDtoBody = {
