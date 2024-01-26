@@ -1227,7 +1227,7 @@ namespace MapleStory.OpenAPI
         {
             using (var client = new HttpClient())
             {
-                var path = "maplestory/v1/union";
+                var path = "maplestory/v1/user/union";
                 var uriBuilder = new UriBuilder($"{BASE_URL}{path}");
 
                 var date = ToDateString(MinDate(2023, 12, 21), dateTimeOffset);
@@ -1284,7 +1284,7 @@ namespace MapleStory.OpenAPI
         {
             using (var client = new HttpClient())
             {
-                var path = "maplestory/v1/union-raider";
+                var path = "maplestory/v1/user/union-raider";
                 var uriBuilder = new UriBuilder($"{BASE_URL}{path}");
 
                 var date = ToDateString(MinDate(2023, 12, 21), dateTimeOffset);
