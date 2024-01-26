@@ -77,6 +77,54 @@ public class CharacterAndroidEquipmentDTO {
     @SerializedName("android_ear_sensor_clip_flag")
     private String androidEarSensorClipFlag;
 
+    /**
+     * 안드로이드 성별
+     */
+    @SerializedName("android_gender")
+    private String androidGender;
+
+    /**
+     * 안드로이드 등급
+     */
+    @SerializedName("android_grade")
+    private String androidGrade;
+
+    /**
+     * 비인간형 안드로이드 여부
+     */
+    @SerializedName("android_non_humanoid_flag")
+    private String androidNonHumanoidFlag;
+
+    /**
+     * 잡화상점 기능 이용 가능 여부
+     */
+    @SerializedName("android_shop_usable_flag")
+    private String androidShopUsableFlag;
+
+    /**
+     * 적용 중인 장비 프리셋 번호
+     */
+    @SerializedName("preset_no")
+    private Integer presetNo;
+
+    /**
+     * 1번 프리셋 안드로이드 정보
+     */
+    @SerializedName("android_preset_1")
+    private CharacterAndroidEquipmentPresetDTO androidPreset1;
+
+    /**
+     * 2번 프리셋 안드로이드 정보
+     */
+    @SerializedName("android_preset_2")
+    private CharacterAndroidEquipmentPresetDTO androidPreset2;
+
+    /**
+     * 3번 프리셋 안드로이드 정보
+     */
+    @SerializedName("android_preset_3")
+    private CharacterAndroidEquipmentPresetDTO androidPreset3;
+
     public LocalDateTime getDate() {
         return Utils.toLocalDateTime(this.date);
     }
