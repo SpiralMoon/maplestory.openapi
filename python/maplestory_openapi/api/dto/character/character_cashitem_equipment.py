@@ -57,20 +57,24 @@ class CharacterCashitemEquipment(BaseModel):
     character_gender(str): 캐릭터 성별
     character_class(str): 캐릭터 직업
     preset_no(int): 적용 중인 캐시 장비 프리셋 번호
-    cash_item_equipment_preset_1(list[CharacterCashitemEquipmentPreset]): 1번 프리셋 장착 캐시 장비 정보
-    cash_item_equipment_preset_2(list[CharacterCashitemEquipmentPreset]): 2번 프리셋 장착 캐시 장비 정보
-    cash_item_equipment_preset_3(list[CharacterCashitemEquipmentPreset]): 3번 프리셋 장착 캐시 장비 정보
-    additional_cash_item_equipment_preset_1(list[CharacterCashitemEquipmentPreset]): 제로인 경우 베타, 엔젤릭버스터인 경우 드레스 업 모드의 1번 프리셋 장착 캐시 장비 정보
-    additional_cash_item_equipment_preset_2(list[CharacterCashitemEquipmentPreset]): 제로인 경우 베타, 엔젤릭버스터인 경우 드레스 업 모드의 2번 프리셋 장착 캐시 장비 정보
-    additional_cash_item_equipment_preset_3(list[CharacterCashitemEquipmentPreset]): 제로인 경우 베타, 엔젤릭버스터인 경우 드레스 업 모드의 3번 프리셋 장착 캐시 장비 정보
+    cash_item_equipment_base(list[CharacterCashitemEquipmentPreset]): 장착 중인 캐시 장비
+    cash_item_equipment_preset_1(list[CharacterCashitemEquipmentPreset]): 1번 코디 프리셋
+    cash_item_equipment_preset_2(list[CharacterCashitemEquipmentPreset]): 2번 코디 프리셋
+    cash_item_equipment_preset_3(list[CharacterCashitemEquipmentPreset]): 3번 코디 프리셋
+    additional_cash_item_equipment_base(list[CharacterCashitemEquipmentPreset]): 제로인 경우 베타, 엔젤릭버스터인 경우 드레스 업 모드에서 장착 중인 캐시 장비
+    additional_cash_item_equipment_preset_1(list[CharacterCashitemEquipmentPreset]): 제로인 경우 베타, 엔젤릭버스터인 경우 드레스 업 모드의 1번 코디 프리셋
+    additional_cash_item_equipment_preset_2(list[CharacterCashitemEquipmentPreset]): 제로인 경우 베타, 엔젤릭버스터인 경우 드레스 업 모드의 2번 코디 프리셋
+    additional_cash_item_equipment_preset_3(list[CharacterCashitemEquipmentPreset]): 제로인 경우 베타, 엔젤릭버스터인 경우 드레스 업 모드의 3번 코디 프리셋
     """
     date: datetime
     character_gender: str
     character_class: str
     preset_no: int
+    cash_item_equipment_base: list[CharacterCashitemEquipmentPreset]
     cash_item_equipment_preset_1: list[CharacterCashitemEquipmentPreset]
     cash_item_equipment_preset_2: list[CharacterCashitemEquipmentPreset]
     cash_item_equipment_preset_3: list[CharacterCashitemEquipmentPreset]
+    additional_cash_item_equipment_base: list[CharacterCashitemEquipmentPreset]
     additional_cash_item_equipment_preset_1: list[CharacterCashitemEquipmentPreset]
     additional_cash_item_equipment_preset_2: list[CharacterCashitemEquipmentPreset]
     additional_cash_item_equipment_preset_3: list[CharacterCashitemEquipmentPreset]
