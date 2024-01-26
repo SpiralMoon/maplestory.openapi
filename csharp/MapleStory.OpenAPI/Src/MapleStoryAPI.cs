@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using System.Web;
 using System.Text;
 using System;
+using MapleStory.OpenAPI.Src.Dto.Union;
 
 namespace MapleStory.OpenAPI
 {
@@ -1226,7 +1227,7 @@ namespace MapleStory.OpenAPI
         {
             using (var client = new HttpClient())
             {
-                var path = "maplestory/v1/union";
+                var path = "maplestory/v1/user/union";
                 var uriBuilder = new UriBuilder($"{BASE_URL}{path}");
 
                 var date = ToDateString(MinDate(2023, 12, 21), dateTimeOffset);
@@ -1283,7 +1284,7 @@ namespace MapleStory.OpenAPI
         {
             using (var client = new HttpClient())
             {
-                var path = "maplestory/v1/union-raider";
+                var path = "maplestory/v1/user/union-raider";
                 var uriBuilder = new UriBuilder($"{BASE_URL}{path}");
 
                 var date = ToDateString(MinDate(2023, 12, 21), dateTimeOffset);
@@ -1302,6 +1303,63 @@ namespace MapleStory.OpenAPI
                 if (response.IsSuccessStatusCode)
                 {
                     var result = JsonConvert.DeserializeObject<UnionRaiderDTO>(body);
+                    return result;
+                }
+                else
+                {
+                    throw ParseError(body);
+                }
+            }
+        }
+
+        /// <summary>
+        /// 유니온 아티팩트 정보를 조회합니다.
+        /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
+        /// <para>- 유니온 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)</para>
+        /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
+        /// </summary>
+        /// <param name="ocid">캐릭터 식별자</param>
+        public Task<UnionArtifactDTO> GetUnionArtifact(string ocid)
+        {
+            return GetUnionArtifact(ocid, GetProperDefaultDateTimeOffset(new LatestApiUpdateTimeOption
+            {
+                Hour = 1,
+                Minute = 0,
+                DateOffset = 1
+            }));
+        }
+
+        /// <summary>
+        /// 유니온 아티팩트 정보를 조회합니다.
+        /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
+        /// <para>- 유니온 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)</para>
+        /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
+        /// </summary>
+        /// <param name="ocid">캐릭터 식별자</param>
+        /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
+        public async Task<UnionArtifactDTO> GetUnionArtifact(string ocid, DateTimeOffset dateTimeOffset)
+        {
+            using (var client = new HttpClient())
+            {
+                var path = "maplestory/v1/user/union-artifact";
+                var uriBuilder = new UriBuilder($"{BASE_URL}{path}");
+
+                var date = ToDateString(MinDate(2023, 12, 21), dateTimeOffset);
+
+                var query = HttpUtility.ParseQueryString(uriBuilder.Query);
+                query["ocid"] = ocid;
+                query["date"] = date;
+
+                uriBuilder.Query = query.ToString();
+
+                this.SetClient(client);
+
+                var response = await client.GetAsync(uriBuilder.Uri);
+                var body = await response.Content.ReadAsStringAsync();
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var result = JsonConvert.DeserializeObject<UnionArtifactDTO>(body);
                     return result;
                 }
                 else
