@@ -2268,6 +2268,106 @@ public class MapleStoryApi {
         });
     }
 
+    /**
+     * 유니온 아티팩트 정보를 조회합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 유니온 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     *
+     * @param ocid 캐릭터 식별자
+     */
+    public UnionArtifactDTO getUnionArtifact(@NonNull String ocid) throws IOException {
+        return this.getUnionArtifact(ocid, getProperDefaultDateTime(new LatestApiUpdateTimeOption(1, 0, 1)));
+    }
+
+    /**
+     * 유니온 아티팩트 정보를 조회합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 유니온 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     *
+     * @param ocid          캐릭터 식별자
+     * @param localDateTime 조회 기준일 (KST)
+     */
+    public UnionArtifactDTO getUnionArtifact(@NonNull String ocid, @NonNull LocalDateTime localDateTime) throws IOException {
+        final String date = toDateString(minDate(2023, 12, 21), localDateTime);
+
+        final Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(this.buildClient())
+                .build();
+
+        final UnionApi unionApi = retrofit.create(UnionApi.class);
+        final Call<UnionArtifactDTO> call = unionApi.getUnionArtifact(this.apiKey, ocid, date);
+
+        final Response<UnionArtifactDTO> response = call.execute();
+
+        if (!response.isSuccessful()) {
+            throw parseError(response);
+        }
+
+        return response.body();
+    }
+
+    /**
+     * 유니온 아티팩트 정보를 비동기로 조회합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 유니온 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     *
+     * @param ocid 캐릭터 식별자
+     */
+    public void getUnionArtifactAsync(@NonNull String ocid, SuccessCallback<UnionArtifactDTO> onSuccess, FailureCallback onFailure) {
+        this.getUnionArtifactAsync(ocid, getProperDefaultDateTime(new LatestApiUpdateTimeOption(1, 0, 1)), onSuccess, onFailure);
+    }
+
+    /**
+     * 유니온 아티팩트 정보를 비동기로 조회합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 유니온 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     *
+     * @param ocid          캐릭터 식별자
+     * @param localDateTime 조회 기준일 (KST)
+     */
+    public void getUnionArtifactAsync(@NonNull String ocid, LocalDateTime localDateTime, SuccessCallback<UnionArtifactDTO> onSuccess, FailureCallback onFailure) {
+        final String date = toDateString(minDate(2023, 12, 21), localDateTime);
+
+        final Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(this.buildClient())
+                .build();
+
+        final UnionApi unionApi = retrofit.create(UnionApi.class);
+        final Call<UnionArtifactDTO> call = unionApi.getUnionArtifact(this.apiKey, ocid, date);
+
+        call.enqueue(new Callback<UnionArtifactDTO>() {
+            @SneakyThrows
+            @Override
+            public void onResponse(Call<UnionArtifactDTO> call, Response<UnionArtifactDTO> response) {
+                if (response.isSuccessful()) {
+                    if (onSuccess != null) {
+                        onSuccess.callback(response.body());
+                    }
+                } else {
+                    if (onFailure != null) {
+                        onFailure.callback(parseError(response));
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<UnionArtifactDTO> call, Throwable t) {
+                if (onFailure != null) {
+                    onFailure.callback(t);
+                }
+            }
+        });
+    }
+
+
     //#endregion
 
     //#region 길드 정보 조회
