@@ -3,9 +3,11 @@ type CharacterCashItemEquipmentDtoBody = {
   character_gender: string;
   character_class: string;
   preset_no: number;
+  cash_item_equipment_base: CharacterCashItemEquipmentPresetDtoBody[];
   cash_item_equipment_preset_1: CharacterCashItemEquipmentPresetDtoBody[];
   cash_item_equipment_preset_2: CharacterCashItemEquipmentPresetDtoBody[];
   cash_item_equipment_preset_3: CharacterCashItemEquipmentPresetDtoBody[];
+  additional_cash_item_equipment_base: CharacterCashItemEquipmentPresetDtoBody[];
   additional_cash_item_equipment_preset_1: CharacterCashItemEquipmentPresetDtoBody[];
   additional_cash_item_equipment_preset_2: CharacterCashItemEquipmentPresetDtoBody[];
   additional_cash_item_equipment_preset_3: CharacterCashItemEquipmentPresetDtoBody[];
