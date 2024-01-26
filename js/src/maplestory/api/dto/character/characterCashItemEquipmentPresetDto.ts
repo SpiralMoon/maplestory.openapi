@@ -57,9 +57,9 @@ class CharacterCashItemEquipmentPresetDto {
   cashItemColoringPrism: CharacterCashItemEquipmentColoringPrismDto | null;
 
   /**
-   * 다른 프리셋에서 장비 추가 장착 없이 1번 프리셋의 장비 공유를 비활성화 했는지 여부
+   * 아이템 장착 가능 성별
    */
-  basePresetItemDisableFlag: string;
+  itemGender: string | null;
 
   constructor(obj: CharacterCashItemEquipmentPresetDtoBody) {
     const {
@@ -73,7 +73,7 @@ class CharacterCashItemEquipmentPresetDto {
       date_option_expire,
       cash_item_label,
       cash_item_coloring_prism,
-      base_preset_item_disable_flag,
+      item_gender,
     } = obj;
 
     this.cashItemEquipmentPart = cash_item_equipment_part;
@@ -90,7 +90,7 @@ class CharacterCashItemEquipmentPresetDto {
     this.cashItemColoringPrism = cash_item_coloring_prism
       ? new CharacterCashItemEquipmentColoringPrismDto(cash_item_coloring_prism)
       : null;
-    this.basePresetItemDisableFlag = base_preset_item_disable_flag;
+    this.itemGender = item_gender;
   }
 }
 

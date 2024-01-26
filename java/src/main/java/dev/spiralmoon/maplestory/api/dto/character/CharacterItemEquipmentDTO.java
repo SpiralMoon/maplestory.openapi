@@ -36,10 +36,34 @@ public class CharacterItemEquipmentDTO {
     private String characterClass;
 
     /**
-     * 장비 정보 리스트
+     * 적용 중인 장비 프리셋 번호
+     */
+    @SerializedName("preset_no")
+    private Integer presetNo;
+
+    /**
+     * 장비 정보
      */
     @SerializedName("item_equipment")
     private List<CharacterItemEquipmentInfoDTO> itemEquipment;
+
+    /**
+     * 1번 프리셋 장비 정보
+     */
+    @SerializedName("item_equipment_preset_1")
+    private List<CharacterItemEquipmentInfoDTO> itemEquipmentPreset1;
+
+    /**
+     * 2번 프리셋 장비 정보
+     */
+    @SerializedName("item_equipment_preset_2")
+    private List<CharacterItemEquipmentInfoDTO> itemEquipmentPreset2;
+
+    /**
+     * 3번 프리셋 장비 정보
+     */
+    @SerializedName("item_equipment_preset_3")
+    private List<CharacterItemEquipmentInfoDTO> itemEquipmentPreset3;
 
     /**
      * 칭호 정보

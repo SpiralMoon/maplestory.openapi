@@ -419,7 +419,11 @@ class CharacterItemEquipment(BaseModel):
     date(datetime): 조회 기준일
     character_gender(str): 캐릭터 성별
     character_class(str): 캐릭터 직업
+    preset_no(int): 적용 중인 장비 프리셋 번호
     item_equipment(list[CharacterItemEquipmentInfo]): 장비 정보
+    item_equipment_preset_1(list[CharacterItemEquipmentInfo]): 1번 프리셋 장비 정보
+    item_equipment_preset_2(list[CharacterItemEquipmentInfo]): 2번 프리셋 장비 정보
+    item_equipment_preset_3(list[CharacterItemEquipmentInfo]): 3번 프리셋 장비 정보
     title(CharacterItemEquipmentTitle): 칭호 정보
     dragon_equipment(list[CharacterItemEquipmentInfo]): 에반 드래곤 장비 정보 (에반인 경우 응답)
     mechanic_equipment(list[CharacterItemEquipmentInfo]): 메카닉 장비 정보 (메카닉인 경우 응답)
@@ -427,7 +431,11 @@ class CharacterItemEquipment(BaseModel):
     date: datetime
     character_gender: str
     character_class: str
+    preset_no: int | None
     item_equipment: list[CharacterItemEquipmentInfo]
+    item_equipment_preset_1: list[CharacterItemEquipmentInfo] | None
+    item_equipment_preset_2: list[CharacterItemEquipmentInfo] | None
+    item_equipment_preset_3: list[CharacterItemEquipmentInfo] | None
     title: CharacterItemEquipmentTitle | None
     dragon_equipment: list[CharacterItemEquipmentDragonInfo]
     mechanic_equipment: list[CharacterItemEquipmentMechanicInfo]

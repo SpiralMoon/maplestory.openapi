@@ -78,10 +78,10 @@ public class CharacterCashItemEquipmentPresetDTO {
     private CharacterCashItemEquipmentColoringPrismDTO cashItemColoringPrism;
 
     /**
-     * 다른 프리셋에서 장비 추가 장착 없이 1번 프리셋의 장비 공유를 비활성화 했는지 여부
+     * 아이템 장착 가능 성별
      */
-    @SerializedName("base_preset_item_disable_flag")
-    private String basePresetItemDisableFlag;
+    @SerializedName("item_gender")
+    private String itemGender;
 
     private LocalDateTime getDateExpire() {
         return this.dateExpire != null ? Utils.toLocalDateTime(this.dateExpire) : null;

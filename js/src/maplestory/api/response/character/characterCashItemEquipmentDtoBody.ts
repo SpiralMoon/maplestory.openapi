@@ -3,9 +3,11 @@ type CharacterCashItemEquipmentDtoBody = {
   character_gender: string;
   character_class: string;
   preset_no: number;
+  cash_item_equipment_base: CharacterCashItemEquipmentPresetDtoBody[];
   cash_item_equipment_preset_1: CharacterCashItemEquipmentPresetDtoBody[];
   cash_item_equipment_preset_2: CharacterCashItemEquipmentPresetDtoBody[];
   cash_item_equipment_preset_3: CharacterCashItemEquipmentPresetDtoBody[];
+  additional_cash_item_equipment_base: CharacterCashItemEquipmentPresetDtoBody[];
   additional_cash_item_equipment_preset_1: CharacterCashItemEquipmentPresetDtoBody[];
   additional_cash_item_equipment_preset_2: CharacterCashItemEquipmentPresetDtoBody[];
   additional_cash_item_equipment_preset_3: CharacterCashItemEquipmentPresetDtoBody[];
@@ -22,7 +24,7 @@ type CharacterCashItemEquipmentPresetDtoBody = {
   date_option_expire: string | null;
   cash_item_label: string | null;
   cash_item_coloring_prism: CharacterCashItemEquipmentColoringPrismDtoBody | null;
-  base_preset_item_disable_flag: string;
+  item_gender: string | null;
 };
 
 type CharacterCashItemEquipmentOptionDtoBody = {

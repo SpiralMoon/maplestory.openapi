@@ -110,9 +110,9 @@ namespace MapleStory.OpenAPI.Dto
         public CharacterCashItemEquipmentColoringPrismDTO? CashItemColoringPrism { get; set; }
 
         /// <summary>
-        /// 다른 프리셋에서 장비 추가 장착 없이 1번 프리셋의 장비 공유를 비활성화 했는지 여부
+        /// 아이템 장착 가능 성별
         /// </summary>
-        [JsonProperty("base_preset_item_disable_flag")]
-        public string BasePresetItemDisableFlag { get; set; }
+        [JsonProperty("item_gender")]
+        public string? ItemGender { get; set; }
     }
 }

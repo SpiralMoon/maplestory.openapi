@@ -44,37 +44,49 @@ namespace MapleStory.OpenAPI.Dto
         public long PresetNo { get; set; }
 
         /// <summary>
-        /// 1번 프리셋 장착 캐시 장비 정보 목록
+        /// 장착 중인 캐시 장비
+        /// </summary>
+        [JsonProperty("cash_item_equipment_base")]
+        public List<CharacterCashItemEquipmentPresetDTO> CashItemEquipmentBase { get; set; }
+
+        /// <summary>
+        /// 1번 코디 프리셋
         /// </summary>
         [JsonProperty("cash_item_equipment_preset_1")]
         public List<CharacterCashItemEquipmentPresetDTO> CashItemEquipmentPreset1 { get; set; }
 
         /// <summary>
-        /// 2번 프리셋 장착 캐시 장비 정보 목록
+        /// 2번 코디 프리셋
         /// </summary>
         [JsonProperty("cash_item_equipment_preset_2")]
         public List<CharacterCashItemEquipmentPresetDTO> CashItemEquipmentPreset2 { get; set; }
 
         /// <summary>
-        /// 3번 프리셋 장착 캐시 장비 정보 목록
+        /// 3번 코디 프리셋
         /// </summary>
         [JsonProperty("cash_item_equipment_preset_3")]
         public List<CharacterCashItemEquipmentPresetDTO> CashItemEquipmentPreset3 { get; set; }
 
         /// <summary>
-        /// 제로인 경우 베타, 엔젤릭버스터인 경우 드레스 업 모드의 1번 프리셋 장착 캐시 장비 정보 목록
+        /// 제로인 경우 베타, 엔젤릭버스터인 경우 드레스 업 모드에서 장착 중인 캐시 장비
+        /// </summary>
+        [JsonProperty("additional_cash_item_equipment_base")]
+        public List<CharacterCashItemEquipmentPresetDTO> AdditionalCashItemEquipmentBase { get; set; }
+
+        /// <summary>
+        /// 제로인 경우 베타, 엔젤릭버스터인 경우 드레스 업 모드의 1번 코디 프리셋
         /// </summary>
         [JsonProperty("additional_cash_item_equipment_preset_1")]
         public List<CharacterCashItemEquipmentPresetDTO> AdditionalCashItemEquipmentPreset1 { get; set; }
 
         /// <summary>
-        /// 제로인 경우 베타, 엔젤릭버스터인 경우 드레스 업 모드의 2번 프리셋 장착 캐시 장비 정보 목록
+        /// 제로인 경우 베타, 엔젤릭버스터인 경우 드레스 업 모드의 2번 코디 프리셋
         /// </summary>
         [JsonProperty("additional_cash_item_equipment_preset_2")]
         public List<CharacterCashItemEquipmentPresetDTO> AdditionalCashItemEquipmentPreset2 { get; set; }
 
         /// <summary>
-        /// 제로인 경우 베타, 엔젤릭버스터인 경우 드레스 업 모드의 3번 프리셋 장착 캐시 장비 정보 목록
+        /// 제로인 경우 베타, 엔젤릭버스터인 경우 드레스 업 모드의 3번 코디 프리셋
         /// </summary>
         [JsonProperty("additional_cash_item_equipment_preset_3")]
         public List<CharacterCashItemEquipmentPresetDTO> AdditionalCashItemEquipmentPreset3 { get; set; }

@@ -33,7 +33,7 @@ public interface CharacterApi {
     Call<CharacterItemEquipmentDTO> getCharacterItemEquipment(@Header("x-nxopen-api-key") String apiKey, @Query("ocid") String ocid, @Query("date") String date);
 
     @GET("maplestory/v1/character/cashitem-equipment")
-    Call<CharacterAndroidCashItemEquipmentDTO> getCharacterCashItemEquipment(@Header("x-nxopen-api-key") String apiKey, @Query("ocid") String ocid, @Query("date") String date);
+    Call<CharacterCashItemEquipmentDTO> getCharacterCashItemEquipment(@Header("x-nxopen-api-key") String apiKey, @Query("ocid") String ocid, @Query("date") String date);
 
     @GET("maplestory/v1/character/symbol-equipment")
     Call<CharacterSymbolEquipmentDTO> getCharacterSymbolEquipment(@Header("x-nxopen-api-key") String apiKey, @Query("ocid") String ocid, @Query("date") String date);

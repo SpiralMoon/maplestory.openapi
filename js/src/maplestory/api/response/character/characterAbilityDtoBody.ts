@@ -3,6 +3,10 @@ type CharacterAbilityDtoBody = {
   ability_grade: string;
   ability_info: CharacterAbilityInfoDtoBody[];
   remain_fame: number;
+  preset_no: number;
+  ability_preset_1: CharacterAbilityPresetDtoBody;
+  ability_preset_2: CharacterAbilityPresetDtoBody;
+  ability_preset_3: CharacterAbilityPresetDtoBody;
 };
 
 type CharacterAbilityInfoDtoBody = {
@@ -11,4 +15,9 @@ type CharacterAbilityInfoDtoBody = {
   ability_value: string;
 };
 
-export { CharacterAbilityDtoBody, CharacterAbilityInfoDtoBody };
+type CharacterAbilityPresetDtoBody = {
+  ability_preset_grade: string;
+  ability_info: CharacterAbilityInfoDtoBody[];
+};
+
+export { CharacterAbilityDtoBody, CharacterAbilityInfoDtoBody, CharacterAbilityPresetDtoBody };

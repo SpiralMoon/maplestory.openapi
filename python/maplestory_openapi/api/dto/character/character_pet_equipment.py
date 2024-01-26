@@ -35,6 +35,8 @@ class CharacterPetEquipmentItem(BaseModel):
     item_option(list[CharacterPetEquipmentItemOption]): 아이템 표기상 옵션
     scroll_upgrade(int): 업그레이드 횟수
     scroll_upgradable(int): 업그레이드 가능 횟수
+    item_shape(str): 아이템 외형
+    item_shape_icon(str): 아이템 외형 아이콘
     """
     item_name: str | None
     item_icon: str | None
@@ -42,6 +44,8 @@ class CharacterPetEquipmentItem(BaseModel):
     item_option: list[CharacterPetEquipmentItemOption]
     scroll_upgrade: int
     scroll_upgradable: int
+    item_shape: str | None
+    item_shape_icon: str | None
 
 
 class CharacterPetEquipment(BaseModel):
@@ -57,6 +61,8 @@ class CharacterPetEquipment(BaseModel):
     pet_1_pet_type(str): 펫1 원더 펫 종류
     pet_1_skill(list[str]): 펫1 펫 보유 스킬
     pet_1_date_expire(datetime): 펫1 마법의 시간 (KST)
+    pet_1_appearance(str): 펫1 외형
+    pet_1_appearance_icon(str): 펫1 외형 아이콘
 
     pet_2_name(str): 펫2 명
     pet_2_nickname(str): 펫2 닉네임
@@ -67,6 +73,8 @@ class CharacterPetEquipment(BaseModel):
     pet_2_pet_type(str): 펫2 원더 펫 종류
     pet_2_skill(list[str]): 펫2 펫 보유 스킬
     pet_2_date_expire(datetime): 펫2 마법의 시간 (KST)
+    pet_2_appearance(str): 펫2 외형
+    pet_2_appearance_icon(str): 펫2 외형 아이콘
 
     pet_3_name(str): 펫3 명
     pet_3_nickname(str): 펫3 닉네임
@@ -77,32 +85,40 @@ class CharacterPetEquipment(BaseModel):
     pet_3_pet_type(str): 펫3 원더 펫 종류
     pet_3_skill(list[str]): 펫3 펫 보유 스킬
     pet_3_date_expire(datetime): 펫3 마법의 시간 (KST)
+    pet_3_appearance(str): 펫3 외형
+    pet_3_appearance_icon(str): 펫3 외형 아이콘
     """
     date: datetime
-    pet_1_name: str
-    pet_1_nickname: str
-    pet_1_icon: str
-    pet_1_description: str
-    pet_1_equipment: CharacterPetEquipmentItem
-    pet_1_auto_skill: CharacterPetEquipmentAutoSkill
+    pet_1_name: str | None
+    pet_1_nickname: str | None
+    pet_1_icon: str | None
+    pet_1_description: str | None
+    pet_1_equipment: CharacterPetEquipmentItem | None
+    pet_1_auto_skill: CharacterPetEquipmentAutoSkill | None
     pet_1_pet_type: str | None
     pet_1_skill: list[str]
-    pet_1_date_expire: datetime
-    pet_2_name: str
-    pet_2_nickname: str
-    pet_2_icon: str
-    pet_2_description: str
-    pet_2_equipment: CharacterPetEquipmentItem
-    pet_2_auto_skill: CharacterPetEquipmentAutoSkill
+    pet_1_date_expire: datetime | None
+    pet_1_appearance: str | None
+    pet_1_appearance_icon: str | None
+    pet_2_name: str | None
+    pet_2_nickname: str | None
+    pet_2_icon: str | None
+    pet_2_description: str | None
+    pet_2_equipment: CharacterPetEquipmentItem | None
+    pet_2_auto_skill: CharacterPetEquipmentAutoSkill | None
     pet_2_pet_type: str | None
     pet_2_skill: list[str]
-    pet_2_date_expire: datetime
-    pet_3_name: str
-    pet_3_nickname: str
-    pet_3_icon: str
-    pet_3_description: str
-    pet_3_equipment: CharacterPetEquipmentItem
-    pet_3_auto_skill: CharacterPetEquipmentAutoSkill
+    pet_2_date_expire: datetime | None
+    pet_2_appearance: str | None
+    pet_2_appearance_icon: str | None
+    pet_3_name: str | None
+    pet_3_nickname: str | None
+    pet_3_icon: str | None
+    pet_3_description: str | None
+    pet_3_equipment: CharacterPetEquipmentItem | None
+    pet_3_auto_skill: CharacterPetEquipmentAutoSkill | None
     pet_3_pet_type: str | None
     pet_3_skill: list[str]
-    pet_3_date_expire: datetime
+    pet_3_date_expire: datetime | None
+    pet_3_appearance: str | None
+    pet_3_appearance_icon: str | None

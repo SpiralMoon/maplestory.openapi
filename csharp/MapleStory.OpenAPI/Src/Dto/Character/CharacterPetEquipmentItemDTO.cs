@@ -35,12 +35,24 @@ namespace MapleStory.OpenAPI.Dto
         /// 업그레이드 횟수
         /// </summary>
         [JsonProperty("scroll_upgrade")]
-        public long ScrollUpgrade { get; set; }
+        public int ScrollUpgrade { get; set; }
 
         /// <summary>
         /// 업그레이드 가능 횟수
         /// </summary>
-        [JsonProperty("scroll_upgradeable")]
-        public long ScrollUpgradeable { get; set; }
+        [JsonProperty("scroll_upgradable")]
+        public int ScrollUpgradable { get; set; }
+
+        /// <summary>
+        /// 아이템 외형
+        /// </summary>
+        [JsonProperty("item_shape")]
+        public string? ItemShape;
+
+        /// <summary>
+        /// 아이템 외형 아이콘
+        /// </summary>
+        [JsonProperty("item_shape_icon")]
+        public string? ItemShapeIcon;
     }
 }
