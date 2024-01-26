@@ -2,6 +2,7 @@ import { CharacterAndroidCashItemEquipmentDto } from './characterAndroidCashItem
 import { CharacterAndroidEquipmentFaceDto } from './characterAndroidEquipmentFaceDto';
 import { CharacterAndroidEquipmentHairDto } from './characterAndroidEquipmentHairDto';
 import { CharacterAndroidEquipmentDtoBody } from '../../response/character/characterAndroidEquipmentDtoBody';
+import { CharacterAndroidEquipmentPresetDto } from './characterAndroidEquipmentPresetDto'
 
 /**
  * 캐릭터 안드로이드 장비 정보
@@ -57,6 +58,46 @@ class CharacterAndroidEquipmentDto {
    */
   androidEarSensorClipFlag: string | null;
 
+  /**
+   * 안드로이드 성별
+   */
+  androidGender: string | null;
+
+  /**
+   * 안드로이드 등급
+   */
+  androidGrade: string | null;
+
+  /**
+   * 비인간형 안드로이드 여부
+   */
+  androidNonHumanoidFlag: string | null;
+
+  /**
+   * 잡화상점 기능 이용 가능 여부
+   */
+  androidShopUsableFlag: string | null;
+
+  /**
+   * 적용 중인 장비 프리셋 번호
+   */
+  presetNo: number | null;
+
+  /**
+   * 1번 프리셋 안드로이드 정보
+   */
+  androidPreset1: CharacterAndroidEquipmentPresetDto | null;
+
+  /**
+   * 2번 프리셋 안드로이드 정보
+   */
+  androidPreset2: CharacterAndroidEquipmentPresetDto | null;
+
+  /**
+   * 3번 프리셋 안드로이드 정보
+   */
+  androidPreset3: CharacterAndroidEquipmentPresetDto | null;
+
   constructor(obj: CharacterAndroidEquipmentDtoBody) {
     const {
       date,
@@ -69,6 +110,14 @@ class CharacterAndroidEquipmentDto {
       android_skin_name,
       android_cash_item_equipment,
       android_ear_sensor_clip_flag,
+      android_gender,
+      android_grade,
+      android_non_humanoid_flag,
+      android_shop_usable_flag,
+      preset_no,
+      android_preset_1,
+      android_preset_2,
+      android_preset_3,
     } = obj;
 
     this.date = new Date(date);
@@ -83,6 +132,14 @@ class CharacterAndroidEquipmentDto {
       (equipment) => new CharacterAndroidCashItemEquipmentDto(equipment),
     );
     this.androidEarSensorClipFlag = android_ear_sensor_clip_flag ?? null;
+    this.androidGender = android_gender;
+    this.androidGrade = android_grade;
+    this.androidNonHumanoidFlag = android_non_humanoid_flag;
+    this.androidShopUsableFlag = android_shop_usable_flag;
+    this.presetNo = preset_no;
+    this.androidPreset1 = android_preset_1 ? new CharacterAndroidEquipmentPresetDto(android_preset_1) : null;
+    this.androidPreset2 = android_preset_2 ? new CharacterAndroidEquipmentPresetDto(android_preset_2) : null;
+    this.androidPreset3 = android_preset_3 ? new CharacterAndroidEquipmentPresetDto(android_preset_3) : null;
   }
 }
 
