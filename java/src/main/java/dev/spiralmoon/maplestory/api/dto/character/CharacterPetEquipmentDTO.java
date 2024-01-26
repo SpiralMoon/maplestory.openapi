@@ -77,6 +77,18 @@ public class CharacterPetEquipmentDTO {
     private String pet1DateExpire;
 
     /**
+     * 펫1 외형
+     */
+    @SerializedName("pet_1_appearance")
+    private String pet1Appearance;
+
+    /**
+     * 펫1 외형 아이콘
+     */
+    @SerializedName("pet_1_appearance_icon")
+    private String Pet1AppearanceIcon;
+
+    /**
      * 펫2 명
      */
     @SerializedName("pet_2_name")
@@ -131,6 +143,18 @@ public class CharacterPetEquipmentDTO {
     private String pet2DateExpire;
 
     /**
+     * 펫2 외형
+     */
+    @SerializedName("pet_2_appearance")
+    private String pet2Appearance;
+
+    /**
+     * 펫2 외형 아이콘
+     */
+    @SerializedName("pet_2_appearance_icon")
+    private String Pet2AppearanceIcon;
+
+    /**
      * 펫3 명
      */
     @SerializedName("pet_3_name")
@@ -183,6 +207,18 @@ public class CharacterPetEquipmentDTO {
      */
     @SerializedName("pet_3_date_expire")
     private String pet3DateExpire;
+
+    /**
+     * 펫3 외형
+     */
+    @SerializedName("pet_3_appearance")
+    private String pet3Appearance;
+
+    /**
+     * 펫3 외형 아이콘
+     */
+    @SerializedName("pet_3_appearance_icon")
+    private String Pet3AppearanceIcon;
 
     public LocalDateTime getDate() {
         return Utils.toLocalDateTime(this.date);
