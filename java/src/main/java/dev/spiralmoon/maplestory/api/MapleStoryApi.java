@@ -826,7 +826,7 @@ public class MapleStoryApi {
      *
      * @param ocid 캐릭터 식별자
      */
-    public CharacterAndroidCashItemEquipmentDTO getCharacterCashItemEquipment(@NonNull String ocid) throws IOException {
+    public CharacterCashItemEquipmentDTO getCharacterCashItemEquipment(@NonNull String ocid) throws IOException {
         return this.getCharacterCashItemEquipment(ocid, getProperDefaultDateTime(new LatestApiUpdateTimeOption(1, 0, 1)));
     }
 
@@ -839,7 +839,7 @@ public class MapleStoryApi {
      * @param ocid          캐릭터 식별자
      * @param localDateTime 조회 기준일 (KST)
      */
-    public CharacterAndroidCashItemEquipmentDTO getCharacterCashItemEquipment(@NonNull String ocid, @NonNull LocalDateTime localDateTime) throws IOException {
+    public CharacterCashItemEquipmentDTO getCharacterCashItemEquipment(@NonNull String ocid, @NonNull LocalDateTime localDateTime) throws IOException {
         final String date = toDateString(minDate(2023, 12, 21), localDateTime);
 
         final Retrofit retrofit = new Retrofit.Builder()
@@ -849,9 +849,9 @@ public class MapleStoryApi {
                 .build();
 
         final CharacterApi characterApi = retrofit.create(CharacterApi.class);
-        final Call<CharacterAndroidCashItemEquipmentDTO> call = characterApi.getCharacterCashItemEquipment(this.apiKey, ocid, date);
+        final Call<CharacterCashItemEquipmentDTO> call = characterApi.getCharacterCashItemEquipment(this.apiKey, ocid, date);
 
-        final Response<CharacterAndroidCashItemEquipmentDTO> response = call.execute();
+        final Response<CharacterCashItemEquipmentDTO> response = call.execute();
 
         if (!response.isSuccessful()) {
             throw parseError(response);
@@ -868,7 +868,7 @@ public class MapleStoryApi {
      *
      * @param ocid 캐릭터 식별자
      */
-    public void getCharacterCashItemEquipmentAsync(@NonNull String ocid, SuccessCallback<CharacterAndroidCashItemEquipmentDTO> onSuccess, FailureCallback onFailure) {
+    public void getCharacterCashItemEquipmentAsync(@NonNull String ocid, SuccessCallback<CharacterCashItemEquipmentDTO> onSuccess, FailureCallback onFailure) {
         this.getCharacterCashItemEquipmentAsync(ocid, getProperDefaultDateTime(new LatestApiUpdateTimeOption(1, 0, 1)), onSuccess, onFailure);
     }
 
@@ -881,7 +881,7 @@ public class MapleStoryApi {
      * @param ocid          캐릭터 식별자
      * @param localDateTime 조회 기준일 (KST)
      */
-    public void getCharacterCashItemEquipmentAsync(@NonNull String ocid, @NonNull LocalDateTime localDateTime, SuccessCallback<CharacterAndroidCashItemEquipmentDTO> onSuccess, FailureCallback onFailure) {
+    public void getCharacterCashItemEquipmentAsync(@NonNull String ocid, @NonNull LocalDateTime localDateTime, SuccessCallback<CharacterCashItemEquipmentDTO> onSuccess, FailureCallback onFailure) {
 
         final String date = toDateString(minDate(2023, 12, 21), localDateTime);
 
@@ -892,12 +892,12 @@ public class MapleStoryApi {
                 .build();
 
         final CharacterApi characterApi = retrofit.create(CharacterApi.class);
-        final Call<CharacterAndroidCashItemEquipmentDTO> call = characterApi.getCharacterCashItemEquipment(this.apiKey, ocid, date);
+        final Call<CharacterCashItemEquipmentDTO> call = characterApi.getCharacterCashItemEquipment(this.apiKey, ocid, date);
 
-        call.enqueue(new Callback<CharacterAndroidCashItemEquipmentDTO>() {
+        call.enqueue(new Callback<CharacterCashItemEquipmentDTO>() {
             @SneakyThrows
             @Override
-            public void onResponse(Call<CharacterAndroidCashItemEquipmentDTO> call, Response<CharacterAndroidCashItemEquipmentDTO> response) {
+            public void onResponse(Call<CharacterCashItemEquipmentDTO> call, Response<CharacterCashItemEquipmentDTO> response) {
                 if (response.isSuccessful()) {
                     if (onSuccess != null) {
                         onSuccess.callback(response.body());
@@ -910,7 +910,7 @@ public class MapleStoryApi {
             }
 
             @Override
-            public void onFailure(Call<CharacterAndroidCashItemEquipmentDTO> call, Throwable t) {
+            public void onFailure(Call<CharacterCashItemEquipmentDTO> call, Throwable t) {
                 if (onFailure != null) {
                     onFailure.callback(t);
                 }
