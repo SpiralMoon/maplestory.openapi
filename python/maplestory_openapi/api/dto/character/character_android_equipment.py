@@ -30,6 +30,35 @@ class CharacterAndroidEquipmentFace(BaseModel):
     mix_rate: str
 
 
+class CharacterAndroidEquipmentPreset(BaseModel):
+    """안드로이드 프리셋 정보
+
+    android_name(str): 안드로이드 명
+    android_nickname(str): 안드로이드 닉네임
+    android_icon(str): 안드로이드 아이콘
+    android_description(str): 안드로이드 아이템 설명
+    android_gender(str): 안드로이드 성별
+    android_grade(str): 안드로이드 등급
+    android_skin_name(str): 안드로이드 피부 명
+    android_hair(CharacterAndroidEquipmentHair): 안드로이드 헤어 정보
+    android_face(CharacterAndroidEquipmentFace): 안드로이드 성형 정보
+    android_ear_sensor_clip_flag(str): 안드로이드 이어센서 클립 적용 여부
+    android_non_humanoid_flag(str): 비인간형 안드로이드 여부
+    android_shop_usable_flag(str): 잡화상점 기능 이용 가능 여부
+    """
+    android_name: str
+    android_nickname: str
+    android_icon: str
+    android_description: str
+    android_gender: str | None
+    android_grade: str
+    android_skin_name: str
+    android_hair: CharacterAndroidEquipmentHairDtoBody
+    android_face: CharacterAndroidEquipmentFaceDtoBody
+    android_ear_sensor_clip_flag: str
+    android_non_humanoid_flag: str
+    android_shop_usable_flag: str
+
 class CharacterAndroidCashItemEquipmentColoringPrism(BaseModel):
     """안드로이드 캐시아이템 컬러링프리즘 정보
 
@@ -92,14 +121,30 @@ class CharacterAndroidEquipment(BaseModel):
     android_skin_name(str): 안드로이드 피부 명
     android_cash_item_equipment(list[CharacterAndroidCashItemEquipment]): 안드로이드 캐시 아이템 장착 정보
     android_ear_sensor_clip_flag(str): 안드로이드 이어센서 클립 적용 여부
+    android_gender(str): 안드로이드 성별
+    android_grade(str): 안드로이드 등급
+    android_non_humanoid_flag(str): 비인간형 안드로이드 여부
+    android_shop_usable_flag(str): 잡화상점 기능 이용 가능 여부
+    preset_no(int): 적용 중인 장비 프리셋 번호
+    android_preset_1(CharacterAndroidEquipmentPreset): 1번 프리셋 안드로이드 정보
+    android_preset_2(CharacterAndroidEquipmentPreset): 2번 프리셋 안드로이드 정보
+    android_preset_3(CharacterAndroidEquipmentPreset): 3번 프리셋 안드로이드 정보
     """
     date: datetime
-    android_name: str
-    android_nickname: str
-    android_icon: str
-    android_description: str
+    android_name: str | None
+    android_nickname: str | None
+    android_icon: str | None
+    android_description: str | None
     android_hair: CharacterAndroidEquipmentHair
     android_face: CharacterAndroidEquipmentFace
     android_skin_name: str | None
     android_cash_item_equipment: list[CharacterAndroidCashItemEquipment]
     android_ear_sensor_clip_flag: str
+    android_gender: str | None
+    android_grade: str | None
+    android_non_humanoid_flag: str | None
+    android_shop_usable_flag: str | None
+    preset_no: int | None
+    android_preset_1: CharacterAndroidEquipmentPreset | None
+    android_preset_2: CharacterAndroidEquipmentPreset | None
+    android_preset_3: CharacterAndroidEquipmentPreset | None
