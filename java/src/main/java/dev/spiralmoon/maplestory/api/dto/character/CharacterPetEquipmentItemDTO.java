@@ -43,11 +43,23 @@ public class CharacterPetEquipmentItemDTO {
      * 업그레이드 횟수
      */
     @SerializedName("scroll_upgrade")
-    private Long scrollUpgrade;
+    private int scrollUpgrade;
 
     /**
      * 업그레이드 가능 횟수
      */
-    @SerializedName("scroll_upgradeable")
-    private Long scrollUpgradeable;
+    @SerializedName("scroll_upgradable")
+    private int scrollUpgradable;
+
+    /**
+     * 아이템 외형
+     */
+    @SerializedName("item_shape")
+    private String itemShape;
+
+    /**
+     * 아이템 외형 아이콘
+     */
+    @SerializedName("item_shape_icon")
+    private String itemShapeIcon;
 }
