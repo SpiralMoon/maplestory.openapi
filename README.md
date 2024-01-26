@@ -88,7 +88,7 @@ This library supports all apis published in the [MapleStory OpenAPI official doc
 - [Get character information](https://openapi.nexon.com/game/maplestory/?id=22)
 - [Get union information](https://openapi.nexon.com/game/maplestory/?id=23)
 - [Get guild information](https://openapi.nexon.com/game/maplestory/?id=24)
-- [Get cube & starforce history information](https://openapi.nexon.com/game/maplestory/?id=25)
+- [Get cube, potential, starforce history information](https://openapi.nexon.com/game/maplestory/?id=25)
 - [Get ranking information](https://openapi.nexon.com/game/maplestory/?id=26)
 
 And, while not part of the MapleStory OpenAPI specifications, it additionally supports the following API.
