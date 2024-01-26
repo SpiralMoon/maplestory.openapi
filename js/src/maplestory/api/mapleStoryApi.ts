@@ -1118,7 +1118,7 @@ class MapleStoryApi {
    * @param ocid 캐릭터 식별자
    * @param dateOptions 조회 기준일 (KST)
    */
-  public async getUnionInfo(
+  public async getUnion(
     ocid: string,
     dateOptions: DateOptions = MapleStoryApi.getProperDefaultDateOptions({
       hour: 1,
@@ -1168,7 +1168,7 @@ class MapleStoryApi {
    * @param ocid 캐릭터 식별자
    * @param dateOptions 조회 기준일 (KST)
    */
-  public async getUnionRaiderInfo(
+  public async getUnionRaider(
     ocid: string,
     dateOptions: DateOptions = MapleStoryApi.getProperDefaultDateOptions({
       hour: 1,
