@@ -33,6 +33,7 @@ from maplestory_openapi.api.dto.guild.guild import Guild
 from maplestory_openapi.api.dto.guild.guild_basic import GuildBasic
 
 from maplestory_openapi.api.dto.history.cube_history import CubeHistory
+from maplestory_openapi.api.dto.history.potential_history import PotentialHistory
 from maplestory_openapi.api.dto.history.starforce_history import StarforceHistory
 
 from maplestory_openapi.api.dto.ranking.overall_ranking import OverallRanking
@@ -563,6 +564,25 @@ class MapleStoryApi(BaseModel):
         }
         r = self.fetch(path, query)
         return CubeHistory(**r)
+
+    def get_potential_history(self, count, date: datetime | None = None, cursor: str | None = None) -> PotentialHistory:
+        """잠재능력 재설정 이용 결과를 조회합니다.
+
+        - 데이터는 매일 오전 4시, 전일 데이터가 갱신됩니다.
+        - 2024년 1월 25일 데이터부터 조회할 수 있습니다.
+
+        @param count(int): 한번에 가져오려는 결과의 갯수(최소 10, 최대 1000)
+        @param date(datetime): 조회 기준일(KST) (cursor가 없는 경우 필수이며 cursor와 함께 사용 불가)
+        @param cursor(str): 페이징 처리를 위한 cursor (date가 없는 경우 필수이며 date와 함께 사용 불가)
+        """
+        path = 'maplestory/v1/history/potential'
+        query = {
+            'count': count,
+            'date': self.to_date_string(datetime(2024, 1, 25), date) if date else date,
+            'cursor': cursor,
+        }
+        r = self.fetch(path, query)
+        return PotentialHistory(**r)
 
     def get_starforce_history(self, count, date: datetime | None = None, cursor: str | None = None) -> StarforceHistory:
         """스타포스 강화 결과를 조회합니다.
