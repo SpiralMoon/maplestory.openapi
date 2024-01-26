@@ -1,8 +1,14 @@
 type CharacterLinkSkillDtoBody = {
   date: string;
   character_class: string;
-  character_link_skill: CharacterLinkSkillInfoDtoBody;
+  character_link_skill: CharacterLinkSkillInfoDtoBody[];
+  character_link_skill_preset_1: CharacterLinkSkillInfoDtoBody[];
+  character_link_skill_preset_2: CharacterLinkSkillInfoDtoBody[];
+  character_link_skill_preset_3: CharacterLinkSkillInfoDtoBody[];
   character_owned_link_skill: CharacterLinkSkillInfoDtoBody;
+  character_owned_link_skill_preset_1: CharacterLinkSkillInfoDtoBody | null;
+  character_owned_link_skill_preset_2: CharacterLinkSkillInfoDtoBody | null;
+  character_owned_link_skill_preset_3: CharacterLinkSkillInfoDtoBody | null;
 };
 
 type CharacterLinkSkillInfoDtoBody = {
