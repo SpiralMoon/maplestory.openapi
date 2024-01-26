@@ -112,6 +112,7 @@ namespace MapleStory.OpenAPI.Dto
         /// <summary>
         /// 아이템 장착 가능 성별
         /// </summary>
+        [JsonProperty("item_gender")]
         public string? ItemGender { get; set; }
     }
 }
