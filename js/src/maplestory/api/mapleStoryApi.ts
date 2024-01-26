@@ -73,6 +73,8 @@ import { UnionDtoBody } from './response/union/unionDtoBody';
 import { UnionRaiderDtoBody } from './response/union/unionRaiderDtoBody';
 import { StarforceHistoryResponseDtoBody } from './response/history/starforceHistoryResponseDtoBody';
 import { AchievementRankingResponseDtoBody } from './response/ranking/achievementRankingResponseDtoBody';
+import { PotentialHistoryResponseDto } from './dto/history/potentialHistoryResponseDto';
+import { PotentialHistoryResponseDtoBody } from './response/history/potentialHistoryResponseDtoBody';
 
 dayjs.extend(timezone);
 dayjs.extend(utc);
@@ -1523,6 +1525,93 @@ class MapleStoryApi {
     }
   }
 
+  /**
+   * 잠재능력 재설정 이용 결과를 조회합니다.
+   * - 데이터는 매일 오전 4시, 전일 데이터가 갱신됩니다.
+   * - e.g. 오늘 오후 3시 5분 잠재능력 재설정 정보 조회 시, 어제의 잠재능력 재설정 정보 데이터를 조회할 수 있습니다.
+   * - 2024년 1월 25일 데이터부터 조회할 수 있습니다.
+   *
+   * @param count 한번에 가져오려는 결과의 개수(최소 10, 최대 1000)
+   */
+  public async getPotentialHistory(
+    count: number,
+  ): Promise<PotentialHistoryResponseDto>;
+
+  /**
+   * 지목한 날짜의 잠재능력 재설정 이용 결과를 조회합니다.
+   * - 데이터는 매일 오전 4시, 전일 데이터가 갱신됩니다.
+   * - e.g. 오늘 오후 3시 5분 잠재능력 재설정 정보 조회 시, 어제의 잠재능력 재설정 정보 데이터를 조회할 수 있습니다.
+   * - 2024년 1월 25일 데이터부터 조회할 수 있습니다.
+   *
+   * @param count 한번에 가져오려는 결과의 개수(최소 10, 최대 1000)
+   * @param dateOptions 조회 기준일 (KST)
+   */
+  public async getPotentialHistory(
+    count: number,
+    dateOptions: DateOptions,
+  ): Promise<PotentialHistoryResponseDto>;
+
+  /**
+   * 잠재능력 재설정 이용 결과를 조회합니다.
+   * - 데이터는 매일 오전 4시, 전일 데이터가 갱신됩니다.
+   * - e.g. 오늘 오후 3시 5분 잠재능력 재설정 정보 조회 시, 어제의 잠재능력 재설정 정보 데이터를 조회할 수 있습니다.
+   * - 2024년 1월 25일 데이터부터 조회할 수 있습니다.
+   *
+   * @param count 한번에 가져오려는 결과의 개수(최소 10, 최대 1000)
+   * @param cursor 페이징 처리를 위한 cursor
+   */
+  public async getPotentialHistory(
+    count: number,
+    cursor: string,
+  ): Promise<PotentialHistoryResponseDto>;
+
+  public async getPotentialHistory(
+    count: number,
+    parameter?: DateOptions | string,
+  ): Promise<PotentialHistoryResponseDto> {
+    const query: PotentialApiQuery = {
+      count,
+    };
+
+    if (typeof parameter === 'string') {
+      query.cursor = parameter;
+    } else if (typeof parameter === 'object' || parameter === undefined) {
+      query.date = MapleStoryApi.toDateString(
+        {
+          year: 2024,
+          month: 1,
+          day: 25,
+        },
+        parameter ??
+          MapleStoryApi.getProperDefaultDateOptions({
+            hour: 4,
+            minute: 0,
+            dateOffset: 1,
+          }),
+      );
+    }
+
+    try {
+      const path = 'maplestory/v1/history/potential';
+      const response = await axios.get<PotentialHistoryResponseDtoBody>(path, {
+        baseURL: MapleStoryApi.BASE_URL,
+        timeout: this.timeout,
+        headers: this.buildHeaders(),
+        params: query,
+      });
+
+      return new PotentialHistoryResponseDto(response.data);
+    } catch (e: unknown) {
+      if (e instanceof AxiosError) {
+        const errorBody = (e as AxiosError<MapleStoryErrorBody>).response!.data;
+
+        throw new MapleStoryApiError(errorBody);
+      }
+
+      throw e;
+    }
+  }
+
   //#endregion
 
   //#region 랭킹 정보 조회
@@ -2435,6 +2524,12 @@ type StarforceApiQuery = {
 };
 
 type CubeApiQuery = {
+  count: number;
+  date?: string;
+  cursor?: string;
+};
+
+type PotentialApiQuery = {
   count: number;
   date?: string;
   cursor?: string;
