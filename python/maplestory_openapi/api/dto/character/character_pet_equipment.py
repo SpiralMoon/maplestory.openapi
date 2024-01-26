@@ -35,6 +35,8 @@ class CharacterPetEquipmentItem(BaseModel):
     item_option(list[CharacterPetEquipmentItemOption]): 아이템 표기상 옵션
     scroll_upgrade(int): 업그레이드 횟수
     scroll_upgradable(int): 업그레이드 가능 횟수
+    item_shape(str): 아이템 외형
+    item_shape_icon(str): 아이템 외형 아이콘
     """
     item_name: str | None
     item_icon: str | None
@@ -42,6 +44,8 @@ class CharacterPetEquipmentItem(BaseModel):
     item_option: list[CharacterPetEquipmentItemOption]
     scroll_upgrade: int
     scroll_upgradable: int
+    item_shape: str | None
+    item_shape_icon: str | None
 
 
 class CharacterPetEquipment(BaseModel):
