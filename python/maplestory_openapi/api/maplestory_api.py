@@ -26,6 +26,7 @@ from maplestory_openapi.api.dto.character.character_hexamatrix_stat import Chara
 from maplestory_openapi.api.dto.character.character_dojang import CharacterDojang
 
 from maplestory_openapi.api.dto.union.union import Union
+from maplestory_openapi.api.dto.union.union_artifact import UnionArtifact
 from maplestory_openapi.api.dto.union.union_raider import UnionRaider
 
 from maplestory_openapi.api.dto.guild.guild import Guild
@@ -481,6 +482,24 @@ class MapleStoryApi(BaseModel):
         }
         r = self.fetch(path, query)
         return UnionRaider(**r)
+
+    def get_union_artifact(self, ocid: str, date: datetime = get_proper_default_datetime(day_offset=1)) -> UnionArtifact:
+        """유니온 아티팩트 정보를 조회합니다.
+
+        - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
+        - 유니온 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)
+        - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
+
+        @param ocid(str): 캐릭터 식별자(ocid)
+        @param date(datetime): 조회 기준일(KST)
+        """
+        path = 'maplestory/v1/user/union-artifact'
+        query = {
+            'ocid': ocid,
+            'date': self.to_date_string(datetime(2023, 12, 21), date),
+        }
+        r = self.fetch(path, query)
+        return UnionArtifact(**r)
 
     #endregion
 
