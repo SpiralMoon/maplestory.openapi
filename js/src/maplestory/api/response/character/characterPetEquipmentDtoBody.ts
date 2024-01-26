@@ -41,7 +41,9 @@ type CharacterPetEquipmentItemDtoBody = {
   item_description: string | null;
   item_option: CharacterPetEquipmentItemOptionDtoBody[];
   scroll_upgrade: number;
-  scroll_upgradeable: number;
+  scroll_upgradable: number;
+  item_shape: string | null;
+  item_shape_icon: string | null;
 };
 
 type CharacterPetEquipmentItemOptionDtoBody = {

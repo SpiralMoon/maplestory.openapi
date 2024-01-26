@@ -33,7 +33,17 @@ class CharacterPetEquipmentItemDto {
   /**
    * 업그레이드 가능 횟수
    */
-  scrollUpgradeable: number;
+  scrollUpgradable: number;
+
+  /**
+   * 아이템 외형
+   */
+  itemShape: string | null;
+
+  /**
+   * 아이템 외형 아이콘
+   */
+  itemShapeIcon: string | null;
 
   constructor(obj: CharacterPetEquipmentItemDtoBody) {
     const {
@@ -42,7 +52,9 @@ class CharacterPetEquipmentItemDto {
       item_description,
       item_option,
       scroll_upgrade,
-      scroll_upgradeable,
+      scroll_upgradable,
+      item_shape,
+      item_shape_icon
     } = obj;
 
     this.itemName = item_name;
@@ -52,7 +64,9 @@ class CharacterPetEquipmentItemDto {
       (option) => new CharacterPetEquipmentItemOptionDto(option),
     );
     this.scrollUpgrade = scroll_upgrade;
-    this.scrollUpgradeable = scroll_upgradeable;
+    this.scrollUpgradable = scroll_upgradable;
+    this.itemShape = item_shape;
+    this.itemShapeIcon = item_shape_icon;
   }
 }
 
