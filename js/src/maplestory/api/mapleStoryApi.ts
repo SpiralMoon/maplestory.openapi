@@ -4,7 +4,6 @@ import timezone from 'dayjs/plugin/timezone';
 import utc from 'dayjs/plugin/utc';
 import xml2js from 'xml2js';
 
-import { AchievementRankingResponseDto } from './dto/ranking/achievementRankingResponseDto';
 import { CharacterAbilityDto } from './dto/character/characterAbilityDto';
 import { CharacterAndroidEquipmentDto } from './dto/character/characterAndroidEquipmentDto';
 import { CharacterBasicDto } from './dto/character/characterBasicDto';
@@ -25,19 +24,21 @@ import { CharacterSkillDto } from './dto/character/characterSkillDto';
 import { CharacterStatDto } from './dto/character/characterStatDto';
 import { CharacterSymbolEquipmentDto } from './dto/character/characterSymbolEquipmentDto';
 import { CharacterVMatrixDto } from './dto/character/characterVMatrixDto';
-import { CubeHistoryResponseDto } from './dto/history/cubeHistoryResponseDto';
-import { DojangRankingResponseDto } from './dto/ranking/dojangRankingResponseDto';
 import { GuildBasicDto } from './dto/guild/guildBasicDto';
 import { GuildDto } from './dto/guild/guildDto';
-import { GuildRankingResponseDto } from './dto/ranking/guildRankingResponseDto';
+import { CubeHistoryResponseDto } from './dto/history/cubeHistoryResponseDto';
+import { StarforceHistoryResponseDto } from './dto/history/starforceHistoryResponseDto';
 import { InspectionInfoDto } from './dto/inspectionInfoDto';
+import { AchievementRankingResponseDto } from './dto/ranking/achievementRankingResponseDto';
+import { DojangRankingResponseDto } from './dto/ranking/dojangRankingResponseDto';
+import { GuildRankingResponseDto } from './dto/ranking/guildRankingResponseDto';
 import { OverallRankingResponseDto } from './dto/ranking/overallRankingResponseDto';
 import { TheSeedRankingResponseDto } from './dto/ranking/theSeedRankingResponseDto';
+import { UnionRankingResponseDto } from './dto/ranking/unionRankingResponseDto';
+import { UnionArtifactDto } from './dto/union/unionArtifactDto';
 import { UnionDto } from './dto/union/unionDto';
 import { UnionRaiderDto } from './dto/union/unionRaiderDto';
-import { UnionRankingResponseDto } from './dto/ranking/unionRankingResponseDto';
 import { MapleStoryApiError } from './mapleStoryApiError';
-import { AchievementRankingResponseDtoBody } from './response/ranking/achievementRankingResponseDtoBody';
 import { CharacterAbilityDtoBody } from './response/character/characterAbilityDtoBody';
 import { CharacterAndroidEquipmentDtoBody } from './response/character/characterAndroidEquipmentDtoBody';
 import { CharacterBasicDtoBody } from './response/character/characterBasicDtoBody';
@@ -58,19 +59,20 @@ import { CharacterSkillDtoBody } from './response/character/characterSkillDtoBod
 import { CharacterStatDtoBody } from './response/character/characterStatDtoBody';
 import { CharacterSymbolEquipmentDtoBody } from './response/character/characterSymbolEquipmentDtoBody';
 import { CharacterVMatrixDtoBody } from './response/character/characterVMatrixDtoBody';
-import { CubeHistoryResponseDtoBody } from './response/history/cubeHistoryResponseDtoBody';
-import { DojangRankingResponseDtoBody } from './response/ranking/dojangRankingResponseDtoBody';
 import { GuildBasicDtoBody } from './response/guild/guildBasicDtoBody';
 import { GuildDtoBody } from './response/guild/guildDtoBody';
-import { GuildRankingResponseDtoBody } from './response/ranking/guildRankingResponseDtoBody';
+import { CubeHistoryResponseDtoBody } from './response/history/cubeHistoryResponseDtoBody';
 import { InspectionInfoSoapBody } from './response/inspectionInfoSoapBody';
+import { DojangRankingResponseDtoBody } from './response/ranking/dojangRankingResponseDtoBody';
+import { GuildRankingResponseDtoBody } from './response/ranking/guildRankingResponseDtoBody';
 import { OverallRankingResponseDtoBody } from './response/ranking/overallRankingResponseDtoBody';
 import { TheSeedRankingResponseDtoBody } from './response/ranking/theSeedRankingResponseDtoBody';
+import { UnionRankingResponseDtoBody } from './response/ranking/unionRankingResponseDtoBody';
+import { UnionArtifactDtoBody } from './response/union/unionArtifactDtoBody';
 import { UnionDtoBody } from './response/union/unionDtoBody';
 import { UnionRaiderDtoBody } from './response/union/unionRaiderDtoBody';
-import { UnionRankingResponseDtoBody } from './response/ranking/unionRankingResponseDtoBody';
-import { StarforceHistoryResponseDto } from './dto/history/starforceHistoryResponseDto'
-import { StarforceHistoryResponseDtoBody } from './response/history/starforceHistoryResponseDtoBody'
+import { StarforceHistoryResponseDtoBody } from './response/history/starforceHistoryResponseDtoBody';
+import { AchievementRankingResponseDtoBody } from './response/ranking/achievementRankingResponseDtoBody';
 
 dayjs.extend(timezone);
 dayjs.extend(utc);
@@ -139,9 +141,9 @@ class MapleStoryApi {
   public async getCharacterBasic(
     ocid: string,
     dateOptions: DateOptions = MapleStoryApi.getProperDefaultDateOptions({
-      hour:1,
+      hour: 1,
       minute: 0,
-      dateOffset: 1
+      dateOffset: 1,
     }),
   ): Promise<CharacterBasicDto> {
     const query: CharacterApiQuery = {
@@ -189,9 +191,9 @@ class MapleStoryApi {
   public async getCharacterPopularity(
     ocid: string,
     dateOptions: DateOptions = MapleStoryApi.getProperDefaultDateOptions({
-      hour:1,
+      hour: 1,
       minute: 0,
-      dateOffset: 1
+      dateOffset: 1,
     }),
   ): Promise<CharacterPopularityDto> {
     const query: CharacterApiQuery = {
@@ -239,9 +241,9 @@ class MapleStoryApi {
   public async getCharacterStat(
     ocid: string,
     dateOptions: DateOptions = MapleStoryApi.getProperDefaultDateOptions({
-      hour:1,
+      hour: 1,
       minute: 0,
-      dateOffset: 1
+      dateOffset: 1,
     }),
   ): Promise<CharacterStatDto> {
     const query: CharacterApiQuery = {
@@ -290,9 +292,9 @@ class MapleStoryApi {
   public async getCharacterHyperStat(
     ocid: string,
     dateOptions: DateOptions = MapleStoryApi.getProperDefaultDateOptions({
-      hour:1,
+      hour: 1,
       minute: 0,
-      dateOffset: 1
+      dateOffset: 1,
     }),
   ): Promise<CharacterHyperStatDto> {
     const query: CharacterApiQuery = {
@@ -341,9 +343,9 @@ class MapleStoryApi {
   public async getCharacterPropensity(
     ocid: string,
     dateOptions: DateOptions = MapleStoryApi.getProperDefaultDateOptions({
-      hour:1,
+      hour: 1,
       minute: 0,
-      dateOffset: 1
+      dateOffset: 1,
     }),
   ): Promise<CharacterPropensityDto> {
     const query: CharacterApiQuery = {
@@ -391,9 +393,9 @@ class MapleStoryApi {
   public async getCharacterAbility(
     ocid: string,
     dateOptions: DateOptions = MapleStoryApi.getProperDefaultDateOptions({
-      hour:1,
+      hour: 1,
       minute: 0,
-      dateOffset: 1
+      dateOffset: 1,
     }),
   ): Promise<CharacterAbilityDto> {
     const query: CharacterApiQuery = {
@@ -442,9 +444,9 @@ class MapleStoryApi {
   public async getCharacterItemEquipment(
     ocid: string,
     dateOptions: DateOptions = MapleStoryApi.getProperDefaultDateOptions({
-      hour:1,
+      hour: 1,
       minute: 0,
-      dateOffset: 1
+      dateOffset: 1,
     }),
   ): Promise<CharacterItemEquipmentDto> {
     const query: CharacterApiQuery = {
@@ -493,9 +495,9 @@ class MapleStoryApi {
   public async getCharacterCashItemEquipment(
     ocid: string,
     dateOptions: DateOptions = MapleStoryApi.getProperDefaultDateOptions({
-      hour:1,
+      hour: 1,
       minute: 0,
-      dateOffset: 1
+      dateOffset: 1,
     }),
   ): Promise<CharacterCashItemEquipmentDto> {
     const query: CharacterApiQuery = {
@@ -546,9 +548,9 @@ class MapleStoryApi {
   public async getCharacterSymbolEquipment(
     ocid: string,
     dateOptions: DateOptions = MapleStoryApi.getProperDefaultDateOptions({
-      hour:1,
+      hour: 1,
       minute: 0,
-      dateOffset: 1
+      dateOffset: 1,
     }),
   ): Promise<CharacterSymbolEquipmentDto> {
     const query: CharacterApiQuery = {
@@ -597,9 +599,9 @@ class MapleStoryApi {
   public async getCharacterSetEffect(
     ocid: string,
     dateOptions: DateOptions = MapleStoryApi.getProperDefaultDateOptions({
-      hour:1,
+      hour: 1,
       minute: 0,
-      dateOffset: 1
+      dateOffset: 1,
     }),
   ): Promise<CharacterSetEffectDto> {
     const query: CharacterApiQuery = {
@@ -648,9 +650,9 @@ class MapleStoryApi {
   public async getCharacterBeautyEquipment(
     ocid: string,
     dateOptions: DateOptions = MapleStoryApi.getProperDefaultDateOptions({
-      hour:1,
+      hour: 1,
       minute: 0,
-      dateOffset: 1
+      dateOffset: 1,
     }),
   ): Promise<CharacterBeautyEquipmentDto> {
     const query: CharacterApiQuery = {
@@ -698,9 +700,9 @@ class MapleStoryApi {
   public async getCharacterAndroidEquipment(
     ocid: string,
     dateOptions: DateOptions = MapleStoryApi.getProperDefaultDateOptions({
-      hour:1,
+      hour: 1,
       minute: 0,
-      dateOffset: 1
+      dateOffset: 1,
     }),
   ): Promise<CharacterAndroidEquipmentDto> {
     const query: CharacterApiQuery = {
@@ -748,9 +750,9 @@ class MapleStoryApi {
   public async getCharacterPetEquipment(
     ocid: string,
     dateOptions: DateOptions = MapleStoryApi.getProperDefaultDateOptions({
-      hour:1,
+      hour: 1,
       minute: 0,
-      dateOffset: 1
+      dateOffset: 1,
     }),
   ): Promise<CharacterPetEquipmentDto> {
     const query: CharacterApiQuery = {
@@ -812,9 +814,9 @@ class MapleStoryApi {
     ocid: string,
     characterSkillGrade: string,
     dateOptions: DateOptions = MapleStoryApi.getProperDefaultDateOptions({
-      hour:1,
+      hour: 1,
       minute: 0,
-      dateOffset: 1
+      dateOffset: 1,
     }),
   ): Promise<CharacterSkillDto> {
     const query: CharacterSkillApiQuery = {
@@ -864,9 +866,9 @@ class MapleStoryApi {
   public async getCharacterLinkSkill(
     ocid: string,
     dateOptions: DateOptions = MapleStoryApi.getProperDefaultDateOptions({
-      hour:1,
+      hour: 1,
       minute: 0,
-      dateOffset: 1
+      dateOffset: 1,
     }),
   ): Promise<CharacterLinkSkillDto> {
     const query: CharacterApiQuery = {
@@ -915,9 +917,9 @@ class MapleStoryApi {
   public async getCharacterVMatrix(
     ocid: string,
     dateOptions: DateOptions = MapleStoryApi.getProperDefaultDateOptions({
-      hour:1,
+      hour: 1,
       minute: 0,
-      dateOffset: 1
+      dateOffset: 1,
     }),
   ): Promise<CharacterVMatrixDto> {
     const query: CharacterApiQuery = {
@@ -965,9 +967,9 @@ class MapleStoryApi {
   public async getCharacterHexaMatrix(
     ocid: string,
     dateOptions: DateOptions = MapleStoryApi.getProperDefaultDateOptions({
-      hour:1,
+      hour: 1,
       minute: 0,
-      dateOffset: 1
+      dateOffset: 1,
     }),
   ): Promise<CharacterHexaMatrixDto> {
     const query: CharacterApiQuery = {
@@ -1015,9 +1017,9 @@ class MapleStoryApi {
   public async getCharacterHexaMatrixStat(
     ocid: string,
     dateOptions: DateOptions = MapleStoryApi.getProperDefaultDateOptions({
-      hour:1,
+      hour: 1,
       minute: 0,
-      dateOffset: 1
+      dateOffset: 1,
     }),
   ): Promise<CharacterHexaMatrixStatDto> {
     const query: CharacterApiQuery = {
@@ -1065,9 +1067,9 @@ class MapleStoryApi {
   public async getCharacterDojang(
     ocid: string,
     dateOptions: DateOptions = MapleStoryApi.getProperDefaultDateOptions({
-      hour:1,
+      hour: 1,
       minute: 0,
-      dateOffset: 1
+      dateOffset: 1,
     }),
   ): Promise<CharacterDojangDto> {
     const query: CharacterApiQuery = {
@@ -1119,9 +1121,9 @@ class MapleStoryApi {
   public async getUnionInfo(
     ocid: string,
     dateOptions: DateOptions = MapleStoryApi.getProperDefaultDateOptions({
-      hour:1,
+      hour: 1,
       minute: 0,
-      dateOffset: 1
+      dateOffset: 1,
     }),
   ): Promise<UnionDto> {
     const query: UnionApiQuery = {
@@ -1169,9 +1171,9 @@ class MapleStoryApi {
   public async getUnionRaiderInfo(
     ocid: string,
     dateOptions: DateOptions = MapleStoryApi.getProperDefaultDateOptions({
-      hour:1,
+      hour: 1,
       minute: 0,
-      dateOffset: 1
+      dateOffset: 1,
     }),
   ): Promise<UnionRaiderDto> {
     const query: UnionApiQuery = {
@@ -1192,10 +1194,60 @@ class MapleStoryApi {
         baseURL: MapleStoryApi.BASE_URL,
         timeout: this.timeout,
         headers: this.buildHeaders(),
-        params: query
+        params: query,
       });
 
       return new UnionRaiderDto(response.data);
+    } catch (e: unknown) {
+      if (e instanceof AxiosError) {
+        const errorBody = (e as AxiosError<MapleStoryErrorBody>).response!.data;
+
+        throw new MapleStoryApiError(errorBody);
+      }
+
+      throw e;
+    }
+  }
+
+  /**
+   * 유니온 아티팩트 정보를 조회합니다.
+   * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
+   * - 유니온 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)
+   * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
+   *
+   * @param ocid 캐릭터 식별자
+   * @param dateOptions 조회 기준일 (KST)
+   */
+  public async getUnionArtifact(
+    ocid: string,
+    dateOptions: DateOptions = MapleStoryApi.getProperDefaultDateOptions({
+      hour: 1,
+      minute: 0,
+      dateOffset: 1,
+    }),
+  ): Promise<UnionArtifactDto> {
+    const query: UnionApiQuery = {
+      ocid: ocid,
+      date: MapleStoryApi.toDateString(
+        {
+          year: 2023,
+          month: 12,
+          day: 21,
+        },
+        dateOptions,
+      ),
+    };
+
+    try {
+      const path = 'maplestory/v1/user/union-artifact';
+      const response = await axios.get<UnionArtifactDtoBody>(path, {
+        baseURL: MapleStoryApi.BASE_URL,
+        timeout: this.timeout,
+        headers: this.buildHeaders(),
+        params: query,
+      });
+
+      return new UnionArtifactDto(response.data);
     } catch (e: unknown) {
       if (e instanceof AxiosError) {
         const errorBody = (e as AxiosError<MapleStoryErrorBody>).response!.data;
@@ -1260,9 +1312,9 @@ class MapleStoryApi {
   public async getGuildBasic(
     guildId: string,
     dateOptions: DateOptions = MapleStoryApi.getProperDefaultDateOptions({
-      hour:1,
+      hour: 1,
       minute: 0,
-      dateOffset: 1
+      dateOffset: 1,
     }),
   ): Promise<GuildBasicDto> {
     const query: GuildApiQuery = {
@@ -1309,7 +1361,9 @@ class MapleStoryApi {
    *
    * @param count 한번에 가져오려는 결과의 개수(최소 10, 최대 1000)
    */
-  public async getStarforceHistory(count: number): Promise<StarforceHistoryResponseDto>;
+  public async getStarforceHistory(
+    count: number,
+  ): Promise<StarforceHistoryResponseDto>;
 
   /**
    * 지목한 날짜의 스타포스 강화 결과를 조회합니다.
@@ -1354,11 +1408,12 @@ class MapleStoryApi {
           month: 12,
           day: 27,
         },
-        parameter ?? MapleStoryApi.getProperDefaultDateOptions({
-          hour: 0,
-          minute: 0,
-          dateOffset: 0
-        }),
+        parameter ??
+          MapleStoryApi.getProperDefaultDateOptions({
+            hour: 0,
+            minute: 0,
+            dateOffset: 0,
+          }),
       );
     }
 
@@ -1438,11 +1493,12 @@ class MapleStoryApi {
           month: 11,
           day: 25,
         },
-        parameter ?? MapleStoryApi.getProperDefaultDateOptions({
-          hour:4,
-          minute: 0,
-          dateOffset: 1
-        }),
+        parameter ??
+          MapleStoryApi.getProperDefaultDateOptions({
+            hour: 4,
+            minute: 0,
+            dateOffset: 1,
+          }),
       );
     }
 
@@ -1484,9 +1540,9 @@ class MapleStoryApi {
   public async getOverallRanking(
     filterOptions?: OverallRankingApiFilterOptions,
     dateOptions: DateOptions = MapleStoryApi.getProperDefaultDateOptions({
-      hour:8,
+      hour: 8,
       minute: 30,
-      dateOffset: 0
+      dateOffset: 0,
     }),
   ): Promise<OverallRankingResponseDto> {
     const query: OverallRankingApiQuery = {
@@ -1544,9 +1600,9 @@ class MapleStoryApi {
   public async getUnionRanking(
     filterOptions?: UnionRankingApiFilterOptions,
     dateOptions: DateOptions = MapleStoryApi.getProperDefaultDateOptions({
-      hour:8,
+      hour: 8,
       minute: 30,
-      dateOffset: 0
+      dateOffset: 0,
     }),
   ): Promise<UnionRankingResponseDto> {
     const query: UnionRankingApiQuery = {
@@ -1601,9 +1657,9 @@ class MapleStoryApi {
   public async getGuildRanking(
     filterOptions?: GuildRankingApiFilterOptions,
     dateOptions: DateOptions = MapleStoryApi.getProperDefaultDateOptions({
-      hour:8,
+      hour: 8,
       minute: 30,
-      dateOffset: 0
+      dateOffset: 0,
     }),
   ): Promise<GuildRankingResponseDto> {
     const query: GuildRankingApiQuery = {
@@ -1660,9 +1716,9 @@ class MapleStoryApi {
   public async getDojangRanking(
     filterOptions?: DojangRankingApiFilterOptions,
     dateOptions: DateOptions = MapleStoryApi.getProperDefaultDateOptions({
-      hour:8,
+      hour: 8,
       minute: 30,
-      dateOffset: 0
+      dateOffset: 0,
     }),
   ): Promise<DojangRankingResponseDto> {
     const query: DojangRankingApiQuery = {
@@ -1721,9 +1777,9 @@ class MapleStoryApi {
   public async getSeedRanking(
     filterOptions?: TheSeedRankingApiFilterOptions,
     dateOptions: DateOptions = MapleStoryApi.getProperDefaultDateOptions({
-      hour:8,
+      hour: 8,
       minute: 30,
-      dateOffset: 0
+      dateOffset: 0,
     }),
   ): Promise<TheSeedRankingResponseDto> {
     const query: TheSeedRankingApiQuery = {
@@ -1778,9 +1834,9 @@ class MapleStoryApi {
   public async getAchievementRanking(
     filterOptions?: AchievementRankingApiFilterOptions,
     dateOptions: DateOptions = MapleStoryApi.getProperDefaultDateOptions({
-      hour:8,
+      hour: 8,
       minute: 30,
-      dateOffset: 0
+      dateOffset: 0,
     }),
   ): Promise<AchievementRankingResponseDto> {
     const query: AchievementRankingApiQuery = {
@@ -1906,7 +1962,7 @@ class MapleStoryApi {
     return {
       year: adjustedDate.year(),
       month: adjustedDate.month() + 1,
-      day: adjustedDate.date()
+      day: adjustedDate.date(),
     };
   }
 
@@ -1921,7 +1977,6 @@ class MapleStoryApi {
     minDateOptions: DateOptions,
     dateOptions: DateOptions,
   ): string | never {
-
     const { year: minYear, month: minMonth, day: minDay } = minDateOptions;
     const { year, month, day } = dateOptions;
 
@@ -1931,11 +1986,15 @@ class MapleStoryApi {
       (year === minYear && month === minMonth && day < minDay)
     ) {
       throw new Error(
-        `You can only retrieve data after ${dayjs(`${minYear}-${minMonth}-${minDay}`).format('YYYY-MM-DD')}.`,
+        `You can only retrieve data after ${dayjs(
+          `${minYear}-${minMonth}-${minDay}`,
+        ).format('YYYY-MM-DD')}.`,
       );
     }
 
-    return dayjs(`${year}-${month}-${day}`).utcOffset(MapleStoryApi.kstOffset).format('YYYY-MM-DD');
+    return dayjs(`${year}-${month}-${day}`)
+      .utcOffset(MapleStoryApi.kstOffset)
+      .format('YYYY-MM-DD');
   }
 }
 
