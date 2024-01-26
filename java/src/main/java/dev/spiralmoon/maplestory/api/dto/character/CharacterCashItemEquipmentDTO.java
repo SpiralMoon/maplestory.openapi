@@ -42,37 +42,49 @@ public class CharacterCashItemEquipmentDTO {
     private long presetNo;
 
     /**
-     * 1번 프리셋 장착 캐시 장비 정보 목록
+     * 장착 중인 캐시 장비
+     */
+    @SerializedName("cash_item_equipment_base")
+    private List<CharacterCashItemEquipmentPresetDTO> cashItemEquipmentBase;
+
+    /**
+     * 1번 코디 프리셋
      */
     @SerializedName("cash_item_equipment_preset_1")
     private List<CharacterCashItemEquipmentPresetDTO> cashItemEquipmentPreset1;
 
     /**
-     * 2번 프리셋 장착 캐시 장비 정보 목록
+     * 2번 코디 프리셋
      */
     @SerializedName("cash_item_equipment_preset_2")
     private List<CharacterCashItemEquipmentPresetDTO> cashItemEquipmentPreset2;
 
     /**
-     * 3번 프리셋 장착 캐시 장비 정보 목록
+     * 3번 코디 프리셋
      */
     @SerializedName("cash_item_equipment_preset_3")
     private List<CharacterCashItemEquipmentPresetDTO> cashItemEquipmentPreset3;
 
     /**
-     * 제로인 경우 베타, 엔젤릭버스터인 경우 드레스 업 모드의 1번 프리셋 장착 캐시 장비 정보 목록
+     * 제로인 경우 베타, 엔젤릭버스터인 경우 드레스 업 모드에서 장착 중인 캐시 장비
+     */
+    @SerializedName("additional_cash_item_equipment_base")
+    private List<CharacterCashItemEquipmentPresetDTO> additionalCashItemEquipmentBase;
+
+    /**
+     * 제로인 경우 베타, 엔젤릭버스터인 경우 드레스 업 모드의 1번 코디 프리셋
      */
     @SerializedName("additional_cash_item_equipment_preset_1")
     private List<CharacterCashItemEquipmentPresetDTO> additionalCashItemEquipmentPreset1;
 
     /**
-     * 제로인 경우 베타, 엔젤릭버스터인 경우 드레스 업 모드의 2번 프리셋 장착 캐시 장비 정보 목록
+     * 제로인 경우 베타, 엔젤릭버스터인 경우 드레스 업 모드의 2번 코디 프리셋
      */
     @SerializedName("additional_cash_item_equipment_preset_2")
     private List<CharacterCashItemEquipmentPresetDTO> additionalCashItemEquipmentPreset2;
 
     /**
-     * 제로인 경우 베타, 엔젤릭버스터인 경우 드레스 업 모드의 3번 프리셋 장착 캐시 장비 정보 목록
+     * 제로인 경우 베타, 엔젤릭버스터인 경우 드레스 업 모드의 3번 코디 프리셋
      */
     @SerializedName("additional_cash_item_equipment_preset_3")
     private List<CharacterCashItemEquipmentPresetDTO> additionalCashItemEquipmentPreset3;
