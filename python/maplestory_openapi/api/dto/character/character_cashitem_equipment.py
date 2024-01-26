@@ -36,7 +36,7 @@ class CharacterCashitemEquipmentPreset(BaseModel):
     date_option_expire(datetime): 캐시 장비 옵션 유효기간 (KST, 시간 단위 데이터로 분은 일괄 0으로 표기)
     cash_item_label(str): 캐시 장비 라벨 정보
     cash_item_coloring_prism(CharacterCashitemEquipmentColoringPrism): 캐시 장비 컬러링프리즘 정보
-    base_preset_item_disable_flag(str): 다른 프리셋에서 장비 추가 장착 없이 1번 프리셋의 장비 공유를 비활성화 했는지 여부
+    item_gender(str): 아이템 장착 가능 성별
     """
     cash_item_equipment_part: str
     cash_item_equipment_slot: str
@@ -48,7 +48,7 @@ class CharacterCashitemEquipmentPreset(BaseModel):
     date_option_expire: datetime | None
     cash_item_label: str | None
     cash_item_coloring_prism: CharacterCashitemEquipmentColoringPrism | None
-    base_preset_item_disable_flag: str
+    item_gender: str | None
 
 
 class CharacterCashitemEquipment(BaseModel):
