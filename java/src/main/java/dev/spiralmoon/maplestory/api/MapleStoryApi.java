@@ -59,16 +59,10 @@ public class MapleStoryApi {
      */
     public CharacterDTO getCharacter(@NonNull String characterName) throws IOException {
 
-        final Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(this.buildClient())
-                .build();
-
-        final CharacterApi characterApi = retrofit.create(CharacterApi.class);
-        final Call<CharacterDTO> call = characterApi.getCharacter(this.apiKey, characterName);
-
-        final Response<CharacterDTO> response = call.execute();
+        final Response<CharacterDTO> response = buildRetrofit()
+                .create(CharacterApi.class)
+                .getCharacter(this.apiKey, characterName)
+                .execute();
 
         if (!response.isSuccessful()) {
             throw parseError(response);
@@ -86,38 +80,10 @@ public class MapleStoryApi {
      * @param characterName 캐릭터 명
      */
     public void getCharacterAsync(@NonNull String characterName, SuccessCallback<CharacterDTO> onSuccess, FailureCallback onFailure) {
-
-        final Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(this.buildClient())
-                .build();
-
-        final CharacterApi characterApi = retrofit.create(CharacterApi.class);
-        final Call<CharacterDTO> call = characterApi.getCharacter(this.apiKey, characterName);
-
-        call.enqueue(new Callback<CharacterDTO>() {
-            @SneakyThrows
-            @Override
-            public void onResponse(Call<CharacterDTO> call, Response<CharacterDTO> response) {
-                if (response.isSuccessful()) {
-                    if (onSuccess != null) {
-                        onSuccess.callback(response.body());
-                    }
-                } else {
-                    if (onFailure != null) {
-                        onFailure.callback(parseError(response));
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<CharacterDTO> call, Throwable t) {
-                if (onFailure != null) {
-                    onFailure.callback(t);
-                }
-            }
-        });
+        buildRetrofit()
+                .create(CharacterApi.class)
+                .getCharacter(this.apiKey, characterName)
+                .enqueue(createCallback(onSuccess, onFailure));
     }
 
     /**
@@ -142,18 +108,13 @@ public class MapleStoryApi {
      * @param localDateTime 조회 기준일 (KST)
      */
     public CharacterBasicDTO getCharacterBasic(@NonNull String ocid, @NonNull LocalDateTime localDateTime) throws IOException {
+
         final String date = toDateString(minDate(2023, 12, 21), localDateTime);
 
-        final Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(this.buildClient())
-                .build();
-
-        final CharacterApi characterApi = retrofit.create(CharacterApi.class);
-        final Call<CharacterBasicDTO> call = characterApi.getCharacterBasic(this.apiKey, ocid, date);
-
-        final Response<CharacterBasicDTO> response = call.execute();
+        final Response<CharacterBasicDTO> response = buildRetrofit()
+                .create(CharacterApi.class)
+                .getCharacterBasic(this.apiKey, ocid, date)
+                .execute();
 
         if (!response.isSuccessful()) {
             throw parseError(response);
@@ -186,39 +147,13 @@ public class MapleStoryApi {
      * @param localDateTime 조회 기준일 (KST)
      */
     public void getCharacterBasicAsync(@NonNull String ocid, @NonNull LocalDateTime localDateTime, SuccessCallback<CharacterBasicDTO> onSuccess, FailureCallback onFailure) {
+
         final String date = toDateString(minDate(2023, 12, 21), localDateTime);
 
-        final Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(this.buildClient())
-                .build();
-
-        final CharacterApi characterApi = retrofit.create(CharacterApi.class);
-        final Call<CharacterBasicDTO> call = characterApi.getCharacterBasic(this.apiKey, ocid, date);
-
-        call.enqueue(new Callback<CharacterBasicDTO>() {
-            @SneakyThrows
-            @Override
-            public void onResponse(Call<CharacterBasicDTO> call, Response<CharacterBasicDTO> response) {
-                if (response.isSuccessful()) {
-                    if (onSuccess != null) {
-                        onSuccess.callback(response.body());
-                    }
-                } else {
-                    if (onFailure != null) {
-                        onFailure.callback(parseError(response));
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<CharacterBasicDTO> call, Throwable t) {
-                if (onFailure != null) {
-                    onFailure.callback(t);
-                }
-            }
-        });
+        buildRetrofit()
+                .create(CharacterApi.class)
+                .getCharacterBasic(this.apiKey, ocid, date)
+                .enqueue(createCallback(onSuccess, onFailure));
     }
 
     /**
@@ -243,18 +178,13 @@ public class MapleStoryApi {
      * @param localDateTime 조회 기준일 (KST)
      */
     public CharacterPopularityDTO getCharacterPopularity(@NonNull String ocid, @NonNull LocalDateTime localDateTime) throws IOException {
+
         final String date = toDateString(minDate(2023, 12, 21), localDateTime);
 
-        final Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(this.buildClient())
-                .build();
-
-        final CharacterApi characterApi = retrofit.create(CharacterApi.class);
-        final Call<CharacterPopularityDTO> call = characterApi.getCharacterPopularity(this.apiKey, ocid, date);
-
-        final Response<CharacterPopularityDTO> response = call.execute();
+        final Response<CharacterPopularityDTO> response = buildRetrofit()
+                .create(CharacterApi.class)
+                .getCharacterPopularity(this.apiKey, ocid, date)
+                .execute();
 
         if (!response.isSuccessful()) {
             throw parseError(response);
@@ -285,39 +215,13 @@ public class MapleStoryApi {
      * @param localDateTime 조회 기준일 (KST)
      */
     public void getCharacterPopularityAsync(@NonNull String ocid, @NonNull LocalDateTime localDateTime, SuccessCallback<CharacterPopularityDTO> onSuccess, FailureCallback onFailure) {
+
         final String date = toDateString(minDate(2023, 12, 21), localDateTime);
 
-        final Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(this.buildClient())
-                .build();
-
-        final CharacterApi characterApi = retrofit.create(CharacterApi.class);
-        final Call<CharacterPopularityDTO> call = characterApi.getCharacterPopularity(this.apiKey, ocid, date);
-
-        call.enqueue(new Callback<CharacterPopularityDTO>() {
-            @SneakyThrows
-            @Override
-            public void onResponse(Call<CharacterPopularityDTO> call, Response<CharacterPopularityDTO> response) {
-                if (response.isSuccessful()) {
-                    if (onSuccess != null) {
-                        onSuccess.callback(response.body());
-                    }
-                } else {
-                    if (onFailure != null) {
-                        onFailure.callback(parseError(response));
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<CharacterPopularityDTO> call, Throwable t) {
-                if (onFailure != null) {
-                    onFailure.callback(t);
-                }
-            }
-        });
+        buildRetrofit()
+                .create(CharacterApi.class)
+                .getCharacterPopularity(this.apiKey, ocid, date)
+                .enqueue(createCallback(onSuccess, onFailure));
     }
 
     /**
@@ -342,18 +246,13 @@ public class MapleStoryApi {
      * @param localDateTime 조회 기준일 (KST)
      */
     public CharacterStatDTO getCharacterStat(@NonNull String ocid, LocalDateTime localDateTime) throws IOException {
+
         final String date = toDateString(minDate(2023, 12, 21), localDateTime);
 
-        final Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(this.buildClient())
-                .build();
-
-        final CharacterApi characterApi = retrofit.create(CharacterApi.class);
-        final Call<CharacterStatDTO> call = characterApi.getCharacterStat(this.apiKey, ocid, date);
-
-        final Response<CharacterStatDTO> response = call.execute();
+        final Response<CharacterStatDTO> response = buildRetrofit()
+                .create(CharacterApi.class)
+                .getCharacterStat(this.apiKey, ocid, date)
+                .execute();
 
         if (!response.isSuccessful()) {
             throw parseError(response);
@@ -383,39 +282,13 @@ public class MapleStoryApi {
      * @param ocid 캐릭터 식별자
      */
     public void getCharacterStatAsync(@NonNull String ocid, @NonNull LocalDateTime localDateTime, SuccessCallback<CharacterStatDTO> onSuccess, FailureCallback onFailure) {
+
         final String date = toDateString(minDate(2023, 12, 21), localDateTime);
 
-        final Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(this.buildClient())
-                .build();
-
-        final CharacterApi characterApi = retrofit.create(CharacterApi.class);
-        final Call<CharacterStatDTO> call = characterApi.getCharacterStat(this.apiKey, ocid, date);
-
-        call.enqueue(new Callback<CharacterStatDTO>() {
-            @SneakyThrows
-            @Override
-            public void onResponse(Call<CharacterStatDTO> call, Response<CharacterStatDTO> response) {
-                if (response.isSuccessful()) {
-                    if (onSuccess != null) {
-                        onSuccess.callback(response.body());
-                    }
-                } else {
-                    if (onFailure != null) {
-                        onFailure.callback(parseError(response));
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<CharacterStatDTO> call, Throwable t) {
-                if (onFailure != null) {
-                    onFailure.callback(t);
-                }
-            }
-        });
+        buildRetrofit()
+                .create(CharacterApi.class)
+                .getCharacterStat(this.apiKey, ocid, date)
+                .enqueue(createCallback(onSuccess, onFailure));
     }
 
     /**
@@ -440,18 +313,13 @@ public class MapleStoryApi {
      * @param localDateTime 조회 기준일 (KST)
      */
     public CharacterHyperStatDTO getCharacterHyperStat(@NonNull String ocid, @NonNull LocalDateTime localDateTime) throws IOException {
+
         final String date = toDateString(minDate(2023, 12, 21), localDateTime);
 
-        final Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(this.buildClient())
-                .build();
-
-        final CharacterApi characterApi = retrofit.create(CharacterApi.class);
-        final Call<CharacterHyperStatDTO> call = characterApi.getCharacterHyperStat(this.apiKey, ocid, date);
-
-        final Response<CharacterHyperStatDTO> response = call.execute();
+        final Response<CharacterHyperStatDTO> response = buildRetrofit()
+                .create(CharacterApi.class)
+                .getCharacterHyperStat(this.apiKey, ocid, date)
+                .execute();
 
         if (!response.isSuccessful()) {
             throw parseError(response);
@@ -485,37 +353,10 @@ public class MapleStoryApi {
 
         final String date = toDateString(minDate(2023, 12, 21), localDateTime);
 
-        final Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(this.buildClient())
-                .build();
-
-        final CharacterApi characterApi = retrofit.create(CharacterApi.class);
-        final Call<CharacterHyperStatDTO> call = characterApi.getCharacterHyperStat(this.apiKey, ocid, date);
-
-        call.enqueue(new Callback<CharacterHyperStatDTO>() {
-            @SneakyThrows
-            @Override
-            public void onResponse(Call<CharacterHyperStatDTO> call, Response<CharacterHyperStatDTO> response) {
-                if (response.isSuccessful()) {
-                    if (onSuccess != null) {
-                        onSuccess.callback(response.body());
-                    }
-                } else {
-                    if (onFailure != null) {
-                        onFailure.callback(parseError(response));
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<CharacterHyperStatDTO> call, Throwable t) {
-                if (onFailure != null) {
-                    onFailure.callback(t);
-                }
-            }
-        });
+        buildRetrofit()
+                .create(CharacterApi.class)
+                .getCharacterHyperStat(this.apiKey, ocid, date)
+                .enqueue(createCallback(onSuccess, onFailure));
     }
 
     /**
@@ -540,18 +381,13 @@ public class MapleStoryApi {
      * @param localDateTime 조회 기준일 (KST)
      */
     public CharacterPropensityDTO getCharacterPropensity(@NonNull String ocid, @NonNull LocalDateTime localDateTime) throws IOException {
+
         final String date = toDateString(minDate(2023, 12, 21), localDateTime);
 
-        final Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(this.buildClient())
-                .build();
-
-        final CharacterApi characterApi = retrofit.create(CharacterApi.class);
-        final Call<CharacterPropensityDTO> call = characterApi.getCharacterPropensity(this.apiKey, ocid, date);
-
-        final Response<CharacterPropensityDTO> response = call.execute();
+        final Response<CharacterPropensityDTO> response = buildRetrofit()
+                .create(CharacterApi.class)
+                .getCharacterPropensity(this.apiKey, ocid, date)
+                .execute();
 
         if (!response.isSuccessful()) {
             throw parseError(response);
@@ -585,37 +421,10 @@ public class MapleStoryApi {
 
         final String date = toDateString(minDate(2023, 12, 21), localDateTime);
 
-        final Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(this.buildClient())
-                .build();
-
-        final CharacterApi characterApi = retrofit.create(CharacterApi.class);
-        final Call<CharacterPropensityDTO> call = characterApi.getCharacterPropensity(this.apiKey, ocid, date);
-
-        call.enqueue(new Callback<CharacterPropensityDTO>() {
-            @SneakyThrows
-            @Override
-            public void onResponse(Call<CharacterPropensityDTO> call, Response<CharacterPropensityDTO> response) {
-                if (response.isSuccessful()) {
-                    if (onSuccess != null) {
-                        onSuccess.callback(response.body());
-                    }
-                } else {
-                    if (onFailure != null) {
-                        onFailure.callback(parseError(response));
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<CharacterPropensityDTO> call, Throwable t) {
-                if (onFailure != null) {
-                    onFailure.callback(t);
-                }
-            }
-        });
+        buildRetrofit()
+                .create(CharacterApi.class)
+                .getCharacterPropensity(this.apiKey, ocid, date)
+                .enqueue(createCallback(onSuccess, onFailure));
     }
 
     /**
@@ -642,16 +451,10 @@ public class MapleStoryApi {
 
         final String date = toDateString(minDate(2023, 12, 21), localDateTime);
 
-        final Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(this.buildClient())
-                .build();
-
-        final CharacterApi characterApi = retrofit.create(CharacterApi.class);
-        final Call<CharacterAbilityDTO> call = characterApi.getCharacterAbility(this.apiKey, ocid, date);
-
-        final Response<CharacterAbilityDTO> response = call.execute();
+        final Response<CharacterAbilityDTO> response = buildRetrofit()
+                .create(CharacterApi.class)
+                .getCharacterAbility(this.apiKey, ocid, date)
+                .execute();
 
         if (!response.isSuccessful()) {
             throw parseError(response);
@@ -685,37 +488,10 @@ public class MapleStoryApi {
 
         final String date = toDateString(minDate(2023, 12, 21), localDateTime);
 
-        final Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(this.buildClient())
-                .build();
-
-        final CharacterApi characterApi = retrofit.create(CharacterApi.class);
-        final Call<CharacterAbilityDTO> call = characterApi.getCharacterAbility(this.apiKey, ocid, date);
-
-        call.enqueue(new Callback<CharacterAbilityDTO>() {
-            @SneakyThrows
-            @Override
-            public void onResponse(Call<CharacterAbilityDTO> call, Response<CharacterAbilityDTO> response) {
-                if (response.isSuccessful()) {
-                    if (onSuccess != null) {
-                        onSuccess.callback(response.body());
-                    }
-                } else {
-                    if (onFailure != null) {
-                        onFailure.callback(parseError(response));
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<CharacterAbilityDTO> call, Throwable t) {
-                if (onFailure != null) {
-                    onFailure.callback(t);
-                }
-            }
-        });
+        buildRetrofit()
+                .create(CharacterApi.class)
+                .getCharacterAbility(this.apiKey, ocid, date)
+                .enqueue(createCallback(onSuccess, onFailure));
     }
 
     /**
@@ -743,16 +519,10 @@ public class MapleStoryApi {
 
         final String date = toDateString(minDate(2023, 12, 21), localDateTime);
 
-        final Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(this.buildClient())
-                .build();
-
-        final CharacterApi characterApi = retrofit.create(CharacterApi.class);
-        final Call<CharacterItemEquipmentDTO> call = characterApi.getCharacterItemEquipment(this.apiKey, ocid, date);
-
-        final Response<CharacterItemEquipmentDTO> response = call.execute();
+        final Response<CharacterItemEquipmentDTO> response = buildRetrofit()
+                .create(CharacterApi.class)
+                .getCharacterItemEquipment(this.apiKey, ocid, date)
+                .execute();
 
         if (!response.isSuccessful()) {
             throw parseError(response);
@@ -783,39 +553,13 @@ public class MapleStoryApi {
      * @param localDateTime 조회 기준일 (KST)
      */
     public void getCharacterItemEquipmentAsync(@NonNull String ocid, @NonNull LocalDateTime localDateTime, SuccessCallback<CharacterItemEquipmentDTO> onSuccess, FailureCallback onFailure) {
+
         final String date = toDateString(minDate(2023, 12, 21), localDateTime);
 
-        final Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(this.buildClient())
-                .build();
-
-        final CharacterApi characterApi = retrofit.create(CharacterApi.class);
-        final Call<CharacterItemEquipmentDTO> call = characterApi.getCharacterItemEquipment(this.apiKey, ocid, date);
-
-        call.enqueue(new Callback<CharacterItemEquipmentDTO>() {
-            @SneakyThrows
-            @Override
-            public void onResponse(Call<CharacterItemEquipmentDTO> call, Response<CharacterItemEquipmentDTO> response) {
-                if (response.isSuccessful()) {
-                    if (onSuccess != null) {
-                        onSuccess.callback(response.body());
-                    }
-                } else {
-                    if (onFailure != null) {
-                        onFailure.callback(parseError(response));
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<CharacterItemEquipmentDTO> call, Throwable t) {
-                if (onFailure != null) {
-                    onFailure.callback(t);
-                }
-            }
-        });
+        buildRetrofit()
+                .create(CharacterApi.class)
+                .getCharacterItemEquipment(this.apiKey, ocid, date)
+                .enqueue(createCallback(onSuccess, onFailure));
     }
 
     /**
@@ -840,18 +584,13 @@ public class MapleStoryApi {
      * @param localDateTime 조회 기준일 (KST)
      */
     public CharacterCashItemEquipmentDTO getCharacterCashItemEquipment(@NonNull String ocid, @NonNull LocalDateTime localDateTime) throws IOException {
+
         final String date = toDateString(minDate(2023, 12, 21), localDateTime);
 
-        final Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(this.buildClient())
-                .build();
-
-        final CharacterApi characterApi = retrofit.create(CharacterApi.class);
-        final Call<CharacterCashItemEquipmentDTO> call = characterApi.getCharacterCashItemEquipment(this.apiKey, ocid, date);
-
-        final Response<CharacterCashItemEquipmentDTO> response = call.execute();
+        final Response<CharacterCashItemEquipmentDTO> response = buildRetrofit()
+                .create(CharacterApi.class)
+                .getCharacterCashItemEquipment(this.apiKey, ocid, date)
+                .execute();
 
         if (!response.isSuccessful()) {
             throw parseError(response);
@@ -885,37 +624,10 @@ public class MapleStoryApi {
 
         final String date = toDateString(minDate(2023, 12, 21), localDateTime);
 
-        final Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(this.buildClient())
-                .build();
-
-        final CharacterApi characterApi = retrofit.create(CharacterApi.class);
-        final Call<CharacterCashItemEquipmentDTO> call = characterApi.getCharacterCashItemEquipment(this.apiKey, ocid, date);
-
-        call.enqueue(new Callback<CharacterCashItemEquipmentDTO>() {
-            @SneakyThrows
-            @Override
-            public void onResponse(Call<CharacterCashItemEquipmentDTO> call, Response<CharacterCashItemEquipmentDTO> response) {
-                if (response.isSuccessful()) {
-                    if (onSuccess != null) {
-                        onSuccess.callback(response.body());
-                    }
-                } else {
-                    if (onFailure != null) {
-                        onFailure.callback(parseError(response));
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<CharacterCashItemEquipmentDTO> call, Throwable t) {
-                if (onFailure != null) {
-                    onFailure.callback(t);
-                }
-            }
-        });
+        buildRetrofit()
+                .create(CharacterApi.class)
+                .getCharacterCashItemEquipment(this.apiKey, ocid, date)
+                .enqueue(createCallback(onSuccess, onFailure));
     }
 
     /**
@@ -943,16 +655,10 @@ public class MapleStoryApi {
 
         final String date = toDateString(minDate(2023, 12, 21), localDateTime);
 
-        final Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(this.buildClient())
-                .build();
-
-        final CharacterApi characterApi = retrofit.create(CharacterApi.class);
-        final Call<CharacterSymbolEquipmentDTO> call = characterApi.getCharacterSymbolEquipment(this.apiKey, ocid, date);
-
-        final Response<CharacterSymbolEquipmentDTO> response = call.execute();
+        final Response<CharacterSymbolEquipmentDTO> response = buildRetrofit()
+                .create(CharacterApi.class)
+                .getCharacterSymbolEquipment(this.apiKey, ocid, date)
+                .execute();
 
         if (!response.isSuccessful()) {
             throw parseError(response);
@@ -986,37 +692,10 @@ public class MapleStoryApi {
 
         final String date = toDateString(minDate(2023, 12, 21), localDateTime);
 
-        final Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(this.buildClient())
-                .build();
-
-        final CharacterApi characterApi = retrofit.create(CharacterApi.class);
-        final Call<CharacterSymbolEquipmentDTO> call = characterApi.getCharacterSymbolEquipment(this.apiKey, ocid, date);
-
-        call.enqueue(new Callback<CharacterSymbolEquipmentDTO>() {
-            @SneakyThrows
-            @Override
-            public void onResponse(Call<CharacterSymbolEquipmentDTO> call, Response<CharacterSymbolEquipmentDTO> response) {
-                if (response.isSuccessful()) {
-                    if (onSuccess != null) {
-                        onSuccess.callback(response.body());
-                    }
-                } else {
-                    if (onFailure != null) {
-                        onFailure.callback(parseError(response));
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<CharacterSymbolEquipmentDTO> call, Throwable t) {
-                if (onFailure != null) {
-                    onFailure.callback(t);
-                }
-            }
-        });
+        buildRetrofit()
+                .create(CharacterApi.class)
+                .getCharacterSymbolEquipment(this.apiKey, ocid, date)
+                .enqueue(createCallback(onSuccess, onFailure));
     }
 
     /**
@@ -1043,16 +722,10 @@ public class MapleStoryApi {
 
         final String date = toDateString(minDate(2023, 12, 21), localDateTime);
 
-        final Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(this.buildClient())
-                .build();
-
-        final CharacterApi characterApi = retrofit.create(CharacterApi.class);
-        final Call<CharacterSetEffectDTO> call = characterApi.getCharacterSetEffect(this.apiKey, ocid, date);
-
-        final Response<CharacterSetEffectDTO> response = call.execute();
+        final Response<CharacterSetEffectDTO> response = buildRetrofit()
+                .create(CharacterApi.class)
+                .getCharacterSetEffect(this.apiKey, ocid, date)
+                .execute();
 
         if (!response.isSuccessful()) {
             throw parseError(response);
@@ -1086,37 +759,10 @@ public class MapleStoryApi {
 
         final String date = toDateString(minDate(2023, 12, 21), localDateTime);
 
-        final Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(this.buildClient())
-                .build();
-
-        final CharacterApi characterApi = retrofit.create(CharacterApi.class);
-        final Call<CharacterSetEffectDTO> call = characterApi.getCharacterSetEffect(this.apiKey, ocid, date);
-
-        call.enqueue(new Callback<CharacterSetEffectDTO>() {
-            @SneakyThrows
-            @Override
-            public void onResponse(Call<CharacterSetEffectDTO> call, Response<CharacterSetEffectDTO> response) {
-                if (response.isSuccessful()) {
-                    if (onSuccess != null) {
-                        onSuccess.callback(response.body());
-                    }
-                } else {
-                    if (onFailure != null) {
-                        onFailure.callback(parseError(response));
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<CharacterSetEffectDTO> call, Throwable t) {
-                if (onFailure != null) {
-                    onFailure.callback(t);
-                }
-            }
-        });
+        buildRetrofit()
+                .create(CharacterApi.class)
+                .getCharacterSetEffect(this.apiKey, ocid, date)
+                .enqueue(createCallback(onSuccess, onFailure));
     }
 
     /**
@@ -1144,16 +790,10 @@ public class MapleStoryApi {
 
         final String date = toDateString(minDate(2023, 12, 21), localDateTime);
 
-        final Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(this.buildClient())
-                .build();
-
-        final CharacterApi characterApi = retrofit.create(CharacterApi.class);
-        final Call<CharacterBeautyEquipmentDTO> call = characterApi.getCharacterBeautyEquipment(this.apiKey, ocid, date);
-
-        final Response<CharacterBeautyEquipmentDTO> response = call.execute();
+        final Response<CharacterBeautyEquipmentDTO> response = buildRetrofit()
+                .create(CharacterApi.class)
+                .getCharacterBeautyEquipment(this.apiKey, ocid, date)
+                .execute();
 
         if (!response.isSuccessful()) {
             throw parseError(response);
@@ -1187,37 +827,10 @@ public class MapleStoryApi {
 
         final String date = toDateString(minDate(2023, 12, 21), localDateTime);
 
-        final Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(this.buildClient())
-                .build();
-
-        final CharacterApi characterApi = retrofit.create(CharacterApi.class);
-        final Call<CharacterBeautyEquipmentDTO> call = characterApi.getCharacterBeautyEquipment(this.apiKey, ocid, date);
-
-        call.enqueue(new Callback<CharacterBeautyEquipmentDTO>() {
-            @SneakyThrows
-            @Override
-            public void onResponse(Call<CharacterBeautyEquipmentDTO> call, Response<CharacterBeautyEquipmentDTO> response) {
-                if (response.isSuccessful()) {
-                    if (onSuccess != null) {
-                        onSuccess.callback(response.body());
-                    }
-                } else {
-                    if (onFailure != null) {
-                        onFailure.callback(parseError(response));
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<CharacterBeautyEquipmentDTO> call, Throwable t) {
-                if (onFailure != null) {
-                    onFailure.callback(t);
-                }
-            }
-        });
+        buildRetrofit()
+                .create(CharacterApi.class)
+                .getCharacterBeautyEquipment(this.apiKey, ocid, date)
+                .enqueue(createCallback(onSuccess, onFailure));
     }
 
     /**
@@ -1242,18 +855,13 @@ public class MapleStoryApi {
      * @param localDateTime 조회 기준일 (KST)
      */
     public CharacterAndroidEquipmentDTO getCharacterAndroidEquipment(@NonNull String ocid, @NonNull LocalDateTime localDateTime) throws IOException {
+
         final String date = toDateString(minDate(2023, 12, 21), localDateTime);
 
-        final Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(this.buildClient())
-                .build();
-
-        final CharacterApi characterApi = retrofit.create(CharacterApi.class);
-        final Call<CharacterAndroidEquipmentDTO> call = characterApi.getCharacterAndroidEquipment(this.apiKey, ocid, date);
-
-        final Response<CharacterAndroidEquipmentDTO> response = call.execute();
+        final Response<CharacterAndroidEquipmentDTO> response = buildRetrofit()
+                .create(CharacterApi.class)
+                .getCharacterAndroidEquipment(this.apiKey, ocid, date)
+                .execute();
 
         if (!response.isSuccessful()) {
             throw parseError(response);
@@ -1287,37 +895,10 @@ public class MapleStoryApi {
 
         final String date = toDateString(minDate(2023, 12, 21), localDateTime);
 
-        final Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(this.buildClient())
-                .build();
-
-        final CharacterApi characterApi = retrofit.create(CharacterApi.class);
-        final Call<CharacterAndroidEquipmentDTO> call = characterApi.getCharacterAndroidEquipment(this.apiKey, ocid, date);
-
-        call.enqueue(new Callback<CharacterAndroidEquipmentDTO>() {
-            @SneakyThrows
-            @Override
-            public void onResponse(Call<CharacterAndroidEquipmentDTO> call, Response<CharacterAndroidEquipmentDTO> response) {
-                if (response.isSuccessful()) {
-                    if (onSuccess != null) {
-                        onSuccess.callback(response.body());
-                    }
-                } else {
-                    if (onFailure != null) {
-                        onFailure.callback(parseError(response));
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<CharacterAndroidEquipmentDTO> call, Throwable t) {
-                if (onFailure != null) {
-                    onFailure.callback(t);
-                }
-            }
-        });
+        buildRetrofit()
+                .create(CharacterApi.class)
+                .getCharacterAndroidEquipment(this.apiKey, ocid, date)
+                .enqueue(createCallback(onSuccess, onFailure));
     }
 
     /**
@@ -1345,16 +926,10 @@ public class MapleStoryApi {
 
         final String date = toDateString(minDate(2023, 12, 21), localDateTime);
 
-        final Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(this.buildClient())
-                .build();
-
-        final CharacterApi characterApi = retrofit.create(CharacterApi.class);
-        final Call<CharacterPetEquipmentDTO> call = characterApi.getCharacterPetEquipment(this.apiKey, ocid, date);
-
-        final Response<CharacterPetEquipmentDTO> response = call.execute();
+        final Response<CharacterPetEquipmentDTO> response = buildRetrofit()
+                .create(CharacterApi.class)
+                .getCharacterPetEquipment(this.apiKey, ocid, date)
+                .execute();
 
         if (!response.isSuccessful()) {
             throw parseError(response);
@@ -1388,37 +963,10 @@ public class MapleStoryApi {
 
         final String date = toDateString(minDate(2023, 12, 21), localDateTime);
 
-        final Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(this.buildClient())
-                .build();
-
-        final CharacterApi characterApi = retrofit.create(CharacterApi.class);
-        final Call<CharacterPetEquipmentDTO> call = characterApi.getCharacterPetEquipment(this.apiKey, ocid, date);
-
-        call.enqueue(new Callback<CharacterPetEquipmentDTO>() {
-            @SneakyThrows
-            @Override
-            public void onResponse(Call<CharacterPetEquipmentDTO> call, Response<CharacterPetEquipmentDTO> response) {
-                if (response.isSuccessful()) {
-                    if (onSuccess != null) {
-                        onSuccess.callback(response.body());
-                    }
-                } else {
-                    if (onFailure != null) {
-                        onFailure.callback(parseError(response));
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<CharacterPetEquipmentDTO> call, Throwable t) {
-                if (onFailure != null) {
-                    onFailure.callback(t);
-                }
-            }
-        });
+        buildRetrofit()
+                .create(CharacterApi.class)
+                .getCharacterPetEquipment(this.apiKey, ocid, date)
+                .enqueue(createCallback(onSuccess, onFailure));
     }
 
     /**
@@ -1470,16 +1018,10 @@ public class MapleStoryApi {
 
         final String date = toDateString(minDate(2023, 12, 21), localDateTime);
 
-        final Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(this.buildClient())
-                .build();
-
-        final CharacterApi characterApi = retrofit.create(CharacterApi.class);
-        final Call<CharacterSkillDTO> call = characterApi.getCharacterSkill(this.apiKey, ocid, date, characterSkillGrade);
-
-        final Response<CharacterSkillDTO> response = call.execute();
+        final Response<CharacterSkillDTO> response = buildRetrofit()
+                .create(CharacterApi.class)
+                .getCharacterSkill(this.apiKey, ocid, date, characterSkillGrade)
+                .execute();
 
         if (!response.isSuccessful()) {
             throw parseError(response);
@@ -1537,37 +1079,10 @@ public class MapleStoryApi {
 
         final String date = toDateString(minDate(2023, 12, 21), localDateTime);
 
-        final Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(this.buildClient())
-                .build();
-
-        final CharacterApi characterApi = retrofit.create(CharacterApi.class);
-        final Call<CharacterSkillDTO> call = characterApi.getCharacterSkill(this.apiKey, ocid, date, characterSkillGrade);
-
-        call.enqueue(new Callback<CharacterSkillDTO>() {
-            @SneakyThrows
-            @Override
-            public void onResponse(Call<CharacterSkillDTO> call, Response<CharacterSkillDTO> response) {
-                if (response.isSuccessful()) {
-                    if (onSuccess != null) {
-                        onSuccess.callback(response.body());
-                    }
-                } else {
-                    if (onFailure != null) {
-                        onFailure.callback(parseError(response));
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<CharacterSkillDTO> call, Throwable t) {
-                if (onFailure != null) {
-                    onFailure.callback(t);
-                }
-            }
-        });
+        buildRetrofit()
+                .create(CharacterApi.class)
+                .getCharacterSkill(this.apiKey, ocid, date, characterSkillGrade)
+                .enqueue(createCallback(onSuccess, onFailure));
     }
 
     /**
@@ -1592,18 +1107,13 @@ public class MapleStoryApi {
      * @param localDateTime 조회 기준일 (KST)
      */
     public CharacterLinkSkillDTO getCharacterLinkSkill(@NonNull String ocid, @NonNull LocalDateTime localDateTime) throws IOException {
+
         final String date = toDateString(minDate(2023, 12, 21), localDateTime);
 
-        final Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(this.buildClient())
-                .build();
-
-        final CharacterApi characterApi = retrofit.create(CharacterApi.class);
-        final Call<CharacterLinkSkillDTO> call = characterApi.getCharacterLinkSkill(this.apiKey, ocid, date);
-
-        final Response<CharacterLinkSkillDTO> response = call.execute();
+        final Response<CharacterLinkSkillDTO> response = buildRetrofit()
+                .create(CharacterApi.class)
+                .getCharacterLinkSkill(this.apiKey, ocid, date)
+                .execute();
 
         if (!response.isSuccessful()) {
             throw parseError(response);
@@ -1637,37 +1147,10 @@ public class MapleStoryApi {
 
         final String date = toDateString(minDate(2023, 12, 21), localDateTime);
 
-        final Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(this.buildClient())
-                .build();
-
-        final CharacterApi characterApi = retrofit.create(CharacterApi.class);
-        final Call<CharacterLinkSkillDTO> call = characterApi.getCharacterLinkSkill(this.apiKey, ocid, date);
-
-        call.enqueue(new Callback<CharacterLinkSkillDTO>() {
-            @SneakyThrows
-            @Override
-            public void onResponse(Call<CharacterLinkSkillDTO> call, Response<CharacterLinkSkillDTO> response) {
-                if (response.isSuccessful()) {
-                    if (onSuccess != null) {
-                        onSuccess.callback(response.body());
-                    }
-                } else {
-                    if (onFailure != null) {
-                        onFailure.callback(parseError(response));
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<CharacterLinkSkillDTO> call, Throwable t) {
-                if (onFailure != null) {
-                    onFailure.callback(t);
-                }
-            }
-        });
+        buildRetrofit()
+                .create(CharacterApi.class)
+                .getCharacterLinkSkill(this.apiKey, ocid, date)
+                .enqueue(createCallback(onSuccess, onFailure));
     }
 
     /**
@@ -1692,18 +1175,13 @@ public class MapleStoryApi {
      * @param localDateTime 조회 기준일 (KST)
      */
     public CharacterVMatrixDTO getCharacterVMatrix(@NonNull String ocid, @NonNull LocalDateTime localDateTime) throws IOException {
-        final String date = toDateString(minDate(2023, 12, 21), localDateTime); // 이름은 date로 고정
 
-        final Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(this.buildClient())
-                .build();
+        final String date = toDateString(minDate(2023, 12, 21), localDateTime);
 
-        final CharacterApi characterApi = retrofit.create(CharacterApi.class);
-        final Call<CharacterVMatrixDTO> call = characterApi.getCharacterVMatrix(this.apiKey, ocid, date);
-
-        final Response<CharacterVMatrixDTO> response = call.execute();
+        final Response<CharacterVMatrixDTO> response = buildRetrofit()
+                .create(CharacterApi.class)
+                .getCharacterVMatrix(this.apiKey, ocid, date)
+                .execute();
 
         if (!response.isSuccessful()) {
             throw parseError(response);
@@ -1734,39 +1212,13 @@ public class MapleStoryApi {
      * @param localDateTime 조회 기준일 (KST)
      */
     public void getCharacterVMatrixAsync(@NonNull String ocid, @NonNull LocalDateTime localDateTime, SuccessCallback<CharacterVMatrixDTO> onSuccess, FailureCallback onFailure) {
+
         final String date = toDateString(minDate(2023, 12, 21), localDateTime);
 
-        final Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(this.buildClient())
-                .build();
-
-        final CharacterApi characterApi = retrofit.create(CharacterApi.class);
-        final Call<CharacterVMatrixDTO> call = characterApi.getCharacterVMatrix(this.apiKey, ocid, date);
-
-        call.enqueue(new Callback<CharacterVMatrixDTO>() {
-            @SneakyThrows
-            @Override
-            public void onResponse(Call<CharacterVMatrixDTO> call, Response<CharacterVMatrixDTO> response) {
-                if (response.isSuccessful()) {
-                    if (onSuccess != null) {
-                        onSuccess.callback(response.body());
-                    }
-                } else {
-                    if (onFailure != null) {
-                        onFailure.callback(parseError(response));
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<CharacterVMatrixDTO> call, Throwable t) {
-                if (onFailure != null) {
-                    onFailure.callback(t);
-                }
-            }
-        });
+        buildRetrofit()
+                .create(CharacterApi.class)
+                .getCharacterVMatrix(this.apiKey, ocid, date)
+                .enqueue(createCallback(onSuccess, onFailure));
     }
 
     /**
@@ -1791,18 +1243,13 @@ public class MapleStoryApi {
      * @param localDateTime 조회 기준일 (KST)
      */
     public CharacterHexaMatrixDTO getCharacterHexaMatrix(@NonNull String ocid, @NonNull LocalDateTime localDateTime) throws IOException {
+
         final String date = toDateString(minDate(2023, 12, 21), localDateTime);
 
-        final Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(this.buildClient())
-                .build();
-
-        final CharacterApi characterApi = retrofit.create(CharacterApi.class);
-        final Call<CharacterHexaMatrixDTO> call = characterApi.getCharacterHexaMatrix(this.apiKey, ocid, date);
-
-        final Response<CharacterHexaMatrixDTO> response = call.execute();
+        final Response<CharacterHexaMatrixDTO> response = buildRetrofit()
+                .create(CharacterApi.class)
+                .getCharacterHexaMatrix(this.apiKey, ocid, date)
+                .execute();
 
         if (!response.isSuccessful()) {
             throw parseError(response);
@@ -1833,39 +1280,13 @@ public class MapleStoryApi {
      * @param localDateTime 조회 기준일 (KST)
      */
     public void getCharacterHexaMatrixAsync(@NonNull String ocid, @NonNull LocalDateTime localDateTime, SuccessCallback<CharacterHexaMatrixDTO> onSuccess, FailureCallback onFailure) {
+
         final String date = toDateString(minDate(2023, 12, 21), localDateTime);
 
-        final Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(this.buildClient())
-                .build();
-
-        final CharacterApi characterApi = retrofit.create(CharacterApi.class);
-        final Call<CharacterHexaMatrixDTO> call = characterApi.getCharacterHexaMatrix(this.apiKey, ocid, date);
-
-        call.enqueue(new Callback<CharacterHexaMatrixDTO>() {
-            @SneakyThrows
-            @Override
-            public void onResponse(Call<CharacterHexaMatrixDTO> call, Response<CharacterHexaMatrixDTO> response) {
-                if (response.isSuccessful()) {
-                    if (onSuccess != null) {
-                        onSuccess.callback(response.body());
-                    }
-                } else {
-                    if (onFailure != null) {
-                        onFailure.callback(parseError(response));
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<CharacterHexaMatrixDTO> call, Throwable t) {
-                if (onFailure != null) {
-                    onFailure.callback(t);
-                }
-            }
-        });
+        buildRetrofit()
+                .create(CharacterApi.class)
+                .getCharacterHexaMatrix(this.apiKey, ocid, date)
+                .enqueue(createCallback(onSuccess, onFailure));
     }
 
     /**
@@ -1890,18 +1311,13 @@ public class MapleStoryApi {
      * @param localDateTime 조회 기준일 (KST)
      */
     public CharacterHexaMatrixStatDTO getCharacterHexaMatrixStat(@NonNull String ocid, @NonNull LocalDateTime localDateTime) throws IOException {
+
         final String date = toDateString(minDate(2023, 12, 21), localDateTime);
 
-        final Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(this.buildClient())
-                .build();
-
-        final CharacterApi characterApi = retrofit.create(CharacterApi.class);
-        final Call<CharacterHexaMatrixStatDTO> call = characterApi.getCharacterHexaMatrixStat(this.apiKey, ocid, date);
-
-        final Response<CharacterHexaMatrixStatDTO> response = call.execute();
+        final Response<CharacterHexaMatrixStatDTO> response = buildRetrofit()
+                .create(CharacterApi.class)
+                .getCharacterHexaMatrixStat(this.apiKey, ocid, date)
+                .execute();
 
         if (!response.isSuccessful()) {
             throw parseError(response);
@@ -1932,39 +1348,13 @@ public class MapleStoryApi {
      * @param localDateTime 조회 기준일 (KST)
      */
     public void getCharacterHexaMatrixStatAsync(@NonNull String ocid, @NonNull LocalDateTime localDateTime, SuccessCallback<CharacterHexaMatrixStatDTO> onSuccess, FailureCallback onFailure) {
+
         final String date = toDateString(minDate(2023, 12, 21), localDateTime);
 
-        final Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(this.buildClient())
-                .build();
-
-        final CharacterApi characterApi = retrofit.create(CharacterApi.class);
-        final Call<CharacterHexaMatrixStatDTO> call = characterApi.getCharacterHexaMatrixStat(this.apiKey, ocid, date);
-
-        call.enqueue(new Callback<CharacterHexaMatrixStatDTO>() {
-            @SneakyThrows
-            @Override
-            public void onResponse(Call<CharacterHexaMatrixStatDTO> call, Response<CharacterHexaMatrixStatDTO> response) {
-                if (response.isSuccessful()) {
-                    if (onSuccess != null) {
-                        onSuccess.callback(response.body());
-                    }
-                } else {
-                    if (onFailure != null) {
-                        onFailure.callback(parseError(response));
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<CharacterHexaMatrixStatDTO> call, Throwable t) {
-                if (onFailure != null) {
-                    onFailure.callback(t);
-                }
-            }
-        });
+        buildRetrofit()
+                .create(CharacterApi.class)
+                .getCharacterHexaMatrixStat(this.apiKey, ocid, date)
+                .enqueue(createCallback(onSuccess, onFailure));
     }
 
     /**
@@ -1989,18 +1379,13 @@ public class MapleStoryApi {
      * @param localDateTime 조회 기준일 (KST)
      */
     public CharacterDojangDTO getCharacterDojang(@NonNull String ocid, @NonNull LocalDateTime localDateTime) throws IOException {
+
         final String date = toDateString(minDate(2023, 12, 21), localDateTime);
 
-        final Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(this.buildClient())
-                .build();
-
-        final CharacterApi characterApi = retrofit.create(CharacterApi.class);
-        final Call<CharacterDojangDTO> call = characterApi.getCharacterDojang(this.apiKey, ocid, date);
-
-        final Response<CharacterDojangDTO> response = call.execute();
+        final Response<CharacterDojangDTO> response = buildRetrofit()
+                .create(CharacterApi.class)
+                .getCharacterDojang(this.apiKey, ocid, date)
+                .execute();
 
         if (!response.isSuccessful()) {
             throw parseError(response);
@@ -2031,39 +1416,13 @@ public class MapleStoryApi {
      * @param localDateTime 조회 기준일 (KST)
      */
     public void getCharacterDojangAsync(@NonNull String ocid, LocalDateTime localDateTime, SuccessCallback<CharacterDojangDTO> onSuccess, FailureCallback onFailure) {
+
         final String date = toDateString(minDate(2023, 12, 21), localDateTime);
 
-        final Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(this.buildClient())
-                .build();
-
-        final CharacterApi characterApi = retrofit.create(CharacterApi.class);
-        final Call<CharacterDojangDTO> call = characterApi.getCharacterDojang(this.apiKey, ocid, date);
-
-        call.enqueue(new Callback<CharacterDojangDTO>() {
-            @SneakyThrows
-            @Override
-            public void onResponse(Call<CharacterDojangDTO> call, Response<CharacterDojangDTO> response) {
-                if (response.isSuccessful()) {
-                    if (onSuccess != null) {
-                        onSuccess.callback(response.body());
-                    }
-                } else {
-                    if (onFailure != null) {
-                        onFailure.callback(parseError(response));
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<CharacterDojangDTO> call, Throwable t) {
-                if (onFailure != null) {
-                    onFailure.callback(t);
-                }
-            }
-        });
+        buildRetrofit()
+                .create(CharacterApi.class)
+                .getCharacterDojang(this.apiKey, ocid, date)
+                .enqueue(createCallback(onSuccess, onFailure));
     }
 
     //#endregion
@@ -2092,18 +1451,13 @@ public class MapleStoryApi {
      * @param localDateTime 조회 기준일 (KST)
      */
     public UnionDTO getUnion(@NonNull String ocid, @NonNull LocalDateTime localDateTime) throws IOException {
+
         final String date = toDateString(minDate(2023, 12, 21), localDateTime);
 
-        final Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(this.buildClient())
-                .build();
-
-        final UnionApi unionApi = retrofit.create(UnionApi.class);
-        final Call<UnionDTO> call = unionApi.getUnion(this.apiKey, ocid, date);
-
-        final Response<UnionDTO> response = call.execute();
+        final Response<UnionDTO> response = buildRetrofit()
+                .create(UnionApi.class)
+                .getUnion(this.apiKey, ocid, date)
+                .execute();
 
         if (!response.isSuccessful()) {
             throw parseError(response);
@@ -2134,39 +1488,13 @@ public class MapleStoryApi {
      * @param localDateTime 조회 기준일 (KST)
      */
     public void getUnionAsync(@NonNull String ocid, LocalDateTime localDateTime, SuccessCallback<UnionDTO> onSuccess, FailureCallback onFailure) {
+
         final String date = toDateString(minDate(2023, 12, 21), localDateTime);
 
-        final Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(this.buildClient())
-                .build();
-
-        final UnionApi unionApi = retrofit.create(UnionApi.class);
-        final Call<UnionDTO> call = unionApi.getUnion(this.apiKey, ocid, date);
-
-        call.enqueue(new Callback<UnionDTO>() {
-            @SneakyThrows
-            @Override
-            public void onResponse(Call<UnionDTO> call, Response<UnionDTO> response) {
-                if (response.isSuccessful()) {
-                    if (onSuccess != null) {
-                        onSuccess.callback(response.body());
-                    }
-                } else {
-                    if (onFailure != null) {
-                        onFailure.callback(parseError(response));
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<UnionDTO> call, Throwable t) {
-                if (onFailure != null) {
-                    onFailure.callback(t);
-                }
-            }
-        });
+        buildRetrofit()
+                .create(UnionApi.class)
+                .getUnion(this.apiKey, ocid, date)
+                .enqueue(createCallback(onSuccess, onFailure));
     }
 
     /**
@@ -2191,18 +1519,13 @@ public class MapleStoryApi {
      * @param localDateTime 조회 기준일 (KST)
      */
     public UnionRaiderDTO getUnionRaider(@NonNull String ocid, @NonNull LocalDateTime localDateTime) throws IOException {
+
         final String date = toDateString(minDate(2023, 12, 21), localDateTime);
 
-        final Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(this.buildClient())
-                .build();
-
-        final UnionApi unionApi = retrofit.create(UnionApi.class);
-        final Call<UnionRaiderDTO> call = unionApi.getUnionRaider(this.apiKey, ocid, date);
-
-        final Response<UnionRaiderDTO> response = call.execute();
+        final Response<UnionRaiderDTO> response = buildRetrofit()
+                .create(UnionApi.class)
+                .getUnionRaider(this.apiKey, ocid, date)
+                .execute();
 
         if (!response.isSuccessful()) {
             throw parseError(response);
@@ -2233,39 +1556,13 @@ public class MapleStoryApi {
      * @param localDateTime 조회 기준일 (KST)
      */
     public void getUnionRaiderAsync(@NonNull String ocid, @NonNull LocalDateTime localDateTime, SuccessCallback<UnionRaiderDTO> onSuccess, FailureCallback onFailure) {
+
         final String date = toDateString(minDate(2023, 12, 21), localDateTime);
 
-        final Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(this.buildClient())
-                .build();
-
-        final UnionApi unionApi = retrofit.create(UnionApi.class);
-        final Call<UnionRaiderDTO> call = unionApi.getUnionRaider(this.apiKey, ocid, date);
-
-        call.enqueue(new Callback<UnionRaiderDTO>() {
-            @SneakyThrows
-            @Override
-            public void onResponse(Call<UnionRaiderDTO> call, Response<UnionRaiderDTO> response) {
-                if (response.isSuccessful()) {
-                    if (onSuccess != null) {
-                        onSuccess.callback(response.body());
-                    }
-                } else {
-                    if (onFailure != null) {
-                        onFailure.callback(parseError(response));
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<UnionRaiderDTO> call, Throwable t) {
-                if (onFailure != null) {
-                    onFailure.callback(t);
-                }
-            }
-        });
+        buildRetrofit()
+                .create(UnionApi.class)
+                .getUnionRaider(this.apiKey, ocid, date)
+                .enqueue(createCallback(onSuccess, onFailure));
     }
 
     /**
@@ -2290,18 +1587,13 @@ public class MapleStoryApi {
      * @param localDateTime 조회 기준일 (KST)
      */
     public UnionArtifactDTO getUnionArtifact(@NonNull String ocid, @NonNull LocalDateTime localDateTime) throws IOException {
+
         final String date = toDateString(minDate(2023, 12, 21), localDateTime);
 
-        final Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(this.buildClient())
-                .build();
-
-        final UnionApi unionApi = retrofit.create(UnionApi.class);
-        final Call<UnionArtifactDTO> call = unionApi.getUnionArtifact(this.apiKey, ocid, date);
-
-        final Response<UnionArtifactDTO> response = call.execute();
+        final Response<UnionArtifactDTO> response = buildRetrofit()
+                .create(UnionApi.class)
+                .getUnionArtifact(this.apiKey, ocid, date)
+                .execute();
 
         if (!response.isSuccessful()) {
             throw parseError(response);
@@ -2332,39 +1624,13 @@ public class MapleStoryApi {
      * @param localDateTime 조회 기준일 (KST)
      */
     public void getUnionArtifactAsync(@NonNull String ocid, LocalDateTime localDateTime, SuccessCallback<UnionArtifactDTO> onSuccess, FailureCallback onFailure) {
+
         final String date = toDateString(minDate(2023, 12, 21), localDateTime);
 
-        final Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(this.buildClient())
-                .build();
-
-        final UnionApi unionApi = retrofit.create(UnionApi.class);
-        final Call<UnionArtifactDTO> call = unionApi.getUnionArtifact(this.apiKey, ocid, date);
-
-        call.enqueue(new Callback<UnionArtifactDTO>() {
-            @SneakyThrows
-            @Override
-            public void onResponse(Call<UnionArtifactDTO> call, Response<UnionArtifactDTO> response) {
-                if (response.isSuccessful()) {
-                    if (onSuccess != null) {
-                        onSuccess.callback(response.body());
-                    }
-                } else {
-                    if (onFailure != null) {
-                        onFailure.callback(parseError(response));
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<UnionArtifactDTO> call, Throwable t) {
-                if (onFailure != null) {
-                    onFailure.callback(t);
-                }
-            }
-        });
+        buildRetrofit()
+                .create(UnionApi.class)
+                .getUnionArtifact(this.apiKey, ocid, date)
+                .enqueue(createCallback(onSuccess, onFailure));
     }
 
 
@@ -2400,16 +1666,10 @@ public class MapleStoryApi {
      */
     public GuildDTO getGuild(@NonNull String guildName, @NonNull String worldName) throws IOException {
 
-        final Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(this.buildClient())
-                .build();
-
-        final GuildApi guildApi = retrofit.create(GuildApi.class);
-        final Call<GuildDTO> call = guildApi.getGuild(this.apiKey, guildName, worldName);
-
-        final Response<GuildDTO> response = call.execute();
+        final Response<GuildDTO> response = buildRetrofit()
+                .create(GuildApi.class)
+                .getGuild(this.apiKey, guildName, worldName)
+                .execute();
 
         if (!response.isSuccessful()) {
             throw parseError(response);
@@ -2445,38 +1705,10 @@ public class MapleStoryApi {
      *                  버닝3<br>
      */
     public void getGuildAsync(@NonNull String guildName, @NonNull String worldName, SuccessCallback<GuildDTO> onSuccess, FailureCallback onFailure) {
-
-        final Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(this.buildClient())
-                .build();
-
-        final GuildApi guildApi = retrofit.create(GuildApi.class);
-        final Call<GuildDTO> call = guildApi.getGuild(this.apiKey, guildName, worldName);
-
-        call.enqueue(new Callback<GuildDTO>() {
-            @SneakyThrows
-            @Override
-            public void onResponse(Call<GuildDTO> call, Response<GuildDTO> response) {
-                if (response.isSuccessful()) {
-                    if (onSuccess != null) {
-                        onSuccess.callback(response.body());
-                    }
-                } else {
-                    if (onFailure != null) {
-                        onFailure.callback(parseError(response));
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<GuildDTO> call, Throwable t) {
-                if (onFailure != null) {
-                    onFailure.callback(t);
-                }
-            }
-        });
+        buildRetrofit()
+                .create(GuildApi.class)
+                .getGuild(this.apiKey, guildName, worldName)
+                .enqueue(createCallback(onSuccess, onFailure));
     }
 
     /**
@@ -2501,18 +1733,13 @@ public class MapleStoryApi {
      * @param localDateTime 조회 기준일 (KST)
      */
     public GuildBasicDTO getGuildBasic(@NonNull String oguildId, @NonNull LocalDateTime localDateTime) throws IOException {
+
         final String date = toDateString(minDate(2023, 12, 21), localDateTime);
 
-        final Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(this.buildClient())
-                .build();
-
-        final GuildApi guildApi = retrofit.create(GuildApi.class);
-        final Call<GuildBasicDTO> call = guildApi.getGuildBasic(this.apiKey, oguildId, date);
-
-        final Response<GuildBasicDTO> response = call.execute();
+        final Response<GuildBasicDTO> response = buildRetrofit()
+                .create(GuildApi.class)
+                .getGuildBasic(this.apiKey, oguildId, date)
+                .execute();
 
         if (!response.isSuccessful()) {
             throw parseError(response);
@@ -2543,39 +1770,13 @@ public class MapleStoryApi {
      * @param localDateTime 조회 기준일 (KST)
      */
     public void getGuildBasicAsync(@NonNull String oguildId, @NonNull LocalDateTime localDateTime, SuccessCallback<GuildBasicDTO> onSuccess, FailureCallback onFailure) {
+
         final String date = toDateString(minDate(2023, 12, 21), localDateTime);
 
-        final Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(this.buildClient())
-                .build();
-
-        final GuildApi guildApi = retrofit.create(GuildApi.class);
-        final Call<GuildBasicDTO> call = guildApi.getGuildBasic(this.apiKey, oguildId, date);
-
-        call.enqueue(new Callback<GuildBasicDTO>() {
-            @SneakyThrows
-            @Override
-            public void onResponse(Call<GuildBasicDTO> call, Response<GuildBasicDTO> response) {
-                if (response.isSuccessful()) {
-                    if (onSuccess != null) {
-                        onSuccess.callback(response.body());
-                    }
-                } else {
-                    if (onFailure != null) {
-                        onFailure.callback(parseError(response));
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<GuildBasicDTO> call, Throwable t) {
-                if (onFailure != null) {
-                    onFailure.callback(t);
-                }
-            }
-        });
+        buildRetrofit()
+                .create(GuildApi.class)
+                .getGuildBasic(this.apiKey, oguildId, date)
+                .enqueue(createCallback(onSuccess, onFailure));
     }
 
     //#endregion
@@ -2616,16 +1817,10 @@ public class MapleStoryApi {
 
         final String date = toDateString(minDate(2023, 12, 27), localDateTime);
 
-        final Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(this.buildClient())
-                .build();
-
-        final StarforceApi starforceApi = retrofit.create(StarforceApi.class);
-        final Call<StarforceHistoryResponseDTO> call = starforceApi.getStarforceHistoryByDate(this.apiKey, count, date);
-
-        final Response<StarforceHistoryResponseDTO> response = call.execute();
+        final Response<StarforceHistoryResponseDTO> response = buildRetrofit()
+                .create(StarforceApi.class)
+                .getStarforceHistoryByDate(this.apiKey, count, date)
+                .execute();
 
         if (!response.isSuccessful()) {
             throw parseError(response);
@@ -2646,37 +1841,10 @@ public class MapleStoryApi {
 
         final String date = toDateString(minDate(2023, 12, 27), localDateTime);
 
-        final Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(this.buildClient())
-                .build();
-
-        final StarforceApi starforceApi = retrofit.create(StarforceApi.class);
-        final Call<StarforceHistoryResponseDTO> call = starforceApi.getStarforceHistoryByDate(this.apiKey, count, date);
-
-        call.enqueue(new Callback<StarforceHistoryResponseDTO>() {
-            @SneakyThrows
-            @Override
-            public void onResponse(Call<StarforceHistoryResponseDTO> call, Response<StarforceHistoryResponseDTO> response) {
-                if (response.isSuccessful()) {
-                    if (onSuccess != null) {
-                        onSuccess.callback(response.body());
-                    }
-                } else {
-                    if (onFailure != null) {
-                        onFailure.callback(parseError(response));
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<StarforceHistoryResponseDTO> call, Throwable t) {
-                if (onFailure != null) {
-                    onFailure.callback(t);
-                }
-            }
-        });
+        buildRetrofit()
+                .create(StarforceApi.class)
+                .getStarforceHistoryByDate(this.apiKey, count, date)
+                .enqueue(createCallback(onSuccess, onFailure));
     }
 
     /**
@@ -2689,16 +1857,10 @@ public class MapleStoryApi {
      */
     public StarforceHistoryResponseDTO getStarforceHistory(int count, @NonNull String cursor) throws IOException {
 
-        final Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(this.buildClient())
-                .build();
-
-        final StarforceApi starforceApi = retrofit.create(StarforceApi.class);
-        final Call<StarforceHistoryResponseDTO> call = starforceApi.getStarforceHistoryByCursor(this.apiKey, count, cursor);
-
-        final Response<StarforceHistoryResponseDTO> response = call.execute();
+        final Response<StarforceHistoryResponseDTO> response = buildRetrofit()
+                .create(StarforceApi.class)
+                .getStarforceHistoryByCursor(this.apiKey, count, cursor)
+                .execute();
 
         if (!response.isSuccessful()) {
             throw parseError(response);
@@ -2716,38 +1878,10 @@ public class MapleStoryApi {
      * @param cursor 페이징 처리를 위한 cursor
      */
     public void getStarforceHistoryAsync(int count, @NonNull String cursor, SuccessCallback<StarforceHistoryResponseDTO> onSuccess, FailureCallback onFailure) {
-
-        final Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(this.buildClient())
-                .build();
-
-        final StarforceApi starforceApi = retrofit.create(StarforceApi.class);
-        final Call<StarforceHistoryResponseDTO> call = starforceApi.getStarforceHistoryByCursor(this.apiKey, count, cursor);
-
-        call.enqueue(new Callback<StarforceHistoryResponseDTO>() {
-            @SneakyThrows
-            @Override
-            public void onResponse(Call<StarforceHistoryResponseDTO> call, Response<StarforceHistoryResponseDTO> response) {
-                if (response.isSuccessful()) {
-                    if (onSuccess != null) {
-                        onSuccess.callback(response.body());
-                    }
-                } else {
-                    if (onFailure != null) {
-                        onFailure.callback(parseError(response));
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<StarforceHistoryResponseDTO> call, Throwable t) {
-                if (onFailure != null) {
-                    onFailure.callback(t);
-                }
-            }
-        });
+        buildRetrofit()
+                .create(StarforceApi.class)
+                .getStarforceHistoryByCursor(this.apiKey, count, cursor)
+                .enqueue(createCallback(onSuccess, onFailure));
     }
 
     /**
@@ -2787,16 +1921,10 @@ public class MapleStoryApi {
 
         final String date = toDateString(minDate(2022, 11, 25), localDateTime);
 
-        final Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(this.buildClient())
-                .build();
-
-        final CubeApi cubeApi = retrofit.create(CubeApi.class);
-        final Call<CubeHistoryResponseDTO> call = cubeApi.getCubeHistoryByDate(this.apiKey, count, date);
-
-        final Response<CubeHistoryResponseDTO> response = call.execute();
+        final Response<CubeHistoryResponseDTO> response = buildRetrofit()
+                .create(CubeApi.class)
+                .getCubeHistoryByDate(this.apiKey, count, date)
+                .execute();
 
         if (!response.isSuccessful()) {
             throw parseError(response);
@@ -2818,37 +1946,10 @@ public class MapleStoryApi {
 
         final String date = toDateString(minDate(2022, 11, 25), localDateTime);
 
-        final Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(this.buildClient())
-                .build();
-
-        final CubeApi cubeApi = retrofit.create(CubeApi.class);
-        final Call<CubeHistoryResponseDTO> call = cubeApi.getCubeHistoryByDate(this.apiKey, count, date);
-
-        call.enqueue(new Callback<CubeHistoryResponseDTO>() {
-            @SneakyThrows
-            @Override
-            public void onResponse(Call<CubeHistoryResponseDTO> call, Response<CubeHistoryResponseDTO> response) {
-                if (response.isSuccessful()) {
-                    if (onSuccess != null) {
-                        onSuccess.callback(response.body());
-                    }
-                } else {
-                    if (onFailure != null) {
-                        onFailure.callback(parseError(response));
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<CubeHistoryResponseDTO> call, Throwable t) {
-                if (onFailure != null) {
-                    onFailure.callback(t);
-                }
-            }
-        });
+        buildRetrofit()
+                .create(CubeApi.class)
+                .getCubeHistoryByDate(this.apiKey, count, date)
+                .enqueue(createCallback(onSuccess, onFailure));
     }
 
     /**
@@ -2862,16 +1963,10 @@ public class MapleStoryApi {
      */
     public CubeHistoryResponseDTO getCubeHistory(int count, @NonNull String cursor) throws IOException {
 
-        final Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(this.buildClient())
-                .build();
-
-        final CubeApi cubeApi = retrofit.create(CubeApi.class);
-        final Call<CubeHistoryResponseDTO> call = cubeApi.getCubeHistoryByCursor(this.apiKey, count, cursor);
-
-        final Response<CubeHistoryResponseDTO> response = call.execute();
+        final Response<CubeHistoryResponseDTO> response = buildRetrofit()
+                .create(CubeApi.class)
+                .getCubeHistoryByCursor(this.apiKey, count, cursor)
+                .execute();
 
         if (!response.isSuccessful()) {
             throw parseError(response);
@@ -2890,38 +1985,10 @@ public class MapleStoryApi {
      * @param cursor 페이징 처리를 위한 cursor
      */
     public void getCubeHistoryAsync(int count, @NonNull String cursor, SuccessCallback<CubeHistoryResponseDTO> onSuccess, FailureCallback onFailure) {
-
-        final Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(this.buildClient())
-                .build();
-
-        final CubeApi cubeApi = retrofit.create(CubeApi.class);
-        final Call<CubeHistoryResponseDTO> call = cubeApi.getCubeHistoryByCursor(this.apiKey, count, cursor);
-
-        call.enqueue(new Callback<CubeHistoryResponseDTO>() {
-            @SneakyThrows
-            @Override
-            public void onResponse(Call<CubeHistoryResponseDTO> call, Response<CubeHistoryResponseDTO> response) {
-                if (response.isSuccessful()) {
-                    if (onSuccess != null) {
-                        onSuccess.callback(response.body());
-                    }
-                } else {
-                    if (onFailure != null) {
-                        onFailure.callback(parseError(response));
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<CubeHistoryResponseDTO> call, Throwable t) {
-                if (onFailure != null) {
-                    onFailure.callback(t);
-                }
-            }
-        });
+        buildRetrofit()
+                .create(CubeApi.class)
+                .getCubeHistoryByCursor(this.apiKey, count, cursor)
+                .enqueue(createCallback(onSuccess, onFailure));
     }
 
     /**
@@ -2961,16 +2028,10 @@ public class MapleStoryApi {
 
         final String date = toDateString(minDate(2024, 1, 25), localDateTime);
 
-        final Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(this.buildClient())
-                .build();
-
-        final PotentialApi potentialApi = retrofit.create(PotentialApi.class);
-        final Call<PotentialHistoryResponseDTO> call = potentialApi.getPotentialHistoryByDate(this.apiKey, count, date);
-
-        final Response<PotentialHistoryResponseDTO> response = call.execute();
+        final Response<PotentialHistoryResponseDTO> response = buildRetrofit()
+                .create(PotentialApi.class)
+                .getPotentialHistoryByDate(this.apiKey, count, date)
+                .execute();
 
         if (!response.isSuccessful()) {
             throw parseError(response);
@@ -2992,37 +2053,10 @@ public class MapleStoryApi {
 
         final String date = toDateString(minDate(2022, 11, 25), localDateTime);
 
-        final Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(this.buildClient())
-                .build();
-
-        final PotentialApi potentialApi = retrofit.create(PotentialApi.class);
-        final Call<PotentialHistoryResponseDTO> call = potentialApi.getPotentialHistoryByDate(this.apiKey, count, date);
-
-        call.enqueue(new Callback<PotentialHistoryResponseDTO>() {
-            @SneakyThrows
-            @Override
-            public void onResponse(Call<PotentialHistoryResponseDTO> call, Response<PotentialHistoryResponseDTO> response) {
-                if (response.isSuccessful()) {
-                    if (onSuccess != null) {
-                        onSuccess.callback(response.body());
-                    }
-                } else {
-                    if (onFailure != null) {
-                        onFailure.callback(parseError(response));
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<PotentialHistoryResponseDTO> call, Throwable t) {
-                if (onFailure != null) {
-                    onFailure.callback(t);
-                }
-            }
-        });
+        buildRetrofit()
+                .create(PotentialApi.class)
+                .getPotentialHistoryByDate(this.apiKey, count, date)
+                .enqueue(createCallback(onSuccess, onFailure));
     }
 
     /**
@@ -3036,16 +2070,10 @@ public class MapleStoryApi {
      */
     public PotentialHistoryResponseDTO getPotentialHistory(int count, @NonNull String cursor) throws IOException {
 
-        final Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(this.buildClient())
-                .build();
-
-        final PotentialApi potentialApi = retrofit.create(PotentialApi.class);
-        final Call<PotentialHistoryResponseDTO> call = potentialApi.getPotentialHistoryByCursor(this.apiKey, count, cursor);
-
-        final Response<PotentialHistoryResponseDTO> response = call.execute();
+        final Response<PotentialHistoryResponseDTO> response = buildRetrofit()
+                .create(PotentialApi.class)
+                .getPotentialHistoryByCursor(this.apiKey, count, cursor)
+                .execute();
 
         if (!response.isSuccessful()) {
             throw parseError(response);
@@ -3064,38 +2092,10 @@ public class MapleStoryApi {
      * @param cursor 페이징 처리를 위한 cursor
      */
     public void getPotentialHistoryAsync(int count, @NonNull String cursor, SuccessCallback<PotentialHistoryResponseDTO> onSuccess, FailureCallback onFailure) {
-
-        final Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(this.buildClient())
-                .build();
-
-        final PotentialApi potentialApi = retrofit.create(PotentialApi.class);
-        final Call<PotentialHistoryResponseDTO> call = potentialApi.getPotentialHistoryByCursor(this.apiKey, count, cursor);
-
-        call.enqueue(new Callback<PotentialHistoryResponseDTO>() {
-            @SneakyThrows
-            @Override
-            public void onResponse(Call<PotentialHistoryResponseDTO> call, Response<PotentialHistoryResponseDTO> response) {
-                if (response.isSuccessful()) {
-                    if (onSuccess != null) {
-                        onSuccess.callback(response.body());
-                    }
-                } else {
-                    if (onFailure != null) {
-                        onFailure.callback(parseError(response));
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<PotentialHistoryResponseDTO> call, Throwable t) {
-                if (onFailure != null) {
-                    onFailure.callback(t);
-                }
-            }
-        });
+        buildRetrofit()
+                .create(PotentialApi.class)
+                .getPotentialHistoryByCursor(this.apiKey, count, cursor)
+                .enqueue(createCallback(onSuccess, onFailure));
     }
 
     //#endregion
@@ -3361,16 +2361,10 @@ public class MapleStoryApi {
 
         final String date = toDateString(minDate(2023, 12, 22), localDateTime);
 
-        final Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(this.buildClient())
-                .build();
-
-        final RankingApi rankingApi = retrofit.create(RankingApi.class);
-        final Call<OverallRankingResponseDTO> call = rankingApi.getOverallRanking(this.apiKey, date, worldName, worldType, characterClass, ocid, page);
-
-        final Response<OverallRankingResponseDTO> response = call.execute();
+        final Response<OverallRankingResponseDTO> response = buildRetrofit()
+                .create(RankingApi.class)
+                .getOverallRanking(this.apiKey, date, worldName, worldType, characterClass, ocid, page)
+                .execute();
 
         if (!response.isSuccessful()) {
             throw parseError(response);
@@ -3638,37 +2632,10 @@ public class MapleStoryApi {
 
         final String date = toDateString(minDate(2023, 12, 22), localDateTime);
 
-        final Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(this.buildClient())
-                .build();
-
-        final RankingApi rankingApi = retrofit.create(RankingApi.class);
-        final Call<OverallRankingResponseDTO> call = rankingApi.getOverallRanking(this.apiKey, date, worldName, worldType, characterClass, ocid, page);
-
-        call.enqueue(new Callback<OverallRankingResponseDTO>() {
-            @SneakyThrows
-            @Override
-            public void onResponse(Call<OverallRankingResponseDTO> call, Response<OverallRankingResponseDTO> response) {
-                if (response.isSuccessful()) {
-                    if (onSuccess != null) {
-                        onSuccess.callback(response.body());
-                    }
-                } else {
-                    if (onFailure != null) {
-                        onFailure.callback(parseError(response));
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<OverallRankingResponseDTO> call, Throwable t) {
-                if (onFailure != null) {
-                    onFailure.callback(t);
-                }
-            }
-        });
+        buildRetrofit()
+                .create(RankingApi.class)
+                .getOverallRanking(this.apiKey, date, worldName, worldType, characterClass, ocid, page)
+                .enqueue(createCallback(onSuccess, onFailure));
     }
 
     /**
@@ -3734,16 +2701,10 @@ public class MapleStoryApi {
 
         final String date = toDateString(minDate(2023, 12, 22), localDateTime);
 
-        final Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(this.buildClient())
-                .build();
-
-        final RankingApi rankingApi = retrofit.create(RankingApi.class);
-        final Call<UnionRankingResponseDTO> call = rankingApi.getUnionRanking(this.apiKey, date, worldName, ocid, page);
-
-        final Response<UnionRankingResponseDTO> response = call.execute();
+        final Response<UnionRankingResponseDTO> response = buildRetrofit()
+                .create(RankingApi.class)
+                .getUnionRanking(this.apiKey, date, worldName, ocid, page)
+                .execute();
 
         if (!response.isSuccessful()) {
             throw parseError(response);
@@ -3815,37 +2776,10 @@ public class MapleStoryApi {
 
         final String date = toDateString(minDate(2023, 12, 22), localDateTime);
 
-        final Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(this.buildClient())
-                .build();
-
-        final RankingApi rankingApi = retrofit.create(RankingApi.class);
-        final Call<UnionRankingResponseDTO> call = rankingApi.getUnionRanking(this.apiKey, date, worldName, ocid, page);
-
-        call.enqueue(new Callback<UnionRankingResponseDTO>() {
-            @SneakyThrows
-            @Override
-            public void onResponse(Call<UnionRankingResponseDTO> call, Response<UnionRankingResponseDTO> response) {
-                if (response.isSuccessful()) {
-                    if (onSuccess != null) {
-                        onSuccess.callback(response.body());
-                    }
-                } else {
-                    if (onFailure != null) {
-                        onFailure.callback(parseError(response));
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<UnionRankingResponseDTO> call, Throwable t) {
-                if (onFailure != null) {
-                    onFailure.callback(t);
-                }
-            }
-        });
+        buildRetrofit()
+                .create(RankingApi.class)
+                .getUnionRanking(this.apiKey, date, worldName, ocid, page)
+                .enqueue(createCallback(onSuccess, onFailure));
     }
 
     /**
@@ -3913,16 +2847,10 @@ public class MapleStoryApi {
 
         final String date = toDateString(minDate(2023, 12, 22), localDateTime);
 
-        final Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(this.buildClient())
-                .build();
-
-        final RankingApi rankingApi = retrofit.create(RankingApi.class);
-        final Call<GuildRankingResponseDTO> call = rankingApi.getGuildRanking(this.apiKey, date, worldName, rankingType, guildName, page);
-
-        final Response<GuildRankingResponseDTO> response = call.execute();
+        final Response<GuildRankingResponseDTO> response = buildRetrofit()
+                .create(RankingApi.class)
+                .getGuildRanking(this.apiKey, date, worldName, rankingType, guildName, page)
+                .execute();
 
         if (!response.isSuccessful()) {
             throw parseError(response);
@@ -3996,37 +2924,10 @@ public class MapleStoryApi {
 
         final String date = toDateString(minDate(2023, 12, 22), localDateTime);
 
-        final Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(this.buildClient())
-                .build();
-
-        final RankingApi rankingApi = retrofit.create(RankingApi.class);
-        final Call<GuildRankingResponseDTO> call = rankingApi.getGuildRanking(this.apiKey, date, worldName, rankingType, guildName, page);
-
-        call.enqueue(new Callback<GuildRankingResponseDTO>() {
-            @SneakyThrows
-            @Override
-            public void onResponse(Call<GuildRankingResponseDTO> call, Response<GuildRankingResponseDTO> response) {
-                if (response.isSuccessful()) {
-                    if (onSuccess != null) {
-                        onSuccess.callback(response.body());
-                    }
-                } else {
-                    if (onFailure != null) {
-                        onFailure.callback(parseError(response));
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<GuildRankingResponseDTO> call, Throwable t) {
-                if (onFailure != null) {
-                    onFailure.callback(t);
-                }
-            }
-        });
+        buildRetrofit()
+                .create(RankingApi.class)
+                .getGuildRanking(this.apiKey, date, worldName, rankingType, guildName, page)
+                .enqueue(createCallback(onSuccess, onFailure));
     }
 
     /**
@@ -4054,7 +2955,6 @@ public class MapleStoryApi {
      *                       버닝2<br>
      *                       버닝3<br>
      * @param difficulty     구간 (0:일반, 1:통달)
-     * @param characterClass 직업 및 전직
      * @param characterClass 직업 및 전직<br>
      *                       초보자-전체 전직<br>
      *                       전사-전체 전직<br>
@@ -4184,7 +3084,6 @@ public class MapleStoryApi {
      *                       버닝2<br>
      *                       버닝3<br>
      * @param difficulty     구간 (0:일반, 1:통달)
-     * @param characterClass 직업 및 전직
      * @param characterClass 직업 및 전직<br>
      *                       초보자-전체 전직<br>
      *                       전사-전체 전직<br>
@@ -4290,16 +3189,10 @@ public class MapleStoryApi {
 
         final String date = toDateString(minDate(2023, 12, 22), localDateTime);
 
-        final Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(this.buildClient())
-                .build();
-
-        final RankingApi rankingApi = retrofit.create(RankingApi.class);
-        final Call<DojangRankingResponseDTO> call = rankingApi.getDojangRanking(this.apiKey, date, worldName, difficulty, characterClass, ocid, page);
-
-        final Response<DojangRankingResponseDTO> response = call.execute();
+        final Response<DojangRankingResponseDTO> response = buildRetrofit()
+                .create(RankingApi.class)
+                .getDojangRanking(this.apiKey, date, worldName, difficulty, characterClass, ocid, page)
+                .execute();
 
         if (!response.isSuccessful()) {
             throw parseError(response);
@@ -4333,7 +3226,6 @@ public class MapleStoryApi {
      *                       버닝2<br>
      *                       버닝3<br>
      * @param difficulty     구간 (0:일반, 1:통달)
-     * @param characterClass 직업 및 전직
      * @param characterClass 직업 및 전직<br>
      *                       초보자-전체 전직<br>
      *                       전사-전체 전직<br>
@@ -4463,7 +3355,6 @@ public class MapleStoryApi {
      *                       버닝2<br>
      *                       버닝3<br>
      * @param difficulty     구간 (0:일반, 1:통달)
-     * @param characterClass 직업 및 전직
      * @param characterClass 직업 및 전직<br>
      *                       초보자-전체 전직<br>
      *                       전사-전체 전직<br>
@@ -4569,37 +3460,10 @@ public class MapleStoryApi {
 
         final String date = toDateString(minDate(2023, 12, 22), localDateTime);
 
-        final Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(this.buildClient())
-                .build();
-
-        final RankingApi rankingApi = retrofit.create(RankingApi.class);
-        final Call<DojangRankingResponseDTO> call = rankingApi.getDojangRanking(this.apiKey, date, worldName, difficulty, characterClass, ocid, page);
-
-        call.enqueue(new Callback<DojangRankingResponseDTO>() {
-            @SneakyThrows
-            @Override
-            public void onResponse(Call<DojangRankingResponseDTO> call, Response<DojangRankingResponseDTO> response) {
-                if (response.isSuccessful()) {
-                    if (onSuccess != null) {
-                        onSuccess.callback(response.body());
-                    }
-                } else {
-                    if (onFailure != null) {
-                        onFailure.callback(parseError(response));
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<DojangRankingResponseDTO> call, Throwable t) {
-                if (onFailure != null) {
-                    onFailure.callback(t);
-                }
-            }
-        });
+        buildRetrofit()
+                .create(RankingApi.class)
+                .getDojangRanking(this.apiKey, date, worldName, difficulty, characterClass, ocid, page)
+                .enqueue(createCallback(onSuccess, onFailure));
     }
 
     /**
@@ -4662,16 +3526,19 @@ public class MapleStoryApi {
      * @param localDateTime 조회 기준일 (KST)
      */
     public TheSeedRankingResponseDTO getTheSeedRanking(String worldName, String ocid, Integer page, LocalDateTime localDateTime) throws IOException {
+
         final String date = toDateString(minDate(2023, 12, 22), localDateTime);
 
-        final Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(this.buildClient())
-                .build();
+        final Response<TheSeedRankingResponseDTO> response = buildRetrofit()
+                .create(RankingApi.class)
+                .getTheSeedRanking(this.apiKey, date, worldName, ocid, page)
+                .execute();
 
-        final RankingApi rankingApi = retrofit.create(RankingApi.class);
-        return rankingApi.getTheSeedRanking(this.apiKey, date, worldName, ocid, page).execute().body();
+        if (!response.isSuccessful()) {
+            throw parseError(response);
+        }
+
+        return response.body();
     }
 
     /**
@@ -4736,37 +3603,10 @@ public class MapleStoryApi {
     public void getTheSeedRankingAsync(String worldName, String ocid, Integer page, @NonNull LocalDateTime localDateTime, SuccessCallback<TheSeedRankingResponseDTO> onSuccess, FailureCallback onFailure) {
         final String date = toDateString(minDate(2023, 12, 22), localDateTime);
 
-        final Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(this.buildClient())
-                .build();
-
-        final RankingApi rankingApi = retrofit.create(RankingApi.class);
-        final Call<TheSeedRankingResponseDTO> call = rankingApi.getTheSeedRanking(this.apiKey, date, worldName, ocid, page);
-
-        call.enqueue(new Callback<TheSeedRankingResponseDTO>() {
-            @SneakyThrows
-            @Override
-            public void onResponse(Call<TheSeedRankingResponseDTO> call, Response<TheSeedRankingResponseDTO> response) {
-                if (response.isSuccessful()) {
-                    if (onSuccess != null) {
-                        onSuccess.callback(response.body());
-                    }
-                } else {
-                    if (onFailure != null) {
-                        onFailure.callback(parseError(response));
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<TheSeedRankingResponseDTO> call, Throwable t) {
-                if (onFailure != null) {
-                    onFailure.callback(t);
-                }
-            }
-        });
+        buildRetrofit()
+                .create(RankingApi.class)
+                .getTheSeedRanking(this.apiKey, date, worldName, ocid, page)
+                .enqueue(createCallback(onSuccess, onFailure));
     }
 
     /**
@@ -4795,16 +3635,10 @@ public class MapleStoryApi {
     public AchievementRankingResponseDTO getAchievementRanking(String ocid, Integer page, @NonNull LocalDateTime localDateTime) throws IOException {
         final String date = toDateString(minDate(2023, 12, 22), localDateTime);
 
-        final Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(this.buildClient())
-                .build();
-
-        final RankingApi rankingApi = retrofit.create(RankingApi.class);
-        final Call<AchievementRankingResponseDTO> call = rankingApi.getAchievementRanking(this.apiKey, date, ocid, page);
-
-        final Response<AchievementRankingResponseDTO> response = call.execute();
+        final Response<AchievementRankingResponseDTO> response = buildRetrofit()
+                .create(RankingApi.class)
+                .getAchievementRanking(this.apiKey, date, ocid, page)
+                .execute();
 
         if (!response.isSuccessful()) {
             throw parseError(response);
@@ -4839,37 +3673,10 @@ public class MapleStoryApi {
     public void getAchievementRankingAsync(String ocid, Integer page, @NonNull LocalDateTime localDateTime, SuccessCallback<AchievementRankingResponseDTO> onSuccess, FailureCallback onFailure) {
         final String date = toDateString(minDate(2023, 12, 22), localDateTime);
 
-        final Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(this.buildClient())
-                .build();
-
-        final RankingApi rankingApi = retrofit.create(RankingApi.class);
-        final Call<AchievementRankingResponseDTO> call = rankingApi.getAchievementRanking(this.apiKey, date, ocid, page);
-
-        call.enqueue(new Callback<AchievementRankingResponseDTO>() {
-            @SneakyThrows
-            @Override
-            public void onResponse(Call<AchievementRankingResponseDTO> call, Response<AchievementRankingResponseDTO> response) {
-                if (response.isSuccessful()) {
-                    if (onSuccess != null) {
-                        onSuccess.callback(response.body());
-                    }
-                } else {
-                    if (onFailure != null) {
-                        onFailure.callback(parseError(response));
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<AchievementRankingResponseDTO> call, Throwable t) {
-                if (onFailure != null) {
-                    onFailure.callback(t);
-                }
-            }
-        });
+        buildRetrofit()
+                .create(RankingApi.class)
+                .getAchievementRanking(this.apiKey, date, ocid, page)
+                .enqueue(createCallback(onSuccess, onFailure));
     }
 
     //#endregion
@@ -4894,8 +3701,8 @@ public class MapleStoryApi {
                         "</soap:Envelope>";
         final RequestBody body = RequestBody.create(MediaType.parse("text/xml; charset=utf-8"), soapEnvelop);
 
-        final InspectionInfoApi inspectionInfoApi = retrofit.create(InspectionInfoApi.class);
-        final Call<String> call = inspectionInfoApi.getInspectionInfo(body);
+        final InspectionInfoApi api = retrofit.create(InspectionInfoApi.class);
+        final Call<String> call = api.getInspectionInfo(body);
 
         final Response<String> response = call.execute();
 
@@ -4926,8 +3733,8 @@ public class MapleStoryApi {
                         "</soap:Envelope>";
         final RequestBody body = RequestBody.create(MediaType.parse("text/xml; charset=utf-8"), soapEnvelop);
 
-        final InspectionInfoApi inspectionInfoApi = retrofit.create(InspectionInfoApi.class);
-        final Call<String> call = inspectionInfoApi.getInspectionInfo(body);
+        final InspectionInfoApi api = retrofit.create(InspectionInfoApi.class);
+        final Call<String> call = api.getInspectionInfo(body);
 
         call.enqueue(new Callback<String>() {
             @SneakyThrows
@@ -4953,11 +3760,44 @@ public class MapleStoryApi {
         });
     }
 
+    private Retrofit buildRetrofit() {
+        return new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(this.buildClient())
+                .build();
+    }
+
     private OkHttpClient buildClient() {
         return new OkHttpClient.Builder()
                 .readTimeout(timeout, TimeUnit.MILLISECONDS)
                 .connectTimeout(timeout, TimeUnit.MILLISECONDS)
                 .build();
+    }
+
+    private <DTO> Callback<DTO> createCallback(SuccessCallback<DTO> onSuccess, FailureCallback onFailure) {
+        return new Callback<DTO>() {
+            @SneakyThrows
+            @Override
+            public void onResponse(Call<DTO> call, Response<DTO> response) {
+                if (response.isSuccessful()) {
+                    if (onSuccess != null) {
+                        onSuccess.callback(response.body());
+                    }
+                } else {
+                    if (onFailure != null) {
+                        onFailure.callback(parseError(response));
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<DTO> call, Throwable t) {
+                if (onFailure != null) {
+                    onFailure.callback(t);
+                }
+            }
+        };
     }
 
     private static MapleStoryApiException parseError(Response<?> response) throws IOException {
