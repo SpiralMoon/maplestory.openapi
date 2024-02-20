@@ -1,8 +1,8 @@
+import { PotentialResultOptionDtoBody } from '../../response/history/potentialHistoryResponseDtoBody';
 import {
   PotentialOptionGrade,
   potentialOptionGradeFromString,
 } from '../potentialOptionGrade';
-import { PotentialResultOptionDtoBody } from '../../response/history/potentialHistoryResponseDtoBody';
 
 /**
  * 잠재능력 재설정 결과 옵션 정보

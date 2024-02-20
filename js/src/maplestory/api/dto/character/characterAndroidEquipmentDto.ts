@@ -1,8 +1,8 @@
 import { CharacterAndroidCashItemEquipmentDto } from './characterAndroidCashItemEquipmentDto';
 import { CharacterAndroidEquipmentFaceDto } from './characterAndroidEquipmentFaceDto';
 import { CharacterAndroidEquipmentHairDto } from './characterAndroidEquipmentHairDto';
-import { CharacterAndroidEquipmentDtoBody } from '../../response/character/characterAndroidEquipmentDtoBody';
 import { CharacterAndroidEquipmentPresetDto } from './characterAndroidEquipmentPresetDto'
+import { CharacterAndroidEquipmentDtoBody } from '../../response/character/characterAndroidEquipmentDtoBody';
 
 /**
  * 캐릭터 안드로이드 장비 정보

@@ -1,4 +1,4 @@
-import axios, { AxiosError } from 'axios';
+import axios, { Axios, AxiosError } from 'axios';
 import dayjs, { Dayjs } from 'dayjs';
 import timezone from 'dayjs/plugin/timezone';
 import utc from 'dayjs/plugin/utc';
@@ -27,6 +27,7 @@ import { CharacterVMatrixDto } from './dto/character/characterVMatrixDto';
 import { GuildBasicDto } from './dto/guild/guildBasicDto';
 import { GuildDto } from './dto/guild/guildDto';
 import { CubeHistoryResponseDto } from './dto/history/cubeHistoryResponseDto';
+import { PotentialHistoryResponseDto } from './dto/history/potentialHistoryResponseDto';
 import { StarforceHistoryResponseDto } from './dto/history/starforceHistoryResponseDto';
 import { InspectionInfoDto } from './dto/inspectionInfoDto';
 import { AchievementRankingResponseDto } from './dto/ranking/achievementRankingResponseDto';
@@ -62,7 +63,10 @@ import { CharacterVMatrixDtoBody } from './response/character/characterVMatrixDt
 import { GuildBasicDtoBody } from './response/guild/guildBasicDtoBody';
 import { GuildDtoBody } from './response/guild/guildDtoBody';
 import { CubeHistoryResponseDtoBody } from './response/history/cubeHistoryResponseDtoBody';
+import { PotentialHistoryResponseDtoBody } from './response/history/potentialHistoryResponseDtoBody';
+import { StarforceHistoryResponseDtoBody } from './response/history/starforceHistoryResponseDtoBody';
 import { InspectionInfoSoapBody } from './response/inspectionInfoSoapBody';
+import { AchievementRankingResponseDtoBody } from './response/ranking/achievementRankingResponseDtoBody';
 import { DojangRankingResponseDtoBody } from './response/ranking/dojangRankingResponseDtoBody';
 import { GuildRankingResponseDtoBody } from './response/ranking/guildRankingResponseDtoBody';
 import { OverallRankingResponseDtoBody } from './response/ranking/overallRankingResponseDtoBody';
@@ -71,10 +75,6 @@ import { UnionRankingResponseDtoBody } from './response/ranking/unionRankingResp
 import { UnionArtifactDtoBody } from './response/union/unionArtifactDtoBody';
 import { UnionDtoBody } from './response/union/unionDtoBody';
 import { UnionRaiderDtoBody } from './response/union/unionRaiderDtoBody';
-import { StarforceHistoryResponseDtoBody } from './response/history/starforceHistoryResponseDtoBody';
-import { AchievementRankingResponseDtoBody } from './response/ranking/achievementRankingResponseDtoBody';
-import { PotentialHistoryResponseDto } from './dto/history/potentialHistoryResponseDto';
-import { PotentialHistoryResponseDtoBody } from './response/history/potentialHistoryResponseDtoBody';
 
 dayjs.extend(timezone);
 dayjs.extend(utc);
@@ -86,15 +86,43 @@ dayjs.extend(utc);
 class MapleStoryApi {
   private readonly apiKey: string;
 
-  private static BASE_URL: string = 'https://open.api.nexon.com/';
+  private readonly client: Axios;
 
-  private static kstOffset: number = 540;
+  private static readonly BASE_URL: string = 'https://open.api.nexon.com/';
 
-  public timeout: number;
+  private static readonly DEFAULT_TIMEOUT: number = 5000;
+
+  private static readonly kstOffset: number = 540;
+
+  get timeout() {
+    return this.client.defaults.timeout!;
+  }
+
+  set timeout(value: number) {
+    this.client.defaults.timeout = value;
+  }
 
   public constructor(apiKey: string) {
     this.apiKey = apiKey;
-    this.timeout = 5000;
+    this.client = axios.create({
+      baseURL: MapleStoryApi.BASE_URL,
+      timeout: MapleStoryApi.DEFAULT_TIMEOUT,
+      headers: {
+        'x-nxopen-api-key': this.apiKey,
+      },
+    });
+    this.client.interceptors.response.use(
+      (response) => response,
+      (error) => {
+
+        if (error instanceof AxiosError) {
+          const errorBody = (error as AxiosError<MapleStoryErrorBody>).response!.data;
+
+          throw new MapleStoryApiError(errorBody);
+        }
+
+        throw  error;
+      });
   }
 
   //#region 캐릭터 정보 조회
@@ -108,27 +136,14 @@ class MapleStoryApi {
    * @param characterName    캐릭터 명
    */
   public async getCharacter(characterName: string): Promise<CharacterDto> {
-    try {
-      const path = 'maplestory/v1/id';
-      const response = await axios.get<CharacterDtoBody>(path, {
-        baseURL: MapleStoryApi.BASE_URL,
-        timeout: this.timeout,
-        headers: this.buildHeaders(),
-        params: {
-          character_name: characterName,
-        },
-      });
+    const path = 'maplestory/v1/id';
+    const { data } = await this.client.get<CharacterDtoBody>(path, {
+      params: {
+        character_name: characterName,
+      },
+    });
 
-      return new CharacterDto(response.data);
-    } catch (e: unknown) {
-      if (e instanceof AxiosError) {
-        const errorBody = (e as AxiosError<MapleStoryErrorBody>).response!.data;
-
-        throw new MapleStoryApiError(errorBody);
-      }
-
-      throw e;
-    }
+    return new CharacterDto(data);
   }
 
   /**
@@ -148,6 +163,7 @@ class MapleStoryApi {
       dateOffset: 1,
     }),
   ): Promise<CharacterBasicDto> {
+    const path = 'maplestory/v1/character/basic';
     const query: CharacterApiQuery = {
       ocid: ocid,
       date: MapleStoryApi.toDateString(
@@ -159,26 +175,11 @@ class MapleStoryApi {
         dateOptions,
       ),
     };
+    const { data } = await this.client.get<CharacterBasicDtoBody>(path, {
+      params: query,
+    });
 
-    try {
-      const path = 'maplestory/v1/character/basic';
-      const response = await axios.get<CharacterBasicDtoBody>(path, {
-        baseURL: MapleStoryApi.BASE_URL,
-        timeout: this.timeout,
-        headers: this.buildHeaders(),
-        params: query,
-      });
-
-      return new CharacterBasicDto(response.data);
-    } catch (e: any) {
-      if (e instanceof AxiosError) {
-        const errorBody = (e as AxiosError<MapleStoryErrorBody>).response!.data;
-
-        throw new MapleStoryApiError(errorBody);
-      }
-
-      throw e;
-    }
+    return new CharacterBasicDto(data);
   }
 
   /**
@@ -198,6 +199,7 @@ class MapleStoryApi {
       dateOffset: 1,
     }),
   ): Promise<CharacterPopularityDto> {
+    const path = 'maplestory/v1/character/popularity';
     const query: CharacterApiQuery = {
       ocid: ocid,
       date: MapleStoryApi.toDateString(
@@ -209,26 +211,11 @@ class MapleStoryApi {
         dateOptions,
       ),
     };
+    const { data } = await this.client.get<CharacterPopularityDtoBody>(path, {
+      params: query,
+    });
 
-    try {
-      const path = 'maplestory/v1/character/popularity';
-      const response = await axios.get<CharacterPopularityDtoBody>(path, {
-        baseURL: MapleStoryApi.BASE_URL,
-        timeout: this.timeout,
-        headers: this.buildHeaders(),
-        params: query,
-      });
-
-      return new CharacterPopularityDto(response.data);
-    } catch (e: unknown) {
-      if (e instanceof AxiosError) {
-        const errorBody = (e as AxiosError<MapleStoryErrorBody>).response!.data;
-
-        throw new MapleStoryApiError(errorBody);
-      }
-
-      throw e;
-    }
+    return new CharacterPopularityDto(data);
   }
 
   /**
@@ -248,6 +235,7 @@ class MapleStoryApi {
       dateOffset: 1,
     }),
   ): Promise<CharacterStatDto> {
+    const path = 'maplestory/v1/character/stat';
     const query: CharacterApiQuery = {
       ocid: ocid,
       date: MapleStoryApi.toDateString(
@@ -256,30 +244,14 @@ class MapleStoryApi {
           month: 12,
           day: 21,
         },
-
         dateOptions,
       ),
     };
+    const { data } = await this.client.get<CharacterStatDtoBody>(path, {
+      params: query,
+    });
 
-    try {
-      const path = 'maplestory/v1/character/stat';
-      const response = await axios.get<CharacterStatDtoBody>(path, {
-        baseURL: MapleStoryApi.BASE_URL,
-        timeout: this.timeout,
-        headers: this.buildHeaders(),
-        params: query,
-      });
-
-      return new CharacterStatDto(response.data);
-    } catch (e: unknown) {
-      if (e instanceof AxiosError) {
-        const errorBody = (e as AxiosError<MapleStoryErrorBody>).response!.data;
-
-        throw new MapleStoryApiError(errorBody);
-      }
-
-      throw e;
-    }
+    return new CharacterStatDto(data);
   }
 
   /**
@@ -299,6 +271,7 @@ class MapleStoryApi {
       dateOffset: 1,
     }),
   ): Promise<CharacterHyperStatDto> {
+    const path = 'maplestory/v1/character/hyper-stat';
     const query: CharacterApiQuery = {
       ocid: ocid,
       date: MapleStoryApi.toDateString(
@@ -307,30 +280,14 @@ class MapleStoryApi {
           month: 12,
           day: 21,
         },
-
         dateOptions,
       ),
     };
+    const { data } = await this.client.get<CharacterHyperStatDtoBody>(path, {
+      params: query,
+    });
 
-    try {
-      const path = 'maplestory/v1/character/hyper-stat';
-      const response = await axios.get<CharacterHyperStatDtoBody>(path, {
-        baseURL: MapleStoryApi.BASE_URL,
-        timeout: this.timeout,
-        headers: this.buildHeaders(),
-        params: query,
-      });
-
-      return new CharacterHyperStatDto(response.data);
-    } catch (e: unknown) {
-      if (e instanceof AxiosError) {
-        const errorBody = (e as AxiosError<MapleStoryErrorBody>).response!.data;
-
-        throw new MapleStoryApiError(errorBody);
-      }
-
-      throw e;
-    }
+    return new CharacterHyperStatDto(data);
   }
 
   /**
@@ -350,6 +307,7 @@ class MapleStoryApi {
       dateOffset: 1,
     }),
   ): Promise<CharacterPropensityDto> {
+    const path = 'maplestory/v1/character/propensity';
     const query: CharacterApiQuery = {
       ocid: ocid,
       date: MapleStoryApi.toDateString(
@@ -361,26 +319,11 @@ class MapleStoryApi {
         dateOptions,
       ),
     };
+    const { data } = await this.client.get<CharacterPropensityDtoBody>(path, {
+      params: query,
+    });
 
-    try {
-      const path = 'maplestory/v1/character/propensity';
-      const response = await axios.get<CharacterPropensityDtoBody>(path, {
-        baseURL: MapleStoryApi.BASE_URL,
-        timeout: this.timeout,
-        headers: this.buildHeaders(),
-        params: query,
-      });
-
-      return new CharacterPropensityDto(response.data);
-    } catch (e: unknown) {
-      if (e instanceof AxiosError) {
-        const errorBody = (e as AxiosError<MapleStoryErrorBody>).response!.data;
-
-        throw new MapleStoryApiError(errorBody);
-      }
-
-      throw e;
-    }
+    return new CharacterPropensityDto(data);
   }
 
   /**
@@ -400,6 +343,7 @@ class MapleStoryApi {
       dateOffset: 1,
     }),
   ): Promise<CharacterAbilityDto> {
+    const path = 'maplestory/v1/character/ability';
     const query: CharacterApiQuery = {
       ocid: ocid,
       date: MapleStoryApi.toDateString(
@@ -408,30 +352,14 @@ class MapleStoryApi {
           month: 12,
           day: 21,
         },
-
         dateOptions,
       ),
     };
+    const { data } = await this.client.get<CharacterAbilityDtoBody>(path, {
+      params: query,
+    });
 
-    try {
-      const path = 'maplestory/v1/character/ability';
-      const response = await axios.get<CharacterAbilityDtoBody>(path, {
-        baseURL: MapleStoryApi.BASE_URL,
-        timeout: this.timeout,
-        headers: this.buildHeaders(),
-        params: query,
-      });
-
-      return new CharacterAbilityDto(response.data);
-    } catch (e: unknown) {
-      if (e instanceof AxiosError) {
-        const errorBody = (e as AxiosError<MapleStoryErrorBody>).response!.data;
-
-        throw new MapleStoryApiError(errorBody);
-      }
-
-      throw e;
-    }
+    return new CharacterAbilityDto(data);
   }
 
   /**
@@ -451,6 +379,7 @@ class MapleStoryApi {
       dateOffset: 1,
     }),
   ): Promise<CharacterItemEquipmentDto> {
+    const path = 'maplestory/v1/character/item-equipment';
     const query: CharacterApiQuery = {
       ocid: ocid,
       date: MapleStoryApi.toDateString(
@@ -459,30 +388,14 @@ class MapleStoryApi {
           month: 12,
           day: 21,
         },
-
         dateOptions,
       ),
     };
+    const { data } = await this.client.get<CharacterItemEquipmentDtoBody>(path, {
+      params: query,
+    });
 
-    try {
-      const path = 'maplestory/v1/character/item-equipment';
-      const response = await axios.get<CharacterItemEquipmentDtoBody>(path, {
-        baseURL: MapleStoryApi.BASE_URL,
-        timeout: this.timeout,
-        headers: this.buildHeaders(),
-        params: query,
-      });
-
-      return new CharacterItemEquipmentDto(response.data);
-    } catch (e: unknown) {
-      if (e instanceof AxiosError) {
-        const errorBody = (e as AxiosError<MapleStoryErrorBody>).response!.data;
-
-        throw new MapleStoryApiError(errorBody);
-      }
-
-      throw e;
-    }
+    return new CharacterItemEquipmentDto(data);
   }
 
   /**
@@ -502,6 +415,7 @@ class MapleStoryApi {
       dateOffset: 1,
     }),
   ): Promise<CharacterCashItemEquipmentDto> {
+    const path = 'maplestory/v1/character/cashitem-equipment';
     const query: CharacterApiQuery = {
       ocid: ocid,
       date: MapleStoryApi.toDateString(
@@ -513,29 +427,14 @@ class MapleStoryApi {
         dateOptions,
       ),
     };
+    const { data } = await this.client.get<CharacterCashItemEquipmentDtoBody>(
+      path,
+      {
+        params: query,
+      },
+    );
 
-    try {
-      const path = 'maplestory/v1/character/cashitem-equipment';
-      const response = await axios.get<CharacterCashItemEquipmentDtoBody>(
-        path,
-        {
-          baseURL: MapleStoryApi.BASE_URL,
-          timeout: this.timeout,
-          headers: this.buildHeaders(),
-          params: query,
-        },
-      );
-
-      return new CharacterCashItemEquipmentDto(response.data);
-    } catch (e: unknown) {
-      if (e instanceof AxiosError) {
-        const errorBody = (e as AxiosError<MapleStoryErrorBody>).response!.data;
-
-        throw new MapleStoryApiError(errorBody);
-      }
-
-      throw e;
-    }
+    return new CharacterCashItemEquipmentDto(data);
   }
 
   /**
@@ -555,6 +454,7 @@ class MapleStoryApi {
       dateOffset: 1,
     }),
   ): Promise<CharacterSymbolEquipmentDto> {
+    const path = 'maplestory/v1/character/symbol-equipment';
     const query: CharacterApiQuery = {
       ocid: ocid,
       date: MapleStoryApi.toDateString(
@@ -563,30 +463,14 @@ class MapleStoryApi {
           month: 12,
           day: 21,
         },
-
         dateOptions,
       ),
     };
+    const { data } = await this.client.get<CharacterSymbolEquipmentDtoBody>(path, {
+      params: query,
+    });
 
-    try {
-      const path = 'maplestory/v1/character/symbol-equipment';
-      const response = await axios.get<CharacterSymbolEquipmentDtoBody>(path, {
-        baseURL: MapleStoryApi.BASE_URL,
-        timeout: this.timeout,
-        headers: this.buildHeaders(),
-        params: query,
-      });
-
-      return new CharacterSymbolEquipmentDto(response.data);
-    } catch (e: unknown) {
-      if (e instanceof AxiosError) {
-        const errorBody = (e as AxiosError<MapleStoryErrorBody>).response!.data;
-
-        throw new MapleStoryApiError(errorBody);
-      }
-
-      throw e;
-    }
+    return new CharacterSymbolEquipmentDto(data);
   }
 
   /**
@@ -606,6 +490,7 @@ class MapleStoryApi {
       dateOffset: 1,
     }),
   ): Promise<CharacterSetEffectDto> {
+    const path = 'maplestory/v1/character/set-effect';
     const query: CharacterApiQuery = {
       ocid: ocid,
       date: MapleStoryApi.toDateString(
@@ -614,30 +499,14 @@ class MapleStoryApi {
           month: 12,
           day: 21,
         },
-
         dateOptions,
       ),
     };
+    const { data } = await this.client.get<CharacterSetEffectDtoBody>(path, {
+      params: query,
+    });
 
-    try {
-      const path = 'maplestory/v1/character/set-effect';
-      const response = await axios.get<CharacterSetEffectDtoBody>(path, {
-        baseURL: MapleStoryApi.BASE_URL,
-        timeout: this.timeout,
-        headers: this.buildHeaders(),
-        params: query,
-      });
-
-      return new CharacterSetEffectDto(response.data);
-    } catch (e: unknown) {
-      if (e instanceof AxiosError) {
-        const errorBody = (e as AxiosError<MapleStoryErrorBody>).response!.data;
-
-        throw new MapleStoryApiError(errorBody);
-      }
-
-      throw e;
-    }
+    return new CharacterSetEffectDto(data);
   }
 
   /**
@@ -657,6 +526,7 @@ class MapleStoryApi {
       dateOffset: 1,
     }),
   ): Promise<CharacterBeautyEquipmentDto> {
+    const path = 'maplestory/v1/character/beauty-equipment';
     const query: CharacterApiQuery = {
       ocid: ocid,
       date: MapleStoryApi.toDateString(
@@ -668,26 +538,11 @@ class MapleStoryApi {
         dateOptions,
       ),
     };
+    const { data } = await this.client.get<CharacterBeautyEquipmentDtoBody>(path, {
+      params: query,
+    });
 
-    try {
-      const path = 'maplestory/v1/character/beauty-equipment';
-      const response = await axios.get<CharacterBeautyEquipmentDtoBody>(path, {
-        baseURL: MapleStoryApi.BASE_URL,
-        timeout: this.timeout,
-        headers: this.buildHeaders(),
-        params: query,
-      });
-
-      return new CharacterBeautyEquipmentDto(response.data);
-    } catch (e: unknown) {
-      if (e instanceof AxiosError) {
-        const errorBody = (e as AxiosError<MapleStoryErrorBody>).response!.data;
-
-        throw new MapleStoryApiError(errorBody);
-      }
-
-      throw e;
-    }
+    return new CharacterBeautyEquipmentDto(data);
   }
 
   /**
@@ -707,6 +562,7 @@ class MapleStoryApi {
       dateOffset: 1,
     }),
   ): Promise<CharacterAndroidEquipmentDto> {
+    const path = 'maplestory/v1/character/android-equipment';
     const query: CharacterApiQuery = {
       ocid: ocid,
       date: MapleStoryApi.toDateString(
@@ -718,26 +574,11 @@ class MapleStoryApi {
         dateOptions,
       ),
     };
+    const { data } = await this.client.get<CharacterAndroidEquipmentDtoBody>(path, {
+      params: query,
+    });
 
-    try {
-      const path = 'maplestory/v1/character/android-equipment';
-      const response = await axios.get<CharacterAndroidEquipmentDtoBody>(path, {
-        baseURL: MapleStoryApi.BASE_URL,
-        timeout: this.timeout,
-        headers: this.buildHeaders(),
-        params: query,
-      });
-
-      return new CharacterAndroidEquipmentDto(response.data);
-    } catch (e: unknown) {
-      if (e instanceof AxiosError) {
-        const errorBody = (e as AxiosError<MapleStoryErrorBody>).response!.data;
-
-        throw new MapleStoryApiError(errorBody);
-      }
-
-      throw e;
-    }
+    return new CharacterAndroidEquipmentDto(data);
   }
 
   /**
@@ -757,6 +598,7 @@ class MapleStoryApi {
       dateOffset: 1,
     }),
   ): Promise<CharacterPetEquipmentDto> {
+    const path = 'maplestory/v1/character/pet-equipment';
     const query: CharacterApiQuery = {
       ocid: ocid,
       date: MapleStoryApi.toDateString(
@@ -765,30 +607,14 @@ class MapleStoryApi {
           month: 12,
           day: 21,
         },
-
         dateOptions,
       ),
     };
+    const { data } = await this.client.get<CharacterPetEquipmentDtoBody>(path, {
+      params: query,
+    });
 
-    try {
-      const path = 'maplestory/v1/character/pet-equipment';
-      const response = await axios.get<CharacterPetEquipmentDtoBody>(path, {
-        baseURL: MapleStoryApi.BASE_URL,
-        timeout: this.timeout,
-        headers: this.buildHeaders(),
-        params: query,
-      });
-
-      return new CharacterPetEquipmentDto(response.data);
-    } catch (e: unknown) {
-      if (e instanceof AxiosError) {
-        const errorBody = (e as AxiosError<MapleStoryErrorBody>).response!.data;
-
-        throw new MapleStoryApiError(errorBody);
-      }
-
-      throw e;
-    }
+    return new CharacterPetEquipmentDto(data);
   }
 
   /**
@@ -821,6 +647,7 @@ class MapleStoryApi {
       dateOffset: 1,
     }),
   ): Promise<CharacterSkillDto> {
+    const path = 'maplestory/v1/character/skill';
     const query: CharacterSkillApiQuery = {
       ocid: ocid,
       character_skill_grade: characterSkillGrade,
@@ -830,30 +657,14 @@ class MapleStoryApi {
           month: 12,
           day: 21,
         },
-
         dateOptions,
       ),
     };
+    const { data } = await this.client.get<CharacterSkillDtoBody>(path, {
+      params: query,
+    });
 
-    try {
-      const path = 'maplestory/v1/character/skill';
-      const response = await axios.get<CharacterSkillDtoBody>(path, {
-        baseURL: MapleStoryApi.BASE_URL,
-        timeout: this.timeout,
-        headers: this.buildHeaders(),
-        params: query,
-      });
-
-      return new CharacterSkillDto(response.data);
-    } catch (e: unknown) {
-      if (e instanceof AxiosError) {
-        const errorBody = (e as AxiosError<MapleStoryErrorBody>).response!.data;
-
-        throw new MapleStoryApiError(errorBody);
-      }
-
-      throw e;
-    }
+    return new CharacterSkillDto(data);
   }
 
   /**
@@ -873,6 +684,7 @@ class MapleStoryApi {
       dateOffset: 1,
     }),
   ): Promise<CharacterLinkSkillDto> {
+    const path = 'maplestory/v1/character/link-skill';
     const query: CharacterApiQuery = {
       ocid: ocid,
       date: MapleStoryApi.toDateString(
@@ -881,30 +693,14 @@ class MapleStoryApi {
           month: 12,
           day: 21,
         },
-
         dateOptions,
       ),
     };
+    const { data } = await this.client.get<CharacterLinkSkillDtoBody>(path, {
+      params: query,
+    });
 
-    try {
-      const path = 'maplestory/v1/character/link-skill';
-      const response = await axios.get<CharacterLinkSkillDtoBody>(path, {
-        baseURL: MapleStoryApi.BASE_URL,
-        timeout: this.timeout,
-        headers: this.buildHeaders(),
-        params: query,
-      });
-
-      return new CharacterLinkSkillDto(response.data);
-    } catch (e: unknown) {
-      if (e instanceof AxiosError) {
-        const errorBody = (e as AxiosError<MapleStoryErrorBody>).response!.data;
-
-        throw new MapleStoryApiError(errorBody);
-      }
-
-      throw e;
-    }
+    return new CharacterLinkSkillDto(data);
   }
 
   /**
@@ -924,6 +720,7 @@ class MapleStoryApi {
       dateOffset: 1,
     }),
   ): Promise<CharacterVMatrixDto> {
+    const path = 'maplestory/v1/character/vmatrix';
     const query: CharacterApiQuery = {
       ocid: ocid,
       date: MapleStoryApi.toDateString(
@@ -935,26 +732,11 @@ class MapleStoryApi {
         dateOptions,
       ),
     };
+    const { data } = await this.client.get<CharacterVMatrixDtoBody>(path, {
+      params: query,
+    });
 
-    try {
-      const path = 'maplestory/v1/character/vmatrix';
-      const response = await axios.get<CharacterVMatrixDtoBody>(path, {
-        baseURL: MapleStoryApi.BASE_URL,
-        timeout: this.timeout,
-        headers: this.buildHeaders(),
-        params: query,
-      });
-
-      return new CharacterVMatrixDto(response.data);
-    } catch (e: unknown) {
-      if (e instanceof AxiosError) {
-        const errorBody = (e as AxiosError<MapleStoryErrorBody>).response!.data;
-
-        throw new MapleStoryApiError(errorBody);
-      }
-
-      throw e;
-    }
+    return new CharacterVMatrixDto(data);
   }
 
   /**
@@ -974,6 +756,7 @@ class MapleStoryApi {
       dateOffset: 1,
     }),
   ): Promise<CharacterHexaMatrixDto> {
+    const path = 'maplestory/v1/character/hexamatrix';
     const query: CharacterApiQuery = {
       ocid: ocid,
       date: MapleStoryApi.toDateString(
@@ -985,26 +768,11 @@ class MapleStoryApi {
         dateOptions,
       ),
     };
+    const { data } = await this.client.get<CharacterHexaMatrixDtoBody>(path, {
+      params: query,
+    });
 
-    try {
-      const path = 'maplestory/v1/character/hexamatrix';
-      const response = await axios.get<CharacterHexaMatrixDtoBody>(path, {
-        baseURL: MapleStoryApi.BASE_URL,
-        timeout: this.timeout,
-        headers: this.buildHeaders(),
-        params: query,
-      });
-
-      return new CharacterHexaMatrixDto(response.data);
-    } catch (e: unknown) {
-      if (e instanceof AxiosError) {
-        const errorBody = (e as AxiosError<MapleStoryErrorBody>).response!.data;
-
-        throw new MapleStoryApiError(errorBody);
-      }
-
-      throw e;
-    }
+    return new CharacterHexaMatrixDto(data);
   }
 
   /**
@@ -1024,6 +792,7 @@ class MapleStoryApi {
       dateOffset: 1,
     }),
   ): Promise<CharacterHexaMatrixStatDto> {
+    const path = 'maplestory/v1/character/hexamatrix-stat';
     const query: CharacterApiQuery = {
       ocid: ocid,
       date: MapleStoryApi.toDateString(
@@ -1035,26 +804,11 @@ class MapleStoryApi {
         dateOptions,
       ),
     };
+    const { data } = await this.client.get<CharacterHexaMatrixStatDtoBody>(path, {
+      params: query,
+    });
 
-    try {
-      const path = 'maplestory/v1/character/hexamatrix-stat';
-      const response = await axios.get<CharacterHexaMatrixStatDtoBody>(path, {
-        baseURL: MapleStoryApi.BASE_URL,
-        timeout: this.timeout,
-        headers: this.buildHeaders(),
-        params: query,
-      });
-
-      return new CharacterHexaMatrixStatDto(response.data);
-    } catch (e: unknown) {
-      if (e instanceof AxiosError) {
-        const errorBody = (e as AxiosError<MapleStoryErrorBody>).response!.data;
-
-        throw new MapleStoryApiError(errorBody);
-      }
-
-      throw e;
-    }
+    return new CharacterHexaMatrixStatDto(data);
   }
 
   /**
@@ -1074,6 +828,7 @@ class MapleStoryApi {
       dateOffset: 1,
     }),
   ): Promise<CharacterDojangDto> {
+    const path = 'maplestory/v1/character/dojang';
     const query: CharacterApiQuery = {
       ocid: ocid,
       date: MapleStoryApi.toDateString(
@@ -1085,26 +840,11 @@ class MapleStoryApi {
         dateOptions,
       ),
     };
+    const { data } = await this.client.get<CharacterDojangDtoBody>(path, {
+      params: query,
+    });
 
-    try {
-      const path = 'maplestory/v1/character/dojang';
-      const response = await axios.get<CharacterDojangDtoBody>(path, {
-        baseURL: MapleStoryApi.BASE_URL,
-        timeout: this.timeout,
-        headers: this.buildHeaders(),
-        params: query,
-      });
-
-      return new CharacterDojangDto(response.data);
-    } catch (e: unknown) {
-      if (e instanceof AxiosError) {
-        const errorBody = (e as AxiosError<MapleStoryErrorBody>).response!.data;
-
-        throw new MapleStoryApiError(errorBody);
-      }
-
-      throw e;
-    }
+    return new CharacterDojangDto(data);
   }
 
   //#endregion
@@ -1128,6 +868,7 @@ class MapleStoryApi {
       dateOffset: 1,
     }),
   ): Promise<UnionDto> {
+    const path = 'maplestory/v1/user/union';
     const query: UnionApiQuery = {
       ocid: ocid,
       date: MapleStoryApi.toDateString(
@@ -1139,26 +880,11 @@ class MapleStoryApi {
         dateOptions,
       ),
     };
+    const { data } = await this.client.get<UnionDtoBody>(path, {
+      params: query,
+    });
 
-    try {
-      const path = 'maplestory/v1/user/union';
-      const response = await axios.get<UnionDtoBody>(path, {
-        baseURL: MapleStoryApi.BASE_URL,
-        timeout: this.timeout,
-        headers: this.buildHeaders(),
-        params: query,
-      });
-
-      return new UnionDto(response.data);
-    } catch (e: unknown) {
-      if (e instanceof AxiosError) {
-        const errorBody = (e as AxiosError<MapleStoryErrorBody>).response!.data;
-
-        throw new MapleStoryApiError(errorBody);
-      }
-
-      throw e;
-    }
+    return new UnionDto(data);
   }
 
   /**
@@ -1178,6 +904,7 @@ class MapleStoryApi {
       dateOffset: 1,
     }),
   ): Promise<UnionRaiderDto> {
+    const path = 'maplestory/v1/user/union-raider';
     const query: UnionApiQuery = {
       ocid: ocid,
       date: MapleStoryApi.toDateString(
@@ -1189,26 +916,11 @@ class MapleStoryApi {
         dateOptions,
       ),
     };
+    const { data } = await this.client.get<UnionRaiderDtoBody>(path, {
+      params: query,
+    });
 
-    try {
-      const path = 'maplestory/v1/user/union-raider';
-      const response = await axios.get<UnionRaiderDtoBody>(path, {
-        baseURL: MapleStoryApi.BASE_URL,
-        timeout: this.timeout,
-        headers: this.buildHeaders(),
-        params: query,
-      });
-
-      return new UnionRaiderDto(response.data);
-    } catch (e: unknown) {
-      if (e instanceof AxiosError) {
-        const errorBody = (e as AxiosError<MapleStoryErrorBody>).response!.data;
-
-        throw new MapleStoryApiError(errorBody);
-      }
-
-      throw e;
-    }
+    return new UnionRaiderDto(data);
   }
 
   /**
@@ -1228,6 +940,7 @@ class MapleStoryApi {
       dateOffset: 1,
     }),
   ): Promise<UnionArtifactDto> {
+    const path = 'maplestory/v1/user/union-artifact';
     const query: UnionApiQuery = {
       ocid: ocid,
       date: MapleStoryApi.toDateString(
@@ -1239,26 +952,11 @@ class MapleStoryApi {
         dateOptions,
       ),
     };
+    const { data } = await this.client.get<UnionArtifactDtoBody>(path, {
+      params: query,
+    });
 
-    try {
-      const path = 'maplestory/v1/user/union-artifact';
-      const response = await axios.get<UnionArtifactDtoBody>(path, {
-        baseURL: MapleStoryApi.BASE_URL,
-        timeout: this.timeout,
-        headers: this.buildHeaders(),
-        params: query,
-      });
-
-      return new UnionArtifactDto(response.data);
-    } catch (e: unknown) {
-      if (e instanceof AxiosError) {
-        const errorBody = (e as AxiosError<MapleStoryErrorBody>).response!.data;
-
-        throw new MapleStoryApiError(errorBody);
-      }
-
-      throw e;
-    }
+    return new UnionArtifactDto(data);
   }
 
   //#endregion
@@ -1278,28 +976,15 @@ class MapleStoryApi {
     guildName: string,
     worldName: string,
   ): Promise<GuildDto> {
-    try {
-      const path = 'maplestory/v1/guild/id';
-      const response = await axios.get<GuildDtoBody>(path, {
-        baseURL: MapleStoryApi.BASE_URL,
-        timeout: this.timeout,
-        headers: this.buildHeaders(),
-        params: {
-          guild_name: guildName,
-          world_name: worldName,
-        },
-      });
+    const path = 'maplestory/v1/guild/id';
+    const { data } = await this.client.get<GuildDtoBody>(path, {
+      params: {
+        guild_name: guildName,
+        world_name: worldName,
+      },
+    });
 
-      return new GuildDto(response.data);
-    } catch (e: unknown) {
-      if (e instanceof AxiosError) {
-        const errorBody = (e as AxiosError<MapleStoryErrorBody>).response!.data;
-
-        throw new MapleStoryApiError(errorBody);
-      }
-
-      throw e;
-    }
+    return new GuildDto(data);
   }
 
   /**
@@ -1319,6 +1004,7 @@ class MapleStoryApi {
       dateOffset: 1,
     }),
   ): Promise<GuildBasicDto> {
+    const path = 'maplestory/v1/guild/basic';
     const query: GuildApiQuery = {
       oguild_id: guildId,
       date: MapleStoryApi.toDateString(
@@ -1330,26 +1016,11 @@ class MapleStoryApi {
         dateOptions,
       ),
     };
+    const { data } = await this.client.get<GuildBasicDtoBody>(path, {
+      params: query,
+    });
 
-    try {
-      const path = 'maplestory/v1/guild/basic';
-      const response = await axios.get<GuildBasicDtoBody>(path, {
-        baseURL: MapleStoryApi.BASE_URL,
-        timeout: this.timeout,
-        headers: this.buildHeaders(),
-        params: query,
-      });
-
-      return new GuildBasicDto(response.data);
-    } catch (e: unknown) {
-      if (e instanceof AxiosError) {
-        const errorBody = (e as AxiosError<MapleStoryErrorBody>).response!.data;
-
-        throw new MapleStoryApiError(errorBody);
-      }
-
-      throw e;
-    }
+    return new GuildBasicDto(data);
   }
 
   //#endregion
@@ -1397,6 +1068,7 @@ class MapleStoryApi {
     count: number,
     parameter?: DateOptions | string,
   ): Promise<StarforceHistoryResponseDto> {
+    const path = 'maplestory/v1/history/starforce';
     const query: StarforceApiQuery = {
       count,
     };
@@ -1419,25 +1091,11 @@ class MapleStoryApi {
       );
     }
 
-    try {
-      const path = 'maplestory/v1/history/starforce';
-      const response = await axios.get<StarforceHistoryResponseDtoBody>(path, {
-        baseURL: MapleStoryApi.BASE_URL,
-        timeout: this.timeout,
-        headers: this.buildHeaders(),
-        params: query,
-      });
+    const { data } = await this.client.get<StarforceHistoryResponseDtoBody>(path, {
+      params: query,
+    });
 
-      return new StarforceHistoryResponseDto(response.data);
-    } catch (e: unknown) {
-      if (e instanceof AxiosError) {
-        const errorBody = (e as AxiosError<MapleStoryErrorBody>).response!.data;
-
-        throw new MapleStoryApiError(errorBody);
-      }
-
-      throw e;
-    }
+    return new StarforceHistoryResponseDto(data);
   }
 
   /**
@@ -1482,6 +1140,7 @@ class MapleStoryApi {
     count: number,
     parameter?: DateOptions | string,
   ): Promise<CubeHistoryResponseDto> {
+    const path = 'maplestory/v1/history/cube';
     const query: CubeApiQuery = {
       count,
     };
@@ -1504,25 +1163,11 @@ class MapleStoryApi {
       );
     }
 
-    try {
-      const path = 'maplestory/v1/history/cube';
-      const response = await axios.get<CubeHistoryResponseDtoBody>(path, {
-        baseURL: MapleStoryApi.BASE_URL,
-        timeout: this.timeout,
-        headers: this.buildHeaders(),
-        params: query,
-      });
+    const { data } = await this.client.get<CubeHistoryResponseDtoBody>(path, {
+      params: query,
+    });
 
-      return new CubeHistoryResponseDto(response.data);
-    } catch (e: unknown) {
-      if (e instanceof AxiosError) {
-        const errorBody = (e as AxiosError<MapleStoryErrorBody>).response!.data;
-
-        throw new MapleStoryApiError(errorBody);
-      }
-
-      throw e;
-    }
+    return new CubeHistoryResponseDto(data);
   }
 
   /**
@@ -1569,6 +1214,7 @@ class MapleStoryApi {
     count: number,
     parameter?: DateOptions | string,
   ): Promise<PotentialHistoryResponseDto> {
+    const path = 'maplestory/v1/history/potential';
     const query: PotentialApiQuery = {
       count,
     };
@@ -1591,25 +1237,11 @@ class MapleStoryApi {
       );
     }
 
-    try {
-      const path = 'maplestory/v1/history/potential';
-      const response = await axios.get<PotentialHistoryResponseDtoBody>(path, {
-        baseURL: MapleStoryApi.BASE_URL,
-        timeout: this.timeout,
-        headers: this.buildHeaders(),
-        params: query,
-      });
+    const { data } = await this.client.get<PotentialHistoryResponseDtoBody>(path, {
+      params: query,
+    });
 
-      return new PotentialHistoryResponseDto(response.data);
-    } catch (e: unknown) {
-      if (e instanceof AxiosError) {
-        const errorBody = (e as AxiosError<MapleStoryErrorBody>).response!.data;
-
-        throw new MapleStoryApiError(errorBody);
-      }
-
-      throw e;
-    }
+    return new PotentialHistoryResponseDto(data);
   }
 
   //#endregion
@@ -1634,6 +1266,7 @@ class MapleStoryApi {
       dateOffset: 0,
     }),
   ): Promise<OverallRankingResponseDto> {
+    const path = 'maplestory/v1/ranking/overall';
     const query: OverallRankingApiQuery = {
       date: MapleStoryApi.toDateString(
         {
@@ -1656,25 +1289,11 @@ class MapleStoryApi {
       query.page = page;
     }
 
-    try {
-      const path = 'maplestory/v1/ranking/overall';
-      const response = await axios.get<OverallRankingResponseDtoBody>(path, {
-        baseURL: MapleStoryApi.BASE_URL,
-        timeout: this.timeout,
-        headers: this.buildHeaders(),
-        params: query,
-      });
+    const { data } = await this.client.get<OverallRankingResponseDtoBody>(path, {
+      params: query,
+    });
 
-      return new OverallRankingResponseDto(response.data);
-    } catch (e: unknown) {
-      if (e instanceof AxiosError) {
-        const errorBody = (e as AxiosError<MapleStoryErrorBody>).response!.data;
-
-        throw new MapleStoryApiError(errorBody);
-      }
-
-      throw e;
-    }
+    return new OverallRankingResponseDto(data);
   }
 
   /**
@@ -1694,6 +1313,7 @@ class MapleStoryApi {
       dateOffset: 0,
     }),
   ): Promise<UnionRankingResponseDto> {
+    const path = 'maplestory/v1/ranking/union';
     const query: UnionRankingApiQuery = {
       date: MapleStoryApi.toDateString(
         {
@@ -1713,25 +1333,11 @@ class MapleStoryApi {
       query.page = page;
     }
 
-    try {
-      const path = 'maplestory/v1/ranking/union';
-      const response = await axios.get<UnionRankingResponseDtoBody>(path, {
-        baseURL: MapleStoryApi.BASE_URL,
-        timeout: this.timeout,
-        headers: this.buildHeaders(),
-        params: query,
-      });
+    const { data } = await this.client.get<UnionRankingResponseDtoBody>(path, {
+      params: query,
+    });
 
-      return new UnionRankingResponseDto(response.data);
-    } catch (e: unknown) {
-      if (e instanceof AxiosError) {
-        const errorBody = (e as AxiosError<MapleStoryErrorBody>).response!.data;
-
-        throw new MapleStoryApiError(errorBody);
-      }
-
-      throw e;
-    }
+    return new UnionRankingResponseDto(data);
   }
 
   /**
@@ -1751,6 +1357,7 @@ class MapleStoryApi {
       dateOffset: 0,
     }),
   ): Promise<GuildRankingResponseDto> {
+    const path = 'maplestory/v1/ranking/guild';
     const query: GuildRankingApiQuery = {
       date: MapleStoryApi.toDateString(
         {
@@ -1772,25 +1379,11 @@ class MapleStoryApi {
       query.page = page;
     }
 
-    try {
-      const path = 'maplestory/v1/ranking/guild';
-      const response = await axios.get<GuildRankingResponseDtoBody>(path, {
-        baseURL: MapleStoryApi.BASE_URL,
-        timeout: this.timeout,
-        headers: this.buildHeaders(),
-        params: query,
-      });
+    const { data } = await this.client.get<GuildRankingResponseDtoBody>(path, {
+      params: query,
+    });
 
-      return new GuildRankingResponseDto(response.data);
-    } catch (e: unknown) {
-      if (e instanceof AxiosError) {
-        const errorBody = (e as AxiosError<MapleStoryErrorBody>).response!.data;
-
-        throw new MapleStoryApiError(errorBody);
-      }
-
-      throw e;
-    }
+    return new GuildRankingResponseDto(data);
   }
 
   /**
@@ -1810,6 +1403,7 @@ class MapleStoryApi {
       dateOffset: 0,
     }),
   ): Promise<DojangRankingResponseDto> {
+    const path = 'maplestory/v1/ranking/dojang';
     const query: DojangRankingApiQuery = {
       date: MapleStoryApi.toDateString(
         {
@@ -1833,25 +1427,11 @@ class MapleStoryApi {
       query.page = page;
     }
 
-    try {
-      const path = 'maplestory/v1/ranking/dojang';
-      const response = await axios.get<DojangRankingResponseDtoBody>(path, {
-        baseURL: MapleStoryApi.BASE_URL,
-        timeout: this.timeout,
-        headers: this.buildHeaders(),
-        params: query,
-      });
+    const { data } = await this.client.get<DojangRankingResponseDtoBody>(path, {
+      params: query,
+    });
 
-      return new DojangRankingResponseDto(response.data);
-    } catch (e: unknown) {
-      if (e instanceof AxiosError) {
-        const errorBody = (e as AxiosError<MapleStoryErrorBody>).response!.data;
-
-        throw new MapleStoryApiError(errorBody);
-      }
-
-      throw e;
-    }
+    return new DojangRankingResponseDto(data);
   }
 
   /**
@@ -1871,6 +1451,7 @@ class MapleStoryApi {
       dateOffset: 0,
     }),
   ): Promise<TheSeedRankingResponseDto> {
+    const path = 'maplestory/v1/ranking/theseed';
     const query: TheSeedRankingApiQuery = {
       date: MapleStoryApi.toDateString(
         {
@@ -1890,25 +1471,11 @@ class MapleStoryApi {
       query.page = page;
     }
 
-    try {
-      const path = 'maplestory/v1/ranking/theseed';
-      const response = await axios.get<TheSeedRankingResponseDtoBody>(path, {
-        baseURL: MapleStoryApi.BASE_URL,
-        timeout: this.timeout,
-        headers: this.buildHeaders(),
-        params: query,
-      });
+    const { data } = await this.client.get<TheSeedRankingResponseDtoBody>(path, {
+      params: query,
+    });
 
-      return new TheSeedRankingResponseDto(response.data);
-    } catch (e: unknown) {
-      if (e instanceof AxiosError) {
-        const errorBody = (e as AxiosError<MapleStoryErrorBody>).response!.data;
-
-        throw new MapleStoryApiError(errorBody);
-      }
-
-      throw e;
-    }
+    return new TheSeedRankingResponseDto(data);
   }
 
   /**
@@ -1928,6 +1495,7 @@ class MapleStoryApi {
       dateOffset: 0,
     }),
   ): Promise<AchievementRankingResponseDto> {
+    const path = 'maplestory/v1/ranking/achievement';
     const query: AchievementRankingApiQuery = {
       date: MapleStoryApi.toDateString(
         {
@@ -1946,28 +1514,14 @@ class MapleStoryApi {
       query.page = page;
     }
 
-    try {
-      const path = 'maplestory/v1/ranking/achievement';
-      const response = await axios.get<AchievementRankingResponseDtoBody>(
-        path,
-        {
-          baseURL: MapleStoryApi.BASE_URL,
-          timeout: this.timeout,
-          headers: this.buildHeaders(),
-          params: query,
-        },
-      );
+    const { data } = await this.client.get<AchievementRankingResponseDtoBody>(
+      path,
+      {
+        params: query,
+      },
+    );
 
-      return new AchievementRankingResponseDto(response.data);
-    } catch (e: unknown) {
-      if (e instanceof AxiosError) {
-        const errorBody = (e as AxiosError<MapleStoryErrorBody>).response!.data;
-
-        throw new MapleStoryApiError(errorBody);
-      }
-
-      throw e;
-    }
+    return new AchievementRankingResponseDto(data);
   }
 
   //#endregion
@@ -2013,12 +1567,6 @@ class MapleStoryApi {
     )) as InspectionInfoSoapBody;
 
     return new InspectionInfoDto(xml);
-  }
-
-  private buildHeaders(): { [key: string]: string } {
-    return {
-      'x-nxopen-api-key': this.apiKey,
-    };
   }
 
   /**
