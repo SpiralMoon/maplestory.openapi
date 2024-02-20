@@ -1,8 +1,8 @@
+import { CharacterAndroidEquipmentFaceDto } from './characterAndroidEquipmentFaceDto'
+import { CharacterAndroidEquipmentHairDto } from './characterAndroidEquipmentHairDto'
 import {
   CharacterAndroidEquipmentPresetDtoBody,
 } from '../../response/character/characterAndroidEquipmentDtoBody'
-import { CharacterAndroidEquipmentHairDto } from './characterAndroidEquipmentHairDto'
-import { CharacterAndroidEquipmentFaceDto } from './characterAndroidEquipmentFaceDto'
 
 /**
  * 캐릭터 안드로이드 프리셋 정보

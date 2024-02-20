@@ -1,9 +1,7 @@
 ﻿using MapleStory.OpenAPI.Dto;
 using Newtonsoft.Json;
-using System.Web;
-using System.Text;
-using System;
 using MapleStory.OpenAPI.Src.Dto.Union;
+using RestSharp;
 
 namespace MapleStory.OpenAPI
 {
@@ -15,15 +13,18 @@ namespace MapleStory.OpenAPI
     {
         private readonly string apiKey;
 
+        private readonly RestClient client;
+
         private static readonly string BASE_URL = "https://open.api.nexon.com/";
 
         // in milliseconds
-        private long timeOut { get; set; }
+        private int timeOut { get; set; }
 
         public MapleStoryAPI (string apiKey)
         {
             this.apiKey = apiKey;
             this.timeOut = 5000;
+            this.client = new RestClient(options: new RestClientOptions(BASE_URL));
         }
 
         #region 캐릭터 정보 조회
@@ -37,32 +38,13 @@ namespace MapleStory.OpenAPI
         /// <param name="characterName">캐릭터 명</param>
         public async Task<CharacterDTO> GetCharacter(string characterName)
         {
-            using (var client = new HttpClient())
+            var path = "maplestory/v1/id";
+            var query = new Dictionary<string, string?>()
             {
-                var path = "maplestory/v1/id";
-                var uriBuilder = new UriBuilder($"{BASE_URL}{path}");
+                { "character_name", characterName }
+            };
 
-                var query = HttpUtility.ParseQueryString(uriBuilder.Query);
-                query["character_name"] = characterName;
-
-                uriBuilder.Query = query.ToString();
-
-                this.SetClient(client);
-
-                var response = await client.GetAsync(uriBuilder.Uri);
-                var body = await response.Content.ReadAsStringAsync();
-
-                if (response.IsSuccessStatusCode)
-                {
-                    var result = JsonConvert.DeserializeObject<CharacterDTO>(body);
-
-                    return result;
-                }
-                else
-                {
-                    throw ParseError(body);
-                }
-            }
+            return await Get<CharacterDTO>(path, query);
         }
 
         /// <summary>
@@ -92,35 +74,14 @@ namespace MapleStory.OpenAPI
         /// <param name="characterName">조회 기준일 (KST)</param>
         public async Task<CharacterBasicDTO> GetCharacterBasic(string ocid, DateTimeOffset dateTimeOffset)
         {
-            using (var client = new HttpClient())
+            var path = "maplestory/v1/character/basic";
+            var query = new Dictionary<string, string?>()
             {
-                var path = "maplestory/v1/character/basic";
-                var uriBuilder = new UriBuilder($"{BASE_URL}{path}");
+                { "ocid", ocid },
+                { "date", ToDateString(MinDate(2023, 12, 21), dateTimeOffset) }
+            };
 
-                var date = ToDateString(MinDate(2023, 12, 21), dateTimeOffset);
-
-                var query = HttpUtility.ParseQueryString(uriBuilder.Query);
-                query["ocid"] = ocid;
-                query["date"] = date;
-
-                uriBuilder.Query = query.ToString();
-
-                this.SetClient(client);
-
-                var response = await client.GetAsync(uriBuilder.Uri);
-                var body = await response.Content.ReadAsStringAsync();
-
-                if (response.IsSuccessStatusCode)
-                {
-                    var result = JsonConvert.DeserializeObject<CharacterBasicDTO>(body);
-
-                    return result;
-                }
-                else
-                {
-                    throw ParseError(body);
-                }
-            }
+            return await Get<CharacterBasicDTO>(path, query);
         }
 
         /// <summary>
@@ -150,35 +111,14 @@ namespace MapleStory.OpenAPI
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
         public async Task<CharacterPopularityDTO> GetCharacterPopularity(string ocid, DateTimeOffset dateTimeOffset)
         {
-            using (var client = new HttpClient())
+            var path = "maplestory/v1/character/popularity";
+            var query = new Dictionary<string, string?>()
             {
-                var path = "maplestory/v1/character/popularity";
-                var uriBuilder = new UriBuilder($"{BASE_URL}{path}");
+                { "ocid", ocid },
+                { "date", ToDateString(MinDate(2023, 12, 21), dateTimeOffset) }
+            };
 
-                var date = ToDateString(MinDate(2023, 12, 21), dateTimeOffset);
-
-                var query = HttpUtility.ParseQueryString(uriBuilder.Query);
-                query["ocid"] = ocid;
-                query["date"] = date;
-
-                uriBuilder.Query = query.ToString();
-
-                SetClient(client);
-
-                var response = await client.GetAsync(uriBuilder.Uri);
-                var body = await response.Content.ReadAsStringAsync();
-
-                if (response.IsSuccessStatusCode)
-                {
-                    var result = JsonConvert.DeserializeObject<CharacterPopularityDTO>(body);
-
-                    return result;
-                }
-                else
-                {
-                    throw ParseError(body);
-                }
-            }
+            return await Get<CharacterPopularityDTO>(path, query);
         }
 
         /// <summary>
@@ -207,35 +147,14 @@ namespace MapleStory.OpenAPI
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
         public async Task<CharacterStatDTO> GetCharacterStat(string ocid, DateTimeOffset dateTimeOffset)
         {
-            using (var client = new HttpClient())
+            var path = "maplestory/v1/character/stat";
+            var query = new Dictionary<string, string?>()
             {
-                var path = "maplestory/v1/character/stat";
-                var uriBuilder = new UriBuilder($"{BASE_URL}{path}");
+                { "ocid", ocid },
+                { "date", ToDateString(MinDate(2023, 12, 21), dateTimeOffset) }
+            };
 
-                var date = ToDateString(MinDate(2023, 12, 21), dateTimeOffset);
-
-                var query = HttpUtility.ParseQueryString(uriBuilder.Query);
-                query["ocid"] = ocid;
-                query["date"] = date;
-
-                uriBuilder.Query = query.ToString();
-
-                SetClient(client);
-
-                var response = await client.GetAsync(uriBuilder.Uri);
-                var body = await response.Content.ReadAsStringAsync();
-
-                if (response.IsSuccessStatusCode)
-                {
-                    var result = JsonConvert.DeserializeObject<CharacterStatDTO>(body);
-
-                    return result;
-                }
-                else
-                {
-                    throw ParseError(body);
-                }
-            }
+            return await Get<CharacterStatDTO>(path, query);
         }
 
         /// <summary>
@@ -265,35 +184,14 @@ namespace MapleStory.OpenAPI
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
         public async Task<CharacterHyperStatDTO> GetCharacterHyperStat(string ocid, DateTimeOffset dateTimeOffset)
         {
-            using (var client = new HttpClient())
+            var path = "maplestory/v1/character/hyper-stat";
+            var query = new Dictionary<string, string?>()
             {
-                var path = "maplestory/v1/character/hyper-stat";
-                var uriBuilder = new UriBuilder($"{BASE_URL}{path}");
+                { "ocid", ocid },
+                { "date", ToDateString(MinDate(2023, 12, 21), dateTimeOffset) }
+            };
 
-                var date = ToDateString(MinDate(2023, 12, 21), dateTimeOffset);
-
-                var query = HttpUtility.ParseQueryString(uriBuilder.Query);
-                query["ocid"] = ocid;
-                query["date"] = date;
-
-                uriBuilder.Query = query.ToString();
-
-                SetClient(client);
-
-                var response = await client.GetAsync(uriBuilder.Uri);
-                var body = await response.Content.ReadAsStringAsync();
-
-                if (response.IsSuccessStatusCode)
-                {
-                    var result = JsonConvert.DeserializeObject<CharacterHyperStatDTO>(body);
-
-                    return result;
-                }
-                else
-                {
-                    throw ParseError(body);
-                }
-            }
+            return await Get<CharacterHyperStatDTO>(path, query);
         }
 
         /// <summary>
@@ -323,35 +221,14 @@ namespace MapleStory.OpenAPI
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
         public async Task<CharacterPropensityDTO> GetCharacterPropensity(string ocid, DateTimeOffset dateTimeOffset)
         {
-            using (var client = new HttpClient())
+            var path = "maplestory/v1/character/propensity";
+            var query = new Dictionary<string, string?>()
             {
-                var path = "maplestory/v1/character/propensity";
-                var uriBuilder = new UriBuilder($"{BASE_URL}{path}");
+                { "ocid", ocid },
+                { "date", ToDateString(MinDate(2023, 12, 21), dateTimeOffset) }
+            };
 
-                var date = ToDateString(MinDate(2023, 12, 21), dateTimeOffset);
-
-                var query = HttpUtility.ParseQueryString(uriBuilder.Query);
-                query["ocid"] = ocid;
-                query["date"] = date;
-
-                uriBuilder.Query = query.ToString();
-
-                SetClient(client);
-
-                var response = await client.GetAsync(uriBuilder.Uri);
-                var body = await response.Content.ReadAsStringAsync();
-
-                if (response.IsSuccessStatusCode)
-                {
-                    var result = JsonConvert.DeserializeObject<CharacterPropensityDTO>(body);
-
-                    return result;
-                }
-                else
-                {
-                    throw ParseError(body);
-                }
-            }
+            return await Get<CharacterPropensityDTO>(path, query);
         }
 
         /// <summary>
@@ -381,35 +258,14 @@ namespace MapleStory.OpenAPI
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
         public async Task<CharacterAbilityDTO> GetCharacterAbility(string ocid, DateTimeOffset dateTimeOffset)
         {
-            using (var client = new HttpClient())
+            var path = "maplestory/v1/character/ability";
+            var query = new Dictionary<string, string?>()
             {
-                var path = "maplestory/v1/character/ability";
-                var uriBuilder = new UriBuilder($"{BASE_URL}{path}");
+                { "ocid", ocid },
+                { "date", ToDateString(MinDate(2023, 12, 21), dateTimeOffset) }
+            };
 
-                var date = ToDateString(MinDate(2023, 12, 21), dateTimeOffset);
-
-                var query = HttpUtility.ParseQueryString(uriBuilder.Query);
-                query["ocid"] = ocid;
-                query["date"] = date;
-
-                uriBuilder.Query = query.ToString();
-
-                SetClient(client);
-
-                var response = await client.GetAsync(uriBuilder.Uri);
-                var body = await response.Content.ReadAsStringAsync();
-
-                if (response.IsSuccessStatusCode)
-                {
-                    var result = JsonConvert.DeserializeObject<CharacterAbilityDTO>(body);
-
-                    return result;
-                }
-                else
-                {
-                    throw ParseError(body);
-                }
-            }
+            return await Get<CharacterAbilityDTO>(path, query);
         }
 
         /// <summary>
@@ -439,35 +295,14 @@ namespace MapleStory.OpenAPI
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
         public async Task<CharacterItemEquipmentDTO> GetCharacterItemEquipment(string ocid, DateTimeOffset dateTimeOffset)
         {
-            using (var client = new HttpClient())
+            var path = "maplestory/v1/character/item-equipment";
+            var query = new Dictionary<string, string?>()
             {
-                var path = "maplestory/v1/character/item-equipment";
-                var uriBuilder = new UriBuilder($"{BASE_URL}{path}");
+                { "ocid", ocid },
+                { "date", ToDateString(MinDate(2023, 12, 21), dateTimeOffset) }
+            };
 
-                var date = ToDateString(MinDate(2023, 12, 21), dateTimeOffset);
-
-                var query = HttpUtility.ParseQueryString(uriBuilder.Query);
-                query["ocid"] = ocid;
-                query["date"] = date;
-
-                uriBuilder.Query = query.ToString();
-
-                SetClient(client);
-
-                var response = await client.GetAsync(uriBuilder.Uri);
-                var body = await response.Content.ReadAsStringAsync();
-
-                if (response.IsSuccessStatusCode)
-                {
-                    var result = JsonConvert.DeserializeObject<CharacterItemEquipmentDTO>(body);
-
-                    return result;
-                }
-                else
-                {
-                    throw ParseError(body);
-                }
-            }
+            return await Get<CharacterItemEquipmentDTO>(path, query);
         }
 
         /// <summary>
@@ -497,35 +332,14 @@ namespace MapleStory.OpenAPI
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
         public async Task<CharacterCashItemEquipmentDTO> GetCharacterCashItemEquipment(string ocid, DateTimeOffset dateTimeOffset)
         {
-            using (var client = new HttpClient())
+            var path = "maplestory/v1/character/cashitem-equipment";
+            var query = new Dictionary<string, string?>()
             {
-                var path = "maplestory/v1/character/cashitem-equipment";
-                var uriBuilder = new UriBuilder($"{BASE_URL}{path}");
+                { "ocid", ocid },
+                { "date", ToDateString(MinDate(2023, 12, 21), dateTimeOffset) }
+            };
 
-                var date = ToDateString(MinDate(2023, 12, 21), dateTimeOffset);
-
-                var query = HttpUtility.ParseQueryString(uriBuilder.Query);
-                query["ocid"] = ocid;
-                query["date"] = date;
-
-                uriBuilder.Query = query.ToString();
-
-                SetClient(client);
-
-                var response = await client.GetAsync(uriBuilder.Uri);
-                var body = await response.Content.ReadAsStringAsync();
-
-                if (response.IsSuccessStatusCode)
-                {
-                    var result = JsonConvert.DeserializeObject<CharacterCashItemEquipmentDTO>(body);
-
-                    return result;
-                }
-                else
-                {
-                    throw ParseError(body);
-                }
-            }
+            return await Get<CharacterCashItemEquipmentDTO>(path, query);
         }
 
         /// <summary>
@@ -555,35 +369,14 @@ namespace MapleStory.OpenAPI
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
         public async Task<CharacterSymbolEquipmentDTO> GetCharacterSymbolEquipment(string ocid, DateTimeOffset dateTimeOffset)
         {
-            using (var client = new HttpClient())
+            var path = "maplestory/v1/character/symbol-equipment";
+            var query = new Dictionary<string, string?>()
             {
-                var path = "maplestory/v1/character/symbol-equipment";
-                var uriBuilder = new UriBuilder($"{BASE_URL}{path}");
+                { "ocid", ocid },
+                { "date", ToDateString(MinDate(2023, 12, 21), dateTimeOffset) }
+            };
 
-                var date = ToDateString(MinDate(2023, 12, 21), dateTimeOffset);
-
-                var query = HttpUtility.ParseQueryString(uriBuilder.Query);
-                query["ocid"] = ocid;
-                query["date"] = date;
-
-                uriBuilder.Query = query.ToString();
-
-                SetClient(client);
-
-                var response = await client.GetAsync(uriBuilder.Uri);
-                var body = await response.Content.ReadAsStringAsync();
-
-                if (response.IsSuccessStatusCode)
-                {
-                    var result = JsonConvert.DeserializeObject<CharacterSymbolEquipmentDTO>(body);
-
-                    return result;
-                }
-                else
-                {
-                    throw ParseError(body);
-                }
-            }
+            return await Get<CharacterSymbolEquipmentDTO>(path, query);
         }
 
         /// <summary>
@@ -613,35 +406,14 @@ namespace MapleStory.OpenAPI
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
         public async Task<CharacterSetEffectDTO> GetCharacterSetEffectAsync(string ocid, DateTimeOffset dateTimeOffset)
         {
-            using (var client = new HttpClient())
+            var path = "maplestory/v1/character/set-effect";
+            var query = new Dictionary<string, string?>()
             {
-                var path = "maplestory/v1/character/set-effect";
-                var uriBuilder = new UriBuilder($"{BASE_URL}{path}");
+                { "ocid", ocid },
+                { "date", ToDateString(MinDate(2023, 12, 21), dateTimeOffset) }
+            };
 
-                var date = ToDateString(MinDate(2023, 12, 21), dateTimeOffset);
-
-                var query = HttpUtility.ParseQueryString(uriBuilder.Query);
-                query["ocid"] = ocid;
-                query["date"] = date;
-
-                uriBuilder.Query = query.ToString();
-
-                SetClient(client);
-
-                var response = await client.GetAsync(uriBuilder.Uri);
-                var body = await response.Content.ReadAsStringAsync();
-
-                if (response.IsSuccessStatusCode)
-                {
-                    var result = JsonConvert.DeserializeObject<CharacterSetEffectDTO>(body);
-
-                    return result;
-                }
-                else
-                {
-                    throw ParseError(body);
-                }
-            }
+            return await Get<CharacterSetEffectDTO>(path, query);
         }
 
         /// <summary>
@@ -671,35 +443,14 @@ namespace MapleStory.OpenAPI
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
         public async Task<CharacterBeautyEquipmentDTO> GetCharacterBeautyEquipment(string ocid, DateTimeOffset dateTimeOffset)
         {
-            using (var client = new HttpClient())
+            var path = "maplestory/v1/character/beauty-equipment";
+            var query = new Dictionary<string, string?>()
             {
-                var path = "maplestory/v1/character/beauty-equipment";
-                var uriBuilder = new UriBuilder($"{BASE_URL}{path}");
+                { "ocid", ocid },
+                { "date", ToDateString(MinDate(2023, 12, 21), dateTimeOffset) }
+            };
 
-                var date = ToDateString(MinDate(2023, 12, 21), dateTimeOffset);
-
-                var query = HttpUtility.ParseQueryString(uriBuilder.Query);
-                query["ocid"] = ocid;
-                query["date"] = date;
-
-                uriBuilder.Query = query.ToString();
-
-                SetClient(client);
-
-                var response = await client.GetAsync(uriBuilder.Uri);
-                var body = await response.Content.ReadAsStringAsync();
-
-                if (response.IsSuccessStatusCode)
-                {
-                    var result = JsonConvert.DeserializeObject<CharacterBeautyEquipmentDTO>(body);
-
-                    return result;
-                }
-                else
-                {
-                    throw ParseError(body);
-                }
-            }
+            return await Get<CharacterBeautyEquipmentDTO>(path, query);
         }
 
         /// <summary>
@@ -729,35 +480,14 @@ namespace MapleStory.OpenAPI
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
         public async Task<CharacterAndroidEquipmentDTO> GetCharacterAndroidEquipment(string ocid, DateTimeOffset dateTimeOffset)
         {
-            using (var client = new HttpClient())
+            var path = "maplestory/v1/character/android-equipment";
+            var query = new Dictionary<string, string?>()
             {
-                var path = "maplestory/v1/character/android-equipment";
-                var uriBuilder = new UriBuilder($"{BASE_URL}{path}");
+                { "ocid", ocid },
+                { "date", ToDateString(MinDate(2023, 12, 21), dateTimeOffset) }
+            };
 
-                var date = ToDateString(MinDate(2023, 12, 21), dateTimeOffset);
-
-                var query = HttpUtility.ParseQueryString(uriBuilder.Query);
-                query["ocid"] = ocid;
-                query["date"] = date;
-
-                uriBuilder.Query = query.ToString();
-
-                SetClient(client);
-
-                var response = await client.GetAsync(uriBuilder.Uri);
-                var body = await response.Content.ReadAsStringAsync();
-
-                if (response.IsSuccessStatusCode)
-                {
-                    var result = JsonConvert.DeserializeObject<CharacterAndroidEquipmentDTO>(body);
-
-                    return result;
-                }
-                else
-                {
-                    throw ParseError(body);
-                }
-            }
+            return await Get<CharacterAndroidEquipmentDTO>(path, query);
         }
 
         /// <summary>
@@ -787,35 +517,14 @@ namespace MapleStory.OpenAPI
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
         public async Task<CharacterPetEquipmentDTO> GetCharacterPetEquipment(string ocid, DateTimeOffset dateTimeOffset)
         {
-            using (var client = new HttpClient())
+            var path = "maplestory/v1/character/pet-equipment";
+            var query = new Dictionary<string, string?>()
             {
-                var path = "maplestory/v1/character/pet-equipment";
-                var uriBuilder = new UriBuilder($"{BASE_URL}{path}");
+                { "ocid", ocid },
+                { "date", ToDateString(MinDate(2023, 12, 21), dateTimeOffset) }
+            };
 
-                var date = ToDateString(MinDate(2023, 12, 21), dateTimeOffset);
-
-                var query = HttpUtility.ParseQueryString(uriBuilder.Query);
-                query["ocid"] = ocid;
-                query["date"] = date;
-
-                uriBuilder.Query = query.ToString();
-
-                SetClient(client);
-
-                var response = await client.GetAsync(uriBuilder.Uri);
-                var body = await response.Content.ReadAsStringAsync();
-
-                if (response.IsSuccessStatusCode)
-                {
-                    var result = JsonConvert.DeserializeObject<CharacterPetEquipmentDTO>(body);
-
-                    return result;
-                }
-                else
-                {
-                    throw ParseError(body);
-                }
-            }
+            return await Get<CharacterPetEquipmentDTO>(path, query);
         }
 
         /// <summary>
@@ -872,36 +581,15 @@ namespace MapleStory.OpenAPI
 
         public async Task<CharacterSkillDTO> GetCharacterSkill(string ocid, string characterSkillGrade, DateTimeOffset dateTimeOffset)
         {
-            using (var client = new HttpClient())
+            var path = "maplestory/v1/character/skill";
+            var query = new Dictionary<string, string?>()
             {
-                var path = "maplestory/v1/character/skill";
-                var uriBuilder = new UriBuilder($"{BASE_URL}{path}");
+                { "ocid", ocid },
+                { "date", ToDateString(MinDate(2023, 12, 21), dateTimeOffset) },
+                { "character_skill_grade", characterSkillGrade }
+            };
 
-                var date = ToDateString(MinDate(2023, 12, 21), dateTimeOffset);
-
-                var query = HttpUtility.ParseQueryString(uriBuilder.Query);
-                query["ocid"] = ocid;
-                query["date"] = date;
-                query["character_skill_grade"] = characterSkillGrade;
-
-                uriBuilder.Query = query.ToString();
-
-                SetClient(client);
-
-                var response = await client.GetAsync(uriBuilder.Uri);
-                var body = await response.Content.ReadAsStringAsync();
-
-                if (response.IsSuccessStatusCode)
-                {
-                    var result = JsonConvert.DeserializeObject<CharacterSkillDTO>(body);
-
-                    return result;
-                }
-                else
-                {
-                    throw ParseError(body);
-                }
-            }
+            return await Get<CharacterSkillDTO>(path, query);
         }
 
         /// <summary>
@@ -931,35 +619,14 @@ namespace MapleStory.OpenAPI
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
         public async Task<CharacterLinkSkillDTO> GetCharacterLinkSkill(string ocid, DateTimeOffset dateTimeOffset)
         {
-            using (var client = new HttpClient())
+            var path = "maplestory/v1/character/link-skill";
+            var query = new Dictionary<string, string?>()
             {
-                var path = "maplestory/v1/character/link-skill";
-                var uriBuilder = new UriBuilder($"{BASE_URL}{path}");
+                { "ocid", ocid },
+                { "date", ToDateString(MinDate(2023, 12, 21), dateTimeOffset) }
+            };
 
-                var date = ToDateString(MinDate(2023, 12, 21), dateTimeOffset);
-
-                var query = HttpUtility.ParseQueryString(uriBuilder.Query);
-                query["ocid"] = ocid;
-                query["date"] = date;
-
-                uriBuilder.Query = query.ToString();
-
-                SetClient(client);
-
-                var response = await client.GetAsync(uriBuilder.Uri);
-                var body = await response.Content.ReadAsStringAsync();
-
-                if (response.IsSuccessStatusCode)
-                {
-                    var result = JsonConvert.DeserializeObject<CharacterLinkSkillDTO>(body);
-
-                    return result;
-                }
-                else
-                {
-                    throw ParseError(body);
-                }
-            }
+            return await Get<CharacterLinkSkillDTO>(path, query);
         }
 
         /// <summary>
@@ -989,35 +656,14 @@ namespace MapleStory.OpenAPI
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
         public async Task<CharacterVMatrixDTO> GetCharacterVMatrix(string ocid, DateTimeOffset dateTimeOffset)
         {
-            using (var client = new HttpClient())
+            var path = "maplestory/v1/character/vmatrix";
+            var query = new Dictionary<string, string?>()
             {
-                var path = "maplestory/v1/character/vmatrix";
-                var uriBuilder = new UriBuilder($"{BASE_URL}{path}");
+                { "ocid", ocid },
+                { "date", ToDateString(MinDate(2023, 12, 21), dateTimeOffset) }
+            };
 
-                var date = ToDateString(MinDate(2023, 12, 21), dateTimeOffset);
-
-                var query = HttpUtility.ParseQueryString(uriBuilder.Query);
-                query["ocid"] = ocid;
-                query["date"] = date;
-
-                uriBuilder.Query = query.ToString();
-
-                SetClient(client);
-
-                var response = await client.GetAsync(uriBuilder.Uri);
-                var body = await response.Content.ReadAsStringAsync();
-
-                if (response.IsSuccessStatusCode)
-                {
-                    var result = JsonConvert.DeserializeObject<CharacterVMatrixDTO>(body);
-
-                    return result;
-                }
-                else
-                {
-                    throw ParseError(body);
-                }
-            }
+            return await Get<CharacterVMatrixDTO>(path, query);
         }
 
         /// <summary>
@@ -1047,35 +693,14 @@ namespace MapleStory.OpenAPI
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
         public async Task<CharacterHexaMatrixDTO> GetCharacterHexaMatrix(string ocid, DateTimeOffset dateTimeOffset)
         {
-            using (var client = new HttpClient())
+            var path = "maplestory/v1/character/hexamatrix";
+            var query = new Dictionary<string, string?>()
             {
-                var path = "maplestory/v1/character/hexamatrix";
-                var uriBuilder = new UriBuilder($"{BASE_URL}{path}");
+                { "ocid", ocid },
+                { "date", ToDateString(MinDate(2023, 12, 21), dateTimeOffset) }
+            };
 
-                var date = ToDateString(MinDate(2023, 12, 21), dateTimeOffset);
-
-                var query = HttpUtility.ParseQueryString(uriBuilder.Query);
-                query["ocid"] = ocid;
-                query["date"] = date;
-
-                uriBuilder.Query = query.ToString();
-
-                SetClient(client);
-
-                var response = await client.GetAsync(uriBuilder.Uri);
-                var body = await response.Content.ReadAsStringAsync();
-
-                if (response.IsSuccessStatusCode)
-                {
-                    var result = JsonConvert.DeserializeObject<CharacterHexaMatrixDTO>(body);
-
-                    return result;
-                }
-                else
-                {
-                    throw ParseError(body);
-                }
-            }
+            return await Get<CharacterHexaMatrixDTO>(path, query);
         }
 
         /// <summary>
@@ -1105,35 +730,14 @@ namespace MapleStory.OpenAPI
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
         public async Task<CharacterHexaMatrixStatDTO> GetCharacterHexaMatrixStat(string ocid, DateTimeOffset dateTimeOffset)
         {
-            using (var client = new HttpClient())
+            var path = "maplestory/v1/character/hexamatrix-stat";
+            var query = new Dictionary<string, string?>()
             {
-                var path = "maplestory/v1/character/hexamatrix-stat";
-                var uriBuilder = new UriBuilder($"{BASE_URL}{path}");
+                { "ocid", ocid },
+                { "date", ToDateString(MinDate(2023, 12, 21), dateTimeOffset) }
+            };
 
-                var date = ToDateString(MinDate(2023, 12, 21), dateTimeOffset);
-
-                var query = HttpUtility.ParseQueryString(uriBuilder.Query);
-                query["ocid"] = ocid;
-                query["date"] = date;
-
-                uriBuilder.Query = query.ToString();
-
-                SetClient(client);
-
-                var response = await client.GetAsync(uriBuilder.Uri);
-                var body = await response.Content.ReadAsStringAsync();
-
-                if (response.IsSuccessStatusCode)
-                {
-                    var result = JsonConvert.DeserializeObject<CharacterHexaMatrixStatDTO>(body);
-
-                    return result;
-                }
-                else
-                {
-                    throw ParseError(body);
-                }
-            }
+            return await Get<CharacterHexaMatrixStatDTO>(path, query);
         }
 
         /// <summary>
@@ -1163,35 +767,14 @@ namespace MapleStory.OpenAPI
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
         public async Task<CharacterDojangDTO> GetCharacterDojang(string ocid, DateTimeOffset dateTimeOffset)
         {
-            using (var client = new HttpClient())
+            var path = "maplestory/v1/character/dojang";
+            var query = new Dictionary<string, string?>()
             {
-                var path = "maplestory/v1/character/dojang";
-                var uriBuilder = new UriBuilder($"{BASE_URL}{path}");
+                { "ocid", ocid },
+                { "date", ToDateString(MinDate(2023, 12, 21), dateTimeOffset) }
+            };
 
-                var date = ToDateString(MinDate(2023, 12, 21), dateTimeOffset);
-
-                var query = HttpUtility.ParseQueryString(uriBuilder.Query);
-                query["ocid"] = ocid;
-                query["date"] = date;
-
-                uriBuilder.Query = query.ToString();
-
-                SetClient(client);
-
-                var response = await client.GetAsync(uriBuilder.Uri);
-                var body = await response.Content.ReadAsStringAsync();
-
-                if (response.IsSuccessStatusCode)
-                {
-                    var result = JsonConvert.DeserializeObject<CharacterDojangDTO>(body);
-
-                    return result;
-                }
-                else
-                {
-                    throw ParseError(body);
-                }
-            }
+            return await Get<CharacterDojangDTO>(path, query);
         }
 
         #endregion
@@ -1225,34 +808,14 @@ namespace MapleStory.OpenAPI
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
         public async Task<UnionDTO> GetUnion(string ocid, DateTimeOffset dateTimeOffset)
         {
-            using (var client = new HttpClient())
+            var path = "maplestory/v1/user/union";
+            var query = new Dictionary<string, string?>()
             {
-                var path = "maplestory/v1/user/union";
-                var uriBuilder = new UriBuilder($"{BASE_URL}{path}");
+                { "ocid", ocid },
+                { "date", ToDateString(MinDate(2023, 12, 21), dateTimeOffset) }
+            };
 
-                var date = ToDateString(MinDate(2023, 12, 21), dateTimeOffset);
-
-                var query = HttpUtility.ParseQueryString(uriBuilder.Query);
-                query["ocid"] = ocid;
-                query["date"] = date;
-
-                uriBuilder.Query = query.ToString();
-
-                this.SetClient(client);
-
-                var response = await client.GetAsync(uriBuilder.Uri);
-                var body = await response.Content.ReadAsStringAsync();
-
-                if (response.IsSuccessStatusCode)
-                {
-                    var result = JsonConvert.DeserializeObject<UnionDTO>(body);
-                    return result;
-                }
-                else
-                {
-                    throw ParseError(body);
-                }
-            }
+            return await Get<UnionDTO>(path, query);
         }
 
         /// <summary>
@@ -1282,34 +845,14 @@ namespace MapleStory.OpenAPI
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
         public async Task<UnionRaiderDTO> GetUnionRaider(string ocid, DateTimeOffset dateTimeOffset)
         {
-            using (var client = new HttpClient())
+            var path = "maplestory/v1/user/union-raider";
+            var query = new Dictionary<string, string?>()
             {
-                var path = "maplestory/v1/user/union-raider";
-                var uriBuilder = new UriBuilder($"{BASE_URL}{path}");
+                { "ocid", ocid },
+                { "date", ToDateString(MinDate(2023, 12, 21), dateTimeOffset) }
+            };
 
-                var date = ToDateString(MinDate(2023, 12, 21), dateTimeOffset);
-
-                var query = HttpUtility.ParseQueryString(uriBuilder.Query);
-                query["ocid"] = ocid;
-                query["date"] = date;
-
-                uriBuilder.Query = query.ToString();
-
-                this.SetClient(client);
-
-                var response = await client.GetAsync(uriBuilder.Uri);
-                var body = await response.Content.ReadAsStringAsync();
-
-                if (response.IsSuccessStatusCode)
-                {
-                    var result = JsonConvert.DeserializeObject<UnionRaiderDTO>(body);
-                    return result;
-                }
-                else
-                {
-                    throw ParseError(body);
-                }
-            }
+            return await Get<UnionRaiderDTO>(path, query);
         }
 
         /// <summary>
@@ -1339,34 +882,14 @@ namespace MapleStory.OpenAPI
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
         public async Task<UnionArtifactDTO> GetUnionArtifact(string ocid, DateTimeOffset dateTimeOffset)
         {
-            using (var client = new HttpClient())
+            var path = "maplestory/v1/user/union-artifact";
+            var query = new Dictionary<string, string?>()
             {
-                var path = "maplestory/v1/user/union-artifact";
-                var uriBuilder = new UriBuilder($"{BASE_URL}{path}");
+                { "ocid", ocid },
+                { "date", ToDateString(MinDate(2023, 12, 21), dateTimeOffset) }
+            };
 
-                var date = ToDateString(MinDate(2023, 12, 21), dateTimeOffset);
-
-                var query = HttpUtility.ParseQueryString(uriBuilder.Query);
-                query["ocid"] = ocid;
-                query["date"] = date;
-
-                uriBuilder.Query = query.ToString();
-
-                this.SetClient(client);
-
-                var response = await client.GetAsync(uriBuilder.Uri);
-                var body = await response.Content.ReadAsStringAsync();
-
-                if (response.IsSuccessStatusCode)
-                {
-                    var result = JsonConvert.DeserializeObject<UnionArtifactDTO>(body);
-                    return result;
-                }
-                else
-                {
-                    throw ParseError(body);
-                }
-            }
+            return await Get<UnionArtifactDTO>(path, query);
         }
 
         #endregion
@@ -1401,34 +924,14 @@ namespace MapleStory.OpenAPI
         /// </param>
         public async Task<GuildDTO> GetGuild(string guildName, string wolrdName)
         {
-            using (var client = new HttpClient())
+            var path = "maplestory/v1/guild/id";
+            var query = new Dictionary<string, string?>()
             {
-                var path = "maplestory/v1/guild/id";
-                var uriBuilder = new UriBuilder($"{BASE_URL}{path}");
+                { "guild_name", guildName },
+                { "world_name", wolrdName }
+            };
 
-                var query = HttpUtility.ParseQueryString(uriBuilder.Query);
-
-                query["guild_name"] = guildName;
-                query["world_name"] = wolrdName;
-
-                uriBuilder.Query = query.ToString();
-
-                SetClient(client);
-
-                var response = await client.GetAsync(uriBuilder.Uri);
-                var body = await response.Content.ReadAsStringAsync();
-
-                if (response.IsSuccessStatusCode)
-                {
-                    var result = JsonConvert.DeserializeObject<GuildDTO>(body);
-
-                    return result;
-                }
-                else
-                {
-                    throw ParseError(body);
-                }
-            }
+            return await Get<GuildDTO>(path, query);
         }
 
         /// <summary>
@@ -1459,35 +962,14 @@ namespace MapleStory.OpenAPI
         /// <returns>길드 기본 정보</returns>
         public async Task<GuildBasicDTO> GetGuildBasic(string oGuildId, DateTimeOffset dateTimeOffset)
         {
-            using (var client = new HttpClient())
+            var path = "maplestory/v1/guild/basic";
+            var query = new Dictionary<string, string?>()
             {
-                var path = "maplestory/v1/guild/basic";
-                var uriBuilder = new UriBuilder($"{BASE_URL}{path}");
+                { "oguild_id", oGuildId },
+                { "date", ToDateString(MinDate(2023, 12, 21), dateTimeOffset) }
+            };
 
-                var date = ToDateString(MinDate(2023, 12, 21), dateTimeOffset);
-
-                var query = HttpUtility.ParseQueryString(uriBuilder.Query);
-                query["oguild_id"] = oGuildId;
-                query["date"] = date;
-
-                uriBuilder.Query = query.ToString();
-
-                SetClient(client);
-
-                var response = await client.GetAsync(uriBuilder.Uri);
-                var body = await response.Content.ReadAsStringAsync();
-
-                if (response.IsSuccessStatusCode)
-                {
-                    var result = JsonConvert.DeserializeObject<GuildBasicDTO>(body);
-
-                    return result;
-                }
-                else
-                {
-                    throw ParseError(body);
-                }
-            }
+            return await Get<GuildBasicDTO>(path, query);
         }
 
         #endregion
@@ -1519,33 +1001,14 @@ namespace MapleStory.OpenAPI
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
         public async Task<StarforceHistoryResponseDTO> GetStarforceHistory(int count, DateTimeOffset dateTimeOffset)
         {
-            using (var client = new HttpClient())
+            var path = "maplestory/v1/history/starforce";
+            var query = new Dictionary<string, string?>()
             {
-                var path = "maplestory/v1/history/starforce";
-                var uriBuilder = new UriBuilder($"{BASE_URL}{path}");
+                { "count", count.ToString() },
+                { "date", ToDateString(MinDate(2023, 12, 27), dateTimeOffset) }
+            };
 
-                var query = HttpUtility.ParseQueryString(uriBuilder.Query);
-                query["count"] = count.ToString();
-                query["date"] = ToDateString(MinDate(2023, 12, 27), dateTimeOffset);
-
-                uriBuilder.Query = query.ToString();
-
-                this.SetClient(client);
-
-                var response = await client.GetAsync(uriBuilder.Uri);
-                var body = await response.Content.ReadAsStringAsync();
-
-                if (response.IsSuccessStatusCode)
-                {
-                    var result = JsonConvert.DeserializeObject<StarforceHistoryResponseDTO>(body);
-
-                    return result;
-                }
-                else
-                {
-                    throw ParseError(body);
-                }
-            }
+            return await Get<StarforceHistoryResponseDTO>(path, query);
         }
 
         /// <summary>
@@ -1557,33 +1020,14 @@ namespace MapleStory.OpenAPI
         /// <param name="cursor">페이징 처리를 위한 cursor</param>
         public async Task<StarforceHistoryResponseDTO> GetStarforceHistory(int count, string cursor)
         {
-            using (var client = new HttpClient())
+            var path = "maplestory/v1/history/starforce";
+            var query = new Dictionary<string, string?>()
             {
-                var path = "maplestory/v1/history/starforce";
-                var uriBuilder = new UriBuilder($"{BASE_URL}{path}");
+                { "count", count.ToString() },
+                { "cursor", cursor }
+            };
 
-                var query = HttpUtility.ParseQueryString(uriBuilder.Query);
-                query["count"] = count.ToString();
-                query["cursor"] = cursor;
-
-                uriBuilder.Query = query.ToString();
-
-                this.SetClient(client);
-
-                var response = await client.GetAsync(uriBuilder.Uri);
-                var body = await response.Content.ReadAsStringAsync();
-
-                if (response.IsSuccessStatusCode)
-                {
-                    var result = JsonConvert.DeserializeObject<StarforceHistoryResponseDTO>(body);
-
-                    return result;
-                }
-                else
-                {
-                    throw ParseError(body);
-                }
-            }
+            return await Get<StarforceHistoryResponseDTO>(path, query);
         }
 
         /// <summary>
@@ -1613,33 +1057,14 @@ namespace MapleStory.OpenAPI
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
         public async Task<CubeHistoryResponseDTO> GetCubeHistory(int count, DateTimeOffset dateTimeOffset)
         {
-            using (var client = new HttpClient())
+            var path = "maplestory/v1/history/cube";
+            var query = new Dictionary<string, string?>()
             {
-                var path = "maplestory/v1/history/cube";
-                var uriBuilder = new UriBuilder($"{BASE_URL}{path}");
+                { "count", count.ToString() },
+                { "date", ToDateString(MinDate(2022, 11, 25), dateTimeOffset) }
+            };
 
-                var query = HttpUtility.ParseQueryString(uriBuilder.Query);
-                query["count"] = count.ToString();
-                query["date"] = ToDateString(MinDate(2022, 11, 25), dateTimeOffset);
-
-                uriBuilder.Query = query.ToString();
-
-                this.SetClient(client);
-
-                var response = await client.GetAsync(uriBuilder.Uri);
-                var body = await response.Content.ReadAsStringAsync();
-
-                if (response.IsSuccessStatusCode)
-                {
-                    var result = JsonConvert.DeserializeObject<CubeHistoryResponseDTO>(body);
-
-                    return result;
-                }
-                else
-                {
-                    throw ParseError(body);
-                }
-            }
+            return await Get<CubeHistoryResponseDTO>(path, query);
         }
 
         /// <summary>
@@ -1652,33 +1077,14 @@ namespace MapleStory.OpenAPI
         /// <param name="cursor">페이징 처리를 위한 cursor</param>
         public async Task<CubeHistoryResponseDTO> GetCubeHistory(int count, string cursor)
         {
-            using (var client = new HttpClient())
+            var path = "maplestory/v1/history/cube";
+            var query = new Dictionary<string, string?>()
             {
-                var path = "maplestory/v1/history/cube";
-                var uriBuilder = new UriBuilder($"{BASE_URL}{path}");
+                { "count", count.ToString() },
+                { "cursor", cursor }
+            };
 
-                var query = HttpUtility.ParseQueryString(uriBuilder.Query);
-                query["count"] = count.ToString();
-                query["cursor"] = cursor;
-
-                uriBuilder.Query = query.ToString();
-
-                this.SetClient(client);
-
-                var response = await client.GetAsync(uriBuilder.Uri);
-                var body = await response.Content.ReadAsStringAsync();
-
-                if (response.IsSuccessStatusCode)
-                {
-                    var result = JsonConvert.DeserializeObject<CubeHistoryResponseDTO>(body);
-
-                    return result;
-                }
-                else
-                {
-                    throw ParseError(body);
-                }
-            }
+            return await Get<CubeHistoryResponseDTO>(path, query);
         }
 
         /// <summary>
@@ -1708,33 +1114,14 @@ namespace MapleStory.OpenAPI
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
         public async Task<PotentialHistoryResponseDTO> GetPotentialHistory(int count, DateTimeOffset dateTimeOffset)
         {
-            using (var client = new HttpClient())
+            var path = "maplestory/v1/history/potential";
+            var query = new Dictionary<string, string?>()
             {
-                var path = "maplestory/v1/history/potential";
-                var uriBuilder = new UriBuilder($"{BASE_URL}{path}");
+                { "count", count.ToString() },
+                { "date", ToDateString(MinDate(2024, 1, 25), dateTimeOffset) }
+            };
 
-                var query = HttpUtility.ParseQueryString(uriBuilder.Query);
-                query["count"] = count.ToString();
-                query["date"] = ToDateString(MinDate(2024, 1, 25), dateTimeOffset);
-
-                uriBuilder.Query = query.ToString();
-
-                this.SetClient(client);
-
-                var response = await client.GetAsync(uriBuilder.Uri);
-                var body = await response.Content.ReadAsStringAsync();
-
-                if (response.IsSuccessStatusCode)
-                {
-                    var result = JsonConvert.DeserializeObject<PotentialHistoryResponseDTO>(body);
-
-                    return result;
-                }
-                else
-                {
-                    throw ParseError(body);
-                }
-            }
+            return await Get<PotentialHistoryResponseDTO>(path, query);
         }
 
         /// <summary>
@@ -1747,33 +1134,14 @@ namespace MapleStory.OpenAPI
         /// <param name="cursor">페이징 처리를 위한 cursor</param>
         public async Task<PotentialHistoryResponseDTO> GetPotentialHistory(int count, string cursor)
         {
-            using (var client = new HttpClient())
+            var path = "maplestory/v1/history/potential";
+            var query = new Dictionary<string, string?>()
             {
-                var path = "maplestory/v1/history/potential";
-                var uriBuilder = new UriBuilder($"{BASE_URL}{path}");
+                { "count", count.ToString() },
+                { "cursor", cursor }
+            };
 
-                var query = HttpUtility.ParseQueryString(uriBuilder.Query);
-                query["count"] = count.ToString();
-                query["cursor"] = cursor;
-
-                uriBuilder.Query = query.ToString();
-
-                this.SetClient(client);
-
-                var response = await client.GetAsync(uriBuilder.Uri);
-                var body = await response.Content.ReadAsStringAsync();
-
-                if (response.IsSuccessStatusCode)
-                {
-                    var result = JsonConvert.DeserializeObject<PotentialHistoryResponseDTO>(body);
-
-                    return result;
-                }
-                else
-                {
-                    throw ParseError(body);
-                }
-            }
+            return await Get<PotentialHistoryResponseDTO>(path, query);
         }
 
         #endregion
@@ -2045,54 +1413,18 @@ namespace MapleStory.OpenAPI
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
         public async Task<OverallRankingResponseDTO> GetOverallRanking(string? worldName, int? worldType, string? characterClass, string? ocid, int? page, DateTimeOffset dateTimeOffset)
         {
-            using (var client = new HttpClient())
+            var path = "maplestory/v1/ranking/overall";
+            var query = new Dictionary<string, string?>()
             {
-                var path = "maplestory/v1/ranking/overall";
-                var uriBuilder = new UriBuilder($"{BASE_URL}{path}");
+                { "date", ToDateString(MinDate(2023, 12, 22), dateTimeOffset) },
+                { "ocid", ocid },
+                { "world_type", worldType?.ToString() },
+                { "class", characterClass },
+                { "ocid", ocid },
+                { "page", page?.ToString() }
+            };
 
-                var date = ToDateString(MinDate(2023, 12, 22), dateTimeOffset);
-
-                var query = HttpUtility.ParseQueryString(uriBuilder.Query);
-                query["date"] = date;
-
-                if (worldName != null)
-                {
-                    query["world_name"] = worldName;
-                }
-                if (worldType != null)
-                {
-                    query["world_type"] = worldType.ToString();
-                }
-                if (characterClass != null)
-                {
-                    query["class"] = characterClass;
-                }
-                if (ocid != null)
-                {
-                    query["ocid"] = ocid;
-                }
-                if (page != null)
-                {
-                    query["page"] = page.ToString();
-                }
-
-                uriBuilder.Query = query.ToString();
-
-                this.SetClient(client);
-
-                var response = await client.GetAsync(uriBuilder.Uri);
-                var body = await response.Content.ReadAsStringAsync();
-
-                if (response.IsSuccessStatusCode)
-                {
-                    var result = JsonConvert.DeserializeObject<OverallRankingResponseDTO>(body);
-                    return result;
-                }
-                else
-                {
-                    throw ParseError(body);
-                }
-            }
+            return await Get<OverallRankingResponseDTO>(path, query);
         }
 
         /// <summary>
@@ -2162,47 +1494,16 @@ namespace MapleStory.OpenAPI
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
         public async Task<UnionRankingResponseDTO> GetUnionRanking(string? worldName, string? ocid, int? page, DateTimeOffset dateTimeOffset)
         {
-            using (var client = new HttpClient())
+            var path = "maplestory/v1/ranking/union";
+            var query = new Dictionary<string, string?>()
             {
-                var path = "maplestory/v1/ranking/union";
-                var uriBuilder = new UriBuilder($"{BASE_URL}{path}");
+                { "date", ToDateString(MinDate(2023, 12, 22), dateTimeOffset) },
+                { "world_name", worldName },
+                { "ocid", ocid },
+                { "page", page?.ToString() }
+            };
 
-                var date = ToDateString(MinDate(2023, 12, 22), dateTimeOffset);
-
-                var query = HttpUtility.ParseQueryString(uriBuilder.Query);
-                query["date"] = date;
-
-                if (worldName != null)
-                {
-                    query["world_name"] = worldName;
-                }
-                if (ocid != null)
-                {
-                    query["ocid"] = date;
-                }
-                if (page != null)
-                {
-                    query["page"] = page.ToString();
-                }
-
-                uriBuilder.Query = query.ToString();
-
-                this.SetClient(client);
-
-                var response = await client.GetAsync(uriBuilder.Uri);
-                var body = await response.Content.ReadAsStringAsync();
-
-                if (response.IsSuccessStatusCode)
-                {
-                    var result = JsonConvert.DeserializeObject<UnionRankingResponseDTO>(body);
-
-                    return result;
-                }
-                else
-                {
-                    throw ParseError(body);
-                }
-            }
+            return await Get<UnionRankingResponseDTO>(path, query);
         }
 
         /// <summary>
@@ -2274,49 +1575,17 @@ namespace MapleStory.OpenAPI
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
         public async Task<GuildRankingResponseDTO> GetGuildRanking(string? worldName, int rankingType, string? guildName, int? page, DateTimeOffset dateTimeOffset)
         {
-            using (var client = new HttpClient())
+            var path = "maplestory/v1/ranking/guild";
+            var query = new Dictionary<string, string?>()
             {
-                var path = "maplestory/v1/ranking/guild";
-                var uriBuilder = new UriBuilder($"{BASE_URL}{path}");
+                { "date", ToDateString(MinDate(2023, 12, 22), dateTimeOffset) },
+                { "ranking_type", rankingType.ToString() },
+                { "world_name", worldName },
+                { "guild_name", guildName },
+                { "page", page?.ToString() }
+            };
 
-                var date = ToDateString(MinDate(2023, 12, 22), dateTimeOffset);
-
-                var query = HttpUtility.ParseQueryString(uriBuilder.Query);
-                query["date"] = date;
-                query["ranking_type"] = rankingType.ToString();
-
-
-                if (worldName != null)
-                {
-                    query["world_name"] = worldName;
-                }
-                if (guildName != null)
-                {
-                    query["guild_name"] = guildName;
-                }
-                if (page != null)
-                {
-                    query["page"] = page.ToString();
-                }
-
-                uriBuilder.Query = query.ToString();
-
-                SetClient(client);
-
-                var response = await client.GetAsync(uriBuilder.Uri);
-                var body = await response.Content.ReadAsStringAsync();
-
-                if (response.IsSuccessStatusCode)
-                {
-                    var result = JsonConvert.DeserializeObject<GuildRankingResponseDTO>(body);
-
-                    return result;
-                }
-                else
-                {
-                    throw ParseError(body);
-                }
-            }
+            return await Get<GuildRankingResponseDTO>(path, query);
         }
 
         /// <summary>
@@ -2584,52 +1853,18 @@ namespace MapleStory.OpenAPI
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
         public async Task<DojangRankingResponseDTO> GetDojangRanking(string? worldName, int difficulty, string? characterClass, string? ocid, int? page, DateTimeOffset dateTimeOffset)
         {
-            using (var client = new HttpClient())
+            var path = "maplestory/v1/ranking/dojang";
+            var query = new Dictionary<string, string?>()
             {
-                var path = "maplestory/v1/ranking/dojang";
-                var uriBuilder = new UriBuilder($"{BASE_URL}{path}");
+                { "date", ToDateString(MinDate(2023, 12, 22), dateTimeOffset) },
+                { "difficulty", difficulty.ToString() },
+                { "world_name", worldName },
+                { "class", characterClass },
+                { "ocid", ocid },
+                { "page", page?.ToString() }
+            };
 
-                var date = ToDateString(MinDate(2023, 12, 22), dateTimeOffset);
-
-                var query = HttpUtility.ParseQueryString(uriBuilder.Query);
-                query["date"] = date;
-                query["difficulty"] = difficulty.ToString();
-
-                if (worldName != null)
-                {
-                    query["world_name"] = worldName;
-                }
-                if (characterClass != null)
-                {
-                    query["class"] = characterClass;
-                }
-                if (ocid != null)
-                {
-                    query["ocid"] = ocid;
-                }
-                if (page != null)
-                {
-                    query["page"] = page.ToString();
-                }
-
-                uriBuilder.Query = query.ToString();
-
-                SetClient(client);
-
-                var response = await client.GetAsync(uriBuilder.Uri);
-                var body = await response.Content.ReadAsStringAsync();
-
-                if (response.IsSuccessStatusCode)
-                {
-                    var result = JsonConvert.DeserializeObject<DojangRankingResponseDTO>(body);
-
-                    return result;
-                }
-                else
-                {
-                    throw ParseError(body);
-                }
-            }
+            return await Get<DojangRankingResponseDTO>(path, query);
         }
 
         /// <summary>
@@ -2699,47 +1934,17 @@ namespace MapleStory.OpenAPI
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
         public async Task<TheSeedRankingResponseDTO> GetTheSeedRanking(string? worldName, string? ocid, int? page, DateTimeOffset dateTimeOffset)
         {
-            using (var client = new HttpClient())
+            var path = "maplestory/v1/ranking/theseed";
+            var query = new Dictionary<string, string?>()
             {
-                var path = "maplestory/v1/ranking/theseed";
-                var uriBuilder = new UriBuilder($"{BASE_URL}{path}");
+                { "date", ToDateString(MinDate(2023, 12, 22), dateTimeOffset) },
+                { "world_name", worldName },
+                { "ocid", ocid },
+                { "page", page?.ToString() }
 
-                var date = ToDateString(MinDate(2023, 12, 22), dateTimeOffset);
+            };
 
-                var query = HttpUtility.ParseQueryString(uriBuilder.Query);
-                query["date"] = date;
-
-                if (worldName != null)
-                {
-                    query["world_name"] = worldName;
-                }
-                if (ocid != null)
-                {
-                    query["ocid"] = ocid;
-                }
-                if (page != null)
-                {
-                    query["page"] = page.ToString();
-                }
-
-                uriBuilder.Query = query.ToString();
-
-                SetClient(client);
-
-                var response = await client.GetAsync(uriBuilder.Uri);
-                var body = await response.Content.ReadAsStringAsync();
-
-                if (response.IsSuccessStatusCode)
-                {
-                    var result = JsonConvert.DeserializeObject<TheSeedRankingResponseDTO>(body);
-
-                    return result;
-                }
-                else
-                {
-                    throw ParseError(body);
-                }
-            }
+            return await Get<TheSeedRankingResponseDTO>(path, query);
         }
 
         /// <summary>
@@ -2771,43 +1976,15 @@ namespace MapleStory.OpenAPI
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
         public async Task<AchievementRankingResponseDTO> GetAchievementRanking(string? ocid, int? page, DateTimeOffset dateTimeOffset)
         {
-            using (var client = new HttpClient())
+            var path = "maplestory/v1/ranking/achievement";
+            var query = new Dictionary<string, string?>()
             {
-                var path = "maplestory/v1/ranking/achievement";
-                var uriBuilder = new UriBuilder($"{BASE_URL}{path}");
+                { "date", ToDateString(MinDate(2023, 12, 22), dateTimeOffset) },
+                { "ocid", ocid },
+                { "page", page?.ToString() }
+            };
 
-                var date = ToDateString(MinDate(2023, 12, 22), dateTimeOffset);
-
-                var query = HttpUtility.ParseQueryString(uriBuilder.Query);
-                query["date"] = date;
-
-                if (ocid != null)
-                {
-                    query["ocid"] = ocid;
-                }
-                if (page != null)
-                {
-                    query["page"] = page.ToString();
-                }
-
-                uriBuilder.Query = query.ToString();
-
-                SetClient(client);
-
-                var response = await client.GetAsync(uriBuilder.Uri);
-                var body = await response.Content.ReadAsStringAsync();
-
-                if (response.IsSuccessStatusCode)
-                {
-                    var result = JsonConvert.DeserializeObject<AchievementRankingResponseDTO>(body);
-
-                    return result;
-                }
-                else
-                {
-                    throw ParseError(body);
-                }
-            }
+            return await Get<AchievementRankingResponseDTO>(path, query);
         }
 
         #endregion
@@ -2817,35 +1994,31 @@ namespace MapleStory.OpenAPI
         /// </summary>
         public async Task<InspectionInfoDTO> GetInspectionInfo()
         {
-            using (var client = new HttpClient())
-            {
-                var baseUrl = "https://api.maplestory.nexon.com/";
-                var path = "soap/maplestory.asmx";
-                var uriBuilder = new UriBuilder($"{baseUrl}{path}");
-
-                client.DefaultRequestHeaders.Add("SOAPAction", "https://api.maplestory.nexon.com/soap/GetInspectionInfo");
-                client.Timeout = TimeSpan.FromMilliseconds(this.timeOut);
-
-                var soapEnvelop =
+            var client = new RestClient(options: new RestClientOptions("https://api.maplestory.nexon.com/"));
+            var path = "soap/maplestory.asmx";
+            var soapEnvelop =
                 "<soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n" +
                 "  <soap:Body>\n" +
                 "    <GetInspectionInfo xmlns=\"https://api.maplestory.nexon.com/soap/\" />\n" +
                 "  </soap:Body>\n" +
                 "</soap:Envelope>";
-                var body = new StringContent(soapEnvelop, Encoding.UTF8, "text/xml");
 
-                var response = await client.PostAsync(uriBuilder.Uri, body);
+            var request = new RestRequest(path);
 
-                if (response.IsSuccessStatusCode)
-                {
-                    var responseBody = await response.Content.ReadAsStringAsync();
+            request.Timeout = this.timeOut;
+            request.AddHeader("SOAPAction", "https://api.maplestory.nexon.com/soap/GetInspectionInfo");
+            request.AddHeader("content-type", "text/xml; charset=utf-8");
+            request.AddStringBody(soapEnvelop, ContentType.Xml);
+            
+            var response = await client.PostAsync(request);
 
-                    return new InspectionInfoDTO(responseBody);
-                }
-                else
-                {
-                    throw new MapleStoryAPIException(MapleStoryAPIErrorCode.OPENAPI00003, "Bad Request");
-                }
+            if (response.IsSuccessStatusCode)
+            {
+                return new InspectionInfoDTO(response.Content!);
+            }
+            else
+            {
+                throw new MapleStoryAPIException(MapleStoryAPIErrorCode.OPENAPI00003, "Bad Request");
             }
         }
 
@@ -2854,6 +2027,37 @@ namespace MapleStory.OpenAPI
             client.Timeout = TimeSpan.FromMilliseconds(this.timeOut);
             client.DefaultRequestHeaders.Add("x-nxopen-api-key", this.apiKey);
         }
+
+        private async Task<ResponseBody> Get<ResponseBody>(string path, Dictionary<string, string?>? query = null)
+        {
+            var request = new RestRequest(path);
+
+            request.Timeout = this.timeOut;
+            request.AddHeader("x-nxopen-api-key", this.apiKey);
+
+            if (query != null)
+            {
+                foreach (var element in query)
+                {
+                    if (element.Value != null)
+                    {
+                        request.AddQueryParameter(element.Key, element.Value);
+                    }
+                }
+            }
+
+            var response = await this.client.ExecuteGetAsync<ResponseBody>(request);
+
+            if (response.IsSuccessStatusCode)
+            {
+                return response.Data!;
+            }
+            else
+            {
+                throw ParseError(response.Content!);
+            }
+        }
+
 
         private static DateTimeOffset MinDate(int year, int month, int day)
         {

@@ -1,8 +1,8 @@
+import { CubeResultOptionDtoBody } from '../../response/history/cubeResultOptionDtoBody';
 import {
   PotentialOptionGrade,
   potentialOptionGradeFromString,
 } from '../potentialOptionGrade';
-import { CubeResultOptionDtoBody } from '../../response/history/cubeResultOptionDtoBody';
 
 /**
  * 큐브 결과 옵션 정보

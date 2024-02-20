@@ -1,9 +1,9 @@
 import { CubeResultOptionDto } from './cubeResultOptionDto';
+import { CubeHistoryDtoBody } from '../../response/history/cubeHistoryDtoBody';
 import {
   PotentialOptionGrade,
   potentialOptionGradeFromString,
 } from '../potentialOptionGrade';
-import { CubeHistoryDtoBody } from '../../response/history/cubeHistoryDtoBody';
 
 /**
  * 큐브 히스토리

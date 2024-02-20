@@ -1,8 +1,8 @@
+import { CharacterItemEquipmentDragonInfoDto } from './characterItemEquipmentDragonInfoDto'
 import { CharacterItemEquipmentInfoDto } from './characterItemEquipmentInfoDto';
+import { CharacterItemEquipmentMechanicInfoDto } from './characterItemEquipmentMechanicInfoDto'
 import { CharacterItemEquipmentTitleDto } from './characterItemEquipmentTitleDto';
 import { CharacterItemEquipmentDtoBody } from '../../response/character/characterItemEquipmentDtoBody';
-import { CharacterItemEquipmentDragonInfoDto } from './characterItemEquipmentDragonInfoDto'
-import { CharacterItemEquipmentMechanicInfoDto } from './characterItemEquipmentMechanicInfoDto'
 
 /**
  * 캐릭터 장비 아이템 정보
