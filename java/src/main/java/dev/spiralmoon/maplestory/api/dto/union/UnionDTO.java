@@ -34,6 +34,24 @@ public class UnionDTO {
     @SerializedName("union_grade")
     private String unionGrade;
 
+    /**
+     * 아티팩트 레벨
+     */
+    @SerializedName("union_artifact_level")
+    private Integer unionArtifactLevel;
+
+    /**
+     * 보유 아티팩트 경험치
+     */
+    @SerializedName("union_artifact_exp")
+    private Integer unionArtifactExp;
+
+    /**
+     * 보유 아티팩트 포인트
+     */
+    @SerializedName("union_artifact_point")
+    private Integer unionArtifactPoint;
+
     public LocalDateTime getDate() {
         return Utils.toLocalDateTime(this.date);
     }

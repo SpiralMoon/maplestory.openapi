@@ -19,12 +19,30 @@ class UnionDto {
    */
   unionGrade: string;
 
+  /**
+   * 아티팩트 레벨
+   */
+  unionArtifactLevel: number | null;
+
+  /**
+   * 보유 아티팩트 경험치
+   */
+  unionArtifactExp: number | null;
+
+  /**
+   * 보유 아티팩트 포인트
+   */
+  unionArtifactPoint: number | null;
+
   constructor(obj: UnionDtoBody) {
-    const { date, union_level, union_grade } = obj;
+    const { date, union_level, union_grade, union_artifact_level, union_artifact_exp, union_artifact_point } = obj;
 
     this.date = new Date(date);
     this.unionLevel = union_level;
     this.unionGrade = union_grade;
+    this.unionArtifactLevel = union_artifact_level;
+    this.unionArtifactExp = union_artifact_exp;
+    this.unionArtifactPoint = union_artifact_point;
   }
 }
 
