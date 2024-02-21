@@ -35,6 +35,8 @@
                 { "OPENAPI00005", MapleStoryAPIErrorCode.OPENAPI00005 },
                 { "OPENAPI00006", MapleStoryAPIErrorCode.OPENAPI00006 },
                 { "OPENAPI00007", MapleStoryAPIErrorCode.OPENAPI00007 },
+                { "OPENAPI00009", MapleStoryAPIErrorCode.OPENAPI00009 },
+                { "OPENAPI00010", MapleStoryAPIErrorCode.OPENAPI00010 },
             };
 
             if (errorMap.TryGetValue(name, out MapleStoryAPIErrorCode errorCode))
@@ -62,5 +64,7 @@
         OPENAPI00005,
         OPENAPI00006,
         OPENAPI00007,
+        OPENAPI00009,
+        OPENAPI00010,
     }
 }
