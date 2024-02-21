@@ -13,7 +13,7 @@
 NuGet 기반 프로젝트에 아래 정보를 입력하여 패키지를 추가하세요:
 
 ```xml
-<PackageReference Include="MapleStory.OpenAPI" Version="2.4.0" />
+<PackageReference Include="MapleStory.OpenAPI" Version="2.4.1" />
 ```
 
 ## Usage
@@ -61,12 +61,14 @@ catch (HttpRequestException e)
 
 따라서 아래 표에 설명된 `MapleStoryAPIErrorCode` 목록을 기반으로 `MapleStoryAPIException`를 예외 처리하시기 바랍니다.
 
-| ErrorCode    | Description       |
-|--------------|-------------------|
-| OPENAPI00001 | 서버 내부 오류          |
-| OPENAPI00002 | 권한이 없는 경우         |
-| OPENAPI00003 | 유효하지 않은 식별자       |
+| ErrorCode    | Description      |
+|--------------|------------------|
+| OPENAPI00001 | 서버 내부 오류         |
+| OPENAPI00002 | 권한이 없는 경우        |
+| OPENAPI00003 | 유효하지 않은 식별자      |
 | OPENAPI00004 | 파라미터 누락 또는 유효하지 않음 |
-| OPENAPI00005 | 유효하지 않은 API KEY   |
-| OPENAPI00006 | 유효하지 않은 API PATH  |
-| OPENAPI00007 | API 호출량 초과        |
+| OPENAPI00005 | 유효하지 않은 API KEY  |
+| OPENAPI00006 | 유효하지 않은 API PATH |
+| OPENAPI00007 | API 호출량 초과       |
+| OPENAPI00009 | 데이터 준비 중        |
+| OPENAPI00010 | 서비스 점검 중       |

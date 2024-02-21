@@ -13,7 +13,7 @@ Packages written in other languages can be found [HERE](https://github.com/Spira
 Install the latest version of the JavaScript/TypeScript library in your npm project:
 
 ```bash
-npm install maplestory-openapi@2.4.0 # Replace with the latest version
+npm install maplestory-openapi@2.4.1 # Replace with the latest version
 ```
 
 ## Usage
@@ -72,12 +72,14 @@ While `MapleStoryApi` is designed to prevent the occurrence of certain Status, e
 
 Therefore, it's recommended to use `MapleStoryApiError` for exception handling based on the `MapleStoryApiErrorCode` list described in the table below.
 
-| ErrorCode    | Description                                     |
-|--------------|-------------------------------------------------|
-| OPENAPI00001 | Internal server error                           |
-| OPENAPI00002 | Access denied                                   |
-| OPENAPI00003 | Invalid identifier                              |
+| ErrorCode    | Description                              |
+|--------------|------------------------------------------|
+| OPENAPI00001 | Internal server error                    |
+| OPENAPI00002 | Access denied                            |
+| OPENAPI00003 | Invalid identifier                       |
 | OPENAPI00004 | Request format error (incorrect parameter input) |
-| OPENAPI00005 | Invalid api key                                 |
-| OPENAPI00006 | Invalid api path                                |
-| OPENAPI00007 | Request allowance (Rate Limit) exceeded         |
+| OPENAPI00005 | Invalid api key                          |
+| OPENAPI00006 | Invalid api path                         |
+| OPENAPI00007 | Request allowance (Rate Limit) exceeded  |
+| OPENAPI00009 | Not prepared data                        |
+| OPENAPI00010 | API server mainternence                  |
