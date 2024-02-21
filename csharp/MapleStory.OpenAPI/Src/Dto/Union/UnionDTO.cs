@@ -36,5 +36,23 @@ namespace MapleStory.OpenAPI.Dto
         /// </summary>
         [JsonProperty("union_grade")]
         public string UnionGrade { get; set; }
+
+        /// <summary>
+        /// 아티팩트 레벨
+        /// </summary>
+        [JsonProperty("union_artifact_level")]
+        public int? UnionArtifactLevel { get; set; }
+
+        /// <summary>
+        /// 보유 아티팩트 경험치
+        /// </summary>
+        [JsonProperty("union_artifact_exp")]
+        public int? UnionArtifactExp { get; set; }
+
+        /// <summary>
+        /// 보유 아티팩트 포인트
+        /// </summary>
+        [JsonProperty("union_artifact_point")]
+        public int? UnionArtifactPoint { get; set; }
     }
 }
