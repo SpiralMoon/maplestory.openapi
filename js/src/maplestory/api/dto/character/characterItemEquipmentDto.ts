@@ -1,8 +1,12 @@
-import { CharacterItemEquipmentDragonInfoDto } from './characterItemEquipmentDragonInfoDto'
-import { CharacterItemEquipmentInfoDto } from './characterItemEquipmentInfoDto';
-import { CharacterItemEquipmentMechanicInfoDto } from './characterItemEquipmentMechanicInfoDto'
-import { CharacterItemEquipmentTitleDto } from './characterItemEquipmentTitleDto';
-import { CharacterItemEquipmentDtoBody } from '../../response/character/characterItemEquipmentDtoBody';
+import {
+  CharacterItemEquipmentDragonInfoDto
+} from '@src/maplestory/api/dto/character/characterItemEquipmentDragonInfoDto';
+import { CharacterItemEquipmentInfoDto } from '@src/maplestory/api/dto/character/characterItemEquipmentInfoDto';
+import {
+  CharacterItemEquipmentMechanicInfoDto
+} from '@src/maplestory/api/dto/character/characterItemEquipmentMechanicInfoDto';
+import { CharacterItemEquipmentTitleDto } from '@src/maplestory/api/dto/character/characterItemEquipmentTitleDto';
+import { CharacterItemEquipmentDtoBody } from '@src/maplestory/api/response/character/characterItemEquipmentDtoBody';
 
 /**
  * 캐릭터 장비 아이템 정보

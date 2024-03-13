@@ -1,6 +1,6 @@
-import { UnionArtifactCrystalDto } from './unionArtifactCrystalDto';
-import { UnionArtifactEffectDto } from './unionArtifactEffectDto';
-import { UnionArtifactDtoBody } from '../../response/union/unionArtifactDtoBody';
+import { UnionArtifactCrystalDto } from '@src/maplestory/api/dto/union/unionArtifactCrystalDto';
+import { UnionArtifactEffectDto } from '@src/maplestory/api/dto/union/unionArtifactEffectDto';
+import { UnionArtifactDtoBody } from '@src/maplestory/api/response/union/unionArtifactDtoBody';
 
 /**
  * 유니온 아티팩트 정보

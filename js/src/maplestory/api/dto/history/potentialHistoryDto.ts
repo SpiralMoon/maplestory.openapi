@@ -1,9 +1,7 @@
-import { PotentialResultOptionDto } from './potentialResultOptionDto';
-import { PotentialHistoryDtoBody } from '../../response/history/potentialHistoryResponseDtoBody';
-import {
-  PotentialOptionGrade,
-  potentialOptionGradeFromString,
-} from '../potentialOptionGrade';
+import { PotentialResultOptionDto } from '@src/maplestory/api/dto/history/potentialResultOptionDto';
+import { PotentialOptionGrade, potentialOptionGradeFromString } from '@src/maplestory/api/dto/potentialOptionGrade';
+import { PotentialHistoryDtoBody } from '@src/maplestory/api/response/history/potentialHistoryResponseDtoBody';
+
 
 /**
  * 잠재능력 재설정 히스토리

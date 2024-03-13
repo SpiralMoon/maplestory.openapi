@@ -1,5 +1,5 @@
-import { CharacterHyperStatPresetDto } from './characterHyperStatPresetDto';
-import { CharacterHyperStatDtoBody } from '../../response/character/characterHyperStatDtoBody';
+import { CharacterHyperStatPresetDto } from '@src/maplestory/api/dto/character/characterHyperStatPresetDto';
+import { CharacterHyperStatDtoBody } from '@src/maplestory/api/response/character/characterHyperStatDtoBody';
 
 /**
  * 캐릭터 하이퍼 스탯 정보

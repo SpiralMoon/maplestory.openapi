@@ -1,4 +1,6 @@
-import { CharacterItemEquipmentExceptionalOptionDtoBody } from '../../response/character/characterItemEquipmentDtoBody';
+import {
+  CharacterItemEquipmentExceptionalOptionDtoBody
+} from '@src/maplestory/api/response/character/characterItemEquipmentDtoBody';
 
 /**
  * 캐릭터 장비 특별 옵션 정보

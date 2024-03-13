@@ -1,4 +1,4 @@
-import { CharacterSkillInfoDtoBody } from '../../response/character/characterSkillDtoBody';
+import { CharacterSkillInfoDtoBody } from '@src/maplestory/api/response/character/characterSkillDtoBody';
 
 /**
  * 캐릭터 스킬 상세 정보

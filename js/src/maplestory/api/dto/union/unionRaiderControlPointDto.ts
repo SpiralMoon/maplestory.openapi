@@ -1,4 +1,4 @@
-import { UnionRaiderBlockControlPointDtoBody } from '../../response/union/unionRaiderDtoBody';
+import { UnionRaiderBlockControlPointDtoBody } from '@src/maplestory/api/response/union/unionRaiderDtoBody';
 
 /**
  * 유니온 블록 기준점 좌표 정보

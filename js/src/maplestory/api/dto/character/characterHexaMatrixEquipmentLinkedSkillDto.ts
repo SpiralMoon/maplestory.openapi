@@ -1,4 +1,6 @@
-import { CharacterHexaMatrixEquipmentLinkedSkillDtoBody } from '../../response/character/characterHexaMatrixDtoBody';
+import {
+  CharacterHexaMatrixEquipmentLinkedSkillDtoBody
+} from '@src/maplestory/api/response/character/characterHexaMatrixDtoBody';
 
 /**
  * 연결된 HEXA 스킬 정보

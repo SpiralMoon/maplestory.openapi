@@ -1,5 +1,9 @@
-import { CharacterCashItemEquipmentPresetDto } from './characterCashItemEquipmentPresetDto';
-import { CharacterCashItemEquipmentDtoBody } from '../../response/character/characterCashItemEquipmentDtoBody';
+import {
+  CharacterCashItemEquipmentPresetDto
+} from '@src/maplestory/api/dto/character/characterCashItemEquipmentPresetDto';
+import {
+  CharacterCashItemEquipmentDtoBody
+} from '@src/maplestory/api/response/character/characterCashItemEquipmentDtoBody';
 
 /**
  * 캐릭터 캐시 장비 아이템 정보

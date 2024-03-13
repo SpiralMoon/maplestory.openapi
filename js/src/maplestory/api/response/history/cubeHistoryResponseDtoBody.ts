@@ -1,4 +1,4 @@
-import { CubeHistoryDtoBody } from './cubeHistoryDtoBody';
+import { CubeHistoryDtoBody } from '@src/maplestory/api/response/history/cubeHistoryDtoBody';
 
 type CubeHistoryResponseDtoBody = {
   count: number;

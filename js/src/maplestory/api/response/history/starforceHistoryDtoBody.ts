@@ -1,4 +1,4 @@
-import { StarforceEventDtoBody } from './starforceEventDtoBody';
+import { StarforceEventDtoBody } from '@src/maplestory/api/response/history/starforceEventDtoBody';
 
 type StarforceHistoryDtoBody = {
   id: string;

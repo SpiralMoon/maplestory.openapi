@@ -1,4 +1,4 @@
-import { CharacterHyperStatPresetDtoBody } from '../../response/character/characterHyperStatDtoBody';
+import { CharacterHyperStatPresetDtoBody } from '@src/maplestory/api/response/character/characterHyperStatDtoBody';
 
 /**
  * 캐릭터 하이퍼 스탯 프리셋 정보

@@ -1,6 +1,8 @@
-import { CharacterBeautyEquipmentFaceDto } from './characterBeautyEquipmentFaceDto';
-import { CharacterBeautyEquipmentHairDto } from './characterBeautyEquipmentHairDto';
-import { CharacterBeautyEquipmentDtoBody } from '../../response/character/characterBeautyEquipmentDtoBody';
+import { CharacterBeautyEquipmentFaceDto } from '@src/maplestory/api/dto/character/characterBeautyEquipmentFaceDto';
+import { CharacterBeautyEquipmentHairDto } from '@src/maplestory/api/dto/character/characterBeautyEquipmentHairDto';
+import {
+  CharacterBeautyEquipmentDtoBody
+} from '@src/maplestory/api/response/character/characterBeautyEquipmentDtoBody';
 
 /**
  * 캐릭터 헤어, 성형, 피부 정보

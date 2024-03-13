@@ -1,4 +1,6 @@
-import { CharacterAndroidCashItemEquipmentOptionDtoBody } from '../../response/character/characterAndroidEquipmentDtoBody';
+import {
+  CharacterAndroidCashItemEquipmentOptionDtoBody
+} from '@src/maplestory/api/response/character/characterAndroidEquipmentDtoBody';
 
 /**
  * 캐릭터 안드로이드 캐시 아이템 옵션 정보

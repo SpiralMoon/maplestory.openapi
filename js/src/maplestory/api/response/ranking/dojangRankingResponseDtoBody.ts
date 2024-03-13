@@ -1,4 +1,4 @@
-import { RankingResponseDtoBody } from './rankingResponseDtoBody';
+import { RankingResponseDtoBody } from '@src/maplestory/api/response/ranking/rankingResponseDtoBody';
 
 type DojangRankingResponseDtoBody =
   RankingResponseDtoBody<DojangRankingDtoBody>;

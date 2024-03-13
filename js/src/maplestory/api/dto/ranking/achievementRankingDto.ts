@@ -1,4 +1,4 @@
-import { AchievementRankingDtoBody } from '../../response/ranking/achievementRankingResponseDtoBody';
+import { AchievementRankingDtoBody } from '@src/maplestory/api/response/ranking/achievementRankingResponseDtoBody';
 
 /**
  * 업적 랭킹 정보

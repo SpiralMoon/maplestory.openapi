@@ -1,4 +1,4 @@
-import { CharacterPropensityDtoBody } from '../../response/character/characterPropensityDtoBody';
+import { CharacterPropensityDtoBody } from '@src/maplestory/api/response/character/characterPropensityDtoBody';
 
 /**
  * 캐릭터 성향 정보

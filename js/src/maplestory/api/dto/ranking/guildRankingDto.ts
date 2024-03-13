@@ -1,4 +1,4 @@
-import { GuildRankingDtoBody } from '../../response/ranking/guildRankingResponseDtoBody';
+import { GuildRankingDtoBody } from '@src/maplestory/api/response/ranking/guildRankingResponseDtoBody';
 
 /**
  * 길드 랭킹 정보

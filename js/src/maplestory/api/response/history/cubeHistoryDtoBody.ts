@@ -1,4 +1,4 @@
-import { CubeResultOptionDtoBody } from './cubeResultOptionDtoBody';
+import { CubeResultOptionDtoBody } from '@src/maplestory/api/response/history/cubeResultOptionDtoBody';
 
 type CubeHistoryDtoBody = {
   id: string;
