@@ -1,6 +1,6 @@
-import { UnionRaiderBlockDto } from './unionRaiderBlockDto';
-import { UnionRaiderInnerStatDto } from './unionRaiderInnerStatDto';
-import { UnionRaiderDtoBody } from '../../response/union/unionRaiderDtoBody';
+import { UnionRaiderBlockDto } from '@src/maplestory/api/dto/union/unionRaiderBlockDto';
+import { UnionRaiderInnerStatDto } from '@src/maplestory/api/dto/union/unionRaiderInnerStatDto';
+import { UnionRaiderDtoBody } from '@src/maplestory/api/response/union/unionRaiderDtoBody';
 
 /**
  * 유니온 공격대 정보

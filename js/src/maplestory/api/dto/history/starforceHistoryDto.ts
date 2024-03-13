@@ -1,5 +1,5 @@
-import { StarforceEventDto } from './starforceEventDto';
-import { StarforceHistoryDtoBody } from '../../response/history/starforceHistoryDtoBody';
+import { StarforceEventDto } from '@src/maplestory/api/dto/history/starforceEventDto';
+import { StarforceHistoryDtoBody } from '@src/maplestory/api/response/history/starforceHistoryDtoBody';
 
 /**
  * 스타포스 히스토리

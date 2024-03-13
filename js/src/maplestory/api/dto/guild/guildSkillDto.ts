@@ -1,4 +1,4 @@
-import { GuildSkillDtoBody } from '../../response/guild/guildBasicDtoBody';
+import { GuildSkillDtoBody } from '@src/maplestory/api/response/guild/guildBasicDtoBody';
 
 /**
  * 길드 스킬 정보

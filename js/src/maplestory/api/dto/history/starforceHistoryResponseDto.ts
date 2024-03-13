@@ -1,5 +1,5 @@
-import { StarforceHistoryDto } from './starforceHistoryDto';
-import { StarforceHistoryResponseDtoBody } from '../../response/history/starforceHistoryResponseDtoBody';
+import { StarforceHistoryDto } from '@src/maplestory/api/dto/history/starforceHistoryDto';
+import { StarforceHistoryResponseDtoBody } from '@src/maplestory/api/response/history/starforceHistoryResponseDtoBody';
 
 /**
  * 스타포스 히스토리 응답 정보

@@ -1,5 +1,5 @@
-import { TheSeedRankingDto } from './theSeedRankingDto';
-import { TheSeedRankingResponseDtoBody } from '../../response/ranking/theSeedRankingResponseDtoBody';
+import { TheSeedRankingDto } from '@src/maplestory/api/dto/ranking/theSeedRankingDto';
+import { TheSeedRankingResponseDtoBody } from '@src/maplestory/api/response/ranking/theSeedRankingResponseDtoBody';
 
 /**
  * 더 시드 랭킹 응답 정보

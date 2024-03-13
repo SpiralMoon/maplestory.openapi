@@ -1,4 +1,4 @@
-import { UnionDtoBody } from '../../response/union/unionDtoBody';
+import { UnionDtoBody } from '@src/maplestory/api/response/union/unionDtoBody';
 
 /**
  * 유니온 정보

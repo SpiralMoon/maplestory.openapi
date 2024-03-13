@@ -1,4 +1,6 @@
-import { CharacterSymbolEquipmentInfoDtoBody } from '../../response/character/characterSymbolEquipmentDtoBody';
+import {
+  CharacterSymbolEquipmentInfoDtoBody
+} from '@src/maplestory/api/response/character/characterSymbolEquipmentDtoBody';
 
 /**
  * 캐릭터 심볼 상세 정보

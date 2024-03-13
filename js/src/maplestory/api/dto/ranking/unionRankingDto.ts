@@ -1,4 +1,4 @@
-import { UnionRankingDtoBody } from '../../response/ranking/unionRankingResponseDtoBody';
+import { UnionRankingDtoBody } from '@src/maplestory/api/response/ranking/unionRankingResponseDtoBody';
 
 /**
  * 유니온 랭킹 정보

@@ -1,5 +1,5 @@
-import { CharacterHexaMatrixStatCoreDto } from './characterHexaMatrixStatCoreDto';
-import { CharacterHexaMatrixStatDtoBody } from '../../response/character/characterHexaMatrixStatDtoBody';
+import { CharacterHexaMatrixStatCoreDto } from '@src/maplestory/api/dto/character/characterHexaMatrixStatCoreDto';
+import { CharacterHexaMatrixStatDtoBody } from '@src/maplestory/api/response/character/characterHexaMatrixStatDtoBody';
 
 /**
  * 캐릭터 HEXA 스탯 코어 정보

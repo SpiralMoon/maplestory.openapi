@@ -10,10 +10,11 @@
     "noImplicitAny": true,
     "strict": true,
     "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
+    "esModuleInterop": true
   },
   "include": ["@types/**/*", "src/**/*"],
   "exclude": ["node_modules"],
+  "extends": "./tsconfig.paths.json",
   "ts-node": {
     "transpileOnly": true,
     "compilerOptions": {

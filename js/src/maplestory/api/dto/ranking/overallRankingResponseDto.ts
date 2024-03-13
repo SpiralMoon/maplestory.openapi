@@ -1,5 +1,5 @@
-import { OverallRankingDto } from './overallRankingDto';
-import { OverallRankingResponseDtoBody } from '../../response/ranking/overallRankingResponseDtoBody';
+import { OverallRankingDto } from '@src/maplestory/api/dto/ranking/overallRankingDto';
+import { OverallRankingResponseDtoBody } from '@src/maplestory/api/response/ranking/overallRankingResponseDtoBody';
 
 /**
  * 종합 랭킹 응답 정보

@@ -1,5 +1,5 @@
-import { CharacterLinkSkillInfoDto } from './characterLinkSkillInfoDto';
-import { CharacterLinkSkillDtoBody } from '../../response/character/characterLinkSkillDtoBody';
+import { CharacterLinkSkillInfoDto } from '@src/maplestory/api/dto/character/characterLinkSkillInfoDto';
+import { CharacterLinkSkillDtoBody } from '@src/maplestory/api/response/character/characterLinkSkillDtoBody';
 
 /**
  * 캐릭터 링크 스킬 정보

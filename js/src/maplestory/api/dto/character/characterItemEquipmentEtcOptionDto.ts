@@ -1,4 +1,6 @@
-import { CharacterItemEquipmentEtcOptionDtoBody } from '../../response/character/characterItemEquipmentDtoBody';
+import {
+  CharacterItemEquipmentEtcOptionDtoBody
+} from '@src/maplestory/api/response/character/characterItemEquipmentDtoBody';
 
 /**
  * 캐릭터 장비 기타 옵션 정보

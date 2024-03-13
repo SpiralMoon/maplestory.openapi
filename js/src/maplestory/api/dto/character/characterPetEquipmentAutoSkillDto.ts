@@ -1,4 +1,6 @@
-import { CharacterPetEquipmentAutoSkillDtoBody } from '../../response/character/characterPetEquipmentDtoBody';
+import {
+  CharacterPetEquipmentAutoSkillDtoBody
+} from '@src/maplestory/api/response/character/characterPetEquipmentDtoBody';
 
 /**
  * 캐릭터 펫 장비 자동 스킬 정보

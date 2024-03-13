@@ -1,6 +1,6 @@
-type TheSeedRankingResponseDtoBody = {
-  ranking: TheSeedRankingDtoBody[];
-};
+import { RankingResponseDtoBody } from '@src/maplestory/api/response/ranking/rankingResponseDtoBody';
+
+type TheSeedRankingResponseDtoBody = RankingResponseDtoBody<TheSeedRankingDtoBody>;
 
 type TheSeedRankingDtoBody = {
   date: string;

@@ -1,4 +1,6 @@
-import { CharacterBeautyEquipmentFaceDtoBody } from '../../response/character/characterBeautyEquipmentDtoBody';
+import {
+  CharacterBeautyEquipmentFaceDtoBody
+} from '@src/maplestory/api/response/character/characterBeautyEquipmentDtoBody';
 
 /**
  * 캐릭터 성형 정보

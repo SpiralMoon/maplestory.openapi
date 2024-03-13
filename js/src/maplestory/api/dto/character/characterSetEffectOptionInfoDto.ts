@@ -1,4 +1,4 @@
-import { CharacterSetEffectOptionInfoDtoBody } from '../../response/character/characterSetEffectDtoBody';
+import { CharacterSetEffectOptionInfoDtoBody } from '@src/maplestory/api/response/character/characterSetEffectDtoBody';
 
 /**
  * 캐릭터 세트 효과 옵션 정보

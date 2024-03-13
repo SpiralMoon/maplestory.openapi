@@ -1,5 +1,5 @@
-import { GuildSkillDto } from './guildSkillDto';
-import { GuildBasicDtoBody } from '../../response/guild/guildBasicDtoBody';
+import { GuildSkillDto } from '@src/maplestory/api/dto/guild/guildSkillDto';
+import { GuildBasicDtoBody } from '@src/maplestory/api/response/guild/guildBasicDtoBody';
 
 /**
  * 길드 기본 정보

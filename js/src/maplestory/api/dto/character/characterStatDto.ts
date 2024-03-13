@@ -1,4 +1,4 @@
-import { CharacterStatDtoBody } from '../../response/character/characterStatDtoBody';
+import { CharacterStatDtoBody } from '@src/maplestory/api/response/character/characterStatDtoBody';
 
 /**
  * 캐릭터 스탯 정보

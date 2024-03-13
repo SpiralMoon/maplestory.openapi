@@ -1,4 +1,4 @@
-import { CharacterVMatrixCoreEquipmentDtoBody } from '../../response/character/characterVMatrixDtoBody';
+import { CharacterVMatrixCoreEquipmentDtoBody } from '@src/maplestory/api/response/character/characterVMatrixDtoBody';
 
 /**
  * 캐릭터 V코어 정보

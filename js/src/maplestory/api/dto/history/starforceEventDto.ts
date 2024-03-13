@@ -1,4 +1,4 @@
-import { StarforceEventDtoBody } from '../../response/history/starforceEventDtoBody';
+import { StarforceEventDtoBody } from '@src/maplestory/api/response/history/starforceEventDtoBody';
 
 /**
  * 스타포스 강화 이벤트 정보

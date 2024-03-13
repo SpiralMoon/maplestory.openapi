@@ -1,5 +1,5 @@
-import { CharacterSetEffectOptionInfoDto } from './characterSetEffectOptionInfoDto';
-import { CharacterSetEffectInfoDtoBody } from '../../response/character/characterSetEffectDtoBody';
+import { CharacterSetEffectOptionInfoDto } from '@src/maplestory/api/dto/character/characterSetEffectOptionInfoDto';
+import { CharacterSetEffectInfoDtoBody } from '@src/maplestory/api/response/character/characterSetEffectDtoBody';
 
 /**
  * 캐릭터 세트 효과 정보

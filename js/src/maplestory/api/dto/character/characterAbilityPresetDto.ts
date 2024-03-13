@@ -1,5 +1,5 @@
-import { CharacterAbilityInfoDto } from './characterAbilityInfoDto';
-import { CharacterAbilityPresetDtoBody } from '../../response/character/characterAbilityDtoBody';
+import { CharacterAbilityInfoDto } from '@src/maplestory/api/dto/character/characterAbilityInfoDto';
+import { CharacterAbilityPresetDtoBody } from '@src/maplestory/api/response/character/characterAbilityDtoBody';
 
 /**
  * 캐릭터 어빌리티 프리셋 정보

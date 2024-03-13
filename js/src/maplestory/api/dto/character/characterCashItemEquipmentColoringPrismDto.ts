@@ -1,4 +1,6 @@
-import { CharacterCashItemEquipmentColoringPrismDtoBody } from '../../response/character/characterCashItemEquipmentDtoBody';
+import {
+  CharacterCashItemEquipmentColoringPrismDtoBody
+} from '@src/maplestory/api/response/character/characterCashItemEquipmentDtoBody';
 
 /**
  * 캐릭터 캐시 장비 컬러링프리즘
