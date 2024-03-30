@@ -1,5 +1,5 @@
 type CharacterHyperStatDtoBody = {
-  date: string;
+  date: string | null;
   character_class: string;
   use_preset_no: string;
   use_available_hyper_stat: number;

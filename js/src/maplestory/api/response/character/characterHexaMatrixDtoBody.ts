@@ -1,5 +1,5 @@
 type CharacterHexaMatrixDtoBody = {
-  date: string;
+  date: string | null;
   character_hexa_core_equipment: CharacterHexaMatrixEquipmentDtoBody[];
 };
 

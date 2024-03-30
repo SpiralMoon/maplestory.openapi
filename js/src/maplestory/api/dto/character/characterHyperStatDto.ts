@@ -8,7 +8,7 @@ class CharacterHyperStatDto {
   /**
    * 조회 기준일
    */
-  date: Date;
+  date: Date | null;
 
   /**
    * 캐릭터 직업
@@ -69,7 +69,7 @@ class CharacterHyperStatDto {
       hyper_stat_preset_3_remain_point,
     } = obj;
 
-    this.date = new Date(date);
+    this.date = date ? new Date(date) : null;
     this.characterClass = character_class;
     this.usePresetNo = use_preset_no;
     this.useAvailableHyperStat = use_available_hyper_stat;

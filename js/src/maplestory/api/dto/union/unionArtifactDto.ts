@@ -9,7 +9,7 @@ class UnionArtifactDto {
   /**
    * 조회 기준일
    */
-  date: Date;
+  date: Date | null;
 
   /**
    * 아티팩트 효과 정보
@@ -34,7 +34,7 @@ class UnionArtifactDto {
       union_artifact_remain_ap,
     } = obj;
 
-    this.date = new Date(date);
+    this.date = date ? new Date(date) : null;
     this.unionArtifactEffect = union_artifact_effect.map(
       (effect) => new UnionArtifactEffectDto(effect),
     );

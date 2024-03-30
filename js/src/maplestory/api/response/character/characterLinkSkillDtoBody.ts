@@ -1,5 +1,5 @@
 type CharacterLinkSkillDtoBody = {
-  date: string;
+  date: string | null;
   character_class: string;
   character_link_skill: CharacterLinkSkillInfoDtoBody[];
   character_link_skill_preset_1: CharacterLinkSkillInfoDtoBody[];

@@ -9,7 +9,7 @@ class CharacterPetEquipmentDto {
   /**
    * 조회 기준일
    */
-  date: Date;
+  date: Date | null;
 
   /**
    * 펫1 명
@@ -214,7 +214,7 @@ class CharacterPetEquipmentDto {
       pet_3_appearance_icon,
     } = obj;
 
-    this.date = new Date(date);
+    this.date = date ? new Date(date) : null;
     this.pet1Name = pet_1_name;
     this.pet1Nickname = pet_1_nickname;
     this.pet1Icon = pet_1_icon;

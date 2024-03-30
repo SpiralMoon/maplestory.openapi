@@ -1,5 +1,5 @@
 type UnionRaiderDtoBody = {
-  date: string;
+  date: string | null;
   union_raider_stat: string[];
   union_occupied_stat: string[];
   union_inner_stat: UnionRaiderInnerStatDtoBody[];

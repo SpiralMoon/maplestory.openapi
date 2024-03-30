@@ -1,5 +1,5 @@
 type CharacterAbilityDtoBody = {
-  date: string;
+  date: string | null;
   ability_grade: string;
   ability_info: CharacterAbilityInfoDtoBody[];
   remain_fame: number;

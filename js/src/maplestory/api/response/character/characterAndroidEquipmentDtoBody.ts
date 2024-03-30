@@ -1,5 +1,5 @@
 type CharacterAndroidEquipmentDtoBody = {
-  date: string;
+  date: string | null;
   android_name: string | null;
   android_nickname: string | null;
   android_icon: string | null;

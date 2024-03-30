@@ -1,5 +1,5 @@
 type CharacterSetEffectDtoBody = {
-  date: string;
+  date: string | null;
   set_effect: CharacterSetEffectInfoDtoBody[];
 };
 

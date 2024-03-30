@@ -1,5 +1,5 @@
 type CharacterSymbolEquipmentDtoBody = {
-  date: string;
+  date: string | null;
   character_class: string;
   symbol: CharacterSymbolEquipmentInfoDtoBody[];
 };

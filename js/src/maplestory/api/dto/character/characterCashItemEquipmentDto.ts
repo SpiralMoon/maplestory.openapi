@@ -12,7 +12,7 @@ class CharacterCashItemEquipmentDto {
   /**
    * 조회 기준일
    */
-  date: Date;
+  date: Date | null;
 
   /**
    * 캐릭터 성별
@@ -85,7 +85,7 @@ class CharacterCashItemEquipmentDto {
       additional_cash_item_equipment_preset_3,
     } = obj;
 
-    this.date = new Date(date);
+    this.date = date ? new Date(date) : null;
     this.characterGender = character_gender;
     this.characterClass = character_class;
     this.presetNo = preset_no;

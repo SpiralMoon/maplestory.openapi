@@ -8,7 +8,7 @@ class CharacterVMatrixDto {
   /**
    * 조회 기준일
    */
-  date: Date;
+  date: Date | null;
 
   /**
    * 캐릭터 직업
@@ -33,7 +33,7 @@ class CharacterVMatrixDto {
       character_v_matrix_remain_slot_upgrade_point,
     } = obj;
 
-    this.date = new Date(date);
+    this.date = date ? new Date(date) : null;
     this.characterClass = character_class;
     this.characterVCoreEquipment = character_v_core_equipment.map(
       (equipment) => new CharacterVMatrixCodeEquipmentDto(equipment),

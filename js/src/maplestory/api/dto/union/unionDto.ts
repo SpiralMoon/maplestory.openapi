@@ -7,7 +7,7 @@ class UnionDto {
   /**
    * 조회 기준일
    */
-  date: Date;
+  date: Date | null;
 
   /**
    * 유니온 레벨
@@ -37,7 +37,7 @@ class UnionDto {
   constructor(obj: UnionDtoBody) {
     const { date, union_level, union_grade, union_artifact_level, union_artifact_exp, union_artifact_point } = obj;
 
-    this.date = new Date(date);
+    this.date = date ? new Date(date) : null;
     this.unionLevel = union_level;
     this.unionGrade = union_grade;
     this.unionArtifactLevel = union_artifact_level;

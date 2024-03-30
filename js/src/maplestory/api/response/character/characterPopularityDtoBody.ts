@@ -1,5 +1,5 @@
 type CharacterPopularityDtoBody = {
-  date: string;
+  date: string | null;
   popularity: number;
 };
 

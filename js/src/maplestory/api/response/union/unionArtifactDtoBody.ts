@@ -1,5 +1,5 @@
 type UnionArtifactDtoBody = {
-  date: string;
+  date: string | null;
   union_artifact_effect: UnionArtifactEffectDtoBody[];
   union_artifact_crystal: UnionArtifactCrystalDtoBody[];
   union_artifact_remain_ap: number | null;

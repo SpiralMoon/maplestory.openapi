@@ -1,5 +1,5 @@
 type CharacterDojangDtoBody = {
-  date: string;
+  date: string | null;
   character_class: string;
   world_name: string;
   dojang_best_floor: number;

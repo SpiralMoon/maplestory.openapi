@@ -8,7 +8,7 @@ class CharacterLinkSkillDto {
   /**
    * 조회 기준일
    */
-  date: Date;
+  date: Date | null;
 
   /**
    * 캐릭터 직업
@@ -69,7 +69,7 @@ class CharacterLinkSkillDto {
       character_owned_link_skill_preset_3,
     } = obj;
 
-    this.date = new Date(date);
+    this.date = date ? new Date(date) : null;
     this.characterClass = character_class;
     this.characterLinkSkill = character_link_skill.map(
       (skill) => new CharacterLinkSkillInfoDto(skill),

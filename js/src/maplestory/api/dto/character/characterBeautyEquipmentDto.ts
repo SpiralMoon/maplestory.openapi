@@ -11,7 +11,7 @@ class CharacterBeautyEquipmentDto {
   /**
    * 조회 기준일
    */
-  date: Date;
+  date: Date | null;
 
   /**
    * 캐릭터 성별
@@ -69,7 +69,7 @@ class CharacterBeautyEquipmentDto {
       additional_character_skin_name,
     } = obj;
 
-    this.date = new Date(date);
+    this.date = date ? new Date(date) : null;
     this.characterGender = character_gender;
     this.characterClass = character_class;
     this.characterHair = new CharacterBeautyEquipmentHairDto(character_hair);
