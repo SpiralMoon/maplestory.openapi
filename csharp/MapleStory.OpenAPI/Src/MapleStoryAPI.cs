@@ -31,8 +31,9 @@ namespace MapleStory.OpenAPI
 
         /// <summary>
         /// 캐릭터 식별자(ocid)를 조회합니다.
+        /// <para>- 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.</para>
         /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
-        /// <para>- 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)</para>
+        /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
         /// </summary>
         /// <param name="characterName">캐릭터 명</param>
@@ -49,36 +50,36 @@ namespace MapleStory.OpenAPI
 
         /// <summary>
         /// 기본 정보를 조회합니다.
+        /// <para>- 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.</para>
         /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
-        /// <para>- 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)</para>
+        /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
         /// </summary>
         /// <param name="characterName">캐릭터 식별자</param>
         public Task<CharacterBasicDTO> GetCharacterBasic(string ocid)
         {
-            return GetCharacterBasic(ocid, GetProperDefaultDateTimeOffset(new LatestApiUpdateTimeOption
-            {
-                Hour = 1,
-                Minute = 0,
-                DateOffset = 1
-            }));
+            return GetCharacterBasic(ocid, null);
         }
 
         /// <summary>
         /// 기본 정보를 조회합니다.
+        /// <para>- 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.</para>
         /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
-        /// <para>- 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)</para>
+        /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
         /// </summary>
         /// <param name="characterName">캐릭터 식별자</param>
         /// <param name="characterName">조회 기준일 (KST)</param>
-        public async Task<CharacterBasicDTO> GetCharacterBasic(string ocid, DateTimeOffset dateTimeOffset)
+        public async Task<CharacterBasicDTO> GetCharacterBasic(string ocid, DateTimeOffset? dateTimeOffset)
         {
             var path = "maplestory/v1/character/basic";
+            var date = dateTimeOffset != null
+                ? ToDateString(MinDate(2023, 12, 21), dateTimeOffset)
+                : null;
             var query = new Dictionary<string, string?>()
             {
                 { "ocid", ocid },
-                { "date", ToDateString(MinDate(2023, 12, 21), dateTimeOffset) }
+                { "date", date }
             };
 
             return await Get<CharacterBasicDTO>(path, query);
@@ -86,36 +87,36 @@ namespace MapleStory.OpenAPI
 
         /// <summary>
         /// 인기도 정보를 조회합니다.
+        /// <para>- 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.</para>
         /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
-        /// <para>- 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)</para>
+        /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
         /// </summary>
         /// <param name="ocid">캐릭터 식별자</param>
         public Task<CharacterPopularityDTO> GetCharacterPopularity(string ocid)
         {
-            return GetCharacterPopularity(ocid, GetProperDefaultDateTimeOffset(new LatestApiUpdateTimeOption
-            {
-                Hour = 1,
-                Minute = 0,
-                DateOffset = 1
-            }));
+            return GetCharacterPopularity(ocid, null);
         }
 
         /// <summary>
         /// 인기도 정보를 조회합니다.
+        /// <para>- 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.</para>
         /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
-        /// <para>- 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)</para>
+        /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
         /// </summary>
         /// <param name="ocid">캐릭터 식별자</param>
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
-        public async Task<CharacterPopularityDTO> GetCharacterPopularity(string ocid, DateTimeOffset dateTimeOffset)
+        public async Task<CharacterPopularityDTO> GetCharacterPopularity(string ocid, DateTimeOffset? dateTimeOffset)
         {
             var path = "maplestory/v1/character/popularity";
+            var date = dateTimeOffset != null
+                ? ToDateString(MinDate(2023, 12, 21), dateTimeOffset)
+                : null;
             var query = new Dictionary<string, string?>()
             {
                 { "ocid", ocid },
-                { "date", ToDateString(MinDate(2023, 12, 21), dateTimeOffset) }
+                { "date", date }
             };
 
             return await Get<CharacterPopularityDTO>(path, query);
@@ -123,35 +124,35 @@ namespace MapleStory.OpenAPI
 
         /// <summary>
         /// 종합 능력치 정보를 조회합니다.
+        /// <para>- 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.</para>
         /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
-        /// <para>- 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)</para>
+        /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
         /// </summary>
         public Task<CharacterStatDTO> GetCharacterStat(string ocid)
         {
-            return GetCharacterStat(ocid, GetProperDefaultDateTimeOffset(new LatestApiUpdateTimeOption
-            {
-                Hour = 1,
-                Minute = 0,
-                DateOffset = 1
-            }));
+            return GetCharacterStat(ocid, null);
         }
 
         /// <summary>
         /// 종합 능력치 정보를 조회합니다.
+        /// <para>- 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.</para>
         /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
-        /// <para>- 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)</para>
+        /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
         /// </summary>
         /// <param name="ocid">캐릭터 식별자</param>
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
-        public async Task<CharacterStatDTO> GetCharacterStat(string ocid, DateTimeOffset dateTimeOffset)
+        public async Task<CharacterStatDTO> GetCharacterStat(string ocid, DateTimeOffset? dateTimeOffset)
         {
             var path = "maplestory/v1/character/stat";
+            var date = dateTimeOffset != null
+                ? ToDateString(MinDate(2023, 12, 21), dateTimeOffset)
+                : null;
             var query = new Dictionary<string, string?>()
             {
                 { "ocid", ocid },
-                { "date", ToDateString(MinDate(2023, 12, 21), dateTimeOffset) }
+                { "date", date }
             };
 
             return await Get<CharacterStatDTO>(path, query);
@@ -159,36 +160,36 @@ namespace MapleStory.OpenAPI
 
         /// <summary>
         /// 하이퍼스탯 정보를 조회합니다.
+        /// <para>- 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.</para>
         /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
-        /// <para>- 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)</para>
+        /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
         /// </summary>
         /// <param name="ocid">캐릭터 식별자</param>
         public Task<CharacterHyperStatDTO> GetCharacterHyperStat(string ocid)
         {
-            return GetCharacterHyperStat(ocid, GetProperDefaultDateTimeOffset(new LatestApiUpdateTimeOption
-            {
-                Hour = 1,
-                Minute = 0,
-                DateOffset = 1
-            }));
+            return GetCharacterHyperStat(ocid, null);
         }
 
         /// <summary>
         /// 하이퍼스탯 정보를 조회합니다.
+        /// <para>- 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.</para>
         /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
-        /// <para>- 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)</para>
+        /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
         /// </summary>
         /// <param name="ocid">캐릭터 식별자</param>
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
-        public async Task<CharacterHyperStatDTO> GetCharacterHyperStat(string ocid, DateTimeOffset dateTimeOffset)
+        public async Task<CharacterHyperStatDTO> GetCharacterHyperStat(string ocid, DateTimeOffset? dateTimeOffset)
         {
             var path = "maplestory/v1/character/hyper-stat";
+            var date = dateTimeOffset != null
+                ? ToDateString(MinDate(2023, 12, 21), dateTimeOffset)
+                : null;
             var query = new Dictionary<string, string?>()
             {
                 { "ocid", ocid },
-                { "date", ToDateString(MinDate(2023, 12, 21), dateTimeOffset) }
+                { "date", date }
             };
 
             return await Get<CharacterHyperStatDTO>(path, query);
@@ -196,36 +197,36 @@ namespace MapleStory.OpenAPI
 
         /// <summary>
         /// 성향 정보를 조회합니다.
+        /// <para>- 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.</para>
         /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
-        /// <para>- 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)</para>
+        /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
         /// </summary>
         /// <param name="ocid">캐릭터 식별자</param>
         public Task<CharacterPropensityDTO> GetCharacterPropensity(string ocid)
         {
-            return GetCharacterPropensity(ocid, GetProperDefaultDateTimeOffset(new LatestApiUpdateTimeOption
-            {
-                Hour = 1,
-                Minute = 0,
-                DateOffset = 1
-            }));
+            return GetCharacterPropensity(ocid, null);
         }
 
         /// <summary>
         /// 성향 정보를 조회합니다.
+        /// <para>- 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.</para>
         /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
-        /// <para>- 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)</para>
+        /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
         /// </summary>
         /// <param name="ocid">캐릭터 식별자</param>
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
-        public async Task<CharacterPropensityDTO> GetCharacterPropensity(string ocid, DateTimeOffset dateTimeOffset)
+        public async Task<CharacterPropensityDTO> GetCharacterPropensity(string ocid, DateTimeOffset? dateTimeOffset)
         {
             var path = "maplestory/v1/character/propensity";
+            var date = dateTimeOffset != null
+                ? ToDateString(MinDate(2023, 12, 21), dateTimeOffset)
+                : null;
             var query = new Dictionary<string, string?>()
             {
                 { "ocid", ocid },
-                { "date", ToDateString(MinDate(2023, 12, 21), dateTimeOffset) }
+                { "date", date }
             };
 
             return await Get<CharacterPropensityDTO>(path, query);
@@ -233,36 +234,36 @@ namespace MapleStory.OpenAPI
 
         /// <summary>
         /// 어빌리티 정보를 조회합니다.
+        /// <para>- 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.</para>
         /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
-        /// <para>- 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)</para>
+        /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
         /// </summary>
         /// <param name="ocid">캐릭터 식별자</param>
         public Task<CharacterAbilityDTO> GetCharacterAbility(string ocid)
         {
-            return GetCharacterAbility(ocid, GetProperDefaultDateTimeOffset(new LatestApiUpdateTimeOption
-            {
-                Hour = 1,
-                Minute = 0,
-                DateOffset = 1
-            }));
+            return GetCharacterAbility(ocid, null);
         }
 
         /// <summary>
         /// 어빌리티 정보를 조회합니다.
+        /// <para>- 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.</para>
         /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
-        /// <para>- 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)</para>
+        /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
         /// </summary>
         /// <param name="ocid">캐릭터 식별자</param>
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
-        public async Task<CharacterAbilityDTO> GetCharacterAbility(string ocid, DateTimeOffset dateTimeOffset)
+        public async Task<CharacterAbilityDTO> GetCharacterAbility(string ocid, DateTimeOffset? dateTimeOffset)
         {
             var path = "maplestory/v1/character/ability";
+            var date = dateTimeOffset != null
+                ? ToDateString(MinDate(2023, 12, 21), dateTimeOffset)
+                : null;
             var query = new Dictionary<string, string?>()
             {
                 { "ocid", ocid },
-                { "date", ToDateString(MinDate(2023, 12, 21), dateTimeOffset) }
+                { "date", date }
             };
 
             return await Get<CharacterAbilityDTO>(path, query);
@@ -270,36 +271,36 @@ namespace MapleStory.OpenAPI
 
         /// <summary>
         /// 장착한 장비 중 캐시 장비를 제외한 나머지 장비 정보를 조회합니다.
+        /// <para>- 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.</para>
         /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
-        /// <para>- 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)</para>
+        /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
         /// </summary>
         /// <param name="ocid">캐릭터 식별자</param>
         public Task<CharacterItemEquipmentDTO> GetCharacterItemEquipment(string ocid)
         {
-            return GetCharacterItemEquipment(ocid, GetProperDefaultDateTimeOffset(new LatestApiUpdateTimeOption
-            {
-                Hour = 1,
-                Minute = 0,
-                DateOffset = 1
-            }));
+            return GetCharacterItemEquipment(ocid, null);
         }
 
         /// <summary>
         /// 장착한 장비 중 캐시 장비를 제외한 나머지 장비 정보를 조회합니다.
+        /// <para>- 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.</para>
         /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
-        /// <para>- 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)</para>
+        /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
         /// </summary>
         /// <param name="ocid">캐릭터 식별자</param>
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
-        public async Task<CharacterItemEquipmentDTO> GetCharacterItemEquipment(string ocid, DateTimeOffset dateTimeOffset)
+        public async Task<CharacterItemEquipmentDTO> GetCharacterItemEquipment(string ocid, DateTimeOffset? dateTimeOffset)
         {
             var path = "maplestory/v1/character/item-equipment";
+            var date = dateTimeOffset != null
+                ? ToDateString(MinDate(2023, 12, 21), dateTimeOffset)
+                : null;
             var query = new Dictionary<string, string?>()
             {
                 { "ocid", ocid },
-                { "date", ToDateString(MinDate(2023, 12, 21), dateTimeOffset) }
+                { "date", date }
             };
 
             return await Get<CharacterItemEquipmentDTO>(path, query);
@@ -307,36 +308,36 @@ namespace MapleStory.OpenAPI
 
         /// <summary>
         /// 장착한 캐시 장비 정보를 조회합니다.
+        /// <para>- 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.</para>
         /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
-        /// <para>- 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)</para>
+        /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
         /// </summary>
         /// <param name="ocid">캐릭터 식별자</param>
         public Task<CharacterCashItemEquipmentDTO> GetCharacterCashItemEquipment(string ocid)
         {
-            return GetCharacterCashItemEquipment(ocid, GetProperDefaultDateTimeOffset(new LatestApiUpdateTimeOption
-            {
-                Hour = 1,
-                Minute = 0,
-                DateOffset = 1
-            }));
+            return GetCharacterCashItemEquipment(ocid, null);
         }
 
         /// <summary>
         /// 장착한 캐시 장비 정보를 조회합니다.
+        /// <para>- 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.</para>
         /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
-        /// <para>- 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)</para>
+        /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
         /// </summary>
         /// <param name="ocid">캐릭터 식별자</param>
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
-        public async Task<CharacterCashItemEquipmentDTO> GetCharacterCashItemEquipment(string ocid, DateTimeOffset dateTimeOffset)
+        public async Task<CharacterCashItemEquipmentDTO> GetCharacterCashItemEquipment(string ocid, DateTimeOffset? dateTimeOffset)
         {
             var path = "maplestory/v1/character/cashitem-equipment";
+            var date = dateTimeOffset != null
+                ? ToDateString(MinDate(2023, 12, 21), dateTimeOffset)
+                : null;
             var query = new Dictionary<string, string?>()
             {
                 { "ocid", ocid },
-                { "date", ToDateString(MinDate(2023, 12, 21), dateTimeOffset) }
+                { "date", date }
             };
 
             return await Get<CharacterCashItemEquipmentDTO>(path, query);
@@ -344,36 +345,36 @@ namespace MapleStory.OpenAPI
 
         /// <summary>
         /// 장착한 심볼 정보를 조회합니다.
+        /// <para>- 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.</para>
         /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
-        /// <para>- 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)</para>
+        /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
         /// </summary>
         /// <param name="ocid">캐릭터 식별자</param>
         public Task<CharacterSymbolEquipmentDTO> GetCharacterSymbolEquipment(string ocid)
         {
-            return GetCharacterSymbolEquipment(ocid, GetProperDefaultDateTimeOffset(new LatestApiUpdateTimeOption
-            {
-                Hour = 1,
-                Minute = 0,
-                DateOffset = 1
-            }));
+            return GetCharacterSymbolEquipment(ocid, null);
         }
 
         /// <summary>
         /// 장착한 심볼 정보를 조회합니다.
+        /// <para>- 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.</para>
         /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
-        /// <para>- 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)</para>
+        /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
         /// </summary>
         /// <param name="ocid">캐릭터 식별자</param>
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
-        public async Task<CharacterSymbolEquipmentDTO> GetCharacterSymbolEquipment(string ocid, DateTimeOffset dateTimeOffset)
+        public async Task<CharacterSymbolEquipmentDTO> GetCharacterSymbolEquipment(string ocid, DateTimeOffset? dateTimeOffset)
         {
             var path = "maplestory/v1/character/symbol-equipment";
+            var date = dateTimeOffset != null
+                ? ToDateString(MinDate(2023, 12, 21), dateTimeOffset)
+                : null;
             var query = new Dictionary<string, string?>()
             {
                 { "ocid", ocid },
-                { "date", ToDateString(MinDate(2023, 12, 21), dateTimeOffset) }
+                { "date", date }
             };
 
             return await Get<CharacterSymbolEquipmentDTO>(path, query);
@@ -381,36 +382,36 @@ namespace MapleStory.OpenAPI
 
         /// <summary>
         /// 적용받고 있는 세트 효과 정보를 조회합니다.
+        /// <para>- 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.</para>
         /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
-        /// <para>- 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)</para>
+        /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
         /// </summary>
         /// <param name="ocid">캐릭터 식별자</param>
         public Task<CharacterSetEffectDTO> GetCharacterSetEffectAsync(string ocid)
         {
-            return GetCharacterSetEffectAsync(ocid, GetProperDefaultDateTimeOffset(new LatestApiUpdateTimeOption
-            {
-                Hour = 1,
-                Minute = 0,
-                DateOffset = 1
-            }));
+            return GetCharacterSetEffectAsync(ocid, null);
         }
 
         /// <summary>
         /// 적용받고 있는 세트 효과 정보를 조회합니다.
+        /// <para>- 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.</para>
         /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
-        /// <para>- 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)</para>
+        /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
         /// </summary>
         /// <param name="ocid">캐릭터 식별자</param>
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
-        public async Task<CharacterSetEffectDTO> GetCharacterSetEffectAsync(string ocid, DateTimeOffset dateTimeOffset)
+        public async Task<CharacterSetEffectDTO> GetCharacterSetEffectAsync(string ocid, DateTimeOffset? dateTimeOffset)
         {
             var path = "maplestory/v1/character/set-effect";
+            var date = dateTimeOffset != null
+                ? ToDateString(MinDate(2023, 12, 21), dateTimeOffset)
+                : null;
             var query = new Dictionary<string, string?>()
             {
                 { "ocid", ocid },
-                { "date", ToDateString(MinDate(2023, 12, 21), dateTimeOffset) }
+                { "date", date }
             };
 
             return await Get<CharacterSetEffectDTO>(path, query);
@@ -418,36 +419,36 @@ namespace MapleStory.OpenAPI
 
         /// <summary>
         /// 장착 중인 헤어, 성형, 피부 정보를 조회합니다.
+        /// <para>- 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.</para>
         /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
-        /// <para>- 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)</para>
+        /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
         /// </summary>
         /// <param name="ocid">캐릭터 식별자</param>
         public Task<CharacterBeautyEquipmentDTO> GetCharacterBeautyEquipment(string ocid)
         {
-            return GetCharacterBeautyEquipment(ocid, GetProperDefaultDateTimeOffset(new LatestApiUpdateTimeOption
-            {
-                Hour = 1,
-                Minute = 0,
-                DateOffset = 1
-            }));
+            return GetCharacterBeautyEquipment(ocid, null);
         }
 
         /// <summary>
         /// 장착 중인 헤어, 성형, 피부 정보를 조회합니다.
+        /// <para>- 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.</para>
         /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
-        /// <para>- 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)</para>
+        /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
         /// </summary>
         /// <param name="ocid">캐릭터 식별자</param>
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
-        public async Task<CharacterBeautyEquipmentDTO> GetCharacterBeautyEquipment(string ocid, DateTimeOffset dateTimeOffset)
+        public async Task<CharacterBeautyEquipmentDTO> GetCharacterBeautyEquipment(string ocid, DateTimeOffset? dateTimeOffset)
         {
             var path = "maplestory/v1/character/beauty-equipment";
+            var date = dateTimeOffset != null
+                ? ToDateString(MinDate(2023, 12, 21), dateTimeOffset)
+                : null;
             var query = new Dictionary<string, string?>()
             {
                 { "ocid", ocid },
-                { "date", ToDateString(MinDate(2023, 12, 21), dateTimeOffset) }
+                { "date", date }
             };
 
             return await Get<CharacterBeautyEquipmentDTO>(path, query);
@@ -455,36 +456,36 @@ namespace MapleStory.OpenAPI
 
         /// <summary>
         /// 장착한 안드로이드 정보를 조회합니다.
+        /// <para>- 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.</para>
         /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
-        /// <para>- 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)</para>
+        /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
         /// </summary>
         /// <param name="ocid">캐릭터 식별자</param>
         public Task<CharacterAndroidEquipmentDTO> GetCharacterAndroidEquipment(string ocid)
         {
-            return GetCharacterAndroidEquipment(ocid, GetProperDefaultDateTimeOffset(new LatestApiUpdateTimeOption
-            {
-                Hour = 1,
-                Minute = 0,
-                DateOffset = 1
-            }));
+            return GetCharacterAndroidEquipment(ocid, null);
         }
 
         /// <summary>
         /// 장착한 안드로이드 정보를 조회합니다.
+        /// <para>- 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.</para>
         /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
-        /// <para>- 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)</para>
+        /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
         /// </summary>
         /// <param name="ocid">캐릭터 식별자</param>
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
-        public async Task<CharacterAndroidEquipmentDTO> GetCharacterAndroidEquipment(string ocid, DateTimeOffset dateTimeOffset)
+        public async Task<CharacterAndroidEquipmentDTO> GetCharacterAndroidEquipment(string ocid, DateTimeOffset? dateTimeOffset)
         {
             var path = "maplestory/v1/character/android-equipment";
+            var date = dateTimeOffset != null
+                ? ToDateString(MinDate(2023, 12, 21), dateTimeOffset)
+                : null;
             var query = new Dictionary<string, string?>()
             {
                 { "ocid", ocid },
-                { "date", ToDateString(MinDate(2023, 12, 21), dateTimeOffset) }
+                { "date", date }
             };
 
             return await Get<CharacterAndroidEquipmentDTO>(path, query);
@@ -492,36 +493,36 @@ namespace MapleStory.OpenAPI
 
         /// <summary>
         /// 장착한 펫 및 펫 스킬, 장비 정보를 조회합니다.
+        /// <para>- 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.</para>
         /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
-        /// <para>- 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)</para>
+        /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
         /// </summary>
         /// <param name="ocid">캐릭터 식별자</param>
         public Task<CharacterPetEquipmentDTO> GetCharacterPetEquipment(string ocid)
         {
-            return GetCharacterPetEquipment(ocid, GetProperDefaultDateTimeOffset(new LatestApiUpdateTimeOption
-            {
-                Hour = 1,
-                Minute = 0,
-                DateOffset = 1
-            }));
+            return GetCharacterPetEquipment(ocid, null);
         }
 
         /// <summary>
         /// 장착한 펫 및 펫 스킬, 장비 정보를 조회합니다.
+        /// <para>- 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.</para>
         /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
-        /// <para>- 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)</para>
+        /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
         /// </summary>
         /// <param name="ocid">캐릭터 식별자</param>
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
-        public async Task<CharacterPetEquipmentDTO> GetCharacterPetEquipment(string ocid, DateTimeOffset dateTimeOffset)
+        public async Task<CharacterPetEquipmentDTO> GetCharacterPetEquipment(string ocid, DateTimeOffset? dateTimeOffset)
         {
             var path = "maplestory/v1/character/pet-equipment";
+            var date = dateTimeOffset != null
+                ? ToDateString(MinDate(2023, 12, 21), dateTimeOffset)
+                : null;
             var query = new Dictionary<string, string?>()
             {
                 { "ocid", ocid },
-                { "date", ToDateString(MinDate(2023, 12, 21), dateTimeOffset) }
+                { "date", date }
             };
 
             return await Get<CharacterPetEquipmentDTO>(path, query);
@@ -529,8 +530,9 @@ namespace MapleStory.OpenAPI
 
         /// <summary>
         /// 캐릭터 스킬과 하이퍼 스킬 정보를 조회합니다.
+        /// <para>- 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.</para>
         /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
-        /// <para>- 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)</para>
+        /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
         /// </summary>
         /// <param name="ocid">캐릭터 식별자</param>
@@ -549,18 +551,14 @@ namespace MapleStory.OpenAPI
         /// </param>
         public Task<CharacterSkillDTO> GetCharacterSkill(string ocid, string characterSkillGrade)
         {
-            return GetCharacterSkill(ocid, characterSkillGrade, GetProperDefaultDateTimeOffset(new LatestApiUpdateTimeOption
-            {
-                Hour = 1,
-                Minute = 0,
-                DateOffset = 1
-            }));
+            return GetCharacterSkill(ocid, characterSkillGrade, null);
         }
 
         /// <summary>
         /// 캐릭터 스킬과 하이퍼 스킬 정보를 조회합니다.
+        /// <para>- 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.</para>
         /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
-        /// <para>- 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)</para>
+        /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
         /// </summary>
         /// <param name="ocid">캐릭터 식별자</param>
@@ -579,13 +577,16 @@ namespace MapleStory.OpenAPI
         /// </param>
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
 
-        public async Task<CharacterSkillDTO> GetCharacterSkill(string ocid, string characterSkillGrade, DateTimeOffset dateTimeOffset)
+        public async Task<CharacterSkillDTO> GetCharacterSkill(string ocid, string characterSkillGrade, DateTimeOffset? dateTimeOffset)
         {
             var path = "maplestory/v1/character/skill";
+            var date = dateTimeOffset != null
+                ? ToDateString(MinDate(2023, 12, 21), dateTimeOffset)
+                : null;
             var query = new Dictionary<string, string?>()
             {
                 { "ocid", ocid },
-                { "date", ToDateString(MinDate(2023, 12, 21), dateTimeOffset) },
+                { "date", date },
                 { "character_skill_grade", characterSkillGrade }
             };
 
@@ -594,36 +595,36 @@ namespace MapleStory.OpenAPI
 
         /// <summary>
         /// 장착 링크 스킬 정보를 조회합니다.
+        /// <para>- 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.</para>
         /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
-        /// <para>- 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)</para>
+        /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
         /// </summary>
         /// <param name="ocid">캐릭터 식별자</param>
         public Task<CharacterLinkSkillDTO> GetCharacterLinkSkill(string ocid)
         {
-            return GetCharacterLinkSkill(ocid, GetProperDefaultDateTimeOffset(new LatestApiUpdateTimeOption
-            {
-                Hour = 1,
-                Minute = 0,
-                DateOffset = 1
-            }));
+            return GetCharacterLinkSkill(ocid, null);
         }
 
         /// <summary>
         /// 장착 링크 스킬 정보를 조회합니다.
+        /// <para>- 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.</para>
         /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
-        /// <para>- 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)</para>
+        /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
         /// </summary>
         /// <param name="ocid">캐릭터 식별자</param>
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
-        public async Task<CharacterLinkSkillDTO> GetCharacterLinkSkill(string ocid, DateTimeOffset dateTimeOffset)
+        public async Task<CharacterLinkSkillDTO> GetCharacterLinkSkill(string ocid, DateTimeOffset? dateTimeOffset)
         {
             var path = "maplestory/v1/character/link-skill";
+            var date = dateTimeOffset != null
+                ? ToDateString(MinDate(2023, 12, 21), dateTimeOffset)
+                : null;
             var query = new Dictionary<string, string?>()
             {
                 { "ocid", ocid },
-                { "date", ToDateString(MinDate(2023, 12, 21), dateTimeOffset) }
+                { "date", date }
             };
 
             return await Get<CharacterLinkSkillDTO>(path, query);
@@ -631,36 +632,36 @@ namespace MapleStory.OpenAPI
 
         /// <summary>
         /// V매트릭스 슬롯 정보와 장착한 V코어 정보를 조회합니다.
+        /// <para>- 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.</para>
         /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
-        /// <para>- 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)</para>
+        /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
         /// </summary>
         /// <param name="ocid">캐릭터 식별자</param>
         public Task<CharacterVMatrixDTO> GetCharacterVMatrix(string ocid)
         {
-            return GetCharacterVMatrix(ocid, GetProperDefaultDateTimeOffset(new LatestApiUpdateTimeOption
-            {
-                Hour = 1,
-                Minute = 0,
-                DateOffset = 1
-            }));
+            return GetCharacterVMatrix(ocid, null);
         }
 
         /// <summary>
         /// V매트릭스 슬롯 정보와 장착한 V코어 정보를 조회합니다.
+        /// <para>- 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.</para>
         /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
-        /// <para>- 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)</para>
+        /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
         /// </summary>
         /// <param name="ocid">캐릭터 식별자</param>
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
-        public async Task<CharacterVMatrixDTO> GetCharacterVMatrix(string ocid, DateTimeOffset dateTimeOffset)
+        public async Task<CharacterVMatrixDTO> GetCharacterVMatrix(string ocid, DateTimeOffset? dateTimeOffset)
         {
             var path = "maplestory/v1/character/vmatrix";
+            var date = dateTimeOffset != null
+                ? ToDateString(MinDate(2023, 12, 21), dateTimeOffset)
+                : null;
             var query = new Dictionary<string, string?>()
             {
                 { "ocid", ocid },
-                { "date", ToDateString(MinDate(2023, 12, 21), dateTimeOffset) }
+                { "date", date }
             };
 
             return await Get<CharacterVMatrixDTO>(path, query);
@@ -668,36 +669,36 @@ namespace MapleStory.OpenAPI
 
         /// <summary>
         /// HEXA 매트릭스에 장착한 HEXA 코어 정보를 조회합니다.
+        /// <para>- 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.</para>
         /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
-        /// <para>- 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)</para>
+        /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
         /// </summary>
         /// <param name="ocid">캐릭터 식별자</param>
         public Task<CharacterHexaMatrixDTO> GetCharacterHexaMatrix(string ocid)
         {
-            return GetCharacterHexaMatrix(ocid, GetProperDefaultDateTimeOffset(new LatestApiUpdateTimeOption
-            {
-                Hour = 1,
-                Minute = 0,
-                DateOffset = 1
-            }));
+            return GetCharacterHexaMatrix(ocid, null);
         }
 
         /// <summary>
         /// HEXA 매트릭스에 장착한 HEXA 코어 정보를 조회합니다.
+        /// <para>- 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.</para>
         /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
-        /// <para>- 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)</para>
+        /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
         /// </summary>
         /// <param name="ocid">캐릭터 식별자</param>
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
-        public async Task<CharacterHexaMatrixDTO> GetCharacterHexaMatrix(string ocid, DateTimeOffset dateTimeOffset)
+        public async Task<CharacterHexaMatrixDTO> GetCharacterHexaMatrix(string ocid, DateTimeOffset? dateTimeOffset)
         {
             var path = "maplestory/v1/character/hexamatrix";
+            var date = dateTimeOffset != null
+                ? ToDateString(MinDate(2023, 12, 21), dateTimeOffset)
+                : null;
             var query = new Dictionary<string, string?>()
             {
                 { "ocid", ocid },
-                { "date", ToDateString(MinDate(2023, 12, 21), dateTimeOffset) }
+                { "date", date }
             };
 
             return await Get<CharacterHexaMatrixDTO>(path, query);
@@ -705,36 +706,36 @@ namespace MapleStory.OpenAPI
 
         /// <summary>
         /// HEXA 매트릭스에 설정한 HEXA 스탯 정보를 조회합니다.
+        /// <para>- 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.</para>
         /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
-        /// <para>- 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)</para>
+        /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
         /// </summary>
         /// <param name="ocid">캐릭터 식별자</param>
         public Task<CharacterHexaMatrixStatDTO> GetCharacterHexaMatrixStat(string ocid)
         {
-            return GetCharacterHexaMatrixStat(ocid, GetProperDefaultDateTimeOffset(new LatestApiUpdateTimeOption
-            {
-                Hour = 1,
-                Minute = 0,
-                DateOffset = 1
-            }));
+            return GetCharacterHexaMatrixStat(ocid, null);
         }
 
         /// <summary>
         /// HEXA 매트릭스에 설정한 HEXA 스탯 정보를 조회합니다.
+        /// <para>- 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.</para>
         /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
-        /// <para>- 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)</para>
+        /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
         /// </summary>
         /// <param name="ocid">캐릭터 식별자</param>
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
-        public async Task<CharacterHexaMatrixStatDTO> GetCharacterHexaMatrixStat(string ocid, DateTimeOffset dateTimeOffset)
+        public async Task<CharacterHexaMatrixStatDTO> GetCharacterHexaMatrixStat(string ocid, DateTimeOffset? dateTimeOffset)
         {
             var path = "maplestory/v1/character/hexamatrix-stat";
+            var date = dateTimeOffset != null
+                ? ToDateString(MinDate(2023, 12, 21), dateTimeOffset)
+                : null;
             var query = new Dictionary<string, string?>()
             {
                 { "ocid", ocid },
-                { "date", ToDateString(MinDate(2023, 12, 21), dateTimeOffset) }
+                { "date", date }
             };
 
             return await Get<CharacterHexaMatrixStatDTO>(path, query);
@@ -742,36 +743,36 @@ namespace MapleStory.OpenAPI
 
         /// <summary>
         /// 캐릭터 무릉도장 최고 기록 정보를 조회합니다.
+        /// <para>- 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.</para>
         /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
-        /// <para>- 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)</para>
+        /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
         /// </summary>
         /// <param name="ocid">캐릭터 식별자</param>
         public Task<CharacterDojangDTO> GetCharacterDojang(string ocid)
         {
-            return GetCharacterDojang(ocid, GetProperDefaultDateTimeOffset(new LatestApiUpdateTimeOption
-            {
-                Hour = 1,
-                Minute = 0,
-                DateOffset = 1
-            }));
+            return GetCharacterDojang(ocid, null);
         }
 
         /// <summary>
         /// 캐릭터 무릉도장 최고 기록 정보를 조회합니다.
+        /// <para>- 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.</para>
         /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
-        /// <para>- 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)</para>
+        /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
         /// </summary>
         /// <param name="ocid">캐릭터 식별자</param>
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
-        public async Task<CharacterDojangDTO> GetCharacterDojang(string ocid, DateTimeOffset dateTimeOffset)
+        public async Task<CharacterDojangDTO> GetCharacterDojang(string ocid, DateTimeOffset? dateTimeOffset)
         {
             var path = "maplestory/v1/character/dojang";
+            var date = dateTimeOffset != null
+                ? ToDateString(MinDate(2023, 12, 21), dateTimeOffset)
+                : null;
             var query = new Dictionary<string, string?>()
             {
                 { "ocid", ocid },
-                { "date", ToDateString(MinDate(2023, 12, 21), dateTimeOffset) }
+                { "date", date }
             };
 
             return await Get<CharacterDojangDTO>(path, query);
@@ -783,36 +784,36 @@ namespace MapleStory.OpenAPI
 
         /// <summary>
         /// 유니온 레벨 및 유니온 등급 정보를 조회합니다.
+        /// <para>- 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.</para>
         /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
-        /// <para>- 유니온 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)</para>
+        /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
         /// </summary>
         /// <param name="ocid">캐릭터 식별자</param>
         public Task<UnionDTO> GetUnion(string ocid)
         {
-            return GetUnion(ocid, GetProperDefaultDateTimeOffset(new LatestApiUpdateTimeOption
-            {
-                Hour = 1,
-                Minute = 0,
-                DateOffset = 1
-            }));
+            return GetUnion(ocid, null);
         }
 
         /// <summary>
         /// 유니온 레벨 및 유니온 등급 정보를 조회합니다.
+        /// <para>- 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.</para>
         /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
-        /// <para>- 유니온 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)</para>
+        /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
         /// </summary>
         /// <param name="ocid">캐릭터 식별자</param>
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
-        public async Task<UnionDTO> GetUnion(string ocid, DateTimeOffset dateTimeOffset)
+        public async Task<UnionDTO> GetUnion(string ocid, DateTimeOffset? dateTimeOffset)
         {
             var path = "maplestory/v1/user/union";
+            var date = dateTimeOffset != null
+                ? ToDateString(MinDate(2023, 12, 21), dateTimeOffset)
+                : null;
             var query = new Dictionary<string, string?>()
             {
                 { "ocid", ocid },
-                { "date", ToDateString(MinDate(2023, 12, 21), dateTimeOffset) }
+                { "date", date }
             };
 
             return await Get<UnionDTO>(path, query);
@@ -820,36 +821,36 @@ namespace MapleStory.OpenAPI
 
         /// <summary>
         /// 유니온에 배치된 공격대원 효과 및 공격대 점령 효과 등 상세 정보를 조회합니다.
+        /// <para>- 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.</para>
         /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
-        /// <para>- 유니온 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)</para>
+        /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
         /// </summary>
         /// <param name="ocid">캐릭터 식별자</param>
         public Task<UnionRaiderDTO> GetUnionRaider(string ocid)
         {
-            return GetUnionRaider(ocid, GetProperDefaultDateTimeOffset(new LatestApiUpdateTimeOption
-            {
-                Hour = 1,
-                Minute = 0,
-                DateOffset = 1
-            }));
+            return GetUnionRaider(ocid, null);
         }
 
         /// <summary>
         /// 유니온에 배치된 공격대원 효과 및 공격대 점령 효과 등 상세 정보를 조회합니다.
+        /// <para>- 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.</para>
         /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
-        /// <para>- 유니온 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)</para>
+        /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
         /// </summary>
         /// <param name="ocid">캐릭터 식별자</param>
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
-        public async Task<UnionRaiderDTO> GetUnionRaider(string ocid, DateTimeOffset dateTimeOffset)
+        public async Task<UnionRaiderDTO> GetUnionRaider(string ocid, DateTimeOffset? dateTimeOffset)
         {
             var path = "maplestory/v1/user/union-raider";
+            var date = dateTimeOffset != null
+                ? ToDateString(MinDate(2023, 12, 21), dateTimeOffset)
+                : null;
             var query = new Dictionary<string, string?>()
             {
                 { "ocid", ocid },
-                { "date", ToDateString(MinDate(2023, 12, 21), dateTimeOffset) }
+                { "date", date }
             };
 
             return await Get<UnionRaiderDTO>(path, query);
@@ -857,36 +858,36 @@ namespace MapleStory.OpenAPI
 
         /// <summary>
         /// 유니온 아티팩트 정보를 조회합니다.
+        /// <para>- 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.</para>
         /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
-        /// <para>- 유니온 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)</para>
+        /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
         /// </summary>
         /// <param name="ocid">캐릭터 식별자</param>
         public Task<UnionArtifactDTO> GetUnionArtifact(string ocid)
         {
-            return GetUnionArtifact(ocid, GetProperDefaultDateTimeOffset(new LatestApiUpdateTimeOption
-            {
-                Hour = 1,
-                Minute = 0,
-                DateOffset = 1
-            }));
+            return GetUnionArtifact(ocid, null);
         }
 
         /// <summary>
         /// 유니온 아티팩트 정보를 조회합니다.
+        /// <para>- 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.</para>
         /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
-        /// <para>- 유니온 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)</para>
+        /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
         /// </summary>
         /// <param name="ocid">캐릭터 식별자</param>
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
-        public async Task<UnionArtifactDTO> GetUnionArtifact(string ocid, DateTimeOffset dateTimeOffset)
+        public async Task<UnionArtifactDTO> GetUnionArtifact(string ocid, DateTimeOffset? dateTimeOffset)
         {
             var path = "maplestory/v1/user/union-artifact";
+            var date = dateTimeOffset != null
+                ? ToDateString(MinDate(2023, 12, 21), dateTimeOffset)
+                : null;
             var query = new Dictionary<string, string?>()
             {
                 { "ocid", ocid },
-                { "date", ToDateString(MinDate(2023, 12, 21), dateTimeOffset) }
+                { "date", date }
             };
 
             return await Get<UnionArtifactDTO>(path, query);
@@ -2009,7 +2010,7 @@ namespace MapleStory.OpenAPI
             request.AddHeader("SOAPAction", "https://api.maplestory.nexon.com/soap/GetInspectionInfo");
             request.AddHeader("content-type", "text/xml; charset=utf-8");
             request.AddStringBody(soapEnvelop, ContentType.Xml);
-            
+
             var response = await client.PostAsync(request);
 
             if (response.IsSuccessStatusCode)

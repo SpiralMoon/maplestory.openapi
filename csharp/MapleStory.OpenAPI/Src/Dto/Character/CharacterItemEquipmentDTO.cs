@@ -11,11 +11,11 @@ namespace MapleStory.OpenAPI.Dto
         /// 조회 기준일 (KST, 일 단위 데이터로 시, 분은 일괄 0으로 표기)
         /// </summary>
         [JsonProperty("date")]
-        public DateTimeOffset Date
+        public DateTimeOffset? Date
         {
             get
             {
-                return _date.ToOffset(TimeSpan.FromHours(9));
+                return _date?.ToOffset(TimeSpan.FromHours(9));
             }
             set
             {
@@ -23,7 +23,7 @@ namespace MapleStory.OpenAPI.Dto
             }
         }
 
-        private DateTimeOffset _date;
+        private DateTimeOffset? _date;
 
         /// <summary>
         /// 캐릭터 성별
