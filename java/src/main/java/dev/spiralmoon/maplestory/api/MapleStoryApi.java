@@ -51,8 +51,9 @@ public class MapleStoryApi {
 
     /**
      * 캐릭터 식별자(ocid)를 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
-     * - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param characterName 캐릭터 명
@@ -73,8 +74,9 @@ public class MapleStoryApi {
 
     /**
      * 캐릭터 식별자(ocid)를 비동기로 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
-     * - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param characterName 캐릭터 명
@@ -88,28 +90,32 @@ public class MapleStoryApi {
 
     /**
      * 기본 정보를 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
-     * - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid 캐릭터 식별자
      */
     public CharacterBasicDTO getCharacterBasic(@NonNull String ocid) throws IOException {
-        return this.getCharacterBasic(ocid, getProperDefaultDateTime(new LatestApiUpdateTimeOption(1, 0, 1)));
+        return this.getCharacterBasic(ocid, null);
     }
 
     /**
      * 기본 정보를 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
-     * - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid          캐릭터 식별자
      * @param localDateTime 조회 기준일 (KST)
      */
-    public CharacterBasicDTO getCharacterBasic(@NonNull String ocid, @NonNull LocalDateTime localDateTime) throws IOException {
+    public CharacterBasicDTO getCharacterBasic(@NonNull String ocid, LocalDateTime localDateTime) throws IOException {
 
-        final String date = toDateString(minDate(2023, 12, 21), localDateTime);
+        final String date = localDateTime != null
+                ? toDateString(minDate(2023, 12, 21), localDateTime)
+                : null;
 
         final Response<CharacterBasicDTO> response = buildRetrofit()
                 .create(CharacterApi.class)
@@ -125,8 +131,9 @@ public class MapleStoryApi {
 
     /**
      * 기본 정보를 비동기로 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
-     * - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid      캐릭터 식별자
@@ -134,21 +141,24 @@ public class MapleStoryApi {
      * @param onFailure 실패 시 콜백
      */
     public void getCharacterBasicAsync(@NonNull String ocid, SuccessCallback<CharacterBasicDTO> onSuccess, FailureCallback onFailure) {
-        this.getCharacterBasicAsync(ocid, getProperDefaultDateTime(new LatestApiUpdateTimeOption(1, 0, 1)), onSuccess, onFailure);
+        this.getCharacterBasicAsync(ocid, null, onSuccess, onFailure);
     }
 
     /**
      * 기본 정보를 비동기로 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
-     * - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid          캐릭터 식별자
      * @param localDateTime 조회 기준일 (KST)
      */
-    public void getCharacterBasicAsync(@NonNull String ocid, @NonNull LocalDateTime localDateTime, SuccessCallback<CharacterBasicDTO> onSuccess, FailureCallback onFailure) {
+    public void getCharacterBasicAsync(@NonNull String ocid, LocalDateTime localDateTime, SuccessCallback<CharacterBasicDTO> onSuccess, FailureCallback onFailure) {
 
-        final String date = toDateString(minDate(2023, 12, 21), localDateTime);
+        final String date = localDateTime != null
+                ? toDateString(minDate(2023, 12, 21), localDateTime)
+                : null;
 
         buildRetrofit()
                 .create(CharacterApi.class)
@@ -158,28 +168,32 @@ public class MapleStoryApi {
 
     /**
      * 인기도 정보를 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
-     * - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid 캐릭터 식별자
      */
     public CharacterPopularityDTO getCharacterPopularity(@NonNull String ocid) throws IOException {
-        return this.getCharacterPopularity(ocid, getProperDefaultDateTime(new LatestApiUpdateTimeOption(1, 0, 1)));
+        return this.getCharacterPopularity(ocid, null);
     }
 
     /**
      * 인기도 정보를 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
-     * - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid          캐릭터 식별자
      * @param localDateTime 조회 기준일 (KST)
      */
-    public CharacterPopularityDTO getCharacterPopularity(@NonNull String ocid, @NonNull LocalDateTime localDateTime) throws IOException {
+    public CharacterPopularityDTO getCharacterPopularity(@NonNull String ocid, LocalDateTime localDateTime) throws IOException {
 
-        final String date = toDateString(minDate(2023, 12, 21), localDateTime);
+        final String date = localDateTime != null
+                ? toDateString(minDate(2023, 12, 21), localDateTime)
+                : null;
 
         final Response<CharacterPopularityDTO> response = buildRetrofit()
                 .create(CharacterApi.class)
@@ -195,28 +209,32 @@ public class MapleStoryApi {
 
     /**
      * 인기도 정보를 비동기로 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
-     * - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid 캐릭터 식별자
      */
     public void getCharacterPopularityAsync(@NonNull String ocid, SuccessCallback<CharacterPopularityDTO> onSuccess, FailureCallback onFailure) {
-        this.getCharacterPopularityAsync(ocid, getProperDefaultDateTime(new LatestApiUpdateTimeOption(1, 0, 1)), onSuccess, onFailure);
+        this.getCharacterPopularityAsync(ocid, null, onSuccess, onFailure);
     }
 
     /**
      * 인기도 정보를 비동기로 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
-     * - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid          캐릭터 식별자
      * @param localDateTime 조회 기준일 (KST)
      */
-    public void getCharacterPopularityAsync(@NonNull String ocid, @NonNull LocalDateTime localDateTime, SuccessCallback<CharacterPopularityDTO> onSuccess, FailureCallback onFailure) {
+    public void getCharacterPopularityAsync(@NonNull String ocid, LocalDateTime localDateTime, SuccessCallback<CharacterPopularityDTO> onSuccess, FailureCallback onFailure) {
 
-        final String date = toDateString(minDate(2023, 12, 21), localDateTime);
+        final String date = localDateTime != null
+                ? toDateString(minDate(2023, 12, 21), localDateTime)
+                : null;
 
         buildRetrofit()
                 .create(CharacterApi.class)
@@ -226,20 +244,22 @@ public class MapleStoryApi {
 
     /**
      * 종합 능력치 정보를 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
-     * - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid 캐릭터 식별자
      */
     public CharacterStatDTO getCharacterStat(@NonNull String ocid) throws IOException {
-        return this.getCharacterStat(ocid, getProperDefaultDateTime(new LatestApiUpdateTimeOption(1, 0, 1)));
+        return this.getCharacterStat(ocid, null);
     }
 
     /**
      * 종합 능력치 정보를 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
-     * - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid          캐릭터 식별자
@@ -247,7 +267,9 @@ public class MapleStoryApi {
      */
     public CharacterStatDTO getCharacterStat(@NonNull String ocid, LocalDateTime localDateTime) throws IOException {
 
-        final String date = toDateString(minDate(2023, 12, 21), localDateTime);
+        final String date = localDateTime != null
+                ? toDateString(minDate(2023, 12, 21), localDateTime)
+                : null;
 
         final Response<CharacterStatDTO> response = buildRetrofit()
                 .create(CharacterApi.class)
@@ -263,27 +285,31 @@ public class MapleStoryApi {
 
     /**
      * 종합 능력치 정보를 비동기로 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
-     * - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid 캐릭터 식별자
      */
     public void getCharacterStatAsync(@NonNull String ocid, SuccessCallback<CharacterStatDTO> onSuccess, FailureCallback onFailure) {
-        this.getCharacterStatAsync(ocid, getProperDefaultDateTime(new LatestApiUpdateTimeOption(1, 0, 1)), onSuccess, onFailure);
+        this.getCharacterStatAsync(ocid, null, onSuccess, onFailure);
     }
 
     /**
      * 종합 능력치 정보를 비동기로 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
-     * - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid 캐릭터 식별자
      */
-    public void getCharacterStatAsync(@NonNull String ocid, @NonNull LocalDateTime localDateTime, SuccessCallback<CharacterStatDTO> onSuccess, FailureCallback onFailure) {
+    public void getCharacterStatAsync(@NonNull String ocid, LocalDateTime localDateTime, SuccessCallback<CharacterStatDTO> onSuccess, FailureCallback onFailure) {
 
-        final String date = toDateString(minDate(2023, 12, 21), localDateTime);
+        final String date = localDateTime != null
+                ? toDateString(minDate(2023, 12, 21), localDateTime)
+                : null;
 
         buildRetrofit()
                 .create(CharacterApi.class)
@@ -293,28 +319,32 @@ public class MapleStoryApi {
 
     /**
      * 하이퍼스탯 정보를 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
-     * - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid 캐릭터 식별자
      */
     public CharacterHyperStatDTO getCharacterHyperStat(@NonNull String ocid) throws IOException {
-        return this.getCharacterHyperStat(ocid, getProperDefaultDateTime(new LatestApiUpdateTimeOption(1, 0, 1)));
+        return this.getCharacterHyperStat(ocid, null);
     }
 
     /**
      * 하이퍼스탯 정보를 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
-     * - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid          캐릭터 식별자
      * @param localDateTime 조회 기준일 (KST)
      */
-    public CharacterHyperStatDTO getCharacterHyperStat(@NonNull String ocid, @NonNull LocalDateTime localDateTime) throws IOException {
+    public CharacterHyperStatDTO getCharacterHyperStat(@NonNull String ocid, LocalDateTime localDateTime) throws IOException {
 
-        final String date = toDateString(minDate(2023, 12, 21), localDateTime);
+        final String date = localDateTime != null
+                ? toDateString(minDate(2023, 12, 21), localDateTime)
+                : null;
 
         final Response<CharacterHyperStatDTO> response = buildRetrofit()
                 .create(CharacterApi.class)
@@ -330,28 +360,32 @@ public class MapleStoryApi {
 
     /**
      * 하이퍼스탯 정보를 비동기로 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
-     * - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid 캐릭터 식별자
      */
     public void getCharacterHyperStatAsync(@NonNull String ocid, SuccessCallback<CharacterHyperStatDTO> onSuccess, FailureCallback onFailure) {
-        this.getCharacterHyperStatAsync(ocid, getProperDefaultDateTime(new LatestApiUpdateTimeOption(1, 0, 1)), onSuccess, onFailure);
+        this.getCharacterHyperStatAsync(ocid, null, onSuccess, onFailure);
     }
 
     /**
      * 하이퍼스탯 정보를 비동기로 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
-     * - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid          캐릭터 식별자
      * @param localDateTime 조회 기준일 (KST)
      */
-    public void getCharacterHyperStatAsync(@NonNull String ocid, @NonNull LocalDateTime localDateTime, SuccessCallback<CharacterHyperStatDTO> onSuccess, FailureCallback onFailure) {
+    public void getCharacterHyperStatAsync(@NonNull String ocid, LocalDateTime localDateTime, SuccessCallback<CharacterHyperStatDTO> onSuccess, FailureCallback onFailure) {
 
-        final String date = toDateString(minDate(2023, 12, 21), localDateTime);
+        final String date = localDateTime != null
+                ? toDateString(minDate(2023, 12, 21), localDateTime)
+                : null;
 
         buildRetrofit()
                 .create(CharacterApi.class)
@@ -361,28 +395,32 @@ public class MapleStoryApi {
 
     /**
      * 성향 정보를 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
-     * - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid 캐릭터 식별자
      */
     public CharacterPropensityDTO getCharacterPropensity(@NonNull String ocid) throws IOException {
-        return this.getCharacterPropensity(ocid, getProperDefaultDateTime(new LatestApiUpdateTimeOption(1, 0, 1)));
+        return this.getCharacterPropensity(ocid, null);
     }
 
     /**
      * 성향 정보를 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
-     * - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid          캐릭터 식별자
      * @param localDateTime 조회 기준일 (KST)
      */
-    public CharacterPropensityDTO getCharacterPropensity(@NonNull String ocid, @NonNull LocalDateTime localDateTime) throws IOException {
+    public CharacterPropensityDTO getCharacterPropensity(@NonNull String ocid, LocalDateTime localDateTime) throws IOException {
 
-        final String date = toDateString(minDate(2023, 12, 21), localDateTime);
+        final String date = localDateTime != null
+                ? toDateString(minDate(2023, 12, 21), localDateTime)
+                : null;
 
         final Response<CharacterPropensityDTO> response = buildRetrofit()
                 .create(CharacterApi.class)
@@ -398,28 +436,32 @@ public class MapleStoryApi {
 
     /**
      * 성향 정보를 비동기로 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
-     * - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid 캐릭터 식별자
      */
     public void getCharacterPropensityAsync(@NonNull String ocid, SuccessCallback<CharacterPropensityDTO> onSuccess, FailureCallback onFailure) {
-        this.getCharacterPropensityAsync(ocid, getProperDefaultDateTime(new LatestApiUpdateTimeOption(1, 0, 1)), onSuccess, onFailure);
+        this.getCharacterPropensityAsync(ocid, null, onSuccess, onFailure);
     }
 
     /**
      * 성향 정보를 비동기로 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
-     * - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid          캐릭터 식별자
      * @param localDateTime 조회 기준일 (KST)
      */
-    public void getCharacterPropensityAsync(@NonNull String ocid, @NonNull LocalDateTime localDateTime, SuccessCallback<CharacterPropensityDTO> onSuccess, FailureCallback onFailure) {
+    public void getCharacterPropensityAsync(@NonNull String ocid, LocalDateTime localDateTime, SuccessCallback<CharacterPropensityDTO> onSuccess, FailureCallback onFailure) {
 
-        final String date = toDateString(minDate(2023, 12, 21), localDateTime);
+        final String date = localDateTime != null
+                ? toDateString(minDate(2023, 12, 21), localDateTime)
+                : null;
 
         buildRetrofit()
                 .create(CharacterApi.class)
@@ -429,27 +471,31 @@ public class MapleStoryApi {
 
     /**
      * 어빌리티 정보를 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
-     * - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid 캐릭터 식별자
      */
     public CharacterAbilityDTO getCharacterAbility(@NonNull String ocid) throws IOException {
-        return getCharacterAbility(ocid, getProperDefaultDateTime(new LatestApiUpdateTimeOption(1, 0, 1)));
+        return getCharacterAbility(ocid, null);
     }
 
     /**
      * 어빌리티 정보를 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
-     * - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid 캐릭터 식별자
      */
-    public CharacterAbilityDTO getCharacterAbility(@NonNull String ocid, @NonNull LocalDateTime localDateTime) throws IOException {
+    public CharacterAbilityDTO getCharacterAbility(@NonNull String ocid, LocalDateTime localDateTime) throws IOException {
 
-        final String date = toDateString(minDate(2023, 12, 21), localDateTime);
+        final String date = localDateTime != null
+                ? toDateString(minDate(2023, 12, 21), localDateTime)
+                : null;
 
         final Response<CharacterAbilityDTO> response = buildRetrofit()
                 .create(CharacterApi.class)
@@ -465,28 +511,32 @@ public class MapleStoryApi {
 
     /**
      * 어빌리티 정보를 비동기로 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
-     * - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid 캐릭터 식별자
      */
     public void getCharacterAbilityAsync(@NonNull String ocid, SuccessCallback<CharacterAbilityDTO> onSuccess, FailureCallback onFailure) {
-        this.getCharacterAbilityAsync(ocid, getProperDefaultDateTime(new LatestApiUpdateTimeOption(1, 0, 1)), onSuccess, onFailure);
+        this.getCharacterAbilityAsync(ocid, null, onSuccess, onFailure);
     }
 
     /**
      * 어빌리티 정보를 비동기로 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
-     * - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid          캐릭터 식별자
      * @param localDateTime 조회 기준일 (KST)
      */
-    public void getCharacterAbilityAsync(@NonNull String ocid, @NonNull LocalDateTime localDateTime, SuccessCallback<CharacterAbilityDTO> onSuccess, FailureCallback onFailure) {
+    public void getCharacterAbilityAsync(@NonNull String ocid, LocalDateTime localDateTime, SuccessCallback<CharacterAbilityDTO> onSuccess, FailureCallback onFailure) {
 
-        final String date = toDateString(minDate(2023, 12, 21), localDateTime);
+        final String date = localDateTime != null
+                ? toDateString(minDate(2023, 12, 21), localDateTime)
+                : null;
 
         buildRetrofit()
                 .create(CharacterApi.class)
@@ -496,28 +546,32 @@ public class MapleStoryApi {
 
     /**
      * 장착한 장비 중 캐시 장비를 제외한 나머지 장비 정보를 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
-     * - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid 캐릭터 식별자
      */
     public CharacterItemEquipmentDTO getCharacterItemEquipment(@NonNull String ocid) throws IOException {
-        return this.getCharacterItemEquipment(ocid, getProperDefaultDateTime(new LatestApiUpdateTimeOption(1, 0, 1)));
+        return this.getCharacterItemEquipment(ocid, null);
     }
 
     /**
      * 장착한 장비 중 캐시 장비를 제외한 나머지 장비 정보를 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
-     * - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid          캐릭터 식별자
      * @param localDateTime 조회 기준일 (KST)
      */
-    public CharacterItemEquipmentDTO getCharacterItemEquipment(@NonNull String ocid, @NonNull LocalDateTime localDateTime) throws IOException {
+    public CharacterItemEquipmentDTO getCharacterItemEquipment(@NonNull String ocid, LocalDateTime localDateTime) throws IOException {
 
-        final String date = toDateString(minDate(2023, 12, 21), localDateTime);
+        final String date = localDateTime != null
+                ? toDateString(minDate(2023, 12, 21), localDateTime)
+                : null;
 
         final Response<CharacterItemEquipmentDTO> response = buildRetrofit()
                 .create(CharacterApi.class)
@@ -533,28 +587,32 @@ public class MapleStoryApi {
 
     /**
      * 장착한 장비 중 캐시 장비를 제외한 나머지 장비 정보를 비동기로 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
-     * - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid 캐릭터 식별자
      */
     public void getCharacterItemEquipmentAsync(@NonNull String ocid, SuccessCallback<CharacterItemEquipmentDTO> onSuccess, FailureCallback onFailure) {
-        this.getCharacterItemEquipmentAsync(ocid, getProperDefaultDateTime(new LatestApiUpdateTimeOption(1, 0, 1)), onSuccess, onFailure);
+        this.getCharacterItemEquipmentAsync(ocid, null, onSuccess, onFailure);
     }
 
     /**
      * 장착한 장비 중 캐시 장비를 제외한 나머지 장비 정보를 비동기로 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
-     * - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid          캐릭터 식별자
      * @param localDateTime 조회 기준일 (KST)
      */
-    public void getCharacterItemEquipmentAsync(@NonNull String ocid, @NonNull LocalDateTime localDateTime, SuccessCallback<CharacterItemEquipmentDTO> onSuccess, FailureCallback onFailure) {
+    public void getCharacterItemEquipmentAsync(@NonNull String ocid, LocalDateTime localDateTime, SuccessCallback<CharacterItemEquipmentDTO> onSuccess, FailureCallback onFailure) {
 
-        final String date = toDateString(minDate(2023, 12, 21), localDateTime);
+        final String date = localDateTime != null
+                ? toDateString(minDate(2023, 12, 21), localDateTime)
+                : null;
 
         buildRetrofit()
                 .create(CharacterApi.class)
@@ -564,28 +622,32 @@ public class MapleStoryApi {
 
     /**
      * 장착한 캐시 장비 정보를 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
-     * - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid 캐릭터 식별자
      */
     public CharacterCashItemEquipmentDTO getCharacterCashItemEquipment(@NonNull String ocid) throws IOException {
-        return this.getCharacterCashItemEquipment(ocid, getProperDefaultDateTime(new LatestApiUpdateTimeOption(1, 0, 1)));
+        return this.getCharacterCashItemEquipment(ocid, null);
     }
 
     /**
      * 장착한 캐시 장비 정보를 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
-     * - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid          캐릭터 식별자
      * @param localDateTime 조회 기준일 (KST)
      */
-    public CharacterCashItemEquipmentDTO getCharacterCashItemEquipment(@NonNull String ocid, @NonNull LocalDateTime localDateTime) throws IOException {
+    public CharacterCashItemEquipmentDTO getCharacterCashItemEquipment(@NonNull String ocid, LocalDateTime localDateTime) throws IOException {
 
-        final String date = toDateString(minDate(2023, 12, 21), localDateTime);
+        final String date = localDateTime != null
+                ? toDateString(minDate(2023, 12, 21), localDateTime)
+                : null;
 
         final Response<CharacterCashItemEquipmentDTO> response = buildRetrofit()
                 .create(CharacterApi.class)
@@ -601,28 +663,32 @@ public class MapleStoryApi {
 
     /**
      * 장착한 캐시 장비 정보를 비동기로 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
-     * - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid 캐릭터 식별자
      */
     public void getCharacterCashItemEquipmentAsync(@NonNull String ocid, SuccessCallback<CharacterCashItemEquipmentDTO> onSuccess, FailureCallback onFailure) {
-        this.getCharacterCashItemEquipmentAsync(ocid, getProperDefaultDateTime(new LatestApiUpdateTimeOption(1, 0, 1)), onSuccess, onFailure);
+        this.getCharacterCashItemEquipmentAsync(ocid, null, onSuccess, onFailure);
     }
 
     /**
      * 장착한 캐시 장비 정보를 비동기로 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
-     * - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid          캐릭터 식별자
      * @param localDateTime 조회 기준일 (KST)
      */
-    public void getCharacterCashItemEquipmentAsync(@NonNull String ocid, @NonNull LocalDateTime localDateTime, SuccessCallback<CharacterCashItemEquipmentDTO> onSuccess, FailureCallback onFailure) {
+    public void getCharacterCashItemEquipmentAsync(@NonNull String ocid, LocalDateTime localDateTime, SuccessCallback<CharacterCashItemEquipmentDTO> onSuccess, FailureCallback onFailure) {
 
-        final String date = toDateString(minDate(2023, 12, 21), localDateTime);
+        final String date = localDateTime != null
+                ? toDateString(minDate(2023, 12, 21), localDateTime)
+                : null;
 
         buildRetrofit()
                 .create(CharacterApi.class)
@@ -632,28 +698,32 @@ public class MapleStoryApi {
 
     /**
      * 장착한 심볼 정보를 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
-     * - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid 캐릭터 식별자
      */
     public CharacterSymbolEquipmentDTO getCharacterSymbolEquipment(@NonNull String ocid) throws IOException {
-        return this.getCharacterSymbolEquipment(ocid, getProperDefaultDateTime(new LatestApiUpdateTimeOption(1, 0, 1)));
+        return this.getCharacterSymbolEquipment(ocid, null);
     }
 
     /**
      * 장착한 심볼 정보를 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
-     * - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid          캐릭터 식별자
      * @param localDateTime 조회 기준일 (KST)
      */
-    public CharacterSymbolEquipmentDTO getCharacterSymbolEquipment(@NonNull String ocid, @NonNull LocalDateTime localDateTime) throws IOException {
+    public CharacterSymbolEquipmentDTO getCharacterSymbolEquipment(@NonNull String ocid, LocalDateTime localDateTime) throws IOException {
 
-        final String date = toDateString(minDate(2023, 12, 21), localDateTime);
+        final String date = localDateTime != null
+                ? toDateString(minDate(2023, 12, 21), localDateTime)
+                : null;
 
         final Response<CharacterSymbolEquipmentDTO> response = buildRetrofit()
                 .create(CharacterApi.class)
@@ -669,28 +739,32 @@ public class MapleStoryApi {
 
     /**
      * 장착한 심볼 정보를 비동기로 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
-     * - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid 캐릭터 식별자
      */
     public void getCharacterSymbolEquipmentAsync(@NonNull String ocid, SuccessCallback<CharacterSymbolEquipmentDTO> onSuccess, FailureCallback onFailure) {
-        this.getCharacterSymbolEquipmentAsync(ocid, getProperDefaultDateTime(new LatestApiUpdateTimeOption(1, 0, 1)), onSuccess, onFailure);
+        this.getCharacterSymbolEquipmentAsync(ocid, null, onSuccess, onFailure);
     }
 
     /**
      * 장착한 심볼 정보를 비동기로 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
-     * - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid          캐릭터 식별자
      * @param localDateTime 조회 기준일 (KST)
      */
-    public void getCharacterSymbolEquipmentAsync(@NonNull String ocid, @NonNull LocalDateTime localDateTime, SuccessCallback<CharacterSymbolEquipmentDTO> onSuccess, FailureCallback onFailure) {
+    public void getCharacterSymbolEquipmentAsync(@NonNull String ocid, LocalDateTime localDateTime, SuccessCallback<CharacterSymbolEquipmentDTO> onSuccess, FailureCallback onFailure) {
 
-        final String date = toDateString(minDate(2023, 12, 21), localDateTime);
+        final String date = localDateTime != null
+                ? toDateString(minDate(2023, 12, 21), localDateTime)
+                : null;
 
         buildRetrofit()
                 .create(CharacterApi.class)
@@ -700,27 +774,31 @@ public class MapleStoryApi {
 
     /**
      * 적용받고 있는 세트 효과 정보를 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
-     * - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid 캐릭터 식별자
      */
     public CharacterSetEffectDTO getCharacterSetEffectAsync(@NonNull String ocid) throws IOException {
-        return this.getCharacterSetEffectAsync(ocid, getProperDefaultDateTime(new LatestApiUpdateTimeOption(1, 0, 1)));
+        return this.getCharacterSetEffectAsync(ocid, null);
     }
 
     /**
      * 적용받고 있는 세트 효과 정보를 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
-     * - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid 캐릭터 식별자
      */
-    public CharacterSetEffectDTO getCharacterSetEffectAsync(@NonNull String ocid, @NonNull LocalDateTime localDateTime) throws IOException {
+    public CharacterSetEffectDTO getCharacterSetEffectAsync(@NonNull String ocid, LocalDateTime localDateTime) throws IOException {
 
-        final String date = toDateString(minDate(2023, 12, 21), localDateTime);
+        final String date = localDateTime != null
+                ? toDateString(minDate(2023, 12, 21), localDateTime)
+                : null;
 
         final Response<CharacterSetEffectDTO> response = buildRetrofit()
                 .create(CharacterApi.class)
@@ -736,28 +814,32 @@ public class MapleStoryApi {
 
     /**
      * 적용받고 있는 세트 효과 정보를 비동기로 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
-     * - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid 캐릭터 식별자
      */
     public void getCharacterSetEffectAsync(@NonNull String ocid, SuccessCallback<CharacterSetEffectDTO> onSuccess, FailureCallback onFailure) {
-        this.getCharacterSetEffectAsync(ocid, getProperDefaultDateTime(new LatestApiUpdateTimeOption(1, 0, 1)), onSuccess, onFailure);
+        this.getCharacterSetEffectAsync(ocid, null, onSuccess, onFailure);
     }
 
     /**
      * 적용받고 있는 세트 효과 정보를 비동기로 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
-     * - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid          캐릭터 식별자
      * @param localDateTime 조회 기준일 (KST)
      */
-    public void getCharacterSetEffectAsync(@NonNull String ocid, @NonNull LocalDateTime localDateTime, SuccessCallback<CharacterSetEffectDTO> onSuccess, FailureCallback onFailure) {
+    public void getCharacterSetEffectAsync(@NonNull String ocid, LocalDateTime localDateTime, SuccessCallback<CharacterSetEffectDTO> onSuccess, FailureCallback onFailure) {
 
-        final String date = toDateString(minDate(2023, 12, 21), localDateTime);
+        final String date = localDateTime != null
+                ? toDateString(minDate(2023, 12, 21), localDateTime)
+                : null;
 
         buildRetrofit()
                 .create(CharacterApi.class)
@@ -767,20 +849,22 @@ public class MapleStoryApi {
 
     /**
      * 장착 중인 헤어, 성형, 피부 정보를 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
-     * - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid 캐릭터 식별자
      */
     public CharacterBeautyEquipmentDTO getCharacterBeautyEquipment(@NonNull String ocid) throws IOException {
-        return this.getCharacterBeautyEquipment(ocid, getProperDefaultDateTime(new LatestApiUpdateTimeOption(1, 0, 1)));
+        return this.getCharacterBeautyEquipment(ocid, null);
     }
 
     /**
      * 장착 중인 헤어, 성형, 피부 정보를 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
-     * - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid          캐릭터 식별자
@@ -788,7 +872,9 @@ public class MapleStoryApi {
      */
     public CharacterBeautyEquipmentDTO getCharacterBeautyEquipment(@NonNull String ocid, @NonNull LocalDateTime localDateTime) throws IOException {
 
-        final String date = toDateString(minDate(2023, 12, 21), localDateTime);
+        final String date = localDateTime != null
+                ? toDateString(minDate(2023, 12, 21), localDateTime)
+                : null;
 
         final Response<CharacterBeautyEquipmentDTO> response = buildRetrofit()
                 .create(CharacterApi.class)
@@ -804,20 +890,22 @@ public class MapleStoryApi {
 
     /**
      * 장착 중인 헤어, 성형, 피부 정보를 비동기로 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
-     * - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid 캐릭터 식별자
      */
     public void getCharacterBeautyEquipmentAsync(@NonNull String ocid, SuccessCallback<CharacterBeautyEquipmentDTO> onSuccess, FailureCallback onFailure) {
-        this.getCharacterBeautyEquipmentAsync(ocid, getProperDefaultDateTime(new LatestApiUpdateTimeOption(1, 0, 1)), onSuccess, onFailure);
+        this.getCharacterBeautyEquipmentAsync(ocid, null, onSuccess, onFailure);
     }
 
     /**
      * 장착 중인 헤어, 성형, 피부 정보를 비동기로 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
-     * - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid          캐릭터 식별자
@@ -825,7 +913,9 @@ public class MapleStoryApi {
      */
     public void getCharacterBeautyEquipmentAsync(@NonNull String ocid, LocalDateTime localDateTime, SuccessCallback<CharacterBeautyEquipmentDTO> onSuccess, FailureCallback onFailure) {
 
-        final String date = toDateString(minDate(2023, 12, 21), localDateTime);
+        final String date = localDateTime != null
+                ? toDateString(minDate(2023, 12, 21), localDateTime)
+                : null;
 
         buildRetrofit()
                 .create(CharacterApi.class)
@@ -835,28 +925,32 @@ public class MapleStoryApi {
 
     /**
      * 장착한 안드로이드 정보를 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
-     * - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid 캐릭터 식별자
      */
     public CharacterAndroidEquipmentDTO getCharacterAndroidEquipment(@NonNull String ocid) throws IOException {
-        return getCharacterAndroidEquipment(ocid, getProperDefaultDateTime(new LatestApiUpdateTimeOption(1, 0, 1)));
+        return getCharacterAndroidEquipment(ocid, null);
     }
 
     /**
      * 장착한 안드로이드 정보를 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
-     * - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid          캐릭터 식별자
      * @param localDateTime 조회 기준일 (KST)
      */
-    public CharacterAndroidEquipmentDTO getCharacterAndroidEquipment(@NonNull String ocid, @NonNull LocalDateTime localDateTime) throws IOException {
+    public CharacterAndroidEquipmentDTO getCharacterAndroidEquipment(@NonNull String ocid, LocalDateTime localDateTime) throws IOException {
 
-        final String date = toDateString(minDate(2023, 12, 21), localDateTime);
+        final String date = localDateTime != null
+                ? toDateString(minDate(2023, 12, 21), localDateTime)
+                : null;
 
         final Response<CharacterAndroidEquipmentDTO> response = buildRetrofit()
                 .create(CharacterApi.class)
@@ -872,28 +966,32 @@ public class MapleStoryApi {
 
     /**
      * 장착한 안드로이드 정보를 비동기로 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
-     * - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid 캐릭터 식별자
      */
     public void getCharacterAndroidEquipmentAsync(@NonNull String ocid, SuccessCallback<CharacterAndroidEquipmentDTO> onSuccess, FailureCallback onFailure) {
-        this.getCharacterAndroidEquipmentAsync(ocid, getProperDefaultDateTime(new LatestApiUpdateTimeOption(1, 0, 1)), onSuccess, onFailure);
+        this.getCharacterAndroidEquipmentAsync(ocid, null, onSuccess, onFailure);
     }
 
     /**
      * 장착한 안드로이드 정보를 비동기로 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
-     * - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid          캐릭터 식별자
      * @param localDateTime 조회 기준일 (KST)
      */
-    public void getCharacterAndroidEquipmentAsync(@NonNull String ocid, @NonNull LocalDateTime localDateTime, SuccessCallback<CharacterAndroidEquipmentDTO> onSuccess, FailureCallback onFailure) {
+    public void getCharacterAndroidEquipmentAsync(@NonNull String ocid, LocalDateTime localDateTime, SuccessCallback<CharacterAndroidEquipmentDTO> onSuccess, FailureCallback onFailure) {
 
-        final String date = toDateString(minDate(2023, 12, 21), localDateTime);
+        final String date = localDateTime != null
+                ? toDateString(minDate(2023, 12, 21), localDateTime)
+                : null;
 
         buildRetrofit()
                 .create(CharacterApi.class)
@@ -903,28 +1001,32 @@ public class MapleStoryApi {
 
     /**
      * 장착한 펫 및 펫 스킬, 장비 정보를 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
-     * - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid 캐릭터 식별자
      */
     public CharacterPetEquipmentDTO getCharacterPetEquipment(@NonNull String ocid) throws IOException {
-        return this.getCharacterPetEquipment(ocid, getProperDefaultDateTime(new LatestApiUpdateTimeOption(1, 0, 1)));
+        return this.getCharacterPetEquipment(ocid, null);
     }
 
     /**
      * 장착한 펫 및 펫 스킬, 장비 정보를 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
-     * - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid          캐릭터 식별자
      * @param localDateTime 조회 기준일 (KST)
      */
-    public CharacterPetEquipmentDTO getCharacterPetEquipment(@NonNull String ocid, @NonNull LocalDateTime localDateTime) throws IOException {
+    public CharacterPetEquipmentDTO getCharacterPetEquipment(@NonNull String ocid, LocalDateTime localDateTime) throws IOException {
 
-        final String date = toDateString(minDate(2023, 12, 21), localDateTime);
+        final String date = localDateTime != null
+                ? toDateString(minDate(2023, 12, 21), localDateTime)
+                : null;
 
         final Response<CharacterPetEquipmentDTO> response = buildRetrofit()
                 .create(CharacterApi.class)
@@ -940,28 +1042,32 @@ public class MapleStoryApi {
 
     /**
      * 장착한 펫 및 펫 스킬, 장비 정보를 비동기로 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
-     * - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid 캐릭터 식별자
      */
     public void getCharacterPetEquipmentAsync(@NonNull String ocid, SuccessCallback<CharacterPetEquipmentDTO> onSuccess, FailureCallback onFailure) {
-        this.getCharacterPetEquipmentAsync(ocid, getProperDefaultDateTime(new LatestApiUpdateTimeOption(1, 0, 1)), onSuccess, onFailure);
+        this.getCharacterPetEquipmentAsync(ocid, null, onSuccess, onFailure);
     }
 
     /**
      * 장착한 펫 및 펫 스킬, 장비 정보를 비동기로 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
-     * - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid          캐릭터 식별자
      * @param localDateTime 조회 기준일 (KST)
      */
-    public void getCharacterPetEquipmentAsync(@NonNull String ocid, @NonNull LocalDateTime localDateTime, SuccessCallback<CharacterPetEquipmentDTO> onSuccess, FailureCallback onFailure) {
+    public void getCharacterPetEquipmentAsync(@NonNull String ocid, LocalDateTime localDateTime, SuccessCallback<CharacterPetEquipmentDTO> onSuccess, FailureCallback onFailure) {
 
-        final String date = toDateString(minDate(2023, 12, 21), localDateTime);
+        final String date = localDateTime != null
+                ? toDateString(minDate(2023, 12, 21), localDateTime)
+                : null;
 
         buildRetrofit()
                 .create(CharacterApi.class)
@@ -971,8 +1077,9 @@ public class MapleStoryApi {
 
     /**
      * 캐릭터 스킬과 하이퍼 스킬 정보를 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
-     * - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid                캐릭터 식별자
@@ -990,13 +1097,14 @@ public class MapleStoryApi {
      *                            6: 6차 스킬<br>
      */
     public CharacterSkillDTO getCharacterSkill(@NonNull String ocid, @NonNull String characterSkillGrade) throws IOException {
-        return this.getCharacterSkill(ocid, characterSkillGrade, getProperDefaultDateTime(new LatestApiUpdateTimeOption(1, 0, 1)));
+        return this.getCharacterSkill(ocid, characterSkillGrade, null);
     }
 
     /**
      * 캐릭터 스킬과 하이퍼 스킬 정보를 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
-     * - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid                캐릭터 식별자
@@ -1014,9 +1122,11 @@ public class MapleStoryApi {
      *                            6: 6차 스킬<br>
      * @param localDateTime       조회 기준일 (KST)
      */
-    public CharacterSkillDTO getCharacterSkill(@NonNull String ocid, @NonNull String characterSkillGrade, @NonNull LocalDateTime localDateTime) throws IOException {
+    public CharacterSkillDTO getCharacterSkill(@NonNull String ocid, @NonNull String characterSkillGrade, LocalDateTime localDateTime) throws IOException {
 
-        final String date = toDateString(minDate(2023, 12, 21), localDateTime);
+        final String date = localDateTime != null
+                ? toDateString(minDate(2023, 12, 21), localDateTime)
+                : null;
 
         final Response<CharacterSkillDTO> response = buildRetrofit()
                 .create(CharacterApi.class)
@@ -1032,8 +1142,9 @@ public class MapleStoryApi {
 
     /**
      * 캐릭터 스킬과 하이퍼 스킬 정보를 비동기로 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
-     * - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid                캐릭터 식별자
@@ -1051,13 +1162,14 @@ public class MapleStoryApi {
      *                            6: 6차 스킬<br>
      */
     public void getCharacterSkillAsync(@NonNull String ocid, @NonNull String characterSkillGrade, SuccessCallback<CharacterSkillDTO> onSuccess, FailureCallback onFailure) {
-        this.getCharacterSkillAsync(ocid, getProperDefaultDateTime(new LatestApiUpdateTimeOption(1, 0, 1)), characterSkillGrade, onSuccess, onFailure);
+        this.getCharacterSkillAsync(ocid, null, characterSkillGrade, onSuccess, onFailure);
     }
 
     /**
      * 캐릭터 스킬과 하이퍼 스킬 정보를 비동기로 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
-     * - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid                캐릭터 식별자
@@ -1075,9 +1187,11 @@ public class MapleStoryApi {
      *                            5: 5차 스킬<br>
      *                            6: 6차 스킬<br>
      */
-    public void getCharacterSkillAsync(@NonNull String ocid, @NonNull LocalDateTime localDateTime, String characterSkillGrade, SuccessCallback<CharacterSkillDTO> onSuccess, FailureCallback onFailure) {
+    public void getCharacterSkillAsync(@NonNull String ocid, LocalDateTime localDateTime, String characterSkillGrade, SuccessCallback<CharacterSkillDTO> onSuccess, FailureCallback onFailure) {
 
-        final String date = toDateString(minDate(2023, 12, 21), localDateTime);
+        final String date = localDateTime != null
+                ? toDateString(minDate(2023, 12, 21), localDateTime)
+                : null;
 
         buildRetrofit()
                 .create(CharacterApi.class)
@@ -1087,28 +1201,32 @@ public class MapleStoryApi {
 
     /**
      * 장착 링크 스킬 정보를 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
-     * - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid 캐릭터 식별자
      */
     public CharacterLinkSkillDTO getCharacterLinkSkill(@NonNull String ocid) throws IOException {
-        return this.getCharacterLinkSkill(ocid, getProperDefaultDateTime(new LatestApiUpdateTimeOption(1, 0, 1)));
+        return this.getCharacterLinkSkill(ocid, null);
     }
 
     /**
      * 장착 링크 스킬 정보를 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
-     * - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid          캐릭터 식별자
      * @param localDateTime 조회 기준일 (KST)
      */
-    public CharacterLinkSkillDTO getCharacterLinkSkill(@NonNull String ocid, @NonNull LocalDateTime localDateTime) throws IOException {
+    public CharacterLinkSkillDTO getCharacterLinkSkill(@NonNull String ocid, LocalDateTime localDateTime) throws IOException {
 
-        final String date = toDateString(minDate(2023, 12, 21), localDateTime);
+        final String date = localDateTime != null
+                ? toDateString(minDate(2023, 12, 21), localDateTime)
+                : null;
 
         final Response<CharacterLinkSkillDTO> response = buildRetrofit()
                 .create(CharacterApi.class)
@@ -1124,28 +1242,32 @@ public class MapleStoryApi {
 
     /**
      * 장착 링크 스킬 정보를 비동기로 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
-     * - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid 캐릭터 식별자
      */
     public void getCharacterLinkSkillAsync(@NonNull String ocid, SuccessCallback<CharacterLinkSkillDTO> onSuccess, FailureCallback onFailure) {
-        this.getCharacterLinkSkillAsync(ocid, getProperDefaultDateTime(new LatestApiUpdateTimeOption(1, 0, 1)), onSuccess, onFailure);
+        this.getCharacterLinkSkillAsync(ocid, null, onSuccess, onFailure);
     }
 
     /**
      * 장착 링크 스킬 정보를 비동기로 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
-     * - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid          캐릭터 식별자
      * @param localDateTime 조회 기준일 (KST)
      */
-    public void getCharacterLinkSkillAsync(@NonNull String ocid, @NonNull LocalDateTime localDateTime, SuccessCallback<CharacterLinkSkillDTO> onSuccess, FailureCallback onFailure) {
+    public void getCharacterLinkSkillAsync(@NonNull String ocid, LocalDateTime localDateTime, SuccessCallback<CharacterLinkSkillDTO> onSuccess, FailureCallback onFailure) {
 
-        final String date = toDateString(minDate(2023, 12, 21), localDateTime);
+        final String date = localDateTime != null
+                ? toDateString(minDate(2023, 12, 21), localDateTime)
+                : null;
 
         buildRetrofit()
                 .create(CharacterApi.class)
@@ -1155,28 +1277,32 @@ public class MapleStoryApi {
 
     /**
      * V매트릭스 슬롯 정보와 장착한 V코어 정보를 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
-     * - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid 캐릭터 식별자
      */
     public CharacterVMatrixDTO getCharacterVMatrix(@NonNull String ocid) throws IOException {
-        return this.getCharacterVMatrix(ocid, getProperDefaultDateTime(new LatestApiUpdateTimeOption(1, 0, 1)));
+        return this.getCharacterVMatrix(ocid, null);
     }
 
     /**
      * V매트릭스 슬롯 정보와 장착한 V코어 정보를 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
-     * - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid          캐릭터 식별자
      * @param localDateTime 조회 기준일 (KST)
      */
-    public CharacterVMatrixDTO getCharacterVMatrix(@NonNull String ocid, @NonNull LocalDateTime localDateTime) throws IOException {
+    public CharacterVMatrixDTO getCharacterVMatrix(@NonNull String ocid, LocalDateTime localDateTime) throws IOException {
 
-        final String date = toDateString(minDate(2023, 12, 21), localDateTime);
+        final String date = localDateTime != null
+                ? toDateString(minDate(2023, 12, 21), localDateTime)
+                : null;
 
         final Response<CharacterVMatrixDTO> response = buildRetrofit()
                 .create(CharacterApi.class)
@@ -1192,28 +1318,32 @@ public class MapleStoryApi {
 
     /**
      * V매트릭스 슬롯 정보와 장착한 V코어 정보를 비동기로 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
-     * - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid 캐릭터 식별자
      */
     public void getCharacterVMatrixAsync(@NonNull String ocid, SuccessCallback<CharacterVMatrixDTO> onSuccess, FailureCallback onFailure) {
-        this.getCharacterVMatrixAsync(ocid, getProperDefaultDateTime(new LatestApiUpdateTimeOption(1, 0, 1)), onSuccess, onFailure);
+        this.getCharacterVMatrixAsync(ocid, null, onSuccess, onFailure);
     }
 
     /**
      * V매트릭스 슬롯 정보와 장착한 V코어 정보를 비동기로 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
-     * - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid          캐릭터 식별자
      * @param localDateTime 조회 기준일 (KST)
      */
-    public void getCharacterVMatrixAsync(@NonNull String ocid, @NonNull LocalDateTime localDateTime, SuccessCallback<CharacterVMatrixDTO> onSuccess, FailureCallback onFailure) {
+    public void getCharacterVMatrixAsync(@NonNull String ocid, LocalDateTime localDateTime, SuccessCallback<CharacterVMatrixDTO> onSuccess, FailureCallback onFailure) {
 
-        final String date = toDateString(minDate(2023, 12, 21), localDateTime);
+        final String date = localDateTime != null
+                ? toDateString(minDate(2023, 12, 21), localDateTime)
+                : null;
 
         buildRetrofit()
                 .create(CharacterApi.class)
@@ -1223,28 +1353,32 @@ public class MapleStoryApi {
 
     /**
      * HEXA 매트릭스에 장착한 HEXA 코어 정보를 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
-     * - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid 캐릭터 식별자
      */
     public CharacterHexaMatrixDTO getCharacterHexaMatrix(@NonNull String ocid) throws IOException {
-        return this.getCharacterHexaMatrix(ocid, getProperDefaultDateTime(new LatestApiUpdateTimeOption(1, 0, 1)));
+        return this.getCharacterHexaMatrix(ocid, null);
     }
 
     /**
      * HEXA 매트릭스에 장착한 HEXA 코어 정보를 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
-     * - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid          캐릭터 식별자
      * @param localDateTime 조회 기준일 (KST)
      */
-    public CharacterHexaMatrixDTO getCharacterHexaMatrix(@NonNull String ocid, @NonNull LocalDateTime localDateTime) throws IOException {
+    public CharacterHexaMatrixDTO getCharacterHexaMatrix(@NonNull String ocid, LocalDateTime localDateTime) throws IOException {
 
-        final String date = toDateString(minDate(2023, 12, 21), localDateTime);
+        final String date = localDateTime != null
+                ? toDateString(minDate(2023, 12, 21), localDateTime)
+                : null;
 
         final Response<CharacterHexaMatrixDTO> response = buildRetrofit()
                 .create(CharacterApi.class)
@@ -1260,28 +1394,32 @@ public class MapleStoryApi {
 
     /**
      * HEXA 매트릭스에 장착한 HEXA 코어 정보를 비동기로 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
-     * - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid 캐릭터 식별자
      */
     public void getCharacterHexaMatrixAsync(@NonNull String ocid, SuccessCallback<CharacterHexaMatrixDTO> onSuccess, FailureCallback onFailure) {
-        getCharacterHexaMatrixAsync(ocid, getProperDefaultDateTime(new LatestApiUpdateTimeOption(1, 0, 1)), onSuccess, onFailure);
+        getCharacterHexaMatrixAsync(ocid, null, onSuccess, onFailure);
     }
 
     /**
      * HEXA 매트릭스에 장착한 HEXA 코어 정보를 비동기로 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
-     * - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid          캐릭터 식별자
      * @param localDateTime 조회 기준일 (KST)
      */
-    public void getCharacterHexaMatrixAsync(@NonNull String ocid, @NonNull LocalDateTime localDateTime, SuccessCallback<CharacterHexaMatrixDTO> onSuccess, FailureCallback onFailure) {
+    public void getCharacterHexaMatrixAsync(@NonNull String ocid, LocalDateTime localDateTime, SuccessCallback<CharacterHexaMatrixDTO> onSuccess, FailureCallback onFailure) {
 
-        final String date = toDateString(minDate(2023, 12, 21), localDateTime);
+        final String date = localDateTime != null
+                ? toDateString(minDate(2023, 12, 21), localDateTime)
+                : null;
 
         buildRetrofit()
                 .create(CharacterApi.class)
@@ -1291,28 +1429,32 @@ public class MapleStoryApi {
 
     /**
      * HEXA 매트릭스에 설정한 HEXA 스탯 정보를 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
-     * - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid 캐릭터 식별자
      */
     public CharacterHexaMatrixStatDTO getCharacterHexaMatrixStat(@NonNull String ocid) throws IOException {
-        return this.getCharacterHexaMatrixStat(ocid, getProperDefaultDateTime(new LatestApiUpdateTimeOption(1, 0, 1)));
+        return this.getCharacterHexaMatrixStat(ocid, null);
     }
 
     /**
      * HEXA 매트릭스에 설정한 HEXA 스탯 정보를 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
-     * - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid          캐릭터 식별자
      * @param localDateTime 조회 기준일 (KST)
      */
-    public CharacterHexaMatrixStatDTO getCharacterHexaMatrixStat(@NonNull String ocid, @NonNull LocalDateTime localDateTime) throws IOException {
+    public CharacterHexaMatrixStatDTO getCharacterHexaMatrixStat(@NonNull String ocid, LocalDateTime localDateTime) throws IOException {
 
-        final String date = toDateString(minDate(2023, 12, 21), localDateTime);
+        final String date = localDateTime != null
+                ? toDateString(minDate(2023, 12, 21), localDateTime)
+                : null;
 
         final Response<CharacterHexaMatrixStatDTO> response = buildRetrofit()
                 .create(CharacterApi.class)
@@ -1328,28 +1470,32 @@ public class MapleStoryApi {
 
     /**
      * HEXA 매트릭스에 설정한 HEXA 스탯 정보를 비동기로 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
-     * - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid 캐릭터 식별자
      */
     public void getCharacterHexaMatrixStatAsync(@NonNull String ocid, SuccessCallback<CharacterHexaMatrixStatDTO> onSuccess, FailureCallback onFailure) {
-        this.getCharacterHexaMatrixStatAsync(ocid, getProperDefaultDateTime(new LatestApiUpdateTimeOption(1, 0, 1)), onSuccess, onFailure);
+        this.getCharacterHexaMatrixStatAsync(ocid, null, onSuccess, onFailure);
     }
 
     /**
      * HEXA 매트릭스에 설정한 HEXA 스탯 정보를 비동기로 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
-     * - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid          캐릭터 식별자
      * @param localDateTime 조회 기준일 (KST)
      */
-    public void getCharacterHexaMatrixStatAsync(@NonNull String ocid, @NonNull LocalDateTime localDateTime, SuccessCallback<CharacterHexaMatrixStatDTO> onSuccess, FailureCallback onFailure) {
+    public void getCharacterHexaMatrixStatAsync(@NonNull String ocid, LocalDateTime localDateTime, SuccessCallback<CharacterHexaMatrixStatDTO> onSuccess, FailureCallback onFailure) {
 
-        final String date = toDateString(minDate(2023, 12, 21), localDateTime);
+        final String date = localDateTime != null
+                ? toDateString(minDate(2023, 12, 21), localDateTime)
+                : null;
 
         buildRetrofit()
                 .create(CharacterApi.class)
@@ -1359,28 +1505,32 @@ public class MapleStoryApi {
 
     /**
      * 캐릭터 무릉도장 최고 기록 정보를 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
-     * - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid 캐릭터 식별자
      */
     public CharacterDojangDTO getCharacterDojang(@NonNull String ocid) throws IOException {
-        return this.getCharacterDojang(ocid, getProperDefaultDateTime(new LatestApiUpdateTimeOption(1, 0, 1)));
+        return this.getCharacterDojang(ocid, null);
     }
 
     /**
      * 캐릭터 무릉도장 최고 기록 정보를 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
-     * - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid          캐릭터 식별자
      * @param localDateTime 조회 기준일 (KST)
      */
-    public CharacterDojangDTO getCharacterDojang(@NonNull String ocid, @NonNull LocalDateTime localDateTime) throws IOException {
+    public CharacterDojangDTO getCharacterDojang(@NonNull String ocid, LocalDateTime localDateTime) throws IOException {
 
-        final String date = toDateString(minDate(2023, 12, 21), localDateTime);
+        final String date = localDateTime != null
+                ? toDateString(minDate(2023, 12, 21), localDateTime)
+                : null;
 
         final Response<CharacterDojangDTO> response = buildRetrofit()
                 .create(CharacterApi.class)
@@ -1396,20 +1546,22 @@ public class MapleStoryApi {
 
     /**
      * 캐릭터 무릉도장 최고 기록 정보를 비동기로 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
-     * - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid 캐릭터 식별자
      */
     public void getCharacterDojangAsync(@NonNull String ocid, SuccessCallback<CharacterDojangDTO> onSuccess, FailureCallback onFailure) {
-        getCharacterDojangAsync(ocid, getProperDefaultDateTime(new LatestApiUpdateTimeOption(1, 0, 1)), onSuccess, onFailure);
+        getCharacterDojangAsync(ocid, null, onSuccess, onFailure);
     }
 
     /**
      * 캐릭터 무릉도장 최고 기록 정보를 비동기로 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
-     * - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid          캐릭터 식별자
@@ -1417,7 +1569,9 @@ public class MapleStoryApi {
      */
     public void getCharacterDojangAsync(@NonNull String ocid, LocalDateTime localDateTime, SuccessCallback<CharacterDojangDTO> onSuccess, FailureCallback onFailure) {
 
-        final String date = toDateString(minDate(2023, 12, 21), localDateTime);
+        final String date = localDateTime != null
+                ? toDateString(minDate(2023, 12, 21), localDateTime)
+                : null;
 
         buildRetrofit()
                 .create(CharacterApi.class)
@@ -1431,28 +1585,32 @@ public class MapleStoryApi {
 
     /**
      * 유니온 레벨 및 유니온 등급 정보를 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
-     * - 유니온 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid 캐릭터 식별자
      */
     public UnionDTO getUnion(@NonNull String ocid) throws IOException {
-        return this.getUnion(ocid, getProperDefaultDateTime(new LatestApiUpdateTimeOption(1, 0, 1)));
+        return this.getUnion(ocid, null);
     }
 
     /**
      * 유니온 레벨 및 유니온 등급 정보를 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
-     * - 유니온 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid          캐릭터 식별자
      * @param localDateTime 조회 기준일 (KST)
      */
-    public UnionDTO getUnion(@NonNull String ocid, @NonNull LocalDateTime localDateTime) throws IOException {
+    public UnionDTO getUnion(@NonNull String ocid, LocalDateTime localDateTime) throws IOException {
 
-        final String date = toDateString(minDate(2023, 12, 21), localDateTime);
+        final String date = localDateTime != null
+                ? toDateString(minDate(2023, 12, 21), localDateTime)
+                : null;
 
         final Response<UnionDTO> response = buildRetrofit()
                 .create(UnionApi.class)
@@ -1468,20 +1626,22 @@ public class MapleStoryApi {
 
     /**
      * 유니온 레벨 및 유니온 등급 정보를 비동기로 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
-     * - 유니온 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid 캐릭터 식별자
      */
     public void getUnionAsync(@NonNull String ocid, SuccessCallback<UnionDTO> onSuccess, FailureCallback onFailure) {
-        this.getUnionAsync(ocid, getProperDefaultDateTime(new LatestApiUpdateTimeOption(1, 0, 1)), onSuccess, onFailure);
+        this.getUnionAsync(ocid, null, onSuccess, onFailure);
     }
 
     /**
      * 유니온 레벨 및 유니온 등급 정보를 비동기로 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
-     * - 유니온 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid          캐릭터 식별자
@@ -1489,7 +1649,9 @@ public class MapleStoryApi {
      */
     public void getUnionAsync(@NonNull String ocid, LocalDateTime localDateTime, SuccessCallback<UnionDTO> onSuccess, FailureCallback onFailure) {
 
-        final String date = toDateString(minDate(2023, 12, 21), localDateTime);
+        final String date = localDateTime != null
+                ? toDateString(minDate(2023, 12, 21), localDateTime)
+                : null;
 
         buildRetrofit()
                 .create(UnionApi.class)
@@ -1499,28 +1661,32 @@ public class MapleStoryApi {
 
     /**
      * 유니온에 배치된 공격대원 효과 및 공격대 점령 효과 등 상세 정보를 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
-     * - 유니온 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid 캐릭터 식별자
      */
     public UnionRaiderDTO getUnionRaider(@NonNull String ocid) throws IOException {
-        return this.getUnionRaider(ocid, getProperDefaultDateTime(new LatestApiUpdateTimeOption(1, 0, 1)));
+        return this.getUnionRaider(ocid, null);
     }
 
     /**
      * 유니온에 배치된 공격대원 효과 및 공격대 점령 효과 등 상세 정보를 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
-     * - 유니온 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid          캐릭터 식별자
      * @param localDateTime 조회 기준일 (KST)
      */
-    public UnionRaiderDTO getUnionRaider(@NonNull String ocid, @NonNull LocalDateTime localDateTime) throws IOException {
+    public UnionRaiderDTO getUnionRaider(@NonNull String ocid, LocalDateTime localDateTime) throws IOException {
 
-        final String date = toDateString(minDate(2023, 12, 21), localDateTime);
+        final String date = localDateTime != null
+                ? toDateString(minDate(2023, 12, 21), localDateTime)
+                : null;
 
         final Response<UnionRaiderDTO> response = buildRetrofit()
                 .create(UnionApi.class)
@@ -1536,28 +1702,32 @@ public class MapleStoryApi {
 
     /**
      * 유니온에 배치된 공격대원 효과 및 공격대 점령 효과 등 상세 정보를 비동기로 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
-     * - 유니온 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid 캐릭터 식별자
      */
     public void getUnionRaiderAsync(@NonNull String ocid, SuccessCallback<UnionRaiderDTO> onSuccess, FailureCallback onFailure) {
-        this.getUnionRaiderAsync(ocid, getProperDefaultDateTime(new LatestApiUpdateTimeOption(1, 0, 1)), onSuccess, onFailure);
+        this.getUnionRaiderAsync(ocid, null, onSuccess, onFailure);
     }
 
     /**
      * 유니온에 배치된 공격대원 효과 및 공격대 점령 효과 등 상세 정보를 비동기로 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
-     * - 유니온 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid          캐릭터 식별자
      * @param localDateTime 조회 기준일 (KST)
      */
-    public void getUnionRaiderAsync(@NonNull String ocid, @NonNull LocalDateTime localDateTime, SuccessCallback<UnionRaiderDTO> onSuccess, FailureCallback onFailure) {
+    public void getUnionRaiderAsync(@NonNull String ocid, LocalDateTime localDateTime, SuccessCallback<UnionRaiderDTO> onSuccess, FailureCallback onFailure) {
 
-        final String date = toDateString(minDate(2023, 12, 21), localDateTime);
+        final String date = localDateTime != null
+                ? toDateString(minDate(2023, 12, 21), localDateTime)
+                : null;
 
         buildRetrofit()
                 .create(UnionApi.class)
@@ -1567,28 +1737,32 @@ public class MapleStoryApi {
 
     /**
      * 유니온 아티팩트 정보를 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
-     * - 유니온 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid 캐릭터 식별자
      */
     public UnionArtifactDTO getUnionArtifact(@NonNull String ocid) throws IOException {
-        return this.getUnionArtifact(ocid, getProperDefaultDateTime(new LatestApiUpdateTimeOption(1, 0, 1)));
+        return this.getUnionArtifact(ocid, null);
     }
 
     /**
      * 유니온 아티팩트 정보를 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
-     * - 유니온 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid          캐릭터 식별자
      * @param localDateTime 조회 기준일 (KST)
      */
-    public UnionArtifactDTO getUnionArtifact(@NonNull String ocid, @NonNull LocalDateTime localDateTime) throws IOException {
+    public UnionArtifactDTO getUnionArtifact(@NonNull String ocid, LocalDateTime localDateTime) throws IOException {
 
-        final String date = toDateString(minDate(2023, 12, 21), localDateTime);
+        final String date = localDateTime != null
+                ? toDateString(minDate(2023, 12, 21), localDateTime)
+                : null;
 
         final Response<UnionArtifactDTO> response = buildRetrofit()
                 .create(UnionApi.class)
@@ -1604,20 +1778,22 @@ public class MapleStoryApi {
 
     /**
      * 유니온 아티팩트 정보를 비동기로 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
-     * - 유니온 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid 캐릭터 식별자
      */
     public void getUnionArtifactAsync(@NonNull String ocid, SuccessCallback<UnionArtifactDTO> onSuccess, FailureCallback onFailure) {
-        this.getUnionArtifactAsync(ocid, getProperDefaultDateTime(new LatestApiUpdateTimeOption(1, 0, 1)), onSuccess, onFailure);
+        this.getUnionArtifactAsync(ocid, null, onSuccess, onFailure);
     }
 
     /**
      * 유니온 아티팩트 정보를 비동기로 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
-     * - 유니온 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid          캐릭터 식별자
@@ -1625,14 +1801,15 @@ public class MapleStoryApi {
      */
     public void getUnionArtifactAsync(@NonNull String ocid, LocalDateTime localDateTime, SuccessCallback<UnionArtifactDTO> onSuccess, FailureCallback onFailure) {
 
-        final String date = toDateString(minDate(2023, 12, 21), localDateTime);
+        final String date = localDateTime != null
+                ? toDateString(minDate(2023, 12, 21), localDateTime)
+                : null;
 
         buildRetrofit()
                 .create(UnionApi.class)
                 .getUnionArtifact(this.apiKey, ocid, date)
                 .enqueue(createCallback(onSuccess, onFailure));
     }
-
 
     //#endregion
 

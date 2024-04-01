@@ -53,6 +53,12 @@ public class CharacterDojangDTO {
     @SerializedName("dojang_best_time")
     private long dojangBestTime;
 
+    public LocalDateTime getDate() {
+        return date != null
+                ? Utils.toLocalDateTime(this.date)
+                : null;
+    }
+
     public LocalDateTime getDojangRecord() {
         return this.dateDojangRecord != null ? Utils.toLocalDateTime(this.dateDojangRecord) : null;
     }
