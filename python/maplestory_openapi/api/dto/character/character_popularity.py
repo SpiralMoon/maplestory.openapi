@@ -8,5 +8,5 @@ class CharacterPopularity(BaseModel):
     date(datetime): 조회 기준일
     popularity(int): 인기도
     """
-    date: datetime
+    date: datetime | None
     popularity: int

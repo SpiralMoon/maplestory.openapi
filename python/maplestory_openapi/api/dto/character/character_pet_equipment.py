@@ -88,7 +88,7 @@ class CharacterPetEquipment(BaseModel):
     pet_3_appearance(str): 펫3 외형
     pet_3_appearance_icon(str): 펫3 외형 아이콘
     """
-    date: datetime
+    date: datetime | None
     pet_1_name: str | None
     pet_1_nickname: str | None
     pet_1_icon: str | None

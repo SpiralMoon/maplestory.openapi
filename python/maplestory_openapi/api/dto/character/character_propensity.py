@@ -13,7 +13,7 @@ class CharacterPropensity(BaseModel):
     handicraft_level(int): 손재주 레벨
     charm_level(int): 매력 레벨
     """
-    date: datetime
+    date: datetime | None
     charisma_level: int
     sensibility_level: int
     insight_level: int

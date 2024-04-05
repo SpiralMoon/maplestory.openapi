@@ -26,7 +26,7 @@ class CharacterSkill(BaseModel):
     character_skill_grade(str): 스킬 전직 차수
     character_skill(list[CharacterSkillInfo]): 스킬 정보
     """
-    date: datetime
+    date: datetime | None
     character_class: str
     character_skill_grade: str
     character_skill: list[CharacterSkillInfo]

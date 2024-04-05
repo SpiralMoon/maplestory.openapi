@@ -13,11 +13,11 @@ namespace MapleStory.OpenAPI.Src.Dto.Union
         /// 조회 기준일
         /// </summary>
         [JsonProperty("date")]
-        public DateTimeOffset Date
+        public DateTimeOffset? Date
         {
             get
             {
-                return _date.ToOffset(TimeSpan.FromHours(9));
+                return _date?.ToOffset(TimeSpan.FromHours(9));
             }
             set
             {
@@ -25,7 +25,7 @@ namespace MapleStory.OpenAPI.Src.Dto.Union
             }
         }
 
-        private DateTimeOffset _date;
+        private DateTimeOffset? _date;
 
         /// <summary>
         /// 아티팩트 효과 정보

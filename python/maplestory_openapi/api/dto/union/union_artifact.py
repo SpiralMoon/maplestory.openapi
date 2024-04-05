@@ -39,7 +39,7 @@ class UnionArtifact(BaseModel):
     union_artifact_crystal(list[UnionArtifactCrystal]): 아티팩트 크리스탈 정보
     union_artifact_remain_ap(int): 잔여 아티팩트 AP
     """
-    date: datetime
+    date: datetime | None
     union_artifact_effect: list[UnionArtifactEffect]
     union_artifact_crystal: list[UnionArtifactCrystal]
     union_artifact_remain_ap: int | None

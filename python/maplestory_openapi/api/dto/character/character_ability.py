@@ -34,7 +34,7 @@ class CharacterAbility(BaseModel):
     ability_preset_2(CharacterAbilityPreset): 어빌리티 2번 프리셋 전체 정보
     ability_preset_3(CharacterAbilityPreset): 어빌리티 3번 프리셋 전체 정보
     """
-    date: datetime
+    date: datetime | None | None
     ability_grade: str
     ability_info: list[CharacterAbilityInfo]
     remain_fame: int

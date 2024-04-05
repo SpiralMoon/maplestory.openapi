@@ -31,5 +31,5 @@ class CharacterHexaMatrix(BaseModel):
     date(datetime): 조회 기준일 (KST, 일 단위 데이터로 시, 분은 일괄 0으로 표기)
     character_hexa_core_equipment(list[CharacterHexaMatrixCoreEquipment]): HEXA 코어 정보
     """
-    date: datetime
+    date: datetime | None
     character_hexa_core_equipment: list[CharacterHexaMatrixCoreEquipment]

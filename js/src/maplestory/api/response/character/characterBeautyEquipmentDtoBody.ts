@@ -1,5 +1,5 @@
 type CharacterBeautyEquipmentDtoBody = {
-  date: string;
+  date: string | null;
   character_gender: string;
   character_class: string;
   character_hair: CharacterBeautyEquipmentHairDtoBody;

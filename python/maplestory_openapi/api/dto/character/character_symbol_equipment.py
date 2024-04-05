@@ -39,6 +39,6 @@ class CharacterSymbolEquipment(BaseModel):
     character_class(str): 직업
     symbol(list[CharacterSymbolEquipmentInfo]): 심볼 장비 정보
     """
-    date: datetime
+    date: datetime | None
     character_class: str
     symbol: list[CharacterSymbolEquipmentInfo]

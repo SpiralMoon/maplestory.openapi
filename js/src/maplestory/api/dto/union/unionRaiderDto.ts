@@ -6,7 +6,7 @@ import { UnionRaiderDtoBody } from '@src/maplestory/api/response/union/unionRaid
  * 유니온 공격대 정보
  */
 class UnionRaiderDto {
-  date: Date;
+  date: Date | null;
 
   /**
    * 유니온 공격대원 효과
@@ -37,7 +37,7 @@ class UnionRaiderDto {
       union_block,
     } = obj;
 
-    this.date = new Date(date);
+    this.date = date ? new Date(date) : null;
     this.unionRaiderStat = union_raider_stat;
     this.unionOccupiedStat = union_occupied_stat;
     this.unionInnerStat = union_inner_stat.map(

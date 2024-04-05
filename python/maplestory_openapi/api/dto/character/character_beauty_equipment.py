@@ -43,7 +43,7 @@ class CharacterBeautyEquipment(BaseModel):
     additional_character_face: 제로인 경우 베타, 엔젤릭버스터인 경우 드레스 업 모드에 적용 중인 성형 정보
     additional_character_skin_name: 제로인 경우 베타, 엔젤릭버스터인 경우 드레스 업 모드에 적용 중인 피부 명
     """
-    date: datetime
+    date: datetime | None
     character_gender: str
     character_class: str
     character_hair: CharacterBeautyEquipmentHair

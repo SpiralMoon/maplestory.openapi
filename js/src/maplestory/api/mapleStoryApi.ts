@@ -129,8 +129,9 @@ class MapleStoryApi {
 
   /**
    * 캐릭터 식별자(ocid)를 조회합니다.
+   * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.
    * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
-   * - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)
+   * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)
    * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
    *
    * @param characterName    캐릭터 명
@@ -148,8 +149,9 @@ class MapleStoryApi {
 
   /**
    * 기본 정보를 조회합니다.
+   * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.
    * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
-   * - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)
+   * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)
    * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
    *
    * @param ocid 캐릭터 식별자
@@ -157,23 +159,19 @@ class MapleStoryApi {
    */
   public async getCharacterBasic(
     ocid: string,
-    dateOptions: DateOptions = MapleStoryApi.getProperDefaultDateOptions({
-      hour: 1,
-      minute: 0,
-      dateOffset: 1,
-    }),
+    dateOptions?: DateOptions
   ): Promise<CharacterBasicDto> {
     const path = 'maplestory/v1/character/basic';
+    const date = dateOptions
+      ? MapleStoryApi.toDateString({
+        year: 2023,
+        month: 12,
+        day: 21
+      }, dateOptions)
+      : undefined;
     const query: CharacterApiQuery = {
       ocid: ocid,
-      date: MapleStoryApi.toDateString(
-        {
-          year: 2023,
-          month: 12,
-          day: 21,
-        },
-        dateOptions,
-      ),
+      date: date,
     };
     const { data } = await this.client.get<CharacterBasicDtoBody>(path, {
       params: query,
@@ -184,8 +182,9 @@ class MapleStoryApi {
 
   /**
    * 인기도 정보를 조회합니다.
+   * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.
    * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
-   * - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)
+   * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)
    * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
    *
    * @param ocid 캐릭터 식별자
@@ -193,23 +192,19 @@ class MapleStoryApi {
    */
   public async getCharacterPopularity(
     ocid: string,
-    dateOptions: DateOptions = MapleStoryApi.getProperDefaultDateOptions({
-      hour: 1,
-      minute: 0,
-      dateOffset: 1,
-    }),
+    dateOptions?: DateOptions,
   ): Promise<CharacterPopularityDto> {
     const path = 'maplestory/v1/character/popularity';
-    const query: CharacterApiQuery = {
-      ocid: ocid,
-      date: MapleStoryApi.toDateString(
-        {
+    const date = dateOptions
+      ? MapleStoryApi.toDateString({
           year: 2023,
           month: 12,
-          day: 21,
-        },
-        dateOptions,
-      ),
+          day: 21
+        }, dateOptions)
+      : undefined;
+    const query: CharacterApiQuery = {
+      ocid: ocid,
+      date: date,
     };
     const { data } = await this.client.get<CharacterPopularityDtoBody>(path, {
       params: query,
@@ -220,8 +215,9 @@ class MapleStoryApi {
 
   /**
    * 종합 능력치 정보를 조회합니다.
+   * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.
    * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
-   * - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)
+   * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)
    * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
    *
    * @param ocid 캐릭터 식별자
@@ -229,23 +225,19 @@ class MapleStoryApi {
    */
   public async getCharacterStat(
     ocid: string,
-    dateOptions: DateOptions = MapleStoryApi.getProperDefaultDateOptions({
-      hour: 1,
-      minute: 0,
-      dateOffset: 1,
-    }),
+    dateOptions?: DateOptions
   ): Promise<CharacterStatDto> {
     const path = 'maplestory/v1/character/stat';
+    const date = dateOptions
+      ? MapleStoryApi.toDateString({
+        year: 2023,
+        month: 12,
+        day: 21
+      }, dateOptions)
+      : undefined;
     const query: CharacterApiQuery = {
       ocid: ocid,
-      date: MapleStoryApi.toDateString(
-        {
-          year: 2023,
-          month: 12,
-          day: 21,
-        },
-        dateOptions,
-      ),
+      date: date,
     };
     const { data } = await this.client.get<CharacterStatDtoBody>(path, {
       params: query,
@@ -256,8 +248,9 @@ class MapleStoryApi {
 
   /**
    * 하이퍼스탯 정보를 조회합니다.
+   * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.
    * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
-   * - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)
+   * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)
    * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
    *
    * @param ocid 캐릭터 식별자
@@ -265,23 +258,19 @@ class MapleStoryApi {
    */
   public async getCharacterHyperStat(
     ocid: string,
-    dateOptions: DateOptions = MapleStoryApi.getProperDefaultDateOptions({
-      hour: 1,
-      minute: 0,
-      dateOffset: 1,
-    }),
+    dateOptions?: DateOptions
   ): Promise<CharacterHyperStatDto> {
     const path = 'maplestory/v1/character/hyper-stat';
+    const date = dateOptions
+      ? MapleStoryApi.toDateString({
+        year: 2023,
+        month: 12,
+        day: 21
+      }, dateOptions)
+      : undefined;
     const query: CharacterApiQuery = {
       ocid: ocid,
-      date: MapleStoryApi.toDateString(
-        {
-          year: 2023,
-          month: 12,
-          day: 21,
-        },
-        dateOptions,
-      ),
+      date: date,
     };
     const { data } = await this.client.get<CharacterHyperStatDtoBody>(path, {
       params: query,
@@ -292,8 +281,9 @@ class MapleStoryApi {
 
   /**
    * 성향 정보를 조회합니다.
+   * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.
    * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
-   * - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)
+   * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)
    * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
    *
    * @param ocid 캐릭터 식별자
@@ -301,23 +291,19 @@ class MapleStoryApi {
    */
   public async getCharacterPropensity(
     ocid: string,
-    dateOptions: DateOptions = MapleStoryApi.getProperDefaultDateOptions({
-      hour: 1,
-      minute: 0,
-      dateOffset: 1,
-    }),
+    dateOptions?: DateOptions
   ): Promise<CharacterPropensityDto> {
     const path = 'maplestory/v1/character/propensity';
+    const date = dateOptions
+      ? MapleStoryApi.toDateString({
+        year: 2023,
+        month: 12,
+        day: 21
+      }, dateOptions)
+      : undefined;
     const query: CharacterApiQuery = {
       ocid: ocid,
-      date: MapleStoryApi.toDateString(
-        {
-          year: 2023,
-          month: 12,
-          day: 21,
-        },
-        dateOptions,
-      ),
+      date: date,
     };
     const { data } = await this.client.get<CharacterPropensityDtoBody>(path, {
       params: query,
@@ -328,8 +314,9 @@ class MapleStoryApi {
 
   /**
    * 어빌리티 정보를 조회합니다.
+   * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.
    * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
-   * - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)
+   * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)
    * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
    *
    * @param ocid 캐릭터 식별자
@@ -337,23 +324,19 @@ class MapleStoryApi {
    */
   public async getCharacterAbility(
     ocid: string,
-    dateOptions: DateOptions = MapleStoryApi.getProperDefaultDateOptions({
-      hour: 1,
-      minute: 0,
-      dateOffset: 1,
-    }),
+    dateOptions?: DateOptions
   ): Promise<CharacterAbilityDto> {
     const path = 'maplestory/v1/character/ability';
+    const date = dateOptions
+      ? MapleStoryApi.toDateString({
+        year: 2023,
+        month: 12,
+        day: 21
+      }, dateOptions)
+      : undefined;
     const query: CharacterApiQuery = {
       ocid: ocid,
-      date: MapleStoryApi.toDateString(
-        {
-          year: 2023,
-          month: 12,
-          day: 21,
-        },
-        dateOptions,
-      ),
+      date: date,
     };
     const { data } = await this.client.get<CharacterAbilityDtoBody>(path, {
       params: query,
@@ -364,8 +347,9 @@ class MapleStoryApi {
 
   /**
    * 장착한 장비 중 캐시 장비를 제외한 나머지 장비 정보를 조회합니다.
+   * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.
    * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
-   * - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)
+   * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)
    * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
    *
    * @param ocid 캐릭터 식별자
@@ -373,23 +357,19 @@ class MapleStoryApi {
    */
   public async getCharacterItemEquipment(
     ocid: string,
-    dateOptions: DateOptions = MapleStoryApi.getProperDefaultDateOptions({
-      hour: 1,
-      minute: 0,
-      dateOffset: 1,
-    }),
+    dateOptions?: DateOptions
   ): Promise<CharacterItemEquipmentDto> {
     const path = 'maplestory/v1/character/item-equipment';
+    const date = dateOptions
+      ? MapleStoryApi.toDateString({
+        year: 2023,
+        month: 12,
+        day: 21
+      }, dateOptions)
+      : undefined;
     const query: CharacterApiQuery = {
       ocid: ocid,
-      date: MapleStoryApi.toDateString(
-        {
-          year: 2023,
-          month: 12,
-          day: 21,
-        },
-        dateOptions,
-      ),
+      date: date,
     };
     const { data } = await this.client.get<CharacterItemEquipmentDtoBody>(path, {
       params: query,
@@ -400,8 +380,9 @@ class MapleStoryApi {
 
   /**
    * 장착한 캐시 장비 정보를 조회합니다.
+   * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.
    * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
-   * - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)
+   * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)
    * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
    *
    * @param ocid 캐릭터 식별자
@@ -409,23 +390,19 @@ class MapleStoryApi {
    */
   public async getCharacterCashItemEquipment(
     ocid: string,
-    dateOptions: DateOptions = MapleStoryApi.getProperDefaultDateOptions({
-      hour: 1,
-      minute: 0,
-      dateOffset: 1,
-    }),
+    dateOptions?: DateOptions
   ): Promise<CharacterCashItemEquipmentDto> {
     const path = 'maplestory/v1/character/cashitem-equipment';
+    const date = dateOptions
+      ? MapleStoryApi.toDateString({
+        year: 2023,
+        month: 12,
+        day: 21
+      }, dateOptions)
+      : undefined;
     const query: CharacterApiQuery = {
       ocid: ocid,
-      date: MapleStoryApi.toDateString(
-        {
-          year: 2023,
-          month: 12,
-          day: 21,
-        },
-        dateOptions,
-      ),
+      date: date,
     };
     const { data } = await this.client.get<CharacterCashItemEquipmentDtoBody>(
       path,
@@ -439,8 +416,9 @@ class MapleStoryApi {
 
   /**
    * 장착한 심볼 정보를 조회합니다.
+   * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.
    * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
-   * - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)
+   * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)
    * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
    *
    * @param ocid 캐릭터 식별자
@@ -448,23 +426,19 @@ class MapleStoryApi {
    */
   public async getCharacterSymbolEquipment(
     ocid: string,
-    dateOptions: DateOptions = MapleStoryApi.getProperDefaultDateOptions({
-      hour: 1,
-      minute: 0,
-      dateOffset: 1,
-    }),
+    dateOptions?: DateOptions
   ): Promise<CharacterSymbolEquipmentDto> {
     const path = 'maplestory/v1/character/symbol-equipment';
+    const date = dateOptions
+      ? MapleStoryApi.toDateString({
+        year: 2023,
+        month: 12,
+        day: 21
+      }, dateOptions)
+      : undefined;
     const query: CharacterApiQuery = {
       ocid: ocid,
-      date: MapleStoryApi.toDateString(
-        {
-          year: 2023,
-          month: 12,
-          day: 21,
-        },
-        dateOptions,
-      ),
+      date: date,
     };
     const { data } = await this.client.get<CharacterSymbolEquipmentDtoBody>(path, {
       params: query,
@@ -475,8 +449,9 @@ class MapleStoryApi {
 
   /**
    * 적용받고 있는 세트 효과 정보를 조회합니다.
+   * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.
    * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
-   * - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)
+   * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)
    * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
    *
    * @param ocid 캐릭터 식별자
@@ -484,23 +459,19 @@ class MapleStoryApi {
    */
   public async getCharacterSetEffect(
     ocid: string,
-    dateOptions: DateOptions = MapleStoryApi.getProperDefaultDateOptions({
-      hour: 1,
-      minute: 0,
-      dateOffset: 1,
-    }),
+    dateOptions?: DateOptions
   ): Promise<CharacterSetEffectDto> {
     const path = 'maplestory/v1/character/set-effect';
+    const date = dateOptions
+      ? MapleStoryApi.toDateString({
+        year: 2023,
+        month: 12,
+        day: 21
+      }, dateOptions)
+      : undefined;
     const query: CharacterApiQuery = {
       ocid: ocid,
-      date: MapleStoryApi.toDateString(
-        {
-          year: 2023,
-          month: 12,
-          day: 21,
-        },
-        dateOptions,
-      ),
+      date: date,
     };
     const { data } = await this.client.get<CharacterSetEffectDtoBody>(path, {
       params: query,
@@ -511,8 +482,9 @@ class MapleStoryApi {
 
   /**
    * 장착 중인 헤어, 성형, 피부 정보를 조회합니다.
+   * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.
    * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
-   * - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)
+   * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)
    * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
    *
    * @param ocid 캐릭터 식별자
@@ -520,23 +492,19 @@ class MapleStoryApi {
    */
   public async getCharacterBeautyEquipment(
     ocid: string,
-    dateOptions: DateOptions = MapleStoryApi.getProperDefaultDateOptions({
-      hour: 1,
-      minute: 0,
-      dateOffset: 1,
-    }),
+    dateOptions?: DateOptions
   ): Promise<CharacterBeautyEquipmentDto> {
     const path = 'maplestory/v1/character/beauty-equipment';
     const query: CharacterApiQuery = {
       ocid: ocid,
-      date: MapleStoryApi.toDateString(
+      date: dateOptions ? MapleStoryApi.toDateString(
         {
           year: 2023,
           month: 12,
           day: 21,
         },
         dateOptions,
-      ),
+      ) : undefined,
     };
     const { data } = await this.client.get<CharacterBeautyEquipmentDtoBody>(path, {
       params: query,
@@ -547,8 +515,9 @@ class MapleStoryApi {
 
   /**
    * 장착한 안드로이드 정보를 조회합니다.
+   * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.
    * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
-   * - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)
+   * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)
    * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
    *
    * @param ocid 캐릭터 식별자
@@ -556,23 +525,19 @@ class MapleStoryApi {
    */
   public async getCharacterAndroidEquipment(
     ocid: string,
-    dateOptions: DateOptions = MapleStoryApi.getProperDefaultDateOptions({
-      hour: 1,
-      minute: 0,
-      dateOffset: 1,
-    }),
+    dateOptions?: DateOptions
   ): Promise<CharacterAndroidEquipmentDto> {
     const path = 'maplestory/v1/character/android-equipment';
+    const date = dateOptions
+      ? MapleStoryApi.toDateString({
+        year: 2023,
+        month: 12,
+        day: 21
+      }, dateOptions)
+      : undefined;
     const query: CharacterApiQuery = {
       ocid: ocid,
-      date: MapleStoryApi.toDateString(
-        {
-          year: 2023,
-          month: 12,
-          day: 21,
-        },
-        dateOptions,
-      ),
+      date: date,
     };
     const { data } = await this.client.get<CharacterAndroidEquipmentDtoBody>(path, {
       params: query,
@@ -583,8 +548,9 @@ class MapleStoryApi {
 
   /**
    * 장착한 펫 및 펫 스킬, 장비 정보를 조회합니다.
+   * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.
    * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
-   * - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)
+   * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)
    * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
    *
    * @param ocid 캐릭터 식별자
@@ -592,23 +558,19 @@ class MapleStoryApi {
    */
   public async getCharacterPetEquipment(
     ocid: string,
-    dateOptions: DateOptions = MapleStoryApi.getProperDefaultDateOptions({
-      hour: 1,
-      minute: 0,
-      dateOffset: 1,
-    }),
+    dateOptions?: DateOptions
   ): Promise<CharacterPetEquipmentDto> {
     const path = 'maplestory/v1/character/pet-equipment';
+    const date = dateOptions
+      ? MapleStoryApi.toDateString({
+        year: 2023,
+        month: 12,
+        day: 21
+      }, dateOptions)
+      : undefined;
     const query: CharacterApiQuery = {
       ocid: ocid,
-      date: MapleStoryApi.toDateString(
-        {
-          year: 2023,
-          month: 12,
-          day: 21,
-        },
-        dateOptions,
-      ),
+      date: date,
     };
     const { data } = await this.client.get<CharacterPetEquipmentDtoBody>(path, {
       params: query,
@@ -619,8 +581,9 @@ class MapleStoryApi {
 
   /**
    * 캐릭터 스킬과 하이퍼 스킬 정보를 조회합니다.
+   * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.
    * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
-   * - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)
+   * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)
    * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
    *
    * @param ocid 캐릭터 식별자
@@ -641,24 +604,20 @@ class MapleStoryApi {
   public async getCharacterSkill(
     ocid: string,
     characterSkillGrade: string,
-    dateOptions: DateOptions = MapleStoryApi.getProperDefaultDateOptions({
-      hour: 1,
-      minute: 0,
-      dateOffset: 1,
-    }),
+    dateOptions?: DateOptions
   ): Promise<CharacterSkillDto> {
     const path = 'maplestory/v1/character/skill';
+    const date = dateOptions
+      ? MapleStoryApi.toDateString({
+        year: 2023,
+        month: 12,
+        day: 21
+      }, dateOptions)
+      : undefined;
     const query: CharacterSkillApiQuery = {
       ocid: ocid,
       character_skill_grade: characterSkillGrade,
-      date: MapleStoryApi.toDateString(
-        {
-          year: 2023,
-          month: 12,
-          day: 21,
-        },
-        dateOptions,
-      ),
+      date: date,
     };
     const { data } = await this.client.get<CharacterSkillDtoBody>(path, {
       params: query,
@@ -669,8 +628,9 @@ class MapleStoryApi {
 
   /**
    * 장착 링크 스킬 정보를 조회합니다.
+   * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.
    * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
-   * - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)
+   * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)
    * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
    *
    * @param ocid 캐릭터 식별자
@@ -678,23 +638,19 @@ class MapleStoryApi {
    */
   public async getCharacterLinkSkill(
     ocid: string,
-    dateOptions: DateOptions = MapleStoryApi.getProperDefaultDateOptions({
-      hour: 1,
-      minute: 0,
-      dateOffset: 1,
-    }),
+    dateOptions?: DateOptions
   ): Promise<CharacterLinkSkillDto> {
     const path = 'maplestory/v1/character/link-skill';
+    const date = dateOptions
+      ? MapleStoryApi.toDateString({
+        year: 2023,
+        month: 12,
+        day: 21
+      }, dateOptions)
+      : undefined;
     const query: CharacterApiQuery = {
       ocid: ocid,
-      date: MapleStoryApi.toDateString(
-        {
-          year: 2023,
-          month: 12,
-          day: 21,
-        },
-        dateOptions,
-      ),
+      date: date,
     };
     const { data } = await this.client.get<CharacterLinkSkillDtoBody>(path, {
       params: query,
@@ -705,8 +661,9 @@ class MapleStoryApi {
 
   /**
    * V매트릭스 슬롯 정보와 장착한 V코어 정보를 조회합니다.
+   * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.
    * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
-   * - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)
+   * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)
    * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
    *
    * @param ocid 캐릭터 식별자
@@ -714,23 +671,19 @@ class MapleStoryApi {
    */
   public async getCharacterVMatrix(
     ocid: string,
-    dateOptions: DateOptions = MapleStoryApi.getProperDefaultDateOptions({
-      hour: 1,
-      minute: 0,
-      dateOffset: 1,
-    }),
+    dateOptions?: DateOptions
   ): Promise<CharacterVMatrixDto> {
     const path = 'maplestory/v1/character/vmatrix';
+    const date = dateOptions
+      ? MapleStoryApi.toDateString({
+        year: 2023,
+        month: 12,
+        day: 21
+      }, dateOptions)
+      : undefined;
     const query: CharacterApiQuery = {
       ocid: ocid,
-      date: MapleStoryApi.toDateString(
-        {
-          year: 2023,
-          month: 12,
-          day: 21,
-        },
-        dateOptions,
-      ),
+      date: date,
     };
     const { data } = await this.client.get<CharacterVMatrixDtoBody>(path, {
       params: query,
@@ -741,8 +694,9 @@ class MapleStoryApi {
 
   /**
    * HEXA 매트릭스에 장착한 HEXA 코어 정보를 조회합니다.
+   * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.
    * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
-   * - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)
+   * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)
    * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
    *
    * @param ocid 캐릭터 식별자
@@ -750,23 +704,19 @@ class MapleStoryApi {
    */
   public async getCharacterHexaMatrix(
     ocid: string,
-    dateOptions: DateOptions = MapleStoryApi.getProperDefaultDateOptions({
-      hour: 1,
-      minute: 0,
-      dateOffset: 1,
-    }),
+    dateOptions?: DateOptions
   ): Promise<CharacterHexaMatrixDto> {
     const path = 'maplestory/v1/character/hexamatrix';
+    const date = dateOptions
+      ? MapleStoryApi.toDateString({
+        year: 2023,
+        month: 12,
+        day: 21
+      }, dateOptions)
+      : undefined;
     const query: CharacterApiQuery = {
       ocid: ocid,
-      date: MapleStoryApi.toDateString(
-        {
-          year: 2023,
-          month: 12,
-          day: 21,
-        },
-        dateOptions,
-      ),
+      date: date,
     };
     const { data } = await this.client.get<CharacterHexaMatrixDtoBody>(path, {
       params: query,
@@ -777,8 +727,9 @@ class MapleStoryApi {
 
   /**
    * HEXA 매트릭스에 설정한 HEXA 스탯 정보를 조회합니다.
+   * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.
    * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
-   * - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)
+   * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)
    * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
    *
    * @param ocid 캐릭터 식별자
@@ -786,23 +737,19 @@ class MapleStoryApi {
    */
   public async getCharacterHexaMatrixStat(
     ocid: string,
-    dateOptions: DateOptions = MapleStoryApi.getProperDefaultDateOptions({
-      hour: 1,
-      minute: 0,
-      dateOffset: 1,
-    }),
+    dateOptions?: DateOptions
   ): Promise<CharacterHexaMatrixStatDto> {
     const path = 'maplestory/v1/character/hexamatrix-stat';
+    const date = dateOptions
+      ? MapleStoryApi.toDateString({
+        year: 2023,
+        month: 12,
+        day: 21
+      }, dateOptions)
+      : undefined;
     const query: CharacterApiQuery = {
       ocid: ocid,
-      date: MapleStoryApi.toDateString(
-        {
-          year: 2023,
-          month: 12,
-          day: 21,
-        },
-        dateOptions,
-      ),
+      date: date,
     };
     const { data } = await this.client.get<CharacterHexaMatrixStatDtoBody>(path, {
       params: query,
@@ -813,8 +760,9 @@ class MapleStoryApi {
 
   /**
    * 캐릭터 무릉도장 최고 기록 정보를 조회합니다.
+   * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.
    * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
-   * - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)
+   * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)
    * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
    *
    * @param ocid 캐릭터 식별자
@@ -822,23 +770,19 @@ class MapleStoryApi {
    */
   public async getCharacterDojang(
     ocid: string,
-    dateOptions: DateOptions = MapleStoryApi.getProperDefaultDateOptions({
-      hour: 1,
-      minute: 0,
-      dateOffset: 1,
-    }),
+    dateOptions?: DateOptions
   ): Promise<CharacterDojangDto> {
     const path = 'maplestory/v1/character/dojang';
+    const date = dateOptions
+      ? MapleStoryApi.toDateString({
+        year: 2023,
+        month: 12,
+        day: 21
+      }, dateOptions)
+      : undefined;
     const query: CharacterApiQuery = {
       ocid: ocid,
-      date: MapleStoryApi.toDateString(
-        {
-          year: 2023,
-          month: 12,
-          day: 21,
-        },
-        dateOptions,
-      ),
+      date: date,
     };
     const { data } = await this.client.get<CharacterDojangDtoBody>(path, {
       params: query,
@@ -853,8 +797,9 @@ class MapleStoryApi {
 
   /**
    * 유니온 정보를 조회합니다.
+   * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.
    * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
-   * - 유니온 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)
+   * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)
    * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
    *
    * @param ocid 캐릭터 식별자
@@ -862,23 +807,19 @@ class MapleStoryApi {
    */
   public async getUnion(
     ocid: string,
-    dateOptions: DateOptions = MapleStoryApi.getProperDefaultDateOptions({
-      hour: 1,
-      minute: 0,
-      dateOffset: 1,
-    }),
+    dateOptions?: DateOptions
   ): Promise<UnionDto> {
     const path = 'maplestory/v1/user/union';
+    const date = dateOptions
+      ? MapleStoryApi.toDateString({
+        year: 2023,
+        month: 12,
+        day: 21
+      }, dateOptions)
+      : undefined;
     const query: UnionApiQuery = {
       ocid: ocid,
-      date: MapleStoryApi.toDateString(
-        {
-          year: 2023,
-          month: 12,
-          day: 21,
-        },
-        dateOptions,
-      ),
+      date: date,
     };
     const { data } = await this.client.get<UnionDtoBody>(path, {
       params: query,
@@ -889,8 +830,9 @@ class MapleStoryApi {
 
   /**
    * 유니온 공격대 정보를 조회합니다.
+   * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.
    * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
-   * - 유니온 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)
+   * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)
    * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
    *
    * @param ocid 캐릭터 식별자
@@ -898,23 +840,19 @@ class MapleStoryApi {
    */
   public async getUnionRaider(
     ocid: string,
-    dateOptions: DateOptions = MapleStoryApi.getProperDefaultDateOptions({
-      hour: 1,
-      minute: 0,
-      dateOffset: 1,
-    }),
+    dateOptions?: DateOptions
   ): Promise<UnionRaiderDto> {
     const path = 'maplestory/v1/user/union-raider';
+    const date = dateOptions
+      ? MapleStoryApi.toDateString({
+        year: 2023,
+        month: 12,
+        day: 21
+      }, dateOptions)
+      : undefined;
     const query: UnionApiQuery = {
       ocid: ocid,
-      date: MapleStoryApi.toDateString(
-        {
-          year: 2023,
-          month: 12,
-          day: 21,
-        },
-        dateOptions,
-      ),
+      date: date,
     };
     const { data } = await this.client.get<UnionRaiderDtoBody>(path, {
       params: query,
@@ -925,8 +863,9 @@ class MapleStoryApi {
 
   /**
    * 유니온 아티팩트 정보를 조회합니다.
+   * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.
    * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
-   * - 유니온 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)
+   * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)
    * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
    *
    * @param ocid 캐릭터 식별자
@@ -934,23 +873,19 @@ class MapleStoryApi {
    */
   public async getUnionArtifact(
     ocid: string,
-    dateOptions: DateOptions = MapleStoryApi.getProperDefaultDateOptions({
-      hour: 1,
-      minute: 0,
-      dateOffset: 1,
-    }),
+    dateOptions?: DateOptions
   ): Promise<UnionArtifactDto> {
     const path = 'maplestory/v1/user/union-artifact';
+    const date = dateOptions
+      ? MapleStoryApi.toDateString({
+        year: 2023,
+        month: 12,
+        day: 21
+      }, dateOptions)
+      : undefined;
     const query: UnionApiQuery = {
       ocid: ocid,
-      date: MapleStoryApi.toDateString(
-        {
-          year: 2023,
-          month: 12,
-          day: 21,
-        },
-        dateOptions,
-      ),
+      date: date,
     };
     const { data } = await this.client.get<UnionArtifactDtoBody>(path, {
       params: query,
@@ -2056,12 +1991,12 @@ type LatestApiUpdateTimeOptions = {
 
 type CharacterApiQuery = {
   ocid: string;
-  date: string;
+  date?: string;
 };
 
 type CharacterSkillApiQuery = {
   ocid: string;
-  date: string;
+  date?: string;
   character_skill_grade: string;
 };
 
@@ -2085,7 +2020,7 @@ type PotentialApiQuery = {
 
 type UnionApiQuery = {
   ocid: string;
-  date: string;
+  date?: string;
 };
 
 type GuildApiQuery = {

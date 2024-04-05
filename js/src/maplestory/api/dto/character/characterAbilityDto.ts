@@ -9,7 +9,7 @@ class CharacterAbilityDto {
   /**
    * 조회 기준일
    */
-  date: Date;
+  date: Date | null;
 
   /**
    * 어빌리티 등급
@@ -59,7 +59,7 @@ class CharacterAbilityDto {
     } = obj;
 
     // 날짜는 Date 객체로 변환
-    this.date = new Date(date);
+    this.date = date ? new Date(date) : null;
     this.abilityGrade = ability_grade;
     this.abilityInfo = ability_info.map(
       (info) => new CharacterAbilityInfoDto(info),

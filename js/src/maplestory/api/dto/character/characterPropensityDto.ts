@@ -4,7 +4,7 @@ import { CharacterPropensityDtoBody } from '@src/maplestory/api/response/charact
  * 캐릭터 성향 정보
  */
 class CharacterPropensityDto {
-  date: Date;
+  date: Date | null;
 
   /**
    * 카리스마 레벨
@@ -47,7 +47,7 @@ class CharacterPropensityDto {
       charm_level,
     } = obj;
 
-    this.date = new Date(date);
+    this.date = date ? new Date(date) : null;
     this.charismaLevel = charisma_level;
     this.sensibilityLevel = sensibility_level;
     this.insightLevel = insight_level;

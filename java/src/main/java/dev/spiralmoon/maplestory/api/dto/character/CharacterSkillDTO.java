@@ -42,6 +42,8 @@ public class CharacterSkillDTO {
     private List<CharacterLinkSkillInfoDTO> characterSkill;
 
     public LocalDateTime getDate() {
-        return Utils.toLocalDateTime(this.date);
+        return date != null
+                ? Utils.toLocalDateTime(this.date)
+                : null;
     }
 }

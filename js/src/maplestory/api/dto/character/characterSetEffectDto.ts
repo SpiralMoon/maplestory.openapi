@@ -8,7 +8,7 @@ class CharacterSetEffectDto {
   /**
    * 조회 기준일
    */
-  date: Date;
+  date: Date | null;
 
   /**
    * 세트 효과 정보
@@ -17,7 +17,7 @@ class CharacterSetEffectDto {
 
   constructor(obj: CharacterSetEffectDtoBody) {
     const { date, set_effect } = obj;
-    this.date = new Date(date);
+    this.date = date ? new Date(date) : null;
     this.setEffect = set_effect.map(
       (effect) => new CharacterSetEffectInfoDto(effect),
     );

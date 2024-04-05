@@ -7,7 +7,7 @@ class CharacterStatDto {
   /**
    * 조회 기준일
    */
-  date: Date;
+  date: Date | null;
 
   /**
    * 캐릭터 직업
@@ -30,7 +30,7 @@ class CharacterStatDto {
   constructor(obj: CharacterStatDtoBody) {
     const { date, character_class, final_stat, remain_ap } = obj;
 
-    this.date = new Date(date);
+    this.date = date ? new Date(date) : null;
     this.characterClass = character_class;
     this.finalStat = final_stat.map((stat) => {
       return {

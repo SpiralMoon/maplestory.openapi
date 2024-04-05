@@ -428,7 +428,7 @@ class CharacterItemEquipment(BaseModel):
     dragon_equipment(list[CharacterItemEquipmentInfo]): 에반 드래곤 장비 정보 (에반인 경우 응답)
     mechanic_equipment(list[CharacterItemEquipmentInfo]): 메카닉 장비 정보 (메카닉인 경우 응답)
     """
-    date: datetime
+    date: datetime | None
     character_gender: str
     character_class: str
     preset_no: int | None

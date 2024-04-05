@@ -84,6 +84,8 @@ public class CharacterItemEquipmentDTO {
     private List<CharacterItemEquipmentMechanicInfoDTO> mechanicEquipment;
 
     public LocalDateTime getDate() {
-        return Utils.toLocalDateTime(this.date);
+        return date != null
+                ? Utils.toLocalDateTime(this.date)
+                : null;
     }
 }

@@ -1,5 +1,5 @@
 type CharacterCashItemEquipmentDtoBody = {
-  date: string;
+  date: string | null;
   character_gender: string;
   character_class: string;
   preset_no: number;

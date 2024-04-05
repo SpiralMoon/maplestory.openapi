@@ -8,7 +8,7 @@ class CharacterHexaMatrixStatDto {
   /**
    * 조회 기준일
    */
-  date: Date;
+  date: Date | null;
 
   /**
    * 캐릭터 직업
@@ -33,7 +33,7 @@ class CharacterHexaMatrixStatDto {
       preset_hexa_stat_core,
     } = obj;
 
-    this.date = new Date(date);
+    this.date = date ? new Date(date) : null;
     this.characterClass = character_class;
     this.characterHexaStatCore = character_hexa_stat_core.map(
       (core) => new CharacterHexaMatrixStatCoreDto(core),

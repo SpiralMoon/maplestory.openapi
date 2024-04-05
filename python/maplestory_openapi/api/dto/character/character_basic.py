@@ -1,9 +1,11 @@
+from datetime import datetime
 from pydantic import BaseModel
 
 
 class CharacterBasic(BaseModel):
     """캐릭터 기본 정보
 
+    date(datetime): 조회 기준일 (KST)
     character_name(str): 캐릭터 명
     world_name(str): 월드 명
     character_gender(str): 캐릭터 성별
@@ -15,6 +17,7 @@ class CharacterBasic(BaseModel):
     character_guild_name(str): 캐릭터 소속 길드 명
     character_image(str): 캐릭터 외형 이미지
     """
+    date: datetime | None
     character_name: str
     world_name: str
     character_gender: str

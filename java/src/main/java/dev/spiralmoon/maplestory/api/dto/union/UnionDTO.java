@@ -53,6 +53,8 @@ public class UnionDTO {
     private Integer unionArtifactPoint;
 
     public LocalDateTime getDate() {
-        return Utils.toLocalDateTime(this.date);
+        return date != null
+                ? Utils.toLocalDateTime(this.date)
+                : null;
     }
 }

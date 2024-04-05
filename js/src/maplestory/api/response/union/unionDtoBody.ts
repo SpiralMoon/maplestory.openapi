@@ -1,5 +1,5 @@
 type UnionDtoBody = {
-  date: string;
+  date: string | null;
   union_level: number;
   union_grade: string;
   union_artifact_level: number | null;

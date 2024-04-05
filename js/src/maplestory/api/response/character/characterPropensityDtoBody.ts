@@ -1,5 +1,5 @@
 type CharacterPropensityDtoBody = {
-  date: string;
+  date: string | null;
   charisma_level: number;
   sensibility_level: number;
   insight_level: number;

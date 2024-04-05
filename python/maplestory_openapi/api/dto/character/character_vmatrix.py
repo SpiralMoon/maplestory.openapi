@@ -32,7 +32,7 @@ class CharacterVMatrix(BaseModel):
     character_v_core_equipment(list[CharacterVMatrixCoreEquipment]): V코어 정보
     character_v_matrix_remain_slot_upgrade_point(int): 캐릭터 잔여 매트릭스 강화 포인트
     """
-    date: datetime
+    date: datetime | None
     character_class: str
     character_v_core_equipment: list[CharacterVMatrixCoreEquipment]
     character_v_matrix_remain_slot_upgrade_point: int

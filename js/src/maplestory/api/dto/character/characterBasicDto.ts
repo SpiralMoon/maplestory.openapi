@@ -4,7 +4,7 @@ import { CharacterBasicDtoBody } from '@src/maplestory/api/response/character/ch
  * 캐릭터 기본 정보
  */
 class CharacterBasicDto {
-  date: Date;
+  date: Date | null;
 
   /**
    * 캐릭터 명
@@ -71,7 +71,7 @@ class CharacterBasicDto {
       character_image,
     } = obj;
 
-    this.date = new Date(date);
+    this.date = date ? new Date(date) : null;
     this.characterName = character_name;
     this.worldName = world_name;
     this.characterGender = character_gender;

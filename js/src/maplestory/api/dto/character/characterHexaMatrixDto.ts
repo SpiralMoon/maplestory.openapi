@@ -8,7 +8,7 @@ class CharacterHexaMatrixDto {
   /**
    * 조회 기준일
    */
-  date: Date;
+  date: Date | null;
 
   /**
    * HEXA 코어 정보
@@ -18,7 +18,7 @@ class CharacterHexaMatrixDto {
   constructor(obj: CharacterHexaMatrixDtoBody) {
     const { date, character_hexa_core_equipment } = obj;
 
-    this.date = new Date(date);
+    this.date = date ? new Date(date) : null;
     this.characterHexaCoreEquipment = character_hexa_core_equipment.map(
       (equipment) => new CharacterHexaMatrixEquipmentDto(equipment),
     );

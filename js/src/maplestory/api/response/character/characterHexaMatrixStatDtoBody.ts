@@ -1,5 +1,5 @@
 type CharacterHexaMatrixStatDtoBody = {
-  date: string;
+  date: string | null;
   character_class: string;
   character_hexa_stat_core: CharacterHexaMatrixStatCoreDtoBody[];
   preset_hexa_stat_core: CharacterHexaMatrixStatCoreDtoBody[];

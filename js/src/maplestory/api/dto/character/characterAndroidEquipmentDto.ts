@@ -17,7 +17,7 @@ class CharacterAndroidEquipmentDto {
   /**
    * 조회 기준일
    */
-  date: Date;
+  date: Date | null;
 
   /**
    * 안드로이드 명
@@ -126,7 +126,7 @@ class CharacterAndroidEquipmentDto {
       android_preset_3,
     } = obj;
 
-    this.date = new Date(date);
+    this.date = date ? new Date(date) : null;
     this.androidName = android_name;
     this.androidNickname = android_nickname;
     this.androidIcon = android_icon;

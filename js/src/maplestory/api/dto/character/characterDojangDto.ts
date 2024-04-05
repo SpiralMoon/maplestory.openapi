@@ -7,7 +7,7 @@ class CharacterDojangDto {
   /**
    * 조회 기준일
    */
-  date: Date;
+  date: Date | null;
 
   /**
    * 캐릭터 직업
@@ -44,7 +44,7 @@ class CharacterDojangDto {
       dojang_best_time,
     } = obj;
 
-    this.date = new Date(date);
+    this.date = date ? new Date(date) : null;
     this.characterClass = character_class;
     this.worldName = world_name;
     this.dojangBestFloor = dojang_best_floor;

@@ -7,7 +7,7 @@ class CharacterPopularityDto {
   /**
    * 조회 기준일
    */
-  date: Date;
+  date: Date | null;
 
   /**
    * 캐릭터 인기도
@@ -17,7 +17,7 @@ class CharacterPopularityDto {
   constructor(obj: CharacterPopularityDtoBody) {
     const { date, popularity } = obj;
 
-    this.date = new Date(date);
+    this.date = date ? new Date(date) : null;
     this.popularity = popularity;
   }
 }

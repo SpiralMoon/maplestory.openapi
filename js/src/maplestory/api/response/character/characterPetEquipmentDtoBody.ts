@@ -1,5 +1,5 @@
 type CharacterPetEquipmentDtoBody = {
-  date: string;
+  date: string | null;
   pet_1_name: string | null;
   pet_1_nickname: string | null;
   pet_1_icon: string | null;

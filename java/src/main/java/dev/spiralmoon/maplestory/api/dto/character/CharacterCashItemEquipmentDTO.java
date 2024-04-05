@@ -90,6 +90,8 @@ public class CharacterCashItemEquipmentDTO {
     private List<CharacterCashItemEquipmentPresetDTO> additionalCashItemEquipmentPreset3;
 
     public LocalDateTime getDate() {
-        return Utils.toLocalDateTime(this.date);
+        return date != null
+                ? Utils.toLocalDateTime(this.date)
+                : null;
     }
 }
