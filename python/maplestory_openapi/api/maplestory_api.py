@@ -64,8 +64,9 @@ class MapleStoryApi(BaseModel):
     def get_character_id(self, character_name: str) -> Character:
         """캐릭터 식별자(ocid)를 조회합니다.
 
+        - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.
         - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
-        - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)
+        - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)
         - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
 
         @param character_name (str): 캐릭터 이름
@@ -78,11 +79,12 @@ class MapleStoryApi(BaseModel):
         r = self.fetch(path, query)
         return Character(**r)
 
-    def get_character_basic(self, ocid: str, date: datetime = get_proper_default_datetime(update_hour=1, day_offset=1)) -> CharacterBasic:
+    def get_character_basic(self, ocid: str, date: datetime | None = None) -> CharacterBasic:
         """기본 정보를 조회합니다.
 
+        - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.
         - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
-        - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)
+        - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)
         - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
 
         @param ocid(str): 캐릭터 식별자(ocid)
@@ -91,17 +93,18 @@ class MapleStoryApi(BaseModel):
         path = 'maplestory/v1/character/basic'
         query = {
             'ocid': ocid,
-            'date': self.to_date_string(datetime(2023, 12, 21), date)
+            'date': self.to_date_string(datetime(2023, 12, 21), date) if date is not None else None if date is not None else None
         }
         r = self.fetch(path, query)
 
         return CharacterBasic(**r)
 
-    def get_character_popularity(self, ocid: str, date: datetime = get_proper_default_datetime(update_hour=1, day_offset=1)) -> CharacterPopularity:
+    def get_character_popularity(self, ocid: str, date: datetime | None = None) -> CharacterPopularity:
         """인기도 정보를 조회합니다.
 
+        - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.
         - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
-        - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)
+        - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)
         - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
 
         @param ocid(str): 캐릭터 식별자(ocid)
@@ -110,7 +113,7 @@ class MapleStoryApi(BaseModel):
         path = 'maplestory/v1/character/popularity'
         query = {
             'ocid': ocid,
-            'date': self.to_date_string(datetime(2023, 12, 21), date)
+            'date': self.to_date_string(datetime(2023, 12, 21), date) if date is not None else None
         }
         r = self.fetch(path, query)
 
@@ -119,11 +122,12 @@ class MapleStoryApi(BaseModel):
             popularity=r.get('popularity'),
         )
 
-    def get_character_stat(self, ocid: str, date: datetime = get_proper_default_datetime(update_hour=1, day_offset=1)) -> CharacterStat:
+    def get_character_stat(self, ocid: str, date: datetime | None = None) -> CharacterStat:
         """종합능력치 정보를 조회합니다.
 
+        - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.
         - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
-        - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)
+        - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)
         - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
 
         @param ocid(str): 캐릭터 식별자(ocid)
@@ -132,17 +136,18 @@ class MapleStoryApi(BaseModel):
         path = 'maplestory/v1/character/stat'
         query = {
             'ocid': ocid,
-            'date': self.to_date_string(datetime(2023, 12, 21), date)
+            'date': self.to_date_string(datetime(2023, 12, 21), date) if date is not None else None
         }
         r = self.fetch(path, query)
 
         return CharacterStat(**r)
 
-    def get_character_hyper_stat(self, ocid: str, date: datetime = get_proper_default_datetime(update_hour=1, day_offset=1)) -> CharacterHyperStat:
+    def get_character_hyper_stat(self, ocid: str, date: datetime | None = None) -> CharacterHyperStat:
         """하이퍼스탯 정보를 조회합니다.
 
+        - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.
         - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
-        - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)
+        - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)
         - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
 
         @param ocid(str): 캐릭터 식별자(ocid)
@@ -151,17 +156,18 @@ class MapleStoryApi(BaseModel):
         path = 'maplestory/v1/character/hyper-stat'
         query = {
             'ocid': ocid,
-            'date': self.to_date_string(datetime(2023, 12, 21), date)
+            'date': self.to_date_string(datetime(2023, 12, 21), date) if date is not None else None
         }
         r = self.fetch(path, query)
 
         return CharacterHyperStat(**r)
 
-    def get_character_propensity(self, ocid: str, date: datetime = get_proper_default_datetime(update_hour=1, day_offset=1)) -> CharacterPropensity:
+    def get_character_propensity(self, ocid: str, date: datetime | None = None) -> CharacterPropensity:
         """성향 정보를 조회합니다.
 
+        - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.
         - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
-        - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)
+        - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)
         - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
 
         @param ocid(str): 캐릭터 식별자(ocid)
@@ -170,17 +176,18 @@ class MapleStoryApi(BaseModel):
         path = 'maplestory/v1/character/propensity'
         query = {
             'ocid': ocid,
-            'date': self.to_date_string(datetime(2023, 12, 21), date)
+            'date': self.to_date_string(datetime(2023, 12, 21), date) if date is not None else None
         }
         r = self.fetch(path, query)
 
         return CharacterPropensity(**r)
 
-    def get_character_ability(self, ocid: str, date: datetime = get_proper_default_datetime(update_hour=1, day_offset=1)) -> CharacterAbility:
+    def get_character_ability(self, ocid: str, date: datetime | None = None) -> CharacterAbility:
         """어빌리티 정보를 조회합니다.
 
+        - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.
         - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
-        - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)
+        - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)
         - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
 
         @param ocid(str): 캐릭터 식별자(ocid)
@@ -189,17 +196,18 @@ class MapleStoryApi(BaseModel):
         path = 'maplestory/v1/character/ability'
         query = {
             'ocid': ocid,
-            'date': self.to_date_string(datetime(2023, 12, 21), date)
+            'date': self.to_date_string(datetime(2023, 12, 21), date) if date is not None else None
         }
         r = self.fetch(path, query)
 
         return CharacterAbility(**r)
 
-    def get_character_item_equipment(self, ocid: str, date: datetime = get_proper_default_datetime(update_hour=1, day_offset=1)) -> CharacterItemEquipment:
+    def get_character_item_equipment(self, ocid: str, date: datetime | None = None) -> CharacterItemEquipment:
         """장착한 장비 중 캐시 장비를 제외한 나머지 장비 정보를 조회합니다.
 
+        - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.
         - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
-        - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)
+        - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)
         - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
 
         @param ocid(str): 캐릭터 식별자(ocid)
@@ -208,17 +216,18 @@ class MapleStoryApi(BaseModel):
         path = 'maplestory/v1/character/item-equipment'
         query = {
             'ocid': ocid,
-            'date': self.to_date_string(datetime(2023, 12, 21), date)
+            'date': self.to_date_string(datetime(2023, 12, 21), date) if date is not None else None
         }
         r = self.fetch(path, query)
 
         return CharacterItemEquipment(**r)
 
-    def get_character_cashitem_equipment(self, ocid: str, date: datetime = get_proper_default_datetime(update_hour=1, day_offset=1)) -> CharacterCashitemEquipment:
+    def get_character_cashitem_equipment(self, ocid: str, date: datetime | None = None) -> CharacterCashitemEquipment:
         """장착한 캐시 장비 정보를 조회합니다.
 
+        - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.
         - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
-        - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)
+        - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)
         - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
 
         @param ocid(str): 캐릭터 식별자(ocid)
@@ -227,17 +236,18 @@ class MapleStoryApi(BaseModel):
         path = 'maplestory/v1/character/cashitem-equipment'
         query = {
             'ocid': ocid,
-            'date': self.to_date_string(datetime(2023, 12, 21), date)
+            'date': self.to_date_string(datetime(2023, 12, 21), date) if date is not None else None
         }
         r = self.fetch(path, query)
 
         return CharacterCashitemEquipment(**r)
 
-    def get_character_symbol_equipment(self, ocid: str, date: datetime = get_proper_default_datetime(update_hour=1, day_offset=1)) -> CharacterSymbolEquipment:
+    def get_character_symbol_equipment(self, ocid: str, date: datetime | None = None) -> CharacterSymbolEquipment:
         """장착한 심볼 정보를 조회합니다.
 
+        - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.
         - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
-        - 캐릭터 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)
+        - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)
         - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
 
         @param ocid(str): 캐릭터 식별자(ocid)
@@ -246,12 +256,12 @@ class MapleStoryApi(BaseModel):
         path = 'maplestory/v1/character/symbol-equipment'
         query = {
             'ocid': ocid,
-            'date': self.to_date_string(datetime(2023, 12, 21), date)
+            'date': self.to_date_string(datetime(2023, 12, 21), date) if date is not None else None
         }
         r = self.fetch(path, query)
         return CharacterSymbolEquipment(**r)
 
-    def get_character_set_effect(self, ocid: str, date: datetime = get_proper_default_datetime(update_hour=1, day_offset=1)) -> CharacterSetEffect:
+    def get_character_set_effect(self, ocid: str, date: datetime | None = None) -> CharacterSetEffect:
         """적용받고 있는 세트 효과 정보를 조회합니다
 
         - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
@@ -264,12 +274,12 @@ class MapleStoryApi(BaseModel):
         path = 'maplestory/v1/character/set-effect'
         query = {
             'ocid': ocid,
-            'date': self.to_date_string(datetime(2023, 12, 21), date)
+            'date': self.to_date_string(datetime(2023, 12, 21), date) if date is not None else None
         }
         r = self.fetch(path, query)
         return CharacterSetEffect(**r)
 
-    def get_character_beauty_equipment(self, ocid: str, date: datetime = get_proper_default_datetime(update_hour=1, day_offset=1)) -> CharacterBeautyEquipment:
+    def get_character_beauty_equipment(self, ocid: str, date: datetime | None = None) -> CharacterBeautyEquipment:
         """캐릭터 헤어, 성형, 피부 정보를 조회합니다.
 
         - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
@@ -282,12 +292,12 @@ class MapleStoryApi(BaseModel):
         path = 'maplestory/v1/character/beauty-equipment'
         query = {
             'ocid': ocid,
-            'date': self.to_date_string(datetime(2023, 12, 21), date)
+            'date': self.to_date_string(datetime(2023, 12, 21), date) if date is not None else None
         }
         r = self.fetch(path, query)
         return CharacterBeautyEquipment(**r)
 
-    def get_character_android_equipment(self, ocid: str, date: datetime = get_proper_default_datetime(update_hour=1, day_offset=1)) -> CharacterAndroidEquipment:
+    def get_character_android_equipment(self, ocid: str, date: datetime | None = None) -> CharacterAndroidEquipment:
         """장착한 안드로이드 정보를 조회합니다.
 
         - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
@@ -300,12 +310,12 @@ class MapleStoryApi(BaseModel):
         path = 'maplestory/v1/character/android-equipment'
         query = {
             'ocid': ocid,
-            'date': self.to_date_string(datetime(2023, 12, 21), date),
+            'date': self.to_date_string(datetime(2023, 12, 21), date) if date is not None else None,
         }
         r = self.fetch(path, query)
         return CharacterAndroidEquipment(**r)
 
-    def get_character_pet_equipment(self, ocid: str, date: datetime = get_proper_default_datetime(update_hour=1, day_offset=1)) -> CharacterPetEquipment:
+    def get_character_pet_equipment(self, ocid: str, date: datetime | None = None) -> CharacterPetEquipment:
         """장착한 펫 및 펫 스킬, 장비 정보를 조회합니다.
 
         - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
@@ -318,12 +328,12 @@ class MapleStoryApi(BaseModel):
         path = 'maplestory/v1/character/pet-equipment'
         query = {
             'ocid': ocid,
-            'date': self.to_date_string(datetime(2023, 12, 21), date),
+            'date': self.to_date_string(datetime(2023, 12, 21), date) if date is not None else None,
         }
         r = self.fetch(path, query)
         return CharacterPetEquipment(**r)
 
-    def get_character_skill(self, ocid: str, character_skill_grade: str, date: datetime = get_proper_default_datetime(day_offset=1)) -> CharacterSkill:
+    def get_character_skill(self, ocid: str, character_skill_grade: str, date: datetime | None = None) -> CharacterSkill:
         """캐릭터 스킬과 하이퍼 스킬 정보를 조회합니다.
 
         - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
@@ -348,13 +358,13 @@ class MapleStoryApi(BaseModel):
         path = 'maplestory/v1/character/skill'
         query = {
             'ocid': ocid,
-            'date': self.to_date_string(datetime(2023, 12, 21), date),
+            'date': self.to_date_string(datetime(2023, 12, 21), date) if date is not None else None,
             'character_skill_grade': character_skill_grade,
         }
         r = self.fetch(path, query)
         return CharacterSkill(**r)
 
-    def get_character_link_skill(self, ocid: str, date: datetime = get_proper_default_datetime(day_offset=1)) -> CharacterLinkSkill:
+    def get_character_link_skill(self, ocid: str, date: datetime | None = None) -> CharacterLinkSkill:
         """장착 링크 스킬 정보를 조회합니다.
 
         - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
@@ -367,12 +377,12 @@ class MapleStoryApi(BaseModel):
         path = 'maplestory/v1/character/link-skill'
         query = {
             'ocid': ocid,
-            'date': self.to_date_string(datetime(2023, 12, 21), date),
+            'date': self.to_date_string(datetime(2023, 12, 21), date) if date is not None else None,
         }
         r = self.fetch(path, query)
         return CharacterLinkSkill(**r)
 
-    def get_character_vmatrix(self, ocid: str, date: datetime = get_proper_default_datetime(day_offset=1)) -> CharacterVMatrix:
+    def get_character_vmatrix(self, ocid: str, date: datetime | None = None) -> CharacterVMatrix:
         """V매트릭스 슬롯 정보와 장착한 V코어 정보를 조회합니다.
 
         - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
@@ -385,12 +395,12 @@ class MapleStoryApi(BaseModel):
         path = 'maplestory/v1/character/vmatrix'
         query = {
             'ocid': ocid,
-            'date': self.to_date_string(datetime(2023, 12, 21), date),
+            'date': self.to_date_string(datetime(2023, 12, 21), date) if date is not None else None,
         }
         r = self.fetch(path, query)
         return CharacterVMatrix(**r)
 
-    def get_character_hexamatrix(self, ocid: str, date: datetime = get_proper_default_datetime(day_offset=1)) -> CharacterHexaMatrix:
+    def get_character_hexamatrix(self, ocid: str, date: datetime | None = None) -> CharacterHexaMatrix:
         """HEXA 매트릭스에 장착한 HEXA 코어 정보를 조회합니다.
 
         - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
@@ -403,12 +413,12 @@ class MapleStoryApi(BaseModel):
         path = 'maplestory/v1/character/hexamatrix'
         query = {
             'ocid': ocid,
-            'date': self.to_date_string(datetime(2023, 12, 21), date),
+            'date': self.to_date_string(datetime(2023, 12, 21), date) if date is not None else None,
         }
         r = self.fetch(path, query)
         return CharacterHexaMatrix(**r)
 
-    def get_character_hexamatrix_stat(self, ocid: str, date: datetime = get_proper_default_datetime(day_offset=1)) -> CharacterHexaMatrixStat:
+    def get_character_hexamatrix_stat(self, ocid: str, date: datetime | None = None) -> CharacterHexaMatrixStat:
         """HEXA 매트릭스에 설정한 HEXA 스탯 정보를 조회합니다.
 
         - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
@@ -421,12 +431,12 @@ class MapleStoryApi(BaseModel):
         path = 'maplestory/v1/character/hexamatrix-stat'
         query = {
             'ocid': ocid,
-            'date': self.to_date_string(datetime(2023, 12, 21), date),
+            'date': self.to_date_string(datetime(2023, 12, 21), date) if date is not None else None,
         }
         r = self.fetch(path, query)
         return CharacterHexaMatrixStat(**r)
 
-    def get_character_dojang(self, ocid: str, date: datetime = get_proper_default_datetime(day_offset=1)) -> CharacterDojang:
+    def get_character_dojang(self, ocid: str, date: datetime | None = None) -> CharacterDojang:
         """캐릭터 무릉도장 최고 기록 정보를 조회합니다.
 
         - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
@@ -439,7 +449,7 @@ class MapleStoryApi(BaseModel):
         path = 'maplestory/v1/character/dojang'
         query = {
             'ocid': ocid,
-            'date': self.to_date_string(datetime(2023, 12, 21), date),
+            'date': self.to_date_string(datetime(2023, 12, 21), date) if date is not None else None,
         }
         r = self.fetch(path, query)
         return CharacterDojang(**r)
@@ -448,11 +458,12 @@ class MapleStoryApi(BaseModel):
 
     #region 유니온 정보 조회
 
-    def get_union(self, ocid: str, date: datetime = get_proper_default_datetime(day_offset=1)) -> Union:
+    def get_union(self, ocid: str, date: datetime | None = None) -> Union:
         """유니온 레벨 및 유니온 등급 정보를 조회합니다.
 
+        - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.
         - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
-        - 유니온 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)
+        - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)
         - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
 
         @param ocid(str): 캐릭터 식별자(ocid)
@@ -461,16 +472,17 @@ class MapleStoryApi(BaseModel):
         path = 'maplestory/v1/user/union'
         query = {
             'ocid': ocid,
-            'date': self.to_date_string(datetime(2023, 12, 21), date),
+            'date': self.to_date_string(datetime(2023, 12, 21), date) if date is not None else None,
         }
         r = self.fetch(path, query)
         return Union(**r)
 
-    def get_union_raider(self, ocid: str, date: datetime = get_proper_default_datetime(day_offset=1)) -> UnionRaider:
+    def get_union_raider(self, ocid: str, date: datetime | None = None) -> UnionRaider:
         """유니온에 배치된 공격대원 효과 및 공격대 점령 효과 등 상세 정보를 조회합니다.
 
+        - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.
         - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
-        - 유니온 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)
+        - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)
         - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
 
         @param ocid(str): 캐릭터 식별자(ocid)
@@ -479,16 +491,17 @@ class MapleStoryApi(BaseModel):
         path = 'maplestory/v1/user/union-raider'
         query = {
             'ocid': ocid,
-            'date': self.to_date_string(datetime(2023, 12, 21), date),
+            'date': self.to_date_string(datetime(2023, 12, 21), date) if date is not None else None,
         }
         r = self.fetch(path, query)
         return UnionRaider(**r)
 
-    def get_union_artifact(self, ocid: str, date: datetime = get_proper_default_datetime(day_offset=1)) -> UnionArtifact:
+    def get_union_artifact(self, ocid: str, date: datetime | None = None) -> UnionArtifact:
         """유니온 아티팩트 정보를 조회합니다.
 
+        - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.
         - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
-        - 유니온 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)
+        - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)
         - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
 
         @param ocid(str): 캐릭터 식별자(ocid)
@@ -497,7 +510,7 @@ class MapleStoryApi(BaseModel):
         path = 'maplestory/v1/user/union-artifact'
         query = {
             'ocid': ocid,
-            'date': self.to_date_string(datetime(2023, 12, 21), date),
+            'date': self.to_date_string(datetime(2023, 12, 21), date) if date is not None else None,
         }
         r = self.fetch(path, query)
         return UnionArtifact(**r)
@@ -764,9 +777,12 @@ class MapleStoryApi(BaseModel):
     #endregion
 
     def fetch(self, path: str, query: dict) -> Any:
+
+        params = {key: value for key, value in query.items() if value is not None}
+
         r = requests.get(
             f'{self.BASE_URL}{path}',
-            params=query,
+            params=params,
             headers={
                 'x-nxopen-api-key': self.api_key,
             },

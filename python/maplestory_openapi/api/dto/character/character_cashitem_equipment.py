@@ -66,7 +66,7 @@ class CharacterCashitemEquipment(BaseModel):
     additional_cash_item_equipment_preset_2(list[CharacterCashitemEquipmentPreset]): 제로인 경우 베타, 엔젤릭버스터인 경우 드레스 업 모드의 2번 코디 프리셋
     additional_cash_item_equipment_preset_3(list[CharacterCashitemEquipmentPreset]): 제로인 경우 베타, 엔젤릭버스터인 경우 드레스 업 모드의 3번 코디 프리셋
     """
-    date: datetime
+    date: datetime | None
     character_gender: str
     character_class: str
     preset_no: int

@@ -63,7 +63,7 @@ class UnionRaider(BaseModel):
     union_inner_stat(list[UnionRaiderInnerStat]): 유니온 공격대 배치
     union_block(list[UnionRaiderBlock]): 유니온 블록 정보
     """
-    date: datetime
+    date: datetime | None
     union_raider_stat: list[str]
     union_occupied_stat: list[str]
     union_inner_stat: list[UnionRaiderInnerStat]

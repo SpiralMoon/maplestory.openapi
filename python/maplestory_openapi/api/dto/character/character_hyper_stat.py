@@ -30,7 +30,7 @@ class CharacterHyperStat(BaseModel):
     hyper_stat_preset_3(list[CharacterHyperStatPreset]): 프리셋 3번 하이퍼 스탯 정보
     hyper_stat_preset_3_remain_point(int): 프리셋 3번 하이퍼 스탯 잔여 포인트
     """
-    date: datetime
+    date: datetime | None
     character_class: str
     use_preset_no: str
     use_available_hyper_stat: int

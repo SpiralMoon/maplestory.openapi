@@ -12,7 +12,7 @@ class Union(BaseModel):
     union_artifact_exp(int): 보유 아티팩트 경험치
     union_artifact_point(int): 보유 아티팩트 포인트
     """
-    date: datetime
+    date: datetime | None
     union_level: int
     union_grade: str
     union_artifact_level: int | None

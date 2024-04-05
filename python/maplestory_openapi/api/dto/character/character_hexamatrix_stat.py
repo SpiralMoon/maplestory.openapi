@@ -32,7 +32,7 @@ class CharacterHexaMatrixStat(BaseModel):
     character_class(str): 캐릭터 직업
     character_hexa_stat_core(list[CharacterHexaMatrixStatCore]): HEXA 코어 스탯 정보
     """
-    date: datetime
+    date: datetime | None
     character_class: str
     character_hexa_stat_core: list[CharacterHexaMatrixStatCore]
     preset_hexa_stat_core: list[CharacterHexaMatrixStatCore]

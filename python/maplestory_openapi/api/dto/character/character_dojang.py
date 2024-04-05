@@ -12,7 +12,7 @@ class CharacterDojang(BaseModel):
     date_dojang_record(datetime): 무릉도장 최고 기록 달성 일 (KST, 일 단위 데이터로 시, 분은 일괄 0으로 표기)
     dojang_best_time(int): 무릉도장 최고 층수 클리어에 걸린 시간 (초)
     """
-    date: datetime
+    date: datetime | None
     character_class: str
     world_name: str
     dojang_best_floor: int

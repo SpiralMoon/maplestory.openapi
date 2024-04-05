@@ -130,7 +130,7 @@ class CharacterAndroidEquipment(BaseModel):
     android_preset_2(CharacterAndroidEquipmentPreset): 2번 프리셋 안드로이드 정보
     android_preset_3(CharacterAndroidEquipmentPreset): 3번 프리셋 안드로이드 정보
     """
-    date: datetime
+    date: datetime | None
     android_name: str | None
     android_nickname: str | None
     android_icon: str | None

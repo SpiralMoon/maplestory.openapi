@@ -20,7 +20,7 @@ class CharacterStat(BaseModel):
     final_stat(list[CharacterStatInfo]): 현재 스탯 정보
     remain_ap(int): 잔여 AP
     """
-    date: datetime
+    date: datetime | None
     character_class: str
     final_stat: list[CharacterStatInfo]
     remain_ap: int

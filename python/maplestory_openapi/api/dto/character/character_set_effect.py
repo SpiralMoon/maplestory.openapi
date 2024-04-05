@@ -30,5 +30,5 @@ class CharacterSetEffect(BaseModel):
     date(datetime): 조회 기준일
     set_effect(list[CharacterSetEffectInfoDto]): 세트 효과 정보
     """
-    date: datetime
+    date: datetime | None
     set_effect: list[CharacterSetEffectInfo]
