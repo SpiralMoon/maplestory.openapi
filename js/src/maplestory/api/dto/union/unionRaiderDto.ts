@@ -1,5 +1,6 @@
 import { UnionRaiderBlockDto } from '@src/maplestory/api/dto/union/unionRaiderBlockDto';
 import { UnionRaiderInnerStatDto } from '@src/maplestory/api/dto/union/unionRaiderInnerStatDto';
+import { UnionRaiderPresetDto } from '@src/maplestory/api/dto/union/unionRaiderPresetDto';
 import { UnionRaiderDtoBody } from '@src/maplestory/api/response/union/unionRaiderDtoBody';
 
 /**
@@ -28,6 +29,36 @@ class UnionRaiderDto {
    */
   unionBlock: UnionRaiderBlockDto[];
 
+  /**
+   * 적용 중인 프리셋 번호
+   */
+  usePresetNo: number;
+
+  /**
+   * 유니온 프리셋 1번 정보
+   */
+  unionRaiderPreset1: UnionRaiderPresetDto | null;
+
+  /**
+   * 유니온 프리셋 2번 정보
+   */
+  unionRaiderPreset2: UnionRaiderPresetDto | null;
+
+  /**
+   * 유니온 프리셋 3번 정보
+   */
+  unionRaiderPreset3: UnionRaiderPresetDto | null;
+
+  /**
+   * 유니온 프리셋 4번 정보
+   */
+  unionRaiderPreset4: UnionRaiderPresetDto | null;
+
+  /**
+   * 유니온 프리셋 5번 정보
+   */
+  unionRaiderPreset5: UnionRaiderPresetDto | null;
+
   constructor(obj: UnionRaiderDtoBody) {
     const {
       date,
@@ -35,6 +66,12 @@ class UnionRaiderDto {
       union_occupied_stat,
       union_inner_stat,
       union_block,
+      use_preset_no,
+      union_raider_preset_1,
+      union_raider_preset_2,
+      union_raider_preset_3,
+      union_raider_preset_4,
+      union_raider_preset_5,
     } = obj;
 
     this.date = date ? new Date(date) : null;
@@ -46,6 +83,22 @@ class UnionRaiderDto {
     this.unionBlock = union_block.map(
       (block) => new UnionRaiderBlockDto(block),
     );
+    this.usePresetNo = use_preset_no;
+    this.unionRaiderPreset1 = union_raider_preset_1
+      ? new UnionRaiderPresetDto(union_raider_preset_1)
+      : null;
+    this.unionRaiderPreset2 = union_raider_preset_2
+      ? new UnionRaiderPresetDto(union_raider_preset_2)
+      : null;
+    this.unionRaiderPreset3 = union_raider_preset_3
+      ? new UnionRaiderPresetDto(union_raider_preset_3)
+      : null;
+    this.unionRaiderPreset4 = union_raider_preset_4
+      ? new UnionRaiderPresetDto(union_raider_preset_4)
+      : null;
+    this.unionRaiderPreset5 = union_raider_preset_5
+      ? new UnionRaiderPresetDto(union_raider_preset_5)
+      : null;
   }
 }
 

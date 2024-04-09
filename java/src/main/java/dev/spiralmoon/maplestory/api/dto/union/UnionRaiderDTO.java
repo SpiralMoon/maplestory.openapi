@@ -47,6 +47,42 @@ public class UnionRaiderDTO {
     @SerializedName("union_block")
     private List<UnionRaiderBlockDTO> unionBlock;
 
+    /**
+     * 적용 중인 프리셋 번호
+     */
+    @SerializedName("use_preset_no")
+    private int usePresetNo;
+
+    /**
+     * 유니온 프리셋 1번 정보
+     */
+    @SerializedName("union_raider_preset_1")
+    private UnionRaiderPresetDTO unionRaiderPreset1;
+
+    /**
+     * 유니온 프리셋 2번 정보
+     */
+    @SerializedName("union_raider_preset_2")
+    private UnionRaiderPresetDTO unionRaiderPreset2;
+
+    /**
+     * 유니온 프리셋 3번 정보
+     */
+    @SerializedName("union_raider_preset_3")
+    private UnionRaiderPresetDTO unionRaiderPreset3;
+
+    /**
+     * 유니온 프리셋 4번 정보
+     */
+    @SerializedName("union_raider_preset_4")
+    private UnionRaiderPresetDTO unionRaiderPreset4;
+
+    /**
+     * 유니온 프리셋 5번 정보
+     */
+    @SerializedName("union_raider_preset_5")
+    private UnionRaiderPresetDTO unionRaiderPreset5;
+
     public LocalDateTime getDate() {
         return date != null
                 ? Utils.toLocalDateTime(this.date)
