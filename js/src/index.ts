@@ -91,5 +91,6 @@ export * from './maplestory/api/dto/union/unionRaiderBlockPositionDto';
 export * from './maplestory/api/dto/union/unionRaiderControlPointDto';
 export * from './maplestory/api/dto/union/unionRaiderDto';
 export * from './maplestory/api/dto/union/unionRaiderInnerStatDto';
+export * from './maplestory/api/dto/union/unionRaiderPresetDto';
 export * from './maplestory/api/dto/ranking/unionRankingDto';
 export * from './maplestory/api/dto/ranking/unionRankingResponseDto';

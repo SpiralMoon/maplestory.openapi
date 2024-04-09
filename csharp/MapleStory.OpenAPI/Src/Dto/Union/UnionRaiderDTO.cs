@@ -48,5 +48,41 @@ namespace MapleStory.OpenAPI.Dto
         /// </summary>
         [JsonProperty("union_block")]
         public List<UnionRaiderBlockDTO> UnionBlock { get; set; }
+
+        /// <summary>
+        /// 적용 중인 프리셋 번호
+        /// </summary>
+        [JsonProperty("use_preset_no")]
+        public int UsePresetNo { get; set; }
+
+        /// <summary>
+        /// 유니온 프리셋 1번 정보
+        /// </summary>
+        [JsonProperty("union_raider_preset_1")]
+        public UnionRaiderPresetDTO? UnionRaiderPreset1 { get; set; }
+
+        /// <summary>
+        /// 유니온 프리셋 2번 정보
+        /// </summary>
+        [JsonProperty("union_raider_preset_2")]
+        public UnionRaiderPresetDTO? UnionRaiderPreset2 { get; set; }
+
+        /// <summary>
+        /// 유니온 프리셋 3번 정보
+        /// </summary>
+        [JsonProperty("union_raider_preset_3")]
+        public UnionRaiderPresetDTO? UnionRaiderPreset3 { get; set; }
+
+        /// <summary>
+        /// 유니온 프리셋 4번 정보
+        /// </summary>
+        [JsonProperty("union_raider_preset_4")]
+        public UnionRaiderPresetDTO? UnionRaiderPreset4 { get; set; }
+
+        /// <summary>
+        /// 유니온 프리셋 5번 정보
+        /// </summary>
+        [JsonProperty("union_raider_preset_5")]
+        public UnionRaiderPresetDTO? UnionRaiderPreset5 { get; set; }
     }
 }

@@ -54,17 +54,43 @@ class UnionRaiderInnerStat(BaseModel):
     stat_field_effect: str
 
 
+class UnionRaiderPreset(BaseModel):
+    """유니온 프리셋 정보
+
+    union_Raider_stat(list[str]): 유니온 공격대원 효과
+    union_occupied_stat(list[str]): 유니온 공격대 점령 효과
+    union_inner_stat(list[UnionRaiderInnerStat]): 유니온 공격대 배치
+    union_block(list[UnionRaiderBlock]): 유니온 블록 정보
+    """
+    union_raider_stat: list[str]
+    union_occupied_stat: list[str]
+    union_inner_stat: list[UnionRaiderInnerStat]
+    union_block: list[UnionRaiderBlock]
+
+
 class UnionRaider(BaseModel):
     """유니온 공격대 정보
 
     date(datetime): 조회 기준일 (KST, 일 단위 데이터로 시, 분은 일괄 0으로 표기)
-    union_Raider_stat(str): 유니온 공격대원 효과
-    union_occupied_stat(str): 유니온 공격대 점령 효과
+    union_Raider_stat(list[str]): 유니온 공격대원 효과
+    union_occupied_stat(list[str]): 유니온 공격대 점령 효과
     union_inner_stat(list[UnionRaiderInnerStat]): 유니온 공격대 배치
     union_block(list[UnionRaiderBlock]): 유니온 블록 정보
+    use_preset_not(int): 적용 중인 프리셋 번호
+    union_raider_preset_1(UnionRaiderPreset): 유니온 프리셋 1번 정보
+    union_raider_preset_2(UnionRaiderPreset): 유니온 프리셋 2번 정보
+    union_raider_preset_3(UnionRaiderPreset): 유니온 프리셋 3번 정보
+    union_raider_preset_4(UnionRaiderPreset): 유니온 프리셋 4번 정보
+    union_raider_preset_5(UnionRaiderPreset): 유니온 프리셋 5번 정보
     """
     date: datetime | None
     union_raider_stat: list[str]
     union_occupied_stat: list[str]
     union_inner_stat: list[UnionRaiderInnerStat]
     union_block: list[UnionRaiderBlock]
+    use_preset_not: int
+    union_raider_preset_1: UnionRaiderPreset | None
+    union_raider_preset_2: UnionRaiderPreset | None
+    union_raider_preset_3: UnionRaiderPreset | None
+    union_raider_preset_4: UnionRaiderPreset | None
+    union_raider_preset_5: UnionRaiderPreset | None
