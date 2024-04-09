@@ -1,4 +1,4 @@
-한국어 | [English](./README-en) 
+한국어 | [English](./README-en.md) 
 
 [![GitHub contributors](https://img.shields.io/github/contributors/SpiralMoon/maplestory.openapi.svg)](https://github.com/SpiralMoon/maplestory.openapi/graphs/contributors)
 [![GitHub issues](https://img.shields.io/github/issues/SpiralMoon/maplestory.openapi.svg)](https://github.com/SpiralMoon/maplestory.openapi/issues)
@@ -77,10 +77,10 @@
 ### Documentation
 시작하기 전에, 아래의 README 목록에서 자신의 개발 환경과 일치하는 문서를 읽어보세요.
 
-- [**JavaScript(TypeScript)** 사용법](./js/README)
-- [**Java** 사용법](./java/README)
-- [**C#** 사용법](./csharp/README)
-- [**Python** 사용법](./python/README)
+- [**JavaScript(TypeScript)** 사용법](./js/README.md)
+- [**Java** 사용법](./java/README.md)
+- [**C#** 사용법](./csharp/README.md)
+- [**Python** 사용법](./python/README.md)
 
 ## Features
 

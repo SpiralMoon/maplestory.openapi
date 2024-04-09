@@ -1,4 +1,4 @@
-[한국어](./README) | English
+[한국어](./README.md) | English
 
 [![GitHub contributors](https://img.shields.io/github/contributors/SpiralMoon/maplestory.openapi.svg)](https://github.com/SpiralMoon/maplestory.openapi/graphs/contributors)
 [![GitHub issues](https://img.shields.io/github/issues/SpiralMoon/maplestory.openapi.svg)](https://github.com/SpiralMoon/maplestory.openapi/issues)
@@ -77,10 +77,10 @@ This library project is concurrently provided in various languages, including Ja
 ### Documentation
 Before getting started, please read the document in the README list below that matches your development environment.
 
-- Go to read [**JavaScript(TypeScript)** document](./js/README-en).
-- Go to read [**Java** document](./java/README-en).
-- Go to read [**C#** document](./csharp/README-en).
-- Go to read [**Python** document](./python/README-en).
+- Go to read [**JavaScript(TypeScript)** document](./js/README-en.md).
+- Go to read [**Java** document](./java/README-en.md).
+- Go to read [**C#** document](./csharp/README-en.md).
+- Go to read [**Python** document](./python/README-en.md).
 
 ## Features
 This library supports all apis published in the [MapleStory OpenAPI official docs](https://openapi.nexon.com/game/maplestory) link below.
