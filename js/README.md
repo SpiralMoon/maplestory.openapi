@@ -2,15 +2,15 @@
 
 [![npm](https://img.shields.io/npm/v/maplestory-openapi)](https://www.npmjs.com/package/maplestory-openapi)
 
-This JavaScript library enables the use of the MapleStory OpenAPI of Nexon.
+넥슨의 MapleStory OpenAPI를 Javascript 환경에서 사용할 수 있게 해주는 라이브러리입니다.
 
-Packages written in other languages can be found [HERE](https://github.com/SpiralMoon/maplestory.openapi).
+다른 언어로 작성된 패키지는 [여기](https://github.com/SpiralMoon/maplestory.openapi)에서 확인할 수 있습니다.
 
-(한국어 문서는 [이쪽](https://github.com/SpiralMoon/maplestory.openapi/blob/master/js/README-ko.md)입니다.)
+(English document is [HERE](https://github.com/SpiralMoon/maplestory.openapi/blob/master/js/README-en.md))
 
 ## Installation
 
-Install the latest version of the JavaScript/TypeScript library in your npm project:
+npm 기반 프로젝트에 아래 정보를 입력하여 패키지를 추가하세요:
 
 ```bash
 npm install maplestory-openapi@2.4.1 # Replace with the latest version
@@ -20,11 +20,11 @@ npm install maplestory-openapi@2.4.1 # Replace with the latest version
 
 ### API Key
 
-Before using the library, register your application and obtain an **api key** from the [Nexon Open API Console](https://openapi.nexon.com/my-application/).
+라이브러리를 사용하기 전에 [Nexon Open API 콘솔](https://openapi.nexon.com/my-application/)에서 애플리케이션을 등록하고 **api key**를 발급 받으세요.
 
 ### Supports
 
-1. **CommonJS, ESM Support**: The library supports both CommonJS and ESM usage.
+1. **CommonJS, ESM 지원**: 이 라이브러리는 CommonJS 와 ESM 방식을 모두 지원합니다.
 
 ```javascript
 const {MapleStoryApi, MapleStoryApiError} = require('maplestory-openapi'); // CommonJS
@@ -33,7 +33,7 @@ const {MapleStoryApi, MapleStoryApiError} = require('maplestory-openapi'); // Co
 import {MapleStoryApi, MapleStoryApiError} from 'maplestory-openapi'; // ESM
 ```
 
-2. **TypeScript Support**: TypeScript is fully supported. Type definitions are included.
+2. **TypeScript 지원**: 타입 정의가 포함되어 있으므로 타입스크립트 환경에서도 사용 가능합니다.
 
 ### Sample Code
 
@@ -66,20 +66,20 @@ api.getCubeHistory(1000, {
 
 ### Exception Handling
 
-Handle `MapleStoryApiError` to safely make calls, ensuring that specific Status defined in the [MapleStory OpenAPI Guide](https://openapi.nexon.com/guide/request-api) are not encountered.
+[MapleStory OpenAPI 가이드](https://openapi.nexon.com/guide/request-api/)에 서술된 에러 사유를 `MapleStoryApiError`를 통해 예외 처리 해야합니다.
 
-While `MapleStoryApi` is designed to prevent the occurrence of certain Status, exceptions may arise due to developer mistakes.
+`MapleStoryApi`는 특정 상태의 예외를 발생시키지 않도록 설계되었으나, 라이브러리를 사용하는 개발자의 실수로 인해 여전히 일부 상태의 예외가 발생할 수 있습니다.
 
-Therefore, it's recommended to use `MapleStoryApiError` for exception handling based on the `MapleStoryApiErrorCode` list described in the table below.
+따라서 아래 표에 설명된 `MapleStoryApiErrorCode` 목록을 기반으로 `MapleStoryApiError`를 예외 처리하시기 바랍니다.
 
-| ErrorCode    | Description                              |
-|--------------|------------------------------------------|
-| OPENAPI00001 | Internal server error                    |
-| OPENAPI00002 | Access denied                            |
-| OPENAPI00003 | Invalid identifier                       |
-| OPENAPI00004 | Request format error (incorrect parameter input) |
-| OPENAPI00005 | Invalid api key                          |
-| OPENAPI00006 | Invalid api path                         |
-| OPENAPI00007 | Request allowance (Rate Limit) exceeded  |
-| OPENAPI00009 | Not prepared data                        |
-| OPENAPI00010 | API server mainternence                  |
+| ErrorCode    | Description      |
+|--------------|------------------|
+| OPENAPI00001 | 서버 내부 오류         |
+| OPENAPI00002 | 권한이 없는 경우        |
+| OPENAPI00003 | 유효하지 않은 식별자      |
+| OPENAPI00004 | 파라미터 누락 또는 유효하지 않음 |
+| OPENAPI00005 | 유효하지 않은 API KEY  |
+| OPENAPI00006 | 유효하지 않은 API PATH |
+| OPENAPI00007 | API 호출량 초과       |
+| OPENAPI00009 | 데이터 준비 중        |
+| OPENAPI00010 | 서비스 점검 중       |

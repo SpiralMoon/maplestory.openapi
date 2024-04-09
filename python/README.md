@@ -2,15 +2,15 @@
 
 [![PyPi](https://img.shields.io/pypi/v/maplestory-openapi)](https://img.shields.io/pypi/v/maplestory-openapi)
 
-This Python library enables the use of the MapleStory OpenAPI of Nexon.
+넥슨의 MapleStory OpenAPI를 Python 환경에서 사용할 수 있게 해주는 라이브러리입니다.
 
-Packages written in other languages can be found [HERE](https://github.com/SpiralMoon/maplestory.openapi).
+다른 언어로 작성된 패키지는 [여기](https://github.com/SpiralMoon/maplestory.openapi)에서 확인할 수 있습니다.
 
-(한국어 문서는 [이쪽](https://github.com/SpiralMoon/maplestory.openapi/blob/master/python/README-ko.md)입니다.)
+(English document is [HERE](https://github.com/SpiralMoon/maplestory.openapi/blob/master/python/README-en.md))
 
 ## Installation
 
-Install the latest version of the Python library in your python project:
+python 기반 프로젝트에 아래 정보를 입력하여 패키지를 추가하세요:
 
 ```bash
 pip install maplestory-openapi
@@ -20,13 +20,11 @@ pip install maplestory-openapi
 
 ### API Key
 
-Before using the library, register your application and obtain an **api key** from the [Nexon Open API Console](https://openapi.nexon.com/my-application/).
+라이브러리를 사용하기 전에 [Nexon Open API 콘솔](https://openapi.nexon.com/my-application/)에서 애플리케이션을 등록하고 **api key**를 발급 받으세요.
 
 ### Supports
 
 ≧ Python 3.9
-
-### Sample Code
 
 ```python
 from maplestory_openapi import MapleStoryApi

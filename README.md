@@ -1,4 +1,4 @@
-English | [한국어](./README-ko.md)
+한국어 | [English](./README-en) 
 
 [![GitHub contributors](https://img.shields.io/github/contributors/SpiralMoon/maplestory.openapi.svg)](https://github.com/SpiralMoon/maplestory.openapi/graphs/contributors)
 [![GitHub issues](https://img.shields.io/github/issues/SpiralMoon/maplestory.openapi.svg)](https://github.com/SpiralMoon/maplestory.openapi/issues)
@@ -15,9 +15,9 @@ English | [한국어](./README-ko.md)
     <img src="./logo.png" width="120" height="120"/>
 </div>
 <h1 align="center">🍁 MapleStory OpenAPI Library 🍁</h1>
-<p align="center">This library project enables the use of the MapleStory OpenAPI of Nexon.</p>
+<p align="center">넥슨의 MapleStory OpenAPI를 사용할 수 있게 해주는 라이브러리입니다.</p>
 
->💡 Note: This library project is capable of retrieving only [KMS](https://maplestory.nexon.com/)(Korea MapleStory) data.
+>💡 알림: [KMS](https://maplestory.nexon.com/)(한국 메이플스토리)의 데이터만 조회할 수 있습니다.
 
 ## Getting Started
 ### Supported Languages
@@ -73,45 +73,44 @@ English | [한국어](./README-ko.md)
     </table>
 </div>
 
-This library project is concurrently provided in various languages, including JavaScript(TypeScript), Java, C#, Python, and more, and is available on package repositories.
+이 라이브러리 프로젝트는 JavaScript(TypeScript), Java, C#, Python 등 여러 언어로 개발되어 패키지 저장소에서 동시에 제공됩니다.
 ### Documentation
-Before getting started, please read the document in the README list below that matches your development environment.
+시작하기 전에, 아래의 README 목록에서 자신의 개발 환경과 일치하는 문서를 읽어보세요.
 
-- Go to read [**JavaScript(TypeScript)** document](./js/README.md).
-- Go to read [**Java** document](./java/README.md).
-- Go to read [**C#** document](./csharp/README.md).
-- Go to read [**Python** document](./python/README.md).
+- [**JavaScript(TypeScript)** 사용법](./js/README)
+- [**Java** 사용법](./java/README)
+- [**C#** 사용법](./csharp/README)
+- [**Python** 사용법](./python/README)
 
 ## Features
-This library supports all apis published in the [MapleStory OpenAPI official docs](https://openapi.nexon.com/game/maplestory) link below.
 
-- [Get character information](https://openapi.nexon.com/game/maplestory/?id=22)
-- [Get union information](https://openapi.nexon.com/game/maplestory/?id=23)
-- [Get guild information](https://openapi.nexon.com/game/maplestory/?id=24)
-- [Get cube, potential, starforce history information](https://openapi.nexon.com/game/maplestory/?id=25)
-- [Get ranking information](https://openapi.nexon.com/game/maplestory/?id=26)
+이 라이브러리는 아래 [메이플스토리 OpenAPI 공식 문서](https://openapi.nexon.com/game/maplestory)에 기재된 모든 API를 지원합니다.
 
-And, while not part of the MapleStory OpenAPI specifications, it additionally supports the following API.
+- [캐릭터 정보 조회](https://openapi.nexon.com/game/maplestory/?id=22)
+- [유니온 정보 조회](https://openapi.nexon.com/game/maplestory/?id=23)
+- [길드 정보 조회](https://openapi.nexon.com/game/maplestory/?id=24)
+- [확률 정보 조회](https://openapi.nexon.com/game/maplestory/?id=25)
+- [랭킹 정보 조회](https://openapi.nexon.com/game/maplestory/?id=26)
 
-- [Get server inspection information](https://api.maplestory.nexon.com/soap/maplestory.asmx?op=GetInspectionInfo)
+그리고 메이플스토리 OpenAPI 사양에는 포함되어 있지 않지만, 추가적으로 아래 API를 지원합니다.
+
+- [서버 점검 정보 조회](https://api.maplestory.nexon.com/soap/maplestory.asmx?op=GetInspectionInfo)
 
 ## Contributors
 <a href="https://github.com/SpiralMoon/maplestory.openapi/graphs/contributors">
     <img src="https://contrib.rocks/image?repo=SpiralMoon/maplestory.openapi" />
 </a>
 
-This project exists thanks to all the people who contribute.
+이 프로젝트는 기여해주신 모든 분들 덕분에 존재합니다. 다른 개발자의 참여를 환영합니다! 적극적으로 PR을 보내주세요.
 
-Contributions from other developers are welcome! Feel free to contribute by submitting pull requests.
-
-Please give us a ⭐ star ⭐ to support us. Thank you.💖
+⭐ 스타 ⭐를 눌러서 우리를 응원해주세요. 감사합니다 💖
 
 ## Additional Information
 
-1. The implementation details of the API are documented on the [MapleStory OpenAPI spec](https://openapi.nexon.com/game/maplestory). Refer to the documentation for each language.
-2. This library adheres to language-specific naming style guides, resulting in slight differences from the naming conventions in the official documentation. ex) 'cube_history' -> 'cubeHistory'
-3. The comments for the methods and properties provided by this library are synchronized with the official documentation.
-4. Data based on [NEXON Open API](https://openapi.nexon.com)
+1. 이 라이브러리는 [MapleStory OpenAPI spec](https://openapi.nexon.com/game/maplestory)의 기능을 사용할 수 있도록 만든 구현체입니다. 언어별 문서를 확인하여 사용법을 확인하세요.
+2. 이 라이브러리는 언어별 네이밍 스타일가이드를 준수하였기 때문에 공식 문서의 네이밍 규칙과 약간의 차이가 있습니다. ex) 'cube_history' -> 'cubeHistory'
+3. 이 라이브러리에서 제공하는 메소드와 프로퍼티에 대한 주석은 공식 문서와 동기화하고 있습니다.
+4. 데이터는 [NEXON Open API](https://openapi.nexon.com)에서 제공받고 있습니다.
 
 ## License
 
