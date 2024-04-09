@@ -2048,11 +2048,11 @@ namespace MapleStory.OpenAPI
                 }
             }
 
-            var response = await this.client.ExecuteGetAsync<ResponseBody>(request);
+            var response = await this.client.ExecuteGetAsync(request);
 
             if (response.IsSuccessStatusCode)
             {
-                return response.Data!;
+                return JsonConvert.DeserializeObject<ResponseBody>(response.Content!);
             }
             else
             {
