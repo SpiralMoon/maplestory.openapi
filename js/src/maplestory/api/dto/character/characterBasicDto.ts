@@ -56,6 +56,21 @@ class CharacterBasicDto {
    */
   characterImage: string;
 
+  /**
+   * 캐릭터 생성일
+   */
+  characterDateCreate: Date;
+
+  /**
+   * 최근 7일간 접속 여부
+   */
+  accessFlag: 'true' | 'false';
+
+  /**
+   * 해방 퀘스트 완료 여부
+   */
+  liberationQuestClearFlag: 'true' | 'false';
+
   constructor(obj: CharacterBasicDtoBody) {
     const {
       date,
@@ -69,6 +84,9 @@ class CharacterBasicDto {
       character_exp_rate,
       character_guild_name,
       character_image,
+      character_date_create,
+      access_flag,
+      liberation_quest_clear_flag,
     } = obj;
 
     this.date = date ? new Date(date) : null;
@@ -82,6 +100,23 @@ class CharacterBasicDto {
     this.characterExpRate = character_exp_rate;
     this.characterGuildName = character_guild_name;
     this.characterImage = character_image;
+    this.characterDateCreate = new Date(character_date_create);
+    this.accessFlag = access_flag;
+    this.liberationQuestClearFlag = liberation_quest_clear_flag;
+  }
+
+  /**
+   * 최근 7일간 접속 여부
+   */
+  get isAccessFlag() {
+    return this.accessFlag === 'true';
+  }
+
+  /**
+   * 해방 퀘스트 완료 여부
+   */
+  get isLiberationQuestClearFlag() {
+    return this.liberationQuestClearFlag === 'true';
   }
 }
 

@@ -84,5 +84,51 @@ namespace MapleStory.OpenAPI.Dto
         /// </summary>
         [JsonProperty("character_image")]
         public string CharacterImage { get; set; }
+
+        /// <summary>
+        /// 캐릭터 생성일
+        /// </summary>
+        [JsonProperty("character_date_create")]
+        public DateTimeOffset CharacterDateCreate
+        {
+            get
+            {
+                return _characterDateCreate.ToOffset(TimeSpan.FromHours(9));
+            }
+            set
+            {
+                _characterDateCreate = value;
+            }
+        }
+
+        private DateTimeOffset _characterDateCreate;
+
+        /// <summary>
+        /// 최근 7일간 접속 여부
+        /// </summary>
+        public bool AccessFlag
+        {
+            get
+            {
+                return _accessFlag == "true";
+            }
+        }
+
+        [JsonProperty("access_flag")]
+        private string _accessFlag { get; set; }
+
+        /// <summary>
+        /// 해방 퀘스트 완료 여부
+        /// </summary>
+        public bool LiberationQuestClearFlag
+        {
+            get
+            {
+                return _liberationQuestClearFlag == "true";
+            }
+        }
+
+        [JsonProperty("liberation_quest_clear_flag")]
+        private string _liberationQuestClearFlag { get; set; }
     }
 }

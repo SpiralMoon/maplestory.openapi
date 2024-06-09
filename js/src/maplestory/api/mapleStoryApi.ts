@@ -16,6 +16,7 @@ import { CharacterHexaMatrixStatDto } from '@src/maplestory/api/dto/character/ch
 import { CharacterHyperStatDto } from '@src/maplestory/api/dto/character/characterHyperStatDto';
 import { CharacterItemEquipmentDto } from '@src/maplestory/api/dto/character/characterItemEquipmentDto';
 import { CharacterLinkSkillDto } from '@src/maplestory/api/dto/character/characterLinkSkillDto';
+import { CharacterListDto } from '@src/maplestory/api/dto/character/characterListDto';
 import { CharacterPetEquipmentDto } from '@src/maplestory/api/dto/character/characterPetEquipmentDto';
 import { CharacterPopularityDto } from '@src/maplestory/api/dto/character/characterPopularityDto';
 import { CharacterPropensityDto } from '@src/maplestory/api/dto/character/characterPropensityDto';
@@ -52,6 +53,7 @@ import { CharacterHexaMatrixStatDtoBody } from '@src/maplestory/api/response/cha
 import { CharacterHyperStatDtoBody } from '@src/maplestory/api/response/character/characterHyperStatDtoBody';
 import { CharacterItemEquipmentDtoBody } from '@src/maplestory/api/response/character/characterItemEquipmentDtoBody';
 import { CharacterLinkSkillDtoBody } from '@src/maplestory/api/response/character/characterLinkSkillDtoBody';
+import { CharacterListDtoBody } from '@src/maplestory/api/response/character/characterListDtoBody';
 import { CharacterPetEquipmentDtoBody } from '@src/maplestory/api/response/character/characterPetEquipmentDtoBody';
 import { CharacterPopularityDtoBody } from '@src/maplestory/api/response/character/characterPopularityDtoBody';
 import { CharacterPropensityDtoBody } from '@src/maplestory/api/response/character/characterPropensityDtoBody';
@@ -145,6 +147,19 @@ class MapleStoryApi {
     });
 
     return new CharacterDto(data);
+  }
+
+  /**
+   * 계정의 보유 캐릭터 목록을 조회합니다.
+   * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.
+   * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 1시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)
+   * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
+   */
+  public async getCharacterList(): Promise<CharacterListDto> {
+    const path = 'maplestory/v1/character/list';
+    const { data } = await this.client.get<CharacterListDtoBody>(path);
+
+    return new CharacterListDto(data);
   }
 
   /**

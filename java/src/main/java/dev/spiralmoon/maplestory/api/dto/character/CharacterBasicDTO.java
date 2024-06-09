@@ -82,9 +82,51 @@ public class CharacterBasicDTO {
     @SerializedName("character_image")
     private String characterImage;
 
+    /**
+     * 캐릭터 생성일
+     */
+    @SerializedName("character_date_create")
+    private String characterDateCreate;
+
+    /**
+     * 최근 7일간 접속 여부
+     */
+    @SerializedName("access_flag")
+    private String accessFlag;
+
+    /**
+     * 해방 퀘스트 완료 여부
+     */
+    @SerializedName("liberation_quest_clear_flag")
+    private String liberationQuestClearFlag;
+
+    /**
+     * 조회 기준일
+     */
     public LocalDateTime getDate() {
         return date != null
                 ? Utils.toLocalDateTime(this.date)
                 : null;
+    }
+
+    /**
+     * 캐릭터 생성일
+     */
+    public LocalDateTime getCharacterDateCreate() {
+        return Utils.toLocalDateTime(this.characterDateCreate);
+    }
+
+    /**
+     * 최근 7일간 접속 여부
+     */
+    public boolean isAccessFlag() {
+        return "true".equals(this.accessFlag);
+    }
+
+    /**
+     * 해방 퀘스트 완료 여부
+     */
+    public boolean isLiberationQuestClearFlag() {
+        return "true".equals(this.liberationQuestClearFlag);
     }
 }

@@ -27,7 +27,7 @@ public class CharacterSetEffectDTO {
      * 세트 효과 정보 목록
      */
     @SerializedName("set_effect")
-    private List<CharacterSetEffectInfoDTO> setEffect;
+    private List<CharacterSetEffectSetDTO> setEffect;
 
     public LocalDateTime getDate() {
         return date != null

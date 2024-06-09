@@ -10,6 +10,7 @@ type CharacterSkillInfoDtoBody = {
   skill_description: string;
   skill_level: number;
   skill_effect: string;
+  skill_effect_next: string | null;
   skill_icon: string;
 };
 

@@ -1,9 +1,9 @@
 import { CharacterSetEffectInfoDtoBody } from '@src/maplestory/api/response/character/characterSetEffectDtoBody';
 
 /**
- * 적용 중인 세트 효과 정보
+ * 모든 세트 효과 정보
  */
-class CharacterSetEffectInfoDto {
+class CharacterSetEffectFullInfoDto {
   /**
    * 세트 효과 레벨 (장비 수)
    */
@@ -22,4 +22,4 @@ class CharacterSetEffectInfoDto {
   }
 }
 
-export { CharacterSetEffectInfoDto };
+export { CharacterSetEffectFullInfoDto };

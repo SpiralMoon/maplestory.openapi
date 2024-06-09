@@ -16,6 +16,9 @@ class CharacterBasic(BaseModel):
     character_exp_rate(str): 현재 레벨에서 경험치 퍼센트
     character_guild_name(str): 캐릭터 소속 길드 명
     character_image(str): 캐릭터 외형 이미지
+    character_date_create(datetime): 캐릭터 생성일
+    access_flag(str): 최근 7일간 접속 여부
+    liberation_quest_clear_flag(str): 해방 퀘스트 완료 여부
     """
     date: datetime | None
     character_name: str
@@ -28,3 +31,16 @@ class CharacterBasic(BaseModel):
     character_exp_rate: str
     character_guild_name: str | None
     character_image: str
+    character_date_create: datetime
+    access_flag: str
+    liberation_quest_clear_flag: str
+
+    @property
+    def is_access_flag(self) -> bool:
+        """최근 7일간 접속 여부"""
+        return self.access_flag == 'true'
+
+    @property
+    def is_liberation_quest_clear_flag(self) -> bool:
+        """해방 퀘스트 완료 여부"""
+        return self.liberation_quest_clear_flag == 'true'

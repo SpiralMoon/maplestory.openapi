@@ -9,12 +9,14 @@ class CharacterLinkSkillInfo(BaseModel):
     skill_description(str): 스킬 설명
     skill_level(int): 스킬 레벨
     skill_effect(str): 스킬 효과
+    skill_effect_next(str): 다음 레벨의 스킬 효과
     skill_icon(str): 스킬 아이콘
     """
     skill_name: str
     skill_description: str
     skill_level: int
     skill_effect: str
+    skill_effect_next: str | None
     skill_icon: str
 
 
