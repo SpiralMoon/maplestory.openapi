@@ -5,10 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.ToString;
 
-import java.util.List;
-
 /**
- * 캐릭터 세트 효과 정보
+ * 적용 중인 세트 효과 정보
  */
 @AllArgsConstructor
 @Data
@@ -16,20 +14,14 @@ import java.util.List;
 public class CharacterSetEffectInfoDTO {
 
     /**
-     * 세트 효과 명
+     * 세트 효과 레벨 (장비 수)
      */
-    @SerializedName("set_name")
-    private String setName;
+    @SerializedName("set_count")
+    private int setCount;
 
     /**
-     * 세트 개수 (럭키 아이템 포함)
+     * 세트 효과
      */
-    @SerializedName("total_set_count")
-    private long totalSetCount;
-
-    /**
-     * 세트 효과 정보 목록
-     */
-    @SerializedName("set_effect_info")
-    private List<CharacterSetEffectOptionInfoDTO> setEffectInfo;
+    @SerializedName("set_option")
+    private String setOption;
 }

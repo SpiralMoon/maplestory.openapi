@@ -1,4 +1,4 @@
-import { CharacterSetEffectInfoDto } from '@src/maplestory/api/dto/character/characterSetEffectInfoDto';
+import { CharacterSetEffectSetDto } from '@src/maplestory/api/dto/character/characterSetEffectSetDto';
 import { CharacterSetEffectDtoBody } from '@src/maplestory/api/response/character/characterSetEffectDtoBody';
 
 /**
@@ -13,13 +13,13 @@ class CharacterSetEffectDto {
   /**
    * 세트 효과 정보
    */
-  setEffect: CharacterSetEffectInfoDto[];
+  setEffect: CharacterSetEffectSetDto[];
 
   constructor(obj: CharacterSetEffectDtoBody) {
     const { date, set_effect } = obj;
     this.date = date ? new Date(date) : null;
     this.setEffect = set_effect.map(
-      (effect) => new CharacterSetEffectInfoDto(effect),
+      (effect) => new CharacterSetEffectSetDto(effect),
     );
   }
 }
