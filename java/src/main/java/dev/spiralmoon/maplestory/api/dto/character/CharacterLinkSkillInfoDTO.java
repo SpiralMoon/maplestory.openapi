@@ -38,6 +38,12 @@ public class CharacterLinkSkillInfoDTO {
     private String skillEffect;
 
     /**
+     * 다음 레벨의 스킬 효과
+     */
+    @SerializedName("skill_effect_next")
+    private String skillEffectNext;
+
+    /**
      * 스킬 아이콘
      */
     @SerializedName("skill_icon")

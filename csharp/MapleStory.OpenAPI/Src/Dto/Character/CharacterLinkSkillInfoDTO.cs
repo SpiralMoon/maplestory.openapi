@@ -32,6 +32,12 @@ namespace MapleStory.OpenAPI.Dto
         public string SkillEffect { get; set; }
 
         /// <summary>
+        /// 다음 레벨의 스킬 효과
+        /// </summary>
+        [JsonProperty("skill_effect_next")]
+        public string? SkillEffectNext { get; set; }
+
+        /// <summary>
         /// 스킬 아이콘
         /// </summary>
         [JsonProperty("skill_icon")]

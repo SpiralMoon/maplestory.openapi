@@ -25,6 +25,11 @@ class CharacterLinkSkillInfoDto {
   skillEffect: string;
 
   /**
+   * 다음 레벨의 스킬 효과
+   */
+  skillEffectNext: string | null;
+
+  /**
    * 스킬 아이콘
    */
   skillIcon: string;
@@ -35,6 +40,7 @@ class CharacterLinkSkillInfoDto {
       skill_description,
       skill_level,
       skill_effect,
+      skill_effect_next,
       skill_icon,
     } = obj;
 
@@ -42,6 +48,7 @@ class CharacterLinkSkillInfoDto {
     this.skillDescription = skill_description;
     this.skillLevel = skill_level;
     this.skillEffect = skill_effect;
+    this.skillEffectNext = skill_effect_next;
     this.skillIcon = skill_icon;
   }
 }
