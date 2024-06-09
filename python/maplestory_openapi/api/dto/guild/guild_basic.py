@@ -32,8 +32,6 @@ class GuildBasic(BaseModel):
     guild_member(list[str]): 길드원 목록
     guild_skill(list[GuildSkill]): 길드 스킬 목록
     guild_noblesse_skill(list[GuildSkill]): 노블레스 스킬 목록
-    guild_mark(str): 조합형 길드 마크
-    guild_mark_custom(str): 커스텀 길드 마크 (base64 인코딩 형식)
     """
     date: datetime
     world_name: str
@@ -46,5 +44,3 @@ class GuildBasic(BaseModel):
     guild_member: list[str]
     guild_skill: list[GuildSkill]
     guild_noblesse_skill: list[GuildSkill]
-    guild_mark: str | None
-    guild_mark_custom: str | None

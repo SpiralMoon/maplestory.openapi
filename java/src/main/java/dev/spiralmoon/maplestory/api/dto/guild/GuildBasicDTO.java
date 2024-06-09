@@ -81,16 +81,4 @@ public class GuildBasicDTO {
      */
     @SerializedName("guild_noblesse_skill")
     private List<GuildSkillDTO> guildNoblesseSkill;
-
-    /**
-     * 조합형 길드 마크
-     */
-    @SerializedName("guild_mark")
-    private String guildMark;
-
-    /**
-     * 커스텀 길드 마크 (base64 인코딩 형식)
-     */
-    @SerializedName("guild_mark_custom")
-    private String guildMarkCustom;
 }

@@ -84,17 +84,5 @@ namespace MapleStory.OpenAPI.Dto
         /// </summary>
         [JsonProperty("guild_noblesse_skill")]
         public List<GuildSkillDTO> GuildNoblesseSkill { get; set; }
-
-        /// <summary>
-        /// 조합형 길드 마크
-        /// </summary>
-        [JsonProperty("guild_mark")]
-        public string? GuildMark { get; set; }
-
-        /// <summary>
-        /// 커스텀 길드 마크 (base64 인코딩 형식)
-        /// </summary>
-        [JsonProperty("guild_mark_custom")]
-        public string? GuildMarkCustom { get; set; }
     }
 }

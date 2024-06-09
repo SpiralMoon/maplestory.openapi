@@ -60,16 +60,6 @@ class GuildBasicDto {
    */
   guildNoblesseSkill: GuildSkillDto[];
 
-  /**
-   * 조합형 길드 마크
-   */
-  guildMark: string | null;
-
-  /**
-   * 커스텀 길드 마크 (base64 인코딩 형식)
-   */
-  guildMarkCustom: string | null;
-
   constructor(obj: GuildBasicDtoBody) {
     const {
       date,
@@ -83,8 +73,6 @@ class GuildBasicDto {
       guild_member,
       guild_skill,
       guild_noblesse_skill,
-      guild_mark,
-      guild_mark_custom,
     } = obj;
 
     this.date = new Date(date);
@@ -100,8 +88,6 @@ class GuildBasicDto {
     this.guildNoblesseSkill = guild_noblesse_skill.map(
       (skill) => new GuildSkillDto(skill),
     );
-    this.guildMark = guild_mark;
-    this.guildMarkCustom = guild_mark_custom;
   }
 }
 
