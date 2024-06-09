@@ -107,7 +107,7 @@ class MapleStoryApi(BaseModel):
         path = 'maplestory/v1/character/basic'
         query = {
             'ocid': ocid,
-            'date': self.to_date_string(datetime(2023, 12, 21), date) if date is not None else None if date is not None else None
+            'date': self.to_date_string(datetime(2023, 12, 21), date) if date is not None else None
         }
         r = self.fetch(path, query)
 
