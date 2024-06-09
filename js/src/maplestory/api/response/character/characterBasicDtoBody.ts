@@ -10,6 +10,9 @@ type CharacterBasicDtoBody = {
   character_exp_rate: string;
   character_guild_name: string | null;
   character_image: string;
+  character_date_create: string;
+  access_flag: 'true' | 'false';
+  liberation_quest_clear_flag: 'true' | 'false';
 };
 
 export type { CharacterBasicDtoBody };
