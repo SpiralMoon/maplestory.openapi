@@ -1025,7 +1025,7 @@ class MapleStoryApi {
 
     if (typeof parameter === 'string') {
       query.cursor = parameter;
-    } else if (typeof parameter === 'object') {
+    } else if (typeof parameter === 'object' || parameter === undefined) {
       query.date = MapleStoryApi.toDateString(
         {
           year: 2023,
