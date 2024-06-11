@@ -11,7 +11,7 @@ class UnionArtifactEffect(BaseModel):
     level: int
 
 
-class UnionArtifactCrystal:
+class UnionArtifactCrystal(BaseModel):
     """유니온 아티팩트 크리스탈 정보
 
     name(str): 아티팩트 효과 명
