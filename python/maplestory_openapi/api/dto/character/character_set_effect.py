@@ -32,7 +32,7 @@ class CharacterSetEffectSet(BaseModel):
     """
     set_name: str
     total_set_count: int
-    set_effect_info: list[CharacterSetEffectOptionInfo]
+    set_effect_info: list[CharacterSetEffectInfo]
     set_effect_full_info: list[CharacterSetEffectFullInfo]
 
 
