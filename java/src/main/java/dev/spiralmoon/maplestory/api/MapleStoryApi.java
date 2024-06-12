@@ -815,8 +815,8 @@ public class MapleStoryApi {
      *
      * @param ocid 캐릭터 식별자
      */
-    public CharacterSetEffectDTO getCharacterSetEffectAsync(@NonNull String ocid) throws IOException {
-        return this.getCharacterSetEffectAsync(ocid, null);
+    public CharacterSetEffectDTO getCharacterSetEffect(@NonNull String ocid) throws IOException {
+        return this.getCharacterSetEffect(ocid, null);
     }
 
     /**
@@ -828,7 +828,7 @@ public class MapleStoryApi {
      *
      * @param ocid 캐릭터 식별자
      */
-    public CharacterSetEffectDTO getCharacterSetEffectAsync(@NonNull String ocid, LocalDateTime localDateTime) throws IOException {
+    public CharacterSetEffectDTO getCharacterSetEffect(@NonNull String ocid, LocalDateTime localDateTime) throws IOException {
 
         final String date = localDateTime != null
                 ? toDateString(minDate(2023, 12, 21), localDateTime)
@@ -904,7 +904,7 @@ public class MapleStoryApi {
      * @param ocid          캐릭터 식별자
      * @param localDateTime 조회 기준일 (KST)
      */
-    public CharacterBeautyEquipmentDTO getCharacterBeautyEquipment(@NonNull String ocid, @NonNull LocalDateTime localDateTime) throws IOException {
+    public CharacterBeautyEquipmentDTO getCharacterBeautyEquipment(@NonNull String ocid, LocalDateTime localDateTime) throws IOException {
 
         final String date = localDateTime != null
                 ? toDateString(minDate(2023, 12, 21), localDateTime)
