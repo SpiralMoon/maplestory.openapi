@@ -29,6 +29,6 @@ namespace MapleStory.OpenAPI.Dto
         /// 세트 효과 정보 목록
         /// </summary>
         [JsonProperty("set_effect")]
-        public List<CharacterSetEffectInfoDTO> SetEffect { get; set; }
+        public List<CharacterSetEffectSetDTO> SetEffect { get; set; }
     }
 }
