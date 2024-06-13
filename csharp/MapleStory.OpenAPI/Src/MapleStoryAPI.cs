@@ -402,9 +402,9 @@ namespace MapleStory.OpenAPI
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
         /// </summary>
         /// <param name="ocid">캐릭터 식별자</param>
-        public Task<CharacterSetEffectDTO> GetCharacterSetEffectAsync(string ocid)
+        public Task<CharacterSetEffectDTO> GetCharacterSetEffect(string ocid)
         {
-            return GetCharacterSetEffectAsync(ocid, null);
+            return GetCharacterSetEffect(ocid, null);
         }
 
         /// <summary>
@@ -416,7 +416,7 @@ namespace MapleStory.OpenAPI
         /// </summary>
         /// <param name="ocid">캐릭터 식별자</param>
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
-        public async Task<CharacterSetEffectDTO> GetCharacterSetEffectAsync(string ocid, DateTimeOffset? dateTimeOffset)
+        public async Task<CharacterSetEffectDTO> GetCharacterSetEffect(string ocid, DateTimeOffset? dateTimeOffset)
         {
             var path = "maplestory/v1/character/set-effect";
             var date = dateTimeOffset != null
