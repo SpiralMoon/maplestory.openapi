@@ -1432,7 +1432,7 @@ namespace MapleStory.OpenAPI
             var query = new Dictionary<string, string?>()
             {
                 { "date", ToDateString(MinDate(2023, 12, 22), dateTimeOffset) },
-                { "ocid", ocid },
+                { "world_name", worldName },
                 { "world_type", worldType?.ToString() },
                 { "class", characterClass },
                 { "ocid", ocid },
