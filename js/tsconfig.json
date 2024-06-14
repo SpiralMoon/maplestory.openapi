@@ -12,7 +12,7 @@
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true
   },
-  "include": ["@types/**/*", "src/**/*"],
+  "include": ["@types/**/*", "src/**/*", "test/**/*"],
   "exclude": ["node_modules"],
   "extends": "./tsconfig.paths.json",
   "ts-node": {
@@ -21,6 +21,6 @@
       "module": "commonjs",
       "sourceMap": true
     },
-    "include": ["test/**/*", "sample/**/*"]
+    "include": ["sample/**/*"]
   }
 }
