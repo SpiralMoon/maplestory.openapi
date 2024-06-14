@@ -52,12 +52,13 @@ class CharacterAndroidEquipmentPreset(BaseModel):
     android_description: str
     android_gender: str | None
     android_grade: str
-    android_skin_name: str
-    android_hair: CharacterAndroidEquipmentHairDtoBody
-    android_face: CharacterAndroidEquipmentFaceDtoBody
+    android_skin_name: str | None
+    android_hair: CharacterAndroidEquipmentHair
+    android_face: CharacterAndroidEquipmentFace
     android_ear_sensor_clip_flag: str
     android_non_humanoid_flag: str
     android_shop_usable_flag: str
+
 
 class CharacterAndroidCashItemEquipmentColoringPrism(BaseModel):
     """안드로이드 캐시아이템 컬러링프리즘 정보

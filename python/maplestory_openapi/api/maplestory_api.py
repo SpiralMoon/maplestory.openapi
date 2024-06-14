@@ -688,7 +688,7 @@ class MapleStoryApi(BaseModel):
         r = self.fetch(path, query)
         return UnionRanking(**r)
 
-    def get_guild_ranking(self, ranking_type: int, world_name: str | None = None, guild_name: str | None = None, page: int = 1,  date: datetime = get_proper_default_datetime(update_hour=8, update_minute=30, day_offset=0), ) -> GuildRanking:
+    def get_guild_ranking(self, ranking_type: int = 0, world_name: str | None = None, guild_name: str | None = None, page: int = 1,  date: datetime = get_proper_default_datetime(update_hour=8, update_minute=30, day_offset=0), ) -> GuildRanking:
         """길드 랭킹 정보를 조회합니다.
 
         - 2023년 12월 22일 데이터부터 조회할 수 있습니다.

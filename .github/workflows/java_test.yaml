@@ -1,0 +1,36 @@
+name: Test Java
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - java/**
+
+jobs:
+  test_java:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: './java'
+
+    env:
+      API_KEY: ${{ secrets.API_KEY }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up JDK
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'adopt'
+          java-version: '8.0.392+8'
+
+      - name: Test
+        run: |
+          echo "apiKey=${API_KEY}" >> gradle.properties
+          echo "Testing"
+          ./gradlew test
+        env:
+          GRADLE_USER_HOME: ./gradle
