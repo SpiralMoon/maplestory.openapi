@@ -1,4 +1,4 @@
-import { CharacterSetEffectFullInfoDto } from '@src/maplestory/api/dto/character/characterSetEffectFullInfoDto';
+import { CharacterSetEffectOptionFullDto } from '@src/maplestory/api/dto/character/characterSetEffectOptionFullDto';
 import { CharacterSetEffectInfoDto } from '@src/maplestory/api/dto/character/characterSetEffectInfoDto';
 import {
   CharacterSetEffectSetDtoBody,
@@ -26,18 +26,18 @@ class CharacterSetEffectSetDto {
   /**
    * 모든 세트 효과 정보
    */
-  setEffectFullInfo: CharacterSetEffectFullInfoDto[];
+  setOptionFull: CharacterSetEffectOptionFullDto[];
 
   constructor(obj: CharacterSetEffectSetDtoBody) {
-    const { set_name, total_set_count, set_effect_info, set_effect_full_info } = obj;
+    const { set_name, total_set_count, set_effect_info, set_option_full } = obj;
 
     this.setName = set_name;
     this.totalSetCount = total_set_count;
     this.setEffectInfo = set_effect_info.map(
       (info) => new CharacterSetEffectInfoDto(info),
     );
-    this.setEffectFullInfo = set_effect_full_info.map(
-      (info) => new CharacterSetEffectFullInfoDto(info),
+    this.setOptionFull = set_option_full.map(
+      (info) => new CharacterSetEffectOptionFullDto(info),
     );
   }
 }

@@ -11,7 +11,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @Data
 @ToString
-public class CharacterSetEffectFullInfoDTO {
+public class CharacterSetEffectOptionFullDTO {
 
     /**
      * 세트 효과 레벨 (장비 수)

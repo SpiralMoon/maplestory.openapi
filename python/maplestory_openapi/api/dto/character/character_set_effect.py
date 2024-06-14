@@ -12,7 +12,7 @@ class CharacterSetEffectInfo(BaseModel):
     set_option: str
 
 
-class CharacterSetEffectFullInfo(BaseModel):
+class CharacterSetEffectOptionFull(BaseModel):
     """모든 세트 효과 정보
 
     set_count(int): 세트 효과 레벨 (장비 수)
@@ -33,7 +33,7 @@ class CharacterSetEffectSet(BaseModel):
     set_name: str
     total_set_count: int
     set_effect_info: list[CharacterSetEffectInfo]
-    set_effect_full_info: list[CharacterSetEffectFullInfo]
+    set_option_full: list[CharacterSetEffectOptionFull]
 
 
 class CharacterSetEffect(BaseModel):

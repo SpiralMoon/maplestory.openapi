@@ -54,7 +54,7 @@ export * from './maplestory/api/dto/character/characterPropensityDto';
 export * from './maplestory/api/dto/character/characterSetEffectDto';
 export * from './maplestory/api/dto/character/characterSetEffectSetDto';
 export * from './maplestory/api/dto/character/characterSetEffectInfoDto';
-export * from './maplestory/api/dto/character/characterSetEffectFullInfoDto';
+export * from './maplestory/api/dto/character/characterSetEffectOptionFullDto';
 export * from './maplestory/api/dto/character/characterSkillDto';
 export * from './maplestory/api/dto/character/characterSkillInfoDto';
 export * from './maplestory/api/dto/character/characterStatDto';

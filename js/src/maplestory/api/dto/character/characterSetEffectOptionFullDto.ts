@@ -1,9 +1,11 @@
-import { CharacterSetEffectInfoDtoBody } from '@src/maplestory/api/response/character/characterSetEffectDtoBody';
+import {
+  CharacterSetEffectOptionFullDtoBody,
+} from '@src/maplestory/api/response/character/characterSetEffectDtoBody'
 
 /**
  * 모든 세트 효과 정보
  */
-class CharacterSetEffectFullInfoDto {
+class CharacterSetEffectOptionFullDto {
   /**
    * 세트 효과 레벨 (장비 수)
    */
@@ -14,7 +16,7 @@ class CharacterSetEffectFullInfoDto {
    */
   setOption: string;
 
-  constructor(obj: CharacterSetEffectInfoDtoBody) {
+  constructor(obj: CharacterSetEffectOptionFullDtoBody) {
     const { set_count, set_option } = obj;
 
     this.setCount = set_count;
@@ -22,4 +24,4 @@ class CharacterSetEffectFullInfoDto {
   }
 }
 
-export { CharacterSetEffectFullInfoDto };
+export { CharacterSetEffectOptionFullDto };

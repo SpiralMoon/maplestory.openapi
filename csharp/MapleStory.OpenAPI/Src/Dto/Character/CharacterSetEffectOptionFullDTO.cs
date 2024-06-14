@@ -5,7 +5,7 @@ namespace MapleStory.OpenAPI.Dto
     /// <summary>
     /// 모든 세트 효과 정보
     /// </summary>
-    public class CharacterSetEffectFullInfoDTO
+    public class CharacterSetEffectOptionFullDTO
     {
         /// <summary>
         /// 세트 효과 레벨 (장비 수)

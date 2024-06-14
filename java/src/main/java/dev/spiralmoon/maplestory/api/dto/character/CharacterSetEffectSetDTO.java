@@ -36,6 +36,6 @@ public class CharacterSetEffectSetDTO {
     /**
      * 모든 세트 효과 정보
      */
-    @SerializedName("set_effect_full_info")
-    private List<CharacterSetEffectFullInfoDTO> setEffectFullInfo;
+    @SerializedName("set_option_full")
+    private List<CharacterSetEffectOptionFullDTO> setOptionFull;
 }
