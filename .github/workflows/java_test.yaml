@@ -31,6 +31,7 @@ jobs:
         run: |
           echo "apiKey=${API_KEY}" >> gradle.properties
           echo "Testing"
+          chmod +x ./gradlew
           ./gradlew test
         env:
           GRADLE_USER_HOME: ./gradle
