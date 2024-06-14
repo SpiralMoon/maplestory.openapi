@@ -5,7 +5,7 @@ namespace MapleStory.OpenAPI.Dto
     /// <summary>
     /// 캐릭터 세트 효과 정보
     /// </summary>
-    public class CharacterSetEffectInfoDTO
+    public class CharacterSetEffectSetDTO
     {
         /// <summary>
         /// 세트 효과 명
