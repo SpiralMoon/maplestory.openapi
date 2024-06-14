@@ -88,7 +88,7 @@ class UnionRaider(BaseModel):
     union_occupied_stat: list[str]
     union_inner_stat: list[UnionRaiderInnerStat]
     union_block: list[UnionRaiderBlock]
-    use_preset_not: int
+    use_preset_no: int
     union_raider_preset_1: UnionRaiderPreset | None
     union_raider_preset_2: UnionRaiderPreset | None
     union_raider_preset_3: UnionRaiderPreset | None

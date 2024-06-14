@@ -16,7 +16,7 @@ class CharacterLinkSkillInfo(BaseModel):
     skill_description: str
     skill_level: int
     skill_effect: str
-    skill_effect_next: str | None
+    skill_effect_next: str | None = None
     skill_icon: str
 
 
