@@ -1,9 +1,12 @@
 import os
+import sys
 import unittest
+
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../')))
 
 from maplestory_openapi import MapleStoryApi
 
-api_key = os.environ['API_KEY']
+api_key = os.environ['API_KEY']  # Your API Key
 api = MapleStoryApi(api_key)
 
 
