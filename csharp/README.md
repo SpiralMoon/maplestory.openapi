@@ -1,6 +1,7 @@
 # MapleStory OpenAPI C# Library
 
 [![NuGet](https://img.shields.io/nuget/v/MapleStory.OpenAPI)](https://www.nuget.org/packages/MapleStory.OpenAPI)
+[![C#](https://github.com/SpiralMoon/maplestory.openapi/actions/workflows/csharp_test.yaml/badge.svg)](https://github.com/SpiralMoon/maplestory.openapi/actions/workflows/csharp_test.yaml)
 
 넥슨의 MapleStory OpenAPI를 C# 환경에서 사용할 수 있게 해주는 라이브러리입니다.
 
@@ -12,8 +13,8 @@
 
 NuGet 기반 프로젝트에 아래 정보를 입력하여 패키지를 추가하세요:
 
-```xml
-<PackageReference Include="MapleStory.OpenAPI" Version="2.5.0" />
+```bash
+dotnet add package MapleStory.OpenAPI
 ```
 
 ## Usage
@@ -24,23 +25,21 @@ NuGet 기반 프로젝트에 아래 정보를 입력하여 패키지를 추가�
 
 ### Sample Code
 
+아래 코드는 닉네임을 바탕으로 특정 캐릭터의 식별자를 조회한 후 캐릭터의 기본 정보를 조회하는 예시입니다.
+
 ```csharp
 using MapleStory.OpenAPI;
 
 var apiKey = "{Your API Key}";
 var api = new MapleStoryAPI(apiKey);
-var dateTimeOffset = new DateTimeOffset(2023, 10, 15, 0, 0, 0, TimeSpan.FromHours(9));
 
 // run your code
 try
 {
-    var response = await api.GetCubeHistory(1000, dateTimeOffset);
+    var character = await api.GetCharacter("{Your Character Name}");
+    var characterBasic = await api.GetCharacterBasic(character.OCID);
 
-    var count = response.Count;
-    var cubeHistory = response.CubeHistory;
-    var nextCursor = response.NextCursor;
-
-    Console.WriteLine("You used " + count + " cubes.");
+    Console.WriteLine(characterBasic.ToJson());
 }
 // exception handling
 catch (MapleStoryAPIException e)
@@ -52,6 +51,14 @@ catch (HttpRequestException e)
     // handle HttpRequestException
 }
 ```
+
+더 많은 예시는 아래 링크의 테스트 케이스에서 확인할 수 있습니다.
+
+- [캐릭터 정보 조회](https://github.com/SpiralMoon/maplestory.openapi/blob/master/csharp/MapleStory.Test/CharacterAPI.cs)
+- [유니온 정보 조회](https://github.com/SpiralMoon/maplestory.openapi/blob/master/csharp/MapleStory.Test/UnionAPI.cs)
+- [길드 정보 조회](https://github.com/SpiralMoon/maplestory.openapi/blob/master/csharp/MapleStory.Test/GuildAPI.cs)
+- [확률 정보 조회](https://github.com/SpiralMoon/maplestory.openapi/blob/master/csharp/MapleStory.Test/HistoryAPI.cs)
+- [랭킹 정보 조회](https://github.com/SpiralMoon/maplestory.openapi/blob/master/csharp/MapleStory.Test/RankingAPI.cs)
 
 ### Exception Handling
 

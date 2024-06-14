@@ -1,6 +1,7 @@
 # MapleStory OpenAPI Java Library
 
 [![Maven Central](https://img.shields.io/maven-central/v/dev.spiralmoon/maplestory-openapi)](https://search.maven.org/artifact/dev.spiralmoon/maplestory-openapi)
+[![Java](https://github.com/SpiralMoon/maplestory.openapi/actions/workflows/java_test.yaml/badge.svg)](https://github.com/SpiralMoon/maplestory.openapi/actions/workflows/java_test.yaml)
 
 This Java library enables the use of the MapleStory OpenAPI of Nexon.
 
@@ -16,12 +17,11 @@ Install the latest version of the Java library in your java project:
 <dependency>
     <groupId>dev.spiralmoon</groupId>
     <artifactId>maplestory-openapi</artifactId>
-    <version>2.5.0</version> <!-- Replace with the latest version -->
 </dependency>
 ```
 or 
 ```groovy
-implementation 'dev.spiralmoon:maplestory-openapi:2.5.0' // Replace with the latest version
+implementation 'dev.spiralmoon:maplestory-openapi:+'
 ```
 
 ## Usage
@@ -32,29 +32,24 @@ Before using the library, register your application and obtain an **api key** fr
 
 ### Sample Code
 
+Below is an example code that retrieves the identifier of a specific character based on the nickname and then fetches the basic information of that character.
+
 ```java
 import dev.spiralmoon.maplestory.api.MapleStoryApi;
 import dev.spiralmoon.maplestory.api.MapleStoryApiException;
-import dev.spiralmoon.maplestory.api.dto.history.CubeHistoryDTO;
-import dev.spiralmoon.maplestory.api.dto.history.CubeHistoryResponseDTO;
-
-import java.util.List;
+import dev.spiralmoon.maplestory.api.dto.*;
 
 class Sample {
     public static void main(String[] args) {
         final String apiKey = "{Your API Key}";
         final MapleStoryApi api = new MapleStoryApi(apiKey);
-        final LocalDateTime localDateTime = LocalDateTime.of(2023, 10, 15, 0, 0);
 
         // run your code
         try {
-            final CubeHistoryResponseDTO response = api.getCubeHistory(1000, localDateTime);
+            final CharacterDTO character = api.getCharacter("{Your Character Name}");
+            final CharacterBasicDTO characterBasic = api.getCharacterBasic(character.getOcid());
 
-            final int count = response.getCount();
-            final List<CubeHistoryDTO> cubeHistory = response.getCubeHistory();
-            final String nextCursor = response.getNextCursor();
-
-            System.out.println("You used " + count + " cubes.");
+            System.out.println(characterBasic.toString());
         }
         // exception handling
         catch (Exception exception) {
@@ -68,6 +63,15 @@ class Sample {
 }
 
 ```
+
+You can find more examples in the test cases at the following link.
+
+- [Get character information](https://github.com/SpiralMoon/maplestory.openapi/blob/master/java/src/test/java/CharacterApi.java)
+- [Get union information](https://github.com/SpiralMoon/maplestory.openapi/blob/master/java/src/test/java/UnionApi.java)
+- [Get guild information](https://github.com/SpiralMoon/maplestory.openapi/blob/master/java/src/test/java/GuildApi.java)
+- [Get history information](https://github.com/SpiralMoon/maplestory.openapi/blob/master/java/src/test/java/HistoryApi.java)
+- [Get ranking information](https://github.com/SpiralMoon/maplestory.openapi/blob/master/java/src/test/java/RankingApi.java)
+
 
 ### Exception Handling
 

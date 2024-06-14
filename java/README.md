@@ -1,6 +1,7 @@
 # MapleStory OpenAPI Java Library
 
 [![Maven Central](https://img.shields.io/maven-central/v/dev.spiralmoon/maplestory-openapi)](https://search.maven.org/artifact/dev.spiralmoon/maplestory-openapi)
+[![Java](https://github.com/SpiralMoon/maplestory.openapi/actions/workflows/java_test.yaml/badge.svg)](https://github.com/SpiralMoon/maplestory.openapi/actions/workflows/java_test.yaml)
 
 넥슨의 MapleStory OpenAPI를 Java 환경에서 사용할 수 있게 해주는 라이브러리입니다.
 
@@ -16,12 +17,11 @@ Java 기반 프로젝트에 아래 정보를 입력하여 패키지를 추가하
 <dependency>
     <groupId>dev.spiralmoon</groupId>
     <artifactId>maplestory-openapi</artifactId>
-    <version>2.5.0</version> <!-- Replace with the latest version -->
 </dependency>
 ```
 또는
 ```groovy
-implementation 'dev.spiralmoon:maplestory-openapi:2.5.0' // Replace with the latest version
+implementation 'dev.spiralmoon:maplestory-openapi:+'
 ```
 
 ## Usage
@@ -32,30 +32,24 @@ implementation 'dev.spiralmoon:maplestory-openapi:2.5.0' // Replace with the lat
 
 ### Sample Code
 
+아래 코드는 닉네임을 바탕으로 특정 캐릭터의 식별자를 조회한 후 캐릭터의 기본 정보를 조회하는 예시입니다.
+
 ```java
 import dev.spiralmoon.maplestory.api.MapleStoryApi;
 import dev.spiralmoon.maplestory.api.MapleStoryApiException;
-import dev.spiralmoon.maplestory.api.dto.history.CubeHistoryDTO;
-import dev.spiralmoon.maplestory.api.dto.history.CubeHistoryResponseDTO;
-
-import java.time.LocalDateTime;
-import java.util.List;
+import dev.spiralmoon.maplestory.api.dto.*;
 
 class Sample {
     public static void main(String[] args) {
         final String apiKey = "{Your API Key}";
         final MapleStoryApi api = new MapleStoryApi(apiKey);
-        final LocalDateTime localDateTime = LocalDateTime.of(2023, 10, 15, 0, 0);
 
         // run your code
         try {
-            final CubeHistoryResponseDTO response = api.getCubeHistory(1000, localDateTime);
+            final CharacterDTO character = api.getCharacter("{Your Character Name}");
+            final CharacterBasicDTO characterBasic = api.getCharacterBasic(character.getOcid());
 
-            final int count = response.getCount();
-            final List<CubeHistoryDTO> cubeHistory = response.getCubeHistory();
-            final String nextCursor = response.getNextCursor();
-
-            System.out.println("You used " + count + " cubes.");
+            System.out.println(characterBasic.toString());
         }
         // exception handling
         catch (Exception exception) {
@@ -69,6 +63,14 @@ class Sample {
 }
 
 ```
+
+더 많은 예시는 아래 링크의 테스트 케이스에서 확인할 수 있습니다.
+
+- [캐릭터 정보 조회](https://github.com/SpiralMoon/maplestory.openapi/blob/master/java/src/test/java/CharacterApi.java)
+- [유니온 정보 조회](https://github.com/SpiralMoon/maplestory.openapi/blob/master/java/src/test/java/UnionApi.java)
+- [길드 정보 조회](https://github.com/SpiralMoon/maplestory.openapi/blob/master/java/src/test/java/GuildApi.java)
+- [확률 정보 조회](https://github.com/SpiralMoon/maplestory.openapi/blob/master/java/src/test/java/HistoryApi.java)
+- [랭킹 정보 조회](https://github.com/SpiralMoon/maplestory.openapi/blob/master/java/src/test/java/RankingApi.java)
 
 ### Exception Handling
 

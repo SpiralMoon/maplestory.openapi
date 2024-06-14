@@ -11,6 +11,11 @@
 [![NuGet](https://img.shields.io/nuget/v/MapleStory.OpenAPI)](https://www.nuget.org/packages/MapleStory.OpenAPI)
 [![PyPi](https://img.shields.io/pypi/v/maplestory-openapi)](https://pypi.org/project/maplestory-openapi)
 
+[![JS](https://github.com/SpiralMoon/maplestory.openapi/actions/workflows/js_test.yaml/badge.svg)](https://github.com/SpiralMoon/maplestory.openapi/actions/workflows/js_test.yaml)
+[![Java](https://github.com/SpiralMoon/maplestory.openapi/actions/workflows/java_test.yaml/badge.svg)](https://github.com/SpiralMoon/maplestory.openapi/actions/workflows/java_test.yaml)
+[![C#](https://github.com/SpiralMoon/maplestory.openapi/actions/workflows/csharp_test.yaml/badge.svg)](https://github.com/SpiralMoon/maplestory.openapi/actions/workflows/csharp_test.yaml)
+[![Python](https://github.com/SpiralMoon/maplestory.openapi/actions/workflows/python_test.yaml/badge.svg)](https://github.com/SpiralMoon/maplestory.openapi/actions/workflows/python_test.yaml)
+
 <div align="center">
     <img src="./logo.png" width="120" height="120"/>
 </div>
@@ -28,7 +33,7 @@
           <a href="https://www.npmjs.com/package/maplestory-openapi" target="_blank" rel="noreferrer">
             <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" alt="javascript" width="40" height="40"/>
           </a>
-          <a href="https://search.maven.org/artifact/dev.spiralmoon/maplestory-openapi" target="_blank" rel="noreferrer">
+          <a href="https://www.npmjs.com/package/maplestory-openapi" target="_blank" rel="noreferrer">
             <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/typescript/typescript-original.svg" alt="typescript" width="40" height="40"/>
           </a>
         </td>
@@ -95,6 +100,9 @@
 그리고 메이플스토리 OpenAPI 사양에는 포함되어 있지 않지만, 추가적으로 아래 API를 지원합니다.
 
 - [서버 점검 정보 조회](https://api.maplestory.nexon.com/soap/maplestory.asmx?op=GetInspectionInfo)
+
+## Release note
+이 라이브러리의 주요 변경사항은 [릴리즈 노트](https://github.com/SpiralMoon/maplestory.openapi/releases)를 통해 안내하고 있습니다.
 
 ## Contributors
 <a href="https://github.com/SpiralMoon/maplestory.openapi/graphs/contributors">

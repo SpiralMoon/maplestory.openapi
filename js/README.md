@@ -1,6 +1,7 @@
 # MapleStory OpenAPI JavaScript Library
 
 [![npm](https://img.shields.io/npm/v/maplestory-openapi)](https://www.npmjs.com/package/maplestory-openapi)
+[![JS](https://github.com/SpiralMoon/maplestory.openapi/actions/workflows/js_test.yaml/badge.svg)](https://github.com/SpiralMoon/maplestory.openapi/actions/workflows/js_test.yaml)
 
 넥슨의 MapleStory OpenAPI를 Javascript 환경에서 사용할 수 있게 해주는 라이브러리입니다.
 
@@ -13,7 +14,7 @@
 npm 기반 프로젝트에 아래 정보를 입력하여 패키지를 추가하세요:
 
 ```bash
-npm install maplestory-openapi@2.5.0 # Replace with the latest version
+npm install maplestory-openapi
 ```
 
 ## Usage
@@ -37,32 +38,39 @@ import {MapleStoryApi, MapleStoryApiError} from 'maplestory-openapi'; // ESM
 
 ### Sample Code
 
+아래 코드는 닉네임을 바탕으로 특정 캐릭터의 식별자를 조회한 후 캐릭터의 기본 정보를 조회하는 예시입니다.
+
 ```javascript
 const {MapleStoryApi, MapleStoryApiError} = require('maplestory-openapi');
 
 const apiKey = '{Your API Key}';
 const api = new MapleStoryApi(apiKey);
 
-api.getCubeHistory(1000, {
-    year: 2023,
-    month: 10,
-    day: 15
-})
-    .then((dto) => {
-        const {count, cubeHistory, nextCursor} = dto;
-
-        console.log('You used ' + count + ' cubes.');
-    })
-    .catch((e) => {
-        if (e instanceof MapleStoryApiError) {
-            // handle MapleStoryApiError
-        } else {
-            // handle other errors
-        }
-
-        console.log(e);
-    });
+try {
+  // run your code
+  
+  const character = await api.getCharacter('{Your Character Name}');
+  const characterBasic = await api.getCharacterBasic(character.ocid);
+  
+  console.log(characterBasic);
+} catch (e) {
+  // exception handling
+  
+  if (e instanceof MapleStoryApiError) {
+    // handle MapleStoryApiError
+  } else {
+    // handle other errors
+  }
+}
 ```
+
+더 많은 예시는 아래 링크의 테스트 케이스에서 확인할 수 있습니다.
+
+- [캐릭터 정보 조회](https://github.com/SpiralMoon/maplestory.openapi/blob/master/js/test/characterApi.test.ts)
+- [유니온 정보 조회](https://github.com/SpiralMoon/maplestory.openapi/blob/master/js/test/unionApi.test.ts)
+- [길드 정보 조회](https://github.com/SpiralMoon/maplestory.openapi/blob/master/js/test/guildApi.test.ts)
+- [확률 정보 조회](https://github.com/SpiralMoon/maplestory.openapi/blob/master/js/test/historyApi.test.ts)
+- [랭킹 정보 조회](https://github.com/SpiralMoon/maplestory.openapi/blob/master/js/test/rankingApi.test.ts)
 
 ### Exception Handling
 

@@ -1,6 +1,7 @@
 # MapleStory OpenAPI JavaScript Library
 
 [![npm](https://img.shields.io/npm/v/maplestory-openapi)](https://www.npmjs.com/package/maplestory-openapi)
+[![JS](https://github.com/SpiralMoon/maplestory.openapi/actions/workflows/js_test.yaml/badge.svg)](https://github.com/SpiralMoon/maplestory.openapi/actions/workflows/js_test.yaml)
 
 This JavaScript library enables the use of the MapleStory OpenAPI of Nexon.
 
@@ -13,7 +14,7 @@ Packages written in other languages can be found [HERE](https://github.com/Spira
 Install the latest version of the JavaScript/TypeScript library in your npm project:
 
 ```bash
-npm install maplestory-openapi@2.5.0 # Replace with the latest version
+npm install maplestory-openapi
 ```
 
 ## Usage
@@ -37,32 +38,39 @@ import {MapleStoryApi, MapleStoryApiError} from 'maplestory-openapi'; // ESM
 
 ### Sample Code
 
+Below is an example code that retrieves the identifier of a specific character based on the nickname and then fetches the basic information of that character.
+
 ```javascript
 const {MapleStoryApi, MapleStoryApiError} = require('maplestory-openapi');
 
 const apiKey = '{Your API Key}';
 const api = new MapleStoryApi(apiKey);
 
-api.getCubeHistory(1000, {
-    year: 2023,
-    month: 10,
-    day: 15
-})
-    .then((dto) => {
-        const {count, cubeHistory, nextCursor} = dto;
+try {
+  // run your code
 
-        console.log('You used ' + count + ' cubes.');
-    })
-    .catch((e) => {
-        if (e instanceof MapleStoryApiError) {
-            // handle MapleStoryApiError
-        } else {
-            // handle other errors
-        }
+  const character = await api.getCharacter('{Your Character Name}');
+  const characterBasic = await api.getCharacterBasic(character.ocid);
 
-        console.log(e);
-    });
+  console.log(characterBasic);
+} catch (e) {
+  // exception handling
+
+  if (e instanceof MapleStoryApiError) {
+    // handle MapleStoryApiError
+  } else {
+    // handle other errors
+  }
+}
 ```
+
+You can find more examples in the test cases at the following link.
+
+- [Get character information](https://github.com/SpiralMoon/maplestory.openapi/blob/master/js/test/characterApi.test.ts)
+- [Get union information](https://github.com/SpiralMoon/maplestory.openapi/blob/master/js/test/unionApi.test.ts)
+- [Get guild information](https://github.com/SpiralMoon/maplestory.openapi/blob/master/js/test/guildApi.test.ts)
+- [Get history information](https://github.com/SpiralMoon/maplestory.openapi/blob/master/js/test/historyApi.test.ts)
+- [Get ranking information](https://github.com/SpiralMoon/maplestory.openapi/blob/master/js/test/rankingApi.test.ts)
 
 ### Exception Handling
 

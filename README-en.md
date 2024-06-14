@@ -11,6 +11,11 @@
 [![NuGet](https://img.shields.io/nuget/v/MapleStory.OpenAPI)](https://www.nuget.org/packages/MapleStory.OpenAPI)
 [![PyPi](https://img.shields.io/pypi/v/maplestory-openapi)](https://pypi.org/project/maplestory-openapi)
 
+[![JS](https://github.com/SpiralMoon/maplestory.openapi/actions/workflows/js_test.yaml/badge.svg)](https://github.com/SpiralMoon/maplestory.openapi/actions/workflows/js_test.yaml)
+[![Java](https://github.com/SpiralMoon/maplestory.openapi/actions/workflows/java_test.yaml/badge.svg)](https://github.com/SpiralMoon/maplestory.openapi/actions/workflows/java_test.yaml)
+[![C#](https://github.com/SpiralMoon/maplestory.openapi/actions/workflows/csharp_test.yaml/badge.svg)](https://github.com/SpiralMoon/maplestory.openapi/actions/workflows/csharp_test.yaml)
+[![Python](https://github.com/SpiralMoon/maplestory.openapi/actions/workflows/python_test.yaml/badge.svg)](https://github.com/SpiralMoon/maplestory.openapi/actions/workflows/python_test.yaml)
+
 <div align="center">
     <img src="./logo.png" width="120" height="120"/>
 </div>
@@ -28,7 +33,7 @@
           <a href="https://www.npmjs.com/package/maplestory-openapi" target="_blank" rel="noreferrer">
             <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" alt="javascript" width="40" height="40"/>
           </a>
-          <a href="https://search.maven.org/artifact/dev.spiralmoon/maplestory-openapi" target="_blank" rel="noreferrer">
+          <a href="https://www.npmjs.com/package/maplestory-openapi" target="_blank" rel="noreferrer">
             <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/typescript/typescript-original.svg" alt="typescript" width="40" height="40"/>
           </a>
         </td>
@@ -88,12 +93,15 @@ This library supports all apis published in the [MapleStory OpenAPI official doc
 - [Get character information](https://openapi.nexon.com/game/maplestory/?id=22)
 - [Get union information](https://openapi.nexon.com/game/maplestory/?id=23)
 - [Get guild information](https://openapi.nexon.com/game/maplestory/?id=24)
-- [Get cube, potential, starforce history information](https://openapi.nexon.com/game/maplestory/?id=25)
+- [Get history information](https://openapi.nexon.com/game/maplestory/?id=25)
 - [Get ranking information](https://openapi.nexon.com/game/maplestory/?id=26)
 
 And, while not part of the MapleStory OpenAPI specifications, it additionally supports the following API.
 
 - [Get server inspection information](https://api.maplestory.nexon.com/soap/maplestory.asmx?op=GetInspectionInfo)
+
+## Release note
+The main changes to this library are documented in the [release notes](https://github.com/SpiralMoon/maplestory.openapi/releases).
 
 ## Contributors
 <a href="https://github.com/SpiralMoon/maplestory.openapi/graphs/contributors">
