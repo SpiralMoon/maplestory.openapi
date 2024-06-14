@@ -25,7 +25,7 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok:1.18.30'
 }
 
-test {
+task unitTest(type: Test) {
     def apiKey = project.findProperty('apiKey')
     systemProperty('API_KEY', apiKey)
 
