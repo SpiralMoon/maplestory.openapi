@@ -52,7 +52,7 @@ class CharacterAndroidEquipmentPreset(BaseModel):
     android_description: str
     android_gender: str | None
     android_grade: str
-    android_skin_name: str
+    android_skin_name: str | None
     android_hair: CharacterAndroidEquipmentHair
     android_face: CharacterAndroidEquipmentFace
     android_ear_sensor_clip_flag: str
