@@ -1,0 +1,33 @@
+name: Test C#
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - csharp/**
+
+jobs:
+  test_csharp:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: './csharp'
+
+    env:
+      API_KEY: ${{ secrets.API_KEY }}
+      PROJECT_NAME: MapleStory.Test
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up .NET Core
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 6.0.100
+
+      - name: Test
+        run: |
+          echo "Testing"
+          dotnet test ./${PROJECT_NAME}/${PROJECT_NAME}.csproj
