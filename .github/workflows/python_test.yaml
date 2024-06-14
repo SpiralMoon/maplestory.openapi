@@ -32,6 +32,11 @@ jobs:
           echo "Installing dependencies"
           pip3 install -r requirements.txt
 
+      - name: Build package
+        run: |
+          echo "Build Python project"
+          python3 setup.py sdist bdist_wheel
+
       - name: Test
         run: |
           echo "API_KEY=${API_KEY}" >> $GITHUB_ENV

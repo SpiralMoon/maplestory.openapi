@@ -20,10 +20,14 @@ jobs:
           python-version: '3.10'
 
       - name: Install dependencies
-        run: pip3 install wheel twine
+        run: |
+          echo "Installing dependencies"
+          pip3 install wheel twine
 
       - name: Build package
-        run: python3 setup.py sdist bdist_wheel
+        run: |
+          echo "Build Python project"
+          python3 setup.py sdist bdist_wheel
 
       - name: Publish package distributions to PyPI
         run: twine upload --repository-url https://upload.pypi.org/legacy/ -u __token__ -p ${{ secrets.PYPI_API_TOKEN }} dist/*
