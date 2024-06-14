@@ -25,7 +25,10 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok:1.18.30'
 }
 
-tasks.test {
+test {
+    def apiKey = project.findProperty('apiKey')
+    systemProperty('API_KEY', apiKey)
+
     useJUnitPlatform()
 }
 
