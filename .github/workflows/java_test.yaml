@@ -1,6 +1,7 @@
 name: Test Java
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - master
