@@ -1,6 +1,5 @@
 ﻿using MapleStory.OpenAPI.Dto;
 using Newtonsoft.Json;
-using MapleStory.OpenAPI.Src.Dto.Union;
 using RestSharp;
 
 namespace MapleStory.OpenAPI

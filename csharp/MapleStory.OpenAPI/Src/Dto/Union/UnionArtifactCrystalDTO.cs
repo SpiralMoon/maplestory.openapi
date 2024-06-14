@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace MapleStory.OpenAPI.Src.Dto.Union
+namespace MapleStory.OpenAPI.Dto
 {
     /// <summary>
     /// 유니온 아티팩트 크리스탈 정보

@@ -1,8 +1,7 @@
-﻿using MapleStory.OpenAPI.Dto;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 
-namespace MapleStory.OpenAPI.Src.Dto.Union
+namespace MapleStory.OpenAPI.Dto
 {
     /// <summary>
     /// 유니온 아티팩트 정보
