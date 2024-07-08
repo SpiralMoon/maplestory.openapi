@@ -28,10 +28,10 @@ class CubeHistoryInfo(BaseModel):
     additional_potential_option_grade(str): 에디셔널 잠재능력 등급
     upgrade_guarantee(str): 천장에 도달하여 확정 등급 상승한 여부
     upgrade_guarantee_count(int): 현재까지 쌓은 스택
-    before_potential_option(CubePotentialOption): 사용 전 잠재능력 옵션
-    before_additional_potential_option(CubePotentialOption): 사용 전 에디셔널 잠재능력 옵션
-    after_potential_option(CubePotentialOption): 사용 후 잠재능력 옵션
-    after_additional_potential_option(CubePotentialOption): 사용 후 에디셔널 잠재능력 옵션
+    before_potential_option(list[CubePotentialOption]): 사용 전 잠재능력 옵션
+    before_additional_potential_option(list[CubePotentialOption]): 사용 전 에디셔널 잠재능력 옵션
+    after_potential_option(list[CubePotentialOption]): 사용 후 잠재능력 옵션
+    after_additional_potential_option(list[CubePotentialOption]): 사용 후 에디셔널 잠재능력 옵션
     """
     id: str
     character_name: str
@@ -44,12 +44,12 @@ class CubeHistoryInfo(BaseModel):
     target_item: str
     potential_option_grade: str
     additional_potential_option_grade: str
-    upgrade_guarantee: str
+    upgrade_guarantee: bool
     upgrade_guarantee_count: int
-    before_potential_option: CubePotentialOption | None
-    before_additional_potential_option: CubePotentialOption | None
-    after_potential_option: CubePotentialOption | None
-    after_additional_potential_option: CubePotentialOption | None
+    before_potential_option: list[CubePotentialOption]
+    before_additional_potential_option: list[CubePotentialOption]
+    after_potential_option: list[CubePotentialOption]
+    after_additional_potential_option: list[CubePotentialOption]
 
 
 class CubeHistory(BaseModel):
