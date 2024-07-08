@@ -912,8 +912,9 @@ namespace MapleStory.OpenAPI
 
         /// <summary>
         /// 길드 식별자(oguild_id) 정보를 조회합니다.
+        /// <para>- 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.</para>
         /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
-        /// <para>- 오전 1시부터 전일 데이터 조회가 가능합니다</para>
+        /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
         /// </summary>
         /// <param name="guildName">길드 명</param>
@@ -950,37 +951,37 @@ namespace MapleStory.OpenAPI
 
         /// <summary>
         /// 길드 기본 정보를 조회합니다.
+        /// <para>- 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.</para>
         /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
-        /// <para>- 오전 1시부터 전일 데이터 조회가 가능합니다</para>
+        /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
         /// </summary>
         /// <param name="oGuildId">길드 식별자</param>
         public Task<GuildBasicDTO> GetGuildBasic(string oGuildId)
         {
-            return GetGuildBasic(oGuildId, GetProperDefaultDateTimeOffset(new LatestApiUpdateTimeOption
-            {
-                Hour = 1,
-                Minute = 0,
-                DateOffset = 1
-            }));
+            return GetGuildBasic(oGuildId, null);
         }
 
         /// <summary>
         /// 길드 기본 정보를 조회합니다.
+        /// <para>- 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.</para>
         /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
-        /// <para>- 오전 1시부터 전일 데이터 조회가 가능합니다</para>
+        /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
         /// </summary>
         /// <param name="oGuildId">길드 식별자</param>
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
         /// <returns>길드 기본 정보</returns>
-        public async Task<GuildBasicDTO> GetGuildBasic(string oGuildId, DateTimeOffset dateTimeOffset)
+        public async Task<GuildBasicDTO> GetGuildBasic(string oGuildId, DateTimeOffset? dateTimeOffset)
         {
             var path = "maplestory/v1/guild/basic";
+            var date = dateTimeOffset != null
+                ? ToDateString(MinDate(2023, 12, 21), (DateTimeOffset) dateTimeOffset)
+                : null;
             var query = new Dictionary<string, string?>()
             {
                 { "oguild_id", oGuildId },
-                { "date", ToDateString(MinDate(2023, 12, 21), dateTimeOffset) }
+                { "date", date }
             };
 
             return await Get<GuildBasicDTO>(path, query);

@@ -1851,8 +1851,9 @@ public class MapleStoryApi {
 
     /**
      * 길드 식별자(oguild_id) 정보를 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
-     * - 길드 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param guildName 길드 명
@@ -1891,8 +1892,9 @@ public class MapleStoryApi {
 
     /**
      * 길드 식별자(oguild_id) 정보를 비동기로 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
-     * - 길드 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param guildName 길드 명
@@ -1924,28 +1926,32 @@ public class MapleStoryApi {
 
     /**
      * 길드 기본 정보를 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
-     * - 길드 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param oguildId 길드 식별자
      */
     public GuildBasicDTO getGuildBasic(@NonNull String oguildId) throws IOException {
-        return this.getGuildBasic(oguildId, getProperDefaultDateTime(new LatestApiUpdateTimeOption(1, 0, 1)));
+        return this.getGuildBasic(oguildId, null);
     }
 
     /**
      * 길드 기본 정보를 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
-     * - 길드 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param oguildId      길드 식별자
      * @param localDateTime 조회 기준일 (KST)
      */
-    public GuildBasicDTO getGuildBasic(@NonNull String oguildId, @NonNull LocalDateTime localDateTime) throws IOException {
+    public GuildBasicDTO getGuildBasic(@NonNull String oguildId, LocalDateTime localDateTime) throws IOException {
 
-        final String date = toDateString(minDate(2023, 12, 21), localDateTime);
+        final String date = localDateTime != null
+                ? toDateString(minDate(2023, 12, 21), localDateTime)
+                : null;
 
         final Response<GuildBasicDTO> response = buildRetrofit()
                 .create(GuildApi.class)
@@ -1961,28 +1967,32 @@ public class MapleStoryApi {
 
     /**
      * 길드 기본 정보를 비동기로 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
-     * - 길드 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param oguildId 길드 식별자
      */
     public void getGuildBasicAsync(@NonNull String oguildId, SuccessCallback<GuildBasicDTO> onSuccess, FailureCallback onFailure) {
-        this.getGuildBasicAsync(oguildId, getProperDefaultDateTime(new LatestApiUpdateTimeOption(1, 0, 1)), onSuccess, onFailure);
+        this.getGuildBasicAsync(oguildId, null, onSuccess, onFailure);
     }
 
     /**
      * 길드 기본 정보를 비동기로 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
-     * - 길드 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param oguildId      길드 식별자
      * @param localDateTime 조회 기준일 (KST)
      */
-    public void getGuildBasicAsync(@NonNull String oguildId, @NonNull LocalDateTime localDateTime, SuccessCallback<GuildBasicDTO> onSuccess, FailureCallback onFailure) {
+    public void getGuildBasicAsync(@NonNull String oguildId, LocalDateTime localDateTime, SuccessCallback<GuildBasicDTO> onSuccess, FailureCallback onFailure) {
 
-        final String date = toDateString(minDate(2023, 12, 21), localDateTime);
+        final String date = localDateTime != null
+                ? toDateString(minDate(2023, 12, 21), localDateTime)
+                : null;
 
         buildRetrofit()
                 .create(GuildApi.class)

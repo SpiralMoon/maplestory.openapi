@@ -537,8 +537,8 @@ class MapleStoryApi(BaseModel):
         """길드 식별자(gcid) 정보를 조회합니다.
 
         - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
-        - 길드 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)
-        - 길드 식별자(gcid)는 길드명과 월드명으로 조회할 수 있습니다.
+        - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)
+        - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
 
         @param guild_name (str): 길드 명
         @param world_name (str): 월드 명
@@ -552,11 +552,12 @@ class MapleStoryApi(BaseModel):
         r = self.fetch(path, query)
         return Guild(**r)
 
-    def get_guild_basic(self, oguid_id: str, date: datetime = get_proper_default_datetime(update_hour=1, day_offset=1)) -> GuildBasic:
+    def get_guild_basic(self, oguid_id: str, date: datetime | None) -> GuildBasic:
         """길드 기본 정보를 조회합니다.
 
         - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
-        - 길드 정보 조회 API는 일자별 데이터로 매일 오전 1시부터 전일 데이터 조회가 가능합니다. (예를 들어, 12월 22일 데이터를 조회하면 22일 00시부터 23일의 00시 사이의 데이터가 조회됩니다.)
+        - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)
+        - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
 
         @param oguild_id (str): 길드 식별자
         @param date(datetime): 조회 기준일(KST)
@@ -564,7 +565,7 @@ class MapleStoryApi(BaseModel):
         path = 'maplestory/v1/guild/basic'
         query = {
             'oguild_id': oguid_id,
-            'date': self.to_date_string(datetime(2023, 12, 21), date),
+            'date': self.to_date_string(datetime(2023, 12, 21), date) if date is not None else None,
         }
         r = self.fetch(path, query)
         return GuildBasic(**r)
