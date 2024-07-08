@@ -61,8 +61,8 @@ except MapleStoryApiException as e:
 
 따라서 아래 표에 설명된 error code 목록을 기반으로 `MapleStoryApiException`를 예외 처리하시기 바랍니다.
 
-| ErrorCode   | Description       |
-|-------------|-------------------|
+| ErrorCode    | Description       |
+|--------------|-------------------|
 | OPENAPI00001 | 서버 내부 오류          |
 | OPENAPI00002 | 권한이 없는 경우         |
 | OPENAPI00003 | 유효하지 않은 식별자       |
@@ -72,4 +72,4 @@ except MapleStoryApiException as e:
 | OPENAPI00007 | API 호출량 초과        |
 | OPENAPI00009 | 데이터 준비 중          |
 | OPENAPI00010 | 게임 점검 중           |
-| OPENAPI00010 | API 점검 중          |
+| OPENAPI00011 | API 점검 중          |
