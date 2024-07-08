@@ -11,7 +11,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @Data
 @ToString
-public class CharacterVMatrixCodeEquipmentDTO {
+public class CharacterVMatrixCoreEquipmentDTO {
 
     /**
      * 슬롯 인덱스

@@ -33,7 +33,7 @@ public class CharacterVMatrixDTO {
      * V 코어 정보를 나타내는 DTO 클래스입니다.
      */
     @SerializedName("character_v_core_equipment")
-    private List<CharacterVMatrixCodeEquipmentDTO> characterVCoreEquipment;
+    private List<CharacterVMatrixCoreEquipmentDTO> characterVCoreEquipment;
 
     /**
      * 캐릭터 잔여 매트릭스 강화 포인트
