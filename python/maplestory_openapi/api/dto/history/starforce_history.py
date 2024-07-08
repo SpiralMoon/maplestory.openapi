@@ -26,7 +26,7 @@ class StarforceHistoryInfo(BaseModel):
     world_name: str
     target_item: str
     date_create: datetime
-    starforce_event_list: list[StarforcHistoryeEvent]
+    starforce_event_list: list[StarforcHistoryeEvent] | None
 
 
 class StarforceHistory(BaseModel):

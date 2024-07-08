@@ -121,6 +121,6 @@ namespace MapleStory.OpenAPI.Dto
         /// 진행 중인 스타포스 강화 이벤트 정보
         /// </summary>
         [JsonProperty("starforce_event_list")]
-        public List<StarforceEventDTO> StarforceEventList { get; set; }
+        public List<StarforceEventDTO>? StarforceEventList { get; set; }
     }
 }

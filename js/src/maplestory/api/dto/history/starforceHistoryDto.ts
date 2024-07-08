@@ -88,7 +88,7 @@ class StarforceHistoryDto {
   /**
    * 진행 중인 스타포스 강화 이벤트 정보
    */
-  starforceEventList: StarforceEventDto[];
+  starforceEventList: StarforceEventDto[] | null;
 
   constructor(obj: StarforceHistoryDtoBody) {
     const {
@@ -127,9 +127,9 @@ class StarforceHistoryDto {
     this.worldName = world_name;
     this.targetItem = target_item;
     this.dateCreate = new Date(date_create);
-    this.starforceEventList = starforce_event_list.map(
+    this.starforceEventList = starforce_event_list?.map(
       (event) => new StarforceEventDto(event),
-    );
+    ) ?? null;
   }
 }
 
