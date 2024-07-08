@@ -562,7 +562,7 @@ class MapleStoryApi(BaseModel):
         r = self.fetch(path, query)
         return Guild(**r)
 
-    def get_guild_basic(self, oguid_id: str, date: datetime | None) -> GuildBasic:
+    def get_guild_basic(self, oguid_id: str, date: datetime | None = None) -> GuildBasic:
         """길드 기본 정보를 조회합니다.
 
         - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
