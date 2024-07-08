@@ -8,7 +8,7 @@ class GuildBasicDto {
   /**
    * 조회 기준일
    */
-  date: Date;
+  date: Date | null;
 
   /**
    * 월드 명
@@ -75,7 +75,7 @@ class GuildBasicDto {
       guild_noblesse_skill,
     } = obj;
 
-    this.date = new Date(date);
+    this.date = date ? new Date(date) : null;
     this.worldName = world_name;
     this.guildName = guild_name;
     this.guildLevel = guild_level;
