@@ -17,12 +17,12 @@ class CharacterVMatrixCodeEquipmentDto {
   /**
    * 코어 명
    */
-  vCoreName: string;
+  vCoreName: string | null;
 
   /**
    * 코어 타입
    */
-  vCoreType: string;
+  vCoreType: string | null;
 
   /**
    * 코어 레벨

@@ -23,13 +23,13 @@ namespace MapleStory.OpenAPI.Dto
         /// 코어 명
         /// </summary>
         [JsonProperty("v_core_name")]
-        public string VCoreName { get; set; }
+        public string? VCoreName { get; set; }
 
         /// <summary>
         /// 코어 타입
         /// </summary>
         [JsonProperty("v_core_type")]
-        public string VCoreType { get; set; }
+        public string? VCoreType { get; set; }
 
         /// <summary>
         /// 코어 레벨

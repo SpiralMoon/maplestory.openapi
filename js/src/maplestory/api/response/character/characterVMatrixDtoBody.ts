@@ -8,8 +8,8 @@ type CharacterVMatrixDtoBody = {
 type CharacterVMatrixCoreEquipmentDtoBody = {
   slot_id: string;
   slot_level: number;
-  v_core_name: string;
-  v_core_type: string;
+  v_core_name: string | null;
+  v_core_type: string | null;
   v_core_level: number;
   v_core_skill_1: string;
   v_core_skill_2: string | null;

@@ -16,8 +16,8 @@ class CharacterVMatrixCoreEquipment(BaseModel):
     """
     slot_id: str
     slot_level: int
-    v_core_name: str
-    v_core_type: str
+    v_core_name: str | None
+    v_core_type: str | None
     v_core_level: int
     v_core_skill_1: str | None
     v_core_skill_2: str | None
