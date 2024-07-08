@@ -33,7 +33,7 @@ class GuildBasic(BaseModel):
     guild_skill(list[GuildSkill]): 길드 스킬 목록
     guild_noblesse_skill(list[GuildSkill]): 노블레스 스킬 목록
     """
-    date: datetime
+    date: datetime | None
     world_name: str
     guild_name: str
     guild_level: int

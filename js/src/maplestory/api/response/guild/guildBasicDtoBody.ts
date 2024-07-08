@@ -1,5 +1,5 @@
 type GuildBasicDtoBody = {
-  date: string;
+  date: string | null;
   world_name: string;
   guild_name: string;
   guild_level: number;
