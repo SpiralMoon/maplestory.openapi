@@ -597,9 +597,12 @@ class MapleStoryApi(BaseModel):
         path = 'maplestory/v1/history/cube'
         query = {
             'count': count,
-            'date': self.to_date_string(datetime(2022, 11, 25), get_proper_default_datetime(update_hour=4, day_offset=1)) if date is None else date,
-            'cursor': cursor,
         }
+
+        if cursor is None:
+            query['date'] = self.to_date_string(datetime(2022, 11, 25), get_proper_default_datetime(day_offset=1, update_hour=4) if date is None else date) ,
+        else:
+            query['cursor'] = cursor
 
         r = self.fetch(path, query)
         return CubeHistory(**r)
@@ -617,9 +620,13 @@ class MapleStoryApi(BaseModel):
         path = 'maplestory/v1/history/potential'
         query = {
             'count': count,
-            'date': self.to_date_string(datetime(2024, 1, 25), get_proper_default_datetime(update_hour=4, day_offset=1)) if date is None else date,
-            'cursor': cursor,
         }
+
+        if cursor is None:
+            query['date'] = self.to_date_string(datetime(2024, 1, 25), get_proper_default_datetime(day_offset=1, update_hour=4) if date is None else date) ,
+        else:
+            query['cursor'] = cursor
+
         r = self.fetch(path, query)
         return PotentialHistory(**r)
 
@@ -636,9 +643,13 @@ class MapleStoryApi(BaseModel):
         path = 'maplestory/v1/history/starforce'
         query = {
             'count': count,
-            'date': self.to_date_string(datetime(2023, 12, 27), get_proper_default_datetime(day_offset=0)) if date is None else date,
-            'cursor': cursor,
         }
+
+        if cursor is None:
+            query['date'] = self.to_date_string(datetime(2023, 12, 27), get_proper_default_datetime(day_offset=0) if date is None else date) ,
+        else:
+            query['cursor'] = cursor
+
         r = self.fetch(path, query)
         return StarforceHistory(**r)
 

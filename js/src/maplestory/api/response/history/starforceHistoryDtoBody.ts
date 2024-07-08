@@ -17,7 +17,7 @@ type StarforceHistoryDtoBody = {
   world_name: string;
   target_item: string;
   date_create: string;
-  starforce_event_list: StarforceEventDtoBody[];
+  starforce_event_list: StarforceEventDtoBody[] | null;
 };
 
 export type { StarforceHistoryDtoBody };
