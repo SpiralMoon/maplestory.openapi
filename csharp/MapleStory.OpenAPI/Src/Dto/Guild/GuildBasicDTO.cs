@@ -23,7 +23,7 @@ namespace MapleStory.OpenAPI.Dto
             }
         }
 
-        private DateTimeOffset _date;
+        private DateTimeOffset? _date;
 
         /// <summary>
         /// 월드 명
