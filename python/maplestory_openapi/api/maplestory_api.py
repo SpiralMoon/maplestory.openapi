@@ -44,6 +44,14 @@ from maplestory_openapi.api.dto.ranking.union_ranking import UnionRanking
 from maplestory_openapi.api.dto.ranking.theseed_ranking import TheSeedRanking
 from maplestory_openapi.api.dto.ranking.achievement_ranking import AchievementRanking
 
+from maplestory_openapi.api.dto.notice.cashshop_notice_detail import CashshopNoticeDetail
+from maplestory_openapi.api.dto.notice.cashshop_notice_list import CashshopNoticeList
+from maplestory_openapi.api.dto.notice.event_notice_detail import EventNoticeDetail
+from maplestory_openapi.api.dto.notice.event_notice_list import EventNoticeList
+from maplestory_openapi.api.dto.notice.notice_detail import NoticeDetail
+from maplestory_openapi.api.dto.notice.notice_list import NoticeList
+from maplestory_openapi.api.dto.notice.update_notice_detail import UpdateNoticeDetail
+from maplestory_openapi.api.dto.notice.update_notice_list import UpdateNoticeList
 
 from maplestory_openapi.api.maplestory_api_error import MapleStoryApiError, MapleStoryApiException
 from maplestory_openapi.api.utils.date import get_proper_default_datetime
@@ -810,6 +818,106 @@ class MapleStoryApi(BaseModel):
         }
         r = self.fetch(path, query)
         return AchievementRanking(**r)
+
+    #endregion
+
+    #region 공지 정보 조회
+
+    def get_notice_list(self) -> NoticeList:
+        """메이플스토리 공지사항에 최근 등록된 게시글 20개를 조회합니다.
+
+        - 공지 정보 API는 데이터 최신화(공지 내용 수정/ 업데이트 고려)를 위해 실시간 조회 또는 최소 일배치 작업을 권장합니다.
+        - 실시간으로 정보를 제공하지 않는 경우, 신규/수정 공지 내용이 반영되지 않을 수 있으니 서비스 이용 유저에게 홈페이지 공지 사항을 확인하라는 가이드를 제공해주세요.
+        """
+        path = 'maplestory/v1/notice'
+        query = {}
+        r = self.fetch(path, query)
+        return NoticeList(**r)
+
+    def get_notice_detail(self, notice_id: int) -> NoticeDetail:
+        """메이플스토리 공지사항 게시글 세부 사항을 조회합니다.
+
+        - 공지 정보 API는 데이터 최신화(공지 내용 수정/ 업데이트 고려)를 위해 실시간 조회 또는 최소 일배치 작업을 권장합니다.
+        - 실시간으로 정보를 제공하지 않는 경우, 신규/수정 공지 내용이 반영되지 않을 수 있으니 서비스 이용 유저에게 홈페이지 공지 사항을 확인하라는 가이드를 제공해주세요.
+        """
+        path = 'maplestory/v1/notice/detail'
+        query = {
+            'notice_id': notice_id,
+        }
+        r = self.fetch(path, query)
+        return NoticeDetail(**r)
+
+    def get_update_notice_list(self) -> UpdateNoticeList:
+        """메이플스토리 업데이트에 최근 등록된 게시글 20개를 조회합니다.
+
+        - 공지 정보 API는 데이터 최신화(공지 내용 수정/ 업데이트 고려)를 위해 실시간 조회 또는 최소 일배치 작업을 권장합니다.
+        - 실시간으로 정보를 제공하지 않는 경우, 신규/수정 공지 내용이 반영되지 않을 수 있으니 서비스 이용 유저에게 홈페이지 공지 사항을 확인하라는 가이드를 제공해주세요.
+        """
+        path = 'maplestory/v1/notice-update'
+        query = {}
+        r = self.fetch(path, query)
+        return UpdateNoticeList(**r)
+
+    def get_update_notice_detail(self, notice_id: int) -> UpdateNoticeDetail:
+        """메이플스토리 업데이트 게시글 세부 사항을 조회합니다.
+
+        - 공지 정보 API는 데이터 최신화(공지 내용 수정/ 업데이트 고려)를 위해 실시간 조회 또는 최소 일배치 작업을 권장합니다.
+        - 실시간으로 정보를 제공하지 않는 경우, 신규/수정 공지 내용이 반영되지 않을 수 있으니 서비스 이용 유저에게 홈페이지 공지 사항을 확인하라는 가이드를 제공해주세요.
+        """
+        path = 'maplestory/v1/notice-update/detail'
+        query = {
+            'notice_id': notice_id,
+        }
+        r = self.fetch(path, query)
+        return UpdateNoticeDetail(**r)
+
+    def get_event_notice_list(self) -> EventNoticeList:
+        """메이플스토리 진행 중 이벤트에 최근 등록된 게시글 20개를 조회합니다.
+
+        - 공지 정보 API는 데이터 최신화(공지 내용 수정/ 업데이트 고려)를 위해 실시간 조회 또는 최소 일배치 작업을 권장합니다.
+        - 실시간으로 정보를 제공하지 않는 경우, 신규/수정 공지 내용이 반영되지 않을 수 있으니 서비스 이용 유저에게 홈페이지 공지 사항을 확인하라는 가이드를 제공해주세요.
+        """
+        path = 'maplestory/v1/notice-event'
+        query = {}
+        r = self.fetch(path, query)
+        return EventNoticeList(**r)
+
+    def get_event_notice_detail(self, notice_id: int) -> EventNoticeDetail:
+        """메이플스토리 진행 중 이벤트 게시글 세부 사항을 조회합니다.
+
+        - 공지 정보 API는 데이터 최신화(공지 내용 수정/ 업데이트 고려)를 위해 실시간 조회 또는 최소 일배치 작업을 권장합니다.
+        - 실시간으로 정보를 제공하지 않는 경우, 신규/수정 공지 내용이 반영되지 않을 수 있으니 서비스 이용 유저에게 홈페이지 공지 사항을 확인하라는 가이드를 제공해주세요.
+        """
+        path = 'maplestory/v1/notice-event/detail'
+        query = {
+            'notice_id': notice_id,
+        }
+        r = self.fetch(path, query)
+        return EventNoticeDetail(**r)
+
+    def get_cashshop_notice_list(self) -> CashshopNoticeList:
+        """메이플스토리 캐시샵 공지에 최근 등록된 게시글 20개를 조회합니다.
+
+        - 공지 정보 API는 데이터 최신화(공지 내용 수정/ 업데이트 고려)를 위해 실시간 조회 또는 최소 일배치 작업을 권장합니다.
+        - 실시간으로 정보를 제공하지 않는 경우, 신규/수정 공지 내용이 반영되지 않을 수 있으니 서비스 이용 유저에게 홈페이지 공지 사항을 확인하라는 가이드를 제공해주세요.
+        """
+        path = 'maplestory/v1/notice-cashshop'
+        query = {}
+        r = self.fetch(path, query)
+        return CashshopNoticeList(**r)
+
+    def get_cashshop_notice_detail(self, notice_id: int) -> CashshopNoticeDetail:
+        """메이플스토리 캐시샵 공지 게시글 세부 사항을 조회합니다.
+
+        - 공지 정보 API는 데이터 최신화(공지 내용 수정/ 업데이트 고려)를 위해 실시간 조회 또는 최소 일배치 작업을 권장합니다.
+        - 실시간으로 정보를 제공하지 않는 경우, 신규/수정 공지 내용이 반영되지 않을 수 있으니 서비스 이용 유저에게 홈페이지 공지 사항을 확인하라는 가이드를 제공해주세요.
+        """
+        path = 'maplestory/v1/notice-cashshop/detail'
+        query = {
+            'notice_id': notice_id,
+        }
+        r = self.fetch(path, query)
+        return CashshopNoticeDetail(**r)
 
     #endregion
 
