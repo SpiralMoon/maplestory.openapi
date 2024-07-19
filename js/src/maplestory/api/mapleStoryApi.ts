@@ -31,6 +31,14 @@ import { CubeHistoryResponseDto } from '@src/maplestory/api/dto/history/cubeHist
 import { PotentialHistoryResponseDto } from '@src/maplestory/api/dto/history/potentialHistoryResponseDto';
 import { StarforceHistoryResponseDto } from '@src/maplestory/api/dto/history/starforceHistoryResponseDto';
 import { InspectionInfoDto } from '@src/maplestory/api/dto/inspectionInfoDto';
+import { CashshopNoticeDetailDto } from '@src/maplestory/api/dto/notice/cashshopNoticeDetailDto';
+import { CashshopNoticeListDto } from '@src/maplestory/api/dto/notice/cashshopNoticeListDto';
+import { EventNoticeDetailDto } from '@src/maplestory/api/dto/notice/eventNoticeDetailDto';
+import { EventNoticeListDto } from '@src/maplestory/api/dto/notice/eventNoticeListDto';
+import { NoticeDetailDto } from '@src/maplestory/api/dto/notice/noticeDetailDto';
+import { NoticeListDto } from '@src/maplestory/api/dto/notice/noticeListDto';
+import { UpdateNoticeDetailDto } from '@src/maplestory/api/dto/notice/updateNoticeDetailDto';
+import { UpdateNoticeListDto } from '@src/maplestory/api/dto/notice/updateNoticeListDto';
 import { AchievementRankingResponseDto } from '@src/maplestory/api/dto/ranking/achievementRankingResponseDto';
 import { DojangRankingResponseDto } from '@src/maplestory/api/dto/ranking/dojangRankingResponseDto';
 import { GuildRankingResponseDto } from '@src/maplestory/api/dto/ranking/guildRankingResponseDto';
@@ -42,10 +50,16 @@ import { UnionDto } from '@src/maplestory/api/dto/union/unionDto';
 import { UnionRaiderDto } from '@src/maplestory/api/dto/union/unionRaiderDto';
 import { MapleStoryApiError } from '@src/maplestory/api/mapleStoryApiError';
 import { CharacterAbilityDtoBody } from '@src/maplestory/api/response/character/characterAbilityDtoBody';
-import { CharacterAndroidEquipmentDtoBody } from '@src/maplestory/api/response/character/characterAndroidEquipmentDtoBody';
+import {
+  CharacterAndroidEquipmentDtoBody,
+} from '@src/maplestory/api/response/character/characterAndroidEquipmentDtoBody';
 import { CharacterBasicDtoBody } from '@src/maplestory/api/response/character/characterBasicDtoBody';
-import { CharacterBeautyEquipmentDtoBody } from '@src/maplestory/api/response/character/characterBeautyEquipmentDtoBody';
-import { CharacterCashItemEquipmentDtoBody } from '@src/maplestory/api/response/character/characterCashItemEquipmentDtoBody';
+import {
+  CharacterBeautyEquipmentDtoBody,
+} from '@src/maplestory/api/response/character/characterBeautyEquipmentDtoBody';
+import {
+  CharacterCashItemEquipmentDtoBody,
+} from '@src/maplestory/api/response/character/characterCashItemEquipmentDtoBody';
 import { CharacterDojangDtoBody } from '@src/maplestory/api/response/character/characterDojangDtoBody';
 import { CharacterDtoBody } from '@src/maplestory/api/response/character/characterDtoBody';
 import { CharacterHexaMatrixDtoBody } from '@src/maplestory/api/response/character/characterHexaMatrixDtoBody';
@@ -60,7 +74,9 @@ import { CharacterPropensityDtoBody } from '@src/maplestory/api/response/charact
 import { CharacterSetEffectDtoBody } from '@src/maplestory/api/response/character/characterSetEffectDtoBody';
 import { CharacterSkillDtoBody } from '@src/maplestory/api/response/character/characterSkillDtoBody';
 import { CharacterStatDtoBody } from '@src/maplestory/api/response/character/characterStatDtoBody';
-import { CharacterSymbolEquipmentDtoBody } from '@src/maplestory/api/response/character/characterSymbolEquipmentDtoBody';
+import {
+  CharacterSymbolEquipmentDtoBody,
+} from '@src/maplestory/api/response/character/characterSymbolEquipmentDtoBody';
 import { CharacterVMatrixDtoBody } from '@src/maplestory/api/response/character/characterVMatrixDtoBody';
 import { GuildBasicDtoBody } from '@src/maplestory/api/response/guild/guildBasicDtoBody';
 import { GuildDtoBody } from '@src/maplestory/api/response/guild/guildDtoBody';
@@ -68,7 +84,17 @@ import { CubeHistoryResponseDtoBody } from '@src/maplestory/api/response/history
 import { PotentialHistoryResponseDtoBody } from '@src/maplestory/api/response/history/potentialHistoryResponseDtoBody';
 import { StarforceHistoryResponseDtoBody } from '@src/maplestory/api/response/history/starforceHistoryResponseDtoBody';
 import { InspectionInfoSoapBody } from '@src/maplestory/api/response/inspectionInfoSoapBody';
-import { AchievementRankingResponseDtoBody } from '@src/maplestory/api/response/ranking/achievementRankingResponseDtoBody';
+import { CashshopNoticeDetailDtoBody } from '@src/maplestory/api/response/notice/cashshopNoticeDetailDtoBody';
+import { CashshopNoticeListDtoBody } from '@src/maplestory/api/response/notice/cashshopNoticeListDtoBody';
+import { EventNoticeDetailDtoBody } from '@src/maplestory/api/response/notice/eventNoticeDetailDtoBody';
+import { EventNoticeListDtoBody } from '@src/maplestory/api/response/notice/eventNoticeListDtoBody';
+import { NoticeDetailDtoBody } from '@src/maplestory/api/response/notice/noticeDetailDtoBody';
+import { NoticeListDtoBody } from '@src/maplestory/api/response/notice/noticeListDtoBody';
+import { UpdateNoticeDetailDtoBody } from '@src/maplestory/api/response/notice/updateNoticeDetailDtoBody';
+import { UpdateNoticeListDtoBody } from '@src/maplestory/api/response/notice/updateNoticeListDtoBody';
+import {
+  AchievementRankingResponseDtoBody,
+} from '@src/maplestory/api/response/ranking/achievementRankingResponseDtoBody';
 import { DojangRankingResponseDtoBody } from '@src/maplestory/api/response/ranking/dojangRankingResponseDtoBody';
 import { GuildRankingResponseDtoBody } from '@src/maplestory/api/response/ranking/guildRankingResponseDtoBody';
 import { OverallRankingResponseDtoBody } from '@src/maplestory/api/response/ranking/overallRankingResponseDtoBody';
@@ -123,7 +149,7 @@ class MapleStoryApi {
           throw new MapleStoryApiError(errorBody);
         }
 
-        throw  error;
+        throw error;
       });
   }
 
@@ -174,14 +200,14 @@ class MapleStoryApi {
    */
   public async getCharacterBasic(
     ocid: string,
-    dateOptions?: DateOptions
+    dateOptions?: DateOptions,
   ): Promise<CharacterBasicDto> {
     const path = 'maplestory/v1/character/basic';
     const date = dateOptions
       ? MapleStoryApi.toDateString({
         year: 2023,
         month: 12,
-        day: 21
+        day: 21,
       }, dateOptions)
       : undefined;
     const query: CharacterApiQuery = {
@@ -212,10 +238,10 @@ class MapleStoryApi {
     const path = 'maplestory/v1/character/popularity';
     const date = dateOptions
       ? MapleStoryApi.toDateString({
-          year: 2023,
-          month: 12,
-          day: 21
-        }, dateOptions)
+        year: 2023,
+        month: 12,
+        day: 21,
+      }, dateOptions)
       : undefined;
     const query: CharacterApiQuery = {
       ocid: ocid,
@@ -240,14 +266,14 @@ class MapleStoryApi {
    */
   public async getCharacterStat(
     ocid: string,
-    dateOptions?: DateOptions
+    dateOptions?: DateOptions,
   ): Promise<CharacterStatDto> {
     const path = 'maplestory/v1/character/stat';
     const date = dateOptions
       ? MapleStoryApi.toDateString({
         year: 2023,
         month: 12,
-        day: 21
+        day: 21,
       }, dateOptions)
       : undefined;
     const query: CharacterApiQuery = {
@@ -273,14 +299,14 @@ class MapleStoryApi {
    */
   public async getCharacterHyperStat(
     ocid: string,
-    dateOptions?: DateOptions
+    dateOptions?: DateOptions,
   ): Promise<CharacterHyperStatDto> {
     const path = 'maplestory/v1/character/hyper-stat';
     const date = dateOptions
       ? MapleStoryApi.toDateString({
         year: 2023,
         month: 12,
-        day: 21
+        day: 21,
       }, dateOptions)
       : undefined;
     const query: CharacterApiQuery = {
@@ -306,14 +332,14 @@ class MapleStoryApi {
    */
   public async getCharacterPropensity(
     ocid: string,
-    dateOptions?: DateOptions
+    dateOptions?: DateOptions,
   ): Promise<CharacterPropensityDto> {
     const path = 'maplestory/v1/character/propensity';
     const date = dateOptions
       ? MapleStoryApi.toDateString({
         year: 2023,
         month: 12,
-        day: 21
+        day: 21,
       }, dateOptions)
       : undefined;
     const query: CharacterApiQuery = {
@@ -339,14 +365,14 @@ class MapleStoryApi {
    */
   public async getCharacterAbility(
     ocid: string,
-    dateOptions?: DateOptions
+    dateOptions?: DateOptions,
   ): Promise<CharacterAbilityDto> {
     const path = 'maplestory/v1/character/ability';
     const date = dateOptions
       ? MapleStoryApi.toDateString({
         year: 2023,
         month: 12,
-        day: 21
+        day: 21,
       }, dateOptions)
       : undefined;
     const query: CharacterApiQuery = {
@@ -372,14 +398,14 @@ class MapleStoryApi {
    */
   public async getCharacterItemEquipment(
     ocid: string,
-    dateOptions?: DateOptions
+    dateOptions?: DateOptions,
   ): Promise<CharacterItemEquipmentDto> {
     const path = 'maplestory/v1/character/item-equipment';
     const date = dateOptions
       ? MapleStoryApi.toDateString({
         year: 2023,
         month: 12,
-        day: 21
+        day: 21,
       }, dateOptions)
       : undefined;
     const query: CharacterApiQuery = {
@@ -405,14 +431,14 @@ class MapleStoryApi {
    */
   public async getCharacterCashItemEquipment(
     ocid: string,
-    dateOptions?: DateOptions
+    dateOptions?: DateOptions,
   ): Promise<CharacterCashItemEquipmentDto> {
     const path = 'maplestory/v1/character/cashitem-equipment';
     const date = dateOptions
       ? MapleStoryApi.toDateString({
         year: 2023,
         month: 12,
-        day: 21
+        day: 21,
       }, dateOptions)
       : undefined;
     const query: CharacterApiQuery = {
@@ -441,14 +467,14 @@ class MapleStoryApi {
    */
   public async getCharacterSymbolEquipment(
     ocid: string,
-    dateOptions?: DateOptions
+    dateOptions?: DateOptions,
   ): Promise<CharacterSymbolEquipmentDto> {
     const path = 'maplestory/v1/character/symbol-equipment';
     const date = dateOptions
       ? MapleStoryApi.toDateString({
         year: 2023,
         month: 12,
-        day: 21
+        day: 21,
       }, dateOptions)
       : undefined;
     const query: CharacterApiQuery = {
@@ -474,14 +500,14 @@ class MapleStoryApi {
    */
   public async getCharacterSetEffect(
     ocid: string,
-    dateOptions?: DateOptions
+    dateOptions?: DateOptions,
   ): Promise<CharacterSetEffectDto> {
     const path = 'maplestory/v1/character/set-effect';
     const date = dateOptions
       ? MapleStoryApi.toDateString({
         year: 2023,
         month: 12,
-        day: 21
+        day: 21,
       }, dateOptions)
       : undefined;
     const query: CharacterApiQuery = {
@@ -507,7 +533,7 @@ class MapleStoryApi {
    */
   public async getCharacterBeautyEquipment(
     ocid: string,
-    dateOptions?: DateOptions
+    dateOptions?: DateOptions,
   ): Promise<CharacterBeautyEquipmentDto> {
     const path = 'maplestory/v1/character/beauty-equipment';
     const query: CharacterApiQuery = {
@@ -540,14 +566,14 @@ class MapleStoryApi {
    */
   public async getCharacterAndroidEquipment(
     ocid: string,
-    dateOptions?: DateOptions
+    dateOptions?: DateOptions,
   ): Promise<CharacterAndroidEquipmentDto> {
     const path = 'maplestory/v1/character/android-equipment';
     const date = dateOptions
       ? MapleStoryApi.toDateString({
         year: 2023,
         month: 12,
-        day: 21
+        day: 21,
       }, dateOptions)
       : undefined;
     const query: CharacterApiQuery = {
@@ -573,14 +599,14 @@ class MapleStoryApi {
    */
   public async getCharacterPetEquipment(
     ocid: string,
-    dateOptions?: DateOptions
+    dateOptions?: DateOptions,
   ): Promise<CharacterPetEquipmentDto> {
     const path = 'maplestory/v1/character/pet-equipment';
     const date = dateOptions
       ? MapleStoryApi.toDateString({
         year: 2023,
         month: 12,
-        day: 21
+        day: 21,
       }, dateOptions)
       : undefined;
     const query: CharacterApiQuery = {
@@ -619,14 +645,14 @@ class MapleStoryApi {
   public async getCharacterSkill(
     ocid: string,
     characterSkillGrade: string,
-    dateOptions?: DateOptions
+    dateOptions?: DateOptions,
   ): Promise<CharacterSkillDto> {
     const path = 'maplestory/v1/character/skill';
     const date = dateOptions
       ? MapleStoryApi.toDateString({
         year: 2023,
         month: 12,
-        day: 21
+        day: 21,
       }, dateOptions)
       : undefined;
     const query: CharacterSkillApiQuery = {
@@ -653,14 +679,14 @@ class MapleStoryApi {
    */
   public async getCharacterLinkSkill(
     ocid: string,
-    dateOptions?: DateOptions
+    dateOptions?: DateOptions,
   ): Promise<CharacterLinkSkillDto> {
     const path = 'maplestory/v1/character/link-skill';
     const date = dateOptions
       ? MapleStoryApi.toDateString({
         year: 2023,
         month: 12,
-        day: 21
+        day: 21,
       }, dateOptions)
       : undefined;
     const query: CharacterApiQuery = {
@@ -686,14 +712,14 @@ class MapleStoryApi {
    */
   public async getCharacterVMatrix(
     ocid: string,
-    dateOptions?: DateOptions
+    dateOptions?: DateOptions,
   ): Promise<CharacterVMatrixDto> {
     const path = 'maplestory/v1/character/vmatrix';
     const date = dateOptions
       ? MapleStoryApi.toDateString({
         year: 2023,
         month: 12,
-        day: 21
+        day: 21,
       }, dateOptions)
       : undefined;
     const query: CharacterApiQuery = {
@@ -719,14 +745,14 @@ class MapleStoryApi {
    */
   public async getCharacterHexaMatrix(
     ocid: string,
-    dateOptions?: DateOptions
+    dateOptions?: DateOptions,
   ): Promise<CharacterHexaMatrixDto> {
     const path = 'maplestory/v1/character/hexamatrix';
     const date = dateOptions
       ? MapleStoryApi.toDateString({
         year: 2023,
         month: 12,
-        day: 21
+        day: 21,
       }, dateOptions)
       : undefined;
     const query: CharacterApiQuery = {
@@ -752,14 +778,14 @@ class MapleStoryApi {
    */
   public async getCharacterHexaMatrixStat(
     ocid: string,
-    dateOptions?: DateOptions
+    dateOptions?: DateOptions,
   ): Promise<CharacterHexaMatrixStatDto> {
     const path = 'maplestory/v1/character/hexamatrix-stat';
     const date = dateOptions
       ? MapleStoryApi.toDateString({
         year: 2023,
         month: 12,
-        day: 21
+        day: 21,
       }, dateOptions)
       : undefined;
     const query: CharacterApiQuery = {
@@ -785,14 +811,14 @@ class MapleStoryApi {
    */
   public async getCharacterDojang(
     ocid: string,
-    dateOptions?: DateOptions
+    dateOptions?: DateOptions,
   ): Promise<CharacterDojangDto> {
     const path = 'maplestory/v1/character/dojang';
     const date = dateOptions
       ? MapleStoryApi.toDateString({
         year: 2023,
         month: 12,
-        day: 21
+        day: 21,
       }, dateOptions)
       : undefined;
     const query: CharacterApiQuery = {
@@ -822,14 +848,14 @@ class MapleStoryApi {
    */
   public async getUnion(
     ocid: string,
-    dateOptions?: DateOptions
+    dateOptions?: DateOptions,
   ): Promise<UnionDto> {
     const path = 'maplestory/v1/user/union';
     const date = dateOptions
       ? MapleStoryApi.toDateString({
         year: 2023,
         month: 12,
-        day: 21
+        day: 21,
       }, dateOptions)
       : undefined;
     const query: UnionApiQuery = {
@@ -855,14 +881,14 @@ class MapleStoryApi {
    */
   public async getUnionRaider(
     ocid: string,
-    dateOptions?: DateOptions
+    dateOptions?: DateOptions,
   ): Promise<UnionRaiderDto> {
     const path = 'maplestory/v1/user/union-raider';
     const date = dateOptions
       ? MapleStoryApi.toDateString({
         year: 2023,
         month: 12,
-        day: 21
+        day: 21,
       }, dateOptions)
       : undefined;
     const query: UnionApiQuery = {
@@ -888,14 +914,14 @@ class MapleStoryApi {
    */
   public async getUnionArtifact(
     ocid: string,
-    dateOptions?: DateOptions
+    dateOptions?: DateOptions,
   ): Promise<UnionArtifactDto> {
     const path = 'maplestory/v1/user/union-artifact';
     const date = dateOptions
       ? MapleStoryApi.toDateString({
         year: 2023,
         month: 12,
-        day: 21
+        day: 21,
       }, dateOptions)
       : undefined;
     const query: UnionApiQuery = {
@@ -950,14 +976,14 @@ class MapleStoryApi {
    */
   public async getGuildBasic(
     guildId: string,
-    dateOptions?: DateOptions
+    dateOptions?: DateOptions,
   ): Promise<GuildBasicDto> {
     const path = 'maplestory/v1/guild/basic';
     const date = dateOptions
       ? MapleStoryApi.toDateString({
         year: 2023,
         month: 12,
-        day: 21
+        day: 21,
       }, dateOptions)
       : undefined;
     const query: GuildApiQuery = {
@@ -1031,11 +1057,11 @@ class MapleStoryApi {
           day: 27,
         },
         parameter ??
-          MapleStoryApi.getProperDefaultDateOptions({
-            hour: 0,
-            minute: 0,
-            dateOffset: 0,
-          }),
+        MapleStoryApi.getProperDefaultDateOptions({
+          hour: 0,
+          minute: 0,
+          dateOffset: 0,
+        }),
       );
     }
 
@@ -1103,11 +1129,11 @@ class MapleStoryApi {
           day: 25,
         },
         parameter ??
-          MapleStoryApi.getProperDefaultDateOptions({
-            hour: 4,
-            minute: 0,
-            dateOffset: 1,
-          }),
+        MapleStoryApi.getProperDefaultDateOptions({
+          hour: 4,
+          minute: 0,
+          dateOffset: 1,
+        }),
       );
     }
 
@@ -1177,11 +1203,11 @@ class MapleStoryApi {
           day: 25,
         },
         parameter ??
-          MapleStoryApi.getProperDefaultDateOptions({
-            hour: 4,
-            minute: 0,
-            dateOffset: 1,
-          }),
+        MapleStoryApi.getProperDefaultDateOptions({
+          hour: 4,
+          minute: 0,
+          dateOffset: 1,
+        }),
       );
     }
 
@@ -1470,6 +1496,166 @@ class MapleStoryApi {
     );
 
     return new AchievementRankingResponseDto(data);
+  }
+
+  //#endregion
+
+  //#region 공지 정보 조회
+
+  /**
+   * 메이플스토리 공지사항에 최근 등록된 게시글 20개를 조회합니다.
+   *
+   * - 공지 정보 API는 데이터 최신화(공지 내용 수정/ 업데이트 고려)를 위해 실시간 조회 또는 최소 일배치 작업을 권장합니다.
+   * - 실시간으로 정보를 제공하지 않는 경우, 신규/수정 공지 내용이 반영되지 않을 수 있으니 서비스 이용 유저에게 홈페이지 공지 사항을 확인하라는 가이드를 제공해주세요.
+   */
+  public async getNoticeList(): Promise<NoticeListDto> {
+    const path = 'maplestory/v1/notice';
+
+    const { data } = await this.client.get<NoticeListDtoBody>(
+      path,
+    );
+
+    return new NoticeListDto(data);
+  }
+
+  /**
+   * 메이플스토리 공지사항 게시글 세부 사항을 조회합니다.
+   *
+   * - 공지 정보 API는 데이터 최신화(공지 내용 수정/ 업데이트 고려)를 위해 실시간 조회 또는 최소 일배치 작업을 권장합니다.
+   * - 실시간으로 정보를 제공하지 않는 경우, 신규/수정 공지 내용이 반영되지 않을 수 있으니 서비스 이용 유저에게 홈페이지 공지 사항을 확인하라는 가이드를 제공해주세요.
+   * @param noticeId 공지 식별자
+   */
+  public async getNoticeDetail(noticeId: number): Promise<NoticeDetailDto> {
+    const path = 'maplestory/v1/notice/detail';
+    const query: NoticeApiQuery = {
+      notice_id: noticeId,
+    };
+
+    const { data } = await this.client.get<NoticeDetailDtoBody>(
+      path,
+      {
+        params: query,
+      },
+    );
+
+    return new NoticeDetailDto(data);
+  }
+
+  /**
+   * 메이플스토리 업데이트에 최근 등록된 게시글 20개를 조회합니다.
+   *
+   * - 공지 정보 API는 데이터 최신화(공지 내용 수정/ 업데이트 고려)를 위해 실시간 조회 또는 최소 일배치 작업을 권장합니다.
+   * - 실시간으로 정보를 제공하지 않는 경우, 신규/수정 공지 내용이 반영되지 않을 수 있으니 서비스 이용 유저에게 홈페이지 공지 사항을 확인하라는 가이드를 제공해주세요.
+   */
+  public async getUpdateNoticeList(): Promise<UpdateNoticeListDto> {
+    const path = 'maplestory/v1/notice-update';
+
+    const { data } = await this.client.get<UpdateNoticeListDtoBody>(
+      path,
+    );
+
+    return new UpdateNoticeListDto(data);
+  }
+
+  /**
+   * 메이플스토리 업데이트 게시글 세부 사항을 조회합니다.
+   *
+   * - 공지 정보 API는 데이터 최신화(공지 내용 수정/ 업데이트 고려)를 위해 실시간 조회 또는 최소 일배치 작업을 권장합니다.
+   * - 실시간으로 정보를 제공하지 않는 경우, 신규/수정 공지 내용이 반영되지 않을 수 있으니 서비스 이용 유저에게 홈페이지 공지 사항을 확인하라는 가이드를 제공해주세요.
+   * @param noticeId 공지 식별자
+   */
+  public async getUpdateNoticeDetail(noticeId: number): Promise<UpdateNoticeDetailDto> {
+    const path = 'maplestory/v1/notice-update/detail';
+    const query: NoticeApiQuery = {
+      notice_id: noticeId,
+    };
+
+    const { data } = await this.client.get<UpdateNoticeDetailDtoBody>(
+      path,
+      {
+        params: query,
+      },
+    );
+
+    return new UpdateNoticeDetailDto(data);
+  }
+
+  /**
+   * 메이플스토리 진행 중 이벤트에 최근 등록된 공지사항 20개를 조회합니다.
+   *
+   * - 공지 정보 API는 데이터 최신화(공지 내용 수정/ 업데이트 고려)를 위해 실시간 조회 또는 최소 일배치 작업을 권장합니다.
+   * - 실시간으로 정보를 제공하지 않는 경우, 신규/수정 공지 내용이 반영되지 않을 수 있으니 서비스 이용 유저에게 홈페이지 공지 사항을 확인하라는 가이드를 제공해주세요.
+   */
+  public async getEventNoticeList(): Promise<EventNoticeListDto> {
+    const path = 'maplestory/v1/notice-event';
+
+    const { data } = await this.client.get<EventNoticeListDtoBody>(
+      path,
+    );
+
+    return new EventNoticeListDto(data);
+  }
+
+  /**
+   * 메이플스토리 진행 중 이벤트 게시글 세부 사항을 조회합니다.
+   *
+   * - 공지 정보 API는 데이터 최신화(공지 내용 수정/ 업데이트 고려)를 위해 실시간 조회 또는 최소 일배치 작업을 권장합니다.
+   * - 실시간으로 정보를 제공하지 않는 경우, 신규/수정 공지 내용이 반영되지 않을 수 있으니 서비스 이용 유저에게 홈페이지 공지 사항을 확인하라는 가이드를 제공해주세요.
+   * @param noticeId 공지 식별자
+   */
+  public async getEventNoticeDetail(noticeId: number): Promise<EventNoticeDetailDto> {
+    const path = 'maplestory/v1/notice-event/detail';
+    const query: NoticeApiQuery = {
+      notice_id: noticeId,
+    };
+
+    const { data } = await this.client.get<EventNoticeDetailDtoBody>(
+      path,
+      {
+        params: query,
+      },
+    );
+
+    return new EventNoticeDetailDto(data);
+  }
+
+  /**
+   * 메이플스토리 캐시샵 공지에 최근 등록된 공지사항 20개를 조회합니다.
+   *
+   * - 공지 정보 API는 데이터 최신화(공지 내용 수정/ 업데이트 고려)를 위해 실시간 조회 또는 최소 일배치 작업을 권장합니다.
+   * - 실시간으로 정보를 제공하지 않는 경우, 신규/수정 공지 내용이 반영되지 않을 수 있으니 서비스 이용 유저에게 홈페이지 공지 사항을 확인하라는 가이드를 제공해주세요.
+   */
+  public async getCashshopNoticeList(): Promise<CashshopNoticeListDto> {
+    const path = 'maplestory/v1/notice-cashshop';
+
+    const { data } = await this.client.get<CashshopNoticeListDtoBody>(
+      path,
+    );
+
+    return new CashshopNoticeListDto(data);
+  }
+
+  /**
+   * 메이플스토리 캐시샵 공지 게시글 세부 사항을 조회합니다.
+   *
+   * - 공지 정보 API는 데이터 최신화(공지 내용 수정/ 업데이트 고려)를 위해 실시간 조회 또는 최소 일배치 작업을 권장합니다.
+   * - 실시간으로 정보를 제공하지 않는 경우, 신규/수정 공지 내용이 반영되지 않을 수 있으니 서비스 이용 유저에게 홈페이지 공지 사항을 확인하라는 가이드를 제공해주세요.
+   * @param noticeId 공지 식별자
+   */
+  public async getCashshopNoticeDetail(noticeId: number): Promise<CashshopNoticeDetailDto> {
+    const path = 'maplestory/v1/notice-cashshop/detail';
+    const query: NoticeApiQuery = {
+      notice_id: noticeId,
+    };
+
+    const { data } = await this.client.get<CashshopNoticeDetailDtoBody>(
+      path,
+      {
+        params: query,
+      },
+    );
+
+    return new CashshopNoticeDetailDto(data);
   }
 
   //#endregion
@@ -2085,6 +2271,10 @@ type AchievementRankingApiQuery = {
   date: string;
   ocid?: string;
   page?: number;
+};
+
+type NoticeApiQuery = {
+  notice_id: number;
 };
 
 type MapleStoryErrorBody = {
