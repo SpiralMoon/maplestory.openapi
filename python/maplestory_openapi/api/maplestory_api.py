@@ -839,6 +839,8 @@ class MapleStoryApi(BaseModel):
 
         - 공지 정보 API는 데이터 최신화(공지 내용 수정/ 업데이트 고려)를 위해 실시간 조회 또는 최소 일배치 작업을 권장합니다.
         - 실시간으로 정보를 제공하지 않는 경우, 신규/수정 공지 내용이 반영되지 않을 수 있으니 서비스 이용 유저에게 홈페이지 공지 사항을 확인하라는 가이드를 제공해주세요.
+
+        @param notice_id(int): 공지 식별자
         """
         path = 'maplestory/v1/notice/detail'
         query = {
@@ -863,6 +865,8 @@ class MapleStoryApi(BaseModel):
 
         - 공지 정보 API는 데이터 최신화(공지 내용 수정/ 업데이트 고려)를 위해 실시간 조회 또는 최소 일배치 작업을 권장합니다.
         - 실시간으로 정보를 제공하지 않는 경우, 신규/수정 공지 내용이 반영되지 않을 수 있으니 서비스 이용 유저에게 홈페이지 공지 사항을 확인하라는 가이드를 제공해주세요.
+
+        @param notice_id(int): 공지 식별자
         """
         path = 'maplestory/v1/notice-update/detail'
         query = {
@@ -887,6 +891,8 @@ class MapleStoryApi(BaseModel):
 
         - 공지 정보 API는 데이터 최신화(공지 내용 수정/ 업데이트 고려)를 위해 실시간 조회 또는 최소 일배치 작업을 권장합니다.
         - 실시간으로 정보를 제공하지 않는 경우, 신규/수정 공지 내용이 반영되지 않을 수 있으니 서비스 이용 유저에게 홈페이지 공지 사항을 확인하라는 가이드를 제공해주세요.
+
+        @param notice_id(int): 공지 식별자
         """
         path = 'maplestory/v1/notice-event/detail'
         query = {
@@ -911,6 +917,8 @@ class MapleStoryApi(BaseModel):
 
         - 공지 정보 API는 데이터 최신화(공지 내용 수정/ 업데이트 고려)를 위해 실시간 조회 또는 최소 일배치 작업을 권장합니다.
         - 실시간으로 정보를 제공하지 않는 경우, 신규/수정 공지 내용이 반영되지 않을 수 있으니 서비스 이용 유저에게 홈페이지 공지 사항을 확인하라는 가이드를 제공해주세요.
+
+        @param notice_id(int): 공지 식별자
         """
         path = 'maplestory/v1/notice-cashshop/detail'
         query = {
