@@ -52,6 +52,7 @@ except MapleStoryApiException as e:
 - [길드 정보 조회](https://github.com/SpiralMoon/maplestory.openapi/blob/master/python/test/guild_api_test.py)
 - [확률 정보 조회](https://github.com/SpiralMoon/maplestory.openapi/blob/master/python/test/history_api_test.py)
 - [랭킹 정보 조회](https://github.com/SpiralMoon/maplestory.openapi/blob/master/python/test/ranking_api_test.py)
+- [공지 정보 조회](https://github.com/SpiralMoon/maplestory.openapi/blob/master/python/test/notice_api_test.py)
 
 ### Exception Handling
 

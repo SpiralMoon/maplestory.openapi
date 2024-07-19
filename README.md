@@ -91,11 +91,12 @@
 
 이 라이브러리는 아래 [메이플스토리 OpenAPI 공식 문서](https://openapi.nexon.com/game/maplestory)에 기재된 모든 API를 지원합니다.
 
-- [캐릭터 정보 조회](https://openapi.nexon.com/game/maplestory/?id=22)
-- [유니온 정보 조회](https://openapi.nexon.com/game/maplestory/?id=23)
-- [길드 정보 조회](https://openapi.nexon.com/game/maplestory/?id=24)
-- [확률 정보 조회](https://openapi.nexon.com/game/maplestory/?id=25)
-- [랭킹 정보 조회](https://openapi.nexon.com/game/maplestory/?id=26)
+- [캐릭터 정보 조회](https://openapi.nexon.com/game/maplestory/?id=14)
+- [유니온 정보 조회](https://openapi.nexon.com/game/maplestory/?id=15)
+- [길드 정보 조회](https://openapi.nexon.com/game/maplestory/?id=16)
+- [확률 정보 조회](https://openapi.nexon.com/game/maplestory/?id=17)
+- [랭킹 정보 조회](https://openapi.nexon.com/game/maplestory/?id=18)
+- [공지 정보 조회](https://openapi.nexon.com/game/maplestory/?id=24)
 
 그리고 메이플스토리 OpenAPI 사양에는 포함되어 있지 않지만, 추가적으로 아래 API를 지원합니다.
 

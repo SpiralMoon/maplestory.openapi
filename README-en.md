@@ -90,11 +90,12 @@ Before getting started, please read the document in the README list below that m
 ## Features
 This library supports all apis published in the [MapleStory OpenAPI official docs](https://openapi.nexon.com/game/maplestory) link below.
 
-- [Get character information](https://openapi.nexon.com/game/maplestory/?id=22)
-- [Get union information](https://openapi.nexon.com/game/maplestory/?id=23)
-- [Get guild information](https://openapi.nexon.com/game/maplestory/?id=24)
-- [Get history information](https://openapi.nexon.com/game/maplestory/?id=25)
-- [Get ranking information](https://openapi.nexon.com/game/maplestory/?id=26)
+- [Get character information](https://openapi.nexon.com/ko/game/maplestory/?id=14)
+- [Get union information](https://openapi.nexon.com/ko/game/maplestory/?id=15)
+- [Get guild information](https://openapi.nexon.com/ko/game/maplestory/?id=16)
+- [Get history information](https://openapi.nexon.com/ko/game/maplestory/?id=17)
+- [Get ranking information](https://openapi.nexon.com/ko/game/maplestory/?id=18)
+- [Get notice information](https://openapi.nexon.com/ko/game/maplestory/?id=24)
 
 And, while not part of the MapleStory OpenAPI specifications, it additionally supports the following API.
 

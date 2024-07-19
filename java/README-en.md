@@ -71,6 +71,7 @@ You can find more examples in the test cases at the following link.
 - [Get guild information](https://github.com/SpiralMoon/maplestory.openapi/blob/master/java/src/test/java/GuildApi.java)
 - [Get history information](https://github.com/SpiralMoon/maplestory.openapi/blob/master/java/src/test/java/HistoryApi.java)
 - [Get ranking information](https://github.com/SpiralMoon/maplestory.openapi/blob/master/java/src/test/java/RankingApi.java)
+- [Get notice information](https://github.com/SpiralMoon/maplestory.openapi/blob/master/java/src/test/java/NoticeApi.java)
 
 
 ### Exception Handling

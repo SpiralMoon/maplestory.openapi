@@ -71,6 +71,7 @@ You can find more examples in the test cases at the following link.
 - [Get guild information](https://github.com/SpiralMoon/maplestory.openapi/blob/master/js/test/guildApi.test.ts)
 - [Get history information](https://github.com/SpiralMoon/maplestory.openapi/blob/master/js/test/historyApi.test.ts)
 - [Get ranking information](https://github.com/SpiralMoon/maplestory.openapi/blob/master/js/test/rankingApi.test.ts)
+- [Get notice information](https://github.com/SpiralMoon/maplestory.openapi/blob/master/js/test/noticeApi.test.ts)
 
 ### Exception Handling
 

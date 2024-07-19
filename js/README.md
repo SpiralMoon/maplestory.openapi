@@ -71,6 +71,7 @@ try {
 - [길드 정보 조회](https://github.com/SpiralMoon/maplestory.openapi/blob/master/js/test/guildApi.test.ts)
 - [확률 정보 조회](https://github.com/SpiralMoon/maplestory.openapi/blob/master/js/test/historyApi.test.ts)
 - [랭킹 정보 조회](https://github.com/SpiralMoon/maplestory.openapi/blob/master/js/test/rankingApi.test.ts)
+- [공지 정보 조회](https://github.com/SpiralMoon/maplestory.openapi/blob/master/js/test/noticeApi.test.ts)
 
 ### Exception Handling
 

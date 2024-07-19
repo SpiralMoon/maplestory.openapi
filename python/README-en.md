@@ -52,6 +52,7 @@ You can find more examples in the test cases at the following link.
 - [Get guild information](https://github.com/SpiralMoon/maplestory.openapi/blob/master/python/test/guild_api_test.py)
 - [Get history information](https://github.com/SpiralMoon/maplestory.openapi/blob/master/python/test/history_api_test.py)
 - [Get ranking information](https://github.com/SpiralMoon/maplestory.openapi/blob/master/python/test/ranking_api_test.py)
+- [Get notice information](https://github.com/SpiralMoon/maplestory.openapi/blob/master/python/test/notice_api_test.py)
 
 ### Exception Handling
 
