@@ -7,6 +7,7 @@ import dev.spiralmoon.maplestory.api.dto.*;
 import dev.spiralmoon.maplestory.api.dto.character.*;
 import dev.spiralmoon.maplestory.api.dto.guild.*;
 import dev.spiralmoon.maplestory.api.dto.history.*;
+import dev.spiralmoon.maplestory.api.dto.notice.*;
 import dev.spiralmoon.maplestory.api.dto.ranking.*;
 import dev.spiralmoon.maplestory.api.dto.union.*;
 import dev.spiralmoon.maplestory.api.template.*;
@@ -93,7 +94,6 @@ public class MapleStoryApi {
      * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
      * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
-     *
      */
     public CharacterListDTO getCharacterList() throws IOException {
 
@@ -3897,6 +3897,274 @@ public class MapleStoryApi {
         buildRetrofit()
                 .create(RankingApi.class)
                 .getAchievementRanking(this.apiKey, date, ocid, page)
+                .enqueue(createCallback(onSuccess, onFailure));
+    }
+
+    //#endregion
+
+    //#region 공지 정보 조회
+
+    /**
+     * 메이플스토리 공지사항에 최근 등록된 게시글 20개를 조회합니다.<br>
+     * - 공지 정보 API는 데이터 최신화(공지 내용 수정/ 업데이트 고려)를 위해 실시간 조회 또는 최소 일배치 작업을 권장합니다.<br>
+     * - 실시간으로 정보를 제공하지 않는 경우, 신규/수정 공지 내용이 반영되지 않을 수 있으니 서비스 이용 유저에게 홈페이지 공지 사항을 확인하라는 가이드를 제공해주세요.<br>
+     */
+    public NoticeListDTO getNoticeList() throws IOException {
+
+        final Response<NoticeListDTO> response = buildRetrofit()
+                .create(NoticeApi.class)
+                .getNoticeList(this.apiKey)
+                .execute();
+
+        if (!response.isSuccessful()) {
+            throw parseError(response);
+        }
+
+        return response.body();
+    }
+
+    /**
+     * 메이플스토리 공지사항에 최근 등록된 게시글 20개를 비동기로 조회합니다.<br>
+     * - 공지 정보 API는 데이터 최신화(공지 내용 수정/ 업데이트 고려)를 위해 실시간 조회 또는 최소 일배치 작업을 권장합니다.<br>
+     * - 실시간으로 정보를 제공하지 않는 경우, 신규/수정 공지 내용이 반영되지 않을 수 있으니 서비스 이용 유저에게 홈페이지 공지 사항을 확인하라는 가이드를 제공해주세요.<br>
+     */
+    public void getNoticeListAsync(SuccessCallback<NoticeListDTO> onSuccess, FailureCallback onFailure) {
+        buildRetrofit()
+                .create(NoticeApi.class)
+                .getNoticeList(this.apiKey)
+                .enqueue(createCallback(onSuccess, onFailure));
+    }
+
+    /**
+     * 메이플스토리 공지사항 게시글 세부 사항을 조회합니다.<br>
+     * - 공지 정보 API는 데이터 최신화(공지 내용 수정/ 업데이트 고려)를 위해 실시간 조회 또는 최소 일배치 작업을 권장합니다.<br>
+     * - 실시간으로 정보를 제공하지 않는 경우, 신규/수정 공지 내용이 반영되지 않을 수 있으니 서비스 이용 유저에게 홈페이지 공지 사항을 확인하라는 가이드를 제공해주세요.<br>
+     *
+     * @param noticeId 공지 식별자
+     */
+    public NoticeDetailDTO getNoticeDetail(int noticeId) throws IOException {
+
+        final Response<NoticeDetailDTO> response = buildRetrofit()
+                .create(NoticeApi.class)
+                .getNoticeDetail(this.apiKey, noticeId)
+                .execute();
+
+        if (!response.isSuccessful()) {
+            throw parseError(response);
+        }
+
+        return response.body();
+    }
+
+    /**
+     * 메이플스토리 공지사항 게시글 세부 사항을 비동기로 조회합니다.<br>
+     * - 공지 정보 API는 데이터 최신화(공지 내용 수정/ 업데이트 고려)를 위해 실시간 조회 또는 최소 일배치 작업을 권장합니다.<br>
+     * - 실시간으로 정보를 제공하지 않는 경우, 신규/수정 공지 내용이 반영되지 않을 수 있으니 서비스 이용 유저에게 홈페이지 공지 사항을 확인하라는 가이드를 제공해주세요.<br>
+     *
+     * @param noticeId 공지 식별자
+     */
+    public void getNoticeDetailAsync(int noticeId, SuccessCallback<NoticeDetailDTO> onSuccess, FailureCallback onFailure) {
+        buildRetrofit()
+                .create(NoticeApi.class)
+                .getNoticeDetail(this.apiKey, noticeId)
+                .enqueue(createCallback(onSuccess, onFailure));
+    }
+
+    /**
+     * 메이플스토리 업데이트에 최근 등록된 게시글 20개를 조회합니다.<br>
+     * - 공지 정보 API는 데이터 최신화(공지 내용 수정/ 업데이트 고려)를 위해 실시간 조회 또는 최소 일배치 작업을 권장합니다.<br>
+     * - 실시간으로 정보를 제공하지 않는 경우, 신규/수정 공지 내용이 반영되지 않을 수 있으니 서비스 이용 유저에게 홈페이지 공지 사항을 확인하라는 가이드를 제공해주세요.<br>
+     */
+    public UpdateNoticeListDTO getUpdateNoticeList() throws IOException {
+
+        final Response<UpdateNoticeListDTO> response = buildRetrofit()
+                .create(NoticeApi.class)
+                .getUpdateNoticeList(this.apiKey)
+                .execute();
+
+        if (!response.isSuccessful()) {
+            throw parseError(response);
+        }
+
+        return response.body();
+    }
+
+    /**
+     * 메이플스토리 업데이트에 최근 등록된 게시글 20개를 비동기로 조회합니다.<br>
+     * - 공지 정보 API는 데이터 최신화(공지 내용 수정/ 업데이트 고려)를 위해 실시간 조회 또는 최소 일배치 작업을 권장합니다.<br>
+     * - 실시간으로 정보를 제공하지 않는 경우, 신규/수정 공지 내용이 반영되지 않을 수 있으니 서비스 이용 유저에게 홈페이지 공지 사항을 확인하라는 가이드를 제공해주세요.<br>
+     */
+    public void getUpdateNoticeListAsync(SuccessCallback<UpdateNoticeListDTO> onSuccess, FailureCallback onFailure) {
+        buildRetrofit()
+                .create(NoticeApi.class)
+                .getUpdateNoticeList(this.apiKey)
+                .enqueue(createCallback(onSuccess, onFailure));
+    }
+
+    /**
+     * 메이플스토리 업데이트 게시글 세부 사항을 조회합니다.<br>
+     * - 공지 정보 API는 데이터 최신화(공지 내용 수정/ 업데이트 고려)를 위해 실시간 조회 또는 최소 일배치 작업을 권장합니다.<br>
+     * - 실시간으로 정보를 제공하지 않는 경우, 신규/수정 공지 내용이 반영되지 않을 수 있으니 서비스 이용 유저에게 홈페이지 공지 사항을 확인하라는 가이드를 제공해주세요.<br>
+     *
+     * @param noticeId 공지 식별자
+     */
+    public UpdateNoticeDetailDTO getUpdateNoticeDetail(int noticeId) throws IOException {
+
+        final Response<UpdateNoticeDetailDTO> response = buildRetrofit()
+                .create(NoticeApi.class)
+                .getUpdateNoticeDetail(this.apiKey, noticeId)
+                .execute();
+
+        if (!response.isSuccessful()) {
+            throw parseError(response);
+        }
+
+        return response.body();
+    }
+
+    /**
+     * 메이플스토리 업데이트 게시글 세부 사항을 비동기로 조회합니다.<br>
+     * - 공지 정보 API는 데이터 최신화(공지 내용 수정/ 업데이트 고려)를 위해 실시간 조회 또는 최소 일배치 작업을 권장합니다.<br>
+     * - 실시간으로 정보를 제공하지 않는 경우, 신규/수정 공지 내용이 반영되지 않을 수 있으니 서비스 이용 유저에게 홈페이지 공지 사항을 확인하라는 가이드를 제공해주세요.<br>
+     *
+     * @param noticeId 공지 식별자
+     */
+    public void getUpdateNoticeDetailAsync(int noticeId, SuccessCallback<UpdateNoticeDetailDTO> onSuccess, FailureCallback onFailure) {
+        buildRetrofit()
+                .create(NoticeApi.class)
+                .getUpdateNoticeDetail(this.apiKey, noticeId)
+                .enqueue(createCallback(onSuccess, onFailure));
+    }
+
+    /**
+     * 메이플스토리 진행 중 이벤트에 최근 등록된 공지사항 20개를 조회합니다.<br>
+     * - 공지 정보 API는 데이터 최신화(공지 내용 수정/ 업데이트 고려)를 위해 실시간 조회 또는 최소 일배치 작업을 권장합니다.<br>
+     * - 실시간으로 정보를 제공하지 않는 경우, 신규/수정 공지 내용이 반영되지 않을 수 있으니 서비스 이용 유저에게 홈페이지 공지 사항을 확인하라는 가이드를 제공해주세요.<br>
+     */
+    public EventNoticeListDTO getEventNoticeList() throws IOException {
+
+        final Response<EventNoticeListDTO> response = buildRetrofit()
+                .create(NoticeApi.class)
+                .getEventNoticeList(this.apiKey)
+                .execute();
+
+        if (!response.isSuccessful()) {
+            throw parseError(response);
+        }
+
+        return response.body();
+    }
+
+    /**
+     * 메이플스토리 진행 중 이벤트에 최근 등록된 공지사항 20개를 비동기로 조회합니다.<br>
+     * - 공지 정보 API는 데이터 최신화(공지 내용 수정/ 업데이트 고려)를 위해 실시간 조회 또는 최소 일배치 작업을 권장합니다.<br>
+     * - 실시간으로 정보를 제공하지 않는 경우, 신규/수정 공지 내용이 반영되지 않을 수 있으니 서비스 이용 유저에게 홈페이지 공지 사항을 확인하라는 가이드를 제공해주세요.<br>
+     */
+    public void getEventNoticeListAsync(SuccessCallback<EventNoticeListDTO> onSuccess, FailureCallback onFailure) {
+        buildRetrofit()
+                .create(NoticeApi.class)
+                .getEventNoticeList(this.apiKey)
+                .enqueue(createCallback(onSuccess, onFailure));
+    }
+
+    /**
+     * 메이플스토리 진행 중 이벤트 게시글 세부 사항을 조회합니다.<br>
+     * - 공지 정보 API는 데이터 최신화(공지 내용 수정/ 업데이트 고려)를 위해 실시간 조회 또는 최소 일배치 작업을 권장합니다.<br>
+     * - 실시간으로 정보를 제공하지 않는 경우, 신규/수정 공지 내용이 반영되지 않을 수 있으니 서비스 이용 유저에게 홈페이지 공지 사항을 확인하라는 가이드를 제공해주세요.<br>
+     *
+     * @param noticeId 공지 식별자
+     */
+    public EventNoticeDetailDTO getEventNoticeDetail(int noticeId) throws IOException {
+
+        final Response<EventNoticeDetailDTO> response = buildRetrofit()
+                .create(NoticeApi.class)
+                .getEventNoticeDetail(this.apiKey, noticeId)
+                .execute();
+
+        if (!response.isSuccessful()) {
+            throw parseError(response);
+        }
+
+        return response.body();
+    }
+
+    /**
+     * 메이플스토리 진행 중 이벤트 게시글 세부 사항을 비동기로 조회합니다.<br>
+     * - 공지 정보 API는 데이터 최신화(공지 내용 수정/ 업데이트 고려)를 위해 실시간 조회 또는 최소 일배치 작업을 권장합니다.<br>
+     * - 실시간으로 정보를 제공하지 않는 경우, 신규/수정 공지 내용이 반영되지 않을 수 있으니 서비스 이용 유저에게 홈페이지 공지 사항을 확인하라는 가이드를 제공해주세요.<br>
+     *
+     * @param noticeId 공지 식별자
+     */
+    public void getEventNoticeDetailAsync(int noticeId, SuccessCallback<EventNoticeDetailDTO> onSuccess, FailureCallback onFailure) {
+        buildRetrofit()
+                .create(NoticeApi.class)
+                .getEventNoticeDetail(this.apiKey, noticeId)
+                .enqueue(createCallback(onSuccess, onFailure));
+    }
+
+    /**
+     * 메이플스토리 캐시샵 공지에 최근 등록된 공지사항 20개를 조회합니다.<br>
+     * - 공지 정보 API는 데이터 최신화(공지 내용 수정/ 업데이트 고려)를 위해 실시간 조회 또는 최소 일배치 작업을 권장합니다.<br>
+     * - 실시간으로 정보를 제공하지 않는 경우, 신규/수정 공지 내용이 반영되지 않을 수 있으니 서비스 이용 유저에게 홈페이지 공지 사항을 확인하라는 가이드를 제공해주세요.<br>
+     */
+    public CashshopNoticeListDTO getCashshopNoticeList() throws IOException {
+
+        final Response<CashshopNoticeListDTO> response = buildRetrofit()
+                .create(NoticeApi.class)
+                .getCashshopNoticeList(this.apiKey)
+                .execute();
+
+        if (!response.isSuccessful()) {
+            throw parseError(response);
+        }
+
+        return response.body();
+    }
+
+    /**
+     * 메이플스토리 캐시샵 공지에 최근 등록된 공지사항 20개를 비동기로 조회합니다.<br>
+     * - 공지 정보 API는 데이터 최신화(공지 내용 수정/ 업데이트 고려)를 위해 실시간 조회 또는 최소 일배치 작업을 권장합니다.<br>
+     * - 실시간으로 정보를 제공하지 않는 경우, 신규/수정 공지 내용이 반영되지 않을 수 있으니 서비스 이용 유저에게 홈페이지 공지 사항을 확인하라는 가이드를 제공해주세요.<br>
+     */
+    public void getCashshopNoticeListAsync(SuccessCallback<CashshopNoticeListDTO> onSuccess, FailureCallback onFailure) {
+        buildRetrofit()
+                .create(NoticeApi.class)
+                .getCashshopNoticeList(this.apiKey)
+                .enqueue(createCallback(onSuccess, onFailure));
+    }
+
+    /**
+     * 메이플스토리 캐시샵 공지 게시글 세부 사항을 조회합니다.<br>
+     * - 공지 정보 API는 데이터 최신화(공지 내용 수정/ 업데이트 고려)를 위해 실시간 조회 또는 최소 일배치 작업을 권장합니다.<br>
+     * - 실시간으로 정보를 제공하지 않는 경우, 신규/수정 공지 내용이 반영되지 않을 수 있으니 서비스 이용 유저에게 홈페이지 공지 사항을 확인하라는 가이드를 제공해주세요.<br>
+     *
+     * @param noticeId 공지 식별자
+     */
+    public CashshopNoticeDetailDTO getCashshopNoticeDetail(int noticeId) throws IOException {
+
+        final Response<CashshopNoticeDetailDTO> response = buildRetrofit()
+                .create(NoticeApi.class)
+                .getCashshopNoticeDetail(this.apiKey, noticeId)
+                .execute();
+
+        if (!response.isSuccessful()) {
+            throw parseError(response);
+        }
+
+        return response.body();
+    }
+
+    /**
+     * 메이플스토리 캐시샵 공지 게시글 세부 사항을 비동기로 조회합니다.<br>
+     * - 공지 정보 API는 데이터 최신화(공지 내용 수정/ 업데이트 고려)를 위해 실시간 조회 또는 최소 일배치 작업을 권장합니다.<br>
+     * - 실시간으로 정보를 제공하지 않는 경우, 신규/수정 공지 내용이 반영되지 않을 수 있으니 서비스 이용 유저에게 홈페이지 공지 사항을 확인하라는 가이드를 제공해주세요.<br>
+     *
+     * @param noticeId 공지 식별자
+     */
+    public void getCashshopNoticeDetailAsync(int noticeId, SuccessCallback<CashshopNoticeDetailDTO> onSuccess, FailureCallback onFailure) {
+        buildRetrofit()
+                .create(NoticeApi.class)
+                .getCashshopNoticeDetail(this.apiKey, noticeId)
                 .enqueue(createCallback(onSuccess, onFailure));
     }
 

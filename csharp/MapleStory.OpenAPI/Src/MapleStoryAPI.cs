@@ -2004,6 +2004,126 @@ namespace MapleStory.OpenAPI
 
         #endregion
 
+        #region 공지 정보 조회
+
+        /// <summary>
+        /// 메이플스토리 공지사항에 최근 등록된 게시글 20개를 조회합니다.
+        /// <para>- 공지 정보 API는 데이터 최신화(공지 내용 수정/ 업데이트 고려)를 위해 실시간 조회 또는 최소 일배치 작업을 권장합니다.</para>
+        /// <para>- 실시간으로 정보를 제공하지 않는 경우, 신규/수정 공지 내용이 반영되지 않을 수 있으니 서비스 이용 유저에게 홈페이지 공지 사항을 확인하라는 가이드를 제공해주세요.</para>
+        /// </summary>
+        public async Task<NoticeListDTO> GetNoticeList()
+        {
+            var path = "maplestory/v1/notice";
+
+            return await Get<NoticeListDTO>(path);
+        }
+
+        /// <summary>
+        /// 메이플스토리 공지사항 게시글 세부 사항을 조회합니다.
+        /// <para>- 공지 정보 API는 데이터 최신화(공지 내용 수정/ 업데이트 고려)를 위해 실시간 조회 또는 최소 일배치 작업을 권장합니다.</para>
+        /// <para>- 실시간으로 정보를 제공하지 않는 경우, 신규/수정 공지 내용이 반영되지 않을 수 있으니 서비스 이용 유저에게 홈페이지 공지 사항을 확인하라는 가이드를 제공해주세요.</para>
+        /// </summary>
+        /// <param name="noticeId">공지 식별자</param>
+        public async Task<NoticeDetailDTO> GetNoticeDetail(int noticeId)
+        {
+            var path = "maplestory/v1/notice/detail";
+            var query = new Dictionary<string, string?>()
+            {
+                { "notice_id", noticeId.ToString() },
+            };
+
+            return await Get<NoticeDetailDTO>(path, query);
+        }
+
+        /// <summary>
+        /// 메이플스토리 업데이트에 최근 등록된 게시글 20개를 조회합니다.
+        /// <para>- 공지 정보 API는 데이터 최신화(공지 내용 수정/ 업데이트 고려)를 위해 실시간 조회 또는 최소 일배치 작업을 권장합니다.</para>
+        /// <para>- 실시간으로 정보를 제공하지 않는 경우, 신규/수정 공지 내용이 반영되지 않을 수 있으니 서비스 이용 유저에게 홈페이지 공지 사항을 확인하라는 가이드를 제공해주세요.</para>
+        /// </summary>
+        public async Task<UpdateNoticeListDTO> GetUpdateNoticeList()
+        {
+            var path = "maplestory/v1/notice-update";
+
+            return await Get<UpdateNoticeListDTO>(path);
+        }
+
+        /// <summary>
+        /// 메이플스토리 업데이트 게시글 세부 사항을 조회합니다.
+        /// <para>- 공지 정보 API는 데이터 최신화(공지 내용 수정/ 업데이트 고려)를 위해 실시간 조회 또는 최소 일배치 작업을 권장합니다.</para>
+        /// <para>- 실시간으로 정보를 제공하지 않는 경우, 신규/수정 공지 내용이 반영되지 않을 수 있으니 서비스 이용 유저에게 홈페이지 공지 사항을 확인하라는 가이드를 제공해주세요.</para>
+        /// </summary>
+        /// <param name="noticeId">공지 식별자</param>
+        public async Task<UpdateNoticeDetailDTO> GetUpdateNoticeDetail(int noticeId)
+        {
+            var path = "maplestory/v1/notice-update/detail";
+            var query = new Dictionary<string, string?>()
+            {
+                { "notice_id", noticeId.ToString() },
+            };
+
+            return await Get<UpdateNoticeDetailDTO>(path, query);
+        }
+
+        /// <summary>
+        /// 메이플스토리 진행 중 이벤트에 최근 등록된 게시글 20개를 조회합니다.
+        /// <para>- 공지 정보 API는 데이터 최신화(공지 내용 수정/ 업데이트 고려)를 위해 실시간 조회 또는 최소 일배치 작업을 권장합니다.</para>
+        /// <para>- 실시간으로 정보를 제공하지 않는 경우, 신규/수정 공지 내용이 반영되지 않을 수 있으니 서비스 이용 유저에게 홈페이지 공지 사항을 확인하라는 가이드를 제공해주세요.</para>
+        /// </summary>
+        public async Task<EventNoticeListDTO> GetEventNoticeList()
+        {
+            var path = "maplestory/v1/notice-event";
+
+            return await Get<EventNoticeListDTO>(path);
+        }
+
+        /// <summary>
+        /// 메이플스토리 진행 중 이벤트 게시글 세부 사항을 조회합니다.
+        /// <para>- 공지 정보 API는 데이터 최신화(공지 내용 수정/ 업데이트 고려)를 위해 실시간 조회 또는 최소 일배치 작업을 권장합니다.</para>
+        /// <para>- 실시간으로 정보를 제공하지 않는 경우, 신규/수정 공지 내용이 반영되지 않을 수 있으니 서비스 이용 유저에게 홈페이지 공지 사항을 확인하라는 가이드를 제공해주세요.</para>
+        /// </summary>
+        /// <param name="noticeId">공지 식별자</param>
+        public async Task<EventNoticeDetailDTO> GetEventNoticeDetail(int noticeId)
+        {
+            var path = "maplestory/v1/notice-event/detail";
+            var query = new Dictionary<string, string?>()
+            {
+                { "notice_id", noticeId.ToString() },
+            };
+
+            return await Get<EventNoticeDetailDTO>(path, query);
+        }
+
+        /// <summary>
+        /// 메이플스토리 캐시샵 공지에 최근 등록된 게시글 20개를 조회합니다.
+        /// <para>- 공지 정보 API는 데이터 최신화(공지 내용 수정/ 업데이트 고려)를 위해 실시간 조회 또는 최소 일배치 작업을 권장합니다.</para>
+        /// <para>- 실시간으로 정보를 제공하지 않는 경우, 신규/수정 공지 내용이 반영되지 않을 수 있으니 서비스 이용 유저에게 홈페이지 공지 사항을 확인하라는 가이드를 제공해주세요.</para>
+        /// </summary>
+        public async Task<CashshopNoticeListDTO> GetCashshopNoticeList()
+        {
+            var path = "maplestory/v1/notice-cashshop";
+
+            return await Get<CashshopNoticeListDTO>(path);
+        }
+
+        /// <summary>
+        /// 메이플스토리 캐시샵 공지 게시글 세부 사항을 조회합니다.
+        /// <para>- 공지 정보 API는 데이터 최신화(공지 내용 수정/ 업데이트 고려)를 위해 실시간 조회 또는 최소 일배치 작업을 권장합니다.</para>
+        /// <para>- 실시간으로 정보를 제공하지 않는 경우, 신규/수정 공지 내용이 반영되지 않을 수 있으니 서비스 이용 유저에게 홈페이지 공지 사항을 확인하라는 가이드를 제공해주세요.</para>
+        /// </summary>
+        /// <param name="noticeId">공지 식별자</param>
+        public async Task<CashshopNoticeDetailDTO> GetCashshopNoticeDetail(int noticeId)
+        {
+            var path = "maplestory/v1/notice-cashshop/detail";
+            var query = new Dictionary<string, string?>()
+            {
+                { "notice_id", noticeId.ToString() },
+            };
+
+            return await Get<CashshopNoticeDetailDTO>(path, query);
+        }
+
+        #endregion
+
         /// <summary>
         /// 서버 점검 정보를 조회합니다.
         /// </summary>
