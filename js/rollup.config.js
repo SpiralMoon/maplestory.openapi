@@ -38,6 +38,9 @@ export default {
     commonjs(),
     typescript({
       useTsconfigDeclarationDir: true,
+      tsconfigOverride: {
+        exclude: ['test/**/*']
+      }
     }),
   ],
 };
