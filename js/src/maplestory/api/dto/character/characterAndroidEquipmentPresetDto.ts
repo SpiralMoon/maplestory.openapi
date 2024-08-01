@@ -1,8 +1,6 @@
-import { CharacterAndroidEquipmentFaceDto } from '@src/maplestory/api/dto/character/characterAndroidEquipmentFaceDto';
-import { CharacterAndroidEquipmentHairDto } from '@src/maplestory/api/dto/character/characterAndroidEquipmentHairDto';
-import {
-  CharacterAndroidEquipmentPresetDtoBody
-} from '@src/maplestory/api/response/character/characterAndroidEquipmentDtoBody';
+import { CharacterAndroidEquipmentFaceDto } from './characterAndroidEquipmentFaceDto';
+import { CharacterAndroidEquipmentHairDto } from './characterAndroidEquipmentHairDto';
+import { CharacterAndroidEquipmentPresetDtoBody } from '../../response/character/characterAndroidEquipmentDtoBody';
 
 /**
  * 캐릭터 안드로이드 프리셋 정보

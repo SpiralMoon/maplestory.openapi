@@ -1,5 +1,5 @@
-import { DojangRankingDto } from '@src/maplestory/api/dto/ranking/dojangRankingDto';
-import { DojangRankingResponseDtoBody } from '@src/maplestory/api/response/ranking/dojangRankingResponseDtoBody';
+import { DojangRankingDto } from './dojangRankingDto';
+import { DojangRankingResponseDtoBody } from '../../response/ranking/dojangRankingResponseDtoBody';
 
 /**
  * 무릉도장 랭킹 응답 정보

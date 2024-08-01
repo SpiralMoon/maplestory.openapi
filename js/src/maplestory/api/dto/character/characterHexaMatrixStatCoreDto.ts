@@ -1,6 +1,4 @@
-import {
-  CharacterHexaMatrixStatCoreDtoBody
-} from '@src/maplestory/api/response/character/characterHexaMatrixStatDtoBody';
+import { CharacterHexaMatrixStatCoreDtoBody } from '../../response/character/characterHexaMatrixStatDtoBody';
 
 /**
  * 캐릭터 HEXA 스탯 코어 정보

@@ -1,6 +1,6 @@
-import { CharacterPetEquipmentAutoSkillDto } from '@src/maplestory/api/dto/character/characterPetEquipmentAutoSkillDto';
-import { CharacterPetEquipmentItemDto } from '@src/maplestory/api/dto/character/characterPetEquipmentItemDto';
-import { CharacterPetEquipmentDtoBody } from '@src/maplestory/api/response/character/characterPetEquipmentDtoBody';
+import { CharacterPetEquipmentAutoSkillDto } from './characterPetEquipmentAutoSkillDto';
+import { CharacterPetEquipmentItemDto } from './characterPetEquipmentItemDto';
+import { CharacterPetEquipmentDtoBody } from '../../response/character/characterPetEquipmentDtoBody';
 
 /**
  * 캐릭터 펫 장비 정보

@@ -1,12 +1,6 @@
-import {
-  CharacterAndroidCashItemEquipmentColoringPrismDto
-} from '@src/maplestory/api/dto/character/characterAndroidCashItemEquipmentColoringPrismDto';
-import {
-  CharacterAndroidCashItemEquipmentOptionDto
-} from '@src/maplestory/api/dto/character/characterAndroidCashItemEquipmentOptionDto';
-import {
-  CharacterAndroidCashItemEquipmentDtoBody
-} from '@src/maplestory/api/response/character/characterAndroidEquipmentDtoBody';
+import { CharacterAndroidCashItemEquipmentColoringPrismDto } from './characterAndroidCashItemEquipmentColoringPrismDto';
+import { CharacterAndroidCashItemEquipmentOptionDto } from './characterAndroidCashItemEquipmentOptionDto';
+import { CharacterAndroidCashItemEquipmentDtoBody } from '../../response/character/characterAndroidEquipmentDtoBody';
 
 /**
  * 캐릭터 안드로이드 캐시 아이템 장착 정보

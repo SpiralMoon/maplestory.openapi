@@ -1,5 +1,5 @@
-import { UnionRankingDto } from '@src/maplestory/api/dto/ranking/unionRankingDto';
-import { UnionRankingResponseDtoBody } from '@src/maplestory/api/response/ranking/unionRankingResponseDtoBody';
+import { UnionRankingDto } from './unionRankingDto';
+import { UnionRankingResponseDtoBody } from '../../response/ranking/unionRankingResponseDtoBody';
 
 /**
  * 유니온 랭킹 응답 정보

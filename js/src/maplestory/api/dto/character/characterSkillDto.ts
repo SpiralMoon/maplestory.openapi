@@ -1,5 +1,5 @@
-import { CharacterSkillInfoDto } from '@src/maplestory/api/dto/character/characterSkillInfoDto';
-import { CharacterSkillDtoBody } from '@src/maplestory/api/response/character/characterSkillDtoBody';
+import { CharacterSkillInfoDto } from './characterSkillInfoDto';
+import { CharacterSkillDtoBody } from '../../response/character/characterSkillDtoBody';
 
 /**
  * 캐릭터 스킬 정보

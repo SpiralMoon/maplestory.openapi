@@ -1,4 +1,4 @@
-import { EventNoticeListItemDtoBody } from '@src/maplestory/api/response/notice/eventNoticeListDtoBody';
+import { EventNoticeListItemDtoBody } from '../../response/notice/eventNoticeListDtoBody';
 
 /**
  * 진행 중 이벤트 공지

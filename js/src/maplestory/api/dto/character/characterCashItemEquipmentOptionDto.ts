@@ -1,6 +1,4 @@
-import {
-  CharacterCashItemEquipmentOptionDtoBody
-} from '@src/maplestory/api/response/character/characterCashItemEquipmentDtoBody';
+import { CharacterCashItemEquipmentOptionDtoBody } from '../../response/character/characterCashItemEquipmentDtoBody';
 
 /**
  * 캐릭터 캐시 장비 옵션

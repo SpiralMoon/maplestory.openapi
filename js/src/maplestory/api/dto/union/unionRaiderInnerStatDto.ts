@@ -1,4 +1,4 @@
-import { UnionRaiderInnerStatDtoBody } from '@src/maplestory/api/response/union/unionRaiderDtoBody';
+import { UnionRaiderInnerStatDtoBody } from '../../response/union/unionRaiderDtoBody';
 
 /**
  * 유니온 공격대 배치 정보

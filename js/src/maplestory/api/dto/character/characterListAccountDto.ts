@@ -1,7 +1,5 @@
-import { CharacterListAccountCharacterDto } from '@src/maplestory/api/dto/character/characterListAccountCharacterDto';
-import {
-  CharacterListAccountDtoBody,
-} from '@src/maplestory/api/response/character/characterListDtoBody';
+import { CharacterListAccountCharacterDto } from './characterListAccountCharacterDto';
+import { CharacterListAccountDtoBody } from '../../response/character/characterListDtoBody';
 
 /**
  * 메이플스토리 계정

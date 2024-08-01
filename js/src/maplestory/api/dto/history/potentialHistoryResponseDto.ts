@@ -1,5 +1,5 @@
-import { PotentialHistoryDto } from '@src/maplestory/api/dto/history/potentialHistoryDto';
-import { PotentialHistoryResponseDtoBody } from '@src/maplestory/api/response/history/potentialHistoryResponseDtoBody';
+import { PotentialHistoryDto } from './potentialHistoryDto';
+import { PotentialHistoryResponseDtoBody } from '../../response/history/potentialHistoryResponseDtoBody';
 
 /**
  * 잠재능력 재설정 히스토리 응답 정보

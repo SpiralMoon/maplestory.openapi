@@ -1,4 +1,4 @@
-import { UnionArtifactEffectDtoBody } from '@src/maplestory/api/response/union/unionArtifactDtoBody';
+import { UnionArtifactEffectDtoBody } from '../../response/union/unionArtifactDtoBody';
 
 /**
  * 유니온 아티팩트 효과 정보

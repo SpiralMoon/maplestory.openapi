@@ -1,14 +1,12 @@
 import process from 'process';
 
-import { MapleStoryApi } from '@src/maplestory/api/mapleStoryApi';
-
 import { toString } from './utils';
+import { MapleStoryApi } from '../src/maplestory/api/mapleStoryApi';
 
 const apiKey = process.env.API_KEY!; // Your API Key
 const api = new MapleStoryApi(apiKey);
 
 describe('랭킹 정보 조회', () => {
-
   test('종합 랭킹 정보 조회', async () => {
     const response = await api.getOverallRanking();
 

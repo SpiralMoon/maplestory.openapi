@@ -1,6 +1,6 @@
 import {
   CharacterAndroidCashItemEquipmentColoringPrismDtoBody
-} from '@src/maplestory/api/response/character/characterAndroidEquipmentDtoBody';
+} from '../../response/character/characterAndroidEquipmentDtoBody';
 
 /**
  * 캐릭터 안드로이드 캐시 아이템 컬러링프리즘 정보

@@ -1,6 +1,4 @@
-import {
-  CharacterItemEquipmentAddOptionDtoBody
-} from '@src/maplestory/api/response/character/characterItemEquipmentDtoBody';
+import { CharacterItemEquipmentAddOptionDtoBody } from '../../response/character/characterItemEquipmentDtoBody';
 
 /**
  * 캐릭터 장비 추가 옵션 정보

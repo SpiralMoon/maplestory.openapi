@@ -1,14 +1,8 @@
-import {
-  CharacterAndroidCashItemEquipmentDto
-} from '@src/maplestory/api/dto/character/characterAndroidCashItemEquipmentDto';
-import { CharacterAndroidEquipmentFaceDto } from '@src/maplestory/api/dto/character/characterAndroidEquipmentFaceDto';
-import { CharacterAndroidEquipmentHairDto } from '@src/maplestory/api/dto/character/characterAndroidEquipmentHairDto';
-import {
-  CharacterAndroidEquipmentPresetDto
-} from '@src/maplestory/api/dto/character/characterAndroidEquipmentPresetDto';
-import {
-  CharacterAndroidEquipmentDtoBody
-} from '@src/maplestory/api/response/character/characterAndroidEquipmentDtoBody';
+import { CharacterAndroidCashItemEquipmentDto } from './characterAndroidCashItemEquipmentDto';
+import { CharacterAndroidEquipmentFaceDto } from './characterAndroidEquipmentFaceDto';
+import { CharacterAndroidEquipmentHairDto } from './characterAndroidEquipmentHairDto';
+import { CharacterAndroidEquipmentPresetDto } from './characterAndroidEquipmentPresetDto';
+import { CharacterAndroidEquipmentDtoBody } from '../../response/character/characterAndroidEquipmentDtoBody';
 
 /**
  * 캐릭터 안드로이드 장비 정보

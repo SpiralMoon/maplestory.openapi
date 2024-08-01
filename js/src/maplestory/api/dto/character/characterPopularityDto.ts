@@ -1,4 +1,4 @@
-import { CharacterPopularityDtoBody } from '@src/maplestory/api/response/character/characterPopularityDtoBody';
+import { CharacterPopularityDtoBody } from '../../response/character/characterPopularityDtoBody';
 
 /**
  * 캐릭터 인기도 정보

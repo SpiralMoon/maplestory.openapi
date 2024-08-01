@@ -1,12 +1,6 @@
-import {
-  CharacterCashItemEquipmentColoringPrismDto
-} from '@src/maplestory/api/dto/character/characterCashItemEquipmentColoringPrismDto';
-import {
-  CharacterCashItemEquipmentOptionDto
-} from '@src/maplestory/api/dto/character/characterCashItemEquipmentOptionDto';
-import {
-  CharacterCashItemEquipmentPresetDtoBody
-} from '@src/maplestory/api/response/character/characterCashItemEquipmentDtoBody';
+import { CharacterCashItemEquipmentColoringPrismDto } from './characterCashItemEquipmentColoringPrismDto';
+import { CharacterCashItemEquipmentOptionDto } from './characterCashItemEquipmentOptionDto';
+import { CharacterCashItemEquipmentPresetDtoBody } from '../../response/character/characterCashItemEquipmentDtoBody';
 
 /**
  * 캐릭터 프리셋 장착 캐시 장비 정보

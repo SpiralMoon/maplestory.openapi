@@ -1,5 +1,5 @@
-import { NoticeListItemDto } from '@src/maplestory/api/dto/notice/noticeListItemDto';
-import { NoticeListDtoBody } from '@src/maplestory/api/response/notice/noticeListDtoBody';
+import { NoticeListItemDto } from './noticeListItemDto';
+import { NoticeListDtoBody } from '../../response/notice/noticeListDtoBody';
 
 /**
  * 공지사항 목록

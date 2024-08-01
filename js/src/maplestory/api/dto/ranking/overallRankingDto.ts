@@ -1,4 +1,4 @@
-import { OverallRankingDtoBody } from '@src/maplestory/api/response/ranking/overallRankingResponseDtoBody';
+import { OverallRankingDtoBody } from '../../response/ranking/overallRankingResponseDtoBody';
 
 /**
  * 종합 랭킹 정보

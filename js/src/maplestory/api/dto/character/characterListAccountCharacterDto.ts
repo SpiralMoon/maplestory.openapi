@@ -1,6 +1,4 @@
-import {
-  CharacterListAccountCharacterDtoBody,
-} from '@src/maplestory/api/response/character/characterListDtoBody';
+import { CharacterListAccountCharacterDtoBody } from '../../response/character/characterListDtoBody';
 
 /**
  * 캐릭터 정보

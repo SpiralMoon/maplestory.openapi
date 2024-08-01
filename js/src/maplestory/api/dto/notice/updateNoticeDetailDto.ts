@@ -1,4 +1,4 @@
-import { UpdateNoticeDetailDtoBody } from '@src/maplestory/api/response/notice/updateNoticeDetailDtoBody';
+import { UpdateNoticeDetailDtoBody } from '../../response/notice/updateNoticeDetailDtoBody';
 
 /**
  * 업데이트 상세

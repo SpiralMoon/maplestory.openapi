@@ -1,4 +1,4 @@
-import { CashshopNoticeDetailDtoBody } from '@src/maplestory/api/response/notice/cashshopNoticeDetailDtoBody';
+import { CashshopNoticeDetailDtoBody } from '../../response/notice/cashshopNoticeDetailDtoBody';
 
 /**
  * 캐시샵 공지 상세

@@ -1,6 +1,4 @@
-import {
-  CharacterItemEquipmentTitleDtoBody
-} from '@src/maplestory/api/response/character/characterItemEquipmentDtoBody';
+import { CharacterItemEquipmentTitleDtoBody } from '../../response/character/characterItemEquipmentDtoBody';
 
 /**
  * 캐릭터 칭호 아이템 정보

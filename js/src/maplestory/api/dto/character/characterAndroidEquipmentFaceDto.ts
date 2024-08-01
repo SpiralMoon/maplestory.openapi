@@ -1,6 +1,4 @@
-import {
-  CharacterAndroidEquipmentFaceDtoBody
-} from '@src/maplestory/api/response/character/characterAndroidEquipmentDtoBody';
+import { CharacterAndroidEquipmentFaceDtoBody } from '../../response/character/characterAndroidEquipmentDtoBody';
 
 /**
  * 캐릭터 안드로이드 성형 정보
