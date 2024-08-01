@@ -1,24 +1,10 @@
-import {
-  CharacterItemEquipmentAddOptionDto
-} from '@src/maplestory/api/dto/character/characterItemEquipmentAddOptionDto';
-import {
-  CharacterItemEquipmentBaseOptionDto
-} from '@src/maplestory/api/dto/character/characterItemEquipmentBaseOptionDto';
-import {
-  CharacterItemEquipmentEtcOptionDto
-} from '@src/maplestory/api/dto/character/characterItemEquipmentEtcOptionDto';
-import {
-  CharacterItemEquipmentExceptionalOptionDto
-} from '@src/maplestory/api/dto/character/characterItemEquipmentExceptionalOptionDto';
-import {
-  CharacterItemEquipmentStarforceOptionDto
-} from '@src/maplestory/api/dto/character/characterItemEquipmentStarforceOptionDto';
-import {
-  CharacterItemEquipmentTotalOptionDto
-} from '@src/maplestory/api/dto/character/characterItemEquipmentTotalOptionDto';
-import {
-  CharacterItemEquipmentInfoDtoBody
-} from '@src/maplestory/api/response/character/characterItemEquipmentDtoBody';
+import { CharacterItemEquipmentAddOptionDto } from './characterItemEquipmentAddOptionDto';
+import { CharacterItemEquipmentBaseOptionDto } from './characterItemEquipmentBaseOptionDto';
+import { CharacterItemEquipmentEtcOptionDto } from './characterItemEquipmentEtcOptionDto';
+import { CharacterItemEquipmentExceptionalOptionDto } from './characterItemEquipmentExceptionalOptionDto';
+import { CharacterItemEquipmentStarforceOptionDto } from './characterItemEquipmentStarforceOptionDto';
+import { CharacterItemEquipmentTotalOptionDto } from './characterItemEquipmentTotalOptionDto';
+import { CharacterItemEquipmentInfoDtoBody } from '../../response/character/characterItemEquipmentDtoBody';
 
 /**
  * 캐릭터 장비 아이템 상세 정보

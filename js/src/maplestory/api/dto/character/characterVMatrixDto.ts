@@ -1,5 +1,5 @@
-import { CharacterVMatrixCodeEquipmentDto } from '@src/maplestory/api/dto/character/characterVMatrixCoreEquipmentDto';
-import { CharacterVMatrixDtoBody } from '@src/maplestory/api/response/character/characterVMatrixDtoBody';
+import { CharacterVMatrixCodeEquipmentDto } from './characterVMatrixCoreEquipmentDto';
+import { CharacterVMatrixDtoBody } from '../../response/character/characterVMatrixDtoBody';
 
 /**
  * 캐릭터 V매트릭스 정보

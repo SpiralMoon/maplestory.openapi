@@ -1,8 +1,6 @@
-import { CharacterSetEffectOptionFullDto } from '@src/maplestory/api/dto/character/characterSetEffectOptionFullDto';
-import { CharacterSetEffectInfoDto } from '@src/maplestory/api/dto/character/characterSetEffectInfoDto';
-import {
-  CharacterSetEffectSetDtoBody,
-} from '@src/maplestory/api/response/character/characterSetEffectDtoBody';
+import { CharacterSetEffectInfoDto } from './characterSetEffectInfoDto';
+import { CharacterSetEffectOptionFullDto } from './characterSetEffectOptionFullDto';
+import { CharacterSetEffectSetDtoBody } from '../../response/character/characterSetEffectDtoBody';
 
 /**
  * 세트 효과 정보

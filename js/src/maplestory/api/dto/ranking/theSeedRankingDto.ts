@@ -1,4 +1,4 @@
-import { TheSeedRankingDtoBody } from '@src/maplestory/api/response/ranking/theSeedRankingResponseDtoBody';
+import { TheSeedRankingDtoBody } from '../../response/ranking/theSeedRankingResponseDtoBody';
 
 /**
  * 더 시드 랭킹 정보

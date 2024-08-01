@@ -1,5 +1,5 @@
-import { EventNoticeListItemDto } from '@src/maplestory/api/dto/notice/eventNoticeListItemDto';
-import { EventNoticeListDtoBody } from '@src/maplestory/api/response/notice/eventNoticeListDtoBody';
+import { EventNoticeListItemDto } from './eventNoticeListItemDto';
+import { EventNoticeListDtoBody } from '../../response/notice/eventNoticeListDtoBody';
 
 /**
  * 진행 중 이벤트 공지 목록

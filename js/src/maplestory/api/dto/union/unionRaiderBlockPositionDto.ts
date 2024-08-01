@@ -1,4 +1,4 @@
-import { UnionRaiderBlockPositionDtoBody } from '@src/maplestory/api/response/union/unionRaiderDtoBody';
+import { UnionRaiderBlockPositionDtoBody } from '../../response/union/unionRaiderDtoBody';
 
 /**
  * 유니온 블록이 차지하고 있는 영역 좌표들

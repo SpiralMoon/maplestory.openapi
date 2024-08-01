@@ -1,4 +1,4 @@
-import { GuildDtoBody } from '@src/maplestory/api/response/guild/guildDtoBody';
+import { GuildDtoBody } from '../../response/guild/guildDtoBody';
 
 /**
  * 길드 식별자 정보

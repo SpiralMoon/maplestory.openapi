@@ -1,4 +1,4 @@
-import { MapleStoryErrorBody } from '@src/maplestory/api/mapleStoryApi';
+import { MapleStoryErrorBody } from './mapleStoryApi';
 
 /**
  * MapleStory OpenAPI error.<br>

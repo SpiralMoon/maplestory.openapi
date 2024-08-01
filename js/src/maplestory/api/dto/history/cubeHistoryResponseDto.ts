@@ -1,5 +1,5 @@
-import { CubeHistoryDto } from '@src/maplestory/api/dto/history/cubeHistoryDto';
-import { CubeHistoryResponseDtoBody } from '@src/maplestory/api/response/history/cubeHistoryResponseDtoBody';
+import { CubeHistoryDto } from './cubeHistoryDto';
+import { CubeHistoryResponseDtoBody } from '../../response/history/cubeHistoryResponseDtoBody';
 
 /**
  * 큐브 히스토리 응답 정보

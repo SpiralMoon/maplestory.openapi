@@ -1,5 +1,5 @@
-import { UpdateNoticeListItemDto } from '@src/maplestory/api/dto/notice/updateNoticeListItemDto';
-import { UpdateNoticeListDtoBody } from '@src/maplestory/api/response/notice/updateNoticeListDtoBody';
+import { UpdateNoticeListItemDto } from './updateNoticeListItemDto';
+import { UpdateNoticeListDtoBody } from '../../response/notice/updateNoticeListDtoBody';
 
 /**
  * 업데이트 목록

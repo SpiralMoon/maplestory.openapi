@@ -1,6 +1,4 @@
-import {
-  CharacterAndroidEquipmentHairDtoBody
-} from '@src/maplestory/api/response/character/characterAndroidEquipmentDtoBody';
+import { CharacterAndroidEquipmentHairDtoBody } from '../../response/character/characterAndroidEquipmentDtoBody';
 
 /**
  * 캐릭터 안드로이드 헤어 정보

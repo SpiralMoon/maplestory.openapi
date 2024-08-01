@@ -1,4 +1,4 @@
-import { CharacterDojangDtoBody } from '@src/maplestory/api/response/character/characterDojangDtoBody';
+import { CharacterDojangDtoBody } from '../../response/character/characterDojangDtoBody';
 
 /**
  * 캐릭터 도장 정보

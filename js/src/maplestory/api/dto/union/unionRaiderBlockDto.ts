@@ -1,6 +1,6 @@
-import { UnionRaiderBlockPositionDto } from '@src/maplestory/api/dto/union/unionRaiderBlockPositionDto';
-import { UnionRaiderBlockControlPointDto } from '@src/maplestory/api/dto/union/unionRaiderControlPointDto';
-import { UnionRaiderBlockDtoBody } from '@src/maplestory/api/response/union/unionRaiderDtoBody';
+import { UnionRaiderBlockPositionDto } from './unionRaiderBlockPositionDto';
+import { UnionRaiderBlockControlPointDto } from './unionRaiderControlPointDto';
+import { UnionRaiderBlockDtoBody } from '../../response/union/unionRaiderDtoBody';
 
 /**
  * 유니온 블록 정보

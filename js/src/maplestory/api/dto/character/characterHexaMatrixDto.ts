@@ -1,5 +1,5 @@
-import { CharacterHexaMatrixEquipmentDto } from '@src/maplestory/api/dto/character/characterHexaMatrixEquipmentDto';
-import { CharacterHexaMatrixDtoBody } from '@src/maplestory/api/response/character/characterHexaMatrixDtoBody';
+import { CharacterHexaMatrixEquipmentDto } from './characterHexaMatrixEquipmentDto';
+import { CharacterHexaMatrixDtoBody } from '../../response/character/characterHexaMatrixDtoBody';
 
 /**
  * 캐릭터 HEXA 코어 정보

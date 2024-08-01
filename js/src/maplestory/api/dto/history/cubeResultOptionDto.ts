@@ -1,5 +1,5 @@
-import { PotentialOptionGrade, potentialOptionGradeFromString } from '@src/maplestory/api/dto/potentialOptionGrade';
-import { CubeResultOptionDtoBody } from '@src/maplestory/api/response/history/cubeResultOptionDtoBody';
+import { CubeResultOptionDtoBody } from '../../response/history/cubeResultOptionDtoBody';
+import { PotentialOptionGrade, potentialOptionGradeFromString } from '../potentialOptionGrade';
 
 /**
  * 큐브 결과 옵션 정보

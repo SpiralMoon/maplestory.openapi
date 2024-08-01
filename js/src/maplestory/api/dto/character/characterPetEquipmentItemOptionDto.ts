@@ -1,6 +1,4 @@
-import {
-  CharacterPetEquipmentItemOptionDtoBody
-} from '@src/maplestory/api/response/character/characterPetEquipmentDtoBody';
+import { CharacterPetEquipmentItemOptionDtoBody } from '../../response/character/characterPetEquipmentDtoBody';
 
 /**
  * 캐릭터 펫 장비 아이템 옵션 정보

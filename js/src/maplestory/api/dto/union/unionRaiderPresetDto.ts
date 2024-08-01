@@ -1,6 +1,6 @@
-import { UnionRaiderBlockDto } from '@src/maplestory/api/dto/union/unionRaiderBlockDto';
-import { UnionRaiderInnerStatDto } from '@src/maplestory/api/dto/union/unionRaiderInnerStatDto';
-import { UnionRaiderPresetDtoBody } from '@src/maplestory/api/response/union/unionRaiderDtoBody';
+import { UnionRaiderBlockDto } from './unionRaiderBlockDto';
+import { UnionRaiderInnerStatDto } from './unionRaiderInnerStatDto';
+import { UnionRaiderPresetDtoBody } from '../../response/union/unionRaiderDtoBody';
 
 /**
  * 유니온 프리셋 정보

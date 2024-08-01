@@ -1,7 +1,5 @@
-import { CharacterSymbolEquipmentInfoDto } from '@src/maplestory/api/dto/character/characterSymbolEquipmentInfoDto';
-import {
-  CharacterSymbolEquipmentDtoBody
-} from '@src/maplestory/api/response/character/characterSymbolEquipmentDtoBody';
+import { CharacterSymbolEquipmentInfoDto } from './characterSymbolEquipmentInfoDto';
+import { CharacterSymbolEquipmentDtoBody } from '../../response/character/characterSymbolEquipmentDtoBody';
 
 /**
  * 캐릭터 심볼 정보

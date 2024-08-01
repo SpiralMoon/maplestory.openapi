@@ -1,4 +1,4 @@
-import { CharacterAbilityInfoDtoBody } from '@src/maplestory/api/response/character/characterAbilityDtoBody';
+import { CharacterAbilityInfoDtoBody } from '../../response/character/characterAbilityDtoBody';
 
 /**
  * 캐릭터 어빌리티 상세 정보

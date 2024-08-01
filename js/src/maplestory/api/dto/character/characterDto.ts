@@ -1,4 +1,4 @@
-import { CharacterDtoBody } from '@src/maplestory/api/response/character/characterDtoBody';
+import { CharacterDtoBody } from '../../response/character/characterDtoBody';
 
 /**
  * 캐릭터 식별 정보

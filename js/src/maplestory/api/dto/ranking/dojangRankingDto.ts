@@ -1,4 +1,4 @@
-import { DojangRankingDtoBody } from '@src/maplestory/api/response/ranking/dojangRankingResponseDtoBody';
+import { DojangRankingDtoBody } from '../../response/ranking/dojangRankingResponseDtoBody';
 
 /**
  * 무릉도장 랭킹 정보

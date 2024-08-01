@@ -1,4 +1,4 @@
-import { CharacterBasicDtoBody } from '@src/maplestory/api/response/character/characterBasicDtoBody';
+import { CharacterBasicDtoBody } from '../../response/character/characterBasicDtoBody';
 
 /**
  * 캐릭터 기본 정보

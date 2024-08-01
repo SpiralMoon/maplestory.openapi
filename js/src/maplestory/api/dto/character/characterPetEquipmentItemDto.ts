@@ -1,7 +1,5 @@
-import {
-  CharacterPetEquipmentItemOptionDto
-} from '@src/maplestory/api/dto/character/characterPetEquipmentItemOptionDto';
-import { CharacterPetEquipmentItemDtoBody } from '@src/maplestory/api/response/character/characterPetEquipmentDtoBody';
+import { CharacterPetEquipmentItemOptionDto } from './characterPetEquipmentItemOptionDto';
+import { CharacterPetEquipmentItemDtoBody } from '../../response/character/characterPetEquipmentDtoBody';
 
 /**
  * 캐릭터 펫 장비 아이템 정보

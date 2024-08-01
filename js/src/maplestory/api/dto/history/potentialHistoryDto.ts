@@ -1,6 +1,6 @@
-import { PotentialResultOptionDto } from '@src/maplestory/api/dto/history/potentialResultOptionDto';
-import { PotentialOptionGrade, potentialOptionGradeFromString } from '@src/maplestory/api/dto/potentialOptionGrade';
-import { PotentialHistoryDtoBody } from '@src/maplestory/api/response/history/potentialHistoryResponseDtoBody';
+import { PotentialResultOptionDto } from './potentialResultOptionDto';
+import { PotentialHistoryDtoBody } from '../../response/history/potentialHistoryResponseDtoBody';
+import { PotentialOptionGrade, potentialOptionGradeFromString } from '../potentialOptionGrade';
 
 
 /**

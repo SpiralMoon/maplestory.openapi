@@ -1,5 +1,5 @@
-import { CashshopNoticeListItemDto } from '@src/maplestory/api/dto/notice/cashshopNoticeListItemDto';
-import { CashshopNoticeListDtoBody } from '@src/maplestory/api/response/notice/cashshopNoticeListDtoBody';
+import { CashshopNoticeListItemDto } from './cashshopNoticeListItemDto';
+import { CashshopNoticeListDtoBody } from '../../response/notice/cashshopNoticeListDtoBody';
 
 /**
  * 캐시샵 공지 목록

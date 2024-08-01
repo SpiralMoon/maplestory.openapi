@@ -14,7 +14,6 @@
   },
   "include": ["@types/**/*", "src/**/*", "test/**/*"],
   "exclude": ["node_modules"],
-  "extends": "./tsconfig.paths.json",
   "ts-node": {
     "transpileOnly": true,
     "compilerOptions": {

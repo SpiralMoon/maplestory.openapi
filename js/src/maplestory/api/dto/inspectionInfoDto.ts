@@ -1,4 +1,4 @@
-import { InspectionInfoSoapBody } from '@src/maplestory/api/response/inspectionInfoSoapBody';
+import { InspectionInfoSoapBody } from '../response/inspectionInfoSoapBody';
 
 /**
  * 서버 점검 정보

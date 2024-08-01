@@ -1,6 +1,4 @@
-import {
-  CharacterItemEquipmentStarforceOptionDtoBody
-} from '@src/maplestory/api/response/character/characterItemEquipmentDtoBody';
+import { CharacterItemEquipmentStarforceOptionDtoBody } from '../../response/character/characterItemEquipmentDtoBody';
 
 /**
  * 캐릭터 장비 스타포스 옵션 정보

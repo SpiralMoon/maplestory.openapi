@@ -1,5 +1,5 @@
-import { GuildRankingDto } from '@src/maplestory/api/dto/ranking/guildRankingDto';
-import { GuildRankingResponseDtoBody } from '@src/maplestory/api/response/ranking/guildRankingResponseDtoBody';
+import { GuildRankingDto } from './guildRankingDto';
+import { GuildRankingResponseDtoBody } from '../../response/ranking/guildRankingResponseDtoBody';
 
 /**
  * 길드 랭킹 응답 정보

@@ -1,4 +1,4 @@
-import { UnionArtifactCrystalDtoBody } from '@src/maplestory/api/response/union/unionArtifactDtoBody';
+import { UnionArtifactCrystalDtoBody } from '../../response/union/unionArtifactDtoBody';
 
 /**
  * 유니온 아티팩트 크리스탈 정보
