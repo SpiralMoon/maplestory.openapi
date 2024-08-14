@@ -32,15 +32,27 @@ namespace MapleStory.OpenAPI.Dto
         public string CharacterClass { get; set; }
 
         /// <summary>
-        /// HEXA 스탯 코어 정보
+        /// HEXA 스탯 I 코어 정보
         /// </summary>
         [JsonProperty("character_hexa_stat_core")]
         public List<CharacterHexaMatrixStatCoreDTO> CharacterHexaStatCore { get; set; }
 
         /// <summary>
-        /// 프리셋 HEXA 스탯 코어 정보
+        /// HEXA 스탯 II 코어 정보
+        /// </summary>
+        [JsonProperty("character_hexa_stat_core_2")]
+        public List<CharacterHexaMatrixStatCoreDTO> CharacterHexaStatCore2 { get; set; }
+
+        /// <summary>
+        /// 프리셋 HEXA 스탯 I 코어 정보
         /// </summary>
         [JsonProperty("preset_hexa_stat_core")]
         public List<CharacterHexaMatrixStatCoreDTO> PresetHexaStatCore { get; set; }
+
+        /// <summary>
+        /// 프리셋 HEXA 스탯 II 코어 정보
+        /// </summary>
+        [JsonProperty("preset_hexa_stat_core_2")]
+        public List<CharacterHexaMatrixStatCoreDTO> PresetHexaStatCore2 { get; set; }
     }
 }

@@ -2,7 +2,9 @@ type CharacterHexaMatrixStatDtoBody = {
   date: string | null;
   character_class: string;
   character_hexa_stat_core: CharacterHexaMatrixStatCoreDtoBody[];
+  character_hexa_stat_core_2: CharacterHexaMatrixStatCoreDtoBody[];
   preset_hexa_stat_core: CharacterHexaMatrixStatCoreDtoBody[];
+  preset_hexa_stat_core_2: CharacterHexaMatrixStatCoreDtoBody[];
 };
 
 type CharacterHexaMatrixStatCoreDtoBody = {
