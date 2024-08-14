@@ -35,6 +35,13 @@ public class CharacterBeautyEquipmentDTO {
     private String characterClass;
 
     /**
+     * 캐릭터 피부 정보
+     * (제로인 경우 알파, 엔젤릭버스터인 경우 일반 모드)
+     */
+    @SerializedName("character_skin")
+    private CharacterBeautyEquipmentSkinDTO characterSkin;
+
+    /**
      * 캐릭터 헤어 정보
      * (제로인 경우 알파, 엔젤릭버스터인 경우 일반 모드)
      */
@@ -49,18 +56,22 @@ public class CharacterBeautyEquipmentDTO {
     private CharacterBeautyEquipmentFaceDTO characterFace;
 
     /**
-     * 드레스 업 모드에 적용 중인 헤어 정보
-     * (제로인 경우 베타, 엔젤릭버스터인 경우 드레스 업 모드)
+     * 제로인 경우 베타, 엔젤릭버스터인 경우 드레스 업 모드에 적용 중인 헤어 정보
      */
     @SerializedName("additional_character_hair")
     private CharacterBeautyEquipmentHairDTO additionalCharacterHair;
 
     /**
-     * 드레스 업 모드에 적용 중인 성형 정보
-     * (제로인 경우 베타, 엔젤릭버스터인 경우 드레스 업 모드)
+     * 제로인 경우 베타, 엔젤릭버스터인 경우 드레스 업 모드에 적용 중인 성형 정보
      */
     @SerializedName("additional_character_face")
     private CharacterBeautyEquipmentFaceDTO additionalCharacterFace;
+
+    /**
+     * 제로인 경우 베타, 엔젤릭버스터인 경우 드레스 업 모드에 적용 중인 피부 정보
+     */
+    @SerializedName("additional_character_skin")
+    private CharacterBeautyEquipmentSkinDTO additionalCharacterSkin;
 
     public LocalDateTime getDate() {
         return date != null

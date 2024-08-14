@@ -1,6 +1,9 @@
 import { CharacterBeautyEquipmentFaceDto } from './characterBeautyEquipmentFaceDto';
 import { CharacterBeautyEquipmentHairDto } from './characterBeautyEquipmentHairDto';
-import { CharacterBeautyEquipmentDtoBody } from '../../response/character/characterBeautyEquipmentDtoBody';
+import { CharacterBeautyEquipmentSkinDto } from './characterBeautyEquipmentSkinDto';
+import {
+  CharacterBeautyEquipmentDtoBody,
+} from '../../response/character/characterBeautyEquipmentDtoBody';
 
 /**
  * 캐릭터 헤어, 성형, 피부 정보
@@ -34,6 +37,12 @@ class CharacterBeautyEquipmentDto {
   characterFace: CharacterBeautyEquipmentFaceDto;
 
   /**
+   * 캐릭터 피부 정보<br>
+   * (제로인 경우 알파, 엔젤릭버스터인 경우 일반 모드)
+   */
+  characterSkin: CharacterBeautyEquipmentSkinDto;
+
+  /**
    * 제로인 경우 베타, 엔젤릭버스터인 경우 드레스 업 모드에 적용 중인 헤어 정보
    */
   additionalCharacterHair: CharacterBeautyEquipmentHairDto | null;
@@ -43,6 +52,11 @@ class CharacterBeautyEquipmentDto {
    */
   additionalCharacterFace: CharacterBeautyEquipmentFaceDto | null;
 
+  /**
+   * 제로인 경우 베타, 엔젤릭버스터인 경우 드레스 업 모드에 적용 중인 피부 정보
+   */
+  additionalCharacterSkin: CharacterBeautyEquipmentSkinDto | null;
+
   constructor(obj: CharacterBeautyEquipmentDtoBody) {
     const {
       date,
@@ -50,8 +64,10 @@ class CharacterBeautyEquipmentDto {
       character_class,
       character_hair,
       character_face,
+      character_skin,
       additional_character_hair,
       additional_character_face,
+      additional_character_skin,
     } = obj;
 
     this.date = date ? new Date(date) : null;
@@ -59,11 +75,15 @@ class CharacterBeautyEquipmentDto {
     this.characterClass = character_class;
     this.characterHair = new CharacterBeautyEquipmentHairDto(character_hair);
     this.characterFace = new CharacterBeautyEquipmentFaceDto(character_face);
+    this.characterSkin = new CharacterBeautyEquipmentSkinDto(character_skin);
     this.additionalCharacterHair = additional_character_hair
       ? new CharacterBeautyEquipmentHairDto(additional_character_hair)
       : null;
     this.additionalCharacterFace = additional_character_face
       ? new CharacterBeautyEquipmentFaceDto(additional_character_face)
+      : null;
+    this.additionalCharacterSkin = additional_character_skin
+      ? new CharacterBeautyEquipmentSkinDto(additional_character_skin)
       : null;
   }
 }
