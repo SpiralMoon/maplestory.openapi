@@ -44,11 +44,6 @@ class CharacterAndroidEquipmentDto {
   androidFace: CharacterAndroidEquipmentFaceDto;
 
   /**
-   * 안드로이드 피부 명
-   */
-  androidSkinName: string | null;
-
-  /**
    * 안드로이드 캐시 아이템 장착 정보
    */
   androidCashItemEquipment: CharacterAndroidCashItemEquipmentDto[];
@@ -107,7 +102,6 @@ class CharacterAndroidEquipmentDto {
       android_description,
       android_hair,
       android_face,
-      android_skin_name,
       android_cash_item_equipment,
       android_ear_sensor_clip_flag,
       android_gender,
@@ -127,7 +121,6 @@ class CharacterAndroidEquipmentDto {
     this.androidDescription = android_description;
     this.androidHair = new CharacterAndroidEquipmentHairDto(android_hair);
     this.androidFace = new CharacterAndroidEquipmentFaceDto(android_face);
-    this.androidSkinName = android_skin_name;
     this.androidCashItemEquipment = android_cash_item_equipment.map(
       (equipment) => new CharacterAndroidCashItemEquipmentDto(equipment),
     );

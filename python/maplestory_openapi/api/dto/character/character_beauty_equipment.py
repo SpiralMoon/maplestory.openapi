@@ -38,7 +38,6 @@ class CharacterBeautyEquipment(BaseModel):
     character_class: 캐릭터 직업
     character_hair: 캐릭터 헤어 정보 (제로인 경우 알파, 엔젤릭버스터인 경우 일반 모드)
     character_face: 캐릭터 성형 정보 (제로인 경우 알파, 엔젤릭버스터인 경우 일반 모드)
-    character_skin_name: 캐릭터 피부 명 (제로인 경우 알파, 엔젤릭버스터인 경우 일반 모드)
     additional_character_hair: 제로인 경우 베타, 엔젤릭버스터인 경우 드레스 업 모드에 적용 중인 헤어 정보
     additional_character_face: 제로인 경우 베타, 엔젤릭버스터인 경우 드레스 업 모드에 적용 중인 성형 정보
     additional_character_skin_name: 제로인 경우 베타, 엔젤릭버스터인 경우 드레스 업 모드에 적용 중인 피부 명
@@ -48,7 +47,6 @@ class CharacterBeautyEquipment(BaseModel):
     character_class: str
     character_hair: CharacterBeautyEquipmentHair
     character_face: CharacterBeautyEquipmentFace
-    character_skin_name: str
     additional_character_hair: CharacterBeautyEquipmentHair | None
     additional_character_face: CharacterBeautyEquipmentFace | None
     additional_character_skin_name: str | None

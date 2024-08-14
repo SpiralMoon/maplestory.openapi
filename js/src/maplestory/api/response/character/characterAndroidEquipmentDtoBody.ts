@@ -6,7 +6,6 @@ type CharacterAndroidEquipmentDtoBody = {
   android_description: string | null;
   android_hair: CharacterAndroidEquipmentHairDtoBody;
   android_face: CharacterAndroidEquipmentFaceDtoBody;
-  android_skin_name: string | null;
   android_cash_item_equipment: CharacterAndroidCashItemEquipmentDtoBody[];
   android_ear_sensor_clip_flag: string | null;
   android_gender: string | null;
@@ -40,7 +39,6 @@ type CharacterAndroidEquipmentPresetDtoBody = {
   android_description: string;
   android_gender: string | null;
   android_grade: string;
-  android_skin_name: string;
   android_hair: CharacterAndroidEquipmentHairDtoBody;
   android_face: CharacterAndroidEquipmentFaceDtoBody;
   android_ear_sensor_clip_flag: string;

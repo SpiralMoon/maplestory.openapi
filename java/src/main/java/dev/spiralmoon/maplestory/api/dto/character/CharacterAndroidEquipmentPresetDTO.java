@@ -54,12 +54,6 @@ public class CharacterAndroidEquipmentPresetDTO {
     private String androidGrade;
 
     /**
-     * 안드로이드 피부 명
-     */
-    @SerializedName("android_skin_name")
-    private String androidSkinName;
-
-    /**
      * 안드로이드 헤어 정보
      */
     @SerializedName("android_hair")

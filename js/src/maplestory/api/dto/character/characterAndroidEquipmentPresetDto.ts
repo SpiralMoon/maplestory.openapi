@@ -38,11 +38,6 @@ class CharacterAndroidEquipmentPresetDto {
   androidGrade: string;
 
   /**
-   * 안드로이드 피부 명
-   */
-  androidSkinName: string;
-
-  /**
    * 안드로이드 헤어 정보
    */
   androidHair: CharacterAndroidEquipmentHairDto;
@@ -75,7 +70,6 @@ class CharacterAndroidEquipmentPresetDto {
       android_description,
       android_gender,
       android_grade,
-      android_skin_name,
       android_hair,
       android_face,
       android_ear_sensor_clip_flag,
@@ -89,7 +83,6 @@ class CharacterAndroidEquipmentPresetDto {
     this.androidDescription = android_description;
     this.androidGender = android_gender;
     this.androidGrade = android_grade;
-    this.androidSkinName = android_skin_name;
     this.androidHair = new CharacterAndroidEquipmentHairDto(android_hair);
     this.androidFace = new CharacterAndroidEquipmentFaceDto(android_face);
     this.androidEarSensorClipFlag = android_ear_sensor_clip_flag;

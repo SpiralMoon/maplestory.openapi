@@ -52,13 +52,6 @@ namespace MapleStory.OpenAPI.Dto
         public CharacterBeautyEquipmentFaceDTO CharacterFace { get; set; }
 
         /// <summary>
-        /// 피부 명
-        /// (제로인 경우 알파, 엔젤릭버스터인 경우 일반 모드)
-        /// </summary>
-        [JsonProperty("character_skin_name")]
-        public string CharacterSkinName { get; set; }
-
-        /// <summary>
         /// 드레스 업 모드에 적용 중인 헤어 정보
         /// (제로인 경우 베타, 엔젤릭버스터인 경우 드레스 업 모드)
         /// </summary>

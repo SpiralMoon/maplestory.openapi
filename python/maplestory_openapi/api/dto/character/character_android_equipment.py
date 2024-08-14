@@ -39,7 +39,6 @@ class CharacterAndroidEquipmentPreset(BaseModel):
     android_description(str): 안드로이드 아이템 설명
     android_gender(str): 안드로이드 성별
     android_grade(str): 안드로이드 등급
-    android_skin_name(str): 안드로이드 피부 명
     android_hair(CharacterAndroidEquipmentHair): 안드로이드 헤어 정보
     android_face(CharacterAndroidEquipmentFace): 안드로이드 성형 정보
     android_ear_sensor_clip_flag(str): 안드로이드 이어센서 클립 적용 여부
@@ -52,7 +51,6 @@ class CharacterAndroidEquipmentPreset(BaseModel):
     android_description: str
     android_gender: str | None
     android_grade: str
-    android_skin_name: str | None
     android_hair: CharacterAndroidEquipmentHair
     android_face: CharacterAndroidEquipmentFace
     android_ear_sensor_clip_flag: str
@@ -119,7 +117,6 @@ class CharacterAndroidEquipment(BaseModel):
     android_description(str): 안드로이드 아이템 설명
     android_hair(CharacterAndroidEquipmentHair): 안드로이드 헤어 정보
     android_face(CharacterAndroidEquipmentFace): 안드로이드 성형 정보
-    android_skin_name(str): 안드로이드 피부 명
     android_cash_item_equipment(list[CharacterAndroidCashItemEquipment]): 안드로이드 캐시 아이템 장착 정보
     android_ear_sensor_clip_flag(str): 안드로이드 이어센서 클립 적용 여부
     android_gender(str): 안드로이드 성별
@@ -138,7 +135,6 @@ class CharacterAndroidEquipment(BaseModel):
     android_description: str | None
     android_hair: CharacterAndroidEquipmentHair
     android_face: CharacterAndroidEquipmentFace
-    android_skin_name: str | None
     android_cash_item_equipment: list[CharacterAndroidCashItemEquipment]
     android_ear_sensor_clip_flag: str
     android_gender: str | None

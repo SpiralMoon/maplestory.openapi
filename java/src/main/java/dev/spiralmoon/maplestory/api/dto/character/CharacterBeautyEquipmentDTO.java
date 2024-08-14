@@ -49,13 +49,6 @@ public class CharacterBeautyEquipmentDTO {
     private CharacterBeautyEquipmentFaceDTO characterFace;
 
     /**
-     * 피부 명
-     * (제로인 경우 알파, 엔젤릭버스터인 경우 일반 모드)
-     */
-    @SerializedName("character_skin_name")
-    private String characterSkinName;
-
-    /**
      * 드레스 업 모드에 적용 중인 헤어 정보
      * (제로인 경우 베타, 엔젤릭버스터인 경우 드레스 업 모드)
      */

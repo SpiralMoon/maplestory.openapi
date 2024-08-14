@@ -49,12 +49,6 @@ namespace MapleStory.OpenAPI.Dto
         public string AndroidGrade { get; set; }
 
         /// <summary>
-        /// 안드로이드 피부 명
-        /// </summary>
-        [JsonProperty("android_skin_name")]
-        public string AndroidSkinName { get; set; }
-
-        /// <summary>
         /// 안드로이드 헤어 정보
         /// </summary>
         [JsonProperty("android_hair")]
