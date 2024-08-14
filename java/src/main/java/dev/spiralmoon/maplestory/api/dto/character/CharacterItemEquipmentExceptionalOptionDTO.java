@@ -59,4 +59,10 @@ public class CharacterItemEquipmentExceptionalOptionDTO {
      */
     @SerializedName("magic_power")
     private String magicPower;
+
+    /**
+     * 익셉셔널 강화 적용 횟수
+     */
+    @SerializedName("exceptional_upgrade")
+    private int exceptionalUpgrade;
 }

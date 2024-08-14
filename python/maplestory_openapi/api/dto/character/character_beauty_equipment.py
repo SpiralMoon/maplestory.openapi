@@ -30,6 +30,22 @@ class CharacterBeautyEquipmentFace(BaseModel):
     mix_rate: str
 
 
+class CharacterBeautyEquipmentSkin(BaseModel):
+    """캐릭터 피부 정보
+
+    skin_name(str): 피부 명
+    color_style(str): 색상 계열
+    hue(int): 피부 색조
+    saturation(int): 피부 채도
+    brightness(int): 피부 명도
+    """
+    skin_name: str
+    color_style: str | None
+    hue: int | None
+    saturation: int | None
+    brightness: int | None
+
+
 class CharacterBeautyEquipment(BaseModel):
     """캐릭터 헤어, 성형, 피부 정보
 
@@ -38,17 +54,17 @@ class CharacterBeautyEquipment(BaseModel):
     character_class: 캐릭터 직업
     character_hair: 캐릭터 헤어 정보 (제로인 경우 알파, 엔젤릭버스터인 경우 일반 모드)
     character_face: 캐릭터 성형 정보 (제로인 경우 알파, 엔젤릭버스터인 경우 일반 모드)
-    character_skin_name: 캐릭터 피부 명 (제로인 경우 알파, 엔젤릭버스터인 경우 일반 모드)
+    character_skin: 캐릭터 피부 정보 (제로인 경우 알파, 엔젤릭버스터인 경우 일반 모드)
     additional_character_hair: 제로인 경우 베타, 엔젤릭버스터인 경우 드레스 업 모드에 적용 중인 헤어 정보
     additional_character_face: 제로인 경우 베타, 엔젤릭버스터인 경우 드레스 업 모드에 적용 중인 성형 정보
-    additional_character_skin_name: 제로인 경우 베타, 엔젤릭버스터인 경우 드레스 업 모드에 적용 중인 피부 명
+    additional_character_skin: 제로인 경우 베타, 엔젤릭버스터인 경우 드레스 업 모드에 적용 중인 피부 정보
     """
     date: datetime | None
     character_gender: str
     character_class: str
     character_hair: CharacterBeautyEquipmentHair
     character_face: CharacterBeautyEquipmentFace
-    character_skin_name: str
+    character_skin: CharacterBeautyEquipmentSkin
     additional_character_hair: CharacterBeautyEquipmentHair | None
     additional_character_face: CharacterBeautyEquipmentFace | None
-    additional_character_skin_name: str | None
+    additional_character_skin: CharacterBeautyEquipmentSkin | None

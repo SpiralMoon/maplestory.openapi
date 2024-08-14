@@ -6,7 +6,7 @@ type CharacterAndroidEquipmentDtoBody = {
   android_description: string | null;
   android_hair: CharacterAndroidEquipmentHairDtoBody;
   android_face: CharacterAndroidEquipmentFaceDtoBody;
-  android_skin_name: string | null;
+  android_skin: CharacterAndroidEquipmentSkinDtoBody | null;
   android_cash_item_equipment: CharacterAndroidCashItemEquipmentDtoBody[];
   android_ear_sensor_clip_flag: string | null;
   android_gender: string | null;
@@ -33,6 +33,14 @@ type CharacterAndroidEquipmentFaceDtoBody = {
   mix_rate: string;
 };
 
+type CharacterAndroidEquipmentSkinDtoBody = {
+  skin_name: string;
+  color_style: string | null;
+  hue: number | null;
+  saturation: number | null;
+  brightness: number | null;
+};
+
 type CharacterAndroidEquipmentPresetDtoBody = {
   android_name: string;
   android_nickname: string;
@@ -40,9 +48,9 @@ type CharacterAndroidEquipmentPresetDtoBody = {
   android_description: string;
   android_gender: string | null;
   android_grade: string;
-  android_skin_name: string;
   android_hair: CharacterAndroidEquipmentHairDtoBody;
   android_face: CharacterAndroidEquipmentFaceDtoBody;
+  android_skin: CharacterAndroidEquipmentSkinDtoBody | null;
   android_ear_sensor_clip_flag: string;
   android_non_humanoid_flag: string;
   android_shop_usable_flag: string;
@@ -77,6 +85,7 @@ export type {
   CharacterAndroidEquipmentDtoBody,
   CharacterAndroidEquipmentHairDtoBody,
   CharacterAndroidEquipmentFaceDtoBody,
+  CharacterAndroidEquipmentSkinDtoBody,
   CharacterAndroidEquipmentPresetDtoBody,
   CharacterAndroidCashItemEquipmentDtoBody,
   CharacterAndroidCashItemEquipmentOptionDtoBody,

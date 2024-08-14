@@ -44,8 +44,13 @@ class CharacterItemEquipmentExceptionalOptionDto {
    */
   magicPower: string;
 
+  /**
+   * 익셉셔널 강화 적용 횟수
+   */
+  exceptionalUpgrade: number;
+
   constructor(obj: CharacterItemEquipmentExceptionalOptionDtoBody) {
-    const { str, dex, int, luk, max_hp, max_mp, attack_power, magic_power } =
+    const { str, dex, int, luk, max_hp, max_mp, attack_power, magic_power, exceptional_upgrade } =
       obj;
 
     this.str = str;
@@ -56,6 +61,7 @@ class CharacterItemEquipmentExceptionalOptionDto {
     this.maxMp = max_mp;
     this.attackPower = attack_power;
     this.magicPower = magic_power;
+    this.exceptionalUpgrade = exceptional_upgrade;
   }
 }
 

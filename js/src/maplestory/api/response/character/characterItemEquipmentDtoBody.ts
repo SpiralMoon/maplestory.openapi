@@ -32,7 +32,7 @@ type CharacterItemEquipmentInfoDtoBody = {
   additional_potential_option_2: string | null;
   additional_potential_option_3: string | null;
   equipment_level_increase: number;
-  item_exceptional_option: CharacterItemEquipmentOptionDtoBody;
+  item_exceptional_option: CharacterItemEquipmentExceptionalOptionDtoBody;
   item_add_option: CharacterItemEquipmentAddOptionDtoBody;
   growth_exp: number;
   growth_level: number;
@@ -115,6 +115,7 @@ type CharacterItemEquipmentExceptionalOptionDtoBody = {
   max_mp: string;
   attack_power: string;
   magic_power: string;
+  exceptional_upgrade: number;
 };
 
 type CharacterItemEquipmentTotalOptionDtoBody = {

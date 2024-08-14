@@ -49,12 +49,6 @@ namespace MapleStory.OpenAPI.Dto
         public string AndroidGrade { get; set; }
 
         /// <summary>
-        /// 안드로이드 피부 명
-        /// </summary>
-        [JsonProperty("android_skin_name")]
-        public string AndroidSkinName { get; set; }
-
-        /// <summary>
         /// 안드로이드 헤어 정보
         /// </summary>
         [JsonProperty("android_hair")]
@@ -65,6 +59,12 @@ namespace MapleStory.OpenAPI.Dto
         /// </summary>
         [JsonProperty("android_face")]
         public CharacterAndroidEquipmentFaceDTO AndroidFace { get; set; }
+
+        /// <summary>
+        /// 안드로이드 피부 정보
+        /// </summary>
+        [JsonProperty("android_skin")]
+        public CharacterAndroidEquipmentSkinDTO? AndroidSkin { get; set; }
 
         /// <summary>
         /// 안드로이드 이어센서 클립 적용 여부

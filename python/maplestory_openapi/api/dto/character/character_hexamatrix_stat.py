@@ -30,9 +30,14 @@ class CharacterHexaMatrixStat(BaseModel):
 
     date(datetime): 조회 기준일 (KST, 일 단위 데이터로 시, 분은 일괄 0으로 표기)
     character_class(str): 캐릭터 직업
-    character_hexa_stat_core(list[CharacterHexaMatrixStatCore]): HEXA 코어 스탯 정보
+    character_hexa_stat_core(list[CharacterHexaMatrixStatCore]): HEXA 스탯 I 코어 정보
+    character_hexa_stat_core_2(list[CharacterHexaMatrixStatCore]): HEXA 스탯 II 코어 정보
+    preset_hexa_stat_core(list[CharacterHexaMatrixStatCore]): 프리셋 HEXA 스탯 I 코어 정보
+    preset_hexa_stat_core_2(list[CharacterHexaMatrixStatCore]): 프리셋 HEXA 스탯 II 코어 정보
     """
     date: datetime | None
     character_class: str
     character_hexa_stat_core: list[CharacterHexaMatrixStatCore]
+    character_hexa_stat_core_2: list[CharacterHexaMatrixStatCore]
     preset_hexa_stat_core: list[CharacterHexaMatrixStatCore]
+    preset_hexa_stat_core_2: list[CharacterHexaMatrixStatCore]

@@ -1,5 +1,6 @@
 import { CharacterAndroidEquipmentFaceDto } from './characterAndroidEquipmentFaceDto';
 import { CharacterAndroidEquipmentHairDto } from './characterAndroidEquipmentHairDto';
+import { CharacterAndroidEquipmentSkinDto } from './characterAndroidEquipmentSkinDto';
 import { CharacterAndroidEquipmentPresetDtoBody } from '../../response/character/characterAndroidEquipmentDtoBody';
 
 /**
@@ -38,11 +39,6 @@ class CharacterAndroidEquipmentPresetDto {
   androidGrade: string;
 
   /**
-   * 안드로이드 피부 명
-   */
-  androidSkinName: string;
-
-  /**
    * 안드로이드 헤어 정보
    */
   androidHair: CharacterAndroidEquipmentHairDto;
@@ -51,6 +47,11 @@ class CharacterAndroidEquipmentPresetDto {
    * 안드로이드 성형 정보
    */
   androidFace: CharacterAndroidEquipmentFaceDto;
+
+  /**
+   * 안드로이드 피부 정보
+   */
+  androidSkin: CharacterAndroidEquipmentSkinDto | null;
 
   /**
    * 안드로이드 이어센서 클립 적용 여부
@@ -75,9 +76,9 @@ class CharacterAndroidEquipmentPresetDto {
       android_description,
       android_gender,
       android_grade,
-      android_skin_name,
       android_hair,
       android_face,
+      android_skin,
       android_ear_sensor_clip_flag,
       android_non_humanoid_flag,
       android_shop_usable_flag,
@@ -89,9 +90,9 @@ class CharacterAndroidEquipmentPresetDto {
     this.androidDescription = android_description;
     this.androidGender = android_gender;
     this.androidGrade = android_grade;
-    this.androidSkinName = android_skin_name;
     this.androidHair = new CharacterAndroidEquipmentHairDto(android_hair);
     this.androidFace = new CharacterAndroidEquipmentFaceDto(android_face);
+    this.androidSkin = android_skin ? new CharacterAndroidEquipmentSkinDto(android_skin) : null;
     this.androidEarSensorClipFlag = android_ear_sensor_clip_flag;
     this.androidNonHumanoidFlag = android_non_humanoid_flag;
     this.androidShopUsableFlag = android_shop_usable_flag;
