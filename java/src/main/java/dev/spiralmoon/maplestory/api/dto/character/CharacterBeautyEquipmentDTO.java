@@ -62,13 +62,6 @@ public class CharacterBeautyEquipmentDTO {
     @SerializedName("additional_character_face")
     private CharacterBeautyEquipmentFaceDTO additionalCharacterFace;
 
-    /**
-     * 드레스 업 모드에 적용 중인 피부 명
-     * (제로인 경우 베타, 엔젤릭버스터인 경우 드레스 업 모드)
-     */
-    @SerializedName("additional_character_skin_name")
-    private String additionalCharacterSkinName;
-
     public LocalDateTime getDate() {
         return date != null
                 ? Utils.toLocalDateTime(this.date)

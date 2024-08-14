@@ -6,7 +6,6 @@ type CharacterBeautyEquipmentDtoBody = {
   character_face: CharacterBeautyEquipmentFaceDtoBody;
   additional_character_hair: CharacterBeautyEquipmentHairDtoBody | null;
   additional_character_face: CharacterBeautyEquipmentFaceDtoBody | null;
-  additional_character_skin_name: string | null;
 };
 
 type CharacterBeautyEquipmentHairDtoBody = {

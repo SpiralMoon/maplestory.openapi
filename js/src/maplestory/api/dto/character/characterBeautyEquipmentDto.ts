@@ -43,11 +43,6 @@ class CharacterBeautyEquipmentDto {
    */
   additionalCharacterFace: CharacterBeautyEquipmentFaceDto | null;
 
-  /**
-   * 제로인 경우 베타, 엔젤릭버스터인 경우 드레스 업 모드에 적용 중인 피부 명
-   */
-  additionalCharacterSkinName: string | null;
-
   constructor(obj: CharacterBeautyEquipmentDtoBody) {
     const {
       date,
@@ -57,7 +52,6 @@ class CharacterBeautyEquipmentDto {
       character_face,
       additional_character_hair,
       additional_character_face,
-      additional_character_skin_name,
     } = obj;
 
     this.date = date ? new Date(date) : null;
@@ -71,7 +65,6 @@ class CharacterBeautyEquipmentDto {
     this.additionalCharacterFace = additional_character_face
       ? new CharacterBeautyEquipmentFaceDto(additional_character_face)
       : null;
-    this.additionalCharacterSkinName = additional_character_skin_name;
   }
 }
 

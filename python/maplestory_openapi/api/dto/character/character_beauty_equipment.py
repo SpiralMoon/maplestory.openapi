@@ -40,7 +40,6 @@ class CharacterBeautyEquipment(BaseModel):
     character_face: 캐릭터 성형 정보 (제로인 경우 알파, 엔젤릭버스터인 경우 일반 모드)
     additional_character_hair: 제로인 경우 베타, 엔젤릭버스터인 경우 드레스 업 모드에 적용 중인 헤어 정보
     additional_character_face: 제로인 경우 베타, 엔젤릭버스터인 경우 드레스 업 모드에 적용 중인 성형 정보
-    additional_character_skin_name: 제로인 경우 베타, 엔젤릭버스터인 경우 드레스 업 모드에 적용 중인 피부 명
     """
     date: datetime | None
     character_gender: str
@@ -49,4 +48,3 @@ class CharacterBeautyEquipment(BaseModel):
     character_face: CharacterBeautyEquipmentFace
     additional_character_hair: CharacterBeautyEquipmentHair | None
     additional_character_face: CharacterBeautyEquipmentFace | None
-    additional_character_skin_name: str | None
