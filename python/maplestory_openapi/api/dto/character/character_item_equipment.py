@@ -107,7 +107,7 @@ class CharacterItemEquipmentEtcOption(BaseModel):
 
 
 class CharacterItemEquipmentExceptionalOption(BaseModel):
-    """캐릭터 장비 익셉셔널 옵션 정보
+    """캐릭터 장비 특별 옵션 정보
 
     str(str): STR
     dex(str): DEX
@@ -117,6 +117,7 @@ class CharacterItemEquipmentExceptionalOption(BaseModel):
     max_mp(str): 최대 MP
     attack_power(str): 공격력
     magic_power(str): 마력
+    exceptional_upgrade(int): 익셉셔널 강화 적용 횟수
     """
     str: str
     dex: str
@@ -126,6 +127,7 @@ class CharacterItemEquipmentExceptionalOption(BaseModel):
     max_mp: str
     attack_power: str
     magic_power: str
+    exceptional_upgrade: int
 
 
 class CharacterItemEquipmentTotalOption(BaseModel):
@@ -219,7 +221,7 @@ class CharacterItemEquipmentInfo(BaseModel):
     additional_potential_option_2(str): 에디셔널 잠재 두번째 옵션
     additional_potential_option_3(str): 에디셔널 잠재 세번째 옵션
     equipment_level_increase(int): 장비 레벨 증가
-    item_exceptional_option(CharacterItemEquipmentExceptionalOption): 장비 익셉셔널 옵션
+    item_exceptional_option(CharacterItemEquipmentExceptionalOption): 장비 특별 옵션 정보
     item_add_option(CharacterItemEquipmentAddOption): 장비 추가 옵션
     growth_exp(int): 성장 경험치
     growth_level(int): 성장 레벨

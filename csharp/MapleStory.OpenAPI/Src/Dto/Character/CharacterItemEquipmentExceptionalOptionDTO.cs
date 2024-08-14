@@ -54,5 +54,11 @@ namespace MapleStory.OpenAPI.Dto
         /// </summary>
         [JsonProperty("magic_power")]
         public string MagicPower { get; set; }
+
+        /// <summary>
+        /// 익셉셔널 강화 적용 횟수
+        /// </summary>
+        [JsonProperty("exceptional_upgrade")]
+        public int ExceptionalUpgrade { get; set; }
     }
 }
