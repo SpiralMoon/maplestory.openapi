@@ -30,6 +30,22 @@ class CharacterAndroidEquipmentFace(BaseModel):
     mix_rate: str
 
 
+class CharacterAndroidEquipmentSkin(BaseModel):
+    """안드로이드 피부 정보
+
+    skin_name(str): 피부 명
+    color_style(str): 색상 계열
+    hue(int): 피부 색조
+    saturation(int): 피부 채도
+    brightness(int): 피부 명도
+    """
+    skin_name: str
+    color_style: str | None
+    hue: int | None
+    saturation: int | None
+    brightness: int | None
+
+
 class CharacterAndroidEquipmentPreset(BaseModel):
     """안드로이드 프리셋 정보
 
@@ -41,6 +57,7 @@ class CharacterAndroidEquipmentPreset(BaseModel):
     android_grade(str): 안드로이드 등급
     android_hair(CharacterAndroidEquipmentHair): 안드로이드 헤어 정보
     android_face(CharacterAndroidEquipmentFace): 안드로이드 성형 정보
+    android_skin(CharacterAndroidEquipmentSkin): 안드로이드 피부 정보
     android_ear_sensor_clip_flag(str): 안드로이드 이어센서 클립 적용 여부
     android_non_humanoid_flag(str): 비인간형 안드로이드 여부
     android_shop_usable_flag(str): 잡화상점 기능 이용 가능 여부
@@ -53,6 +70,7 @@ class CharacterAndroidEquipmentPreset(BaseModel):
     android_grade: str
     android_hair: CharacterAndroidEquipmentHair
     android_face: CharacterAndroidEquipmentFace
+    android_skin: CharacterAndroidEquipmentSkin | None
     android_ear_sensor_clip_flag: str
     android_non_humanoid_flag: str
     android_shop_usable_flag: str
@@ -117,6 +135,7 @@ class CharacterAndroidEquipment(BaseModel):
     android_description(str): 안드로이드 아이템 설명
     android_hair(CharacterAndroidEquipmentHair): 안드로이드 헤어 정보
     android_face(CharacterAndroidEquipmentFace): 안드로이드 성형 정보
+    android_skin(CharacterAndroidEquipmentSkin): 안드로이드 피부 정보
     android_cash_item_equipment(list[CharacterAndroidCashItemEquipment]): 안드로이드 캐시 아이템 장착 정보
     android_ear_sensor_clip_flag(str): 안드로이드 이어센서 클립 적용 여부
     android_gender(str): 안드로이드 성별
@@ -135,6 +154,7 @@ class CharacterAndroidEquipment(BaseModel):
     android_description: str | None
     android_hair: CharacterAndroidEquipmentHair
     android_face: CharacterAndroidEquipmentFace
+    android_skin: CharacterAndroidEquipmentSkin | None
     android_cash_item_equipment: list[CharacterAndroidCashItemEquipment]
     android_ear_sensor_clip_flag: str
     android_gender: str | None

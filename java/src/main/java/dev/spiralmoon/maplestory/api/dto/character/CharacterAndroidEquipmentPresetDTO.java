@@ -66,6 +66,12 @@ public class CharacterAndroidEquipmentPresetDTO {
     private CharacterAndroidEquipmentFaceDTO androidFace;
 
     /**
+     * 안드로이드 피부 정보
+     */
+    @SerializedName("android_skin")
+    private CharacterAndroidEquipmentSkinDTO androidSkin;
+
+    /**
      * 안드로이드 이어센서 클립 적용 여부
      */
     @SerializedName("android_ear_sensor_clip_flag")

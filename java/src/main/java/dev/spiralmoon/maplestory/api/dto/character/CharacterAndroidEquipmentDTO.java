@@ -60,6 +60,12 @@ public class CharacterAndroidEquipmentDTO {
     private CharacterAndroidEquipmentFaceDTO androidFace;
 
     /**
+     * 안드로이드 피부 정보
+     */
+    @SerializedName("android_skin")
+    private CharacterAndroidEquipmentSkinDTO androidSkin;
+
+    /**
      * 안드로이드 캐시 아이템 장착 정보
      */
     @SerializedName("android_cash_item_equipment")

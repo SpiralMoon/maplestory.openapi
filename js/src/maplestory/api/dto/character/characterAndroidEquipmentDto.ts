@@ -3,6 +3,7 @@ import { CharacterAndroidEquipmentFaceDto } from './characterAndroidEquipmentFac
 import { CharacterAndroidEquipmentHairDto } from './characterAndroidEquipmentHairDto';
 import { CharacterAndroidEquipmentPresetDto } from './characterAndroidEquipmentPresetDto';
 import { CharacterAndroidEquipmentDtoBody } from '../../response/character/characterAndroidEquipmentDtoBody';
+import { CharacterAndroidEquipmentSkinDto } from './characterAndroidEquipmentSkinDto';
 
 /**
  * 캐릭터 안드로이드 장비 정보
@@ -42,6 +43,11 @@ class CharacterAndroidEquipmentDto {
    * 안드로이드 성형 정보
    */
   androidFace: CharacterAndroidEquipmentFaceDto;
+
+  /**
+   * 안드로이드 피부 정보
+   */
+  androidSkin: CharacterAndroidEquipmentSkinDto | null;
 
   /**
    * 안드로이드 캐시 아이템 장착 정보
@@ -102,6 +108,7 @@ class CharacterAndroidEquipmentDto {
       android_description,
       android_hair,
       android_face,
+      android_skin,
       android_cash_item_equipment,
       android_ear_sensor_clip_flag,
       android_gender,
@@ -121,6 +128,7 @@ class CharacterAndroidEquipmentDto {
     this.androidDescription = android_description;
     this.androidHair = new CharacterAndroidEquipmentHairDto(android_hair);
     this.androidFace = new CharacterAndroidEquipmentFaceDto(android_face);
+    this.androidSkin = android_skin ? new CharacterAndroidEquipmentSkinDto(android_skin) : null;
     this.androidCashItemEquipment = android_cash_item_equipment.map(
       (equipment) => new CharacterAndroidCashItemEquipmentDto(equipment),
     );

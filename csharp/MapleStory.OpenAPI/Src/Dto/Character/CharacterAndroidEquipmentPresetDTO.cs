@@ -61,6 +61,12 @@ namespace MapleStory.OpenAPI.Dto
         public CharacterAndroidEquipmentFaceDTO AndroidFace { get; set; }
 
         /// <summary>
+        /// 안드로이드 피부 정보
+        /// </summary>
+        [JsonProperty("android_skin")]
+        public CharacterAndroidEquipmentSkinDTO? AndroidSkin { get; set; }
+
+        /// <summary>
         /// 안드로이드 이어센서 클립 적용 여부
         /// </summary>
         [JsonProperty("android_ear_sensor_clip_flag")]
