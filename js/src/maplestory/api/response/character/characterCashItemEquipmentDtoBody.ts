@@ -2,6 +2,7 @@ type CharacterCashItemEquipmentDtoBody = {
   date: string | null;
   character_gender: string;
   character_class: string;
+  character_look_mode: string | null;
   preset_no: number;
   cash_item_equipment_base: CharacterCashItemEquipmentPresetDtoBody[];
   cash_item_equipment_preset_1: CharacterCashItemEquipmentPresetDtoBody[];

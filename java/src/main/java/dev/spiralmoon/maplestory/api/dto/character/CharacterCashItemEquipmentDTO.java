@@ -36,6 +36,12 @@ public class CharacterCashItemEquipmentDTO {
     private String characterClass;
 
     /**
+     * 캐릭터 외형 모드(0:일반 모드, 1:제로인 경우 베타, 엔젤릭버스터인 경우 드레스 업 모드)
+     */
+    @SerializedName("character_look_mode")
+    private String characterLookMode;
+
+    /**
      * 적용 중인 캐시 장비 프리셋 번호
      */
     @SerializedName("preset_no")

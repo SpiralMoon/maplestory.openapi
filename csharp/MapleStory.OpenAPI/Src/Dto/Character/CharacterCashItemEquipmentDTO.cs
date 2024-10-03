@@ -38,6 +38,12 @@ namespace MapleStory.OpenAPI.Dto
         public string CharacterClass { get; set; }
 
         /// <summary>
+        /// 캐릭터 외형 모드(0:일반 모드, 1:제로인 경우 베타, 엔젤릭버스터인 경우 드레스 업 모드)
+        /// </summary>
+        [JsonProperty("character_look_mode")]
+        public string CharacterLookMode { get; set; }
+
+        /// <summary>
         /// 적용 중인 캐시 장비 프리셋 번호
         /// </summary>
         [JsonProperty("preset_no")]
