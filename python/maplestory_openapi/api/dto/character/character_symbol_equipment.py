@@ -15,6 +15,9 @@ class CharacterSymbolEquipmentInfo(BaseModel):
     symbol_int(str): 심볼 INT
     symbol_luk(str): 심볼 LUK
     symbol_hp(str): 심볼 HP
+    symbol_drop_rate(str): 심볼로 증가한 아이템 드롭률
+    symbol_meso_rate(str): 심볼로 증가한 메소 획득량
+    symbol_exp_rate(str): 심볼로 증가한 경험치 획득량
     symbol_growth_count(int): 심볼 보유 성장치
     symbol_require_growth_count(int): 심볼 레벨업 시 필요 성장치
     """
@@ -28,6 +31,9 @@ class CharacterSymbolEquipmentInfo(BaseModel):
     symbol_int: str
     symbol_luk: str
     symbol_hp: str
+    symbol_drop_rate: str | None
+    symbol_meso_rate: str | None
+    symbol_exp_rate: str | None
     symbol_growth_count: int
     symbol_require_growth_count: int
 
