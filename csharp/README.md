@@ -80,4 +80,4 @@ catch (HttpRequestException e)
 | OPENAPI00007 | API 호출량 초과        |
 | OPENAPI00009 | 데이터 준비 중          |
 | OPENAPI00010 | 게임 점검 중           |
-| OPENAPI00010 | API 점검 중          |
+| OPENAPI00011 | API 점검 중          |
