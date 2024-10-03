@@ -68,6 +68,48 @@ namespace MapleStory.OpenAPI.Dto
         public string SymbolHp { get; set; }
 
         /// <summary>
+        /// 심볼로 증가한 아이템 드롭률
+        /// </summary>
+        public string SymbolDropRate
+        {
+            get
+            {
+                return _symbolDropRate == null ? "0%" : _symbolDropRate;
+            }
+        }
+
+        [JsonProperty("symbol_drop_rate")]
+        private string _symbolDropRate { get; set; }
+
+        /// <summary>
+        /// 심볼로 증가한 체력
+        /// </summary>
+        public string SymbolMesoRate
+        {
+            get
+            {
+                return _symbolMesoRate == null ? "0%" : _symbolMesoRate;
+            }
+        }
+
+        [JsonProperty("symbol_meso_rate")]
+        private string _symbolMesoRate { get; set; }
+
+        /// <summary>
+        /// 심볼로 증가한 체력
+        /// </summary>
+        public string SymbolExpRate
+        {
+            get
+            {
+                return _symbolExpRate == null ? "0%" : _symbolExpRate;
+            }
+        }
+
+        [JsonProperty("symbol_exp_rate")]
+        private string _symbolExpRate { get; set; }
+
+        /// <summary>
         /// 현재 보유 성장치
         /// </summary>
         [JsonProperty("symbol_growth_count")]

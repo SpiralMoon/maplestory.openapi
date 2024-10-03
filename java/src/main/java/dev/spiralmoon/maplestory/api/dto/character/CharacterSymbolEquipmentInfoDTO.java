@@ -74,6 +74,24 @@ public class CharacterSymbolEquipmentInfoDTO {
     private String symbolHp;
 
     /**
+     * 심볼로 증가한 아이템 드롭률
+     */
+    @SerializedName("symbol_drop_rate")
+    private String symbolDropRate;
+
+    /**
+     * 심볼로 증가한 메소 획득량
+     */
+    @SerializedName("symbol_meso_rate")
+    private String symbolMesoRate;
+
+    /**
+     * 심볼로 증가한 경험치 획득량
+     */
+    @SerializedName("symbol_exp_rate")
+    private String symbolExpRate;
+
+    /**
      * 현재 보유 성장치
      */
     @SerializedName("symbol_growth_count")
@@ -84,4 +102,31 @@ public class CharacterSymbolEquipmentInfoDTO {
      */
     @SerializedName("symbol_require_growth_count")
     private long symbolRequireGrowthCount;
+
+    /**
+     * 심볼로 증가한 아이템 드롭률
+     */
+    public String getDropRate() {
+        return symbolDropRate != null
+                ? symbolDropRate
+                : "0%";
+    }
+
+    /**
+     * 심볼로 증가한 메소 획득량
+     */
+    public String getMesoRate() {
+        return symbolMesoRate != null
+                ? symbolMesoRate
+                : "0%";
+    }
+
+    /**
+     * 심볼로 증가한 경험치 획득량
+     */
+    public String getExpRate() {
+        return symbolExpRate != null
+                ? symbolExpRate
+                : "0%";
+    }
 }

@@ -21,6 +21,11 @@ class CharacterCashItemEquipmentDto {
   characterClass: string;
 
   /**
+   * 캐릭터 외형 모드(0:일반 모드, 1:제로인 경우 베타, 엔젤릭버스터인 경우 드레스 업 모드)
+   */
+  characterLookMode: string | null;
+
+  /**
    * 적용 중인 캐시 장비 프리셋 번호
    */
   presetNo: number;
@@ -70,6 +75,7 @@ class CharacterCashItemEquipmentDto {
       date,
       character_gender,
       character_class,
+      character_look_mode,
       preset_no,
       cash_item_equipment_base,
       cash_item_equipment_preset_1,
@@ -84,6 +90,7 @@ class CharacterCashItemEquipmentDto {
     this.date = date ? new Date(date) : null;
     this.characterGender = character_gender;
     this.characterClass = character_class;
+    this.characterLookMode = character_look_mode;
     this.presetNo = preset_no;
     this.cashItemEquipmentBase = cash_item_equipment_base.map(
       (preset) => new CharacterCashItemEquipmentPresetDto(preset),

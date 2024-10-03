@@ -56,6 +56,7 @@ class CharacterCashitemEquipment(BaseModel):
     date(datetime): 조회 기준일
     character_gender(str): 캐릭터 성별
     character_class(str): 캐릭터 직업
+    character_look_mode(str): 캐릭터 외형 모드(0:일반 모드, 1:제로인 경우 베타, 엔젤릭버스터인 경우 드레스 업 모드)
     preset_no(int): 적용 중인 캐시 장비 프리셋 번호
     cash_item_equipment_base(list[CharacterCashitemEquipmentPreset]): 장착 중인 캐시 장비
     cash_item_equipment_preset_1(list[CharacterCashitemEquipmentPreset]): 1번 코디 프리셋
@@ -69,6 +70,7 @@ class CharacterCashitemEquipment(BaseModel):
     date: datetime | None
     character_gender: str
     character_class: str
+    character_look_mode: str | None
     preset_no: int
     cash_item_equipment_base: list[CharacterCashitemEquipmentPreset]
     cash_item_equipment_preset_1: list[CharacterCashitemEquipmentPreset]

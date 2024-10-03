@@ -55,6 +55,21 @@ class CharacterSymbolEquipmentInfoDto {
   symbolHp: string;
 
   /**
+   * 심볼로 증가한 아이템 드롭률
+   */
+  symbolDropRate: string;
+
+  /**
+   * 심볼로 증가한 메소 획득량
+   */
+  symbolMesoRate: string;
+
+  /**
+   * 심볼로 증가한 경험치 획득량
+   */
+  symbolExpRate: string;
+
+  /**
    * 현재 보유 성장치
    */
   symbolGrowthCount: number;
@@ -76,6 +91,9 @@ class CharacterSymbolEquipmentInfoDto {
       symbol_int,
       symbol_luk,
       symbol_hp,
+      symbol_drop_rate,
+      symbol_meso_rate,
+      symbol_exp_rate,
       symbol_growth_count,
       symbol_require_growth_count,
     } = obj;
@@ -89,6 +107,11 @@ class CharacterSymbolEquipmentInfoDto {
     this.symbolDex = symbol_dex;
     this.symbolInt = symbol_int;
     this.symbolLuk = symbol_luk;
+    this.symbolHp = symbol_hp;
+    this.symbolDropRate = symbol_drop_rate ?? '0%';
+    this.symbolMesoRate = symbol_meso_rate ?? '0%';
+    this.symbolExpRate = symbol_exp_rate ?? '0%';
+    this.symbolHp = symbol_hp;
     this.symbolHp = symbol_hp;
     this.symbolGrowthCount = symbol_growth_count;
     this.symbolRequireGrowthCount = symbol_require_growth_count;
