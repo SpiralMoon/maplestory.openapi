@@ -35,6 +35,13 @@ public class CharacterApi {
     }
 
     @Test
+    @DisplayName("외형 이미지 조회")
+    void getCharacterImage() throws IOException {
+        CharacterImageDTO response = api.getCharacterImage(ocid);
+        System.out.println(response.toString());
+    }
+
+    @Test
     @DisplayName("인기도 정보 조회")
     void getCharacterPopularity() throws IOException {
         CharacterPopularityDTO response = api.getCharacterPopularity(ocid);
