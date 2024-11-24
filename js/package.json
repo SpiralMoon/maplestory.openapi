@@ -1,6 +1,6 @@
 {
   "name": "maplestory-openapi",
-  "version": "2.7.3",
+  "version": "2.8.0",
   "description": "This JavaScript library enables the use of the MapleStory OpenAPI of Nexon.",
   "keywords": [
     "maplestory",
