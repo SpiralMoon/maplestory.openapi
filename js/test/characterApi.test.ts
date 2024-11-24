@@ -28,6 +28,12 @@ describe('캐릭터 정보 조회', () => {
     console.log(toString(response));
   });
 
+  test('외형 이미지 조회', async () => {
+    const response = await api.getCharacterImage(ocid);
+
+    console.log(toString(response));
+  });
+
   test('인기도 정보 조회', async () => {
     const response = await api.getCharacterPopularity(ocid);
 

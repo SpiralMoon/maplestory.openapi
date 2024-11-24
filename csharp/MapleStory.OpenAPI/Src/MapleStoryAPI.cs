@@ -1,4 +1,5 @@
 ﻿using MapleStory.OpenAPI.Dto;
+using MapleStory.OpenAPI.Param;
 using Newtonsoft.Json;
 using RestSharp;
 
@@ -67,7 +68,7 @@ namespace MapleStory.OpenAPI
         /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
         /// </summary>
-        /// <param name="characterName">캐릭터 식별자</param>
+        /// <param name="ocid">캐릭터 식별자</param>
         public Task<CharacterBasicDTO> GetCharacterBasic(string ocid)
         {
             return GetCharacterBasic(ocid, null);
@@ -80,8 +81,8 @@ namespace MapleStory.OpenAPI
         /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
         /// </summary>
-        /// <param name="characterName">캐릭터 식별자</param>
-        /// <param name="characterName">조회 기준일 (KST)</param>
+        /// <param name="ocid">캐릭터 식별자</param>
+        /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
         public async Task<CharacterBasicDTO> GetCharacterBasic(string ocid, DateTimeOffset? dateTimeOffset)
         {
             var path = "maplestory/v1/character/basic";
@@ -96,6 +97,92 @@ namespace MapleStory.OpenAPI
             };
 
             return await Get<CharacterBasicDTO>(path, query);
+        }
+
+        /// <summary>
+        /// 캐릭터 외형 이미지 정보를 조회합니다.
+        /// <para>- 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.</para>
+        /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
+        /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
+        /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
+        /// </summary>
+        /// <param name="ocid">캐릭터 식별자</param>
+        public Task<CharacterImageDTO> GetCharacterImage(string ocid)
+        {
+            return GetCharacterImage(ocid, new CharacterImageOption(), null);
+        }
+
+        /// 캐릭터 외형 이미지 정보를 조회합니다.
+        /// <summary>
+        /// <para>- 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.</para>
+        /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
+        /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
+        /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
+        /// </summary>
+        /// <param name="ocid">캐릭터 식별자</param>
+        /// <param name="imageOption">캐릭터 외형 파라미터</param>
+        public Task<CharacterImageDTO> GetCharacterImage(string ocid, CharacterImageOption imageOption)
+        {
+            return GetCharacterImage(ocid, imageOption, null);
+        }
+
+        /// <summary>
+        /// 캐릭터 외형 이미지 정보를 조회합니다.
+        /// <para>- 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.</para>
+        /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
+        /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
+        /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
+        /// </summary>
+        /// <param name="ocid">캐릭터 식별자</param>
+        /// <param name="imageOption">캐릭터 외형 파라미터</param>
+        /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
+        public async Task<CharacterImageDTO> GetCharacterImage(string ocid, CharacterImageOption imageOption, DateTimeOffset? dateTimeOffset)
+        {
+            var basic = await GetCharacterBasic(ocid, dateTimeOffset);
+
+            var path = basic.CharacterImage.Replace(BASE_URL, "");
+            var query = new Dictionary<string, string?>()
+            {
+                { "action", imageOption.Action.GetValue() },
+                { "emotion", imageOption.Emotion.GetValue() },
+                { "wmotion", imageOption.Wmotion.GetValue() },
+                { "width", imageOption.Width.ToString() },
+                { "height", imageOption.Height.ToString() },
+                { "x", imageOption.X?.ToString() },
+                { "y", imageOption.Y?.ToString() },
+            };
+
+            var tasks = await Task.WhenAll(new List<Task<string>>()
+            {
+                urlImageToBase64(path, null),
+                urlImageToBase64(path, query),
+            });
+            var (originImage, image) = (tasks[0], tasks[1]);
+
+            return new CharacterImageDTO
+            {
+                Date = basic.Date,
+                OriginUrl = basic.CharacterImage,
+                OriginImage = originImage,
+                Image = image,
+                Action = imageOption.Action,
+                Emotion = imageOption.Emotion,
+                Wmotion = imageOption.Wmotion,
+                Width = imageOption.Width,
+                Height = imageOption.Height,
+                X = imageOption.X,
+                Y = imageOption.Y,
+            };
+        }
+
+        private async Task<string> urlImageToBase64(string path, Dictionary<string, string?>? query)
+        {
+            var response = await Get(path, query);
+
+            var base64 = Convert.ToBase64String(response.RawBytes);
+            var mimeType = response.ContentType;
+
+            return $"data:{mimeType};base64,{base64}";
         }
 
         /// <summary>
@@ -2186,6 +2273,36 @@ namespace MapleStory.OpenAPI
             if (response.IsSuccessStatusCode)
             {
                 return JsonConvert.DeserializeObject<ResponseBody>(response.Content!);
+            }
+            else
+            {
+                throw ParseError(response.Content!);
+            }
+        }
+
+        private async Task<RestResponse> Get(string path, Dictionary<string, string?>? query = null)
+        {
+            var request = new RestRequest(path);
+
+            request.Timeout = this.timeOut;
+            request.AddHeader("x-nxopen-api-key", this.apiKey);
+
+            if (query != null)
+            {
+                foreach (var element in query)
+                {
+                    if (element.Value != null)
+                    {
+                        request.AddQueryParameter(element.Key, element.Value);
+                    }
+                }
+            }
+
+            var response = await this.client.ExecuteGetAsync(request);
+
+            if (response.IsSuccessStatusCode)
+            {
+                return response;
             }
             else
             {

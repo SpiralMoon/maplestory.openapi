@@ -10,11 +10,13 @@ import dev.spiralmoon.maplestory.api.dto.history.*;
 import dev.spiralmoon.maplestory.api.dto.notice.*;
 import dev.spiralmoon.maplestory.api.dto.ranking.*;
 import dev.spiralmoon.maplestory.api.dto.union.*;
+import dev.spiralmoon.maplestory.api.param.CharacterImageOption;
 import dev.spiralmoon.maplestory.api.template.*;
 import lombok.*;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -26,6 +28,7 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.util.Base64;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -198,6 +201,186 @@ public class MapleStoryApi {
                 .create(CharacterApi.class)
                 .getCharacterBasic(this.apiKey, ocid, date)
                 .enqueue(createCallback(onSuccess, onFailure));
+    }
+
+    /**
+     * 캐릭터 외형 이미지 정보를 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     *
+     * @param ocid 캐릭터 식별자
+     */
+    public CharacterImageDTO getCharacterImage(@NonNull String ocid) throws IOException {
+        return this.getCharacterImage(ocid, new CharacterImageOption(), null);
+    }
+
+    /**
+     * 캐릭터 외형 이미지 정보를 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     *
+     * @param ocid        캐릭터 식별자
+     * @param imageOption 캐릭터 외형 파라미터
+     */
+    public CharacterImageDTO getCharacterImage(@NonNull String ocid, @NonNull CharacterImageOption imageOption) throws IOException {
+        return this.getCharacterImage(ocid, imageOption, null);
+    }
+
+    /**
+     * 캐릭터 외형 이미지 정보를 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     *
+     * @param ocid          캐릭터 식별자
+     * @param imageOption   캐릭터 외형 파라미터
+     * @param localDateTime 조회 기준일 (KST)
+     */
+    public CharacterImageDTO getCharacterImage(@NonNull String ocid, @NonNull CharacterImageOption imageOption, LocalDateTime localDateTime) throws IOException {
+
+        final String date = localDateTime != null
+                ? toDateString(minDate(2023, 12, 21), localDateTime)
+                : null;
+
+        final CharacterBasicDTO basic = this.getCharacterBasic(ocid, localDateTime);
+
+        final String path = basic.getCharacterImage().replace(MapleStoryApi.BASE_URL, "");
+        final String originImage = this.getCharacterUrlImageToBase64(ocid, path, new CharacterImageOption(), date);
+        final String image = this.getCharacterUrlImageToBase64(ocid, path, imageOption, date);
+
+        return new CharacterImageDTO(
+                basic.getDate(),
+                basic.getCharacterImage(),
+                originImage,
+                image,
+                imageOption.getAction(),
+                imageOption.getEmotion(),
+                imageOption.getWmotion(),
+                imageOption.getWidth(),
+                imageOption.getHeight(),
+                imageOption.getX(),
+                imageOption.getY()
+        );
+    }
+
+    /**
+     * 캐릭터 외형 이미지 정보를 비동기로 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     *
+     * @param ocid      캐릭터 식별자
+     * @param onSuccess 성공 시 콜백
+     * @param onFailure 실패 시 콜백
+     */
+    public void getCharacterImageAsync(@NonNull String ocid, SuccessCallback<CharacterImageDTO> onSuccess, FailureCallback onFailure) {
+        this.getCharacterImageAsync(ocid, new CharacterImageOption(), null, onSuccess, onFailure);
+    }
+
+    /**
+     * 캐릭터 외형 이미지 정보를 비동기로 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     *
+     * @param ocid          캐릭터 식별자
+     * @param imageOption   캐릭터 외형 파라미터
+     * @param onSuccess     성공 시 콜백
+     * @param onFailure     실패 시 콜백
+     */
+    public void getCharacterImageAsync(@NonNull String ocid, @NonNull CharacterImageOption imageOption, SuccessCallback<CharacterImageDTO> onSuccess, FailureCallback onFailure) {
+        this.getCharacterImageAsync(ocid, imageOption, null, onSuccess, onFailure);
+    }
+
+    /**
+     * 캐릭터 외형 이미지 정보를 비동기로 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     *
+     * @param ocid          캐릭터 식별자
+     * @param imageOption   캐릭터 외형 파라미터
+     * @param localDateTime 조회 기준일 (KST)
+     * @param onSuccess     성공 시 콜백
+     * @param onFailure     실패 시 콜백
+     */
+    public void getCharacterImageAsync(@NonNull String ocid, @NonNull CharacterImageOption imageOption, LocalDateTime localDateTime, SuccessCallback<CharacterImageDTO> onSuccess, FailureCallback onFailure) {
+
+        final String date = localDateTime != null
+                ? toDateString(minDate(2023, 12, 21), localDateTime)
+                : null;
+
+        buildRetrofit()
+                .create(CharacterApi.class)
+                .getCharacterBasic(this.apiKey, ocid, date)
+                .enqueue(createCallback((basic) -> {
+                    try {
+                        final String path = basic.getCharacterImage().replace(MapleStoryApi.BASE_URL, "");
+                        final String originImage = this.getCharacterUrlImageToBase64(ocid, path, new CharacterImageOption(), date);
+                        final String image = this.getCharacterUrlImageToBase64(ocid, path, imageOption, date);
+
+                        onSuccess.callback(new CharacterImageDTO(
+                                basic.getDate(),
+                                basic.getCharacterImage(),
+                                originImage,
+                                image,
+                                imageOption.getAction(),
+                                imageOption.getEmotion(),
+                                imageOption.getWmotion(),
+                                imageOption.getWidth(),
+                                imageOption.getHeight(),
+                                imageOption.getX(),
+                                imageOption.getY()
+                        ));
+                    }
+                    catch (Exception exception) {
+                        onFailure.callback(exception);
+                    }
+                }, onFailure));
+    }
+
+    private String getCharacterUrlImageToBase64(@NonNull String ocid, @NonNull String path, @NonNull CharacterImageOption imageOption, String date) throws IOException {
+        final CharacterImageAction action = imageOption.getAction();
+        final CharacterImageEmotion emotion = imageOption.getEmotion();
+        final CharacterImageWeaponMotion wmotion = imageOption.getWmotion();
+        final Integer width = imageOption.getWidth();
+        final Integer height = imageOption.getHeight();
+        final Integer x = imageOption.getX();
+        final Integer y = imageOption.getY();
+
+        final Response<ResponseBody> response = buildRetrofit()
+                .create(CharacterApi.class)
+                .getCharacterImage(
+                        path,
+                        this.apiKey,
+                        ocid,
+                        date,
+                        action.getValue(),
+                        emotion.getValue(),
+                        wmotion.getValue(),
+                        width,
+                        height,
+                        x,
+                        y
+                )
+                .execute();
+
+        if (!response.isSuccessful()) {
+            throw parseError(response);
+        }
+
+        final String base64 = Base64.getEncoder().encodeToString(response.body().bytes());
+        final String mimeType = response.headers().get("content-type");
+
+        return "data:" + mimeType + ";base64," + base64;
     }
 
     /**
