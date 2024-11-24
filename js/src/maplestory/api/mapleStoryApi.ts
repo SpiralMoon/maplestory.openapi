@@ -1,4 +1,5 @@
 import axios, { Axios, AxiosError } from 'axios';
+import { Buffer } from 'buffer/'; // polyfill of Buffer for browser
 import dayjs, { Dayjs } from 'dayjs';
 import timezone from 'dayjs/plugin/timezone';
 import utc from 'dayjs/plugin/utc';
@@ -14,6 +15,12 @@ import { CharacterDto } from './dto/character/characterDto';
 import { CharacterHexaMatrixDto } from './dto/character/characterHexaMatrixDto';
 import { CharacterHexaMatrixStatDto } from './dto/character/characterHexaMatrixStatDto';
 import { CharacterHyperStatDto } from './dto/character/characterHyperStatDto';
+import {
+  CharacterImageAction,
+  CharacterImageDto,
+  CharacterImageEmotion,
+  CharacterImageWeaponMotion,
+} from './dto/character/characterImageDto';
 import { CharacterItemEquipmentDto } from './dto/character/characterItemEquipmentDto';
 import { CharacterLinkSkillDto } from './dto/character/characterLinkSkillDto';
 import { CharacterListDto } from './dto/character/characterListDto';
@@ -50,16 +57,10 @@ import { UnionDto } from './dto/union/unionDto';
 import { UnionRaiderDto } from './dto/union/unionRaiderDto';
 import { MapleStoryApiError } from './mapleStoryApiError';
 import { CharacterAbilityDtoBody } from './response/character/characterAbilityDtoBody';
-import {
-  CharacterAndroidEquipmentDtoBody,
-} from './response/character/characterAndroidEquipmentDtoBody';
+import { CharacterAndroidEquipmentDtoBody } from './response/character/characterAndroidEquipmentDtoBody';
 import { CharacterBasicDtoBody } from './response/character/characterBasicDtoBody';
-import {
-  CharacterBeautyEquipmentDtoBody,
-} from './response/character/characterBeautyEquipmentDtoBody';
-import {
-  CharacterCashItemEquipmentDtoBody,
-} from './response/character/characterCashItemEquipmentDtoBody';
+import { CharacterBeautyEquipmentDtoBody } from './response/character/characterBeautyEquipmentDtoBody';
+import { CharacterCashItemEquipmentDtoBody } from './response/character/characterCashItemEquipmentDtoBody';
 import { CharacterDojangDtoBody } from './response/character/characterDojangDtoBody';
 import { CharacterDtoBody } from './response/character/characterDtoBody';
 import { CharacterHexaMatrixDtoBody } from './response/character/characterHexaMatrixDtoBody';
@@ -74,9 +75,7 @@ import { CharacterPropensityDtoBody } from './response/character/characterPropen
 import { CharacterSetEffectDtoBody } from './response/character/characterSetEffectDtoBody';
 import { CharacterSkillDtoBody } from './response/character/characterSkillDtoBody';
 import { CharacterStatDtoBody } from './response/character/characterStatDtoBody';
-import {
-  CharacterSymbolEquipmentDtoBody,
-} from './response/character/characterSymbolEquipmentDtoBody';
+import { CharacterSymbolEquipmentDtoBody } from './response/character/characterSymbolEquipmentDtoBody';
 import { CharacterVMatrixDtoBody } from './response/character/characterVMatrixDtoBody';
 import { GuildBasicDtoBody } from './response/guild/guildBasicDtoBody';
 import { GuildDtoBody } from './response/guild/guildDtoBody';
@@ -92,9 +91,7 @@ import { NoticeDetailDtoBody } from './response/notice/noticeDetailDtoBody';
 import { NoticeListDtoBody } from './response/notice/noticeListDtoBody';
 import { UpdateNoticeDetailDtoBody } from './response/notice/updateNoticeDetailDtoBody';
 import { UpdateNoticeListDtoBody } from './response/notice/updateNoticeListDtoBody';
-import {
-  AchievementRankingResponseDtoBody,
-} from './response/ranking/achievementRankingResponseDtoBody';
+import { AchievementRankingResponseDtoBody } from './response/ranking/achievementRankingResponseDtoBody';
 import { DojangRankingResponseDtoBody } from './response/ranking/dojangRankingResponseDtoBody';
 import { GuildRankingResponseDtoBody } from './response/ranking/guildRankingResponseDtoBody';
 import { OverallRankingResponseDtoBody } from './response/ranking/overallRankingResponseDtoBody';
@@ -219,6 +216,55 @@ class MapleStoryApi {
     });
 
     return new CharacterBasicDto(data);
+  }
+
+  /**
+   * 캐릭터 외형 이미지 정보를 조회합니다.
+   * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.
+   * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
+   * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)
+   * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
+   *
+   * @param ocid 캐릭터 식별자
+   * @param imageOptions 캐릭터 외형 파라미터
+   * @param dateOptions 조회 기준일 (KST)
+   */
+  public async getCharacterImage(ocid: string, imageOptions?: CharacterImageOptions, dateOptions?: DateOptions): Promise<CharacterImageDto> {
+    const { date, characterImage: path } = await this.getCharacterBasic(ocid, dateOptions);
+    const query = {
+      action: CharacterImageAction.Stand1,
+      emotion: CharacterImageEmotion.Default,
+      wmotion: CharacterImageWeaponMotion.Default,
+      width: 96,
+      height: 96,
+      x: null,
+      y: null,
+      ...imageOptions,
+    };
+
+    const urlImageToBase64 = async (path: string, query?: object): Promise<string> => {
+      const { data, headers } = await axios.get<string>(path, {
+        params: query,
+        responseType: 'arraybuffer',
+      });
+      const base64 = Buffer.from(data, 'binary').toString('base64');
+      const mimeType = headers['content-type'];
+
+      return `data:${mimeType};base64,${base64}`;
+    };
+
+    const [originImage, image] = await Promise.all([
+      urlImageToBase64(path),
+      urlImageToBase64(path, query),
+    ]);
+
+    return new CharacterImageDto({
+      date,
+      originUrl: path,
+      originImage,
+      image,
+      ...query,
+    });
   }
 
   /**
@@ -1768,6 +1814,37 @@ class MapleStoryApi {
       .format('YYYY-MM-DD');
   }
 }
+
+type CharacterImageOptions = {
+  /**
+   * 캐릭터 액션
+   */
+  action?: CharacterImageAction,
+  /**
+   * 캐릭터 감정표현
+   */
+  emotion?: CharacterImageEmotion,
+  /**
+   * 캐릭터 무기 모션
+   */
+  wmotion?: CharacterImageWeaponMotion,
+  /**
+   * 가로 길이. 배경 크기에 해당함, 96 (default) ~ 1000
+   */
+  width?: number,
+  /**
+   * 세로 길이. 배경 크기에 해당함, 96 (default) ~ 1000
+   */
+  height?: number,
+  /**
+   * 캐릭터의 가로 좌표
+   */
+  x?: number,
+  /**
+   * 캐릭터의 세로 좌표.
+   */
+  y?: number,
+};
 
 type OverallRankingApiFilterOptions = {
   /**
