@@ -33,6 +33,13 @@ namespace MapleStory.Test
         }
 
         [Test]
+        public async Task GetCharacterImage()
+        {
+            var response = await api.GetCharacterImage(ocid);
+            Console.WriteLine(response.ToJson());
+        }
+
+        [Test]
         public async Task GetCharacterPopularity()
         {
             var response = await api.GetCharacterPopularity(ocid);
