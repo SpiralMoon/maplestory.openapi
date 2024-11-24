@@ -1,3 +1,4 @@
+import base64
 from datetime import datetime
 from zoneinfo import ZoneInfo
 from typing import Any
@@ -25,6 +26,7 @@ from maplestory_openapi.api.dto.character.character_vmatrix import CharacterVMat
 from maplestory_openapi.api.dto.character.character_hexamatrix import CharacterHexaMatrix
 from maplestory_openapi.api.dto.character.character_hexamatrix_stat import CharacterHexaMatrixStat
 from maplestory_openapi.api.dto.character.character_dojang import CharacterDojang
+from maplestory_openapi.api.dto.character.character_image import CharacterImage
 
 from maplestory_openapi.api.dto.union.union import Union
 from maplestory_openapi.api.dto.union.union_artifact import UnionArtifact
@@ -55,6 +57,8 @@ from maplestory_openapi.api.dto.notice.update_notice_list import UpdateNoticeLis
 
 from maplestory_openapi.api.maplestory_api_error import MapleStoryApiError, MapleStoryApiException
 from maplestory_openapi.api.utils.date import get_proper_default_datetime
+
+from maplestory_openapi.api.param.character_image_option import CharacterImageOption
 
 
 class MapleStoryApi(BaseModel):
@@ -120,6 +124,69 @@ class MapleStoryApi(BaseModel):
         r = self.fetch(path, query)
 
         return CharacterBasic(**r)
+
+    def get_character_image(self, ocid: str, option: CharacterImageOption | None = None, date: datetime | None = None) -> CharacterBasic:
+        """캐릭터 외형 이미지 정보를 조회합니다.
+
+        - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.
+        - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
+        - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)
+        - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
+
+        @param ocid(str): 캐릭터 식별자(ocid)
+        @param option(CharacterImageOption): 캐릭터 외형 파라미터
+        @param date(datetime): 조회 기준일 (KST)
+        """
+
+        basic = self.get_character_basic(ocid, date)
+        path = basic.character_image.replace(self.BASE_URL, '')
+        image_option = option if option is not None else CharacterImageOption()
+
+        query = {
+            'action': image_option.action.value,
+            'emotion': image_option.emotion.value,
+            'wmotion': image_option.wmotion.value,
+            'width': image_option.width,
+            'height': image_option.height,
+            'x': image_option.x,
+            'y': image_option.y,
+        }
+
+        origin_image_response = requests.get(
+            f'{self.BASE_URL}{path}',
+            headers={
+                'x-nxopen-api-key': self.api_key,
+            },
+            timeout=self.timeout,
+        )
+        image_response = requests.get(
+            f'{self.BASE_URL}{path}',
+            params={key: value for key, value in query.items() if value is not None},
+            headers={
+                'x-nxopen-api-key': self.api_key,
+            },
+            timeout=self.timeout,
+        )
+
+        origin_image_mime_type = origin_image_response.headers.get('content-type')
+        image_mime_type = image_response.headers.get('content-type')
+
+        origin_image = base64.b64encode(origin_image_response.content).decode('utf-8')
+        image = base64.b64encode(image_response.content).decode('utf-8')
+
+        return CharacterImage(
+            date=basic.date,
+            origin_url=basic.character_image,
+            origin_image=f"data:{origin_image_mime_type};base64,{origin_image}",
+            image=f"data:{image_mime_type};base64,{image}",
+            action=image_option.action,
+            emotion=image_option.emotion,
+            wmotion=image_option.wmotion,
+            width=image_option.width,
+            height=image_option.height,
+            x=image_option.x,
+            y=image_option.y,
+        )
 
     def get_character_popularity(self, ocid: str, date: datetime | None = None) -> CharacterPopularity:
         """인기도 정보를 조회합니다.
