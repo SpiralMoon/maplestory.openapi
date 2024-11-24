@@ -68,7 +68,7 @@ namespace MapleStory.OpenAPI
         /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
         /// </summary>
-        /// <param name="characterName">캐릭터 식별자</param>
+        /// <param name="ocid">캐릭터 식별자</param>
         public Task<CharacterBasicDTO> GetCharacterBasic(string ocid)
         {
             return GetCharacterBasic(ocid, null);
@@ -81,8 +81,8 @@ namespace MapleStory.OpenAPI
         /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
         /// </summary>
-        /// <param name="characterName">캐릭터 식별자</param>
-        /// <param name="characterName">조회 기준일 (KST)</param>
+        /// <param name="ocid">캐릭터 식별자</param>
+        /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
         public async Task<CharacterBasicDTO> GetCharacterBasic(string ocid, DateTimeOffset? dateTimeOffset)
         {
             var path = "maplestory/v1/character/basic";
