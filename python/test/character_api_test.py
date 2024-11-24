@@ -27,6 +27,10 @@ class CharacterApi(unittest.TestCase):
         response = api.get_character_basic(ocid)
         print(response)
 
+    def test_character_image(self):
+        response = api.get_character_image(ocid)
+        print(response)
+
     def test_character_popularity(self):
         response = api.get_character_popularity(ocid)
         print(response)
