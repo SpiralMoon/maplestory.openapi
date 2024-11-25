@@ -29,6 +29,7 @@ export * from './maplestory/api/dto/character/characterHexaMatrixStatCoreDto';
 export * from './maplestory/api/dto/character/characterHexaMatrixStatDto';
 export * from './maplestory/api/dto/character/characterHyperStatDto';
 export * from './maplestory/api/dto/character/characterHyperStatPresetDto';
+export * from './maplestory/api/dto/character/characterImageDto';
 export * from './maplestory/api/dto/character/characterItemEquipmentAddOptionDto';
 export * from './maplestory/api/dto/character/characterItemEquipmentBaseOptionDto';
 export * from './maplestory/api/dto/character/characterItemEquipmentDragonInfoDto';
