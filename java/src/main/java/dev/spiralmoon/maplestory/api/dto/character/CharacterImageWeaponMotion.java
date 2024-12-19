@@ -4,7 +4,8 @@ public enum CharacterImageWeaponMotion {
     Default("W00"),
     OneHand("W01"),
     TwoHands("W02"),
-    Gun("W03");
+    Gun("W03"),
+    Nothing("W04");
 
     private final String wmotion;
 
