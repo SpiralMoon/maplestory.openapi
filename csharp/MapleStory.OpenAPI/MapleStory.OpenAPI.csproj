@@ -9,7 +9,7 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageLicenseFile></PackageLicenseFile>
     <PackageId>MapleStory.OpenAPI</PackageId>
-    <PackageVersion>2.9.0</PackageVersion>
+    <PackageVersion>2.10.0</PackageVersion>
     <Authors>SpiralMoon</Authors>
     <PackageProjectUrl>https://github.com/SpiralMoon/maplestory.openapi</PackageProjectUrl>
     <Description>This C# library enables the use of the MapleStory OpenAPI of Nexon.</Description>

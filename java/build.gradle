@@ -5,7 +5,7 @@ plugins {
 }
 
 group = 'dev.spiralmoon'
-version = '2.9.0'
+version = '2.10.0'
 
 repositories {
     mavenCentral()
@@ -50,7 +50,7 @@ publishing {
             artifact javadocJar
 
             groupId = 'dev.spiralmoon'
-            version = '2.9.0'
+            version = '2.10.0'
             artifactId = 'maplestory-openapi'
 
             pom {
