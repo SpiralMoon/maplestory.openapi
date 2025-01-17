@@ -33,6 +33,16 @@ public class CharacterImageOption {
     private CharacterImageWeaponMotion wmotion = CharacterImageWeaponMotion.Default;
 
     /**
+     * 캐릭터 액션 프레임
+     */
+    private int actionFrame = 0;
+
+    /**
+     * 캐릭터 감정표현 프레임
+     */
+    private int emotionFrame = 0;
+
+    /**
      * 가로 길이. 배경 크기에 해당함, 96 (default) ~ 1000
      */
     private Integer width = 96;

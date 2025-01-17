@@ -56,6 +56,16 @@ namespace MapleStory.OpenAPI.Dto
         public CharacterImageWeaponMotion Wmotion { get; set; }
 
         /// <summary>
+        /// 캐릭터 액션 프레임
+        /// </summary>
+        public int? ActionFrame { get; set; }
+
+        /// <summary>
+        /// 캐릭터 감정표현 프레임
+        /// </summary>
+        public int? EmotionFrame { get; set; }
+
+        /// <summary>
         /// 가로 길이. 배경 크기에 해당함, 96 (default) ~ 1000
         /// </summary>
         public int Width { get; set; }

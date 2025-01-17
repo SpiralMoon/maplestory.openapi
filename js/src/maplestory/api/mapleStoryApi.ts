@@ -231,15 +231,24 @@ class MapleStoryApi {
    */
   public async getCharacterImage(ocid: string, imageOptions?: CharacterImageOptions, dateOptions?: DateOptions): Promise<CharacterImageDto> {
     const { date, characterImage: path } = await this.getCharacterBasic(ocid, dateOptions);
+    const action = imageOptions?.action ?? CharacterImageAction.Stand1;
+    const emotion = imageOptions?.emotion ?? CharacterImageEmotion.Default;
+    const wmotion = imageOptions?.wmotion ?? CharacterImageWeaponMotion.Default;
+    const actionFrame = imageOptions?.actionFrame ?? 0;
+    const emotionFrame = imageOptions?.emotionFrame ?? 0;
+    const width = 96;
+    const height = 96;
+    const x = imageOptions?.x ?? null;
+    const y = imageOptions?.y ?? null;
+
     const query = {
-      action: CharacterImageAction.Stand1,
-      emotion: CharacterImageEmotion.Default,
-      wmotion: CharacterImageWeaponMotion.Default,
-      width: 96,
-      height: 96,
-      x: null,
-      y: null,
-      ...imageOptions,
+      action: `${action}.${actionFrame}`,
+      emotion: `${emotion}.${emotionFrame}`,
+      wmotion,
+      width,
+      height,
+      x,
+      y,
     };
 
     const urlImageToBase64 = async (path: string, query?: object): Promise<string> => {
@@ -263,7 +272,15 @@ class MapleStoryApi {
       originUrl: path,
       originImage,
       image,
-      ...query,
+      action,
+      emotion,
+      wmotion,
+      actionFrame,
+      emotionFrame,
+      width,
+      height,
+      x,
+      y,
     });
   }
 
@@ -1828,6 +1845,14 @@ type CharacterImageOptions = {
    * 캐릭터 무기 모션
    */
   wmotion?: CharacterImageWeaponMotion,
+  /**
+   * 캐릭터 액션 프레임. 
+   */
+  actionFrame?: number;
+  /**
+   * 캐릭터 감정표현 프레임
+   */
+  emotionFrame?: number;
   /**
    * 가로 길이. 배경 크기에 해당함, 96 (default) ~ 1000
    */

@@ -140,16 +140,26 @@ namespace MapleStory.OpenAPI
         {
             var basic = await GetCharacterBasic(ocid, dateTimeOffset);
 
+            var action = imageOption.Action;
+            var emotion = imageOption.Emotion;
+            var wmotion = imageOption.Wmotion;
+            var actionFrame = imageOption.ActionFrame;
+            var emotionFrame = imageOption.EmotionFrame;
+            var width = imageOption.Width;
+            var height = imageOption.Height;
+            var x = imageOption.X;
+            var y = imageOption.Y;
+
             var path = basic.CharacterImage.Replace(BASE_URL, "");
             var query = new Dictionary<string, string?>()
             {
-                { "action", imageOption.Action.GetValue() },
-                { "emotion", imageOption.Emotion.GetValue() },
-                { "wmotion", imageOption.Wmotion.GetValue() },
-                { "width", imageOption.Width.ToString() },
-                { "height", imageOption.Height.ToString() },
-                { "x", imageOption.X?.ToString() },
-                { "y", imageOption.Y?.ToString() },
+                { "action", $"{action.GetValue()}.{actionFrame}" },
+                { "emotion", $"{emotion.GetValue()}.{emotionFrame}" },
+                { "wmotion", wmotion.GetValue() },
+                { "width", width.ToString() },
+                { "height", height.ToString() },
+                { "x", x?.ToString() },
+                { "y", y?.ToString() },
             };
 
             var tasks = await Task.WhenAll(new List<Task<string>>()
@@ -165,13 +175,15 @@ namespace MapleStory.OpenAPI
                 OriginUrl = basic.CharacterImage,
                 OriginImage = originImage,
                 Image = image,
-                Action = imageOption.Action,
-                Emotion = imageOption.Emotion,
-                Wmotion = imageOption.Wmotion,
-                Width = imageOption.Width,
-                Height = imageOption.Height,
-                X = imageOption.X,
-                Y = imageOption.Y,
+                Action = action,
+                Emotion = emotion,
+                Wmotion = wmotion,
+                ActionFrame = actionFrame,
+                EmotionFrame = emotionFrame,
+                Width = width,
+                Height = height,
+                X = x,
+                Y = y,
             };
         }
 

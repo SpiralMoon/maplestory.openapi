@@ -50,6 +50,16 @@ public class CharacterImageDTO {
     private CharacterImageWeaponMotion wmotion;
 
     /**
+     * 캐릭터 액션 프레임
+     */
+    private int actionFrame;
+
+    /**
+     * 캐릭터 감정표현 프레임
+     */
+    private int emotionFrame;
+
+    /**
      * 가로 길이. 배경 크기에 해당함, 96 (default) ~ 1000
      */
     private Integer width;
