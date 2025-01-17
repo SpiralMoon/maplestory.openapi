@@ -261,6 +261,8 @@ public class MapleStoryApi {
                 imageOption.getAction(),
                 imageOption.getEmotion(),
                 imageOption.getWmotion(),
+                imageOption.getActionFrame(),
+                imageOption.getEmotionFrame(),
                 imageOption.getWidth(),
                 imageOption.getHeight(),
                 imageOption.getX(),
@@ -335,6 +337,8 @@ public class MapleStoryApi {
                                 imageOption.getAction(),
                                 imageOption.getEmotion(),
                                 imageOption.getWmotion(),
+                                imageOption.getActionFrame(),
+                                imageOption.getEmotionFrame(),
                                 imageOption.getWidth(),
                                 imageOption.getHeight(),
                                 imageOption.getX(),
@@ -351,6 +355,8 @@ public class MapleStoryApi {
         final CharacterImageAction action = imageOption.getAction();
         final CharacterImageEmotion emotion = imageOption.getEmotion();
         final CharacterImageWeaponMotion wmotion = imageOption.getWmotion();
+        final int actionFrame = imageOption.getActionFrame();
+        final int emotionFrame = imageOption.getEmotionFrame();
         final Integer width = imageOption.getWidth();
         final Integer height = imageOption.getHeight();
         final Integer x = imageOption.getX();
@@ -363,8 +369,8 @@ public class MapleStoryApi {
                         this.apiKey,
                         ocid,
                         date,
-                        action.getValue(),
-                        emotion.getValue(),
+                        action.getValue() + "." + actionFrame,
+                        emotion.getValue() + "." + emotionFrame,
                         wmotion.getValue(),
                         width,
                         height,
@@ -382,6 +388,7 @@ public class MapleStoryApi {
 
         return "data:" + mimeType + ";base64," + base64;
     }
+
 
     /**
      * 인기도 정보를 조회합니다.<br>

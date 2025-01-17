@@ -39,6 +39,16 @@ class CharacterImageDto {
   wmotion: CharacterImageWeaponMotion;
 
   /**
+   * 캐릭터 액션 프레임
+   */
+  actionFrame: number | null;
+
+  /**
+   * 캐릭터 감정표현 프레임
+   */
+  emotionFrame: number | null;
+
+  /**
    * 가로 길이. 배경 크기에 해당함, 96 (default) ~ 1000
    */
   width: number;
@@ -66,6 +76,8 @@ class CharacterImageDto {
     action: CharacterImageAction;
     emotion: CharacterImageEmotion;
     wmotion: CharacterImageWeaponMotion;
+    actionFrame: number | null;
+    emotionFrame: number | null;
     width: number;
     height: number;
     x: number | null;
@@ -78,6 +90,8 @@ class CharacterImageDto {
     this.action = obj.action;
     this.emotion = obj.emotion;
     this.wmotion = obj.wmotion;
+    this.actionFrame = obj.actionFrame;
+    this.emotionFrame = obj.emotionFrame;
     this.width = obj.width;
     this.height = obj.height;
     this.x = obj.x;

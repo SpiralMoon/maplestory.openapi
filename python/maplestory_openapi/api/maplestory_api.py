@@ -142,14 +142,24 @@ class MapleStoryApi(BaseModel):
         path = basic.character_image.replace(self.BASE_URL, '')
         image_option = option if option is not None else CharacterImageOption()
 
+        action = image_option.action
+        emotion = image_option.emotion
+        wmotion = image_option.wmotion
+        action_frame = image_option.action_frame
+        emotion_frame = image_option.emotion_frame
+        width = image_option.width
+        height = image_option.height
+        x = image_option.x
+        y = image_option.y
+
         query = {
-            'action': image_option.action.value,
-            'emotion': image_option.emotion.value,
-            'wmotion': image_option.wmotion.value,
-            'width': image_option.width,
-            'height': image_option.height,
-            'x': image_option.x,
-            'y': image_option.y,
+            'action': action.value + '.' + str(action_frame),
+            'emotion': emotion.value + '.' + str(emotion_frame),
+            'wmotion': wmotion.value,
+            'width': width,
+            'height': height,
+            'x': x,
+            'y': y,
         }
 
         origin_image_response = requests.get(
@@ -179,13 +189,15 @@ class MapleStoryApi(BaseModel):
             origin_url=basic.character_image,
             origin_image=f"data:{origin_image_mime_type};base64,{origin_image}",
             image=f"data:{image_mime_type};base64,{image}",
-            action=image_option.action,
-            emotion=image_option.emotion,
-            wmotion=image_option.wmotion,
-            width=image_option.width,
-            height=image_option.height,
-            x=image_option.x,
-            y=image_option.y,
+            action=action,
+            emotion=emotion,
+            wmotion=wmotion,
+            action_frame=action_frame,
+            emotion_frame=emotion_frame,
+            width=width,
+            height=height,
+            x=x,
+            y=y,
         )
 
     def get_character_popularity(self, ocid: str, date: datetime | None = None) -> CharacterPopularity:

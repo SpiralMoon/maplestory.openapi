@@ -9,6 +9,8 @@ class CharacterImageOption(BaseModel):
     action(str): 캐릭터 액션
     emotion(str): 캐릭터 감정표현
     wmotion(str): 캐릭터 무기 모션
+    action_frame(int): 캐릭터 액션 프레임
+    emotion_frame(int): 캐릭터 감정표현 프레임
     width(int): 가로 길이. 배경 크기에 해당함, 96 (default) ~ 1000
     height(int): 세로 길이. 배경 크기에 해당함, 96 (default) ~ 1000
     x(int): 캐릭터의 가로 좌표
@@ -17,6 +19,8 @@ class CharacterImageOption(BaseModel):
     action: CharacterImageAction = CharacterImageAction.Stand1
     emotion: CharacterImageEmotion = CharacterImageEmotion.Default
     wmotion: CharacterImageWeaponMotion = CharacterImageWeaponMotion.Default
+    action_frame: int = 0
+    emotion_frame: int = 0
     width: int = 96
     height: int = 96
     x: int | None = None
