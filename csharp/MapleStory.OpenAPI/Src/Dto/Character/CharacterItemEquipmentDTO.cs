@@ -74,6 +74,12 @@ namespace MapleStory.OpenAPI.Dto
         public CharacterItemEquipmentTitleDTO? Title { get; set; }
 
         /// <summary>
+        /// 외형 설정에 등록한 훈장 외형 정보
+        /// </summary>
+        [JsonProperty("medal_shape")]
+        public CharacterItemEquipmentMedalShapeDTO? MedalShape { get; set; }
+
+        /// <summary>
         /// 에반 드래곤 장비 정보 (에반인 경우 응답)
         /// </summary>
         [JsonProperty("dragon_equipment")]

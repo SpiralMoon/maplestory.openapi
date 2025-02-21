@@ -79,5 +79,23 @@ namespace MapleStory.OpenAPI.Dto
                 return _dateOptionExpire == "expired";
             }
         }
+
+        /// <summary>
+        /// 외형 설정에 등록한 칭호 장비 명
+        /// </summary>
+        [JsonProperty("title_shape_name")]
+        public string? TitleShapeName { get; set; }
+
+        /// <summary>
+        /// 외형 설정에 등록한 칭호 아이콘
+        /// </summary>
+        [JsonProperty("title_shape_icon")]
+        public string? TitleShapeIcon { get; set; }
+
+        /// <summary>
+        /// 외형 설정에 등록한 칭호 설명
+        /// </summary>
+        [JsonProperty("title_shape_description")]
+        public string? TitleShapeDescription { get; set; }
     }
 }

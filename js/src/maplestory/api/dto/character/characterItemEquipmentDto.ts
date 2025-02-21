@@ -1,6 +1,7 @@
 import { CharacterItemEquipmentDragonInfoDto } from './characterItemEquipmentDragonInfoDto';
 import { CharacterItemEquipmentInfoDto } from './characterItemEquipmentInfoDto';
 import { CharacterItemEquipmentMechanicInfoDto } from './characterItemEquipmentMechanicInfoDto';
+import { CharacterItemEquipmentMedalShapeDto } from './characterItemEquipmentMedalShapeDto';
 import { CharacterItemEquipmentTitleDto } from './characterItemEquipmentTitleDto';
 import { CharacterItemEquipmentDtoBody } from '../../response/character/characterItemEquipmentDtoBody';
 
@@ -54,6 +55,11 @@ class CharacterItemEquipmentDto {
   title: CharacterItemEquipmentTitleDto | null;
 
   /**
+   * 외형 설정에 등록한 훈장 외형 정보
+   */
+  medalShape: CharacterItemEquipmentMedalShapeDto | null;
+
+  /**
    * 에반 드래곤 장비 정보 (에반인 경우 응답)
    */
   dragonEquipment: CharacterItemEquipmentDragonInfoDto[];
@@ -74,6 +80,7 @@ class CharacterItemEquipmentDto {
       item_equipment_preset_2,
       item_equipment_preset_3,
       title,
+      medal_shape,
       dragon_equipment,
       mechanic_equipment,
     } = obj;
@@ -95,6 +102,7 @@ class CharacterItemEquipmentDto {
       (equipment) => new CharacterItemEquipmentInfoDto(equipment),
     ): null;
     this.title = title ? new CharacterItemEquipmentTitleDto(title) : null;
+    this.medalShape = medal_shape ? new CharacterItemEquipmentMedalShapeDto(medal_shape) : null;
     this.dragonEquipment = dragon_equipment.map(
       (equipment) => new CharacterItemEquipmentDragonInfoDto(equipment),
     );
