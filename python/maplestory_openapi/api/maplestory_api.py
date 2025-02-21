@@ -30,6 +30,7 @@ from maplestory_openapi.api.dto.character.character_image import CharacterImage
 
 from maplestory_openapi.api.dto.union.union import Union
 from maplestory_openapi.api.dto.union.union_artifact import UnionArtifact
+from maplestory_openapi.api.dto.union.union_champion import UnionChampion
 from maplestory_openapi.api.dto.union.union_raider import UnionRaider
 
 from maplestory_openapi.api.dto.guild.guild import Guild
@@ -625,6 +626,26 @@ class MapleStoryApi(BaseModel):
         }
         r = self.fetch(path, query)
         return UnionArtifact(**r)
+
+    def get_union_champion(self, ocid: str, date: datetime | None = None) -> UnionChampion:
+        """유니온 챔피언 정보를 조회합니다.
+        유니온 챔피언 정보는 2025년 2월 20일 메이플스토리 점검 이후 데이터부터 조회 가능합니다.
+
+        - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.
+        - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
+        - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)
+        - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
+
+        @param ocid(str): 캐릭터 식별자(ocid)
+        @param date(datetime): 조회 기준일(KST)
+        """
+        path = 'maplestory/v1/user/union-champion'
+        query = {
+            'ocid': ocid,
+            'date': self.to_date_string(datetime(2023, 12, 21), date) if date is not None else None,
+        }
+        r = self.fetch(path, query)
+        return UnionChampion(**r)
 
     #endregion
 

@@ -26,4 +26,10 @@ describe('유니온 정보 조회', () => {
 
     console.log(toString(response));
   });
+
+  test('유니온 챔피언 정보 조회', async () => {
+    const response = await api.getUnionChampion(ocid);
+
+    console.log(toString(response));
+  });
 });

@@ -32,4 +32,11 @@ public class UnionApi {
         UnionArtifactDTO response = api.getUnionArtifact(ocid);
         System.out.println(response.toString());
     }
+
+    @Test
+    @DisplayName("유니온 챔피언 정보 조회")
+    void getUnionChampion() throws IOException {
+        UnionChampionDTO response = api.getUnionChampion(ocid);
+        System.out.println(response.toString());
+    }
 }

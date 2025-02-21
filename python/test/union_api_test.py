@@ -26,6 +26,10 @@ class UnionApi(unittest.TestCase):
         response = api.get_union_artifact(ocid)
         print(response)
 
+    def test_union_champion(self):
+        response = api.get_union_champion(ocid)
+        print(response)
+
 
 if __name__ == '__main__':
     unittest.main()
