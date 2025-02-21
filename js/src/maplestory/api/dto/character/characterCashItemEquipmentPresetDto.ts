@@ -61,6 +61,11 @@ class CharacterCashItemEquipmentPresetDto {
    */
   itemGender: string | null;
 
+  /**
+   * 스킬명
+   */
+  skills: string[];
+
   constructor(obj: CharacterCashItemEquipmentPresetDtoBody) {
     const {
       cash_item_equipment_part,
@@ -74,6 +79,7 @@ class CharacterCashItemEquipmentPresetDto {
       cash_item_label,
       cash_item_coloring_prism,
       item_gender,
+      skills,
     } = obj;
 
     this.cashItemEquipmentPart = cash_item_equipment_part;
@@ -91,6 +97,7 @@ class CharacterCashItemEquipmentPresetDto {
       ? new CharacterCashItemEquipmentColoringPrismDto(cash_item_coloring_prism)
       : null;
     this.itemGender = item_gender;
+    this.skills = skills;
   }
 }
 

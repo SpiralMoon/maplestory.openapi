@@ -26,6 +26,7 @@ type CharacterCashItemEquipmentPresetDtoBody = {
   cash_item_label: string | null;
   cash_item_coloring_prism: CharacterCashItemEquipmentColoringPrismDtoBody | null;
   item_gender: string | null;
+  skills: string[];
 };
 
 type CharacterCashItemEquipmentOptionDtoBody = {
