@@ -72,6 +72,12 @@ public class CharacterItemEquipmentDTO {
     private CharacterItemEquipmentTitleDTO title;
 
     /**
+     * 외형 설정에 등록한 훈장 외형 정보
+     */
+    @SerializedName("medal_shape")
+    private CharacterItemEquipmentMedalShapeDTO medalShape;
+
+    /**
      * 에반 드래곤 장비 정보 (에반인 경우 응답)
      */
     @SerializedName("dragon_equipment")

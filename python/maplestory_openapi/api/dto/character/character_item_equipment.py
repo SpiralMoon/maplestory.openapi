@@ -407,12 +407,36 @@ class CharacterItemEquipmentTitle(BaseModel):
     title_description(str): 칭호 설명
     date_expire(datetime): 칭호 유효 기간
     date_option_expire(datetime): 칭호 옵션 유효 기간
+    title_shape_name(str): 외형 설정에 등록한 칭호 장비 명
+    title_shape_icon(str): 외형 설정에 등록한 칭호 아이콘
+    title_shape_description(str): 외형 설정에 등록한 칭호 설명
     """
     title_name: str
     title_icon: str
     title_description: str
     date_expire: datetime | str | None
     date_option_expire: datetime | None
+    title_shape_name: str | None
+    title_shape_icon: str | None
+    title_shape_description: str | None
+
+
+class CharacterItemEquipmentMedalShape(BaseModel):
+    """캐릭터 외형 설정에 등록한 훈장 외형 정보
+
+    medal_shape_name(str): 외형 설정에 등록한 훈장 장비 명
+    medal_shape_icon(str): 외형 설정에 등록한 훈장 아이콘
+    medal_shape_description(str): 외형 설정에 등록한 훈장 설명
+    medal_shape_changed_name(str): 외형 설정에 등록한 훈장의 모루 적용 장비 명
+    medal_shape_changed_icon(str): 외형 설정에 등록한 훈장의 모루 적용 아이콘
+    medal_shape_changed_description(str): 외형 설정에 등록한 훈장의 모루 적용 훈장 설명
+    """
+    medal_shape_name: str
+    medal_shape_icon: str
+    medal_shape_description: str
+    medal_shape_changed_name: str
+    medal_shape_changed_icon: str
+    medal_shape_changed_description: str
 
 
 class CharacterItemEquipment(BaseModel):
@@ -439,5 +463,6 @@ class CharacterItemEquipment(BaseModel):
     item_equipment_preset_2: list[CharacterItemEquipmentInfo] | None
     item_equipment_preset_3: list[CharacterItemEquipmentInfo] | None
     title: CharacterItemEquipmentTitle | None
+    medal_shape: CharacterItemEquipmentMedalShape | None
     dragon_equipment: list[CharacterItemEquipmentDragonInfo]
     mechanic_equipment: list[CharacterItemEquipmentMechanicInfo]

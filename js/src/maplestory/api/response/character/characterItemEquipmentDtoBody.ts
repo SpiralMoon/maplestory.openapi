@@ -8,6 +8,7 @@ type CharacterItemEquipmentDtoBody = {
   item_equipment_preset_2: CharacterItemEquipmentInfoDtoBody[] | null;
   item_equipment_preset_3: CharacterItemEquipmentInfoDtoBody[] | null;
   title: CharacterItemEquipmentTitleDtoBody | null;
+  medal_shape: CharacterItemEquipmentMedalShapeDtoBody | null;
   dragon_equipment: CharacterItemEquipmentInfoDtoBody[];
   mechanic_equipment: CharacterItemEquipmentInfoDtoBody[];
 };
@@ -200,7 +201,19 @@ type CharacterItemEquipmentTitleDtoBody = {
   title_description: string;
   date_expire: string | null;
   date_option_expire: string | null;
+  title_shape_name: string | null;
+  title_shape_icon: string | null;
+  title_shape_description: string | null;
 };
+
+type CharacterItemEquipmentMedalShapeDtoBody = {
+  medal_shape_name: string;
+  medal_shape_icon: string;
+  medal_shape_description: string;
+  medal_shape_changed_name: string;
+  medal_shape_changed_icon: string;
+  medal_shape_changed_description: string;
+}
 
 export type {
   CharacterItemEquipmentDtoBody,
@@ -209,6 +222,7 @@ export type {
   CharacterItemEquipmentOptionDtoBody,
   CharacterItemEquipmentExceptionalOptionDtoBody,
   CharacterItemEquipmentTotalOptionDtoBody,
+  CharacterItemEquipmentMedalShapeDtoBody,
   CharacterItemEquipmentBaseOptionDtoBody,
   CharacterItemEquipmentAddOptionDtoBody,
   CharacterItemEquipmentEtcOptionDtoBody,

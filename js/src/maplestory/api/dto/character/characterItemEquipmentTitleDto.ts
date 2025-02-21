@@ -34,6 +34,21 @@ class CharacterItemEquipmentTitleDto {
    */
   isOptionExpired: boolean | null = null;
 
+  /**
+   * 외형 설정에 등록한 칭호 장비 명
+   */
+  titleShapeName: string | null;
+
+  /**
+   * 외형 설정에 등록한 칭호 아이콘
+   */
+  titleShapeIcon: string | null;
+
+  /**
+   * 외형 설정에 등록한 칭호 설명
+   */
+  titleShapeDescription: string | null;
+
   constructor(obj: CharacterItemEquipmentTitleDtoBody) {
     const {
       title_name,
@@ -41,12 +56,18 @@ class CharacterItemEquipmentTitleDto {
       title_description,
       date_expire,
       date_option_expire,
+      title_shape_name,
+      title_shape_icon,
+      title_shape_description,
     } = obj;
 
     this.titleName = title_name;
     this.titleIcon = title_icon;
     this.titleDescription = title_description;
     this.dateExpire = date_expire ? new Date(date_expire) : null;
+    this.titleShapeName = title_shape_name;
+    this.titleShapeIcon = title_shape_icon;
+    this.titleShapeDescription = title_shape_description;
 
     if (date_option_expire === 'expired') {
       this.isOptionExpired = true;

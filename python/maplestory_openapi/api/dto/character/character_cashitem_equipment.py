@@ -37,6 +37,7 @@ class CharacterCashitemEquipmentPreset(BaseModel):
     cash_item_label(str): 캐시 장비 라벨 정보
     cash_item_coloring_prism(CharacterCashitemEquipmentColoringPrism): 캐시 장비 컬러링프리즘 정보
     item_gender(str): 아이템 장착 가능 성별
+    skills(list[str]): 스킬명
     """
     cash_item_equipment_part: str
     cash_item_equipment_slot: str
@@ -49,6 +50,7 @@ class CharacterCashitemEquipmentPreset(BaseModel):
     cash_item_label: str | None
     cash_item_coloring_prism: CharacterCashitemEquipmentColoringPrism | None
     item_gender: str | None
+    skills: list[str]
 
 
 class CharacterCashitemEquipment(BaseModel):

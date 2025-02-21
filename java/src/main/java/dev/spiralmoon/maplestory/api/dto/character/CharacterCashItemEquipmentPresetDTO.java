@@ -83,6 +83,12 @@ public class CharacterCashItemEquipmentPresetDTO {
     @SerializedName("item_gender")
     private String itemGender;
 
+    /**
+     * 스킬명
+     */
+    @SerializedName("skills")
+    private List<String> skills;
+
     private LocalDateTime getDateExpire() {
         return this.dateExpire != null ? Utils.toLocalDateTime(this.dateExpire) : null;
     }

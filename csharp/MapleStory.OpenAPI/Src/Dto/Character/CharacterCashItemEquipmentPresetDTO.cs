@@ -114,5 +114,11 @@ namespace MapleStory.OpenAPI.Dto
         /// </summary>
         [JsonProperty("item_gender")]
         public string? ItemGender { get; set; }
+
+        /// <summary>
+        /// 스킬명
+        /// </summary>
+        [JsonProperty("skills")]
+        public List<string> Skills { get; set; }
     }
 }

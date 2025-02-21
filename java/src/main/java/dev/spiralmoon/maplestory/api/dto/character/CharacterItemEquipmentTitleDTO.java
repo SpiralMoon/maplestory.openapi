@@ -70,4 +70,22 @@ public class CharacterItemEquipmentTitleDTO {
 
         return "expired".equals(this.dateOptionExpire);
     }
+
+    /**
+     * 외형 설정에 등록한 칭호 장비 명
+     */
+    @SerializedName("title_shape_name")
+    private String titleShapeName;
+
+    /**
+     * 외형 설정에 등록한 칭호 아이콘
+     */
+    @SerializedName("title_shape_icon")
+    private String titleShapeIcon;
+
+    /**
+     * 외형 설정에 등록한 칭호 설명
+     */
+    @SerializedName("title_shape_description")
+    private String titleShapeDescription;
 }
