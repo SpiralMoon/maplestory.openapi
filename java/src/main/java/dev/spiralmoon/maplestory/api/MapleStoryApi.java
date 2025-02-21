@@ -2035,6 +2035,86 @@ public class MapleStoryApi {
                 .enqueue(createCallback(onSuccess, onFailure));
     }
 
+    /**
+     * 유니온 챔피언 정보를 조회합니다.<br>
+     * 유니온 챔피언 정보는 2025년 2월 20일 메이플스토리 점검 이후 데이터부터 조회 가능합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     *
+     * @param ocid 캐릭터 식별자
+     */
+    public UnionChampionDTO getUnionChampion(@NonNull String ocid) throws IOException {
+        return this.getUnionChampion(ocid, null);
+    }
+
+    /**
+     * 유니온 챔피언 정보를 조회합니다.<br>
+     * 유니온 챔피언 정보는 2025년 2월 20일 메이플스토리 점검 이후 데이터부터 조회 가능합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     *
+     * @param ocid          캐릭터 식별자
+     * @param localDateTime 조회 기준일 (KST)
+     */
+    public UnionChampionDTO getUnionChampion(@NonNull String ocid, LocalDateTime localDateTime) throws IOException {
+
+        final String date = localDateTime != null
+                ? toDateString(minDate(2023, 12, 21), localDateTime)
+                : null;
+
+        final Response<UnionChampionDTO> response = buildRetrofit()
+                .create(UnionApi.class)
+                .getUnionChampion(this.apiKey, ocid, date)
+                .execute();
+
+        if (!response.isSuccessful()) {
+            throw parseError(response);
+        }
+
+        return response.body();
+    }
+
+    /**
+     * 유니온 챔피언 정보를 비동기로 조회합니다.<br>
+     * 유니온 챔피언 정보는 2025년 2월 20일 메이플스토리 점검 이후 데이터부터 조회 가능합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     *
+     * @param ocid 캐릭터 식별자
+     */
+    public void getUnionChampionAsync(@NonNull String ocid, SuccessCallback<UnionChampionDTO> onSuccess, FailureCallback onFailure) {
+        this.getUnionChampionAsync(ocid, null, onSuccess, onFailure);
+    }
+
+    /**
+     * 유니온 챔피언 정보를 비동기로 조회합니다.<br>
+     * 유니온 챔피언 정보는 2025년 2월 20일 메이플스토리 점검 이후 데이터부터 조회 가능합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
+     * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     *
+     * @param ocid          캐릭터 식별자
+     * @param localDateTime 조회 기준일 (KST)
+     */
+    public void getUnionChampionAsync(@NonNull String ocid, LocalDateTime localDateTime, SuccessCallback<UnionChampionDTO> onSuccess, FailureCallback onFailure) {
+
+        final String date = localDateTime != null
+                ? toDateString(minDate(2023, 12, 21), localDateTime)
+                : null;
+
+        buildRetrofit()
+                .create(UnionApi.class)
+                .getUnionChampion(this.apiKey, ocid, date)
+                .enqueue(createCallback(onSuccess, onFailure));
+    }
+
     //#endregion
 
     //#region 길드 정보 조회
