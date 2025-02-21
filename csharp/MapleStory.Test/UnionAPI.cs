@@ -30,5 +30,12 @@ namespace MapleStory.Test
             var response = await api.GetUnionArtifact(ocid);
             Console.WriteLine(response.ToJson());
         }
+
+        [Test]
+        public async Task GetUnionChampion()
+        {
+            var response = await api.GetUnionChampion(ocid);
+            Console.WriteLine(response.ToJson());
+        }
     }
 }
