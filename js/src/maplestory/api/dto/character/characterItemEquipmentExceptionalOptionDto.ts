@@ -61,7 +61,7 @@ class CharacterItemEquipmentExceptionalOptionDto {
     this.maxMp = max_mp;
     this.attackPower = attack_power;
     this.magicPower = magic_power;
-    this.exceptionalUpgrade = exceptional_upgrade;
+    this.exceptionalUpgrade = exceptional_upgrade ?? 0;
   }
 }
 

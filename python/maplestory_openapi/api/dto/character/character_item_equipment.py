@@ -1,5 +1,5 @@
 from datetime import datetime
-from pydantic import BaseModel
+from pydantic import BaseModel, model_validator
 
 
 class CharacterItemEquipmentAddOption(BaseModel):
@@ -128,6 +128,13 @@ class CharacterItemEquipmentExceptionalOption(BaseModel):
     attack_power: str
     magic_power: str
     exceptional_upgrade: int
+
+    @model_validator(mode="before")
+    @classmethod
+    def set_default_exceptional_upgrade(cls, values):
+        if values.get("exceptional_upgrade") is None:
+            values["exceptional_upgrade"] = 0
+        return values
 
 
 class CharacterItemEquipmentTotalOption(BaseModel):
@@ -407,6 +414,7 @@ class CharacterItemEquipmentTitle(BaseModel):
     title_description(str): 칭호 설명
     date_expire(datetime): 칭호 유효 기간
     date_option_expire(datetime): 칭호 옵션 유효 기간
+    is_option_expired(bool): 칭호 옵션 유효 기간 만료 여부
     title_shape_name(str): 외형 설정에 등록한 칭호 장비 명
     title_shape_icon(str): 외형 설정에 등록한 칭호 아이콘
     title_shape_description(str): 외형 설정에 등록한 칭호 설명
@@ -414,11 +422,20 @@ class CharacterItemEquipmentTitle(BaseModel):
     title_name: str
     title_icon: str
     title_description: str
-    date_expire: datetime | str | None
+    date_expire: datetime | None
     date_option_expire: datetime | None
+    is_option_expired: bool = False
     title_shape_name: str | None
     title_shape_icon: str | None
     title_shape_description: str | None
+
+    @model_validator(mode="before")
+    @classmethod
+    def set_default_date_option_expire(cls, values):
+        if values.get("date_option_expire") == 'expired':
+            values["is_option_expired"] = True
+            values["date_option_expire"] = None
+        return values
 
 
 class CharacterItemEquipmentMedalShape(BaseModel):
