@@ -116,7 +116,7 @@ type CharacterItemEquipmentExceptionalOptionDtoBody = {
   max_mp: string;
   attack_power: string;
   magic_power: string;
-  exceptional_upgrade: number;
+  exceptional_upgrade: number | null;
 };
 
 type CharacterItemEquipmentTotalOptionDtoBody = {
