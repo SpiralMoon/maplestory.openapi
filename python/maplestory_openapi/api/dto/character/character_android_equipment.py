@@ -1,5 +1,5 @@
 from datetime import datetime
-from pydantic import BaseModel
+from pydantic import BaseModel, model_validator
 
 
 class CharacterAndroidEquipmentHair(BaseModel):
@@ -110,6 +110,7 @@ class CharacterAndroidCashItemEquipment(BaseModel):
     cash_item_option(list[CharacterCashitemEquipmentOption]): 캐시 장비 옵션
     date_expire(datetime): 캐시 장비 유효기간 (KST)
     date_option_expire(datetime): 캐시 장비 옵션 유효기간 (KST, 시간 단위 데이터로 분은 일괄 0으로 표기)
+    is_option_expired(bool): 캐시 장비 옵션 유효 기간 만료 여부
     cash_item_label(str): 캐시 장비 라벨 정보
     cash_item_coloring_prism(CharacterCashitemEquipmentColoringPrism): 캐시 장비 컬러링프리즘 정보
     """
@@ -121,8 +122,17 @@ class CharacterAndroidCashItemEquipment(BaseModel):
     cash_item_option: list[CharacterAndroidCashItemEquipmentOption]
     date_expire: datetime | None
     date_option_expire: datetime | None
+    is_option_expired: bool = False
     cash_item_label: str | None
     cash_item_coloring_prism: CharacterAndroidCashItemEquipmentColoringPrism | None
+
+    @model_validator(mode="before")
+    @classmethod
+    def set_default_date_option_expire(cls, values):
+        if values.get("date_option_expire") == 'expired':
+            values["is_option_expired"] = True
+            values["date_option_expire"] = None
+        return values
 
 
 class CharacterAndroidEquipment(BaseModel):
