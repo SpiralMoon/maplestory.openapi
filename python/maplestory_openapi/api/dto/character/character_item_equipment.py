@@ -1,5 +1,5 @@
 from datetime import datetime
-from pydantic import BaseModel
+from pydantic import BaseModel, model_validator
 
 
 class CharacterItemEquipmentAddOption(BaseModel):
@@ -128,6 +128,13 @@ class CharacterItemEquipmentExceptionalOption(BaseModel):
     attack_power: str
     magic_power: str
     exceptional_upgrade: int
+
+    @model_validator(mode="before")
+    @classmethod
+    def set_default_exceptional_upgrade(cls, values):
+        if values.get("exceptional_upgrade") is None:
+            values["exceptional_upgrade"] = 0
+        return values
 
 
 class CharacterItemEquipmentTotalOption(BaseModel):
