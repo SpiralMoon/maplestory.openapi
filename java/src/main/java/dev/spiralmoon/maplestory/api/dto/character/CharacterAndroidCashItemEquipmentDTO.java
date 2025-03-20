@@ -78,7 +78,11 @@ public class CharacterAndroidCashItemEquipmentDTO {
     private CharacterAndroidCashItemEquipmentColoringPrismDTO cashItemColoringPrism;
 
     private LocalDateTime getDateExpire() {
-        return this.dateExpire != null ? Utils.toLocalDateTime(this.dateExpire) : null;
+        if (this.dateExpire != null && !"expired".equals(this.dateExpire)) {
+            return Utils.toLocalDateTime(this.dateExpire);
+        } else {
+            return null;
+        }
     }
 
     private LocalDateTime getDateOptionExpire() {
@@ -87,6 +91,18 @@ public class CharacterAndroidCashItemEquipmentDTO {
         } else {
             return null;
         }
+    }
+
+    /**
+     * 안드로이드 캐시 아이템 유효 기간 만료 여부
+     */
+    private Boolean isExpired() {
+
+        if (this.dateExpire == null) {
+            return null;
+        }
+
+        return "expired".equals(this.dateExpire);
     }
 
     /**

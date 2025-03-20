@@ -227,14 +227,62 @@ public class CharacterPetEquipmentDTO {
     }
 
     public LocalDateTime getPet1DateExpire() {
-        return Utils.toLocalDateTime(this.pet1DateExpire);
+        if (this.pet1DateExpire != null && !"expired".equals(this.pet1DateExpire)) {
+            return Utils.toLocalDateTime(this.pet1DateExpire);
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * 펫1 마법의 시간 만료 여부
+     */
+    private Boolean pet1Expired() {
+
+        if (this.pet1DateExpire == null) {
+            return null;
+        }
+
+        return "expired".equals(this.pet1DateExpire);
     }
 
     public LocalDateTime getPet2DateExpire() {
-        return Utils.toLocalDateTime(this.pet2DateExpire);
+        if (this.pet2DateExpire != null && !"expired".equals(this.pet2DateExpire)) {
+            return Utils.toLocalDateTime(this.pet2DateExpire);
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * 펫2 마법의 시간 만료 여부
+     */
+    private Boolean pet2Expired() {
+
+        if (this.pet2DateExpire == null) {
+            return null;
+        }
+
+        return "expired".equals(this.pet2DateExpire);
     }
 
     public LocalDateTime getPet3DateExpire() {
-        return Utils.toLocalDateTime(this.pet3DateExpire);
+        if (this.pet3DateExpire != null && !"expired".equals(this.pet3DateExpire)) {
+            return Utils.toLocalDateTime(this.pet3DateExpire);
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * 펫3 마법의 시간 만료 여부
+     */
+    private Boolean pet3Expired() {
+
+        if (this.pet3DateExpire == null) {
+            return null;
+        }
+
+        return "expired".equals(this.pet3DateExpire);
     }
 }

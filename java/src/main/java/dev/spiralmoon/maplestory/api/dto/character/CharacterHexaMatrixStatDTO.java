@@ -42,6 +42,12 @@ public class CharacterHexaMatrixStatDTO {
     private List<CharacterHexaMatrixStatCoreDTO> characterHexaStatCore2;
 
     /**
+     * HEXA 스탯 III 코어 정보
+     */
+    @SerializedName("character_hexa_stat_core_3")
+    private List<CharacterHexaMatrixStatCoreDTO> characterHexaStatCore3;
+
+    /**
      * 프리셋 HEXA 스탯 I 코어 정보
      */
     @SerializedName("preset_hexa_stat_core")
@@ -52,6 +58,12 @@ public class CharacterHexaMatrixStatDTO {
      */
     @SerializedName("preset_hexa_stat_core_2")
     private List<CharacterHexaMatrixStatCoreDTO> presetHexaStatCore2;
+
+    /**
+     * 프리셋 HEXA 스탯 III 코어 정보
+     */
+    @SerializedName("preset_hexa_stat_core_3")
+    private List<CharacterHexaMatrixStatCoreDTO> presetHexaStatCore3;
 
     public LocalDateTime getDate() {
         return date != null

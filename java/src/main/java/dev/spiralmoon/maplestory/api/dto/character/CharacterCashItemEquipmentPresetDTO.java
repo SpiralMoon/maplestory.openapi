@@ -90,7 +90,11 @@ public class CharacterCashItemEquipmentPresetDTO {
     private List<String> skills;
 
     private LocalDateTime getDateExpire() {
-        return this.dateExpire != null ? Utils.toLocalDateTime(this.dateExpire) : null;
+        if (this.dateExpire != null && !"expired".equals(this.dateExpire)) {
+            return Utils.toLocalDateTime(this.dateExpire);
+        } else {
+            return null;
+        }
     }
 
     private LocalDateTime getDateOptionExpire() {
@@ -99,6 +103,18 @@ public class CharacterCashItemEquipmentPresetDTO {
         } else {
             return null;
         }
+    }
+
+    /**
+     * 캐시 장비 유효 기간 만료 여부
+     */
+    private Boolean isExpired() {
+
+        if (this.dateExpire == null) {
+            return null;
+        }
+
+        return "expired".equals(this.dateExpire);
     }
 
     /**

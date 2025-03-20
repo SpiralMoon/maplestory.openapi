@@ -54,7 +54,12 @@ class CharacterPetEquipmentDto {
   /**
    * 펫1 마법의 시간 (KST, 시간 단위 데이터로 분은 일괄 0으로 표기)
    */
-  pet1DateExpire: Date | null;
+  pet1DateExpire: Date | null = null;
+
+  /**
+   * 펫1 마법의 시간 만료 여부
+   */
+  pet1Expired: boolean | null = null;
 
   /**
    * 펫1 외형
@@ -109,7 +114,12 @@ class CharacterPetEquipmentDto {
   /**
    * 펫2 마법의 시간 (KST, 시간 단위 데이터로 분은 일괄 0으로 표기)
    */
-  pet2DateExpire: Date | null;
+  pet2DateExpire: Date | null = null;
+
+  /**
+   * 펫2 마법의 시간 만료 여부
+   */
+  pet2Expired: boolean | null = null;
 
   /**
    * 펫2 외형
@@ -164,7 +174,12 @@ class CharacterPetEquipmentDto {
   /**
    * 펫3 마법의 시간 (KST, 시간 단위 데이터로 분은 일괄 0으로 표기)
    */
-  pet3DateExpire: Date | null;
+  pet3DateExpire: Date | null = null;
+
+  /**
+   * 펫3 마법의 시간 만료 여부
+   */
+  pet3Expired: boolean | null = null;
 
   /**
    * 펫3 외형
@@ -225,7 +240,6 @@ class CharacterPetEquipmentDto {
     ) : null;
     this.pet1PetType = pet_1_pet_type;
     this.pet1Skill = pet_1_skill;
-    this.pet1DateExpire = pet_1_date_expire ? new Date(pet_1_date_expire) : null;
     this.pet1Appearance = pet_1_appearance;
     this.pet1AppearanceIcon = pet_1_appearance_icon;
     this.pet2Name = pet_2_name;
@@ -238,7 +252,6 @@ class CharacterPetEquipmentDto {
     ) : null;
     this.pet2PetType = pet_2_pet_type;
     this.pet2Skill = pet_2_skill;
-    this.pet2DateExpire = pet_2_date_expire ? new Date(pet_2_date_expire) : null;
     this.pet2Appearance = pet_2_appearance;
     this.pet2AppearanceIcon = pet_2_appearance_icon;
     this.pet3Name = pet_3_name;
@@ -251,9 +264,32 @@ class CharacterPetEquipmentDto {
     ) : null;
     this.pet3PetType = pet_3_pet_type;
     this.pet3Skill = pet_3_skill;
-    this.pet3DateExpire = pet_3_date_expire ? new Date(pet_3_date_expire) : null;
     this.pet3Appearance = pet_3_appearance;
     this.pet3AppearanceIcon = pet_3_appearance_icon;
+
+    if (pet_1_date_expire === 'expired') {
+      this.pet1Expired = true;
+    } else if (typeof pet_1_date_expire === 'string') {
+      this.pet1DateExpire = pet_1_date_expire
+        ? new Date(pet_1_date_expire)
+        : null;
+    }
+
+    if (pet_2_date_expire === 'expired') {
+      this.pet2Expired = true;
+    } else if (typeof pet_2_date_expire === 'string') {
+      this.pet2DateExpire = pet_2_date_expire
+        ? new Date(pet_2_date_expire)
+        : null;
+    }
+
+    if (pet_3_date_expire === 'expired') {
+      this.pet3Expired = true;
+    } else if (typeof pet_3_date_expire === 'string') {
+      this.pet3DateExpire = pet_3_date_expire
+        ? new Date(pet_3_date_expire)
+        : null;
+    }
   }
 }
 

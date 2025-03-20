@@ -102,17 +102,18 @@ class CharacterAndroidCashItemEquipmentOption(BaseModel):
 
 class CharacterAndroidCashItemEquipment(BaseModel):
     """안드로이드 캐시 아이템 장착 정보
-    cash_item_equipment_part(str): 캐시 장비 부위 명
-    cash_item_equipment_slot(str): 캐시 장비 슬롯 위치
-    cash_item_name(str): 캐시 장비 명
-    cash_item_icon(str): 캐시 장비 아이콘
-    cash_item_description(str): 캐시 장비 설명
-    cash_item_option(list[CharacterCashitemEquipmentOption]): 캐시 장비 옵션
-    date_expire(datetime): 캐시 장비 유효기간 (KST)
-    date_option_expire(datetime): 캐시 장비 옵션 유효기간 (KST, 시간 단위 데이터로 분은 일괄 0으로 표기)
-    is_option_expired(bool): 캐시 장비 옵션 유효 기간 만료 여부
-    cash_item_label(str): 캐시 장비 라벨 정보
-    cash_item_coloring_prism(CharacterCashitemEquipmentColoringPrism): 캐시 장비 컬러링프리즘 정보
+    cash_item_equipment_part(str): 안드로이드 캐시 아이템 부위 명
+    cash_item_equipment_slot(str): 안드로이드 캐시 아이템 슬롯 위치
+    cash_item_name(str): 안드로이드 캐시 아이템 명
+    cash_item_icon(str): 안드로이드 캐시 아이템 아이콘
+    cash_item_description(str): 안드로이드 캐시 아이템 설명
+    cash_item_option(list[CharacterAndroidCashItemEquipmentOption]): 안드로이드 캐시 아이템 옵션
+    date_expire(datetime): 안드로이드 캐시 아이템 유효 기간 (KST)
+    is_option_expired(bool): 안드로이드 캐시 아이템 유효 기간 만료 여부
+    date_option_expire(datetime): 안드로이드 캐시 아이템 옵션 유효 기간 (KST, 시간 단위 데이터로 분은 일괄 0으로 표기)
+    is_option_expired(bool): 안드로이드 캐시 아이템 옵션 유효 기간 만료 여부
+    cash_item_label(str): 안드로이드 캐시 아이템 라벨 정보 (스페셜라벨, 레드라벨, 블랙라벨, 마스터라벨)
+    cash_item_coloring_prism(CharacterAndroidCashItemEquipmentColoringPrism): 안드로이드 캐시 아이템 컬러링프리즘 정보
     """
     cash_item_equipment_part: str
     cash_item_equipment_slot: str
@@ -121,10 +122,19 @@ class CharacterAndroidCashItemEquipment(BaseModel):
     cash_item_description: str | None
     cash_item_option: list[CharacterAndroidCashItemEquipmentOption]
     date_expire: datetime | None
+    is_expired: bool = False
     date_option_expire: datetime | None
     is_option_expired: bool = False
     cash_item_label: str | None
     cash_item_coloring_prism: CharacterAndroidCashItemEquipmentColoringPrism | None
+
+    @model_validator(mode="before")
+    @classmethod
+    def set_default_date_expire(cls, values):
+        if values.get("date_expire") == 'expired':
+            values["is_expired"] = True
+            values["date_expire"] = None
+        return values
 
     @model_validator(mode="before")
     @classmethod

@@ -245,6 +245,7 @@ class CharacterItemEquipmentInfo(BaseModel):
     item_starforce_option(CharacterItemEquipmentStarforceOption): 장비 스타포스 옵션
     special_ring_level(int): 특수 반지 레벨
     date_expire(datetime): 장비 유효 기간
+    is_expired(bool): 장비 유효 기간 만료 여부
     """
     item_equipment_part: str
     item_equipment_slot: str
@@ -282,6 +283,15 @@ class CharacterItemEquipmentInfo(BaseModel):
     item_starforce_option: CharacterItemEquipmentStarforceOption
     special_ring_level: int
     date_expire: datetime | None
+    is_expired: bool = False
+
+    @model_validator(mode="before")
+    @classmethod
+    def set_default_date_expire(cls, values):
+        if values.get("date_expire") == 'expired':
+            values["is_expired"] = True
+            values["date_expire"] = None
+        return values
 
 
 class CharacterItemEquipmentDragonInfo(BaseModel):
@@ -314,6 +324,7 @@ class CharacterItemEquipmentDragonInfo(BaseModel):
     item_starforce_option(CharacterItemEquipmentStarforceOption): 장비 스타포스 옵션
     special_ring_level(int): 특수 반지 레벨
     date_expire(datetime): 장비 유효 기간
+    is_expired(bool): 장비 유효 기간 만료 여부
     """
     item_equipment_part: str
     item_equipment_slot: str
@@ -343,6 +354,15 @@ class CharacterItemEquipmentDragonInfo(BaseModel):
     item_starforce_option: CharacterItemEquipmentStarforceOption
     special_ring_level: int
     date_expire: datetime | None
+    is_expired: bool = False
+
+    @model_validator(mode="before")
+    @classmethod
+    def set_default_date_expire(cls, values):
+        if values.get("date_expire") == 'expired':
+            values["is_expired"] = True
+            values["date_expire"] = None
+        return values
 
 
 class CharacterItemEquipmentMechanicInfo(BaseModel):
@@ -375,6 +395,7 @@ class CharacterItemEquipmentMechanicInfo(BaseModel):
     item_starforce_option(CharacterItemEquipmentStarforceOption): 장비 스타포스 옵션
     special_ring_level(int): 특수 반지 레벨
     date_expire(datetime): 장비 유효 기간
+    is_expired(bool): 장비 유효 기간 만료 여부
     """
     item_equipment_part: str
     item_equipment_slot: str
@@ -404,6 +425,15 @@ class CharacterItemEquipmentMechanicInfo(BaseModel):
     item_starforce_option: CharacterItemEquipmentStarforceOption
     special_ring_level: int
     date_expire: datetime | None
+    is_expired: bool = False
+
+    @model_validator(mode="before")
+    @classmethod
+    def set_default_date_expire(cls, values):
+        if values.get("date_expire") == 'expired':
+            values["is_expired"] = True
+            values["date_expire"] = None
+        return values
 
 
 class CharacterItemEquipmentTitle(BaseModel):
@@ -413,6 +443,7 @@ class CharacterItemEquipmentTitle(BaseModel):
     title_icon(str): 칭호 아이콘
     title_description(str): 칭호 설명
     date_expire(datetime): 칭호 유효 기간
+    is_expired(bool): 칭호 유효 기간 만료 여부
     date_option_expire(datetime): 칭호 옵션 유효 기간
     is_option_expired(bool): 칭호 옵션 유효 기간 만료 여부
     title_shape_name(str): 외형 설정에 등록한 칭호 장비 명
@@ -423,11 +454,20 @@ class CharacterItemEquipmentTitle(BaseModel):
     title_icon: str
     title_description: str
     date_expire: datetime | None
+    is_expired: bool = False
     date_option_expire: datetime | None
     is_option_expired: bool = False
     title_shape_name: str | None
     title_shape_icon: str | None
     title_shape_description: str | None
+
+    @model_validator(mode="before")
+    @classmethod
+    def set_default_date_expire(cls, values):
+        if values.get("date_expire") == 'expired':
+            values["is_expired"] = True
+            values["date_expire"] = None
+        return values
 
     @model_validator(mode="before")
     @classmethod

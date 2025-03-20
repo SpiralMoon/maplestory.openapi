@@ -39,7 +39,12 @@ class CharacterAndroidCashItemEquipmentDto {
   /**
    * 안드로이드 캐시 아이템 유효 기간 (KST)
    */
-  dateExpire: Date | null;
+  dateExpire: Date | null = null;
+
+  /**
+   * 안드로이드 캐시 아이템 유효 기간 만료 여부
+   */
+  isExpired: boolean | null = null;
 
   /**
    * 안드로이드 캐시 아이템 옵션 유효 기간 (KST, 시간 단위 데이터로 분은 일괄 0으로 표기)
@@ -83,13 +88,20 @@ class CharacterAndroidCashItemEquipmentDto {
     this.cashItemOption = cash_item_option.map(
       (option) => new CharacterAndroidCashItemEquipmentOptionDto(option),
     );
-    this.dateExpire = date_expire ? new Date(date_expire) : null;
     this.cashItemLabel = cash_item_label;
     this.cashItemColoringPrism = cash_item_coloring_prism
       ? new CharacterAndroidCashItemEquipmentColoringPrismDto(
           cash_item_coloring_prism,
         )
       : null;
+
+    if (date_expire === 'expired') {
+      this.isExpired = true;
+    } else if (typeof date_expire === 'string') {
+      this.dateExpire = date_expire
+        ? new Date(date_expire)
+        : null;
+    }
 
     if (date_option_expire === 'expired') {
       this.isOptionExpired = true;

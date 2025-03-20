@@ -22,7 +22,12 @@ class CharacterItemEquipmentTitleDto {
   /**
    * 칭호 유효 기간
    */
-  dateExpire: Date | null;
+  dateExpire: Date | null = null;
+
+  /**
+   * 칭호 유효 기간 만료 여부
+   */
+  isExpired: boolean | null = null;
 
   /**
    * 칭호 옵션 유효 기간
@@ -64,10 +69,17 @@ class CharacterItemEquipmentTitleDto {
     this.titleName = title_name;
     this.titleIcon = title_icon;
     this.titleDescription = title_description;
-    this.dateExpire = date_expire ? new Date(date_expire) : null;
     this.titleShapeName = title_shape_name;
     this.titleShapeIcon = title_shape_icon;
     this.titleShapeDescription = title_shape_description;
+
+    if (date_expire === 'expired') {
+      this.isExpired = true;
+    } else if (typeof date_expire === 'string') {
+      this.dateExpire = date_expire
+        ? new Date(date_expire)
+        : null;
+    }
 
     if (date_option_expire === 'expired') {
       this.isOptionExpired = true;
