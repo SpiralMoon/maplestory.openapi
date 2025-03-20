@@ -20,6 +20,12 @@ public class StarforceEventDTO {
     private String successRate;
 
     /**
+     * 이벤트 파괴 확률 감소율
+     */
+    @SerializedName("destroy_decrease_rate")
+    private String destroyDecreaseRate;
+
+    /**
      * 이벤트 비용 할인율
      */
     @SerializedName("cost_discount_rate")

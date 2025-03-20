@@ -6,82 +6,82 @@ import { StarforceHistoryDtoBody } from '../../response/history/starforceHistory
  */
 class StarforceHistoryDto {
   /**
-   *스타포스 히스토리 식별자
+   * 스타포스 히스토리 식별자
    */
   id: string;
 
   /**
-   *강화 시도 결과
+   * 강화 시도 결과
    */
   itemUpgradeResult: string;
 
   /**
-   *강화 시도 전 스타포스 수치
+   * 강화 시도 전 스타포스 수치
    */
   beforeStarforceCount: number;
 
   /**
-   *강화 시도 후 스타포스 수치
+   * 강화 시도 후 스타포스 수치
    */
   afterStarforceCount: number;
 
   /**
-   *스타 캐치
+   * 스타 캐치
    */
   starCatchResult: string;
 
   /**
-   *슈페리얼 장비
+   * 슈페리얼 장비
    */
   superiorItemFlag: string;
 
   /**
-   *파괴 방지
+   * 파괴 방지
    */
   destroyDefence: string;
 
   /**
-   *찬스 타임
+   * 찬스 타임
    */
   chanceTime: string;
 
   /**
-   *파괴 방지 필드 이벤트
+   * 파괴 방지 필드 이벤트
    */
   eventFieldFlag: string;
 
   /**
-   *사용 주문서 명
+   * 사용 주문서 명
    */
   upgradeItem: string;
 
   /**
-   *프로텍트 실드
+   * 프로텍트 실드
    */
   protectShield: string;
 
   /**
-   *보너스 스탯 부여 아이템 여부
+   * 보너스 스탯 부여 아이템 여부
    */
   bonusStatUpgrade: string;
 
   /**
-   *캐릭터 명
+   * 캐릭터 명
    */
   characterName: string;
 
   /**
-   *월드 명
+   * 월드 명
    */
   worldName: string;
 
   /**
-   *대상 장비 아이템 명
+   * 대상 장비 아이템 명
    */
   targetItem: string;
 
   /**
-   *강화 일시 (KST)
+   * 강화 일시 (KST)
    */
   dateCreate: Date;
 
