@@ -10,6 +10,11 @@ class StarforceEventDto {
   successRate: string;
 
   /**
+   * 이벤트 파괴 확률 감소율
+   */
+  destroyDecreaseRate: string | null;
+
+  /**
    * 이벤트 비용 할인율
    */
   costDiscountRate: string;
@@ -27,12 +32,14 @@ class StarforceEventDto {
   constructor(obj: StarforceEventDtoBody) {
     const {
       success_rate,
+      destroy_decrease_rate,
       cost_discount_rate,
       plus_value,
       starforce_event_range,
     } = obj;
 
     this.successRate = success_rate;
+    this.destroyDecreaseRate = destroy_decrease_rate;
     this.costDiscountRate = cost_discount_rate;
     this.plusValue = plus_value;
     this.starforceEventRange = starforce_event_range;

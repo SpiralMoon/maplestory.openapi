@@ -14,6 +14,12 @@ namespace MapleStory.OpenAPI.Dto
         public string SuccessRate { get; set; }
 
         /// <summary>
+        /// 이벤트 파괴 확률 감소율
+        /// </summary>
+        [JsonProperty("destroy_decrease_rate")]
+        public string? DestroyDecreaseRate { get; set; }
+
+        /// <summary>
         /// 이벤트 비용 할인율
         /// </summary>
         [JsonProperty("cost_discount_rate")]
