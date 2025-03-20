@@ -11,19 +11,19 @@ namespace MapleStory.OpenAPI.Dto
         /// 칭호 장비 명
         /// </summary>
         [JsonProperty("title_name")]
-        public string TitleName { get; set; }
+        public string? TitleName { get; set; }
 
         /// <summary>
         /// 칭호 아이콘
         /// </summary>
         [JsonProperty("title_icon")]
-        public string TitleIcon { get; set; }
+        public string? TitleIcon { get; set; }
 
         /// <summary>
         /// 칭호 설명
         /// </summary>
         [JsonProperty("title_description")]
-        public string TitleDescription { get; set; }
+        public string? TitleDescription { get; set; }
 
         /// <summary>
         /// 칭호 유효 기간 (KST)

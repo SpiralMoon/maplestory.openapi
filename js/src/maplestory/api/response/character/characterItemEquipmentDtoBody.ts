@@ -196,9 +196,9 @@ type CharacterItemEquipmentStarforceOptionDtoBody =
   CharacterItemEquipmentEtcOptionDtoBody;
 
 type CharacterItemEquipmentTitleDtoBody = {
-  title_name: string;
-  title_icon: string;
-  title_description: string;
+  title_name: string | null;
+  title_icon: string | null;
+  title_description: string | null;
   date_expire: string | null;
   date_option_expire: string | null;
   title_shape_name: string | null;

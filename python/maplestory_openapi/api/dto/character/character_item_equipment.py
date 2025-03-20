@@ -450,9 +450,9 @@ class CharacterItemEquipmentTitle(BaseModel):
     title_shape_icon(str): 외형 설정에 등록한 칭호 아이콘
     title_shape_description(str): 외형 설정에 등록한 칭호 설명
     """
-    title_name: str
-    title_icon: str
-    title_description: str
+    title_name: str | None
+    title_icon: str | None
+    title_description: str | None
     date_expire: datetime | None
     is_expired: bool = False
     date_option_expire: datetime | None

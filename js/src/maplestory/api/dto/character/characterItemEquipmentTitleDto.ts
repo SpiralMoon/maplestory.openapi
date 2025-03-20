@@ -7,17 +7,17 @@ class CharacterItemEquipmentTitleDto {
   /**
    * 칭호 장비 명
    */
-  titleName: string;
+  titleName: string | null;
 
   /**
    * 칭호 아이콘
    */
-  titleIcon: string;
+  titleIcon: string | null;
 
   /**
    * 칭호 설명
    */
-  titleDescription: string;
+  titleDescription: string | null;
 
   /**
    * 칭호 유효 기간
