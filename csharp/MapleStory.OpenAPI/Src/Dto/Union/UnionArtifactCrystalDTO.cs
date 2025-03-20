@@ -20,22 +20,39 @@ namespace MapleStory.OpenAPI.Dto
         public string ValidityFlag { get; set; }
 
         /// <summary>
-        /// 능력치 유효 기간(KST)
+        /// 능력치 유효 기간 (KST)
         /// </summary>
-        [JsonProperty("date_expire")]
-        public DateTimeOffset DateExpire
+        public DateTimeOffset? DateExpire
         {
             get
             {
-                return _dateExpire.ToOffset(TimeSpan.FromHours(9));
-            }
-            set
-            {
-                _dateExpire = value;
+                if (_dateExpire != null && _dateExpire != "expired")
+                {
+                    return DateTimeOffset.Parse(_dateExpire).ToOffset(TimeSpan.FromHours(9));
+                }
+
+                return null;
             }
         }
 
-        private DateTimeOffset _dateExpire;
+        [JsonProperty("date_expire")]
+        private string? _dateExpire;
+
+        /// <summary>
+        /// 능력치 유효 기간 만료 여부
+        /// </summary>
+        public bool? IsExpired
+        {
+            get
+            {
+                if (_dateExpire == null)
+                {
+                    return null;
+                }
+
+                return _dateExpire == "expired";
+            }
+        }
 
         /// <summary>
         /// 아티팩트 크리스탈 등급

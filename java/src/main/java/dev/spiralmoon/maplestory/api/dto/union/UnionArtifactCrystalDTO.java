@@ -29,7 +29,7 @@ public class UnionArtifactCrystalDTO {
     private String validityFlag;
 
     /**
-     * 능력치 유효 기간(KST)
+     * 능력치 유효 기간 (KST)
      */
     @SerializedName("date_expire")
     private String dateExpire;
@@ -58,7 +58,23 @@ public class UnionArtifactCrystalDTO {
     @SerializedName("crystal_option_name_3")
     private String crystalOptionName3;
 
-    public LocalDateTime getDateExpire() {
-        return Utils.toLocalDateTime(this.dateExpire);
+    private LocalDateTime getDateExpire() {
+        if (this.dateExpire != null && !"expired".equals(this.dateExpire)) {
+            return Utils.toLocalDateTime(this.dateExpire);
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * 능력치 유효 기간 만료 여부
+     */
+    private Boolean isExpired() {
+
+        if (this.dateExpire == null) {
+            return null;
+        }
+
+        return "expired".equals(this.dateExpire);
     }
 }
