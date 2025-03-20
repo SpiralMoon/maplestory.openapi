@@ -233,6 +233,22 @@ public class CharacterItemEquipmentInfoDTO {
     private String dateExpire;
 
     private LocalDateTime getDateExpire() {
-        return this.dateExpire != null ? Utils.toLocalDateTime(this.dateExpire) : null;
+        if (this.dateExpire != null && !"expired".equals(this.dateExpire)) {
+            return Utils.toLocalDateTime(this.dateExpire);
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * 장비 유효 기간 만료 여부
+     */
+    private Boolean isExpired() {
+
+        if (this.dateExpire == null) {
+            return null;
+        }
+
+        return "expired".equals(this.dateExpire);
     }
 }

@@ -76,20 +76,37 @@ namespace MapleStory.OpenAPI.Dto
         /// <summary>
         /// 펫1 마법의 시간 (KST, 시간 단위 데이터로 분은 일괄 0으로 표기)
         /// </summary>
-        [JsonProperty("pet_1_date_expire")]
         public DateTimeOffset? Pet1DateExpire
         {
             get
             {
-                return _pet1DateExpire?.ToOffset(TimeSpan.FromHours(9));
-            }
-            set
-            {
-                _pet1DateExpire = value;
+                if (_pet1DateExpire != null && _pet1DateExpire != "expired")
+                {
+                    return DateTimeOffset.Parse(_pet1DateExpire).ToOffset(TimeSpan.FromHours(9));
+                }
+
+                return null;
             }
         }
 
-        private DateTimeOffset? _pet1DateExpire;
+        [JsonProperty("pet_1_date_expire")]
+        private string? _pet1DateExpire;
+
+        /// <summary>
+        /// 펫1 마법의 시간 만료 여부
+        /// </summary>
+        public bool? Pet1Expired
+        {
+            get
+            {
+                if (_pet1DateExpire == null)
+                {
+                    return null;
+                }
+
+                return _pet1DateExpire == "expired";
+            }
+        }
 
         /// <summary>
         /// 펫1 외형
@@ -154,20 +171,37 @@ namespace MapleStory.OpenAPI.Dto
         /// <summary>
         /// 펫2 마법의 시간 (KST, 시간 단위 데이터로 분은 일괄 0으로 표기)
         /// </summary>
-        [JsonProperty("pet_2_date_expire")]
         public DateTimeOffset? Pet2DateExpire
         {
             get
             {
-                return _pet2DateExpire?.ToOffset(TimeSpan.FromHours(9));
-            }
-            set
-            {
-                _pet2DateExpire = value;
+                if (_pet2DateExpire != null && _pet2DateExpire != "expired")
+                {
+                    return DateTimeOffset.Parse(_pet2DateExpire).ToOffset(TimeSpan.FromHours(9));
+                }
+
+                return null;
             }
         }
 
-        private DateTimeOffset? _pet2DateExpire;
+        [JsonProperty("pet_2_date_expire")]
+        private string? _pet2DateExpire;
+
+        /// <summary>
+        /// 펫2 마법의 시간 만료 여부
+        /// </summary>
+        public bool? Pet2Expired
+        {
+            get
+            {
+                if (_pet2DateExpire == null)
+                {
+                    return null;
+                }
+
+                return _pet2DateExpire == "expired";
+            }
+        }
 
         /// <summary>
         /// 펫2 외형
@@ -232,20 +266,37 @@ namespace MapleStory.OpenAPI.Dto
         /// <summary>
         /// 펫3 마법의 시간 (KST, 시간 단위 데이터로 분은 일괄 0으로 표기)
         /// </summary>
-        [JsonProperty("pet_3_date_expire")]
         public DateTimeOffset? Pet3DateExpire
         {
             get
             {
-                return _pet3DateExpire?.ToOffset(TimeSpan.FromHours(9));
-            }
-            set
-            {
-                _pet3DateExpire = value;
+                if (_pet3DateExpire != null && _pet3DateExpire != "expired")
+                {
+                    return DateTimeOffset.Parse(_pet3DateExpire).ToOffset(TimeSpan.FromHours(9));
+                }
+
+                return null;
             }
         }
 
-        private DateTimeOffset? _pet3DateExpire;
+        [JsonProperty("pet_3_date_expire")]
+        private string? _pet3DateExpire;
+
+        /// <summary>
+        /// 펫3 마법의 시간 만료 여부
+        /// </summary>
+        public bool? Pet3Expired
+        {
+            get
+            {
+                if (_pet3DateExpire == null)
+                {
+                    return null;
+                }
+
+                return _pet3DateExpire == "expired";
+            }
+        }
 
         /// <summary>
         /// 펫3 외형

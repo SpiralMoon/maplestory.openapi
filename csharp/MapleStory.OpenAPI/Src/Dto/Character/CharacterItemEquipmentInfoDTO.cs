@@ -218,21 +218,38 @@ namespace MapleStory.OpenAPI.Dto
         public long SpecialRingLevel { get; set; }
 
         /// <summary>
-        /// 장비 유효 기간(KST)
+        /// 장비 유효 기간 (KST)
         /// </summary>
-        [JsonProperty("date_expire")]
         public DateTimeOffset? DateExpire
         {
             get
             {
-                return _dateExpire?.ToOffset(TimeSpan.FromHours(9));
-            }
-            set
-            {
-                _dateExpire = value;
+                if (_dateExpire != null && _dateExpire != "expired")
+                {
+                    return DateTimeOffset.Parse(_dateExpire).ToOffset(TimeSpan.FromHours(9));
+                }
+
+                return null;
             }
         }
 
-        private DateTimeOffset? _dateExpire;
+        [JsonProperty("date_expire")]
+        private string? _dateExpire;
+
+        /// <summary>
+        /// 장비 유효 기간 만료 여부
+        /// </summary>
+        public bool? IsExpired
+        {
+            get
+            {
+                if (_dateExpire == null)
+                {
+                    return null;
+                }
+
+                return _dateExpire == "expired";
+            }
+        }
     }
 }

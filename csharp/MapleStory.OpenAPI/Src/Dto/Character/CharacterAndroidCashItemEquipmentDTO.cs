@@ -50,7 +50,7 @@ namespace MapleStory.OpenAPI.Dto
         {
             get
             {
-                if (_dateExpire != null)
+                if (_dateExpire != null && _dateExpire != "expired")
                 {
                     return DateTimeOffset.Parse(_dateExpire).ToOffset(TimeSpan.FromHours(9));
                 }
@@ -61,6 +61,22 @@ namespace MapleStory.OpenAPI.Dto
 
         [JsonProperty("date_expire")]
         private string? _dateExpire { get; set; }
+
+        /// <summary>
+        /// 안드로이드 캐시 아이템 유효 기간 만료 여부
+        /// </summary>
+        public bool? IsExpired
+        {
+            get
+            {
+                if (_dateExpire == null)
+                {
+                    return null;
+                }
+
+                return _dateExpire == "expired";
+            }
+        }
 
         /// <summary>
         /// 안드로이드 캐시 아이템 옵션 유효 기간 (KST)

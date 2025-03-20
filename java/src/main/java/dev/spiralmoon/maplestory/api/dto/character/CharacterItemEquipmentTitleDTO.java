@@ -48,7 +48,11 @@ public class CharacterItemEquipmentTitleDTO {
     private String dateOptionExpire;
 
     private LocalDateTime getDateExpire() {
-        return this.dateExpire != null ? Utils.toLocalDateTime(this.dateExpire) : null;
+        if (this.dateExpire != null && !"expired".equals(this.dateExpire)) {
+            return Utils.toLocalDateTime(this.dateExpire);
+        } else {
+            return null;
+        }
     }
 
     private LocalDateTime getDateOptionExpire() {
@@ -57,6 +61,18 @@ public class CharacterItemEquipmentTitleDTO {
         } else {
             return null;
         }
+    }
+
+    /**
+     * 칭호 유효 기간 만료 여부
+     */
+    private Boolean isExpired() {
+
+        if (this.dateExpire == null) {
+            return null;
+        }
+
+        return "expired".equals(this.dateExpire);
     }
 
     /**

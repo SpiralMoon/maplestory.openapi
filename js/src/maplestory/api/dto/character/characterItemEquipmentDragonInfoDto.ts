@@ -148,7 +148,12 @@ class CharacterItemEquipmentDragonInfoDto {
   /**
    * 장비 유효 기간
    */
-  dateExpire: Date | null;
+  dateExpire: Date | null = null;
+
+  /**
+   * 장비 유효 기간 만료 여부
+   */
+  isExpired: boolean | null = null;
 
   constructor(obj: CharacterItemEquipmentInfoDtoBody) {
     const {
@@ -221,7 +226,14 @@ class CharacterItemEquipmentDragonInfoDto {
       item_starforce_option,
     );
     this.specialRingLevel = special_ring_level;
-    this.dateExpire = date_expire ? new Date(date_expire) : null;
+
+    if (date_expire === 'expired') {
+      this.isExpired = true;
+    } else if (typeof date_expire === 'string') {
+      this.dateExpire = date_expire
+        ? new Date(date_expire)
+        : null;
+    }
   }
 }
 
