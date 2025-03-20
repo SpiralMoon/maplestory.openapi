@@ -23,6 +23,8 @@
 <p align="center">넥슨의 MapleStory OpenAPI를 사용할 수 있게 해주는 라이브러리입니다.</p>
 
 >💡 알림: [KMS](https://maplestory.nexon.com/)(한국 메이플스토리)의 데이터만 조회할 수 있습니다.
+> 
+>💻 넥슨 OpenAPI 패치를 따라가며 관리되고 있습니다. 항상 최신 버전 사용을 권장합니다.
 
 ## Getting Started
 ### Supported Languages
@@ -119,7 +121,8 @@
 1. 이 라이브러리는 [MapleStory OpenAPI spec](https://openapi.nexon.com/game/maplestory)의 기능을 사용할 수 있도록 만든 구현체입니다. 언어별 문서를 확인하여 사용법을 확인하세요.
 2. 이 라이브러리는 언어별 네이밍 스타일가이드를 준수하였기 때문에 공식 문서의 네이밍 규칙과 약간의 차이가 있습니다. ex) 'cube_history' -> 'cubeHistory'
 3. 이 라이브러리에서 제공하는 메소드와 프로퍼티에 대한 주석은 공식 문서와 동기화하고 있습니다.
-4. 데이터는 [NEXON Open API](https://openapi.nexon.com)에서 제공받고 있습니다.
+4. 이 라이브러리는 공식이 아닙니다.
+5. 데이터는 [NEXON Open API](https://openapi.nexon.com)에서 제공받고 있습니다.
 
 ## License
 

@@ -23,6 +23,8 @@
 <p align="center">This library project enables the use of the MapleStory OpenAPI of Nexon.</p>
 
 >💡 Note: This library project is capable of retrieving only [KMS](https://maplestory.nexon.com/)(Korea MapleStory) data.
+>
+>💻 This library is maintained in sync with Nexon OpenAPI patches. It is recommended to always use the latest version.
 
 ## Getting Started
 ### Supported Languages
@@ -120,7 +122,8 @@ Please give us a ⭐ star ⭐ to support us. Thank you.💖
 1. The implementation details of the API are documented on the [MapleStory OpenAPI spec](https://openapi.nexon.com/game/maplestory). Refer to the documentation for each language.
 2. This library adheres to language-specific naming style guides, resulting in slight differences from the naming conventions in the official documentation. ex) 'cube_history' -> 'cubeHistory'
 3. The comments for the methods and properties provided by this library are synchronized with the official documentation.
-4. Data based on [NEXON Open API](https://openapi.nexon.com)
+4. This library is nonofficial.
+5. Data based on [NEXON Open API](https://openapi.nexon.com)
 
 ## License
 
