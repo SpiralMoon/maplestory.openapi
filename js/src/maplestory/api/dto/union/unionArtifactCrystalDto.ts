@@ -15,9 +15,14 @@ class UnionArtifactCrystalDto {
   validityFlag: string;
 
   /**
-   * 능력치 유효 기간(KST)
+   * 능력치 유효 기간 (KST)
    */
-  dateExpire: Date;
+  dateExpire: Date | null = null;
+
+  /**
+   * 능력치 유효 기간 만료 여부
+   */
+  isExpired: boolean | null = null;
 
   /**
    * 아티팩트 크리스탈 등급
@@ -52,11 +57,18 @@ class UnionArtifactCrystalDto {
 
     this.name = name;
     this.validityFlag = validity_flag;
-    this.dateExpire = new Date(date_expire);
     this.level = level;
     this.crystalOptionName1 = crystal_option_name_1;
     this.crystalOptionName2 = crystal_option_name_2;
     this.crystalOptionName3 = crystal_option_name_3;
+
+    if (date_expire === 'expired') {
+      this.isExpired = true;
+    } else if (typeof date_expire === 'string') {
+      this.dateExpire = date_expire
+        ? new Date(date_expire)
+        : null;
+    }
   }
 }
 
