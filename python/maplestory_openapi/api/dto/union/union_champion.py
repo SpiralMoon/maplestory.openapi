@@ -12,11 +12,13 @@ class UnionChampionBadgeInfo(BaseModel):
 class UnionChampionInfo(BaseModel):
     """유니온 챔피언 상세 정보
 
+    champion_name(str): 유니온 챔피언 캐릭터 명
     champion_slot(int): 유니온 챔피언 슬롯
     champion_grade(str): 유니온 챔피언 등급
     champion_class(str): 유니온 챔피언 캐릭터의 직업
     champion_badge_info(list[UnionChampionBadgeInfo]): 챔피언 휘장 효과
     """
+    champion_name: str
     champion_slot: int
     champion_grade: str
     champion_class: str

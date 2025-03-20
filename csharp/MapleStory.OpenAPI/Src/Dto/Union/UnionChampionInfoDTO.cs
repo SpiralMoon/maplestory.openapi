@@ -10,6 +10,12 @@ namespace MapleStory.OpenAPI.Dto
     public class UnionChampionInfoDTO
     {
         /// <summary>
+        /// 유니온 챔피언 캐릭터 명
+        /// </summary>
+        [JsonProperty("champion_name")]
+        public string ChampionName { get; set; }
+
+        /// <summary>
         /// 유니온 챔피언 슬롯
         /// </summary>
         [JsonProperty("champion_slot")]

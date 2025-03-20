@@ -18,6 +18,12 @@ import java.util.List;
 public class UnionChampionInfoDTO {
 
     /**
+     * 유니온 챔피언 캐릭터 명
+     */
+    @SerializedName("champion_name")
+    private String championName;
+
+    /**
      * 유니온 챔피언 슬롯
      */
     @SerializedName("champion_slot")

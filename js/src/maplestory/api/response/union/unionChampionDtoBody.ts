@@ -5,6 +5,7 @@ type UnionChampionDtoBody = {
 }
 
 type UnionChampionInfoDtoBody = {
+  champion_name: string;
   champion_slot: number;
   champion_grade: string;
   champion_class: string;

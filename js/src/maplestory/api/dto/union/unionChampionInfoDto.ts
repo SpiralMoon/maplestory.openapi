@@ -7,6 +7,11 @@ import { UnionChampionInfoDtoBody } from '../../response/union/unionChampionDtoB
 class UnionChampionInfoDto {
 
   /**
+   * 유니온 챔피언 캐릭터 명
+   */
+  championName: string;
+
+  /**
    * 유니온 챔피언 슬롯
    */
   championSlot: number;
@@ -27,8 +32,9 @@ class UnionChampionInfoDto {
   championBadgeInfo: UnionChampionBadgeInfoDto[];
 
   constructor(obj: UnionChampionInfoDtoBody) {
-    const { champion_slot, champion_grade, champion_class, champion_badge_info } = obj;
+    const { champion_name, champion_slot, champion_grade, champion_class, champion_badge_info } = obj;
 
+    this.championName = champion_name;
     this.championSlot = champion_slot;
     this.championGrade = champion_grade;
     this.championClass = champion_class;
