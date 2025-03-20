@@ -2,7 +2,7 @@ from datetime import datetime
 from pydantic import BaseModel
 
 
-class StarforcHistoryeEvent(BaseModel):
+class StarforceHistoryEvent(BaseModel):
     success_rate: str
     cost_discount_rate: str
     plus_value: str
@@ -26,7 +26,7 @@ class StarforceHistoryInfo(BaseModel):
     world_name: str
     target_item: str
     date_create: datetime
-    starforce_event_list: list[StarforcHistoryeEvent] | None
+    starforce_event_list: list[StarforceHistoryEvent] | None
 
 
 class StarforceHistory(BaseModel):
