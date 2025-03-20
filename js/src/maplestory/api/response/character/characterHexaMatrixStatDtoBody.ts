@@ -3,8 +3,10 @@ type CharacterHexaMatrixStatDtoBody = {
   character_class: string;
   character_hexa_stat_core: CharacterHexaMatrixStatCoreDtoBody[];
   character_hexa_stat_core_2: CharacterHexaMatrixStatCoreDtoBody[];
+  character_hexa_stat_core_3: CharacterHexaMatrixStatCoreDtoBody[];
   preset_hexa_stat_core: CharacterHexaMatrixStatCoreDtoBody[];
   preset_hexa_stat_core_2: CharacterHexaMatrixStatCoreDtoBody[];
+  preset_hexa_stat_core_3: CharacterHexaMatrixStatCoreDtoBody[];
 };
 
 type CharacterHexaMatrixStatCoreDtoBody = {

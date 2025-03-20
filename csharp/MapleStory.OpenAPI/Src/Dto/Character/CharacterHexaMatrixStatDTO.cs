@@ -44,6 +44,12 @@ namespace MapleStory.OpenAPI.Dto
         public List<CharacterHexaMatrixStatCoreDTO> CharacterHexaStatCore2 { get; set; }
 
         /// <summary>
+        /// HEXA 스탯 III 코어 정보
+        /// </summary>
+        [JsonProperty("character_hexa_stat_core_3")]
+        public List<CharacterHexaMatrixStatCoreDTO> CharacterHexaStatCore3 { get; set; }
+
+        /// <summary>
         /// 프리셋 HEXA 스탯 I 코어 정보
         /// </summary>
         [JsonProperty("preset_hexa_stat_core")]
@@ -54,5 +60,11 @@ namespace MapleStory.OpenAPI.Dto
         /// </summary>
         [JsonProperty("preset_hexa_stat_core_2")]
         public List<CharacterHexaMatrixStatCoreDTO> PresetHexaStatCore2 { get; set; }
+
+        /// <summary>
+        /// 프리셋 HEXA 스탯 III 코어 정보
+        /// </summary>
+        [JsonProperty("preset_hexa_stat_core_3")]
+        public List<CharacterHexaMatrixStatCoreDTO> PresetHexaStatCore3 { get; set; }
     }
 }
