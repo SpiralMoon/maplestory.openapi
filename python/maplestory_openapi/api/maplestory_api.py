@@ -120,7 +120,7 @@ class MapleStoryApi(BaseModel):
         path = 'maplestory/v1/character/basic'
         query = {
             'ocid': ocid,
-            'date': self.to_date_string(datetime(2023, 12, 21), date) if date is not None else None
+            'date': self.to_date_string(date, datetime(2023, 12, 21)) if date is not None else None
         }
         r = self.fetch(path, query)
 
@@ -215,7 +215,7 @@ class MapleStoryApi(BaseModel):
         path = 'maplestory/v1/character/popularity'
         query = {
             'ocid': ocid,
-            'date': self.to_date_string(datetime(2023, 12, 21), date) if date is not None else None
+            'date': self.to_date_string(date, datetime(2023, 12, 21)) if date is not None else None
         }
         r = self.fetch(path, query)
 
@@ -238,7 +238,7 @@ class MapleStoryApi(BaseModel):
         path = 'maplestory/v1/character/stat'
         query = {
             'ocid': ocid,
-            'date': self.to_date_string(datetime(2023, 12, 21), date) if date is not None else None
+            'date': self.to_date_string(date, datetime(2023, 12, 21)) if date is not None else None
         }
         r = self.fetch(path, query)
 
@@ -258,7 +258,7 @@ class MapleStoryApi(BaseModel):
         path = 'maplestory/v1/character/hyper-stat'
         query = {
             'ocid': ocid,
-            'date': self.to_date_string(datetime(2023, 12, 21), date) if date is not None else None
+            'date': self.to_date_string(date, datetime(2023, 12, 21)) if date is not None else None
         }
         r = self.fetch(path, query)
 
@@ -278,7 +278,7 @@ class MapleStoryApi(BaseModel):
         path = 'maplestory/v1/character/propensity'
         query = {
             'ocid': ocid,
-            'date': self.to_date_string(datetime(2023, 12, 21), date) if date is not None else None
+            'date': self.to_date_string(date, datetime(2023, 12, 21)) if date is not None else None
         }
         r = self.fetch(path, query)
 
@@ -298,7 +298,7 @@ class MapleStoryApi(BaseModel):
         path = 'maplestory/v1/character/ability'
         query = {
             'ocid': ocid,
-            'date': self.to_date_string(datetime(2023, 12, 21), date) if date is not None else None
+            'date': self.to_date_string(date, datetime(2023, 12, 21)) if date is not None else None
         }
         r = self.fetch(path, query)
 
@@ -318,7 +318,7 @@ class MapleStoryApi(BaseModel):
         path = 'maplestory/v1/character/item-equipment'
         query = {
             'ocid': ocid,
-            'date': self.to_date_string(datetime(2023, 12, 21), date) if date is not None else None
+            'date': self.to_date_string(date, datetime(2023, 12, 21)) if date is not None else None
         }
         r = self.fetch(path, query)
 
@@ -338,7 +338,7 @@ class MapleStoryApi(BaseModel):
         path = 'maplestory/v1/character/cashitem-equipment'
         query = {
             'ocid': ocid,
-            'date': self.to_date_string(datetime(2023, 12, 21), date) if date is not None else None
+            'date': self.to_date_string(date, datetime(2023, 12, 21)) if date is not None else None
         }
         r = self.fetch(path, query)
 
@@ -358,7 +358,7 @@ class MapleStoryApi(BaseModel):
         path = 'maplestory/v1/character/symbol-equipment'
         query = {
             'ocid': ocid,
-            'date': self.to_date_string(datetime(2023, 12, 21), date) if date is not None else None
+            'date': self.to_date_string(date, datetime(2023, 12, 21)) if date is not None else None
         }
         r = self.fetch(path, query)
         return CharacterSymbolEquipment(**r)
@@ -377,7 +377,7 @@ class MapleStoryApi(BaseModel):
         path = 'maplestory/v1/character/set-effect'
         query = {
             'ocid': ocid,
-            'date': self.to_date_string(datetime(2023, 12, 21), date) if date is not None else None
+            'date': self.to_date_string(date, datetime(2023, 12, 21)) if date is not None else None
         }
         r = self.fetch(path, query)
         return CharacterSetEffect(**r)
@@ -396,7 +396,7 @@ class MapleStoryApi(BaseModel):
         path = 'maplestory/v1/character/beauty-equipment'
         query = {
             'ocid': ocid,
-            'date': self.to_date_string(datetime(2023, 12, 21), date) if date is not None else None
+            'date': self.to_date_string(date, datetime(2023, 12, 21)) if date is not None else None
         }
         r = self.fetch(path, query)
         return CharacterBeautyEquipment(**r)
@@ -415,7 +415,7 @@ class MapleStoryApi(BaseModel):
         path = 'maplestory/v1/character/android-equipment'
         query = {
             'ocid': ocid,
-            'date': self.to_date_string(datetime(2023, 12, 21), date) if date is not None else None,
+            'date': self.to_date_string(date, datetime(2023, 12, 21)) if date is not None else None,
         }
         r = self.fetch(path, query)
         return CharacterAndroidEquipment(**r)
@@ -434,7 +434,7 @@ class MapleStoryApi(BaseModel):
         path = 'maplestory/v1/character/pet-equipment'
         query = {
             'ocid': ocid,
-            'date': self.to_date_string(datetime(2023, 12, 21), date) if date is not None else None,
+            'date': self.to_date_string(date, datetime(2023, 12, 21)) if date is not None else None,
         }
         r = self.fetch(path, query)
         return CharacterPetEquipment(**r)
@@ -465,7 +465,7 @@ class MapleStoryApi(BaseModel):
         path = 'maplestory/v1/character/skill'
         query = {
             'ocid': ocid,
-            'date': self.to_date_string(datetime(2023, 12, 21), date) if date is not None else None,
+            'date': self.to_date_string(date, datetime(2023, 12, 21)) if date is not None else None,
             'character_skill_grade': character_skill_grade,
         }
         r = self.fetch(path, query)
@@ -485,7 +485,7 @@ class MapleStoryApi(BaseModel):
         path = 'maplestory/v1/character/link-skill'
         query = {
             'ocid': ocid,
-            'date': self.to_date_string(datetime(2023, 12, 21), date) if date is not None else None,
+            'date': self.to_date_string(date, datetime(2023, 12, 21)) if date is not None else None,
         }
         r = self.fetch(path, query)
         return CharacterLinkSkill(**r)
@@ -504,7 +504,7 @@ class MapleStoryApi(BaseModel):
         path = 'maplestory/v1/character/vmatrix'
         query = {
             'ocid': ocid,
-            'date': self.to_date_string(datetime(2023, 12, 21), date) if date is not None else None,
+            'date': self.to_date_string(date, datetime(2023, 12, 21)) if date is not None else None,
         }
         r = self.fetch(path, query)
         return CharacterVMatrix(**r)
@@ -523,7 +523,7 @@ class MapleStoryApi(BaseModel):
         path = 'maplestory/v1/character/hexamatrix'
         query = {
             'ocid': ocid,
-            'date': self.to_date_string(datetime(2023, 12, 21), date) if date is not None else None,
+            'date': self.to_date_string(date, datetime(2023, 12, 21)) if date is not None else None,
         }
         r = self.fetch(path, query)
         return CharacterHexaMatrix(**r)
@@ -542,7 +542,7 @@ class MapleStoryApi(BaseModel):
         path = 'maplestory/v1/character/hexamatrix-stat'
         query = {
             'ocid': ocid,
-            'date': self.to_date_string(datetime(2023, 12, 21), date) if date is not None else None,
+            'date': self.to_date_string(date, datetime(2023, 12, 21)) if date is not None else None,
         }
         r = self.fetch(path, query)
         return CharacterHexaMatrixStat(**r)
@@ -561,7 +561,7 @@ class MapleStoryApi(BaseModel):
         path = 'maplestory/v1/character/dojang'
         query = {
             'ocid': ocid,
-            'date': self.to_date_string(datetime(2023, 12, 21), date) if date is not None else None,
+            'date': self.to_date_string(date, datetime(2023, 12, 21)) if date is not None else None,
         }
         r = self.fetch(path, query)
         return CharacterDojang(**r)
@@ -584,7 +584,7 @@ class MapleStoryApi(BaseModel):
         path = 'maplestory/v1/user/union'
         query = {
             'ocid': ocid,
-            'date': self.to_date_string(datetime(2023, 12, 21), date) if date is not None else None,
+            'date': self.to_date_string(date, datetime(2023, 12, 21)) if date is not None else None,
         }
         r = self.fetch(path, query)
         return Union(**r)
@@ -603,7 +603,7 @@ class MapleStoryApi(BaseModel):
         path = 'maplestory/v1/user/union-raider'
         query = {
             'ocid': ocid,
-            'date': self.to_date_string(datetime(2023, 12, 21), date) if date is not None else None,
+            'date': self.to_date_string(date, datetime(2023, 12, 21)) if date is not None else None,
         }
         r = self.fetch(path, query)
         return UnionRaider(**r)
@@ -622,7 +622,7 @@ class MapleStoryApi(BaseModel):
         path = 'maplestory/v1/user/union-artifact'
         query = {
             'ocid': ocid,
-            'date': self.to_date_string(datetime(2023, 12, 21), date) if date is not None else None,
+            'date': self.to_date_string(date, datetime(2023, 12, 21)) if date is not None else None,
         }
         r = self.fetch(path, query)
         return UnionArtifact(**r)
@@ -642,7 +642,7 @@ class MapleStoryApi(BaseModel):
         path = 'maplestory/v1/user/union-champion'
         query = {
             'ocid': ocid,
-            'date': self.to_date_string(datetime(2023, 12, 21), date) if date is not None else None,
+            'date': self.to_date_string(date, datetime(2023, 12, 21)) if date is not None else None,
         }
         r = self.fetch(path, query)
         return UnionChampion(**r)
@@ -683,7 +683,7 @@ class MapleStoryApi(BaseModel):
         path = 'maplestory/v1/guild/basic'
         query = {
             'oguild_id': oguid_id,
-            'date': self.to_date_string(datetime(2023, 12, 21), date) if date is not None else None,
+            'date': self.to_date_string(date, datetime(2023, 12, 21)) if date is not None else None,
         }
         r = self.fetch(path, query)
         return GuildBasic(**r)
@@ -708,7 +708,7 @@ class MapleStoryApi(BaseModel):
         }
 
         if cursor is None:
-            query['date'] = self.to_date_string(datetime(2022, 11, 25), get_proper_default_datetime(day_offset=1, update_hour=4) if date is None else date) ,
+            query['date'] = self.to_date_string(get_proper_default_datetime(day_offset=1, update_hour=4) if date is None else date, datetime(2022, 11, 25)) ,
         else:
             query['cursor'] = cursor
 
@@ -731,7 +731,7 @@ class MapleStoryApi(BaseModel):
         }
 
         if cursor is None:
-            query['date'] = self.to_date_string(datetime(2024, 1, 25), get_proper_default_datetime(day_offset=1, update_hour=4) if date is None else date) ,
+            query['date'] = self.to_date_string(get_proper_default_datetime(day_offset=1, update_hour=4) if date is None else date, datetime(2024, 1, 25)) ,
         else:
             query['cursor'] = cursor
 
@@ -754,7 +754,7 @@ class MapleStoryApi(BaseModel):
         }
 
         if cursor is None:
-            query['date'] = self.to_date_string(datetime(2023, 12, 27), get_proper_default_datetime(day_offset=0) if date is None else date) ,
+            query['date'] = self.to_date_string(get_proper_default_datetime(day_offset=0) if date is None else date, datetime(2023, 12, 27)) ,
         else:
             query['cursor'] = cursor
 
@@ -785,7 +785,7 @@ class MapleStoryApi(BaseModel):
         """
         path = 'maplestory/v1/ranking/overall'
         query = {
-            'date': self.to_date_string(datetime(2023, 12, 22), date),
+            'date': self.to_date_string(date, datetime(2023, 12, 22)),
             'world_name': world_name,
             'world_type': world_type,
             'class': class_name,
@@ -811,7 +811,7 @@ class MapleStoryApi(BaseModel):
         """
         path = 'maplestory/v1/ranking/union'
         query = {
-            'date': self.to_date_string(datetime(2023, 12, 22), date),
+            'date': self.to_date_string(date, datetime(2023, 12, 22)),
             'world_name': world_name,
             'ocid': ocid,
             'page': page,
@@ -837,7 +837,7 @@ class MapleStoryApi(BaseModel):
         """
         path = 'maplestory/v1/ranking/guild'
         query = {
-            'date': self.to_date_string(datetime(2023, 12, 22), date),
+            'date': self.to_date_string(date, datetime(2023, 12, 22)),
             'ranking_type': ranking_type,
             'world_name': world_name,
             'guild_name': guild_name,
@@ -866,7 +866,7 @@ class MapleStoryApi(BaseModel):
         """
         path = 'maplestory/v1/ranking/dojang'
         query = {
-            'date': self.to_date_string(datetime(2023, 12, 22), date),
+            'date': self.to_date_string(date, datetime(2023, 12, 22)),
             'world_name': world_name,
             'class': class_name,
             'ocid': ocid,
@@ -891,7 +891,7 @@ class MapleStoryApi(BaseModel):
         """
         path = 'maplestory/v1/ranking/theseed'
         query = {
-            'date': self.to_date_string(datetime(2023, 12, 22), date),
+            'date': self.to_date_string(date, datetime(2023, 12, 22)),
             'world_name': world_name,
             'ocid': ocid,
             'page': page,
@@ -912,7 +912,7 @@ class MapleStoryApi(BaseModel):
         """
         path = 'maplestory/v1/ranking/achievement'
         query = {
-            'date': self.to_date_string(datetime(2023, 12, 22), date),
+            'date': self.to_date_string(date, datetime(2023, 12, 22)),
             'ocid': ocid,
             'page': page,
         }
@@ -1047,13 +1047,18 @@ class MapleStoryApi(BaseModel):
 
         return r
 
-    def to_date_string(self, min: datetime, date: datetime) -> str:
-        min_date = self.get_kst_datetime(min)
+    def to_date_string(self, date: datetime, min: datetime | None) -> str:
+
         target_date = self.get_kst_datetime(date)
-        if target_date < min_date:
-            raise ValueError(
-                f'You can only retrieve data after {min_date.strftime("%Y-%m-%d")}')
-        return target_date.strftime('%Y-%m-%d')
+        date_str = target_date.strftime('%Y-%m-%d')
+
+        if min is not None:
+            min_date = self.get_kst_datetime(min)
+            if target_date < min_date:
+                raise ValueError(
+                    f'You can only retrieve data after {min_date.strftime("%Y-%m-%d")}')
+
+        return date_str
 
     def get_kst_datetime(self, date: datetime) -> datetime:
         """datetime 객체를 KST datetime 객체로 변환합니다.

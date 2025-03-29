@@ -53,6 +53,7 @@ import { OverallRankingResponseDto } from './dto/ranking/overallRankingResponseD
 import { TheSeedRankingResponseDto } from './dto/ranking/theSeedRankingResponseDto';
 import { UnionRankingResponseDto } from './dto/ranking/unionRankingResponseDto';
 import { UnionArtifactDto } from './dto/union/unionArtifactDto';
+import { UnionChampionDto } from './dto/union/unionChampionDto';
 import { UnionDto } from './dto/union/unionDto';
 import { UnionRaiderDto } from './dto/union/unionRaiderDto';
 import { MapleStoryApiError } from './mapleStoryApiError';
@@ -98,10 +99,9 @@ import { OverallRankingResponseDtoBody } from './response/ranking/overallRanking
 import { TheSeedRankingResponseDtoBody } from './response/ranking/theSeedRankingResponseDtoBody';
 import { UnionRankingResponseDtoBody } from './response/ranking/unionRankingResponseDtoBody';
 import { UnionArtifactDtoBody } from './response/union/unionArtifactDtoBody';
+import { UnionChampionDtoBody } from './response/union/unionChampionDtoBody';
 import { UnionDtoBody } from './response/union/unionDtoBody';
 import { UnionRaiderDtoBody } from './response/union/unionRaiderDtoBody';
-import { UnionChampionDto } from './dto/union/unionChampionDto';
-import { UnionChampionDtoBody } from './response/union/unionChampionDtoBody';
 
 dayjs.extend(timezone);
 dayjs.extend(utc);
@@ -118,8 +118,6 @@ class MapleStoryApi {
   private static readonly BASE_URL: string = 'https://open.api.nexon.com/';
 
   private static readonly DEFAULT_TIMEOUT: number = 5000;
-
-  private static readonly kstOffset: number = 540;
 
   get timeout() {
     return this.client.defaults.timeout!;
@@ -203,11 +201,11 @@ class MapleStoryApi {
   ): Promise<CharacterBasicDto> {
     const path = 'maplestory/v1/character/basic';
     const date = dateOptions
-      ? MapleStoryApi.toDateString({
+      ? toDateString(dateOptions, {
         year: 2023,
         month: 12,
         day: 21,
-      }, dateOptions)
+      })
       : undefined;
     const query: CharacterApiQuery = {
       ocid: ocid,
@@ -302,11 +300,11 @@ class MapleStoryApi {
   ): Promise<CharacterPopularityDto> {
     const path = 'maplestory/v1/character/popularity';
     const date = dateOptions
-      ? MapleStoryApi.toDateString({
+      ? toDateString(dateOptions, {
         year: 2023,
         month: 12,
         day: 21,
-      }, dateOptions)
+      })
       : undefined;
     const query: CharacterApiQuery = {
       ocid: ocid,
@@ -335,11 +333,11 @@ class MapleStoryApi {
   ): Promise<CharacterStatDto> {
     const path = 'maplestory/v1/character/stat';
     const date = dateOptions
-      ? MapleStoryApi.toDateString({
+      ? toDateString(dateOptions, {
         year: 2023,
         month: 12,
         day: 21,
-      }, dateOptions)
+      })
       : undefined;
     const query: CharacterApiQuery = {
       ocid: ocid,
@@ -368,11 +366,11 @@ class MapleStoryApi {
   ): Promise<CharacterHyperStatDto> {
     const path = 'maplestory/v1/character/hyper-stat';
     const date = dateOptions
-      ? MapleStoryApi.toDateString({
+      ? toDateString(dateOptions, {
         year: 2023,
         month: 12,
         day: 21,
-      }, dateOptions)
+      })
       : undefined;
     const query: CharacterApiQuery = {
       ocid: ocid,
@@ -401,11 +399,11 @@ class MapleStoryApi {
   ): Promise<CharacterPropensityDto> {
     const path = 'maplestory/v1/character/propensity';
     const date = dateOptions
-      ? MapleStoryApi.toDateString({
+      ? toDateString(dateOptions, {
         year: 2023,
         month: 12,
         day: 21,
-      }, dateOptions)
+      })
       : undefined;
     const query: CharacterApiQuery = {
       ocid: ocid,
@@ -434,11 +432,11 @@ class MapleStoryApi {
   ): Promise<CharacterAbilityDto> {
     const path = 'maplestory/v1/character/ability';
     const date = dateOptions
-      ? MapleStoryApi.toDateString({
+      ? toDateString(dateOptions, {
         year: 2023,
         month: 12,
         day: 21,
-      }, dateOptions)
+      })
       : undefined;
     const query: CharacterApiQuery = {
       ocid: ocid,
@@ -467,11 +465,11 @@ class MapleStoryApi {
   ): Promise<CharacterItemEquipmentDto> {
     const path = 'maplestory/v1/character/item-equipment';
     const date = dateOptions
-      ? MapleStoryApi.toDateString({
+      ? toDateString(dateOptions, {
         year: 2023,
         month: 12,
         day: 21,
-      }, dateOptions)
+      })
       : undefined;
     const query: CharacterApiQuery = {
       ocid: ocid,
@@ -500,11 +498,11 @@ class MapleStoryApi {
   ): Promise<CharacterCashItemEquipmentDto> {
     const path = 'maplestory/v1/character/cashitem-equipment';
     const date = dateOptions
-      ? MapleStoryApi.toDateString({
+      ? toDateString(dateOptions, {
         year: 2023,
         month: 12,
         day: 21,
-      }, dateOptions)
+      })
       : undefined;
     const query: CharacterApiQuery = {
       ocid: ocid,
@@ -536,11 +534,11 @@ class MapleStoryApi {
   ): Promise<CharacterSymbolEquipmentDto> {
     const path = 'maplestory/v1/character/symbol-equipment';
     const date = dateOptions
-      ? MapleStoryApi.toDateString({
+      ? toDateString(dateOptions, {
         year: 2023,
         month: 12,
         day: 21,
-      }, dateOptions)
+      })
       : undefined;
     const query: CharacterApiQuery = {
       ocid: ocid,
@@ -569,11 +567,11 @@ class MapleStoryApi {
   ): Promise<CharacterSetEffectDto> {
     const path = 'maplestory/v1/character/set-effect';
     const date = dateOptions
-      ? MapleStoryApi.toDateString({
+      ? toDateString(dateOptions, {
         year: 2023,
         month: 12,
         day: 21,
-      }, dateOptions)
+      })
       : undefined;
     const query: CharacterApiQuery = {
       ocid: ocid,
@@ -601,16 +599,16 @@ class MapleStoryApi {
     dateOptions?: DateOptions,
   ): Promise<CharacterBeautyEquipmentDto> {
     const path = 'maplestory/v1/character/beauty-equipment';
+    const date = dateOptions
+      ? toDateString(dateOptions, {
+        year: 2023,
+        month: 12,
+        day: 21,
+      })
+      : undefined;
     const query: CharacterApiQuery = {
       ocid: ocid,
-      date: dateOptions ? MapleStoryApi.toDateString(
-        {
-          year: 2023,
-          month: 12,
-          day: 21,
-        },
-        dateOptions,
-      ) : undefined,
+      date: date,
     };
     const { data } = await this.client.get<CharacterBeautyEquipmentDtoBody>(path, {
       params: query,
@@ -635,11 +633,11 @@ class MapleStoryApi {
   ): Promise<CharacterAndroidEquipmentDto> {
     const path = 'maplestory/v1/character/android-equipment';
     const date = dateOptions
-      ? MapleStoryApi.toDateString({
+      ? toDateString(dateOptions, {
         year: 2023,
         month: 12,
         day: 21,
-      }, dateOptions)
+      })
       : undefined;
     const query: CharacterApiQuery = {
       ocid: ocid,
@@ -668,11 +666,11 @@ class MapleStoryApi {
   ): Promise<CharacterPetEquipmentDto> {
     const path = 'maplestory/v1/character/pet-equipment';
     const date = dateOptions
-      ? MapleStoryApi.toDateString({
+      ? toDateString(dateOptions, {
         year: 2023,
         month: 12,
         day: 21,
-      }, dateOptions)
+      })
       : undefined;
     const query: CharacterApiQuery = {
       ocid: ocid,
@@ -714,11 +712,11 @@ class MapleStoryApi {
   ): Promise<CharacterSkillDto> {
     const path = 'maplestory/v1/character/skill';
     const date = dateOptions
-      ? MapleStoryApi.toDateString({
+      ? toDateString(dateOptions, {
         year: 2023,
         month: 12,
         day: 21,
-      }, dateOptions)
+      })
       : undefined;
     const query: CharacterSkillApiQuery = {
       ocid: ocid,
@@ -748,11 +746,11 @@ class MapleStoryApi {
   ): Promise<CharacterLinkSkillDto> {
     const path = 'maplestory/v1/character/link-skill';
     const date = dateOptions
-      ? MapleStoryApi.toDateString({
+      ? toDateString(dateOptions, {
         year: 2023,
         month: 12,
         day: 21,
-      }, dateOptions)
+      })
       : undefined;
     const query: CharacterApiQuery = {
       ocid: ocid,
@@ -781,11 +779,11 @@ class MapleStoryApi {
   ): Promise<CharacterVMatrixDto> {
     const path = 'maplestory/v1/character/vmatrix';
     const date = dateOptions
-      ? MapleStoryApi.toDateString({
+      ? toDateString(dateOptions, {
         year: 2023,
         month: 12,
         day: 21,
-      }, dateOptions)
+      })
       : undefined;
     const query: CharacterApiQuery = {
       ocid: ocid,
@@ -814,11 +812,11 @@ class MapleStoryApi {
   ): Promise<CharacterHexaMatrixDto> {
     const path = 'maplestory/v1/character/hexamatrix';
     const date = dateOptions
-      ? MapleStoryApi.toDateString({
+      ? toDateString(dateOptions, {
         year: 2023,
         month: 12,
         day: 21,
-      }, dateOptions)
+      })
       : undefined;
     const query: CharacterApiQuery = {
       ocid: ocid,
@@ -847,11 +845,11 @@ class MapleStoryApi {
   ): Promise<CharacterHexaMatrixStatDto> {
     const path = 'maplestory/v1/character/hexamatrix-stat';
     const date = dateOptions
-      ? MapleStoryApi.toDateString({
+      ? toDateString(dateOptions, {
         year: 2023,
         month: 12,
         day: 21,
-      }, dateOptions)
+      })
       : undefined;
     const query: CharacterApiQuery = {
       ocid: ocid,
@@ -880,11 +878,11 @@ class MapleStoryApi {
   ): Promise<CharacterDojangDto> {
     const path = 'maplestory/v1/character/dojang';
     const date = dateOptions
-      ? MapleStoryApi.toDateString({
+      ? toDateString(dateOptions, {
         year: 2023,
         month: 12,
         day: 21,
-      }, dateOptions)
+      })
       : undefined;
     const query: CharacterApiQuery = {
       ocid: ocid,
@@ -917,11 +915,11 @@ class MapleStoryApi {
   ): Promise<UnionDto> {
     const path = 'maplestory/v1/user/union';
     const date = dateOptions
-      ? MapleStoryApi.toDateString({
+      ? toDateString(dateOptions, {
         year: 2023,
         month: 12,
         day: 21,
-      }, dateOptions)
+      })
       : undefined;
     const query: UnionApiQuery = {
       ocid: ocid,
@@ -950,11 +948,11 @@ class MapleStoryApi {
   ): Promise<UnionRaiderDto> {
     const path = 'maplestory/v1/user/union-raider';
     const date = dateOptions
-      ? MapleStoryApi.toDateString({
+      ? toDateString(dateOptions, {
         year: 2023,
         month: 12,
         day: 21,
-      }, dateOptions)
+      })
       : undefined;
     const query: UnionApiQuery = {
       ocid: ocid,
@@ -983,11 +981,11 @@ class MapleStoryApi {
   ): Promise<UnionArtifactDto> {
     const path = 'maplestory/v1/user/union-artifact';
     const date = dateOptions
-      ? MapleStoryApi.toDateString({
+      ? toDateString(dateOptions, {
         year: 2023,
         month: 12,
         day: 21,
-      }, dateOptions)
+      })
       : undefined;
     const query: UnionApiQuery = {
       ocid: ocid,
@@ -1017,11 +1015,11 @@ class MapleStoryApi {
   ): Promise<UnionChampionDto> {
     const path = 'maplestory/v1/user/union-champion';
     const date = dateOptions
-      ? MapleStoryApi.toDateString({
+      ? toDateString(dateOptions, {
         year: 2023,
         month: 12,
         day: 21,
-      }, dateOptions)
+      })
       : undefined;
     const query: UnionApiQuery = {
       ocid: ocid,
@@ -1079,11 +1077,11 @@ class MapleStoryApi {
   ): Promise<GuildBasicDto> {
     const path = 'maplestory/v1/guild/basic';
     const date = dateOptions
-      ? MapleStoryApi.toDateString({
+      ? toDateString(dateOptions, {
         year: 2023,
         month: 12,
         day: 21,
-      }, dateOptions)
+      })
       : undefined;
     const query: GuildApiQuery = {
       oguild_id: guildId,
@@ -1149,18 +1147,18 @@ class MapleStoryApi {
     if (typeof parameter === 'string') {
       query.cursor = parameter;
     } else if (typeof parameter === 'object' || parameter === undefined) {
-      query.date = MapleStoryApi.toDateString(
+      query.date = toDateString(
+        parameter ??
+        getProperDefaultDateOptions({
+          hour: 0,
+          minute: 0,
+          dateOffset: 0,
+        }),
         {
           year: 2023,
           month: 12,
           day: 27,
         },
-        parameter ??
-        MapleStoryApi.getProperDefaultDateOptions({
-          hour: 0,
-          minute: 0,
-          dateOffset: 0,
-        }),
       );
     }
 
@@ -1221,18 +1219,18 @@ class MapleStoryApi {
     if (typeof parameter === 'string') {
       query.cursor = parameter;
     } else if (typeof parameter === 'object' || parameter === undefined) {
-      query.date = MapleStoryApi.toDateString(
+      query.date = toDateString(
+        parameter ??
+        getProperDefaultDateOptions({
+          hour: 4,
+          minute: 0,
+          dateOffset: 1,
+        }),
         {
           year: 2022,
           month: 11,
           day: 25,
         },
-        parameter ??
-        MapleStoryApi.getProperDefaultDateOptions({
-          hour: 4,
-          minute: 0,
-          dateOffset: 1,
-        }),
       );
     }
 
@@ -1295,18 +1293,18 @@ class MapleStoryApi {
     if (typeof parameter === 'string') {
       query.cursor = parameter;
     } else if (typeof parameter === 'object' || parameter === undefined) {
-      query.date = MapleStoryApi.toDateString(
+      query.date = toDateString(
+        parameter ??
+        getProperDefaultDateOptions({
+          hour: 4,
+          minute: 0,
+          dateOffset: 1,
+        }),
         {
           year: 2024,
           month: 1,
           day: 25,
         },
-        parameter ??
-        MapleStoryApi.getProperDefaultDateOptions({
-          hour: 4,
-          minute: 0,
-          dateOffset: 1,
-        }),
       );
     }
 
@@ -1333,7 +1331,7 @@ class MapleStoryApi {
    */
   public async getOverallRanking(
     filterOptions?: OverallRankingApiFilterOptions,
-    dateOptions: DateOptions = MapleStoryApi.getProperDefaultDateOptions({
+    dateOptions: DateOptions = getProperDefaultDateOptions({
       hour: 8,
       minute: 30,
       dateOffset: 0,
@@ -1341,14 +1339,11 @@ class MapleStoryApi {
   ): Promise<OverallRankingResponseDto> {
     const path = 'maplestory/v1/ranking/overall';
     const query: OverallRankingApiQuery = {
-      date: MapleStoryApi.toDateString(
-        {
+      date: toDateString(dateOptions, {
           year: 2023,
           month: 12,
           day: 22,
-        },
-        dateOptions,
-      ),
+      }),
     };
 
     if (filterOptions) {
@@ -1380,7 +1375,7 @@ class MapleStoryApi {
    */
   public async getUnionRanking(
     filterOptions?: UnionRankingApiFilterOptions,
-    dateOptions: DateOptions = MapleStoryApi.getProperDefaultDateOptions({
+    dateOptions: DateOptions = getProperDefaultDateOptions({
       hour: 8,
       minute: 30,
       dateOffset: 0,
@@ -1388,14 +1383,11 @@ class MapleStoryApi {
   ): Promise<UnionRankingResponseDto> {
     const path = 'maplestory/v1/ranking/union';
     const query: UnionRankingApiQuery = {
-      date: MapleStoryApi.toDateString(
-        {
-          year: 2023,
-          month: 12,
-          day: 22,
-        },
-        dateOptions,
-      ),
+      date: toDateString(dateOptions, {
+        year: 2023,
+        month: 12,
+        day: 22,
+      }),
     };
 
     if (filterOptions) {
@@ -1424,7 +1416,7 @@ class MapleStoryApi {
    */
   public async getGuildRanking(
     filterOptions?: GuildRankingApiFilterOptions,
-    dateOptions: DateOptions = MapleStoryApi.getProperDefaultDateOptions({
+    dateOptions: DateOptions = getProperDefaultDateOptions({
       hour: 8,
       minute: 30,
       dateOffset: 0,
@@ -1432,14 +1424,11 @@ class MapleStoryApi {
   ): Promise<GuildRankingResponseDto> {
     const path = 'maplestory/v1/ranking/guild';
     const query: GuildRankingApiQuery = {
-      date: MapleStoryApi.toDateString(
-        {
-          year: 2023,
-          month: 12,
-          day: 22,
-        },
-        dateOptions,
-      ),
+      date: toDateString(dateOptions, {
+        year: 2023,
+        month: 12,
+        day: 22,
+      }),
       ranking_type: 0,
     };
 
@@ -1470,7 +1459,7 @@ class MapleStoryApi {
    */
   public async getDojangRanking(
     filterOptions?: DojangRankingApiFilterOptions,
-    dateOptions: DateOptions = MapleStoryApi.getProperDefaultDateOptions({
+    dateOptions: DateOptions = getProperDefaultDateOptions({
       hour: 8,
       minute: 30,
       dateOffset: 0,
@@ -1478,14 +1467,11 @@ class MapleStoryApi {
   ): Promise<DojangRankingResponseDto> {
     const path = 'maplestory/v1/ranking/dojang';
     const query: DojangRankingApiQuery = {
-      date: MapleStoryApi.toDateString(
-        {
-          year: 2023,
-          month: 12,
-          day: 22,
-        },
-        dateOptions,
-      ),
+      date: toDateString(dateOptions, {
+        year: 2023,
+        month: 12,
+        day: 22,
+      }),
       difficulty: 0,
     };
 
@@ -1518,7 +1504,7 @@ class MapleStoryApi {
    */
   public async getSeedRanking(
     filterOptions?: TheSeedRankingApiFilterOptions,
-    dateOptions: DateOptions = MapleStoryApi.getProperDefaultDateOptions({
+    dateOptions: DateOptions = getProperDefaultDateOptions({
       hour: 8,
       minute: 30,
       dateOffset: 0,
@@ -1526,14 +1512,11 @@ class MapleStoryApi {
   ): Promise<TheSeedRankingResponseDto> {
     const path = 'maplestory/v1/ranking/theseed';
     const query: TheSeedRankingApiQuery = {
-      date: MapleStoryApi.toDateString(
-        {
-          year: 2023,
-          month: 12,
-          day: 22,
-        },
-        dateOptions,
-      ),
+      date: toDateString(dateOptions, {
+        year: 2023,
+        month: 12,
+        day: 22,
+      }),
     };
 
     if (filterOptions) {
@@ -1562,7 +1545,7 @@ class MapleStoryApi {
    */
   public async getAchievementRanking(
     filterOptions?: AchievementRankingApiFilterOptions,
-    dateOptions: DateOptions = MapleStoryApi.getProperDefaultDateOptions({
+    dateOptions: DateOptions = getProperDefaultDateOptions({
       hour: 8,
       minute: 30,
       dateOffset: 0,
@@ -1570,14 +1553,11 @@ class MapleStoryApi {
   ): Promise<AchievementRankingResponseDto> {
     const path = 'maplestory/v1/ranking/achievement';
     const query: AchievementRankingApiQuery = {
-      date: MapleStoryApi.toDateString(
-        {
-          year: 2023,
-          month: 12,
-          day: 22,
-        },
-        dateOptions,
-      ),
+      date: toDateString(dateOptions, {
+        year: 2023,
+        month: 12,
+        day: 22,
+      }),
     };
 
     if (filterOptions) {
@@ -1801,54 +1781,61 @@ class MapleStoryApi {
 
     return new InspectionInfoDto(xml);
   }
+}
 
-  /**
-   * API 서버의 데이터 갱신 시간에 따라 데이터가 조회 가능한 최신 날짜를 반환합니다.
-   *
-   * @param options
-   * @private
-   */
-  private static getProperDefaultDateOptions(
-    options: LatestApiUpdateTimeOptions,
-  ): DateOptions {
-    const { hour, minute, dateOffset } = options;
+const KST_OFFSET = 540;
 
-    const kstNow = dayjs().utcOffset(MapleStoryApi.kstOffset);
-    const updateDate = dayjs()
-      .utcOffset(MapleStoryApi.kstOffset)
-      .hour(hour)
-      .minute(minute);
+/**
+ * API 서버의 데이터 갱신 시간에 따라 데이터가 조회 가능한 최신 날짜를 반환합니다.
+ *
+ * @param options
+ */
+const getProperDefaultDateOptions = (
+  options: LatestApiUpdateTimeOptions,
+): DateOptions => {
+  const { hour, minute, dateOffset } = options;
 
-    let adjustedDate: Dayjs;
+  const kstNow = dayjs().utcOffset(KST_OFFSET);
+  const updateDate = dayjs()
+    .utcOffset(KST_OFFSET)
+    .hour(hour)
+    .minute(minute);
 
-    if (kstNow.isAfter(updateDate)) {
-      adjustedDate = kstNow;
-    } else {
-      adjustedDate = kstNow.subtract(1, 'day');
-    }
+  let adjustedDate: Dayjs;
 
-    adjustedDate = adjustedDate.subtract(dateOffset ?? 0, 'day');
-
-    return {
-      year: adjustedDate.year(),
-      month: adjustedDate.month() + 1,
-      day: adjustedDate.date(),
-    };
+  if (kstNow.isAfter(updateDate)) {
+    adjustedDate = kstNow;
+  } else {
+    adjustedDate = kstNow.subtract(1, 'day');
   }
 
-  /**
-   * 날짜 정보를 API 서버에서 요구하는 포맷으로 변환합니다.
-   *
-   * @param minDateOptions API 호출 가능한 최소 날짜
-   * @param dateOptions 조회 하려는 날짜
-   * @private
-   */
-  private static toDateString(
-    minDateOptions: DateOptions,
-    dateOptions: DateOptions,
-  ): string | never {
+  adjustedDate = adjustedDate.subtract(dateOffset ?? 0, 'day');
+
+  return {
+    year: adjustedDate.year(),
+    month: adjustedDate.month() + 1,
+    day: adjustedDate.date(),
+  };
+}
+
+/**
+ * 날짜 정보를 API 서버에서 요구하는 포맷으로 변환합니다.
+ *
+ * @param dateOptions 조회 하려는 날짜
+ * @param minDateOptions API 호출 가능한 최소 날짜
+ */
+const toDateString = (
+  dateOptions: DateOptions,
+  minDateOptions?: DateOptions,
+): string | never => {
+
+  const { year, month, day } = dateOptions;
+  const str = dayjs(`${year}-${month}-${day}`)
+    .utcOffset(KST_OFFSET)
+    .format('YYYY-MM-DD');
+
+  if (minDateOptions) {
     const { year: minYear, month: minMonth, day: minDay } = minDateOptions;
-    const { year, month, day } = dateOptions;
 
     if (
       year < minYear ||
@@ -1861,12 +1848,11 @@ class MapleStoryApi {
         ).format('YYYY-MM-DD')}.`,
       );
     }
-
-    return dayjs(`${year}-${month}-${day}`)
-      .utcOffset(MapleStoryApi.kstOffset)
-      .format('YYYY-MM-DD');
   }
+
+  return str;
 }
+
 
 type CharacterImageOptions = {
   /**

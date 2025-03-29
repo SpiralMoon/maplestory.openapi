@@ -151,7 +151,7 @@ public class MapleStoryApi {
     public CharacterBasicDTO getCharacterBasic(@NonNull String ocid, LocalDateTime localDateTime) throws IOException {
 
         final String date = localDateTime != null
-                ? toDateString(minDate(2023, 12, 21), localDateTime)
+                ? toDateString(localDateTime, minDate(2023, 12, 21))
                 : null;
 
         final Response<CharacterBasicDTO> response = buildRetrofit()
@@ -194,7 +194,7 @@ public class MapleStoryApi {
     public void getCharacterBasicAsync(@NonNull String ocid, LocalDateTime localDateTime, SuccessCallback<CharacterBasicDTO> onSuccess, FailureCallback onFailure) {
 
         final String date = localDateTime != null
-                ? toDateString(minDate(2023, 12, 21), localDateTime)
+                ? toDateString(localDateTime, minDate(2023, 12, 21))
                 : null;
 
         buildRetrofit()
@@ -244,7 +244,7 @@ public class MapleStoryApi {
     public CharacterImageDTO getCharacterImage(@NonNull String ocid, @NonNull CharacterImageOption imageOption, LocalDateTime localDateTime) throws IOException {
 
         final String date = localDateTime != null
-                ? toDateString(minDate(2023, 12, 21), localDateTime)
+                ? toDateString(localDateTime, minDate(2023, 12, 21))
                 : null;
 
         final CharacterBasicDTO basic = this.getCharacterBasic(ocid, localDateTime);
@@ -317,7 +317,7 @@ public class MapleStoryApi {
     public void getCharacterImageAsync(@NonNull String ocid, @NonNull CharacterImageOption imageOption, LocalDateTime localDateTime, SuccessCallback<CharacterImageDTO> onSuccess, FailureCallback onFailure) {
 
         final String date = localDateTime != null
-                ? toDateString(minDate(2023, 12, 21), localDateTime)
+                ? toDateString(localDateTime, minDate(2023, 12, 21))
                 : null;
 
         buildRetrofit()
@@ -416,7 +416,7 @@ public class MapleStoryApi {
     public CharacterPopularityDTO getCharacterPopularity(@NonNull String ocid, LocalDateTime localDateTime) throws IOException {
 
         final String date = localDateTime != null
-                ? toDateString(minDate(2023, 12, 21), localDateTime)
+                ? toDateString(localDateTime, minDate(2023, 12, 21))
                 : null;
 
         final Response<CharacterPopularityDTO> response = buildRetrofit()
@@ -457,7 +457,7 @@ public class MapleStoryApi {
     public void getCharacterPopularityAsync(@NonNull String ocid, LocalDateTime localDateTime, SuccessCallback<CharacterPopularityDTO> onSuccess, FailureCallback onFailure) {
 
         final String date = localDateTime != null
-                ? toDateString(minDate(2023, 12, 21), localDateTime)
+                ? toDateString(localDateTime, minDate(2023, 12, 21))
                 : null;
 
         buildRetrofit()
@@ -492,7 +492,7 @@ public class MapleStoryApi {
     public CharacterStatDTO getCharacterStat(@NonNull String ocid, LocalDateTime localDateTime) throws IOException {
 
         final String date = localDateTime != null
-                ? toDateString(minDate(2023, 12, 21), localDateTime)
+                ? toDateString(localDateTime, minDate(2023, 12, 21))
                 : null;
 
         final Response<CharacterStatDTO> response = buildRetrofit()
@@ -532,7 +532,7 @@ public class MapleStoryApi {
     public void getCharacterStatAsync(@NonNull String ocid, LocalDateTime localDateTime, SuccessCallback<CharacterStatDTO> onSuccess, FailureCallback onFailure) {
 
         final String date = localDateTime != null
-                ? toDateString(minDate(2023, 12, 21), localDateTime)
+                ? toDateString(localDateTime, minDate(2023, 12, 21))
                 : null;
 
         buildRetrofit()
@@ -567,7 +567,7 @@ public class MapleStoryApi {
     public CharacterHyperStatDTO getCharacterHyperStat(@NonNull String ocid, LocalDateTime localDateTime) throws IOException {
 
         final String date = localDateTime != null
-                ? toDateString(minDate(2023, 12, 21), localDateTime)
+                ? toDateString(localDateTime, minDate(2023, 12, 21))
                 : null;
 
         final Response<CharacterHyperStatDTO> response = buildRetrofit()
@@ -608,7 +608,7 @@ public class MapleStoryApi {
     public void getCharacterHyperStatAsync(@NonNull String ocid, LocalDateTime localDateTime, SuccessCallback<CharacterHyperStatDTO> onSuccess, FailureCallback onFailure) {
 
         final String date = localDateTime != null
-                ? toDateString(minDate(2023, 12, 21), localDateTime)
+                ? toDateString(localDateTime, minDate(2023, 12, 21))
                 : null;
 
         buildRetrofit()
@@ -643,7 +643,7 @@ public class MapleStoryApi {
     public CharacterPropensityDTO getCharacterPropensity(@NonNull String ocid, LocalDateTime localDateTime) throws IOException {
 
         final String date = localDateTime != null
-                ? toDateString(minDate(2023, 12, 21), localDateTime)
+                ? toDateString(localDateTime, minDate(2023, 12, 21))
                 : null;
 
         final Response<CharacterPropensityDTO> response = buildRetrofit()
@@ -684,7 +684,7 @@ public class MapleStoryApi {
     public void getCharacterPropensityAsync(@NonNull String ocid, LocalDateTime localDateTime, SuccessCallback<CharacterPropensityDTO> onSuccess, FailureCallback onFailure) {
 
         final String date = localDateTime != null
-                ? toDateString(minDate(2023, 12, 21), localDateTime)
+                ? toDateString(localDateTime, minDate(2023, 12, 21))
                 : null;
 
         buildRetrofit()
@@ -718,7 +718,7 @@ public class MapleStoryApi {
     public CharacterAbilityDTO getCharacterAbility(@NonNull String ocid, LocalDateTime localDateTime) throws IOException {
 
         final String date = localDateTime != null
-                ? toDateString(minDate(2023, 12, 21), localDateTime)
+                ? toDateString(localDateTime, minDate(2023, 12, 21))
                 : null;
 
         final Response<CharacterAbilityDTO> response = buildRetrofit()
@@ -759,7 +759,7 @@ public class MapleStoryApi {
     public void getCharacterAbilityAsync(@NonNull String ocid, LocalDateTime localDateTime, SuccessCallback<CharacterAbilityDTO> onSuccess, FailureCallback onFailure) {
 
         final String date = localDateTime != null
-                ? toDateString(minDate(2023, 12, 21), localDateTime)
+                ? toDateString(localDateTime, minDate(2023, 12, 21))
                 : null;
 
         buildRetrofit()
@@ -794,7 +794,7 @@ public class MapleStoryApi {
     public CharacterItemEquipmentDTO getCharacterItemEquipment(@NonNull String ocid, LocalDateTime localDateTime) throws IOException {
 
         final String date = localDateTime != null
-                ? toDateString(minDate(2023, 12, 21), localDateTime)
+                ? toDateString(localDateTime, minDate(2023, 12, 21))
                 : null;
 
         final Response<CharacterItemEquipmentDTO> response = buildRetrofit()
@@ -835,7 +835,7 @@ public class MapleStoryApi {
     public void getCharacterItemEquipmentAsync(@NonNull String ocid, LocalDateTime localDateTime, SuccessCallback<CharacterItemEquipmentDTO> onSuccess, FailureCallback onFailure) {
 
         final String date = localDateTime != null
-                ? toDateString(minDate(2023, 12, 21), localDateTime)
+                ? toDateString(localDateTime, minDate(2023, 12, 21))
                 : null;
 
         buildRetrofit()
@@ -870,7 +870,7 @@ public class MapleStoryApi {
     public CharacterCashItemEquipmentDTO getCharacterCashItemEquipment(@NonNull String ocid, LocalDateTime localDateTime) throws IOException {
 
         final String date = localDateTime != null
-                ? toDateString(minDate(2023, 12, 21), localDateTime)
+                ? toDateString(localDateTime, minDate(2023, 12, 21))
                 : null;
 
         final Response<CharacterCashItemEquipmentDTO> response = buildRetrofit()
@@ -911,7 +911,7 @@ public class MapleStoryApi {
     public void getCharacterCashItemEquipmentAsync(@NonNull String ocid, LocalDateTime localDateTime, SuccessCallback<CharacterCashItemEquipmentDTO> onSuccess, FailureCallback onFailure) {
 
         final String date = localDateTime != null
-                ? toDateString(minDate(2023, 12, 21), localDateTime)
+                ? toDateString(localDateTime, minDate(2023, 12, 21))
                 : null;
 
         buildRetrofit()
@@ -946,7 +946,7 @@ public class MapleStoryApi {
     public CharacterSymbolEquipmentDTO getCharacterSymbolEquipment(@NonNull String ocid, LocalDateTime localDateTime) throws IOException {
 
         final String date = localDateTime != null
-                ? toDateString(minDate(2023, 12, 21), localDateTime)
+                ? toDateString(localDateTime, minDate(2023, 12, 21))
                 : null;
 
         final Response<CharacterSymbolEquipmentDTO> response = buildRetrofit()
@@ -987,7 +987,7 @@ public class MapleStoryApi {
     public void getCharacterSymbolEquipmentAsync(@NonNull String ocid, LocalDateTime localDateTime, SuccessCallback<CharacterSymbolEquipmentDTO> onSuccess, FailureCallback onFailure) {
 
         final String date = localDateTime != null
-                ? toDateString(minDate(2023, 12, 21), localDateTime)
+                ? toDateString(localDateTime, minDate(2023, 12, 21))
                 : null;
 
         buildRetrofit()
@@ -1021,7 +1021,7 @@ public class MapleStoryApi {
     public CharacterSetEffectDTO getCharacterSetEffect(@NonNull String ocid, LocalDateTime localDateTime) throws IOException {
 
         final String date = localDateTime != null
-                ? toDateString(minDate(2023, 12, 21), localDateTime)
+                ? toDateString(localDateTime, minDate(2023, 12, 21))
                 : null;
 
         final Response<CharacterSetEffectDTO> response = buildRetrofit()
@@ -1062,7 +1062,7 @@ public class MapleStoryApi {
     public void getCharacterSetEffectAsync(@NonNull String ocid, LocalDateTime localDateTime, SuccessCallback<CharacterSetEffectDTO> onSuccess, FailureCallback onFailure) {
 
         final String date = localDateTime != null
-                ? toDateString(minDate(2023, 12, 21), localDateTime)
+                ? toDateString(localDateTime, minDate(2023, 12, 21))
                 : null;
 
         buildRetrofit()
@@ -1097,7 +1097,7 @@ public class MapleStoryApi {
     public CharacterBeautyEquipmentDTO getCharacterBeautyEquipment(@NonNull String ocid, LocalDateTime localDateTime) throws IOException {
 
         final String date = localDateTime != null
-                ? toDateString(minDate(2023, 12, 21), localDateTime)
+                ? toDateString(localDateTime, minDate(2023, 12, 21))
                 : null;
 
         final Response<CharacterBeautyEquipmentDTO> response = buildRetrofit()
@@ -1138,7 +1138,7 @@ public class MapleStoryApi {
     public void getCharacterBeautyEquipmentAsync(@NonNull String ocid, LocalDateTime localDateTime, SuccessCallback<CharacterBeautyEquipmentDTO> onSuccess, FailureCallback onFailure) {
 
         final String date = localDateTime != null
-                ? toDateString(minDate(2023, 12, 21), localDateTime)
+                ? toDateString(localDateTime, minDate(2023, 12, 21))
                 : null;
 
         buildRetrofit()
@@ -1173,7 +1173,7 @@ public class MapleStoryApi {
     public CharacterAndroidEquipmentDTO getCharacterAndroidEquipment(@NonNull String ocid, LocalDateTime localDateTime) throws IOException {
 
         final String date = localDateTime != null
-                ? toDateString(minDate(2023, 12, 21), localDateTime)
+                ? toDateString(localDateTime, minDate(2023, 12, 21))
                 : null;
 
         final Response<CharacterAndroidEquipmentDTO> response = buildRetrofit()
@@ -1214,7 +1214,7 @@ public class MapleStoryApi {
     public void getCharacterAndroidEquipmentAsync(@NonNull String ocid, LocalDateTime localDateTime, SuccessCallback<CharacterAndroidEquipmentDTO> onSuccess, FailureCallback onFailure) {
 
         final String date = localDateTime != null
-                ? toDateString(minDate(2023, 12, 21), localDateTime)
+                ? toDateString(localDateTime, minDate(2023, 12, 21))
                 : null;
 
         buildRetrofit()
@@ -1249,7 +1249,7 @@ public class MapleStoryApi {
     public CharacterPetEquipmentDTO getCharacterPetEquipment(@NonNull String ocid, LocalDateTime localDateTime) throws IOException {
 
         final String date = localDateTime != null
-                ? toDateString(minDate(2023, 12, 21), localDateTime)
+                ? toDateString(localDateTime, minDate(2023, 12, 21))
                 : null;
 
         final Response<CharacterPetEquipmentDTO> response = buildRetrofit()
@@ -1290,7 +1290,7 @@ public class MapleStoryApi {
     public void getCharacterPetEquipmentAsync(@NonNull String ocid, LocalDateTime localDateTime, SuccessCallback<CharacterPetEquipmentDTO> onSuccess, FailureCallback onFailure) {
 
         final String date = localDateTime != null
-                ? toDateString(minDate(2023, 12, 21), localDateTime)
+                ? toDateString(localDateTime, minDate(2023, 12, 21))
                 : null;
 
         buildRetrofit()
@@ -1349,7 +1349,7 @@ public class MapleStoryApi {
     public CharacterSkillDTO getCharacterSkill(@NonNull String ocid, @NonNull String characterSkillGrade, LocalDateTime localDateTime) throws IOException {
 
         final String date = localDateTime != null
-                ? toDateString(minDate(2023, 12, 21), localDateTime)
+                ? toDateString(localDateTime, minDate(2023, 12, 21))
                 : null;
 
         final Response<CharacterSkillDTO> response = buildRetrofit()
@@ -1414,7 +1414,7 @@ public class MapleStoryApi {
     public void getCharacterSkillAsync(@NonNull String ocid, LocalDateTime localDateTime, String characterSkillGrade, SuccessCallback<CharacterSkillDTO> onSuccess, FailureCallback onFailure) {
 
         final String date = localDateTime != null
-                ? toDateString(minDate(2023, 12, 21), localDateTime)
+                ? toDateString(localDateTime, minDate(2023, 12, 21))
                 : null;
 
         buildRetrofit()
@@ -1449,7 +1449,7 @@ public class MapleStoryApi {
     public CharacterLinkSkillDTO getCharacterLinkSkill(@NonNull String ocid, LocalDateTime localDateTime) throws IOException {
 
         final String date = localDateTime != null
-                ? toDateString(minDate(2023, 12, 21), localDateTime)
+                ? toDateString(localDateTime, minDate(2023, 12, 21))
                 : null;
 
         final Response<CharacterLinkSkillDTO> response = buildRetrofit()
@@ -1490,7 +1490,7 @@ public class MapleStoryApi {
     public void getCharacterLinkSkillAsync(@NonNull String ocid, LocalDateTime localDateTime, SuccessCallback<CharacterLinkSkillDTO> onSuccess, FailureCallback onFailure) {
 
         final String date = localDateTime != null
-                ? toDateString(minDate(2023, 12, 21), localDateTime)
+                ? toDateString(localDateTime, minDate(2023, 12, 21))
                 : null;
 
         buildRetrofit()
@@ -1525,7 +1525,7 @@ public class MapleStoryApi {
     public CharacterVMatrixDTO getCharacterVMatrix(@NonNull String ocid, LocalDateTime localDateTime) throws IOException {
 
         final String date = localDateTime != null
-                ? toDateString(minDate(2023, 12, 21), localDateTime)
+                ? toDateString(localDateTime, minDate(2023, 12, 21))
                 : null;
 
         final Response<CharacterVMatrixDTO> response = buildRetrofit()
@@ -1566,7 +1566,7 @@ public class MapleStoryApi {
     public void getCharacterVMatrixAsync(@NonNull String ocid, LocalDateTime localDateTime, SuccessCallback<CharacterVMatrixDTO> onSuccess, FailureCallback onFailure) {
 
         final String date = localDateTime != null
-                ? toDateString(minDate(2023, 12, 21), localDateTime)
+                ? toDateString(localDateTime, minDate(2023, 12, 21))
                 : null;
 
         buildRetrofit()
@@ -1601,7 +1601,7 @@ public class MapleStoryApi {
     public CharacterHexaMatrixDTO getCharacterHexaMatrix(@NonNull String ocid, LocalDateTime localDateTime) throws IOException {
 
         final String date = localDateTime != null
-                ? toDateString(minDate(2023, 12, 21), localDateTime)
+                ? toDateString(localDateTime, minDate(2023, 12, 21))
                 : null;
 
         final Response<CharacterHexaMatrixDTO> response = buildRetrofit()
@@ -1642,7 +1642,7 @@ public class MapleStoryApi {
     public void getCharacterHexaMatrixAsync(@NonNull String ocid, LocalDateTime localDateTime, SuccessCallback<CharacterHexaMatrixDTO> onSuccess, FailureCallback onFailure) {
 
         final String date = localDateTime != null
-                ? toDateString(minDate(2023, 12, 21), localDateTime)
+                ? toDateString(localDateTime, minDate(2023, 12, 21))
                 : null;
 
         buildRetrofit()
@@ -1677,7 +1677,7 @@ public class MapleStoryApi {
     public CharacterHexaMatrixStatDTO getCharacterHexaMatrixStat(@NonNull String ocid, LocalDateTime localDateTime) throws IOException {
 
         final String date = localDateTime != null
-                ? toDateString(minDate(2023, 12, 21), localDateTime)
+                ? toDateString(localDateTime, minDate(2023, 12, 21))
                 : null;
 
         final Response<CharacterHexaMatrixStatDTO> response = buildRetrofit()
@@ -1718,7 +1718,7 @@ public class MapleStoryApi {
     public void getCharacterHexaMatrixStatAsync(@NonNull String ocid, LocalDateTime localDateTime, SuccessCallback<CharacterHexaMatrixStatDTO> onSuccess, FailureCallback onFailure) {
 
         final String date = localDateTime != null
-                ? toDateString(minDate(2023, 12, 21), localDateTime)
+                ? toDateString(localDateTime, minDate(2023, 12, 21))
                 : null;
 
         buildRetrofit()
@@ -1753,7 +1753,7 @@ public class MapleStoryApi {
     public CharacterDojangDTO getCharacterDojang(@NonNull String ocid, LocalDateTime localDateTime) throws IOException {
 
         final String date = localDateTime != null
-                ? toDateString(minDate(2023, 12, 21), localDateTime)
+                ? toDateString(localDateTime, minDate(2023, 12, 21))
                 : null;
 
         final Response<CharacterDojangDTO> response = buildRetrofit()
@@ -1794,7 +1794,7 @@ public class MapleStoryApi {
     public void getCharacterDojangAsync(@NonNull String ocid, LocalDateTime localDateTime, SuccessCallback<CharacterDojangDTO> onSuccess, FailureCallback onFailure) {
 
         final String date = localDateTime != null
-                ? toDateString(minDate(2023, 12, 21), localDateTime)
+                ? toDateString(localDateTime, minDate(2023, 12, 21))
                 : null;
 
         buildRetrofit()
@@ -1833,7 +1833,7 @@ public class MapleStoryApi {
     public UnionDTO getUnion(@NonNull String ocid, LocalDateTime localDateTime) throws IOException {
 
         final String date = localDateTime != null
-                ? toDateString(minDate(2023, 12, 21), localDateTime)
+                ? toDateString(localDateTime, minDate(2023, 12, 21))
                 : null;
 
         final Response<UnionDTO> response = buildRetrofit()
@@ -1874,7 +1874,7 @@ public class MapleStoryApi {
     public void getUnionAsync(@NonNull String ocid, LocalDateTime localDateTime, SuccessCallback<UnionDTO> onSuccess, FailureCallback onFailure) {
 
         final String date = localDateTime != null
-                ? toDateString(minDate(2023, 12, 21), localDateTime)
+                ? toDateString(localDateTime, minDate(2023, 12, 21))
                 : null;
 
         buildRetrofit()
@@ -1909,7 +1909,7 @@ public class MapleStoryApi {
     public UnionRaiderDTO getUnionRaider(@NonNull String ocid, LocalDateTime localDateTime) throws IOException {
 
         final String date = localDateTime != null
-                ? toDateString(minDate(2023, 12, 21), localDateTime)
+                ? toDateString(localDateTime, minDate(2023, 12, 21))
                 : null;
 
         final Response<UnionRaiderDTO> response = buildRetrofit()
@@ -1950,7 +1950,7 @@ public class MapleStoryApi {
     public void getUnionRaiderAsync(@NonNull String ocid, LocalDateTime localDateTime, SuccessCallback<UnionRaiderDTO> onSuccess, FailureCallback onFailure) {
 
         final String date = localDateTime != null
-                ? toDateString(minDate(2023, 12, 21), localDateTime)
+                ? toDateString(localDateTime, minDate(2023, 12, 21))
                 : null;
 
         buildRetrofit()
@@ -1985,7 +1985,7 @@ public class MapleStoryApi {
     public UnionArtifactDTO getUnionArtifact(@NonNull String ocid, LocalDateTime localDateTime) throws IOException {
 
         final String date = localDateTime != null
-                ? toDateString(minDate(2023, 12, 21), localDateTime)
+                ? toDateString(localDateTime, minDate(2023, 12, 21))
                 : null;
 
         final Response<UnionArtifactDTO> response = buildRetrofit()
@@ -2026,7 +2026,7 @@ public class MapleStoryApi {
     public void getUnionArtifactAsync(@NonNull String ocid, LocalDateTime localDateTime, SuccessCallback<UnionArtifactDTO> onSuccess, FailureCallback onFailure) {
 
         final String date = localDateTime != null
-                ? toDateString(minDate(2023, 12, 21), localDateTime)
+                ? toDateString(localDateTime, minDate(2023, 12, 21))
                 : null;
 
         buildRetrofit()
@@ -2063,7 +2063,7 @@ public class MapleStoryApi {
     public UnionChampionDTO getUnionChampion(@NonNull String ocid, LocalDateTime localDateTime) throws IOException {
 
         final String date = localDateTime != null
-                ? toDateString(minDate(2023, 12, 21), localDateTime)
+                ? toDateString(localDateTime, minDate(2023, 12, 21))
                 : null;
 
         final Response<UnionChampionDTO> response = buildRetrofit()
@@ -2106,7 +2106,7 @@ public class MapleStoryApi {
     public void getUnionChampionAsync(@NonNull String ocid, LocalDateTime localDateTime, SuccessCallback<UnionChampionDTO> onSuccess, FailureCallback onFailure) {
 
         final String date = localDateTime != null
-                ? toDateString(minDate(2023, 12, 21), localDateTime)
+                ? toDateString(localDateTime, minDate(2023, 12, 21))
                 : null;
 
         buildRetrofit()
@@ -2220,7 +2220,7 @@ public class MapleStoryApi {
     public GuildBasicDTO getGuildBasic(@NonNull String oguildId, LocalDateTime localDateTime) throws IOException {
 
         final String date = localDateTime != null
-                ? toDateString(minDate(2023, 12, 21), localDateTime)
+                ? toDateString(localDateTime, minDate(2023, 12, 21))
                 : null;
 
         final Response<GuildBasicDTO> response = buildRetrofit()
@@ -2261,7 +2261,7 @@ public class MapleStoryApi {
     public void getGuildBasicAsync(@NonNull String oguildId, LocalDateTime localDateTime, SuccessCallback<GuildBasicDTO> onSuccess, FailureCallback onFailure) {
 
         final String date = localDateTime != null
-                ? toDateString(minDate(2023, 12, 21), localDateTime)
+                ? toDateString(localDateTime, minDate(2023, 12, 21))
                 : null;
 
         buildRetrofit()
@@ -2306,7 +2306,7 @@ public class MapleStoryApi {
      */
     public StarforceHistoryResponseDTO getStarforceHistory(int count, @NonNull LocalDateTime localDateTime) throws IOException {
 
-        final String date = toDateString(minDate(2023, 12, 27), localDateTime);
+        final String date = toDateString(localDateTime, minDate(2023, 12, 27));
 
         final Response<StarforceHistoryResponseDTO> response = buildRetrofit()
                 .create(StarforceApi.class)
@@ -2330,7 +2330,7 @@ public class MapleStoryApi {
      */
     public void getStarforceHistoryAsync(int count, @NonNull LocalDateTime localDateTime, SuccessCallback<StarforceHistoryResponseDTO> onSuccess, FailureCallback onFailure) {
 
-        final String date = toDateString(minDate(2023, 12, 27), localDateTime);
+        final String date = toDateString(localDateTime, minDate(2023, 12, 27));
 
         buildRetrofit()
                 .create(StarforceApi.class)
@@ -2410,7 +2410,7 @@ public class MapleStoryApi {
      */
     public CubeHistoryResponseDTO getCubeHistory(int count, @NonNull LocalDateTime localDateTime) throws IOException {
 
-        final String date = toDateString(minDate(2022, 11, 25), localDateTime);
+        final String date = toDateString(localDateTime, minDate(2022, 11, 25));
 
         final Response<CubeHistoryResponseDTO> response = buildRetrofit()
                 .create(CubeApi.class)
@@ -2435,7 +2435,7 @@ public class MapleStoryApi {
      */
     public void getCubeHistoryAsync(int count, @NonNull LocalDateTime localDateTime, SuccessCallback<CubeHistoryResponseDTO> onSuccess, FailureCallback onFailure) {
 
-        final String date = toDateString(minDate(2022, 11, 25), localDateTime);
+        final String date = toDateString(localDateTime, minDate(2022, 11, 25));
 
         buildRetrofit()
                 .create(CubeApi.class)
@@ -2517,7 +2517,7 @@ public class MapleStoryApi {
      */
     public PotentialHistoryResponseDTO getPotentialHistory(int count, @NonNull LocalDateTime localDateTime) throws IOException {
 
-        final String date = toDateString(minDate(2024, 1, 25), localDateTime);
+        final String date = toDateString(localDateTime, minDate(2024, 1, 25));
 
         final Response<PotentialHistoryResponseDTO> response = buildRetrofit()
                 .create(PotentialApi.class)
@@ -2542,7 +2542,7 @@ public class MapleStoryApi {
      */
     public void getPotentialHistoryAsync(int count, @NonNull LocalDateTime localDateTime, SuccessCallback<PotentialHistoryResponseDTO> onSuccess, FailureCallback onFailure) {
 
-        final String date = toDateString(minDate(2022, 11, 25), localDateTime);
+        final String date = toDateString(localDateTime, minDate(2024, 1, 25));
 
         buildRetrofit()
                 .create(PotentialApi.class)
@@ -2850,7 +2850,7 @@ public class MapleStoryApi {
      */
     public OverallRankingResponseDTO getOverallRanking(String worldName, Integer worldType, String characterClass, String ocid, Integer page, @NonNull LocalDateTime localDateTime) throws IOException {
 
-        final String date = toDateString(minDate(2023, 12, 22), localDateTime);
+        final String date = toDateString(localDateTime, minDate(2023, 12, 22));
 
         final Response<OverallRankingResponseDTO> response = buildRetrofit()
                 .create(RankingApi.class)
@@ -3121,7 +3121,7 @@ public class MapleStoryApi {
      */
     public void getOverallRankingAsync(String worldName, Integer worldType, String characterClass, String ocid, Integer page, @NonNull LocalDateTime localDateTime, SuccessCallback<OverallRankingResponseDTO> onSuccess, FailureCallback onFailure) {
 
-        final String date = toDateString(minDate(2023, 12, 22), localDateTime);
+        final String date = toDateString(localDateTime, minDate(2023, 12, 22));
 
         buildRetrofit()
                 .create(RankingApi.class)
@@ -3190,7 +3190,7 @@ public class MapleStoryApi {
      */
     public UnionRankingResponseDTO getUnionRanking(String worldName, String ocid, Integer page, @NonNull LocalDateTime localDateTime) throws IOException {
 
-        final String date = toDateString(minDate(2023, 12, 22), localDateTime);
+        final String date = toDateString(localDateTime, minDate(2023, 12, 22));
 
         final Response<UnionRankingResponseDTO> response = buildRetrofit()
                 .create(RankingApi.class)
@@ -3265,7 +3265,7 @@ public class MapleStoryApi {
      */
     public void getUnionRankingAsync(String worldName, String ocid, Integer page, LocalDateTime localDateTime, SuccessCallback<UnionRankingResponseDTO> onSuccess, FailureCallback onFailure) {
 
-        final String date = toDateString(minDate(2023, 12, 22), localDateTime);
+        final String date = toDateString(localDateTime, minDate(2023, 12, 22));
 
         buildRetrofit()
                 .create(RankingApi.class)
@@ -3336,7 +3336,7 @@ public class MapleStoryApi {
      */
     public GuildRankingResponseDTO getGuildRanking(String worldName, int rankingType, String guildName, Integer page, @NonNull LocalDateTime localDateTime) throws IOException {
 
-        final String date = toDateString(minDate(2023, 12, 22), localDateTime);
+        final String date = toDateString(localDateTime, minDate(2023, 12, 22));
 
         final Response<GuildRankingResponseDTO> response = buildRetrofit()
                 .create(RankingApi.class)
@@ -3413,7 +3413,7 @@ public class MapleStoryApi {
      */
     public void getGuildRankingAsync(String worldName, int rankingType, String guildName, Integer page, @NonNull LocalDateTime localDateTime, SuccessCallback<GuildRankingResponseDTO> onSuccess, FailureCallback onFailure) {
 
-        final String date = toDateString(minDate(2023, 12, 22), localDateTime);
+        final String date = toDateString(localDateTime, minDate(2023, 12, 22));
 
         buildRetrofit()
                 .create(RankingApi.class)
@@ -3678,7 +3678,7 @@ public class MapleStoryApi {
      */
     public DojangRankingResponseDTO getDojangRanking(String worldName, int difficulty, String characterClass, String ocid, Integer page, @NonNull LocalDateTime localDateTime) throws IOException {
 
-        final String date = toDateString(minDate(2023, 12, 22), localDateTime);
+        final String date = toDateString(localDateTime, minDate(2023, 12, 22));
 
         final Response<DojangRankingResponseDTO> response = buildRetrofit()
                 .create(RankingApi.class)
@@ -3949,7 +3949,7 @@ public class MapleStoryApi {
      */
     public void getDojangRankingAsync(String worldName, int difficulty, String characterClass, String ocid, Integer page, @NonNull LocalDateTime localDateTime, SuccessCallback<DojangRankingResponseDTO> onSuccess, FailureCallback onFailure) {
 
-        final String date = toDateString(minDate(2023, 12, 22), localDateTime);
+        final String date = toDateString(localDateTime, minDate(2023, 12, 22));
 
         buildRetrofit()
                 .create(RankingApi.class)
@@ -4018,7 +4018,7 @@ public class MapleStoryApi {
      */
     public TheSeedRankingResponseDTO getTheSeedRanking(String worldName, String ocid, Integer page, LocalDateTime localDateTime) throws IOException {
 
-        final String date = toDateString(minDate(2023, 12, 22), localDateTime);
+        final String date = toDateString(localDateTime, minDate(2023, 12, 22));
 
         final Response<TheSeedRankingResponseDTO> response = buildRetrofit()
                 .create(RankingApi.class)
@@ -4092,7 +4092,7 @@ public class MapleStoryApi {
      * @param localDateTime 조회 기준일 (KST)
      */
     public void getTheSeedRankingAsync(String worldName, String ocid, Integer page, @NonNull LocalDateTime localDateTime, SuccessCallback<TheSeedRankingResponseDTO> onSuccess, FailureCallback onFailure) {
-        final String date = toDateString(minDate(2023, 12, 22), localDateTime);
+        final String date = toDateString(localDateTime, minDate(2023, 12, 22));
 
         buildRetrofit()
                 .create(RankingApi.class)
@@ -4124,7 +4124,7 @@ public class MapleStoryApi {
      * @param localDateTime 조회 기준일 (KST)
      */
     public AchievementRankingResponseDTO getAchievementRanking(String ocid, Integer page, @NonNull LocalDateTime localDateTime) throws IOException {
-        final String date = toDateString(minDate(2023, 12, 22), localDateTime);
+        final String date = toDateString(localDateTime, minDate(2023, 12, 22));
 
         final Response<AchievementRankingResponseDTO> response = buildRetrofit()
                 .create(RankingApi.class)
@@ -4162,7 +4162,7 @@ public class MapleStoryApi {
      * @param localDateTime 조회 기준일 (KST)
      */
     public void getAchievementRankingAsync(String ocid, Integer page, @NonNull LocalDateTime localDateTime, SuccessCallback<AchievementRankingResponseDTO> onSuccess, FailureCallback onFailure) {
-        final String date = toDateString(minDate(2023, 12, 22), localDateTime);
+        final String date = toDateString(localDateTime, minDate(2023, 12, 22));
 
         buildRetrofit()
                 .create(RankingApi.class)
@@ -4601,11 +4601,11 @@ public class MapleStoryApi {
     /**
      * 날짜 정보를 API 서버에서 요구하는 포맷으로 변환합니다.
      *
-     * @param minDate API 호출 가능한 최소 날짜
      * @param date    조회 하려는 날짜
+     * @param minDate API 호출 가능한 최소 날짜
      * @return
      */
-    private static String toDateString(@NonNull LocalDateTime minDate, @NonNull LocalDateTime date) {
+    private static String toDateString(@NonNull LocalDateTime date, @NonNull LocalDateTime minDate) {
 
         final int minYear = minDate.getYear();
         final int minMonth = minDate.getMonthValue();
@@ -4619,6 +4619,19 @@ public class MapleStoryApi {
             throw new IllegalArgumentException(String.format("You can only retrieve data after %d-%02d-%02d.", minYear, minMonth, minDay));
         }
 
+        final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        final String yyyyMMdd = date.format(formatter);
+
+        return yyyyMMdd;
+    }
+
+    /**
+     * 날짜 정보를 API 서버에서 요구하는 포맷으로 변환합니다.
+     *
+     * @param date    조회 하려는 날짜
+     * @return
+     */
+    private static String toDateString(@NonNull LocalDateTime date) {
         final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         final String yyyyMMdd = date.format(formatter);
 

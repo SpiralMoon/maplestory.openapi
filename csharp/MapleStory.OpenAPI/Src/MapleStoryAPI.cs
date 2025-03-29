@@ -87,7 +87,7 @@ namespace MapleStory.OpenAPI
         {
             var path = "maplestory/v1/character/basic";
             var date = dateTimeOffset != null
-                ? ToDateString(MinDate(2023, 12, 21), (DateTimeOffset) dateTimeOffset)
+                ? ToDateString((DateTimeOffset) dateTimeOffset, MinDate(2023, 12, 21))
                 : null;
 
             var query = new Dictionary<string, string?>()
@@ -223,7 +223,7 @@ namespace MapleStory.OpenAPI
         {
             var path = "maplestory/v1/character/popularity";
             var date = dateTimeOffset != null
-                ? ToDateString(MinDate(2023, 12, 21), (DateTimeOffset) dateTimeOffset)
+                ? ToDateString((DateTimeOffset) dateTimeOffset, MinDate(2023, 12, 21))
                 : null;
             var query = new Dictionary<string, string?>()
             {
@@ -259,7 +259,7 @@ namespace MapleStory.OpenAPI
         {
             var path = "maplestory/v1/character/stat";
             var date = dateTimeOffset != null
-                ? ToDateString(MinDate(2023, 12, 21), (DateTimeOffset) dateTimeOffset)
+                ? ToDateString((DateTimeOffset) dateTimeOffset, MinDate(2023, 12, 21))
                 : null;
             var query = new Dictionary<string, string?>()
             {
@@ -296,7 +296,7 @@ namespace MapleStory.OpenAPI
         {
             var path = "maplestory/v1/character/hyper-stat";
             var date = dateTimeOffset != null
-                ? ToDateString(MinDate(2023, 12, 21), (DateTimeOffset) dateTimeOffset)
+                ? ToDateString((DateTimeOffset) dateTimeOffset, MinDate(2023, 12, 21))
                 : null;
             var query = new Dictionary<string, string?>()
             {
@@ -333,7 +333,7 @@ namespace MapleStory.OpenAPI
         {
             var path = "maplestory/v1/character/propensity";
             var date = dateTimeOffset != null
-                ? ToDateString(MinDate(2023, 12, 21), (DateTimeOffset) dateTimeOffset)
+                ? ToDateString((DateTimeOffset) dateTimeOffset, MinDate(2023, 12, 21))
                 : null;
             var query = new Dictionary<string, string?>()
             {
@@ -370,7 +370,7 @@ namespace MapleStory.OpenAPI
         {
             var path = "maplestory/v1/character/ability";
             var date = dateTimeOffset != null
-                ? ToDateString(MinDate(2023, 12, 21), (DateTimeOffset) dateTimeOffset)
+                ? ToDateString((DateTimeOffset) dateTimeOffset, MinDate(2023, 12, 21))
                 : null;
             var query = new Dictionary<string, string?>()
             {
@@ -407,7 +407,7 @@ namespace MapleStory.OpenAPI
         {
             var path = "maplestory/v1/character/item-equipment";
             var date = dateTimeOffset != null
-                ? ToDateString(MinDate(2023, 12, 21), (DateTimeOffset) dateTimeOffset)
+                ? ToDateString((DateTimeOffset) dateTimeOffset, MinDate(2023, 12, 21))
                 : null;
             var query = new Dictionary<string, string?>()
             {
@@ -444,7 +444,7 @@ namespace MapleStory.OpenAPI
         {
             var path = "maplestory/v1/character/cashitem-equipment";
             var date = dateTimeOffset != null
-                ? ToDateString(MinDate(2023, 12, 21), (DateTimeOffset) dateTimeOffset)
+                ? ToDateString((DateTimeOffset) dateTimeOffset, MinDate(2023, 12, 21))
                 : null;
             var query = new Dictionary<string, string?>()
             {
@@ -481,7 +481,7 @@ namespace MapleStory.OpenAPI
         {
             var path = "maplestory/v1/character/symbol-equipment";
             var date = dateTimeOffset != null
-                ? ToDateString(MinDate(2023, 12, 21), (DateTimeOffset) dateTimeOffset)
+                ? ToDateString((DateTimeOffset) dateTimeOffset, MinDate(2023, 12, 21))
                 : null;
             var query = new Dictionary<string, string?>()
             {
@@ -518,7 +518,7 @@ namespace MapleStory.OpenAPI
         {
             var path = "maplestory/v1/character/set-effect";
             var date = dateTimeOffset != null
-                ? ToDateString(MinDate(2023, 12, 21), (DateTimeOffset) dateTimeOffset)
+                ? ToDateString((DateTimeOffset) dateTimeOffset, MinDate(2023, 12, 21))
                 : null;
             var query = new Dictionary<string, string?>()
             {
@@ -555,7 +555,7 @@ namespace MapleStory.OpenAPI
         {
             var path = "maplestory/v1/character/beauty-equipment";
             var date = dateTimeOffset != null
-                ? ToDateString(MinDate(2023, 12, 21), (DateTimeOffset) dateTimeOffset)
+                ? ToDateString((DateTimeOffset) dateTimeOffset, MinDate(2023, 12, 21))
                 : null;
             var query = new Dictionary<string, string?>()
             {
@@ -592,7 +592,7 @@ namespace MapleStory.OpenAPI
         {
             var path = "maplestory/v1/character/android-equipment";
             var date = dateTimeOffset != null
-                ? ToDateString(MinDate(2023, 12, 21), (DateTimeOffset) dateTimeOffset)
+                ? ToDateString((DateTimeOffset) dateTimeOffset, MinDate(2023, 12, 21))
                 : null;
             var query = new Dictionary<string, string?>()
             {
@@ -629,7 +629,7 @@ namespace MapleStory.OpenAPI
         {
             var path = "maplestory/v1/character/pet-equipment";
             var date = dateTimeOffset != null
-                ? ToDateString(MinDate(2023, 12, 21), (DateTimeOffset) dateTimeOffset)
+                ? ToDateString((DateTimeOffset) dateTimeOffset, MinDate(2023, 12, 21))
                 : null;
             var query = new Dictionary<string, string?>()
             {
@@ -693,7 +693,7 @@ namespace MapleStory.OpenAPI
         {
             var path = "maplestory/v1/character/skill";
             var date = dateTimeOffset != null
-                ? ToDateString(MinDate(2023, 12, 21), (DateTimeOffset) dateTimeOffset)
+                ? ToDateString((DateTimeOffset) dateTimeOffset, MinDate(2023, 12, 21))
                 : null;
             var query = new Dictionary<string, string?>()
             {
@@ -731,7 +731,7 @@ namespace MapleStory.OpenAPI
         {
             var path = "maplestory/v1/character/link-skill";
             var date = dateTimeOffset != null
-                ? ToDateString(MinDate(2023, 12, 21), (DateTimeOffset) dateTimeOffset)
+                ? ToDateString((DateTimeOffset) dateTimeOffset, MinDate(2023, 12, 21))
                 : null;
             var query = new Dictionary<string, string?>()
             {
@@ -768,7 +768,7 @@ namespace MapleStory.OpenAPI
         {
             var path = "maplestory/v1/character/vmatrix";
             var date = dateTimeOffset != null
-                ? ToDateString(MinDate(2023, 12, 21), (DateTimeOffset) dateTimeOffset)
+                ? ToDateString((DateTimeOffset) dateTimeOffset, MinDate(2023, 12, 21))
                 : null;
             var query = new Dictionary<string, string?>()
             {
@@ -805,7 +805,7 @@ namespace MapleStory.OpenAPI
         {
             var path = "maplestory/v1/character/hexamatrix";
             var date = dateTimeOffset != null
-                ? ToDateString(MinDate(2023, 12, 21), (DateTimeOffset) dateTimeOffset)
+                ? ToDateString((DateTimeOffset) dateTimeOffset, MinDate(2023, 12, 21))
                 : null;
             var query = new Dictionary<string, string?>()
             {
@@ -842,7 +842,7 @@ namespace MapleStory.OpenAPI
         {
             var path = "maplestory/v1/character/hexamatrix-stat";
             var date = dateTimeOffset != null
-                ? ToDateString(MinDate(2023, 12, 21), (DateTimeOffset) dateTimeOffset)
+                ? ToDateString((DateTimeOffset) dateTimeOffset, MinDate(2023, 12, 21))
                 : null;
             var query = new Dictionary<string, string?>()
             {
@@ -879,7 +879,7 @@ namespace MapleStory.OpenAPI
         {
             var path = "maplestory/v1/character/dojang";
             var date = dateTimeOffset != null
-                ? ToDateString(MinDate(2023, 12, 21), (DateTimeOffset) dateTimeOffset)
+                ? ToDateString((DateTimeOffset) dateTimeOffset, MinDate(2023, 12, 21))
                 : null;
             var query = new Dictionary<string, string?>()
             {
@@ -920,7 +920,7 @@ namespace MapleStory.OpenAPI
         {
             var path = "maplestory/v1/user/union";
             var date = dateTimeOffset != null
-                ? ToDateString(MinDate(2023, 12, 21), (DateTimeOffset) dateTimeOffset)
+                ? ToDateString((DateTimeOffset) dateTimeOffset, MinDate(2023, 12, 21))
                 : null;
             var query = new Dictionary<string, string?>()
             {
@@ -957,7 +957,7 @@ namespace MapleStory.OpenAPI
         {
             var path = "maplestory/v1/user/union-raider";
             var date = dateTimeOffset != null
-                ? ToDateString(MinDate(2023, 12, 21), (DateTimeOffset) dateTimeOffset)
+                ? ToDateString((DateTimeOffset) dateTimeOffset, MinDate(2023, 12, 21))
                 : null;
             var query = new Dictionary<string, string?>()
             {
@@ -994,7 +994,7 @@ namespace MapleStory.OpenAPI
         {
             var path = "maplestory/v1/user/union-artifact";
             var date = dateTimeOffset != null
-                ? ToDateString(MinDate(2023, 12, 21), (DateTimeOffset) dateTimeOffset)
+                ? ToDateString((DateTimeOffset) dateTimeOffset, MinDate(2023, 12, 21))
                 : null;
             var query = new Dictionary<string, string?>()
             {
@@ -1033,7 +1033,7 @@ namespace MapleStory.OpenAPI
         {
             var path = "maplestory/v1/user/union-champion";
             var date = dateTimeOffset != null
-                ? ToDateString(MinDate(2023, 12, 21), (DateTimeOffset) dateTimeOffset)
+                ? ToDateString((DateTimeOffset) dateTimeOffset, MinDate(2023, 12, 21))
                 : null;
             var query = new Dictionary<string, string?>()
             {
@@ -1114,7 +1114,7 @@ namespace MapleStory.OpenAPI
         {
             var path = "maplestory/v1/guild/basic";
             var date = dateTimeOffset != null
-                ? ToDateString(MinDate(2023, 12, 21), (DateTimeOffset) dateTimeOffset)
+                ? ToDateString((DateTimeOffset) dateTimeOffset, MinDate(2023, 12, 21))
                 : null;
             var query = new Dictionary<string, string?>()
             {
@@ -1158,7 +1158,7 @@ namespace MapleStory.OpenAPI
             var query = new Dictionary<string, string?>()
             {
                 { "count", count.ToString() },
-                { "date", ToDateString(MinDate(2023, 12, 27), dateTimeOffset) }
+                { "date", ToDateString(dateTimeOffset, MinDate(2023, 12, 27)) }
             };
 
             return await Get<StarforceHistoryResponseDTO>(path, query);
@@ -1214,7 +1214,7 @@ namespace MapleStory.OpenAPI
             var query = new Dictionary<string, string?>()
             {
                 { "count", count.ToString() },
-                { "date", ToDateString(MinDate(2022, 11, 25), dateTimeOffset) }
+                { "date", ToDateString(dateTimeOffset, MinDate(2022, 11, 25)) }
             };
 
             return await Get<CubeHistoryResponseDTO>(path, query);
@@ -1271,7 +1271,7 @@ namespace MapleStory.OpenAPI
             var query = new Dictionary<string, string?>()
             {
                 { "count", count.ToString() },
-                { "date", ToDateString(MinDate(2024, 1, 25), dateTimeOffset) }
+                { "date", ToDateString(dateTimeOffset, MinDate(2024, 1, 25)) }
             };
 
             return await Get<PotentialHistoryResponseDTO>(path, query);
@@ -1569,7 +1569,7 @@ namespace MapleStory.OpenAPI
             var path = "maplestory/v1/ranking/overall";
             var query = new Dictionary<string, string?>()
             {
-                { "date", ToDateString(MinDate(2023, 12, 22), dateTimeOffset) },
+                { "date", ToDateString(dateTimeOffset, MinDate(2023, 12, 22)) },
                 { "world_name", worldName },
                 { "world_type", worldType?.ToString() },
                 { "class", characterClass },
@@ -1650,7 +1650,7 @@ namespace MapleStory.OpenAPI
             var path = "maplestory/v1/ranking/union";
             var query = new Dictionary<string, string?>()
             {
-                { "date", ToDateString(MinDate(2023, 12, 22), dateTimeOffset) },
+                { "date", ToDateString(dateTimeOffset, MinDate(2023, 12, 22)) },
                 { "world_name", worldName },
                 { "ocid", ocid },
                 { "page", page?.ToString() }
@@ -1731,7 +1731,7 @@ namespace MapleStory.OpenAPI
             var path = "maplestory/v1/ranking/guild";
             var query = new Dictionary<string, string?>()
             {
-                { "date", ToDateString(MinDate(2023, 12, 22), dateTimeOffset) },
+                { "date", ToDateString(dateTimeOffset, MinDate(2023, 12, 22)) },
                 { "ranking_type", rankingType.ToString() },
                 { "world_name", worldName },
                 { "guild_name", guildName },
@@ -2009,7 +2009,7 @@ namespace MapleStory.OpenAPI
             var path = "maplestory/v1/ranking/dojang";
             var query = new Dictionary<string, string?>()
             {
-                { "date", ToDateString(MinDate(2023, 12, 22), dateTimeOffset) },
+                { "date", ToDateString(dateTimeOffset, MinDate(2023, 12, 22)) },
                 { "difficulty", difficulty.ToString() },
                 { "world_name", worldName },
                 { "class", characterClass },
@@ -2090,7 +2090,7 @@ namespace MapleStory.OpenAPI
             var path = "maplestory/v1/ranking/theseed";
             var query = new Dictionary<string, string?>()
             {
-                { "date", ToDateString(MinDate(2023, 12, 22), dateTimeOffset) },
+                { "date", ToDateString(dateTimeOffset, MinDate(2023, 12, 22)) },
                 { "world_name", worldName },
                 { "ocid", ocid },
                 { "page", page?.ToString() }
@@ -2132,7 +2132,7 @@ namespace MapleStory.OpenAPI
             var path = "maplestory/v1/ranking/achievement";
             var query = new Dictionary<string, string?>()
             {
-                { "date", ToDateString(MinDate(2023, 12, 22), dateTimeOffset) },
+                { "date", ToDateString(dateTimeOffset, MinDate(2023, 12, 22)) },
                 { "ocid", ocid },
                 { "page", page?.ToString() }
             };
@@ -2397,9 +2397,9 @@ namespace MapleStory.OpenAPI
         /// <summary>
         /// 날짜 정보를 API 서버에서 요구하는 포맷으로 변환합니다.
         /// </summary>
-        /// <param name="minDate">API 호출 가능한 최소 날짜</param>
         /// <param name="date">조회 하려는 날짜</param>
-        private static string ToDateString(DateTimeOffset minDate, DateTimeOffset date)
+        /// <param name="minDate">API 호출 가능한 최소 날짜</param>
+        private static string ToDateString(DateTimeOffset date, DateTimeOffset minDate)
         {
             var minYear = minDate.Year;
             var minMonth = minDate.Month;
@@ -2414,6 +2414,20 @@ namespace MapleStory.OpenAPI
                 throw new ArgumentException($"You can only retrieve data after {minYear}-{minMonth:D2}-{minDay:D2}.");
             }
 
+            var yyyyMMdd = new DateTime(year, month, day).ToString("yyyy-MM-dd");
+
+            return yyyyMMdd;
+        }
+
+        /// <summary>
+        /// 날짜 정보를 API 서버에서 요구하는 포맷으로 변환합니다.
+        /// </summary>
+        /// <param name="date">조회 하려는 날짜</param>
+        private static string ToDateString(DateTimeOffset date)
+        {
+            var year = date.Year;
+            var month = date.Month;
+            var day = date.Day;
             var yyyyMMdd = new DateTime(year, month, day).ToString("yyyy-MM-dd");
 
             return yyyyMMdd;
