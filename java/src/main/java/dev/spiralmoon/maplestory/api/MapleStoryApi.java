@@ -2377,40 +2377,37 @@ public class MapleStoryApi {
 
     /**
      * 큐브 사용 결과를 조회합니다.<br>
-     * - 데이터는 매일 오전 4시, 전일 데이터가 갱신됩니다.<br>
-     * - e.g. 오늘 오후 3시 5분 큐브 확률 정보 조회 시, 어제의 큐브 확률 정보 데이터를 조회할 수 있습니다.<br>
-     * - 2022년 11월 25일 데이터부터 조회할 수 있습니다.<br>
+     * - 큐브 확률 정보는 최대 30분 후 확인 가능합니다.<br>
+     * - 큐브 사용 결과는 최근 2년 데이터만 조회 가능합니다.<br>
      *
      * @param count 한번에 가져오려는 결과의 개수(최소 10, 최대 1000)
      */
     public CubeHistoryResponseDTO getCubeHistory(int count) throws IOException {
-        return this.getCubeHistory(count, getProperDefaultDateTime(new LatestApiUpdateTimeOption(4, 0, 1)));
+        return this.getCubeHistory(count, getProperDefaultDateTime(new LatestApiUpdateTimeOption(0, 0, 0)));
     }
 
     /**
      * 큐브 사용 결과를 비동기로 조회합니다.<br>
-     * - 데이터는 매일 오전 4시, 전일 데이터가 갱신됩니다.<br>
-     * - e.g. 오늘 오후 3시 5분 큐브 확률 정보 조회 시, 어제의 큐브 확률 정보 데이터를 조회할 수 있습니다.<br>
-     * - 2022년 11월 25일 데이터부터 조회할 수 있습니다.<br>
+     * - 큐브 확률 정보는 최대 30분 후 확인 가능합니다.<br>
+     * - 큐브 사용 결과는 최근 2년 데이터만 조회 가능합니다.<br>
      *
      * @param count 한번에 가져오려는 결과의 개수(최소 10, 최대 1000)
      */
     public void getCubeHistoryAsync(int count, SuccessCallback<CubeHistoryResponseDTO> onSuccess, FailureCallback onFailure) {
-        this.getCubeHistoryAsync(count, getProperDefaultDateTime(new LatestApiUpdateTimeOption(4, 0, 1)), onSuccess, onFailure);
+        this.getCubeHistoryAsync(count, getProperDefaultDateTime(new LatestApiUpdateTimeOption(0, 0, 0)), onSuccess, onFailure);
     }
 
     /**
      * 지목한 날짜의 큐브 사용 결과를 조회합니다.<br>
-     * - 데이터는 매일 오전 4시, 전일 데이터가 갱신됩니다.<br>
-     * - e.g. 오늘 오후 3시 5분 큐브 확률 정보 조회 시, 어제의 큐브 확률 정보 데이터를 조회할 수 있습니다.<br>
-     * - 2022년 11월 25일 데이터부터 조회할 수 있습니다.<br>
+     * - 큐브 확률 정보는 최대 30분 후 확인 가능합니다.<br>
+     * - 큐브 사용 결과는 최근 2년 데이터만 조회 가능합니다.<br>
      *
      * @param count         한번에 가져오려는 결과의 개수(최소 10, 최대 1000)
      * @param localDateTime 조회 기준일 (KST)
      */
     public CubeHistoryResponseDTO getCubeHistory(int count, @NonNull LocalDateTime localDateTime) throws IOException {
 
-        final String date = toDateString(localDateTime, minDate(2022, 11, 25));
+        final String date = toDateString(localDateTime);
 
         final Response<CubeHistoryResponseDTO> response = buildRetrofit()
                 .create(CubeApi.class)
@@ -2426,16 +2423,15 @@ public class MapleStoryApi {
 
     /**
      * 지목한 날짜의 큐브 사용 결과를 비동기로 조회합니다.<br>
-     * - 데이터는 매일 오전 4시, 전일 데이터가 갱신됩니다.<br>
-     * - e.g. 오늘 오후 3시 5분 큐브 확률 정보 조회 시, 어제의 큐브 확률 정보 데이터를 조회할 수 있습니다.<br>
-     * - 2022년 11월 25일 데이터부터 조회할 수 있습니다.<br>
+     * - 큐브 확률 정보는 최대 30분 후 확인 가능합니다.<br>
+     * - 큐브 사용 결과는 최근 2년 데이터만 조회 가능합니다.<br>
      *
      * @param count         한번에 가져오려는 결과의 개수(최소 10, 최대 1000)
      * @param localDateTime 조회 기준일 (KST)
      */
     public void getCubeHistoryAsync(int count, @NonNull LocalDateTime localDateTime, SuccessCallback<CubeHistoryResponseDTO> onSuccess, FailureCallback onFailure) {
 
-        final String date = toDateString(localDateTime, minDate(2022, 11, 25));
+        final String date = toDateString(localDateTime);
 
         buildRetrofit()
                 .create(CubeApi.class)
@@ -2445,9 +2441,8 @@ public class MapleStoryApi {
 
     /**
      * 큐브 사용 결과를 조회합니다.<br>
-     * - 데이터는 매일 오전 4시, 전일 데이터가 갱신됩니다.<br>
-     * - e.g. 오늘 오후 3시 5분 큐브 확률 정보 조회 시, 어제의 큐브 확률 정보 데이터를 조회할 수 있습니다.<br>
-     * - 2022년 11월 25일 데이터부터 조회할 수 있습니다.<br>
+     * - 큐브 확률 정보는 최대 30분 후 확인 가능합니다.<br>
+     * - 큐브 사용 결과는 최근 2년 데이터만 조회 가능합니다.<br>
      *
      * @param count  한번에 가져오려는 결과의 개수(최소 10, 최대 1000)
      * @param cursor 페이징 처리를 위한 cursor
@@ -2468,9 +2463,8 @@ public class MapleStoryApi {
 
     /**
      * 큐브 사용 결과를 비동기로 조회합니다.<br>
-     * - 데이터는 매일 오전 4시, 전일 데이터가 갱신됩니다.<br>
-     * - e.g. 오늘 오후 3시 5분 큐브 확률 정보 조회 시, 어제의 큐브 확률 정보 데이터를 조회할 수 있습니다.<br>
-     * - 2022년 11월 25일 데이터부터 조회할 수 있습니다.<br>
+     * - 큐브 확률 정보는 최대 30분 후 확인 가능합니다.<br>
+     * - 큐브 사용 결과는 최근 2년 데이터만 조회 가능합니다.<br>
      *
      * @param count  한번에 가져오려는 결과의 개수(최소 10, 최대 1000)
      * @param cursor 페이징 처리를 위한 cursor
@@ -2484,33 +2478,30 @@ public class MapleStoryApi {
 
     /**
      * 잠재능력 재설정 이용 결과를 조회합니다.<br>
-     * - 데이터는 매일 오전 4시, 전일 데이터가 갱신됩니다.<br>
-     * - e.g. 오늘 오후 3시 5분 잠재능력 재설정 정보 조회 시, 어제의 잠재능력 재설정 정보 데이터를 조회할 수 있습니다.<br>
-     * - 2024년 1월 25일 데이터부터 조회할 수 있습니다.<br>
+     * - 잠재능력 재설정 정보는 최대 30분 후 확인 가능합니다.<br>
+     * - 잠재능력 재설정 이용 결과는 2024년 01월 25일 데이터부터 조회 가능하며, 최대 2년동안의 데이터만 제공됩니다.<br>
      *
      * @param count 한번에 가져오려는 결과의 개수(최소 10, 최대 1000)
      */
     public PotentialHistoryResponseDTO getPotentialHistory(int count) throws IOException {
-        return this.getPotentialHistory(count, getProperDefaultDateTime(new LatestApiUpdateTimeOption(4, 0, 1)));
+        return this.getPotentialHistory(count, getProperDefaultDateTime(new LatestApiUpdateTimeOption(0, 0, 0)));
     }
 
     /**
      * 잠재능력 재설정 이용 결과를 비동기로 조회합니다.<br>
-     * - 데이터는 매일 오전 4시, 전일 데이터가 갱신됩니다.<br>
-     * - e.g. 오늘 오후 3시 5분 잠재능력 재설정 정보 조회 시, 어제의 잠재능력 재설정 정보 데이터를 조회할 수 있습니다.<br>
-     * - 2024년 1월 25일 데이터부터 조회할 수 있습니다.<br>
+     * - 잠재능력 재설정 정보는 최대 30분 후 확인 가능합니다.<br>
+     * - 잠재능력 재설정 이용 결과는 2024년 01월 25일 데이터부터 조회 가능하며, 최대 2년동안의 데이터만 제공됩니다.<br>
      *
      * @param count 한번에 가져오려는 결과의 개수(최소 10, 최대 1000)
      */
     public void getPotentialHistoryAsync(int count, SuccessCallback<PotentialHistoryResponseDTO> onSuccess, FailureCallback onFailure) {
-        this.getPotentialHistoryAsync(count, getProperDefaultDateTime(new LatestApiUpdateTimeOption(4, 0, 1)), onSuccess, onFailure);
+        this.getPotentialHistoryAsync(count, getProperDefaultDateTime(new LatestApiUpdateTimeOption(0, 0, 0)), onSuccess, onFailure);
     }
 
     /**
      * 지목한 날짜의 잠재능력 재설정 이용 결과를 조회합니다.<br>
-     * - 데이터는 매일 오전 4시, 전일 데이터가 갱신됩니다.<br>
-     * - e.g. 오늘 오후 3시 5분 잠재능력 재설정 정보 조회 시, 어제의 잠재능력 재설정 정보 데이터를 조회할 수 있습니다.<br>
-     * - 2024년 1월 25일 데이터부터 조회할 수 있습니다.<br>
+     * - 잠재능력 재설정 정보는 최대 30분 후 확인 가능합니다.<br>
+     * - 잠재능력 재설정 이용 결과는 2024년 01월 25일 데이터부터 조회 가능하며, 최대 2년동안의 데이터만 제공됩니다.<br>
      *
      * @param count         한번에 가져오려는 결과의 개수(최소 10, 최대 1000)
      * @param localDateTime 조회 기준일 (KST)
@@ -2552,9 +2543,8 @@ public class MapleStoryApi {
 
     /**
      * 잠재능력 재설정 이용 결과를 조회합니다.<br>
-     * - 데이터는 매일 오전 4시, 전일 데이터가 갱신됩니다.<br>
-     * - e.g. 오늘 오후 3시 5분 잠재능력 재설정 정보 조회 시, 어제의 잠재능력 재설정 정보 데이터를 조회할 수 있습니다.<br>
-     * - 2024년 1월 25일 데이터부터 조회할 수 있습니다.<br>
+     * - 잠재능력 재설정 정보는 최대 30분 후 확인 가능합니다.<br>
+     * - 잠재능력 재설정 이용 결과는 2024년 01월 25일 데이터부터 조회 가능하며, 최대 2년동안의 데이터만 제공됩니다.<br>
      *
      * @param count  한번에 가져오려는 결과의 개수(최소 10, 최대 1000)
      * @param cursor 페이징 처리를 위한 cursor
@@ -2575,9 +2565,8 @@ public class MapleStoryApi {
 
     /**
      * 잠재능력 재설정 이용 결과를 비동기로 조회합니다.<br>
-     * - 데이터는 매일 오전 4시, 전일 데이터가 갱신됩니다.<br>
-     * - e.g. 오늘 오후 3시 5분 잠재능력 재설정 정보 조회 시, 어제의 잠재능력 재설정 정보 데이터를 조회할 수 있습니다.<br>
-     * - 2024년 1월 25일 데이터부터 조회할 수 있습니다.<br>
+     * - 잠재능력 재설정 정보는 최대 30분 후 확인 가능합니다.<br>
+     * - 잠재능력 재설정 이용 결과는 2024년 01월 25일 데이터부터 조회 가능하며, 최대 2년동안의 데이터만 제공됩니다.<br>
      *
      * @param count  한번에 가져오려는 결과의 개수(최소 10, 최대 1000)
      * @param cursor 페이징 처리를 위한 cursor

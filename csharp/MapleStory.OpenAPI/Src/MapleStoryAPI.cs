@@ -1185,26 +1185,24 @@ namespace MapleStory.OpenAPI
 
         /// <summary>
         /// 큐브 사용 결과를 조회합니다.
-        /// <para>데이터는 매일 오전 4시, 전일 데이터가 갱신됩니다.</para>
-        /// <para>e.g. 오늘 오후 3시 5분 큐브 확률 정보 조회 시, 어제의 큐브 확률 정보 데이터를 조회할 수 있습니다.</para>
-        /// <para>2022년 11월 25일 데이터부터 조회할 수 있습니다.</para>
+        /// <para>큐브 확률 정보는 최대 30분 후 확인 가능합니다.</para>
+        /// <para>큐브 사용 결과는 최근 2년 데이터만 조회 가능합니다.</para>
         /// </summary>
         /// <param name="count">한번에 가져오려는 결과의 개수(최소 10, 최대 1000)</param>
         public Task<CubeHistoryResponseDTO> GetCubeHistory(int count)
         {
             return GetCubeHistory(count, GetProperDefaultDateTimeOffset(new LatestApiUpdateTimeOption
             {
-                Hour = 4,
+                Hour = 0,
                 Minute = 0,
-                DateOffset = 1
+                DateOffset = 0
             }));
         }
 
         /// <summary>
         /// 지목한 날짜의 큐브 사용 결과를 조회합니다.
-        /// <para>데이터는 매일 오전 4시, 전일 데이터가 갱신됩니다.</para>
-        /// <para>e.g. 오늘 오후 3시 5분 큐브 확률 정보 조회 시, 어제의 큐브 확률 정보 데이터를 조회할 수 있습니다.</para>
-        /// <para>2022년 11월 25일 데이터부터 조회할 수 있습니다.</para>
+        /// <para>큐브 확률 정보는 최대 30분 후 확인 가능합니다.</para>
+        /// <para>큐브 사용 결과는 최근 2년 데이터만 조회 가능합니다.</para>
         /// </summary>
         /// <param name="count">한번에 가져오려는 결과의 개수(최소 10, 최대 1000)</param>
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
@@ -1214,7 +1212,7 @@ namespace MapleStory.OpenAPI
             var query = new Dictionary<string, string?>()
             {
                 { "count", count.ToString() },
-                { "date", ToDateString(dateTimeOffset, MinDate(2022, 11, 25)) }
+                { "date", ToDateString(dateTimeOffset) }
             };
 
             return await Get<CubeHistoryResponseDTO>(path, query);
@@ -1222,9 +1220,8 @@ namespace MapleStory.OpenAPI
 
         /// <summary>
         /// 큐브 사용 결과를 조회합니다.
-        /// <para>데이터는 매일 오전 4시, 전일 데이터가 갱신됩니다.</para>
-        /// <para>e.g. 오늘 오후 3시 5분 큐브 확률 정보 조회 시, 어제의 큐브 확률 정보 데이터를 조회할 수 있습니다.</para>
-        /// <para>2022년 11월 25일 데이터부터 조회할 수 있습니다.</para>
+        /// <para>큐브 확률 정보는 최대 30분 후 확인 가능합니다.</para>
+        /// <para>큐브 사용 결과는 최근 2년 데이터만 조회 가능합니다.</para>
         /// </summary>
         /// <param name="count">한번에 가져오려는 결과의 개수(최소 10, 최대 1000)</param>
         /// <param name="cursor">페이징 처리를 위한 cursor</param>
@@ -1242,26 +1239,24 @@ namespace MapleStory.OpenAPI
 
         /// <summary>
         /// 잠재능력 재설정 이용 결과를 조회합니다.
-        /// <para>데이터는 매일 오전 4시, 전일 데이터가 갱신됩니다.</para>
-        /// <para>e.g. 오늘 오후 3시 5분 잠재능력 재설정 정보 조회 시, 어제의 잠재능력 재설정 정보 데이터를 조회할 수 있습니다.</para>
-        /// <para>2024년 1월 25일 데이터부터 조회할 수 있습니다.</para>
+        /// <para>잠재능력 재설정 정보는 최대 30분 후 확인 가능합니다.</para>
+        /// <para>잠재능력 재설정 이용 결과는 2024년 01월 25일 데이터부터 조회 가능하며, 최대 2년동안의 데이터만 제공됩니다.</para>
         /// </summary>
         /// <param name="count">한번에 가져오려는 결과의 개수(최소 10, 최대 1000)</param>
         public Task<PotentialHistoryResponseDTO> GetPotentialHistory(int count)
         {
             return GetPotentialHistory(count, GetProperDefaultDateTimeOffset(new LatestApiUpdateTimeOption
             {
-                Hour = 4,
+                Hour = 0,
                 Minute = 0,
-                DateOffset = 1
+                DateOffset = 0
             }));
         }
 
         /// <summary>
         /// 지목한 날짜의 잠재능력 재설정 이용 결과를 조회합니다.
-        /// <para>데이터는 매일 오전 4시, 전일 데이터가 갱신됩니다.</para>
-        /// <para>e.g. 오늘 오후 3시 5분 잠재능력 재설정 정보 조회 시, 어제의 잠재능력 재설정 정보 데이터를 조회할 수 있습니다.</para>
-        /// <para>2024년 1월 25일 데이터부터 조회할 수 있습니다.</para>
+        /// <para>잠재능력 재설정 정보는 최대 30분 후 확인 가능합니다.</para>
+        /// <para>잠재능력 재설정 이용 결과는 2024년 01월 25일 데이터부터 조회 가능하며, 최대 2년동안의 데이터만 제공됩니다.</para>
         /// </summary>
         /// <param name="count">한번에 가져오려는 결과의 개수(최소 10, 최대 1000)</param>
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
@@ -1279,9 +1274,8 @@ namespace MapleStory.OpenAPI
 
         /// <summary>
         /// 잠재능력 재설정 이용 결과를 조회합니다.
-        /// <para>데이터는 매일 오전 4시, 전일 데이터가 갱신됩니다.</para>
-        /// <para>e.g. 오늘 오후 3시 5분 잠재능력 재설정 정보 조회 시, 어제의 잠재능력 재설정 정보 데이터를 조회할 수 있습니다.</para>
-        /// <para>2024년 1월 25일 데이터부터 조회할 수 있습니다.</para>
+        /// <para>잠재능력 재설정 정보는 최대 30분 후 확인 가능합니다.</para>
+        /// <para>잠재능력 재설정 이용 결과는 2024년 01월 25일 데이터부터 조회 가능하며, 최대 2년동안의 데이터만 제공됩니다.</para>
         /// </summary>
         /// <param name="count">한번에 가져오려는 결과의 개수(최소 10, 최대 1000)</param>
         /// <param name="cursor">페이징 처리를 위한 cursor</param>

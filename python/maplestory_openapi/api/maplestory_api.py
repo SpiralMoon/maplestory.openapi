@@ -695,8 +695,8 @@ class MapleStoryApi(BaseModel):
     def get_cube_history(self, count, date: datetime | None = None, cursor: str | None = None) -> CubeHistory:
         """큐브 사용 결과를 조회합니다.
 
-        - 데이터는 매일 오전 4시, 전일 데이터가 갱신됩니다.
-        - 2022년 11월 25일 데이터부터 조회할 수 있습니다.
+        - 큐브 확률 정보는 최대 30분 후 확인 가능합니다.
+        - 큐브 사용 결과는 최근 2년 데이터만 조회 가능합니다.
 
         @param count(int): 한번에 가져오려는 결과의 갯수(최소 10, 최대 1000)
         @param date(datetime): 조회 기준일(KST) (cursor가 없는 경우 필수이며 cursor와 함께 사용 불가)
@@ -708,7 +708,7 @@ class MapleStoryApi(BaseModel):
         }
 
         if cursor is None:
-            query['date'] = self.to_date_string(get_proper_default_datetime(day_offset=1, update_hour=4) if date is None else date, datetime(2022, 11, 25)) ,
+            query['date'] = self.to_date_string(get_proper_default_datetime(day_offset=0, update_hour=0) if date is None else date)
         else:
             query['cursor'] = cursor
 
@@ -718,8 +718,8 @@ class MapleStoryApi(BaseModel):
     def get_potential_history(self, count, date: datetime | None = None, cursor: str | None = None) -> PotentialHistory:
         """잠재능력 재설정 이용 결과를 조회합니다.
 
-        - 데이터는 매일 오전 4시, 전일 데이터가 갱신됩니다.
-        - 2024년 1월 25일 데이터부터 조회할 수 있습니다.
+        - 잠재능력 재설정 정보는 최대 30분 후 확인 가능합니다.
+        - 잠재능력 재설정 이용 결과는 2024년 01월 25일 데이터부터 조회 가능하며, 최대 2년동안의 데이터만 제공됩니다.
 
         @param count(int): 한번에 가져오려는 결과의 갯수(최소 10, 최대 1000)
         @param date(datetime): 조회 기준일(KST) (cursor가 없는 경우 필수이며 cursor와 함께 사용 불가)
@@ -731,7 +731,7 @@ class MapleStoryApi(BaseModel):
         }
 
         if cursor is None:
-            query['date'] = self.to_date_string(get_proper_default_datetime(day_offset=1, update_hour=4) if date is None else date, datetime(2024, 1, 25)) ,
+            query['date'] = self.to_date_string(get_proper_default_datetime(day_offset=0, update_hour=0) if date is None else date, datetime(2024, 1, 25)) ,
         else:
             query['cursor'] = cursor
 
@@ -1047,7 +1047,7 @@ class MapleStoryApi(BaseModel):
 
         return r
 
-    def to_date_string(self, date: datetime, min: datetime | None) -> str:
+    def to_date_string(self, date: datetime, min: datetime | None = None) -> str:
 
         target_date = self.get_kst_datetime(date)
         date_str = target_date.strftime('%Y-%m-%d')
