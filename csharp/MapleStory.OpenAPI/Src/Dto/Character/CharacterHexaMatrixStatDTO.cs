@@ -29,7 +29,7 @@ namespace MapleStory.OpenAPI.Dto
         /// 캐릭터 직업
         /// </summary>
         [JsonProperty("character_class")]
-        public string CharacterClass { get; set; }
+        public string? CharacterClass { get; set; }
 
         /// <summary>
         /// HEXA 스탯 I 코어 정보

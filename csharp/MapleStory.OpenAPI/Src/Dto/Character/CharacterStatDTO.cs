@@ -29,7 +29,7 @@ namespace MapleStory.OpenAPI.Dto
         /// 캐릭터 직업
         /// </summary>
         [JsonProperty("character_class")]
-        public string CharacterClass { get; set; }
+        public string? CharacterClass { get; set; }
 
         /// <summary>
         /// 현재 스탯 정보
@@ -41,6 +41,6 @@ namespace MapleStory.OpenAPI.Dto
         /// 잔여 AP
         /// </summary>
         [JsonProperty("remain_ap")]
-        public long RemainAp { get; set; }
+        public int? RemainAp { get; set; }
     }
 }

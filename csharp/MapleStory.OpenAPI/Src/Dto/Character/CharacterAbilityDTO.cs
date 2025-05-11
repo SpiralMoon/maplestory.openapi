@@ -29,7 +29,7 @@ namespace MapleStory.OpenAPI.Dto
         /// 어빌리티 등급
         /// </summary>
         [JsonProperty("ability_grade")]
-        public string AbilityGrade { get; set; }
+        public string? AbilityGrade { get; set; }
 
         /// <summary>
         /// 어빌리티 정보 리스트
@@ -41,7 +41,7 @@ namespace MapleStory.OpenAPI.Dto
         /// 보유 명성치
         /// </summary>
         [JsonProperty("remain_fame")]
-        public long RemainFame { get; set; }
+        public long? RemainFame { get; set; }
 
         /// <summary>
         /// 적용 중인 어빌리티 프리셋 번호

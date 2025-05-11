@@ -29,36 +29,36 @@ namespace MapleStory.OpenAPI.Dto
         /// 카리스마 레벨
         /// </summary>
         [JsonProperty("charisma_level")]
-        public long CharismaLevel { get; set; }
+        public int? CharismaLevel { get; set; }
 
         /// <summary>
         /// 감성 레벨
         /// </summary>
         [JsonProperty("sensibility_level")]
-        public long SensibilityLevel { get; set; }
+        public int? SensibilityLevel { get; set; }
 
         /// <summary>
         /// 통찰력 레벨
         /// </summary>
         [JsonProperty("insight_level")]
-        public long InsightLevel { get; set; }
+        public int? InsightLevel { get; set; }
 
         /// <summary>
         /// 의지 레벨
         /// </summary>
         [JsonProperty("willingness_level")]
-        public long WillingnessLevel { get; set; }
+        public int? WillingnessLevel { get; set; }
 
         /// <summary>
         /// 손재주 레벨
         /// </summary>
         [JsonProperty("handicraft_level")]
-        public long HandicraftLevel { get; set; }
+        public int? HandicraftLevel { get; set; }
 
         /// <summary>
         /// 매력 레벨
         /// </summary>
         [JsonProperty("charm_level")]
-        public long CharmLevel { get; set; }
+        public int? CharmLevel { get; set; }
     }
 }

@@ -29,10 +29,10 @@ namespace MapleStory.OpenAPI.Dto
         /// 캐릭터 직업
         /// </summary>
         [JsonProperty("character_class")]
-        public string CharacterClass { get; set; }
+        public string? CharacterClass { get; set; }
 
         /// <summary>
-        /// V 코어 정보를 나타내는 DTO 클래스입니다.
+        /// V코어 정보
         /// </summary>
         [JsonProperty("character_v_core_equipment")]
         public List<CharacterVMatrixCoreEquipmentDTO> CharacterVCoreEquipment { get; set; }
@@ -41,6 +41,6 @@ namespace MapleStory.OpenAPI.Dto
         /// 캐릭터 잔여 매트릭스 강화 포인트
         /// </summary>
         [JsonProperty("character_v_matrix_remain_slot_upgrade_point")]
-        public long CharacterVMatrixRemainSlotUpgradePoint { get; set; }
+        public int? CharacterVMatrixRemainSlotUpgradePoint { get; set; }
     }
 }
