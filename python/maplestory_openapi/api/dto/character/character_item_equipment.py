@@ -512,8 +512,8 @@ class CharacterItemEquipment(BaseModel):
     mechanic_equipment(list[CharacterItemEquipmentInfo]): 메카닉 장비 정보 (메카닉인 경우 응답)
     """
     date: datetime | None
-    character_gender: str
-    character_class: str
+    character_gender: str | None
+    character_class: str | None
     preset_no: int | None
     item_equipment: list[CharacterItemEquipmentInfo]
     item_equipment_preset_1: list[CharacterItemEquipmentInfo] | None

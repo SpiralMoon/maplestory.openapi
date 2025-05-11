@@ -35,12 +35,12 @@ class CharacterLinkSkill(BaseModel):
     character_owned_link_skill_preset_3(CharacterLinkSkillInfo): 내 링크 스킬 1번 프리셋 정보
     """
     date: datetime | None
-    character_class: str
+    character_class: str | None
     character_link_skill: list[CharacterLinkSkillInfo]
     character_link_skill_preset_1: list[CharacterLinkSkillInfo]
     character_link_skill_preset_2: list[CharacterLinkSkillInfo]
     character_link_skill_preset_3: list[CharacterLinkSkillInfo]
-    character_owned_link_skill: CharacterLinkSkillInfo
+    character_owned_link_skill: CharacterLinkSkillInfo | None
     character_owned_link_skill_preset_1: CharacterLinkSkillInfo | None
     character_owned_link_skill_preset_2: CharacterLinkSkillInfo | None
     character_owned_link_skill_preset_3: CharacterLinkSkillInfo | None

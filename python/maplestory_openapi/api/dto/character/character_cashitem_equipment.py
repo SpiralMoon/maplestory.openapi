@@ -90,10 +90,10 @@ class CharacterCashitemEquipment(BaseModel):
     additional_cash_item_equipment_preset_3(list[CharacterCashitemEquipmentPreset]): 제로인 경우 베타, 엔젤릭버스터인 경우 드레스 업 모드의 3번 코디 프리셋
     """
     date: datetime | None
-    character_gender: str
-    character_class: str
+    character_gender: str | None
+    character_class: str | None
     character_look_mode: str | None
-    preset_no: int
+    preset_no: int | None
     cash_item_equipment_base: list[CharacterCashitemEquipmentPreset]
     cash_item_equipment_preset_1: list[CharacterCashitemEquipmentPreset]
     cash_item_equipment_preset_2: list[CharacterCashitemEquipmentPreset]

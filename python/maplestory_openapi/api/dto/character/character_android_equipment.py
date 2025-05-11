@@ -172,11 +172,11 @@ class CharacterAndroidEquipment(BaseModel):
     android_nickname: str | None
     android_icon: str | None
     android_description: str | None
-    android_hair: CharacterAndroidEquipmentHair
-    android_face: CharacterAndroidEquipmentFace
+    android_hair: CharacterAndroidEquipmentHair | None
+    android_face: CharacterAndroidEquipmentFace | None
     android_skin: CharacterAndroidEquipmentSkin | None
     android_cash_item_equipment: list[CharacterAndroidCashItemEquipment]
-    android_ear_sensor_clip_flag: str
+    android_ear_sensor_clip_flag: str | None
     android_gender: str | None
     android_grade: str | None
     android_non_humanoid_flag: str | None

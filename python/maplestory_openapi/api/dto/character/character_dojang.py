@@ -13,8 +13,8 @@ class CharacterDojang(BaseModel):
     dojang_best_time(int): 무릉도장 최고 층수 클리어에 걸린 시간 (초)
     """
     date: datetime | None
-    character_class: str
-    world_name: str
-    dojang_best_floor: int
+    character_class: str | None
+    world_name: str | None
+    dojang_best_floor: int | None
     date_dojang_record: datetime | None
-    dojang_best_time: int
+    dojang_best_time: int | None
