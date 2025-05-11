@@ -14,7 +14,7 @@ class CharacterAbilityDto {
   /**
    * 어빌리티 등급
    */
-  abilityGrade: string;
+  abilityGrade: string | null;
 
   /**
    *  어빌리티 정보
@@ -24,7 +24,7 @@ class CharacterAbilityDto {
   /**
    * 보유 명성치
    */
-  remainFame: number;
+  remainFame: number | null;
 
   /**
    * 적용 중인 어빌리티 프리셋 번호

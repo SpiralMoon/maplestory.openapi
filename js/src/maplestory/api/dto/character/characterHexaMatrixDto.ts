@@ -13,15 +13,15 @@ class CharacterHexaMatrixDto {
   /**
    * HEXA 코어 정보
    */
-  characterHexaCoreEquipment: CharacterHexaMatrixEquipmentDto[] | null;
+  characterHexaCoreEquipment: CharacterHexaMatrixEquipmentDto[];
 
   constructor(obj: CharacterHexaMatrixDtoBody) {
     const { date, character_hexa_core_equipment } = obj;
 
     this.date = date ? new Date(date) : null;
-    this.characterHexaCoreEquipment = character_hexa_core_equipment.map(
+    this.characterHexaCoreEquipment = character_hexa_core_equipment?.map(
       (equipment) => new CharacterHexaMatrixEquipmentDto(equipment),
-    );
+    ) ?? [];
   }
 }
 

@@ -13,17 +13,17 @@ class CharacterHyperStatDto {
   /**
    * 캐릭터 직업
    */
-  characterClass: string;
+  characterClass: string | null;
 
   /**
    * 적용 중인 프리셋 번호
    */
-  usePresetNo: string;
+  usePresetNo: string | null;
 
   /**
    * 사용 가능한 최대 하이퍼스탯 포인트
    */
-  useAvailableHyperStat: number;
+  useAvailableHyperStat: number | null;
 
   /**
    * 프리셋 1번 하이퍼 스탯 정보
@@ -33,7 +33,7 @@ class CharacterHyperStatDto {
   /**
    * 프리셋 1번 하이퍼 스탯 잔여 포인트
    */
-  hyperStatPreset1RemainPoint: number;
+  hyperStatPreset1RemainPoint: number | null;
 
   /**
    * 프리셋 2번 하이퍼 스탯 정보
@@ -43,7 +43,7 @@ class CharacterHyperStatDto {
   /**
    * 프리셋 2번 하이퍼 스탯 잔여 포인트
    */
-  hyperStatPreset2RemainPoint: number;
+  hyperStatPreset2RemainPoint: number | null;
 
   /**
    * 프리셋 3번 하이퍼 스탯 정보
@@ -53,7 +53,7 @@ class CharacterHyperStatDto {
   /**
    * 프리셋 3번 하이퍼 스탯 잔여 포인트
    */
-  hyperStatPreset3RemainPoint: number;
+  hyperStatPreset3RemainPoint: number | null;
 
   constructor(obj: CharacterHyperStatDtoBody) {
     const {

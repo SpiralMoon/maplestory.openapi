@@ -1,6 +1,6 @@
 type CharacterHexaMatrixDtoBody = {
   date: string | null;
-  character_hexa_core_equipment: CharacterHexaMatrixEquipmentDtoBody[];
+  character_hexa_core_equipment: CharacterHexaMatrixEquipmentDtoBody[] | null;
 };
 
 type CharacterHexaMatrixEquipmentDtoBody = {

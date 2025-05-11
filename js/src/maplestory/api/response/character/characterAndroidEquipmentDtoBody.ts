@@ -4,8 +4,8 @@ type CharacterAndroidEquipmentDtoBody = {
   android_nickname: string | null;
   android_icon: string | null;
   android_description: string | null;
-  android_hair: CharacterAndroidEquipmentHairDtoBody;
-  android_face: CharacterAndroidEquipmentFaceDtoBody;
+  android_hair: CharacterAndroidEquipmentHairDtoBody | null;
+  android_face: CharacterAndroidEquipmentFaceDtoBody | null;
   android_skin: CharacterAndroidEquipmentSkinDtoBody | null;
   android_cash_item_equipment: CharacterAndroidCashItemEquipmentDtoBody[];
   android_ear_sensor_clip_flag: string | null;

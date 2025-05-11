@@ -28,19 +28,19 @@ class CharacterBeautyEquipmentDto {
    * 캐릭터 헤어 정보<br>
    * (제로인 경우 알파, 엔젤릭버스터인 경우 일반 모드)
    */
-  characterHair: CharacterBeautyEquipmentHairDto;
+  characterHair: CharacterBeautyEquipmentHairDto | null;
 
   /**
    * 캐릭터 성형 정보<br>
    * (제로인 경우 알파, 엔젤릭버스터인 경우 일반 모드)
    */
-  characterFace: CharacterBeautyEquipmentFaceDto;
+  characterFace: CharacterBeautyEquipmentFaceDto | null;
 
   /**
    * 캐릭터 피부 정보<br>
    * (제로인 경우 알파, 엔젤릭버스터인 경우 일반 모드)
    */
-  characterSkin: CharacterBeautyEquipmentSkinDto;
+  characterSkin: CharacterBeautyEquipmentSkinDto | null;
 
   /**
    * 제로인 경우 베타, 엔젤릭버스터인 경우 드레스 업 모드에 적용 중인 헤어 정보
@@ -73,9 +73,9 @@ class CharacterBeautyEquipmentDto {
     this.date = date ? new Date(date) : null;
     this.characterGender = character_gender;
     this.characterClass = character_class;
-    this.characterHair = new CharacterBeautyEquipmentHairDto(character_hair);
-    this.characterFace = new CharacterBeautyEquipmentFaceDto(character_face);
-    this.characterSkin = new CharacterBeautyEquipmentSkinDto(character_skin);
+    this.characterHair = character_hair ? new CharacterBeautyEquipmentHairDto(character_hair) : null;
+    this.characterFace = character_face ? new CharacterBeautyEquipmentFaceDto(character_face) : null;
+    this.characterSkin = character_skin ? new CharacterBeautyEquipmentSkinDto(character_skin) : null;
     this.additionalCharacterHair = additional_character_hair
       ? new CharacterBeautyEquipmentHairDto(additional_character_hair)
       : null;

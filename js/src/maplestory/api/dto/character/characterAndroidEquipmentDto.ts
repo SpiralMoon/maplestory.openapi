@@ -2,8 +2,8 @@ import { CharacterAndroidCashItemEquipmentDto } from './characterAndroidCashItem
 import { CharacterAndroidEquipmentFaceDto } from './characterAndroidEquipmentFaceDto';
 import { CharacterAndroidEquipmentHairDto } from './characterAndroidEquipmentHairDto';
 import { CharacterAndroidEquipmentPresetDto } from './characterAndroidEquipmentPresetDto';
-import { CharacterAndroidEquipmentDtoBody } from '../../response/character/characterAndroidEquipmentDtoBody';
 import { CharacterAndroidEquipmentSkinDto } from './characterAndroidEquipmentSkinDto';
+import { CharacterAndroidEquipmentDtoBody } from '../../response/character/characterAndroidEquipmentDtoBody';
 
 /**
  * 캐릭터 안드로이드 장비 정보
@@ -37,12 +37,12 @@ class CharacterAndroidEquipmentDto {
   /**
    * 안드로이드 헤어 정보
    */
-  androidHair: CharacterAndroidEquipmentHairDto;
+  androidHair: CharacterAndroidEquipmentHairDto | null;
 
   /**
    * 안드로이드 성형 정보
    */
-  androidFace: CharacterAndroidEquipmentFaceDto;
+  androidFace: CharacterAndroidEquipmentFaceDto | null;
 
   /**
    * 안드로이드 피부 정보
@@ -126,8 +126,8 @@ class CharacterAndroidEquipmentDto {
     this.androidNickname = android_nickname;
     this.androidIcon = android_icon;
     this.androidDescription = android_description;
-    this.androidHair = new CharacterAndroidEquipmentHairDto(android_hair);
-    this.androidFace = new CharacterAndroidEquipmentFaceDto(android_face);
+    this.androidHair = android_hair ? new CharacterAndroidEquipmentHairDto(android_hair) : null;
+    this.androidFace = android_face ? new CharacterAndroidEquipmentFaceDto(android_face) : null;
     this.androidSkin = android_skin ? new CharacterAndroidEquipmentSkinDto(android_skin) : null;
     this.androidCashItemEquipment = android_cash_item_equipment.map(
       (equipment) => new CharacterAndroidCashItemEquipmentDto(equipment),

@@ -13,7 +13,7 @@ class CharacterHexaMatrixStatDto {
   /**
    * 캐릭터 직업
    */
-  characterClass: string;
+  characterClass: string | null;
 
   /**
    * HEXA 스탯 I 코어 정보
@@ -59,24 +59,24 @@ class CharacterHexaMatrixStatDto {
 
     this.date = date ? new Date(date) : null;
     this.characterClass = character_class;
-    this.characterHexaStatCore = character_hexa_stat_core.map(
+    this.characterHexaStatCore = character_hexa_stat_core?.map(
       (core) => new CharacterHexaMatrixStatCoreDto(core),
-    );
-    this.characterHexaStatCore2 = character_hexa_stat_core_2.map(
+    ) ?? [];
+    this.characterHexaStatCore2 = character_hexa_stat_core_2?.map(
       (core) => new CharacterHexaMatrixStatCoreDto(core),
-    );
-    this.characterHexaStatCore3 = character_hexa_stat_core_3.map(
+    ) ?? [];
+    this.characterHexaStatCore3 = character_hexa_stat_core_3?.map(
       (core) => new CharacterHexaMatrixStatCoreDto(core),
-    );
-    this.presetHexaStatCore = preset_hexa_stat_core.map(
+    ) ?? [];
+    this.presetHexaStatCore = preset_hexa_stat_core?.map(
       (core) => new CharacterHexaMatrixStatCoreDto(core),
-    );
-    this.presetHexaStatCore2 = preset_hexa_stat_core_2.map(
+    ) ?? [];
+    this.presetHexaStatCore2 = preset_hexa_stat_core_2?.map(
       (core) => new CharacterHexaMatrixStatCoreDto(core),
-    );
-    this.presetHexaStatCore3 = preset_hexa_stat_core_3.map(
+    ) ?? [];
+    this.presetHexaStatCore3 = preset_hexa_stat_core_3?.map(
       (core) => new CharacterHexaMatrixStatCoreDto(core),
-    );
+    ) ?? [];
   }
 }
 

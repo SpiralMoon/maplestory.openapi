@@ -13,7 +13,7 @@ class CharacterSymbolEquipmentDto {
   /**
    * 캐릭터 직업
    */
-  characterClass: string;
+  characterClass: string | null;
 
   /**
    * 심볼 정보

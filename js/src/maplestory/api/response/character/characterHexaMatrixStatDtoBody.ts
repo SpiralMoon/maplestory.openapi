@@ -1,12 +1,12 @@
 type CharacterHexaMatrixStatDtoBody = {
   date: string | null;
-  character_class: string;
-  character_hexa_stat_core: CharacterHexaMatrixStatCoreDtoBody[];
-  character_hexa_stat_core_2: CharacterHexaMatrixStatCoreDtoBody[];
-  character_hexa_stat_core_3: CharacterHexaMatrixStatCoreDtoBody[];
-  preset_hexa_stat_core: CharacterHexaMatrixStatCoreDtoBody[];
-  preset_hexa_stat_core_2: CharacterHexaMatrixStatCoreDtoBody[];
-  preset_hexa_stat_core_3: CharacterHexaMatrixStatCoreDtoBody[];
+  character_class: string | null;
+  character_hexa_stat_core: CharacterHexaMatrixStatCoreDtoBody[] | null;
+  character_hexa_stat_core_2: CharacterHexaMatrixStatCoreDtoBody[] | null;
+  character_hexa_stat_core_3: CharacterHexaMatrixStatCoreDtoBody[] | null;
+  preset_hexa_stat_core: CharacterHexaMatrixStatCoreDtoBody[] | null;
+  preset_hexa_stat_core_2: CharacterHexaMatrixStatCoreDtoBody[] | null;
+  preset_hexa_stat_core_3: CharacterHexaMatrixStatCoreDtoBody[] | null;
 };
 
 type CharacterHexaMatrixStatCoreDtoBody = {
