@@ -30,7 +30,7 @@ public class CharacterVMatrixDTO {
     private String characterClass;
 
     /**
-     * V 코어 정보를 나타내는 DTO 클래스입니다.
+     * V코어 정보
      */
     @SerializedName("character_v_core_equipment")
     private List<CharacterVMatrixCoreEquipmentDTO> characterVCoreEquipment;
