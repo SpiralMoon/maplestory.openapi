@@ -45,7 +45,7 @@ public class CharacterCashItemEquipmentDTO {
      * 적용 중인 캐시 장비 프리셋 번호
      */
     @SerializedName("preset_no")
-    private long presetNo;
+    private Integer presetNo;
 
     /**
      * 장착 중인 캐시 장비

@@ -39,7 +39,7 @@ public class CharacterHyperStatDTO {
      * 사용 가능한 최대 하이퍼 스탯 포인트
      */
     @SerializedName("use_available_hyper_stat")
-    private long useAvailableHyperStat;
+    private Integer useAvailableHyperStat;
 
     /**
      * 프리셋 1번 하이퍼 스탯 정보
@@ -51,7 +51,7 @@ public class CharacterHyperStatDTO {
      * 프리셋 1번 하이퍼 스탯 잔여 포인트
      */
     @SerializedName("hyper_stat_preset_1_remain_point")
-    private long hyperStatPreset1RemainPoint;
+    private Integer hyperStatPreset1RemainPoint;
 
     /**
      * 프리셋 2번 하이퍼 스탯 정보
@@ -63,7 +63,7 @@ public class CharacterHyperStatDTO {
      * 프리셋 2번 하이퍼 스탯 잔여 포인트
      */
     @SerializedName("hyper_stat_preset_2_remain_point")
-    private long hyperStatPreset2RemainPoint;
+    private Integer hyperStatPreset2RemainPoint;
 
     /**
      * 프리셋 3번 하이퍼 스탯 정보
@@ -75,7 +75,7 @@ public class CharacterHyperStatDTO {
      * 프리셋 3번 하이퍼 스탯 잔여 포인트
      */
     @SerializedName("hyper_stat_preset_3_remain_point")
-    private long hyperStatPreset3RemainPoint;
+    private Integer hyperStatPreset3RemainPoint;
 
     public LocalDateTime getDate() {
         return date != null

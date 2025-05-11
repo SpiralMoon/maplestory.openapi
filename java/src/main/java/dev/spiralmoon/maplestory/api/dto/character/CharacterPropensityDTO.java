@@ -26,37 +26,37 @@ public class CharacterPropensityDTO {
      * 카리스마 레벨
      */
     @SerializedName("charisma_level")
-    private long charismaLevel;
+    private Integer charismaLevel;
 
     /**
      * 감성 레벨
      */
     @SerializedName("sensibility_level")
-    private long sensibilityLevel;
+    private Integer sensibilityLevel;
 
     /**
      * 통찰력 레벨
      */
     @SerializedName("insight_level")
-    private long insightLevel;
+    private Integer insightLevel;
 
     /**
      * 의지 레벨
      */
     @SerializedName("willingness_level")
-    private long willingnessLevel;
+    private Integer willingnessLevel;
 
     /**
      * 손재주 레벨
      */
     @SerializedName("handicraft_level")
-    private long handicraftLevel;
+    private Integer handicraftLevel;
 
     /**
      * 매력 레벨
      */
     @SerializedName("charm_level")
-    private long charmLevel;
+    private Integer charmLevel;
 
     public LocalDateTime getDate() {
         return date != null
