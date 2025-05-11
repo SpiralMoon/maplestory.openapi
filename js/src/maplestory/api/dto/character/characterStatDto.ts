@@ -12,7 +12,7 @@ class CharacterStatDto {
   /**
    * 캐릭터 직업
    */
-  characterClass: string;
+  characterClass: string | null;
 
   /**
    * 현재 스탯 정보
@@ -25,7 +25,7 @@ class CharacterStatDto {
   /**
    * 잔여 AP
    */
-  remainAP: number;
+  remainAP: number | null;
 
   constructor(obj: CharacterStatDtoBody) {
     const { date, character_class, final_stat, remain_ap } = obj;

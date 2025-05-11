@@ -29,13 +29,13 @@ namespace MapleStory.OpenAPI.Dto
         /// 캐릭터 성별
         /// </summary>
         [JsonProperty("character_gender")]
-        public string CharacterGender { get; set; }
+        public string? CharacterGender { get; set; }
 
         /// <summary>
         /// 캐릭터 직업
         /// </summary>
         [JsonProperty("character_class")]
-        public string CharacterClass { get; set; }
+        public string? CharacterClass { get; set; }
 
         /// <summary>
         /// 적용 중인 장비 프리셋 번호

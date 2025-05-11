@@ -39,7 +39,7 @@ public class CharacterAbilityDTO {
      * 보유 명성치
      */
     @SerializedName("remain_fame")
-    private long remainFame;
+    private Long remainFame;
 
     /**
      * 적용 중인 어빌리티 프리셋 번호

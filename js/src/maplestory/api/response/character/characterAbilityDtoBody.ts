@@ -1,12 +1,12 @@
 type CharacterAbilityDtoBody = {
   date: string | null;
-  ability_grade: string;
+  ability_grade: string | null;
   ability_info: CharacterAbilityInfoDtoBody[];
-  remain_fame: number;
-  preset_no: number;
-  ability_preset_1: CharacterAbilityPresetDtoBody;
-  ability_preset_2: CharacterAbilityPresetDtoBody;
-  ability_preset_3: CharacterAbilityPresetDtoBody;
+  remain_fame: number | null;
+  preset_no: number | null;
+  ability_preset_1: CharacterAbilityPresetDtoBody | null;
+  ability_preset_2: CharacterAbilityPresetDtoBody | null;
+  ability_preset_3: CharacterAbilityPresetDtoBody | null;
 };
 
 type CharacterAbilityInfoDtoBody = {

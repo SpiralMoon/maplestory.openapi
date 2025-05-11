@@ -53,13 +53,13 @@ namespace MapleStory.OpenAPI.Dto
         /// 안드로이드 헤어 정보
         /// </summary>
         [JsonProperty("android_hair")]
-        public CharacterAndroidEquipmentHairDTO AndroidHair { get; set; }
+        public CharacterAndroidEquipmentHairDTO? AndroidHair { get; set; }
 
         /// <summary>
         /// 안드로이드 성형 정보
         /// </summary>
         [JsonProperty("android_face")]
-        public CharacterAndroidEquipmentFaceDTO AndroidFace { get; set; }
+        public CharacterAndroidEquipmentFaceDTO? AndroidFace { get; set; }
 
         /// <summary>
         /// 안드로이드 피부 정보

@@ -13,8 +13,8 @@ class Union(BaseModel):
     union_artifact_point(int): 보유 아티팩트 포인트
     """
     date: datetime | None
-    union_level: int
-    union_grade: str
+    union_level: int | None
+    union_grade: str | None
     union_artifact_level: int | None
     union_artifact_exp: int | None
     union_artifact_point: int | None

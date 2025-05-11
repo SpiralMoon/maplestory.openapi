@@ -29,19 +29,19 @@ namespace MapleStory.OpenAPI.Dto
         /// 캐릭터 직업
         /// </summary>
         [JsonProperty("character_class")]
-        public string CharacterClass { get; set; }
+        public string? CharacterClass { get; set; }
 
         /// <summary>
         /// 월드 명
         /// </summary>
         [JsonProperty("world_name")]
-        public string WorldName { get; set; }
+        public string? WorldName { get; set; }
 
         /// <summary>
         /// 무릉도장 최고 기록 층수
         /// </summary>
         [JsonProperty("dojang_best_floor")]
-        public long DojangBestFloor { get; set; }
+        public int? DojangBestFloor { get; set; }
 
         /// <summary>
         /// 무릉도장 최고 기록 달성 일 (KST)
@@ -65,6 +65,6 @@ namespace MapleStory.OpenAPI.Dto
         /// 무릉도장 최고 층수 클리어에 걸린 시간 (초)
         /// </summary>
         [JsonProperty("dojang_best_time")]
-        public long DojangBestTime { get; set; }
+        public int? DojangBestTime { get; set; }
     }
 }

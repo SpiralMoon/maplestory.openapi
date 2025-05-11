@@ -13,7 +13,7 @@ class CharacterVMatrixDto {
   /**
    * 캐릭터 직업
    */
-  characterClass: string;
+  characterClass: string | null;
 
   /**
    * V코어 정보
@@ -23,7 +23,7 @@ class CharacterVMatrixDto {
   /**
    * 캐릭터 잔여 매트릭스 강화 포인트
    */
-  characterVMatrixRemainSlotUpgradePoint: number;
+  characterVMatrixRemainSlotUpgradePoint: number | null;
 
   constructor(obj: CharacterVMatrixDtoBody) {
     const {

@@ -39,7 +39,7 @@ public class CharacterStatDTO {
      * 잔여 AP
      */
     @SerializedName("remain_ap")
-    private long remainAp;
+    private Integer remainAp;
 
     public LocalDateTime getDate() {
         return date != null

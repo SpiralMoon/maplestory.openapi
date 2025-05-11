@@ -1,7 +1,7 @@
 type CharacterItemEquipmentDtoBody = {
   date: string | null;
-  character_gender: string;
-  character_class: string;
+  character_gender: string | null;
+  character_class: string | null;
   preset_no: number | null;
   item_equipment: CharacterItemEquipmentInfoDtoBody[];
   item_equipment_preset_1: CharacterItemEquipmentInfoDtoBody[] | null;

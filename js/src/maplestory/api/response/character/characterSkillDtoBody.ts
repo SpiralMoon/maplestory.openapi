@@ -1,7 +1,7 @@
 type CharacterSkillDtoBody = {
   date: string | null;
-  character_class: string;
-  character_skill_grade: string;
+  character_class: string | null;
+  character_skill_grade: string | null;
   character_skill: CharacterSkillInfoDtoBody[];
 };
 

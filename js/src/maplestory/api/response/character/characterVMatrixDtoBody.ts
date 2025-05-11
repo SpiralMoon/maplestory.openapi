@@ -1,8 +1,8 @@
 type CharacterVMatrixDtoBody = {
   date: string | null;
-  character_class: string;
+  character_class: string | null;
   character_v_core_equipment: CharacterVMatrixCoreEquipmentDtoBody[];
-  character_v_matrix_remain_slot_upgrade_point: number;
+  character_v_matrix_remain_slot_upgrade_point: number | null;
 };
 
 type CharacterVMatrixCoreEquipmentDtoBody = {

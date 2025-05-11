@@ -1,6 +1,6 @@
 
 from datetime import datetime
-from pydantic import BaseModel
+from pydantic import BaseModel, model_validator
 
 
 class CharacterHexaMatrixEquipmentLinkedSkill(BaseModel):
@@ -33,3 +33,10 @@ class CharacterHexaMatrix(BaseModel):
     """
     date: datetime | None
     character_hexa_core_equipment: list[CharacterHexaMatrixCoreEquipment]
+
+    @model_validator(mode="before")
+    @classmethod
+    def fill_default(cls, values):
+        if values.get("character_hexa_core_equipment") is None:
+            values["character_hexa_core_equipment"] = []
+        return values

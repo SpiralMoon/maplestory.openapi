@@ -21,6 +21,6 @@ class CharacterStat(BaseModel):
     remain_ap(int): 잔여 AP
     """
     date: datetime | None
-    character_class: str
+    character_class: str | None
     final_stat: list[CharacterStatInfo]
-    remain_ap: int
+    remain_ap: int | None

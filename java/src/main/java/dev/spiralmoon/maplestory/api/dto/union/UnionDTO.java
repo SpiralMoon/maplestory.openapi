@@ -26,7 +26,7 @@ public class UnionDTO {
      * 유니온 레벨
      */
     @SerializedName("union_level")
-    private long unionLevel;
+    private Integer unionLevel;
 
     /**
      * 유니온 등급

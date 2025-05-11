@@ -13,12 +13,12 @@ class CharacterSkillDto {
   /**
    * 캐릭터 직업
    */
-  characterClass: string;
+  characterClass: string | null;
 
   /**
    * 스킬 전직 차수
    */
-  characterSkillGrade: string;
+  characterSkillGrade: string | null;
 
   /**
    * 스킬 정보

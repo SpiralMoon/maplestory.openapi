@@ -39,7 +39,7 @@ public class CharacterDojangDTO {
      * 무릉도장 최고 기록 층수
      */
     @SerializedName("dojang_best_floor")
-    private long dojangBestFloor;
+    private Integer dojangBestFloor;
 
     /**
      * 무릉도장 최고 기록 달성 일 (KST)
@@ -51,7 +51,7 @@ public class CharacterDojangDTO {
      * 무릉도장 최고 층수 클리어에 걸린 시간 (초)
      */
     @SerializedName("dojang_best_time")
-    private long dojangBestTime;
+    private Integer dojangBestTime;
 
     public LocalDateTime getDate() {
         return date != null

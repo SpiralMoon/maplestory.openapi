@@ -1,9 +1,9 @@
 type CharacterCashItemEquipmentDtoBody = {
   date: string | null;
-  character_gender: string;
-  character_class: string;
+  character_gender: string | null;
+  character_class: string | null;
   character_look_mode: string | null;
-  preset_no: number;
+  preset_no: number | null;
   cash_item_equipment_base: CharacterCashItemEquipmentPresetDtoBody[];
   cash_item_equipment_preset_1: CharacterCashItemEquipmentPresetDtoBody[];
   cash_item_equipment_preset_2: CharacterCashItemEquipmentPresetDtoBody[];

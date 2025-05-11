@@ -13,7 +13,7 @@ class CharacterLinkSkillDto {
   /**
    * 캐릭터 직업
    */
-  characterClass: string;
+  characterClass: string | null;
 
   /**
    * 링크 스킬 정보
@@ -38,7 +38,7 @@ class CharacterLinkSkillDto {
   /**
    * 내 링크 스킬 정보
    */
-  characterOwnedLinkSkill: CharacterLinkSkillInfoDto;
+  characterOwnedLinkSkill: CharacterLinkSkillInfoDto | null;
 
   /**
    * 내 링크 스킬 1번 프리셋 정보
@@ -83,9 +83,9 @@ class CharacterLinkSkillDto {
     this.characterLinkSkillPreset3 = character_link_skill_preset_3.map(
       (skill) => new CharacterLinkSkillInfoDto(skill),
     );
-    this.characterOwnedLinkSkill = new CharacterLinkSkillInfoDto(
+    this.characterOwnedLinkSkill = character_owned_link_skill ? new CharacterLinkSkillInfoDto(
       character_owned_link_skill,
-    );
+    ) : null;
     this.characterOwnedLinkSkillPreset1 = character_owned_link_skill_preset_1 ? new CharacterLinkSkillInfoDto(
       character_owned_link_skill_preset_1,
     ) : null;

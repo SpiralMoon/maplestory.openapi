@@ -29,13 +29,13 @@ namespace MapleStory.OpenAPI.Dto
         /// 유니온 레벨
         /// </summary>
         [JsonProperty("union_level")]
-        public long UnionLevel { get; set; }
+        public int? UnionLevel { get; set; }
 
         /// <summary>
         /// 유니온 등급
         /// </summary>
         [JsonProperty("union_grade")]
-        public string UnionGrade { get; set; }
+        public string? UnionGrade { get; set; }
 
         /// <summary>
         /// 아티팩트 레벨

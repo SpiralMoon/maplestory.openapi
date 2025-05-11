@@ -60,11 +60,11 @@ class CharacterBeautyEquipment(BaseModel):
     additional_character_skin: 제로인 경우 베타, 엔젤릭버스터인 경우 드레스 업 모드에 적용 중인 피부 정보
     """
     date: datetime | None
-    character_gender: str
-    character_class: str
-    character_hair: CharacterBeautyEquipmentHair
-    character_face: CharacterBeautyEquipmentFace
-    character_skin: CharacterBeautyEquipmentSkin
+    character_gender: str | None
+    character_class: str | None
+    character_hair: CharacterBeautyEquipmentHair | None
+    character_face: CharacterBeautyEquipmentFace | None
+    character_skin: CharacterBeautyEquipmentSkin | None
     additional_character_hair: CharacterBeautyEquipmentHair | None
     additional_character_face: CharacterBeautyEquipmentFace | None
     additional_character_skin: CharacterBeautyEquipmentSkin | None

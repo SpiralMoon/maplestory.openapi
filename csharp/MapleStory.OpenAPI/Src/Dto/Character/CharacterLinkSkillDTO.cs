@@ -29,7 +29,7 @@ namespace MapleStory.OpenAPI.Dto
         /// 캐릭터 직업
         /// </summary>
         [JsonProperty("character_class")]
-        public string CharacterClass { get; set; }
+        public string? CharacterClass { get; set; }
 
         /// <summary>
         /// 링크 스킬 정보
@@ -59,7 +59,7 @@ namespace MapleStory.OpenAPI.Dto
         /// 내 링크 스킬 정보
         /// </summary>
         [JsonProperty("character_owned_link_skill")]
-        public CharacterLinkSkillInfoDTO CharacterOwnedLinkSkill { get; set; }
+        public CharacterLinkSkillInfoDTO? CharacterOwnedLinkSkill { get; set; }
 
         /// <summary>
         /// 내 링크 스킬 1번 프리셋 정보

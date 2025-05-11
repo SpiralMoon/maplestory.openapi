@@ -46,5 +46,5 @@ class CharacterSymbolEquipment(BaseModel):
     symbol(list[CharacterSymbolEquipmentInfo]): 심볼 장비 정보
     """
     date: datetime | None
-    character_class: str
+    character_class: str | None
     symbol: list[CharacterSymbolEquipmentInfo]

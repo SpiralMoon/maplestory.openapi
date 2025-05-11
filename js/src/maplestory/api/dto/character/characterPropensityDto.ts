@@ -9,32 +9,32 @@ class CharacterPropensityDto {
   /**
    * 카리스마 레벨
    */
-  charismaLevel: number;
+  charismaLevel: number | null;
 
   /**
    * 감성 레벨
    */
-  sensibilityLevel: number;
+  sensibilityLevel: number | null;
 
   /**
    * 통찰력 레벨
    */
-  insightLevel: number;
+  insightLevel: number | null;
 
   /**
    *  의지 레벨
    */
-  willingnessLevel: number;
+  willingnessLevel: number | null;
 
   /**
    * 손재주 레벨
    */
-  handicraftLevel: number;
+  handicraftLevel: number | null;
 
   /**
    * 매력 레벨
    */
-  charmLevel: number;
+  charmLevel: number | null;
 
   constructor(obj: CharacterPropensityDtoBody) {
     const {

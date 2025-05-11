@@ -12,12 +12,12 @@ class UnionDto {
   /**
    * 유니온 레벨
    */
-  unionLevel: number;
+  unionLevel: number | null;
 
   /**
    * 유니온 등급
    */
-  unionGrade: string;
+  unionGrade: string | null;
 
   /**
    * 아티팩트 레벨
