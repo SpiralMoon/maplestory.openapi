@@ -1898,8 +1898,8 @@ type OverallRankingApiFilterOptions = {
    * - 오로라
    * - 아케인
    * - 노바
-   * - 리부트
-   * - 리부트2
+   * - 에오스
+   * - 헬리오스
    * - 버닝
    * - 버닝2
    * - 버닝3
@@ -1907,7 +1907,7 @@ type OverallRankingApiFilterOptions = {
   worldName?: string;
 
   /**
-   * 월드 타입 (0:일반, 1:리부트) (기본 값은 0이며, world_name 입력 시 미 반영)
+   * 월드 타입 (0:일반, 1:에오스,헬리오스) (기본 값은 0이며, world_name 입력 시 미 반영)
    */
   worldType?: number;
 
@@ -2039,8 +2039,8 @@ type UnionRankingApiFilterOptions = {
    * - 오로라
    * - 아케인
    * - 노바
-   * - 리부트
-   * - 리부트2
+   * - 에오스
+   * - 헬리오스
    * - 버닝
    * - 버닝2
    * - 버닝3
@@ -2074,8 +2074,8 @@ type GuildRankingApiFilterOptions = {
    * - 오로라
    * - 아케인
    * - 노바
-   * - 리부트
-   * - 리부트2
+   * - 에오스
+   * - 헬리오스
    * - 버닝
    * - 버닝2
    * - 버닝3
@@ -2114,8 +2114,8 @@ type DojangRankingApiFilterOptions = {
    * - 오로라
    * - 아케인
    * - 노바
-   * - 리부트
-   * - 리부트2
+   * - 에오스
+   * - 헬리오스
    * - 버닝
    * - 버닝2
    * - 버닝3
@@ -2255,8 +2255,8 @@ type TheSeedRankingApiFilterOptions = {
    * - 오로라
    * - 아케인
    * - 노바
-   * - 리부트
-   * - 리부트2
+   * - 에오스
+   * - 헬리오스
    * - 버닝
    * - 버닝2
    * - 버닝3

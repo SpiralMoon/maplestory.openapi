@@ -2140,8 +2140,8 @@ public class MapleStoryApi {
      *                  오로라<br>
      *                  아케인<br>
      *                  노바<br>
-     *                  리부트<br>
-     *                  리부트2<br>
+     *                  에오스<br>
+     *                  헬리오스<br>
      *                  버닝<br>
      *                  버닝2<br>
      *                  버닝3<br>
@@ -2181,8 +2181,8 @@ public class MapleStoryApi {
      *                  오로라<br>
      *                  아케인<br>
      *                  노바<br>
-     *                  리부트<br>
-     *                  리부트2<br>
+     *                  에오스<br>
+     *                  헬리오스<br>
      *                  버닝<br>
      *                  버닝2<br>
      *                  버닝3<br>
@@ -2601,12 +2601,12 @@ public class MapleStoryApi {
      *                       오로라<br>
      *                       아케인<br>
      *                       노바<br>
-     *                       리부트<br>
-     *                       리부트2<br>
+     *                       에오스<br>
+     *                       헬리오스<br>
      *                       버닝<br>
      *                       버닝2<br>
      *                       버닝3<br>
-     * @param worldType      월드 타입 (0:일반, 1:리부트) (기본 값은 0이며, worldName 입력 시 미 반영)
+     * @param worldType      월드 타입 (0:일반, 1:에오스,헬리오스) (기본 값은 0이며, worldName 입력 시 미 반영)
      * @param characterClass 직업 및 전직<br>
      *                       초보자-전체 전직<br>
      *                       전사-전체 전직<br>
@@ -2730,8 +2730,8 @@ public class MapleStoryApi {
      *                       오로라<br>
      *                       아케인<br>
      *                       노바<br>
-     *                       리부트<br>
-     *                       리부트2<br>
+     *                       에오스<br>
+     *                       헬리오스<br>
      *                       버닝<br>
      *                       버닝2<br>
      *                       버닝3<br>
@@ -2872,8 +2872,8 @@ public class MapleStoryApi {
      *                       오로라<br>
      *                       아케인<br>
      *                       노바<br>
-     *                       리부트<br>
-     *                       리부트2<br>
+     *                       에오스<br>
+     *                       헬리오스<br>
      *                       버닝<br>
      *                       버닝2<br>
      *                       버닝3<br>
@@ -3001,8 +3001,8 @@ public class MapleStoryApi {
      *                       오로라<br>
      *                       아케인<br>
      *                       노바<br>
-     *                       리부트<br>
-     *                       리부트2<br>
+     *                       에오스<br>
+     *                       헬리오스<br>
      *                       버닝<br>
      *                       버닝2<br>
      *                       버닝3<br>
@@ -3137,8 +3137,8 @@ public class MapleStoryApi {
      *                  오로라<br>
      *                  아케인<br>
      *                  노바<br>
-     *                  리부트<br>
-     *                  리부트2<br>
+     *                  에오스<br>
+     *                  헬리오스<br>
      *                  버닝<br>
      *                  버닝2<br>
      *                  버닝3<br>
@@ -3168,8 +3168,8 @@ public class MapleStoryApi {
      *                      오로라<br>
      *                      아케인<br>
      *                      노바<br>
-     *                      리부트<br>
-     *                      리부트2<br>
+     *                      에오스<br>
+     *                      헬리오스<br>
      *                      버닝<br>
      *                      버닝2<br>
      *                      버닝3<br>
@@ -3212,8 +3212,8 @@ public class MapleStoryApi {
      *                  오로라<br>
      *                  아케인<br>
      *                  노바<br>
-     *                  리부트<br>
-     *                  리부트2<br>
+     *                  에오스<br>
+     *                  헬리오스<br>
      *                  버닝<br>
      *                  버닝2<br>
      *                  버닝3<br>
@@ -3243,8 +3243,8 @@ public class MapleStoryApi {
      *                      오로라<br>
      *                      아케인<br>
      *                      노바<br>
-     *                      리부트<br>
-     *                      리부트2<br>
+     *                      에오스<br>
+     *                      헬리오스<br>
      *                      버닝<br>
      *                      버닝2<br>
      *                      버닝3<br>
@@ -3281,8 +3281,8 @@ public class MapleStoryApi {
      *                    오로라<br>
      *                    아케인<br>
      *                    노바<br>
-     *                    리부트<br>
-     *                    리부트2<br>
+     *                    에오스<br>
+     *                    헬리오스<br>
      *                    버닝<br>
      *                    버닝2<br>
      *                    버닝3<br>
@@ -3313,8 +3313,8 @@ public class MapleStoryApi {
      *                      오로라<br>
      *                      아케인<br>
      *                      노바<br>
-     *                      리부트<br>
-     *                      리부트2<br>
+     *                      에오스<br>
+     *                      헬리오스<br>
      *                      버닝<br>
      *                      버닝2<br>
      *                      버닝3<br>
@@ -3358,8 +3358,8 @@ public class MapleStoryApi {
      *                    오로라<br>
      *                    아케인<br>
      *                    노바<br>
-     *                    리부트<br>
-     *                    리부트2<br>
+     *                    에오스<br>
+     *                    헬리오스<br>
      *                    버닝<br>
      *                    버닝2<br>
      *                    버닝3<br>
@@ -3390,8 +3390,8 @@ public class MapleStoryApi {
      *                      오로라<br>
      *                      아케인<br>
      *                      노바<br>
-     *                      리부트<br>
-     *                      리부트2<br>
+     *                      에오스<br>
+     *                      헬리오스<br>
      *                      버닝<br>
      *                      버닝2<br>
      *                      버닝3<br>
@@ -3429,8 +3429,8 @@ public class MapleStoryApi {
      *                       오로라<br>
      *                       아케인<br>
      *                       노바<br>
-     *                       리부트<br>
-     *                       리부트2<br>
+     *                       에오스<br>
+     *                       헬리오스<br>
      *                       버닝<br>
      *                       버닝2<br>
      *                       버닝3<br>
@@ -3558,8 +3558,8 @@ public class MapleStoryApi {
      *                       오로라<br>
      *                       아케인<br>
      *                       노바<br>
-     *                       리부트<br>
-     *                       리부트2<br>
+     *                       에오스<br>
+     *                       헬리오스<br>
      *                       버닝<br>
      *                       버닝2<br>
      *                       버닝3<br>
@@ -3700,8 +3700,8 @@ public class MapleStoryApi {
      *                       오로라<br>
      *                       아케인<br>
      *                       노바<br>
-     *                       리부트<br>
-     *                       리부트2<br>
+     *                       에오스<br>
+     *                       헬리오스<br>
      *                       버닝<br>
      *                       버닝2<br>
      *                       버닝3<br>
@@ -3829,8 +3829,8 @@ public class MapleStoryApi {
      *                       오로라<br>
      *                       아케인<br>
      *                       노바<br>
-     *                       리부트<br>
-     *                       리부트2<br>
+     *                       에오스<br>
+     *                       헬리오스<br>
      *                       버닝<br>
      *                       버닝2<br>
      *                       버닝3<br>
@@ -3965,8 +3965,8 @@ public class MapleStoryApi {
      *                  오로라<br>
      *                  아케인<br>
      *                  노바<br>
-     *                  리부트<br>
-     *                  리부트2<br>
+     *                  에오스<br>
+     *                  헬리오스<br>
      *                  버닝<br>
      *                  버닝2<br>
      *                  버닝3<br>
@@ -3996,8 +3996,8 @@ public class MapleStoryApi {
      *                      오로라<br>
      *                      아케인<br>
      *                      노바<br>
-     *                      리부트<br>
-     *                      리부트2<br>
+     *                      에오스<br>
+     *                      헬리오스<br>
      *                      버닝<br>
      *                      버닝2<br>
      *                      버닝3<br>
@@ -4040,8 +4040,8 @@ public class MapleStoryApi {
      *                  오로라<br>
      *                  아케인<br>
      *                  노바<br>
-     *                  리부트<br>
-     *                  리부트2<br>
+     *                  에오스<br>
+     *                  헬리오스<br>
      *                  버닝<br>
      *                  버닝2<br>
      *                  버닝3<br>
@@ -4071,8 +4071,8 @@ public class MapleStoryApi {
      *                      오로라<br>
      *                      아케인<br>
      *                      노바<br>
-     *                      리부트<br>
-     *                      리부트2<br>
+     *                      에오스<br>
+     *                      헬리오스<br>
      *                      버닝<br>
      *                      버닝2<br>
      *                      버닝3<br>

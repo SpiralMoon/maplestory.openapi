@@ -1069,8 +1069,8 @@ namespace MapleStory.OpenAPI
         /// <para>오로라</para>
         /// <para>아케인</para>
         /// <para>노바</para>
-        /// <para>리부트</para>
-        /// <para>리부트2</para>
+        /// <para>에오스</para>
+        /// <para>헬리오스</para>
         /// <para>버닝</para>
         /// <para>버닝2</para>
         /// <para>버닝3</para>
@@ -1314,13 +1314,13 @@ namespace MapleStory.OpenAPI
         /// <para>오로라</para>
         /// <para>아케인</para>
         /// <para>노바</para>
-        /// <para>리부트</para>
-        /// <para>리부트2</para>
+        /// <para>에오스</para>
+        /// <para>헬리오스</para>
         /// <para>버닝</para>
         /// <para>버닝2</para>
         /// <para>버닝3</para>
         /// </param>
-        /// <param name="worldType">월드 타입 (0:일반, 1:리부트) (기본 값은 0이며, worldName 입력 시 미 반영)</param>
+        /// <param name="worldType">월드 타입 (0:일반, 1:에오스,헬리오스) (기본 값은 0이며, worldName 입력 시 미 반영)</param>
         /// <param name="characterClass">직업 및 전직
         /// <para>초보자-전체 전직</para>
         /// <para>전사-전체 전직</para>
@@ -1450,8 +1450,8 @@ namespace MapleStory.OpenAPI
         /// <para>오로라</para>
         /// <para>아케인</para>
         /// <para>노바</para>
-        /// <para>리부트</para>
-        /// <para>리부트2</para>
+        /// <para>에오스</para>
+        /// <para>헬리오스</para>
         /// <para>버닝</para>
         /// <para>버닝2</para>
         /// <para>버닝3</para>
@@ -1593,8 +1593,8 @@ namespace MapleStory.OpenAPI
         /// <para>오로라</para>
         /// <para>아케인</para>
         /// <para>노바</para>
-        /// <para>리부트</para>
-        /// <para>리부트2</para>
+        /// <para>에오스</para>
+        /// <para>헬리오스</para>
         /// <para>버닝</para>
         /// <para>버닝2</para>
         /// <para>버닝3</para>
@@ -1630,8 +1630,8 @@ namespace MapleStory.OpenAPI
         /// <para>오로라</para>
         /// <para>아케인</para>
         /// <para>노바</para>
-        /// <para>리부트</para>
-        /// <para>리부트2</para>
+        /// <para>에오스</para>
+        /// <para>헬리오스</para>
         /// <para>버닝</para>
         /// <para>버닝2</para>
         /// <para>버닝3</para>
@@ -1672,8 +1672,8 @@ namespace MapleStory.OpenAPI
         /// <para>오로라</para>
         /// <para>아케인</para>
         /// <para>노바</para>
-        /// <para>리부트</para>
-        /// <para>리부트2</para>
+        /// <para>에오스</para>
+        /// <para>헬리오스</para>
         /// <para>버닝</para>
         /// <para>버닝2</para>
         /// <para>버닝3</para>
@@ -1710,8 +1710,8 @@ namespace MapleStory.OpenAPI
         /// <para>오로라</para>
         /// <para>아케인</para>
         /// <para>노바</para>
-        /// <para>리부트</para>
-        /// <para>리부트2</para>
+        /// <para>에오스</para>
+        /// <para>헬리오스</para>
         /// <para>버닝</para>
         /// <para>버닝2</para>
         /// <para>버닝3</para>
@@ -1754,8 +1754,8 @@ namespace MapleStory.OpenAPI
         /// <para>오로라</para>
         /// <para>아케인</para>
         /// <para>노바</para>
-        /// <para>리부트</para>
-        /// <para>리부트2</para>
+        /// <para>에오스</para>
+        /// <para>헬리오스</para>
         /// <para>버닝</para>
         /// <para>버닝2</para>
         /// <para>버닝3</para>
@@ -1890,8 +1890,8 @@ namespace MapleStory.OpenAPI
         /// <para>오로라</para>
         /// <para>아케인</para>
         /// <para>노바</para>
-        /// <para>리부트</para>
-        /// <para>리부트2</para>
+        /// <para>에오스</para>
+        /// <para>헬리오스</para>
         /// <para>버닝</para>
         /// <para>버닝2</para>
         /// <para>버닝3</para>
@@ -2033,8 +2033,8 @@ namespace MapleStory.OpenAPI
         /// <para>오로라</para>
         /// <para>아케인</para>
         /// <para>노바</para>
-        /// <para>리부트</para>
-        /// <para>리부트2</para>
+        /// <para>에오스</para>
+        /// <para>헬리오스</para>
         /// <para>버닝</para>
         /// <para>버닝2</para>
         /// <para>버닝3</para>
@@ -2070,8 +2070,8 @@ namespace MapleStory.OpenAPI
         /// <para>오로라</para>
         /// <para>아케인</para>
         /// <para>노바</para>
-        /// <para>리부트</para>
-        /// <para>리부트2</para>
+        /// <para>에오스</para>
+        /// <para>헬리오스</para>
         /// <para>버닝</para>
         /// <para>버닝2</para>
         /// <para>버닝3</para>
