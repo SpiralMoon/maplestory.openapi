@@ -3,7 +3,8 @@ from datetime import datetime
 from zoneinfo import ZoneInfo
 from typing import Any
 from pydantic import BaseModel
-import requests
+import httpx
+import asyncio
 
 from maplestory_openapi.api.dto.character.character import Character
 from maplestory_openapi.api.dto.character.character_basic import CharacterBasic
@@ -75,7 +76,7 @@ class MapleStoryApi(BaseModel):
 
     #region 캐릭터 정보 조회
 
-    def get_character_id(self, character_name: str) -> Character:
+    async def get_character_id(self, character_name: str) -> Character:
         """캐릭터 식별자(ocid)를 조회합니다.
 
         - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.
@@ -90,10 +91,10 @@ class MapleStoryApi(BaseModel):
         query = {
             'character_name': character_name,
         }
-        r = self.fetch(path, query)
+        r = await self.fetch(path, query)
         return Character(**r)
 
-    def get_character_list(self) -> CharacterList:
+    async def get_character_list(self) -> CharacterList:
         """계정의 보유 캐릭터 목록을 조회합니다.
 
         - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.
@@ -103,10 +104,10 @@ class MapleStoryApi(BaseModel):
 
         path = 'maplestory/v1/character/list'
         query = {}
-        r = self.fetch(path, query)
+        r = await self.fetch(path, query)
         return CharacterList(**r)
 
-    def get_character_basic(self, ocid: str, date: datetime | None = None) -> CharacterBasic:
+    async def get_character_basic(self, ocid: str, date: datetime | None = None) -> CharacterBasic:
         """기본 정보를 조회합니다.
 
         - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.
@@ -122,11 +123,11 @@ class MapleStoryApi(BaseModel):
             'ocid': ocid,
             'date': self.to_date_string(date, datetime(2023, 12, 21)) if date is not None else None
         }
-        r = self.fetch(path, query)
+        r = await self.fetch(path, query)
 
         return CharacterBasic(**r)
 
-    def get_character_image(self, ocid: str, option: CharacterImageOption | None = None, date: datetime | None = None) -> CharacterBasic:
+    async def get_character_image(self, ocid: str, option: CharacterImageOption | None = None, date: datetime | None = None) -> CharacterBasic:
         """캐릭터 외형 이미지 정보를 조회합니다.
 
         - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.
@@ -139,7 +140,7 @@ class MapleStoryApi(BaseModel):
         @param date(datetime): 조회 기준일 (KST)
         """
 
-        basic = self.get_character_basic(ocid, date)
+        basic = await self.get_character_basic(ocid, date)
         path = basic.character_image.replace(self.BASE_URL, '')
         image_option = option if option is not None else CharacterImageOption()
 
@@ -163,21 +164,17 @@ class MapleStoryApi(BaseModel):
             'y': y,
         }
 
-        origin_image_response = requests.get(
-            f'{self.BASE_URL}{path}',
-            headers={
-                'x-nxopen-api-key': self.api_key,
-            },
-            timeout=self.timeout,
-        )
-        image_response = requests.get(
-            f'{self.BASE_URL}{path}',
-            params={key: value for key, value in query.items() if value is not None},
-            headers={
-                'x-nxopen-api-key': self.api_key,
-            },
-            timeout=self.timeout,
-        )
+        async with httpx.AsyncClient(timeout=self.timeout) as client:
+            origin_task = client.get(
+                f'{self.BASE_URL}{path}',
+                headers={'x-nxopen-api-key': self.api_key},
+            )
+            image_task = client.get(
+                f'{self.BASE_URL}{path}',
+                params={k: v for k, v in query.items() if v is not None},
+                headers={'x-nxopen-api-key': self.api_key},
+            )
+            origin_image_response, image_response = await asyncio.gather(origin_task, image_task)
 
         origin_image_mime_type = origin_image_response.headers.get('content-type')
         image_mime_type = image_response.headers.get('content-type')
@@ -201,7 +198,7 @@ class MapleStoryApi(BaseModel):
             y=y,
         )
 
-    def get_character_popularity(self, ocid: str, date: datetime | None = None) -> CharacterPopularity:
+    async def get_character_popularity(self, ocid: str, date: datetime | None = None) -> CharacterPopularity:
         """인기도 정보를 조회합니다.
 
         - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.
@@ -217,14 +214,14 @@ class MapleStoryApi(BaseModel):
             'ocid': ocid,
             'date': self.to_date_string(date, datetime(2023, 12, 21)) if date is not None else None
         }
-        r = self.fetch(path, query)
+        r = await self.fetch(path, query)
 
         return CharacterPopularity(
             date=r.get('date'),
             popularity=r.get('popularity'),
         )
 
-    def get_character_stat(self, ocid: str, date: datetime | None = None) -> CharacterStat:
+    async def get_character_stat(self, ocid: str, date: datetime | None = None) -> CharacterStat:
         """종합능력치 정보를 조회합니다.
 
         - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.
@@ -240,11 +237,11 @@ class MapleStoryApi(BaseModel):
             'ocid': ocid,
             'date': self.to_date_string(date, datetime(2023, 12, 21)) if date is not None else None
         }
-        r = self.fetch(path, query)
+        r = await self.fetch(path, query)
 
         return CharacterStat(**r)
 
-    def get_character_hyper_stat(self, ocid: str, date: datetime | None = None) -> CharacterHyperStat:
+    async def get_character_hyper_stat(self, ocid: str, date: datetime | None = None) -> CharacterHyperStat:
         """하이퍼스탯 정보를 조회합니다.
 
         - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.
@@ -260,11 +257,11 @@ class MapleStoryApi(BaseModel):
             'ocid': ocid,
             'date': self.to_date_string(date, datetime(2023, 12, 21)) if date is not None else None
         }
-        r = self.fetch(path, query)
+        r = await self.fetch(path, query)
 
         return CharacterHyperStat(**r)
 
-    def get_character_propensity(self, ocid: str, date: datetime | None = None) -> CharacterPropensity:
+    async def get_character_propensity(self, ocid: str, date: datetime | None = None) -> CharacterPropensity:
         """성향 정보를 조회합니다.
 
         - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.
@@ -280,11 +277,11 @@ class MapleStoryApi(BaseModel):
             'ocid': ocid,
             'date': self.to_date_string(date, datetime(2023, 12, 21)) if date is not None else None
         }
-        r = self.fetch(path, query)
+        r = await self.fetch(path, query)
 
         return CharacterPropensity(**r)
 
-    def get_character_ability(self, ocid: str, date: datetime | None = None) -> CharacterAbility:
+    async def get_character_ability(self, ocid: str, date: datetime | None = None) -> CharacterAbility:
         """어빌리티 정보를 조회합니다.
 
         - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.
@@ -300,11 +297,11 @@ class MapleStoryApi(BaseModel):
             'ocid': ocid,
             'date': self.to_date_string(date, datetime(2023, 12, 21)) if date is not None else None
         }
-        r = self.fetch(path, query)
+        r = await self.fetch(path, query)
 
         return CharacterAbility(**r)
 
-    def get_character_item_equipment(self, ocid: str, date: datetime | None = None) -> CharacterItemEquipment:
+    async def get_character_item_equipment(self, ocid: str, date: datetime | None = None) -> CharacterItemEquipment:
         """장착한 장비 중 캐시 장비를 제외한 나머지 장비 정보를 조회합니다.
 
         - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.
@@ -320,11 +317,11 @@ class MapleStoryApi(BaseModel):
             'ocid': ocid,
             'date': self.to_date_string(date, datetime(2023, 12, 21)) if date is not None else None
         }
-        r = self.fetch(path, query)
+        r = await self.fetch(path, query)
 
         return CharacterItemEquipment(**r)
 
-    def get_character_cashitem_equipment(self, ocid: str, date: datetime | None = None) -> CharacterCashitemEquipment:
+    async def get_character_cashitem_equipment(self, ocid: str, date: datetime | None = None) -> CharacterCashitemEquipment:
         """장착한 캐시 장비 정보를 조회합니다.
 
         - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.
@@ -340,11 +337,11 @@ class MapleStoryApi(BaseModel):
             'ocid': ocid,
             'date': self.to_date_string(date, datetime(2023, 12, 21)) if date is not None else None
         }
-        r = self.fetch(path, query)
+        r = await self.fetch(path, query)
 
         return CharacterCashitemEquipment(**r)
 
-    def get_character_symbol_equipment(self, ocid: str, date: datetime | None = None) -> CharacterSymbolEquipment:
+    async def get_character_symbol_equipment(self, ocid: str, date: datetime | None = None) -> CharacterSymbolEquipment:
         """장착한 심볼 정보를 조회합니다.
 
         - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.
@@ -360,10 +357,10 @@ class MapleStoryApi(BaseModel):
             'ocid': ocid,
             'date': self.to_date_string(date, datetime(2023, 12, 21)) if date is not None else None
         }
-        r = self.fetch(path, query)
+        r = await self.fetch(path, query)
         return CharacterSymbolEquipment(**r)
 
-    def get_character_set_effect(self, ocid: str, date: datetime | None = None) -> CharacterSetEffect:
+    async def get_character_set_effect(self, ocid: str, date: datetime | None = None) -> CharacterSetEffect:
         """적용받고 있는 세트 효과 정보를 조회합니다
 
         - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.
@@ -379,10 +376,10 @@ class MapleStoryApi(BaseModel):
             'ocid': ocid,
             'date': self.to_date_string(date, datetime(2023, 12, 21)) if date is not None else None
         }
-        r = self.fetch(path, query)
+        r = await self.fetch(path, query)
         return CharacterSetEffect(**r)
 
-    def get_character_beauty_equipment(self, ocid: str, date: datetime | None = None) -> CharacterBeautyEquipment:
+    async def get_character_beauty_equipment(self, ocid: str, date: datetime | None = None) -> CharacterBeautyEquipment:
         """캐릭터 헤어, 성형, 피부 정보를 조회합니다.
 
         - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.
@@ -398,10 +395,10 @@ class MapleStoryApi(BaseModel):
             'ocid': ocid,
             'date': self.to_date_string(date, datetime(2023, 12, 21)) if date is not None else None
         }
-        r = self.fetch(path, query)
+        r = await self.fetch(path, query)
         return CharacterBeautyEquipment(**r)
 
-    def get_character_android_equipment(self, ocid: str, date: datetime | None = None) -> CharacterAndroidEquipment:
+    async def get_character_android_equipment(self, ocid: str, date: datetime | None = None) -> CharacterAndroidEquipment:
         """장착한 안드로이드 정보를 조회합니다.
 
         - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.
@@ -417,10 +414,10 @@ class MapleStoryApi(BaseModel):
             'ocid': ocid,
             'date': self.to_date_string(date, datetime(2023, 12, 21)) if date is not None else None,
         }
-        r = self.fetch(path, query)
+        r = await self.fetch(path, query)
         return CharacterAndroidEquipment(**r)
 
-    def get_character_pet_equipment(self, ocid: str, date: datetime | None = None) -> CharacterPetEquipment:
+    async def get_character_pet_equipment(self, ocid: str, date: datetime | None = None) -> CharacterPetEquipment:
         """장착한 펫 및 펫 스킬, 장비 정보를 조회합니다.
 
         - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.
@@ -436,10 +433,10 @@ class MapleStoryApi(BaseModel):
             'ocid': ocid,
             'date': self.to_date_string(date, datetime(2023, 12, 21)) if date is not None else None,
         }
-        r = self.fetch(path, query)
+        r = await self.fetch(path, query)
         return CharacterPetEquipment(**r)
 
-    def get_character_skill(self, ocid: str, character_skill_grade: str, date: datetime | None = None) -> CharacterSkill:
+    async def get_character_skill(self, ocid: str, character_skill_grade: str, date: datetime | None = None) -> CharacterSkill:
         """캐릭터 스킬과 하이퍼 스킬 정보를 조회합니다.
 
         - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.
@@ -468,10 +465,10 @@ class MapleStoryApi(BaseModel):
             'date': self.to_date_string(date, datetime(2023, 12, 21)) if date is not None else None,
             'character_skill_grade': character_skill_grade,
         }
-        r = self.fetch(path, query)
+        r = await self.fetch(path, query)
         return CharacterSkill(**r)
 
-    def get_character_link_skill(self, ocid: str, date: datetime | None = None) -> CharacterLinkSkill:
+    async def get_character_link_skill(self, ocid: str, date: datetime | None = None) -> CharacterLinkSkill:
         """장착 링크 스킬 정보를 조회합니다.
 
         - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.
@@ -487,10 +484,10 @@ class MapleStoryApi(BaseModel):
             'ocid': ocid,
             'date': self.to_date_string(date, datetime(2023, 12, 21)) if date is not None else None,
         }
-        r = self.fetch(path, query)
+        r = await self.fetch(path, query)
         return CharacterLinkSkill(**r)
 
-    def get_character_vmatrix(self, ocid: str, date: datetime | None = None) -> CharacterVMatrix:
+    async def get_character_vmatrix(self, ocid: str, date: datetime | None = None) -> CharacterVMatrix:
         """V매트릭스 슬롯 정보와 장착한 V코어 정보를 조회합니다.
 
         - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.
@@ -506,10 +503,10 @@ class MapleStoryApi(BaseModel):
             'ocid': ocid,
             'date': self.to_date_string(date, datetime(2023, 12, 21)) if date is not None else None,
         }
-        r = self.fetch(path, query)
+        r = await self.fetch(path, query)
         return CharacterVMatrix(**r)
 
-    def get_character_hexamatrix(self, ocid: str, date: datetime | None = None) -> CharacterHexaMatrix:
+    async def get_character_hexamatrix(self, ocid: str, date: datetime | None = None) -> CharacterHexaMatrix:
         """HEXA 매트릭스에 장착한 HEXA 코어 정보를 조회합니다.
 
         - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.
@@ -525,10 +522,10 @@ class MapleStoryApi(BaseModel):
             'ocid': ocid,
             'date': self.to_date_string(date, datetime(2023, 12, 21)) if date is not None else None,
         }
-        r = self.fetch(path, query)
+        r = await self.fetch(path, query)
         return CharacterHexaMatrix(**r)
 
-    def get_character_hexamatrix_stat(self, ocid: str, date: datetime | None = None) -> CharacterHexaMatrixStat:
+    async def get_character_hexamatrix_stat(self, ocid: str, date: datetime | None = None) -> CharacterHexaMatrixStat:
         """HEXA 매트릭스에 설정한 HEXA 스탯 정보를 조회합니다.
 
         - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.
@@ -544,10 +541,10 @@ class MapleStoryApi(BaseModel):
             'ocid': ocid,
             'date': self.to_date_string(date, datetime(2023, 12, 21)) if date is not None else None,
         }
-        r = self.fetch(path, query)
+        r = await self.fetch(path, query)
         return CharacterHexaMatrixStat(**r)
 
-    def get_character_dojang(self, ocid: str, date: datetime | None = None) -> CharacterDojang:
+    async def get_character_dojang(self, ocid: str, date: datetime | None = None) -> CharacterDojang:
         """캐릭터 무릉도장 최고 기록 정보를 조회합니다.
 
         - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.
@@ -563,14 +560,14 @@ class MapleStoryApi(BaseModel):
             'ocid': ocid,
             'date': self.to_date_string(date, datetime(2023, 12, 21)) if date is not None else None,
         }
-        r = self.fetch(path, query)
+        r = await self.fetch(path, query)
         return CharacterDojang(**r)
 
     #endregion
 
     #region 유니온 정보 조회
 
-    def get_union(self, ocid: str, date: datetime | None = None) -> Union:
+    async def get_union(self, ocid: str, date: datetime | None = None) -> Union:
         """유니온 레벨 및 유니온 등급 정보를 조회합니다.
 
         - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.
@@ -586,10 +583,10 @@ class MapleStoryApi(BaseModel):
             'ocid': ocid,
             'date': self.to_date_string(date, datetime(2023, 12, 21)) if date is not None else None,
         }
-        r = self.fetch(path, query)
+        r = await self.fetch(path, query)
         return Union(**r)
 
-    def get_union_raider(self, ocid: str, date: datetime | None = None) -> UnionRaider:
+    async def get_union_raider(self, ocid: str, date: datetime | None = None) -> UnionRaider:
         """유니온에 배치된 공격대원 효과 및 공격대 점령 효과 등 상세 정보를 조회합니다.
 
         - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.
@@ -605,10 +602,10 @@ class MapleStoryApi(BaseModel):
             'ocid': ocid,
             'date': self.to_date_string(date, datetime(2023, 12, 21)) if date is not None else None,
         }
-        r = self.fetch(path, query)
+        r = await self.fetch(path, query)
         return UnionRaider(**r)
 
-    def get_union_artifact(self, ocid: str, date: datetime | None = None) -> UnionArtifact:
+    async def get_union_artifact(self, ocid: str, date: datetime | None = None) -> UnionArtifact:
         """유니온 아티팩트 정보를 조회합니다.
 
         - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.
@@ -624,10 +621,10 @@ class MapleStoryApi(BaseModel):
             'ocid': ocid,
             'date': self.to_date_string(date, datetime(2023, 12, 21)) if date is not None else None,
         }
-        r = self.fetch(path, query)
+        r = await self.fetch(path, query)
         return UnionArtifact(**r)
 
-    def get_union_champion(self, ocid: str, date: datetime | None = None) -> UnionChampion:
+    async def get_union_champion(self, ocid: str, date: datetime | None = None) -> UnionChampion:
         """유니온 챔피언 정보를 조회합니다.
         유니온 챔피언 정보는 2025년 2월 20일 메이플스토리 점검 이후 데이터부터 조회 가능합니다.
 
@@ -644,14 +641,14 @@ class MapleStoryApi(BaseModel):
             'ocid': ocid,
             'date': self.to_date_string(date, datetime(2023, 12, 21)) if date is not None else None,
         }
-        r = self.fetch(path, query)
+        r = await self.fetch(path, query)
         return UnionChampion(**r)
 
     #endregion
 
     #region 길드 정보 조회
 
-    def get_guild_id(self, guild_name: str, world_name: str) -> Guild:
+    async def get_guild_id(self, guild_name: str, world_name: str) -> Guild:
         """길드 식별자(gcid) 정보를 조회합니다.
 
         - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
@@ -667,10 +664,10 @@ class MapleStoryApi(BaseModel):
             'guild_name': guild_name,
             'world_name': world_name,
         }
-        r = self.fetch(path, query)
+        r = await self.fetch(path, query)
         return Guild(**r)
 
-    def get_guild_basic(self, oguid_id: str, date: datetime | None = None) -> GuildBasic:
+    async def get_guild_basic(self, oguid_id: str, date: datetime | None = None) -> GuildBasic:
         """길드 기본 정보를 조회합니다.
 
         - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
@@ -685,14 +682,14 @@ class MapleStoryApi(BaseModel):
             'oguild_id': oguid_id,
             'date': self.to_date_string(date, datetime(2023, 12, 21)) if date is not None else None,
         }
-        r = self.fetch(path, query)
+        r = await self.fetch(path, query)
         return GuildBasic(**r)
 
     #endregion
 
     #region 확률 정보 조회
 
-    def get_cube_history(self, count, date: datetime | None = None, cursor: str | None = None) -> CubeHistory:
+    async def get_cube_history(self, count, date: datetime | None = None, cursor: str | None = None) -> CubeHistory:
         """큐브 사용 결과를 조회합니다.
 
         - 큐브 확률 정보는 최대 30분 후 확인 가능합니다.
@@ -712,10 +709,10 @@ class MapleStoryApi(BaseModel):
         else:
             query['cursor'] = cursor
 
-        r = self.fetch(path, query)
+        r = await self.fetch(path, query)
         return CubeHistory(**r)
 
-    def get_potential_history(self, count, date: datetime | None = None, cursor: str | None = None) -> PotentialHistory:
+    async def get_potential_history(self, count, date: datetime | None = None, cursor: str | None = None) -> PotentialHistory:
         """잠재능력 재설정 이용 결과를 조회합니다.
 
         - 잠재능력 재설정 정보는 최대 30분 후 확인 가능합니다.
@@ -735,10 +732,10 @@ class MapleStoryApi(BaseModel):
         else:
             query['cursor'] = cursor
 
-        r = self.fetch(path, query)
+        r = await self.fetch(path, query)
         return PotentialHistory(**r)
 
-    def get_starforce_history(self, count, date: datetime | None = None, cursor: str | None = None) -> StarforceHistory:
+    async def get_starforce_history(self, count, date: datetime | None = None, cursor: str | None = None) -> StarforceHistory:
         """스타포스 강화 결과를 조회합니다.
 
         - 스타포스 확률 정보는 최대 5분 후 확인 가능합니다.
@@ -758,14 +755,14 @@ class MapleStoryApi(BaseModel):
         else:
             query['cursor'] = cursor
 
-        r = self.fetch(path, query)
+        r = await self.fetch(path, query)
         return StarforceHistory(**r)
 
     #endregion
 
     #region 랭킹 정보 조회
 
-    def get_overall_ranking(self, world_name: str | None = None, world_type: int | None = None, class_name: str | None = None, ocid: str | None = None, page: int = 1,  date: datetime = get_proper_default_datetime(update_hour=8, update_minute=30, day_offset=0), ) -> OverallRanking:
+    async def get_overall_ranking(self, world_name: str | None = None, world_type: int | None = None, class_name: str | None = None, ocid: str | None = None, page: int = 1,  date: datetime = get_proper_default_datetime(update_hour=8, update_minute=30, day_offset=0), ) -> OverallRanking:
         """종합 랭킹 정보를 조회합니다.
 
         - 2023년 12월 22일 데이터부터 조회할 수 있습니다.
@@ -792,10 +789,10 @@ class MapleStoryApi(BaseModel):
             'ocid': ocid,
             'page': page,
         }
-        r = self.fetch(path, query)
+        r = await self.fetch(path, query)
         return OverallRanking(**r)
 
-    def get_union_ranking(self, world_name: str | None = None, ocid: str | None = None, page: int = 1,  date: datetime = get_proper_default_datetime(update_hour=8, update_minute=30, day_offset=0), ) -> UnionRanking:
+    async def get_union_ranking(self, world_name: str | None = None, ocid: str | None = None, page: int = 1,  date: datetime = get_proper_default_datetime(update_hour=8, update_minute=30, day_offset=0), ) -> UnionRanking:
         """유니온 랭킹 정보를 조회합니다.
 
         - 2023년 12월 22일 데이터부터 조회할 수 있습니다.
@@ -816,10 +813,10 @@ class MapleStoryApi(BaseModel):
             'ocid': ocid,
             'page': page,
         }
-        r = self.fetch(path, query)
+        r = await self.fetch(path, query)
         return UnionRanking(**r)
 
-    def get_guild_ranking(self, ranking_type: int = 0, world_name: str | None = None, guild_name: str | None = None, page: int = 1,  date: datetime = get_proper_default_datetime(update_hour=8, update_minute=30, day_offset=0), ) -> GuildRanking:
+    async def get_guild_ranking(self, ranking_type: int = 0, world_name: str | None = None, guild_name: str | None = None, page: int = 1,  date: datetime = get_proper_default_datetime(update_hour=8, update_minute=30, day_offset=0), ) -> GuildRanking:
         """길드 랭킹 정보를 조회합니다.
 
         - 2023년 12월 22일 데이터부터 조회할 수 있습니다.
@@ -843,10 +840,10 @@ class MapleStoryApi(BaseModel):
             'guild_name': guild_name,
             'page': page,
         }
-        r = self.fetch(path, query)
+        r = await self.fetch(path, query)
         return GuildRanking(**r)
 
-    def get_dojang_ranking(self, world_name: str | None = None, class_name: str | None = None, ocid: str | None = None, page: int = 1, difficulty: int = 1,  date: datetime = get_proper_default_datetime(update_hour=8, update_minute=30, day_offset=0), ) -> DojangRanking:
+    async def get_dojang_ranking(self, world_name: str | None = None, class_name: str | None = None, ocid: str | None = None, page: int = 1, difficulty: int = 1,  date: datetime = get_proper_default_datetime(update_hour=8, update_minute=30, day_offset=0), ) -> DojangRanking:
         """무릉도장 랭킹 정보를 조회합니다.
 
         - 2023년 12월 22일 데이터부터 조회할 수 있습니다.
@@ -873,10 +870,10 @@ class MapleStoryApi(BaseModel):
             'page': page,
             'difficulty': difficulty,
         }
-        r = self.fetch(path, query)
+        r = await self.fetch(path, query)
         return DojangRanking(**r)
 
-    def get_theseed_ranking(self, world_name: str | None = None, ocid: str | None = None, page: int = 1, date: datetime = get_proper_default_datetime(update_hour=8, update_minute=30, day_offset=0), ) -> TheSeedRanking:
+    async def get_theseed_ranking(self, world_name: str | None = None, ocid: str | None = None, page: int = 1, date: datetime = get_proper_default_datetime(update_hour=8, update_minute=30, day_offset=0), ) -> TheSeedRanking:
         """더 시드 랭킹 정보를 조회합니다.
 
         - 2023년 12월 22일 데이터부터 조회할 수 있습니다.
@@ -896,10 +893,10 @@ class MapleStoryApi(BaseModel):
             'ocid': ocid,
             'page': page,
         }
-        r = self.fetch(path, query)
+        r = await self.fetch(path, query)
         return TheSeedRanking(**r)
 
-    def get_achievement_ranking(self, ocid: str | None = None, page: int = 1, date: datetime = get_proper_default_datetime(update_hour=8, update_minute=30, day_offset=0)) -> AchievementRanking:
+    async def get_achievement_ranking(self, ocid: str | None = None, page: int = 1, date: datetime = get_proper_default_datetime(update_hour=8, update_minute=30, day_offset=0)) -> AchievementRanking:
         """업적 랭킹 정보를 조회합니다.
 
         - 2023년 12월 22일 데이터부터 조회할 수 있습니다.
@@ -916,14 +913,14 @@ class MapleStoryApi(BaseModel):
             'ocid': ocid,
             'page': page,
         }
-        r = self.fetch(path, query)
+        r = await self.fetch(path, query)
         return AchievementRanking(**r)
 
     #endregion
 
     #region 공지 정보 조회
 
-    def get_notice_list(self) -> NoticeList:
+    async def get_notice_list(self) -> NoticeList:
         """메이플스토리 공지사항에 최근 등록된 게시글 20개를 조회합니다.
 
         - 공지 정보 API는 데이터 최신화(공지 내용 수정/ 업데이트 고려)를 위해 실시간 조회 또는 최소 일배치 작업을 권장합니다.
@@ -931,10 +928,10 @@ class MapleStoryApi(BaseModel):
         """
         path = 'maplestory/v1/notice'
         query = {}
-        r = self.fetch(path, query)
+        r = await self.fetch(path, query)
         return NoticeList(**r)
 
-    def get_notice_detail(self, notice_id: int) -> NoticeDetail:
+    async def get_notice_detail(self, notice_id: int) -> NoticeDetail:
         """메이플스토리 공지사항 게시글 세부 사항을 조회합니다.
 
         - 공지 정보 API는 데이터 최신화(공지 내용 수정/ 업데이트 고려)를 위해 실시간 조회 또는 최소 일배치 작업을 권장합니다.
@@ -946,10 +943,10 @@ class MapleStoryApi(BaseModel):
         query = {
             'notice_id': notice_id,
         }
-        r = self.fetch(path, query)
+        r = await self.fetch(path, query)
         return NoticeDetail(**r)
 
-    def get_update_notice_list(self) -> UpdateNoticeList:
+    async def get_update_notice_list(self) -> UpdateNoticeList:
         """메이플스토리 업데이트에 최근 등록된 게시글 20개를 조회합니다.
 
         - 공지 정보 API는 데이터 최신화(공지 내용 수정/ 업데이트 고려)를 위해 실시간 조회 또는 최소 일배치 작업을 권장합니다.
@@ -957,10 +954,10 @@ class MapleStoryApi(BaseModel):
         """
         path = 'maplestory/v1/notice-update'
         query = {}
-        r = self.fetch(path, query)
+        r = await self.fetch(path, query)
         return UpdateNoticeList(**r)
 
-    def get_update_notice_detail(self, notice_id: int) -> UpdateNoticeDetail:
+    async def get_update_notice_detail(self, notice_id: int) -> UpdateNoticeDetail:
         """메이플스토리 업데이트 게시글 세부 사항을 조회합니다.
 
         - 공지 정보 API는 데이터 최신화(공지 내용 수정/ 업데이트 고려)를 위해 실시간 조회 또는 최소 일배치 작업을 권장합니다.
@@ -972,10 +969,10 @@ class MapleStoryApi(BaseModel):
         query = {
             'notice_id': notice_id,
         }
-        r = self.fetch(path, query)
+        r = await self.fetch(path, query)
         return UpdateNoticeDetail(**r)
 
-    def get_event_notice_list(self) -> EventNoticeList:
+    async def get_event_notice_list(self) -> EventNoticeList:
         """메이플스토리 진행 중 이벤트에 최근 등록된 게시글 20개를 조회합니다.
 
         - 공지 정보 API는 데이터 최신화(공지 내용 수정/ 업데이트 고려)를 위해 실시간 조회 또는 최소 일배치 작업을 권장합니다.
@@ -983,10 +980,10 @@ class MapleStoryApi(BaseModel):
         """
         path = 'maplestory/v1/notice-event'
         query = {}
-        r = self.fetch(path, query)
+        r = await self.fetch(path, query)
         return EventNoticeList(**r)
 
-    def get_event_notice_detail(self, notice_id: int) -> EventNoticeDetail:
+    async def get_event_notice_detail(self, notice_id: int) -> EventNoticeDetail:
         """메이플스토리 진행 중 이벤트 게시글 세부 사항을 조회합니다.
 
         - 공지 정보 API는 데이터 최신화(공지 내용 수정/ 업데이트 고려)를 위해 실시간 조회 또는 최소 일배치 작업을 권장합니다.
@@ -998,10 +995,10 @@ class MapleStoryApi(BaseModel):
         query = {
             'notice_id': notice_id,
         }
-        r = self.fetch(path, query)
+        r = await self.fetch(path, query)
         return EventNoticeDetail(**r)
 
-    def get_cashshop_notice_list(self) -> CashshopNoticeList:
+    async def get_cashshop_notice_list(self) -> CashshopNoticeList:
         """메이플스토리 캐시샵 공지에 최근 등록된 게시글 20개를 조회합니다.
 
         - 공지 정보 API는 데이터 최신화(공지 내용 수정/ 업데이트 고려)를 위해 실시간 조회 또는 최소 일배치 작업을 권장합니다.
@@ -1009,10 +1006,10 @@ class MapleStoryApi(BaseModel):
         """
         path = 'maplestory/v1/notice-cashshop'
         query = {}
-        r = self.fetch(path, query)
+        r = await self.fetch(path, query)
         return CashshopNoticeList(**r)
 
-    def get_cashshop_notice_detail(self, notice_id: int) -> CashshopNoticeDetail:
+    async def get_cashshop_notice_detail(self, notice_id: int) -> CashshopNoticeDetail:
         """메이플스토리 캐시샵 공지 게시글 세부 사항을 조회합니다.
 
         - 공지 정보 API는 데이터 최신화(공지 내용 수정/ 업데이트 고려)를 위해 실시간 조회 또는 최소 일배치 작업을 권장합니다.
@@ -1024,23 +1021,25 @@ class MapleStoryApi(BaseModel):
         query = {
             'notice_id': notice_id,
         }
-        r = self.fetch(path, query)
+        r = await self.fetch(path, query)
         return CashshopNoticeDetail(**r)
 
     #endregion
 
-    def fetch(self, path: str, query: dict) -> Any:
+    async def fetch(self, path: str, query: dict) -> Any:
 
         params = {key: value for key, value in query.items() if value is not None}
 
-        r = requests.get(
-            f'{self.BASE_URL}{path}',
-            params=params,
-            headers={
-                'x-nxopen-api-key': self.api_key,
-            },
-            timeout=self.timeout,
-        ).json()
+        async with httpx.AsyncClient(timeout=self.timeout) as client:
+            response = await client.get(
+                f'{self.BASE_URL}{path}',
+                params=params,
+                headers={
+                    'x-nxopen-api-key': self.api_key,
+                },
+            )
+
+        r = response.json()
 
         if (r.get('error')):
             raise MapleStoryApiException(MapleStoryApiError(**r.get('error')))
