@@ -15,7 +15,7 @@ public class HistoryApi {
     @DisplayName("스타포스 강화 결과 조회")
     void getStarforceHistory() throws IOException {
         int count = 1000;
-        StarforceHistoryResponseDTO response = api.getStarforceHistory(count);
+        StarforceHistoryResponseDTO response = api.getStarforceHistory(count).join();
         System.out.println(response.toString());
     }
 
@@ -23,7 +23,7 @@ public class HistoryApi {
     @DisplayName("잠재능력 재설정 이용 결과 조회")
     void getPotentialHistory() throws IOException {
         int count = 1000;
-        PotentialHistoryResponseDTO response = api.getPotentialHistory(count);
+        PotentialHistoryResponseDTO response = api.getPotentialHistory(count).join();
         System.out.println(response.toString());
     }
 
@@ -31,7 +31,7 @@ public class HistoryApi {
     @DisplayName("큐브 사용 결과 조회")
     void getCubeHistory() throws IOException {
         int count = 1000;
-        CubeHistoryResponseDTO response = api.getCubeHistory(count);
+        CubeHistoryResponseDTO response = api.getCubeHistory(count).join();
         System.out.println(response.toString());
     }
 }

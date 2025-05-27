@@ -14,42 +14,42 @@ public class RankingApi {
     @Test
     @DisplayName("종합 랭킹 정보 조회")
     void getOverallRanking() throws IOException {
-        OverallRankingResponseDTO response = api.getOverallRanking(null, null, null, null, null);
+        OverallRankingResponseDTO response = api.getOverallRanking(null, null, null, null, null).join();
         System.out.println(response.toString());
     }
 
     @Test
     @DisplayName("유니온 랭킹 정보 조회")
     void getUnionRanking() throws IOException {
-        UnionRankingResponseDTO response = api.getUnionRanking(null, null, null);
+        UnionRankingResponseDTO response = api.getUnionRanking(null, null, null).join();
         System.out.println(response.toString());
     }
 
     @Test
     @DisplayName("길드 랭킹 정보 조회")
     void getGuildRanking() throws IOException {
-        GuildRankingResponseDTO response = api.getGuildRanking(null, 0, null, null);
+        GuildRankingResponseDTO response = api.getGuildRanking(null, 0, null, null).join();
         System.out.println(response.toString());
     }
 
     @Test
     @DisplayName("무릉도장 랭킹 정보 조회")
     void getDojangRanking() throws IOException {
-        DojangRankingResponseDTO response = api.getDojangRanking(null, 0, null, null, null);
+        DojangRankingResponseDTO response = api.getDojangRanking(null, 0, null, null, null).join();
         System.out.println(response.toString());
     }
 
     @Test
     @DisplayName("더 시드 랭킹 정보 조회")
     void getSeedRanking() throws IOException {
-        TheSeedRankingResponseDTO response = api.getTheSeedRanking(null, null, null);
+        TheSeedRankingResponseDTO response = api.getTheSeedRanking(null, null, null).join();
         System.out.println(response.toString());
     }
 
     @Test
     @DisplayName("업적 랭킹 정보 조회")
     void getAchievementRanking() throws IOException {
-        AchievementRankingResponseDTO response = api.getAchievementRanking(null, null);
+        AchievementRankingResponseDTO response = api.getAchievementRanking(null, null).join();
         System.out.println(response.toString());
     }
 }
