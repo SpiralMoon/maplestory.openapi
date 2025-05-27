@@ -12,9 +12,10 @@ api = MapleStoryApi(api_key)
 ocid = 'e0a4f439e53c369866b55297d2f5f4eb'
 
 # 캐릭터 정보 조회
-        nickname = '아델'
+
 class CharacterApi(unittest.IsolatedAsyncioTestCase):
     async def test_character(self):
+        nickname = '아델'
         response = await api.get_character_id(nickname)
         print(response)
 
