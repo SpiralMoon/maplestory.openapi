@@ -11,7 +11,7 @@ api = MapleStoryApi(api_key)
 
 
 # 랭킹 정보 조회
-class RankingApi(unittest.TestCase):
+class RankingApi(unittest.IsolatedAsyncioTestCase):
     def test_overall_ranking(self):
         response = api.get_overall_ranking()
         print(response)

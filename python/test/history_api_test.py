@@ -11,20 +11,20 @@ api = MapleStoryApi(api_key)
 
 
 # 확률 정보 조회
-class HistoryApi(unittest.TestCase):
-    def test_starforce_history(self):
+class HistoryApi(unittest.IsolatedAsyncioTestCase):
+    async def test_starforce_history(self):
         count = 1000
-        response = api.get_starforce_history(count)
+        response = await api.get_starforce_history(count)
         print(response)
 
-    def test_potential_history(self):
+    async def test_potential_history(self):
         count = 1000
-        response = api.get_potential_history(count)
+        response = await api.get_potential_history(count)
         print(response)
 
-    def test_cube_history(self):
+    async def test_cube_history(self):
         count = 1000
-        response = api.get_cube_history(count)
+        response = await api.get_cube_history(count)
         print(response)
 
 
