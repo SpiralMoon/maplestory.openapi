@@ -13,15 +13,15 @@ ogid = 'f5992063d46d6f8718e514fca5428960'
 
 
 # 길드 정보 조회
-class GuildApi(unittest.TestCase):
-    def test_guild_id(self):
+class GuildApi(unittest.IsolatedAsyncioTestCase):
+    async def test_guild_id(self):
         guild_name = '붕붕'
         world_name = '크로아'
-        response = api.get_guild_id(guild_name, world_name)
+        response = await api.get_guild_id(guild_name, world_name)
         print(response)
 
-    def test_guild_basic(self):
-        response = api.get_guild_basic(ogid)
+    async def test_guild_basic(self):
+        response = await api.get_guild_basic(ogid)
         print(response)
 
 
