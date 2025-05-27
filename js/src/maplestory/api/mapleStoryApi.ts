@@ -1818,13 +1818,37 @@ const toDateString = (
   minDateOptions?: DateOptions,
 ): string | never => {
 
-  const { year, month, day } = dateOptions;
-  const str = dayjs(`${year}-${month}-${day}`)
-    .utcOffset(KST_OFFSET)
-    .format('YYYY-MM-DD');
+  const convert = (dateOptions: DateOptions) => {
+    let year: number;
+    let month: number;
+    let day: number;
+    let d: Dayjs;
+
+    if (dateOptions instanceof Date) {
+      d = dayjs(dateOptions).utcOffset(KST_OFFSET);
+      year = d.year();
+      month = d.month() + 1;
+      day = d.date();
+    } else {
+      year = dateOptions.year;
+      month = dateOptions.month;
+      day = dateOptions.day;
+      d = dayjs(`${year}-${month}-${day}`).utcOffset(KST_OFFSET);
+    }
+
+    return {
+      year,
+      month,
+      day,
+      d,
+    }
+  }
+  const { year, month, day, d } = convert(dateOptions);
+
+  const str = d.format('YYYY-MM-DD');
 
   if (minDateOptions) {
-    const { year: minYear, month: minMonth, day: minDay } = minDateOptions;
+    const { year: minYear, month: minMonth, day: minDay } = convert(minDateOptions);
 
     if (
       year < minYear ||
@@ -2286,11 +2310,19 @@ type AchievementRankingApiFilterOptions = {
   page?: number;
 };
 
-type DateOptions = {
+type YMD = {
   year: number;
   month: number;
   day: number;
 };
+
+/**
+ * 날짜 옵션
+ * - Date 객체 또는 YMD 형식의 객체를 사용할 수 있습니다.
+ * - 날짜는 해당 서비스 지역의 표준 시를 사용 합니다.
+ * - Date 객체의 offset이 해당 서비스 지역의 offset과 다를 경우 자동으로 변환 됩니다.
+ */
+type DateOptions = YMD | Date;
 
 /**
  * API 서버의 데이터 갱신 시각과 조회 가능한 최근 날짜와 현재 날짜와의 차이
