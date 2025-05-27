@@ -15,28 +15,28 @@ public class UnionApi {
     @Test
     @DisplayName("유니온 정보 조회")
     void getUnion() throws IOException {
-        UnionDTO response = api.getUnion(ocid);
+        UnionDTO response = api.getUnion(ocid).join();
         System.out.println(response.toString());
     }
 
     @Test
     @DisplayName("유니온 공격대 정보 조회")
     void getUnionRaider() throws IOException {
-        UnionRaiderDTO response = api.getUnionRaider(ocid);
+        UnionRaiderDTO response = api.getUnionRaider(ocid).join();
         System.out.println(response.toString());
     }
 
     @Test
     @DisplayName("유니온 아티팩트 정보 조회")
     void getUnionArtifact() throws IOException {
-        UnionArtifactDTO response = api.getUnionArtifact(ocid);
+        UnionArtifactDTO response = api.getUnionArtifact(ocid).join();
         System.out.println(response.toString());
     }
 
     @Test
     @DisplayName("유니온 챔피언 정보 조회")
     void getUnionChampion() throws IOException {
-        UnionChampionDTO response = api.getUnionChampion(ocid);
+        UnionChampionDTO response = api.getUnionChampion(ocid).join();
         System.out.println(response.toString());
     }
 }

@@ -17,14 +17,14 @@ public class GuildApi {
     void getGuild() throws IOException {
         String guildName = "붕붕";
         String worldName = "크로아";
-        GuildDTO response = api.getGuild(guildName, worldName);
+        GuildDTO response = api.getGuild(guildName, worldName).join();
         System.out.println(response.toString());
     }
 
     @Test
     @DisplayName("기본 정보 조회")
     void getGuildBasic() throws IOException {
-        GuildBasicDTO response = api.getGuildBasic(ogid);
+        GuildBasicDTO response = api.getGuildBasic(ogid).join();
         System.out.println(response.toString());
     }
 }
