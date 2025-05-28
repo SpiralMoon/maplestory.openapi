@@ -1,4 +1,4 @@
-import { CharacterListAccountCharacterDtoBody } from '../../response/character/characterListDtoBody';
+import { CharacterListAccountCharacterBody } from '../../response/character/characterListBody';
 
 /**
  * 캐릭터 정보
@@ -30,7 +30,7 @@ class CharacterListAccountCharacterDto {
    */
   characterLevel: number;
 
-  constructor(obj: CharacterListAccountCharacterDtoBody) {
+  constructor(obj: CharacterListAccountCharacterBody) {
     const {
       ocid,
       character_name,

@@ -1,4 +1,4 @@
-import { AchievementRankingDtoBody } from '../../response/ranking/achievementRankingResponseDtoBody';
+import { AchievementRankingBody } from '../../response/ranking/achievementRankingBody';
 
 /**
  * 업적 랭킹 정보
@@ -44,7 +44,7 @@ class AchievementRankingDto {
    */
   trophyScore: number;
 
-  constructor(obj: AchievementRankingDtoBody) {
+  constructor(obj: AchievementRankingBody) {
     const {
       date,
       ranking,

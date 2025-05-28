@@ -1,4 +1,4 @@
-import { CharacterItemEquipmentExceptionalOptionDtoBody } from '../../response/character/characterItemEquipmentDtoBody';
+import { CharacterItemEquipmentExceptionalOptionBody } from '../../response/character/characterItemEquipmentBody';
 
 /**
  * 캐릭터 장비 특별 옵션 정보
@@ -49,7 +49,7 @@ class CharacterItemEquipmentExceptionalOptionDto {
    */
   exceptionalUpgrade: number;
 
-  constructor(obj: CharacterItemEquipmentExceptionalOptionDtoBody) {
+  constructor(obj: CharacterItemEquipmentExceptionalOptionBody) {
     const { str, dex, int, luk, max_hp, max_mp, attack_power, magic_power, exceptional_upgrade } =
       obj;
 

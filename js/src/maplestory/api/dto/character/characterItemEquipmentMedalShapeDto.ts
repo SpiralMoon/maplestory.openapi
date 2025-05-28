@@ -1,4 +1,4 @@
-import { CharacterItemEquipmentMedalShapeDtoBody } from '../../response/character/characterItemEquipmentDtoBody';
+import { CharacterItemEquipmentMedalShapeBody } from '../../response/character/characterItemEquipmentBody';
 
 /**
  * 캐릭터 외형 설정에 등록한 훈장 외형 정보
@@ -34,7 +34,7 @@ class CharacterItemEquipmentMedalShapeDto {
    */
   medalShapeChangedDescription: string;
 
-  constructor(obj: CharacterItemEquipmentMedalShapeDtoBody) {
+  constructor(obj: CharacterItemEquipmentMedalShapeBody) {
     const {
       medal_shape_name,
       medal_shape_icon,

@@ -1,6 +1,6 @@
 import { UnionRaiderBlockPositionDto } from './unionRaiderBlockPositionDto';
 import { UnionRaiderBlockControlPointDto } from './unionRaiderControlPointDto';
-import { UnionRaiderBlockDtoBody } from '../../response/union/unionRaiderDtoBody';
+import { UnionRaiderBlockBody } from '../../response/union/unionRaiderBody';
 
 /**
  * 유니온 블록 정보
@@ -31,7 +31,7 @@ class UnionRaiderBlockDto {
    */
   blockPosition: UnionRaiderBlockPositionDto[] | null;
 
-  constructor(obj: UnionRaiderBlockDtoBody) {
+  constructor(obj: UnionRaiderBlockBody) {
     const {
       block_type,
       block_class,

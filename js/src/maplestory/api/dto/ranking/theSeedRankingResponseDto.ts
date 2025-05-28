@@ -1,5 +1,5 @@
 import { TheSeedRankingDto } from './theSeedRankingDto';
-import { TheSeedRankingResponseDtoBody } from '../../response/ranking/theSeedRankingResponseDtoBody';
+import { TheSeedRankingResponseBody } from '../../response/ranking/theSeedRankingBody';
 
 /**
  * 더 시드 랭킹 응답 정보
@@ -10,7 +10,7 @@ class TheSeedRankingResponseDto {
    */
   ranking: TheSeedRankingDto[];
 
-  constructor(obj: TheSeedRankingResponseDtoBody) {
+  constructor(obj: TheSeedRankingResponseBody) {
     const { ranking } = obj;
 
     this.ranking = ranking.map((rank) => new TheSeedRankingDto(rank));

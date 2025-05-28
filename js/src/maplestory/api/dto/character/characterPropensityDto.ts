@@ -1,4 +1,4 @@
-import { CharacterPropensityDtoBody } from '../../response/character/characterPropensityDtoBody';
+import { CharacterPropensityBody } from '../../response/character/characterPropensityBody';
 
 /**
  * 캐릭터 성향 정보
@@ -36,7 +36,7 @@ class CharacterPropensityDto {
    */
   charmLevel: number | null;
 
-  constructor(obj: CharacterPropensityDtoBody) {
+  constructor(obj: CharacterPropensityBody) {
     const {
       date,
       charisma_level,

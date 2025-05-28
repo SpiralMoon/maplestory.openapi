@@ -1,6 +1,6 @@
 import {
-  CharacterBeautyEquipmentSkinDtoBody,
-} from '../../response/character/characterBeautyEquipmentDtoBody';
+  CharacterBeautyEquipmentSkinBody,
+} from '../../response/character/characterBeautyEquipmentBody';
 
 /**
  * 캐릭터 피부 정보
@@ -31,7 +31,7 @@ class CharacterBeautyEquipmentSkinDto {
    */
   brightness: number | null;
 
-  constructor(obj: CharacterBeautyEquipmentSkinDtoBody) {
+  constructor(obj: CharacterBeautyEquipmentSkinBody) {
     const { skin_name, color_style, hue, saturation, brightness } = obj;
 
     this.skinName = skin_name;

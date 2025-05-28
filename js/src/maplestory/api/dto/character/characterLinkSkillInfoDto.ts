@@ -1,4 +1,4 @@
-import { CharacterLinkSkillInfoDtoBody } from '../../response/character/characterLinkSkillDtoBody';
+import { CharacterLinkSkillInfoBody } from '../../response/character/characterLinkSkillBody';
 
 /**
  * 캐릭터 링크 스킬 정보
@@ -34,7 +34,7 @@ class CharacterLinkSkillInfoDto {
    */
   skillIcon: string;
 
-  constructor(obj: CharacterLinkSkillInfoDtoBody) {
+  constructor(obj: CharacterLinkSkillInfoBody) {
     const {
       skill_name,
       skill_description,

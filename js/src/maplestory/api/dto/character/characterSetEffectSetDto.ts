@@ -1,6 +1,6 @@
 import { CharacterSetEffectInfoDto } from './characterSetEffectInfoDto';
 import { CharacterSetEffectOptionFullDto } from './characterSetEffectOptionFullDto';
-import { CharacterSetEffectSetDtoBody } from '../../response/character/characterSetEffectDtoBody';
+import { CharacterSetEffectSetBody } from '../../response/character/characterSetEffectBody';
 
 /**
  * 세트 효과 정보
@@ -26,7 +26,7 @@ class CharacterSetEffectSetDto {
    */
   setOptionFull: CharacterSetEffectOptionFullDto[];
 
-  constructor(obj: CharacterSetEffectSetDtoBody) {
+  constructor(obj: CharacterSetEffectSetBody) {
     const { set_name, total_set_count, set_effect_info, set_option_full } = obj;
 
     this.setName = set_name;

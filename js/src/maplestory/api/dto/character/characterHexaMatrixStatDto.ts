@@ -1,5 +1,5 @@
 import { CharacterHexaMatrixStatCoreDto } from './characterHexaMatrixStatCoreDto';
-import { CharacterHexaMatrixStatDtoBody } from '../../response/character/characterHexaMatrixStatDtoBody';
+import { CharacterHexaMatrixStatBody } from '../../response/character/characterHexaMatrixStatBody';
 
 /**
  * 캐릭터 HEXA 스탯 코어 정보
@@ -45,7 +45,7 @@ class CharacterHexaMatrixStatDto {
    */
   presetHexaStatCore3: CharacterHexaMatrixStatCoreDto[];
 
-  constructor(obj: CharacterHexaMatrixStatDtoBody) {
+  constructor(obj: CharacterHexaMatrixStatBody) {
     const {
       date,
       character_class,

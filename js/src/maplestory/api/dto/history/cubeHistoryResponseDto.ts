@@ -1,5 +1,5 @@
 import { CubeHistoryDto } from './cubeHistoryDto';
-import { CubeHistoryResponseDtoBody } from '../../response/history/cubeHistoryResponseDtoBody';
+import { CubeHistoryResponseBody } from '../../response/history/cubeHistoryBody';
 
 /**
  * 큐브 히스토리 응답 정보
@@ -20,7 +20,7 @@ class CubeHistoryResponseDto {
    */
   nextCursor: string | null;
 
-  constructor(obj: CubeHistoryResponseDtoBody) {
+  constructor(obj: CubeHistoryResponseBody) {
     const { count, cube_history, next_cursor } = obj;
 
     this.count = count;

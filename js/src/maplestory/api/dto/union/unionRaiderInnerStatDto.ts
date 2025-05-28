@@ -1,4 +1,4 @@
-import { UnionRaiderInnerStatDtoBody } from '../../response/union/unionRaiderDtoBody';
+import { UnionRaiderInnerStatBody } from '../../response/union/unionRaiderBody';
 
 /**
  * 유니온 공격대 배치 정보
@@ -14,7 +14,7 @@ class UnionRaiderInnerStatDto {
    */
   statFieldEffect: string;
 
-  constructor(obj: UnionRaiderInnerStatDtoBody) {
+  constructor(obj: UnionRaiderInnerStatBody) {
     const { stat_field_id, stat_field_effect } = obj;
 
     this.statFieldId = stat_field_id;

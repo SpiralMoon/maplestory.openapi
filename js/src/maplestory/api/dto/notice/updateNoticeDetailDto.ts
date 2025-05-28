@@ -1,4 +1,4 @@
-import { UpdateNoticeDetailDtoBody } from '../../response/notice/updateNoticeDetailDtoBody';
+import { UpdateNoticeDetailBody } from '../../response/notice/updateNoticeDetailBody';
 
 /**
  * 업데이트 상세
@@ -25,7 +25,7 @@ class UpdateNoticeDetailDto {
    */
   date: Date;
 
-  constructor(obj: UpdateNoticeDetailDtoBody) {
+  constructor(obj: UpdateNoticeDetailBody) {
     const { title, url, contents, date } = obj;
 
     this.title = title;

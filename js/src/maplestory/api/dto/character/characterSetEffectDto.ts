@@ -1,5 +1,5 @@
 import { CharacterSetEffectSetDto } from './characterSetEffectSetDto';
-import { CharacterSetEffectDtoBody } from '../../response/character/characterSetEffectDtoBody';
+import { CharacterSetEffectBody } from '../../response/character/characterSetEffectBody';
 
 /**
  * 캐릭터 세트 효과 정보
@@ -15,7 +15,7 @@ class CharacterSetEffectDto {
    */
   setEffect: CharacterSetEffectSetDto[];
 
-  constructor(obj: CharacterSetEffectDtoBody) {
+  constructor(obj: CharacterSetEffectBody) {
     const { date, set_effect } = obj;
     this.date = date ? new Date(date) : null;
     this.setEffect = set_effect.map(

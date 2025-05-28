@@ -1,5 +1,5 @@
 import { StarforceEventDto } from './starforceEventDto';
-import { StarforceHistoryDtoBody } from '../../response/history/starforceHistoryDtoBody';
+import { StarforceHistoryBody } from '../../response/history/starforceHistoryBody';
 
 /**
  * 스타포스 히스토리
@@ -90,7 +90,7 @@ class StarforceHistoryDto {
    */
   starforceEventList: StarforceEventDto[] | null;
 
-  constructor(obj: StarforceHistoryDtoBody) {
+  constructor(obj: StarforceHistoryBody) {
     const {
       id,
       item_upgrade_result,

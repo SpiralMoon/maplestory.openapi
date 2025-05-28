@@ -1,4 +1,4 @@
-import { GuildRankingDtoBody } from '../../response/ranking/guildRankingResponseDtoBody';
+import { GuildRankingBody } from '../../response/ranking/guildRankingBody';
 
 /**
  * 길드 랭킹 정보
@@ -44,7 +44,7 @@ class GuildRankingDto {
    */
   guildPoint: number;
 
-  constructor(obj: GuildRankingDtoBody) {
+  constructor(obj: GuildRankingBody) {
     const {
       date,
       ranking,

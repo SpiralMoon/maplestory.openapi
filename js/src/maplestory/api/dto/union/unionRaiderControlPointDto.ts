@@ -1,4 +1,4 @@
-import { UnionRaiderBlockControlPointDtoBody } from '../../response/union/unionRaiderDtoBody';
+import { UnionRaiderBlockControlPointBody } from '../../response/union/unionRaiderBody';
 
 /**
  * 유니온 블록 기준점 좌표 정보
@@ -14,7 +14,7 @@ class UnionRaiderBlockControlPointDto {
    */
   y: number;
 
-  constructor(obj: UnionRaiderBlockControlPointDtoBody) {
+  constructor(obj: UnionRaiderBlockControlPointBody) {
     const { x, y } = obj;
 
     this.x = x;

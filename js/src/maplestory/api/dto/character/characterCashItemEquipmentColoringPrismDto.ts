@@ -1,6 +1,6 @@
 import {
-  CharacterCashItemEquipmentColoringPrismDtoBody
-} from '../../response/character/characterCashItemEquipmentDtoBody';
+  CharacterCashItemEquipmentColoringPrismBody
+} from '../../response/character/characterCashItemEquipmentBody';
 
 /**
  * 캐릭터 캐시 장비 컬러링프리즘
@@ -26,7 +26,7 @@ class CharacterCashItemEquipmentColoringPrismDto {
    */
   value: number;
 
-  constructor(obj: CharacterCashItemEquipmentColoringPrismDtoBody) {
+  constructor(obj: CharacterCashItemEquipmentColoringPrismBody) {
     const { color_range, hue, saturation, value } = obj;
 
     this.colorRange = color_range;

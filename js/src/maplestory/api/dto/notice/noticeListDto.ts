@@ -1,5 +1,5 @@
 import { NoticeListItemDto } from './noticeListItemDto';
-import { NoticeListDtoBody } from '../../response/notice/noticeListDtoBody';
+import { NoticeListBody } from '../../response/notice/noticeListBody';
 
 /**
  * 공지사항 목록
@@ -11,7 +11,7 @@ class NoticeListDto {
    */
   notice: NoticeListItemDto[];
 
-  constructor(obj: NoticeListDtoBody) {
+  constructor(obj: NoticeListBody) {
     const { notice } = obj;
 
     this.notice = notice.map(notice => new NoticeListItemDto(notice));

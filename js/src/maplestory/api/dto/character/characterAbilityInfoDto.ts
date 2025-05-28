@@ -1,4 +1,4 @@
-import { CharacterAbilityInfoDtoBody } from '../../response/character/characterAbilityDtoBody';
+import { CharacterAbilityInfoBody } from '../../response/character/characterAbilityBody';
 
 /**
  * 캐릭터 어빌리티 상세 정보
@@ -19,7 +19,7 @@ class CharacterAbilityInfoDto {
    */
   abilityValue: string;
 
-  constructor(obj: CharacterAbilityInfoDtoBody) {
+  constructor(obj: CharacterAbilityInfoBody) {
     const { ability_no, ability_grade, ability_value } = obj;
 
     this.abilityNo = ability_no;

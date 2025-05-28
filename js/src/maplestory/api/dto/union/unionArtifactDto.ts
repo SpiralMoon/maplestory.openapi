@@ -1,6 +1,6 @@
 import { UnionArtifactCrystalDto } from './unionArtifactCrystalDto';
 import { UnionArtifactEffectDto } from './unionArtifactEffectDto';
-import { UnionArtifactDtoBody } from '../../response/union/unionArtifactDtoBody';
+import { UnionArtifactBody } from '../../response/union/unionArtifactBody';
 
 /**
  * 유니온 아티팩트 정보
@@ -26,7 +26,7 @@ class UnionArtifactDto {
    */
   unionArtifactRemainAp: number | null;
 
-  constructor(obj: UnionArtifactDtoBody) {
+  constructor(obj: UnionArtifactBody) {
     const {
       date,
       union_artifact_effect,

@@ -1,4 +1,4 @@
-import { CharacterItemEquipmentTotalOptionDtoBody } from '../../response/character/characterItemEquipmentDtoBody';
+import { CharacterItemEquipmentTotalOptionBody } from '../../response/character/characterItemEquipmentBody';
 
 /**
  * 캐릭터 장비 최종 옵션 정보
@@ -94,7 +94,7 @@ class CharacterItemEquipmentTotalOptionDto {
    */
   maxMpRate: string;
 
-  constructor(obj: CharacterItemEquipmentTotalOptionDtoBody) {
+  constructor(obj: CharacterItemEquipmentTotalOptionBody) {
     const {
       str,
       dex,

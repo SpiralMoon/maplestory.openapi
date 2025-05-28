@@ -1,4 +1,4 @@
-import { CharacterDojangDtoBody } from '../../response/character/characterDojangDtoBody';
+import { CharacterDojangBody } from '../../response/character/characterDojangBody';
 
 /**
  * 캐릭터 도장 정보
@@ -34,7 +34,7 @@ class CharacterDojangDto {
    */
   dojangBestTime: number | null;
 
-  constructor(obj: CharacterDojangDtoBody) {
+  constructor(obj: CharacterDojangBody) {
     const {
       date,
       character_class,

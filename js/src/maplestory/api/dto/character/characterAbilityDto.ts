@@ -1,6 +1,6 @@
 import { CharacterAbilityInfoDto } from './characterAbilityInfoDto';
 import { CharacterAbilityPresetDto } from './characterAbilityPresetDto';
-import { CharacterAbilityDtoBody } from '../../response/character/characterAbilityDtoBody';
+import { CharacterAbilityBody } from '../../response/character/characterAbilityBody';
 
 /**
  * 캐릭터 어빌리티 정보
@@ -46,7 +46,7 @@ class CharacterAbilityDto {
    */
   abilityPreset3: CharacterAbilityPresetDto | null;
 
-  constructor(obj: CharacterAbilityDtoBody) {
+  constructor(obj: CharacterAbilityBody) {
     const {
       date,
       ability_grade,

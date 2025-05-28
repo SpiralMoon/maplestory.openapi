@@ -1,5 +1,5 @@
 import { UnionRankingDto } from './unionRankingDto';
-import { UnionRankingResponseDtoBody } from '../../response/ranking/unionRankingResponseDtoBody';
+import { UnionRankingResponseBody } from '../../response/ranking/unionRankingBody';
 
 /**
  * 유니온 랭킹 응답 정보
@@ -10,7 +10,7 @@ class UnionRankingResponseDto {
    */
   ranking: UnionRankingDto[];
 
-  constructor(obj: UnionRankingResponseDtoBody) {
+  constructor(obj: UnionRankingResponseBody) {
     const { ranking } = obj;
 
     this.ranking = ranking.map((rank) => new UnionRankingDto(rank));

@@ -1,5 +1,5 @@
 import { PotentialResultOptionDto } from './potentialResultOptionDto';
-import { PotentialHistoryDtoBody } from '../../response/history/potentialHistoryResponseDtoBody';
+import { PotentialHistoryBody } from '../../response/history/potentialHistoryBody';
 import { PotentialOptionGrade, potentialOptionGradeFromString } from '../potentialOptionGrade';
 
 
@@ -92,7 +92,7 @@ class PotentialHistoryDto {
    */
   afterAdditionalPotentialOption: PotentialResultOptionDto[];
 
-  constructor(obj: PotentialHistoryDtoBody) {
+  constructor(obj: PotentialHistoryBody) {
     const {
       id,
       character_name,

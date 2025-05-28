@@ -1,4 +1,4 @@
-import { GuildDtoBody } from '../../response/guild/guildDtoBody';
+import { GuildBody } from '../../response/guild/guildBody';
 
 /**
  * 길드 식별자 정보
@@ -9,7 +9,7 @@ class GuildDto {
    */
   oguildId: string;
 
-  constructor(obj: GuildDtoBody) {
+  constructor(obj: GuildBody) {
     const { oguild_id } = obj;
 
     this.oguildId = oguild_id;

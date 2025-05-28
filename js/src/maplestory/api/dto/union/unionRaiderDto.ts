@@ -1,7 +1,7 @@
 import { UnionRaiderBlockDto } from './unionRaiderBlockDto';
 import { UnionRaiderInnerStatDto } from './unionRaiderInnerStatDto';
 import { UnionRaiderPresetDto } from './unionRaiderPresetDto';
-import { UnionRaiderDtoBody } from '../../response/union/unionRaiderDtoBody';
+import { UnionRaiderBody } from '../../response/union/unionRaiderBody';
 
 /**
  * 유니온 공격대 정보
@@ -59,7 +59,7 @@ class UnionRaiderDto {
    */
   unionRaiderPreset5: UnionRaiderPresetDto | null;
 
-  constructor(obj: UnionRaiderDtoBody) {
+  constructor(obj: UnionRaiderBody) {
     const {
       date,
       union_raider_stat,

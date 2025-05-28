@@ -1,6 +1,6 @@
 import { CharacterPetEquipmentAutoSkillDto } from './characterPetEquipmentAutoSkillDto';
 import { CharacterPetEquipmentItemDto } from './characterPetEquipmentItemDto';
-import { CharacterPetEquipmentDtoBody } from '../../response/character/characterPetEquipmentDtoBody';
+import { CharacterPetEquipmentBody } from '../../response/character/characterPetEquipmentBody';
 
 /**
  * 캐릭터 펫 장비 정보
@@ -191,7 +191,7 @@ class CharacterPetEquipmentDto {
    */
   pet3AppearanceIcon: string | null;
 
-  constructor(obj: CharacterPetEquipmentDtoBody) {
+  constructor(obj: CharacterPetEquipmentBody) {
     const {
       date,
       pet_1_name,

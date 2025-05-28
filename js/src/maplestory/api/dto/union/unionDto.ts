@@ -1,4 +1,4 @@
-import { UnionDtoBody } from '../../response/union/unionDtoBody';
+import { UnionBody } from '../../response/union/unionBody';
 
 /**
  * 유니온 정보
@@ -34,7 +34,7 @@ class UnionDto {
    */
   unionArtifactPoint: number | null;
 
-  constructor(obj: UnionDtoBody) {
+  constructor(obj: UnionBody) {
     const { date, union_level, union_grade, union_artifact_level, union_artifact_exp, union_artifact_point } = obj;
 
     this.date = date ? new Date(date) : null;

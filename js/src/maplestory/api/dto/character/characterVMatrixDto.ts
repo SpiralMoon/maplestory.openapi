@@ -1,5 +1,5 @@
 import { CharacterVMatrixCodeEquipmentDto } from './characterVMatrixCoreEquipmentDto';
-import { CharacterVMatrixDtoBody } from '../../response/character/characterVMatrixDtoBody';
+import { CharacterVMatrixBody } from '../../response/character/characterVMatrixBody';
 
 /**
  * 캐릭터 V매트릭스 정보
@@ -25,7 +25,7 @@ class CharacterVMatrixDto {
    */
   characterVMatrixRemainSlotUpgradePoint: number | null;
 
-  constructor(obj: CharacterVMatrixDtoBody) {
+  constructor(obj: CharacterVMatrixBody) {
     const {
       date,
       character_class,

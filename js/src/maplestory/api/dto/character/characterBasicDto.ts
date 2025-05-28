@@ -1,4 +1,4 @@
-import { CharacterBasicDtoBody } from '../../response/character/characterBasicDtoBody';
+import { CharacterBasicBody } from '../../response/character/characterBasicBody';
 
 /**
  * 캐릭터 기본 정보
@@ -71,7 +71,7 @@ class CharacterBasicDto {
    */
   liberationQuestClearFlag: 'true' | 'false';
 
-  constructor(obj: CharacterBasicDtoBody) {
+  constructor(obj: CharacterBasicBody) {
     const {
       date,
       character_name,

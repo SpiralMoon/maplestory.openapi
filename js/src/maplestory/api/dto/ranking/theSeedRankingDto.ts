@@ -1,4 +1,4 @@
-import { TheSeedRankingDtoBody } from '../../response/ranking/theSeedRankingResponseDtoBody';
+import { TheSeedRankingBody } from '../../response/ranking/theSeedRankingBody';
 
 /**
  * 더 시드 랭킹 정보
@@ -49,7 +49,7 @@ class TheSeedRankingDto {
    */
   theSeedTimeRecord: number;
 
-  constructor(obj: TheSeedRankingDtoBody) {
+  constructor(obj: TheSeedRankingBody) {
     const {
       date,
       ranking,

@@ -1,5 +1,5 @@
 import { CharacterSkillInfoDto } from './characterSkillInfoDto';
-import { CharacterSkillDtoBody } from '../../response/character/characterSkillDtoBody';
+import { CharacterSkillBody } from '../../response/character/characterSkillBody';
 
 /**
  * 캐릭터 스킬 정보
@@ -25,7 +25,7 @@ class CharacterSkillDto {
    */
   characterSkill: CharacterSkillInfoDto[];
 
-  constructor(obj: CharacterSkillDtoBody) {
+  constructor(obj: CharacterSkillBody) {
     const { date, character_class, character_skill_grade, character_skill } =
       obj;
 

@@ -1,4 +1,4 @@
-import { CharacterHyperStatPresetDtoBody } from '../../response/character/characterHyperStatDtoBody';
+import { CharacterHyperStatPresetBody } from '../../response/character/characterHyperStatBody';
 
 /**
  * 캐릭터 하이퍼 스탯 프리셋 정보
@@ -24,7 +24,7 @@ class CharacterHyperStatPresetDto {
    */
   statIncrease: string | null;
 
-  constructor(obj: CharacterHyperStatPresetDtoBody) {
+  constructor(obj: CharacterHyperStatPresetBody) {
     const { stat_type, stat_point, stat_level, stat_increase } = obj;
 
     this.statType = stat_type;

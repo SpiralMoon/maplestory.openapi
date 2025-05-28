@@ -1,5 +1,5 @@
 import { CharacterLinkSkillInfoDto } from './characterLinkSkillInfoDto';
-import { CharacterLinkSkillDtoBody } from '../../response/character/characterLinkSkillDtoBody';
+import { CharacterLinkSkillBody } from '../../response/character/characterLinkSkillBody';
 
 /**
  * 캐릭터 링크 스킬 정보
@@ -55,7 +55,7 @@ class CharacterLinkSkillDto {
    */
   characterOwnedLinkSkillPreset3: CharacterLinkSkillInfoDto | null;
 
-  constructor(obj: CharacterLinkSkillDtoBody) {
+  constructor(obj: CharacterLinkSkillBody) {
     const {
       date,
       character_class,

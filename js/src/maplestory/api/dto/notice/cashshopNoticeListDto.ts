@@ -1,5 +1,5 @@
 import { CashshopNoticeListItemDto } from './cashshopNoticeListItemDto';
-import { CashshopNoticeListDtoBody } from '../../response/notice/cashshopNoticeListDtoBody';
+import { CashshopNoticeListBody } from '../../response/notice/cashshopNoticeListBody';
 
 /**
  * 캐시샵 공지 목록
@@ -11,7 +11,7 @@ class CashshopNoticeListDto {
    */
   cashshopNotice: CashshopNoticeListItemDto[];
 
-  constructor(obj: CashshopNoticeListDtoBody) {
+  constructor(obj: CashshopNoticeListBody) {
     const { cashshop_notice } = obj;
 
     this.cashshopNotice = cashshop_notice.map(notice => new CashshopNoticeListItemDto(notice));

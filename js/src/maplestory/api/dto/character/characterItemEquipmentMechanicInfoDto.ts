@@ -4,7 +4,7 @@ import { CharacterItemEquipmentEtcOptionDto } from './characterItemEquipmentEtcO
 import { CharacterItemEquipmentExceptionalOptionDto } from './characterItemEquipmentExceptionalOptionDto';
 import { CharacterItemEquipmentStarforceOptionDto } from './characterItemEquipmentStarforceOptionDto';
 import { CharacterItemEquipmentTotalOptionDto } from './characterItemEquipmentTotalOptionDto';
-import { CharacterItemEquipmentInfoDtoBody } from '../../response/character/characterItemEquipmentDtoBody';
+import { CharacterItemEquipmentMechanicInfoBody } from '../../response/character/characterItemEquipmentBody';
 
 /**
  * 메카닉 장비 정보
@@ -155,7 +155,7 @@ class CharacterItemEquipmentMechanicInfoDto {
    */
   isExpired: boolean | null = null;
 
-  constructor(obj: CharacterItemEquipmentInfoDtoBody) {
+  constructor(obj: CharacterItemEquipmentMechanicInfoBody) {
     const {
       item_equipment_part,
       item_equipment_slot,

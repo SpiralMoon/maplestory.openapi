@@ -4,7 +4,7 @@ import { CharacterItemEquipmentEtcOptionDto } from './characterItemEquipmentEtcO
 import { CharacterItemEquipmentExceptionalOptionDto } from './characterItemEquipmentExceptionalOptionDto';
 import { CharacterItemEquipmentStarforceOptionDto } from './characterItemEquipmentStarforceOptionDto';
 import { CharacterItemEquipmentTotalOptionDto } from './characterItemEquipmentTotalOptionDto';
-import { CharacterItemEquipmentInfoDtoBody } from '../../response/character/characterItemEquipmentDtoBody';
+import { CharacterItemEquipmentDragonInfoBody} from '../../response/character/characterItemEquipmentBody';
 
 /**
  * 에반 드래곤 장비 정보
@@ -155,7 +155,7 @@ class CharacterItemEquipmentDragonInfoDto {
    */
   isExpired: boolean | null = null;
 
-  constructor(obj: CharacterItemEquipmentInfoDtoBody) {
+  constructor(obj: CharacterItemEquipmentDragonInfoBody) {
     const {
       item_equipment_part,
       item_equipment_slot,

@@ -1,4 +1,4 @@
-import { CharacterPopularityDtoBody } from '../../response/character/characterPopularityDtoBody';
+import { CharacterPopularityBody } from '../../response/character/characterPopularityBody';
 
 /**
  * 캐릭터 인기도 정보
@@ -14,7 +14,7 @@ class CharacterPopularityDto {
    */
   popularity: number;
 
-  constructor(obj: CharacterPopularityDtoBody) {
+  constructor(obj: CharacterPopularityBody) {
     const { date, popularity } = obj;
 
     this.date = date ? new Date(date) : null;

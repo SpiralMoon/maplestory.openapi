@@ -1,6 +1,6 @@
 import { CharacterAndroidCashItemEquipmentColoringPrismDto } from './characterAndroidCashItemEquipmentColoringPrismDto';
 import { CharacterAndroidCashItemEquipmentOptionDto } from './characterAndroidCashItemEquipmentOptionDto';
-import { CharacterAndroidCashItemEquipmentDtoBody } from '../../response/character/characterAndroidEquipmentDtoBody';
+import { CharacterAndroidCashItemEquipmentBody } from '../../response/character/characterAndroidEquipmentBody';
 
 /**
  * 캐릭터 안드로이드 캐시 아이템 장착 정보
@@ -66,7 +66,7 @@ class CharacterAndroidCashItemEquipmentDto {
    */
   cashItemColoringPrism: CharacterAndroidCashItemEquipmentColoringPrismDto | null;
 
-  constructor(obj: CharacterAndroidCashItemEquipmentDtoBody) {
+  constructor(obj: CharacterAndroidCashItemEquipmentBody) {
     const {
       cash_item_equipment_part,
       cash_item_equipment_slot,

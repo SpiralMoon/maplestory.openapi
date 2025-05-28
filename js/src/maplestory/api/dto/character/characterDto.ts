@@ -1,4 +1,4 @@
-import { CharacterDtoBody } from '../../response/character/characterDtoBody';
+import { CharacterBody } from '../../response/character/characterBody';
 
 /**
  * 캐릭터 식별 정보
@@ -9,7 +9,7 @@ class CharacterDto {
    */
   ocid: string;
 
-  constructor(obj: CharacterDtoBody) {
+  constructor(obj: CharacterBody) {
     const { ocid } = obj;
 
     this.ocid = ocid;

@@ -1,4 +1,4 @@
-import { CubeResultOptionDtoBody } from '../../response/history/cubeResultOptionDtoBody';
+import { CubeResultOptionBody } from '../../response/history/cubeHistoryBody';
 import { PotentialOptionGrade, potentialOptionGradeFromString } from '../potentialOptionGrade';
 
 /**
@@ -15,7 +15,7 @@ class CubeResultOptionDto {
    */
   grade: string;
 
-  constructor(obj: CubeResultOptionDtoBody) {
+  constructor(obj: CubeResultOptionBody) {
     const { value, grade } = obj;
 
     this.value = value;

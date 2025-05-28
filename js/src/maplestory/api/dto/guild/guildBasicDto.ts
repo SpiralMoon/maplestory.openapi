@@ -1,5 +1,5 @@
 import { GuildSkillDto } from './guildSkillDto';
-import { GuildBasicDtoBody } from '../../response/guild/guildBasicDtoBody';
+import { GuildBasicBody } from '../../response/guild/guildBasicBody';
 
 /**
  * 길드 기본 정보
@@ -60,7 +60,7 @@ class GuildBasicDto {
    */
   guildNoblesseSkill: GuildSkillDto[];
 
-  constructor(obj: GuildBasicDtoBody) {
+  constructor(obj: GuildBasicBody) {
     const {
       date,
       world_name,

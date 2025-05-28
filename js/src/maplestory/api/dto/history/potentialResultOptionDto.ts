@@ -1,4 +1,4 @@
-import { PotentialResultOptionDtoBody } from '../../response/history/potentialHistoryResponseDtoBody';
+import { PotentialResultOptionBody } from '../../response/history/potentialHistoryBody';
 import { PotentialOptionGrade, potentialOptionGradeFromString } from '../potentialOptionGrade';
 
 /**
@@ -15,7 +15,7 @@ class PotentialResultOptionDto {
    */
   grade: string;
 
-  constructor(obj: PotentialResultOptionDtoBody) {
+  constructor(obj: PotentialResultOptionBody) {
     const { value, grade } = obj;
 
     this.value = value;

@@ -1,4 +1,4 @@
-import { CharacterItemEquipmentStarforceOptionDtoBody } from '../../response/character/characterItemEquipmentDtoBody';
+import { CharacterItemEquipmentStarforceOptionBody } from '../../response/character/characterItemEquipmentBody';
 
 /**
  * 캐릭터 장비 스타포스 옵션 정보
@@ -59,7 +59,7 @@ class CharacterItemEquipmentStarforceOptionDto {
    */
   jump: string;
 
-  constructor(obj: CharacterItemEquipmentStarforceOptionDtoBody) {
+  constructor(obj: CharacterItemEquipmentStarforceOptionBody) {
     const {
       str,
       dex,

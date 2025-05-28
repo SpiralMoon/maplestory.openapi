@@ -1,4 +1,4 @@
-import { CharacterItemEquipmentBaseOptionDtoBody } from '../../response/character/characterItemEquipmentDtoBody';
+import { CharacterItemEquipmentBaseOptionBody } from '../../response/character/characterItemEquipmentBody';
 
 /**
  * 캐릭터 장비 기본 옵션 정보
@@ -89,7 +89,7 @@ class CharacterItemEquipmentBaseOptionDto {
    */
   baseEquipmentLevel: number;
 
-  constructor(obj: CharacterItemEquipmentBaseOptionDtoBody) {
+  constructor(obj: CharacterItemEquipmentBaseOptionBody) {
     const {
       str,
       dex,

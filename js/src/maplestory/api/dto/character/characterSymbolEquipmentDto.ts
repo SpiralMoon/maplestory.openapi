@@ -1,5 +1,5 @@
 import { CharacterSymbolEquipmentInfoDto } from './characterSymbolEquipmentInfoDto';
-import { CharacterSymbolEquipmentDtoBody } from '../../response/character/characterSymbolEquipmentDtoBody';
+import { CharacterSymbolEquipmentBody } from '../../response/character/characterSymbolEquipmentBody';
 
 /**
  * 캐릭터 심볼 정보
@@ -20,7 +20,7 @@ class CharacterSymbolEquipmentDto {
    */
   symbol: CharacterSymbolEquipmentInfoDto[];
 
-  constructor(obj: CharacterSymbolEquipmentDtoBody) {
+  constructor(obj: CharacterSymbolEquipmentBody) {
     const { date, character_class, symbol } = obj;
 
     this.date = date ? new Date(date) : null;

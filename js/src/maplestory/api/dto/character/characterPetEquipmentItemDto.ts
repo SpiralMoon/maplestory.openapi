@@ -1,5 +1,5 @@
 import { CharacterPetEquipmentItemOptionDto } from './characterPetEquipmentItemOptionDto';
-import { CharacterPetEquipmentItemDtoBody } from '../../response/character/characterPetEquipmentDtoBody';
+import { CharacterPetEquipmentItemBody } from '../../response/character/characterPetEquipmentBody';
 
 /**
  * 캐릭터 펫 장비 아이템 정보
@@ -45,7 +45,7 @@ class CharacterPetEquipmentItemDto {
    */
   itemShapeIcon: string | null;
 
-  constructor(obj: CharacterPetEquipmentItemDtoBody) {
+  constructor(obj: CharacterPetEquipmentItemBody) {
     const {
       item_name,
       item_icon,

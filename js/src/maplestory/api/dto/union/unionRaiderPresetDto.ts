@@ -1,6 +1,6 @@
 import { UnionRaiderBlockDto } from './unionRaiderBlockDto';
 import { UnionRaiderInnerStatDto } from './unionRaiderInnerStatDto';
-import { UnionRaiderPresetDtoBody } from '../../response/union/unionRaiderDtoBody';
+import { UnionRaiderPresetBody } from '../../response/union/unionRaiderBody';
 
 /**
  * 유니온 프리셋 정보
@@ -27,7 +27,7 @@ class UnionRaiderPresetDto {
    */
   unionBlock: UnionRaiderBlockDto[];
 
-  constructor(obj: UnionRaiderPresetDtoBody) {
+  constructor(obj: UnionRaiderPresetBody) {
     const {
       union_raider_stat,
       union_occupied_stat,

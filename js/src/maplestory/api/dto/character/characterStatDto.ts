@@ -1,4 +1,4 @@
-import { CharacterStatDtoBody } from '../../response/character/characterStatDtoBody';
+import { CharacterStatBody } from '../../response/character/characterStatBody';
 
 /**
  * 캐릭터 스탯 정보
@@ -27,7 +27,7 @@ class CharacterStatDto {
    */
   remainAP: number | null;
 
-  constructor(obj: CharacterStatDtoBody) {
+  constructor(obj: CharacterStatBody) {
     const { date, character_class, final_stat, remain_ap } = obj;
 
     this.date = date ? new Date(date) : null;

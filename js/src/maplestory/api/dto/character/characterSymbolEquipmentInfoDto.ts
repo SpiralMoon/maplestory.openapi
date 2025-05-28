@@ -1,4 +1,4 @@
-import { CharacterSymbolEquipmentInfoDtoBody } from '../../response/character/characterSymbolEquipmentDtoBody';
+import { CharacterSymbolEquipmentInfoDtoBody } from '../../response/character/characterSymbolEquipmentBody';
 
 /**
  * 캐릭터 심볼 상세 정보

@@ -1,4 +1,4 @@
-import { EventNoticeDetailDtoBody } from '../../response/notice/eventNoticeDetailDtoBody';
+import { EventNoticeDetailBody } from '../../response/notice/eventNoticeDetailBody';
 
 /**
  * 진행 중 이벤트 상세
@@ -35,7 +35,7 @@ class EventNoticeDetailDto {
    */
   dateEventEnd: Date;
 
-  constructor(obj: EventNoticeDetailDtoBody) {
+  constructor(obj: EventNoticeDetailBody) {
     const { title, url, contents, date, date_event_start, date_event_end } = obj;
 
     this.title = title;

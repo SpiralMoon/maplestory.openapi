@@ -1,4 +1,4 @@
-import { UpdateNoticeListItemDtoBody } from '../../response/notice/updateNoticeListDtoBody';
+import { UpdateNoticeListItemDtoBody } from '../../response/notice/updateNoticeListBody';
 
 /**
  * 업데이트 공지

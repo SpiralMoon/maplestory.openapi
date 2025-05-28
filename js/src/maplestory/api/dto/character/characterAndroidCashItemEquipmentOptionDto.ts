@@ -1,6 +1,6 @@
 import {
-  CharacterAndroidCashItemEquipmentOptionDtoBody
-} from '../../response/character/characterAndroidEquipmentDtoBody';
+  CharacterAndroidCashItemEquipmentOptionBody
+} from '../../response/character/characterAndroidEquipmentBody';
 
 /**
  * 캐릭터 안드로이드 캐시 아이템 옵션 정보
@@ -16,7 +16,7 @@ class CharacterAndroidCashItemEquipmentOptionDto {
    */
   optionValue: string;
 
-  constructor(obj: CharacterAndroidCashItemEquipmentOptionDtoBody) {
+  constructor(obj: CharacterAndroidCashItemEquipmentOptionBody) {
     const { option_type, option_value } = obj;
 
     this.optionType = option_type;

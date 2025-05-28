@@ -1,4 +1,4 @@
-import { UnionArtifactCrystalDtoBody } from '../../response/union/unionArtifactDtoBody';
+import { UnionArtifactCrystalBody } from '../../response/union/unionArtifactBody';
 
 /**
  * 유니온 아티팩트 크리스탈 정보
@@ -44,7 +44,7 @@ class UnionArtifactCrystalDto {
    */
   crystalOptionName3: string;
 
-  constructor(obj: UnionArtifactCrystalDtoBody) {
+  constructor(obj: UnionArtifactCrystalBody) {
     const {
       name,
       validity_flag,

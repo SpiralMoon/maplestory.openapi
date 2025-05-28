@@ -1,4 +1,4 @@
-import { CharacterPetEquipmentAutoSkillDtoBody } from '../../response/character/characterPetEquipmentDtoBody';
+import { CharacterPetEquipmentAutoSkillBody } from '../../response/character/characterPetEquipmentBody';
 
 /**
  * 캐릭터 펫 장비 자동 스킬 정보
@@ -24,7 +24,7 @@ class CharacterPetEquipmentAutoSkillDto {
    */
   skill2Icon: string | null;
 
-  constructor(obj: CharacterPetEquipmentAutoSkillDtoBody) {
+  constructor(obj: CharacterPetEquipmentAutoSkillBody) {
     const { skill_1, skill_1_icon, skill_2, skill_2_icon } = obj;
 
     this.skill1 = skill_1;

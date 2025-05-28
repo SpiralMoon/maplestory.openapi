@@ -1,4 +1,4 @@
-import { CharacterAndroidEquipmentFaceDtoBody } from '../../response/character/characterAndroidEquipmentDtoBody';
+import { CharacterAndroidEquipmentFaceBody } from '../../response/character/characterAndroidEquipmentBody';
 
 /**
  * 캐릭터 안드로이드 성형 정보
@@ -24,7 +24,7 @@ class CharacterAndroidEquipmentFaceDto {
    */
   mixRate: string;
 
-  constructor(obj: CharacterAndroidEquipmentFaceDtoBody) {
+  constructor(obj: CharacterAndroidEquipmentFaceBody) {
     const { face_name, base_color, mix_color, mix_rate } = obj;
 
     this.faceName = face_name;

@@ -1,4 +1,4 @@
-import { CashshopNoticeListItemDtoBody } from '../../response/notice/cashshopNoticeListDtoBody';
+import { CashshopNoticeListItemDtoBody } from '../../response/notice/cashshopNoticeListBody';
 
 /**
  * 캐시샵 공지

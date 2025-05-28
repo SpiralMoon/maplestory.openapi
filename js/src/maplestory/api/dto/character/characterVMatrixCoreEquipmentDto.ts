@@ -1,4 +1,4 @@
-import { CharacterVMatrixCoreEquipmentDtoBody } from '../../response/character/characterVMatrixDtoBody';
+import { CharacterVMatrixCoreEquipmentDtoBody } from '../../response/character/characterVMatrixBody';
 
 /**
  * 캐릭터 V코어 정보

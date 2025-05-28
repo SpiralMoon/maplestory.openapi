@@ -1,5 +1,5 @@
 import { GuildRankingDto } from './guildRankingDto';
-import { GuildRankingResponseDtoBody } from '../../response/ranking/guildRankingResponseDtoBody';
+import { GuildRankingResponseBody } from '../../response/ranking/guildRankingBody';
 
 /**
  * 길드 랭킹 응답 정보
@@ -10,7 +10,7 @@ class GuildRankingResponseDto {
    */
   ranking: GuildRankingDto[];
 
-  constructor(obj: GuildRankingResponseDtoBody) {
+  constructor(obj: GuildRankingResponseBody) {
     const { ranking } = obj;
 
     this.ranking = ranking.map((rank) => new GuildRankingDto(rank));

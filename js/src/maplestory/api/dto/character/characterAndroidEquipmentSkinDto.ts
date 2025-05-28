@@ -1,6 +1,6 @@
 import {
-  CharacterAndroidEquipmentSkinDtoBody,
-} from '../../response/character/characterAndroidEquipmentDtoBody';
+  CharacterAndroidEquipmentSkinBody,
+} from '../../response/character/characterAndroidEquipmentBody';
 
 /**
  * 캐릭터 안드로이드 피부 정보
@@ -31,7 +31,7 @@ class CharacterAndroidEquipmentSkinDto {
    */
   brightness: number | null;
 
-  constructor(obj: CharacterAndroidEquipmentSkinDtoBody) {
+  constructor(obj: CharacterAndroidEquipmentSkinBody) {
     const { skin_name, color_style, hue, saturation, brightness } = obj;
 
     this.skinName = skin_name;

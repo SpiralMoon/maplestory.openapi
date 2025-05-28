@@ -1,5 +1,5 @@
 import { CharacterHyperStatPresetDto } from './characterHyperStatPresetDto';
-import { CharacterHyperStatDtoBody } from '../../response/character/characterHyperStatDtoBody';
+import { CharacterHyperStatBody } from '../../response/character/characterHyperStatBody';
 
 /**
  * 캐릭터 하이퍼 스탯 정보
@@ -55,7 +55,7 @@ class CharacterHyperStatDto {
    */
   hyperStatPreset3RemainPoint: number | null;
 
-  constructor(obj: CharacterHyperStatDtoBody) {
+  constructor(obj: CharacterHyperStatBody) {
     const {
       date,
       character_class,

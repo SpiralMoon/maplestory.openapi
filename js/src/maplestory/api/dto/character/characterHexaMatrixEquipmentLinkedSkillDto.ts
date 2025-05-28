@@ -1,4 +1,4 @@
-import { CharacterHexaMatrixEquipmentLinkedSkillDtoBody } from '../../response/character/characterHexaMatrixDtoBody';
+import { CharacterHexaMatrixEquipmentLinkedSkillBody } from '../../response/character/characterHexaMatrixBody';
 
 /**
  * 연결된 HEXA 스킬 정보
@@ -9,7 +9,7 @@ class CharacterHexaMatrixEquipmentLinkedSkillDto {
    */
   hexaSkillId: string;
 
-  constructor(obj: CharacterHexaMatrixEquipmentLinkedSkillDtoBody) {
+  constructor(obj: CharacterHexaMatrixEquipmentLinkedSkillBody) {
     const { hexa_skill_id } = obj;
 
     this.hexaSkillId = hexa_skill_id;

@@ -1,5 +1,5 @@
 import { PotentialHistoryDto } from './potentialHistoryDto';
-import { PotentialHistoryResponseDtoBody } from '../../response/history/potentialHistoryResponseDtoBody';
+import { PotentialHistoryResponseBody } from '../../response/history/potentialHistoryBody';
 
 /**
  * 잠재능력 재설정 히스토리 응답 정보
@@ -20,7 +20,7 @@ class PotentialHistoryResponseDto {
    */
   nextCursor: string | null;
 
-  constructor(obj: PotentialHistoryResponseDtoBody) {
+  constructor(obj: PotentialHistoryResponseBody) {
     const { count, potential_history, next_cursor } = obj;
 
     this.count = count;

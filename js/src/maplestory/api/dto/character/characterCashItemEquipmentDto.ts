@@ -1,5 +1,5 @@
 import { CharacterCashItemEquipmentPresetDto } from './characterCashItemEquipmentPresetDto';
-import { CharacterCashItemEquipmentDtoBody } from '../../response/character/characterCashItemEquipmentDtoBody';
+import { CharacterCashItemEquipmentBody } from '../../response/character/characterCashItemEquipmentBody';
 
 /**
  * 캐릭터 캐시 장비 아이템 정보
@@ -70,7 +70,7 @@ class CharacterCashItemEquipmentDto {
    */
   additionalCashItemEquipmentPreset3: CharacterCashItemEquipmentPresetDto[];
 
-  constructor(obj: CharacterCashItemEquipmentDtoBody) {
+  constructor(obj: CharacterCashItemEquipmentBody) {
     const {
       date,
       character_gender,

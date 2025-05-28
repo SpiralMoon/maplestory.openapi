@@ -1,5 +1,5 @@
 import { CharacterAbilityInfoDto } from './characterAbilityInfoDto';
-import { CharacterAbilityPresetDtoBody } from '../../response/character/characterAbilityDtoBody';
+import { CharacterAbilityPresetBody } from '../../response/character/characterAbilityBody';
 
 /**
  * 캐릭터 어빌리티 프리셋 정보
@@ -15,7 +15,7 @@ class CharacterAbilityPresetDto {
    */
   abilityInfo: CharacterAbilityInfoDto[];
 
-  constructor(obj: CharacterAbilityPresetDtoBody) {
+  constructor(obj: CharacterAbilityPresetBody) {
     const { ability_preset_grade, ability_info } = obj;
 
     this.abilityPresetGrade = ability_preset_grade;

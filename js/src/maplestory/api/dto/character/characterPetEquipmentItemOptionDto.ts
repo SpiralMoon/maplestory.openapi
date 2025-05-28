@@ -1,4 +1,4 @@
-import { CharacterPetEquipmentItemOptionDtoBody } from '../../response/character/characterPetEquipmentDtoBody';
+import { CharacterPetEquipmentItemOptionBody } from '../../response/character/characterPetEquipmentBody';
 
 /**
  * 캐릭터 펫 장비 아이템 옵션 정보
@@ -14,7 +14,7 @@ class CharacterPetEquipmentItemOptionDto {
    */
   optionValue: string;
 
-  constructor(obj: CharacterPetEquipmentItemOptionDtoBody) {
+  constructor(obj: CharacterPetEquipmentItemOptionBody) {
     const { option_type, option_value } = obj;
 
     this.optionType = option_type;

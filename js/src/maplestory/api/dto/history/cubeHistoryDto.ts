@@ -1,5 +1,5 @@
 import { CubeResultOptionDto } from './cubeResultOptionDto';
-import { CubeHistoryDtoBody } from '../../response/history/cubeHistoryDtoBody';
+import { CubeHistoryBody } from '../../response/history/cubeHistoryBody';
 import { PotentialOptionGrade, potentialOptionGradeFromString } from '../potentialOptionGrade';
 
 /**
@@ -96,7 +96,7 @@ class CubeHistoryDto {
    */
   afterAdditionalPotentialOption: CubeResultOptionDto[];
 
-  constructor(obj: CubeHistoryDtoBody) {
+  constructor(obj: CubeHistoryBody) {
     const {
       id,
       character_name,

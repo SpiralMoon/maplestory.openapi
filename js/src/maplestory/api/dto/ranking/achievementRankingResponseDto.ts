@@ -1,5 +1,5 @@
 import { AchievementRankingDto } from './achievementRankingDto';
-import { AchievementRankingResponseDtoBody } from '../../response/ranking/achievementRankingResponseDtoBody';
+import { AchievementRankingResponseBody } from '../../response/ranking/achievementRankingBody';
 
 /**
  * 업적 랭킹 응답 정보
@@ -10,7 +10,7 @@ class AchievementRankingResponseDto {
    */
   ranking: AchievementRankingDto[];
 
-  constructor(obj: AchievementRankingResponseDtoBody) {
+  constructor(obj: AchievementRankingResponseBody) {
     const { ranking } = obj;
 
     this.ranking = ranking.map((rank) => new AchievementRankingDto(rank));

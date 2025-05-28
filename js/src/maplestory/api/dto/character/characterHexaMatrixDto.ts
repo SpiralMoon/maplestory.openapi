@@ -1,5 +1,5 @@
 import { CharacterHexaMatrixEquipmentDto } from './characterHexaMatrixEquipmentDto';
-import { CharacterHexaMatrixDtoBody } from '../../response/character/characterHexaMatrixDtoBody';
+import { CharacterHexaMatrixBody } from '../../response/character/characterHexaMatrixBody';
 
 /**
  * 캐릭터 HEXA 코어 정보
@@ -15,7 +15,7 @@ class CharacterHexaMatrixDto {
    */
   characterHexaCoreEquipment: CharacterHexaMatrixEquipmentDto[];
 
-  constructor(obj: CharacterHexaMatrixDtoBody) {
+  constructor(obj: CharacterHexaMatrixBody) {
     const { date, character_hexa_core_equipment } = obj;
 
     this.date = date ? new Date(date) : null;

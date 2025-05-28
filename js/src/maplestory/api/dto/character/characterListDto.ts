@@ -1,5 +1,5 @@
 import { CharacterListAccountDto } from './characterListAccountDto';
-import { CharacterListDtoBody } from '../../response/character/characterListDtoBody';
+import { CharacterListBody } from '../../response/character/characterListBody';
 
 /**
  * 계정의 보유 캐릭터 목록
@@ -11,7 +11,7 @@ class CharacterListDto {
    */
   accountList:  CharacterListAccountDto[];
 
-  constructor(obj: CharacterListDtoBody) {
+  constructor(obj: CharacterListBody) {
     const { account_list } = obj;
 
     this.accountList = account_list.map(account => new CharacterListAccountDto(account));

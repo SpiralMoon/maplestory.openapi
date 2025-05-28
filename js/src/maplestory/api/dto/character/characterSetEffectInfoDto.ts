@@ -1,4 +1,4 @@
-import { CharacterSetEffectInfoDtoBody } from '../../response/character/characterSetEffectDtoBody';
+import { CharacterSetEffectInfoBody } from '../../response/character/characterSetEffectBody';
 
 /**
  * 적용 중인 세트 효과 정보
@@ -14,7 +14,7 @@ class CharacterSetEffectInfoDto {
    */
   setOption: string;
 
-  constructor(obj: CharacterSetEffectInfoDtoBody) {
+  constructor(obj: CharacterSetEffectInfoBody) {
     const { set_count, set_option } = obj;
 
     this.setCount = set_count;

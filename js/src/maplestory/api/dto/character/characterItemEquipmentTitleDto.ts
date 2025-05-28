@@ -1,4 +1,4 @@
-import { CharacterItemEquipmentTitleDtoBody } from '../../response/character/characterItemEquipmentDtoBody';
+import { CharacterItemEquipmentTitleBody } from '../../response/character/characterItemEquipmentBody';
 
 /**
  * 캐릭터 칭호 아이템 정보
@@ -54,7 +54,7 @@ class CharacterItemEquipmentTitleDto {
    */
   titleShapeDescription: string | null;
 
-  constructor(obj: CharacterItemEquipmentTitleDtoBody) {
+  constructor(obj: CharacterItemEquipmentTitleBody) {
     const {
       title_name,
       title_icon,

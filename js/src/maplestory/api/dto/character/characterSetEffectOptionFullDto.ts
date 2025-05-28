@@ -1,4 +1,4 @@
-import { CharacterSetEffectOptionFullDtoBody } from '../../response/character/characterSetEffectDtoBody';
+import { CharacterSetEffectOptionFullBody } from '../../response/character/characterSetEffectBody';
 
 /**
  * 모든 세트 효과 정보
@@ -14,7 +14,7 @@ class CharacterSetEffectOptionFullDto {
    */
   setOption: string;
 
-  constructor(obj: CharacterSetEffectOptionFullDtoBody) {
+  constructor(obj: CharacterSetEffectOptionFullBody) {
     const { set_count, set_option } = obj;
 
     this.setCount = set_count;

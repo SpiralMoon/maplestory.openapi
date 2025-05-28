@@ -1,4 +1,4 @@
-import { UnionRankingDtoBody } from '../../response/ranking/unionRankingResponseDtoBody';
+import { UnionRankingBody } from '../../response/ranking/unionRankingBody';
 
 /**
  * 유니온 랭킹 정보
@@ -44,7 +44,7 @@ class UnionRankingDto {
    */
   unionPower: number;
 
-  constructor(obj: UnionRankingDtoBody) {
+  constructor(obj: UnionRankingBody) {
     const {
       date,
       ranking,

@@ -1,4 +1,4 @@
-import { CharacterBeautyEquipmentFaceDtoBody } from '../../response/character/characterBeautyEquipmentDtoBody';
+import { CharacterBeautyEquipmentFaceBody } from '../../response/character/characterBeautyEquipmentBody';
 
 /**
  * 캐릭터 성형 정보
@@ -24,7 +24,7 @@ class CharacterBeautyEquipmentFaceDto {
    */
   mixRate: string;
 
-  constructor(obj: CharacterBeautyEquipmentFaceDtoBody) {
+  constructor(obj: CharacterBeautyEquipmentFaceBody) {
     const { face_name, base_color, mix_color, mix_rate } = obj;
 
     this.faceName = face_name;

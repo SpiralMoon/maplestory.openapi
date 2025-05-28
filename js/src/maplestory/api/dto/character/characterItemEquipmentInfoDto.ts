@@ -4,7 +4,7 @@ import { CharacterItemEquipmentEtcOptionDto } from './characterItemEquipmentEtcO
 import { CharacterItemEquipmentExceptionalOptionDto } from './characterItemEquipmentExceptionalOptionDto';
 import { CharacterItemEquipmentStarforceOptionDto } from './characterItemEquipmentStarforceOptionDto';
 import { CharacterItemEquipmentTotalOptionDto } from './characterItemEquipmentTotalOptionDto';
-import { CharacterItemEquipmentInfoDtoBody } from '../../response/character/characterItemEquipmentDtoBody';
+import { CharacterItemEquipmentInfoBody } from '../../response/character/characterItemEquipmentBody';
 
 /**
  * 캐릭터 장비 아이템 상세 정보
@@ -195,7 +195,7 @@ class CharacterItemEquipmentInfoDto {
    */
   isExpired: boolean | null = null;
 
-  constructor(obj: CharacterItemEquipmentInfoDtoBody) {
+  constructor(obj: CharacterItemEquipmentInfoBody) {
     const {
       item_equipment_part,
       item_equipment_slot,

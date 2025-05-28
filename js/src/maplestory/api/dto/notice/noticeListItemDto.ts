@@ -1,4 +1,4 @@
-import { NoticeListItemDtoBody } from '../../response/notice/noticeListDtoBody';
+import { NoticeListItemDtoBody } from '../../response/notice/noticeListBody';
 
 /**
  * 공지사항

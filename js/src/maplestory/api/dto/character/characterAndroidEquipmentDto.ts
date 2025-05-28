@@ -3,7 +3,7 @@ import { CharacterAndroidEquipmentFaceDto } from './characterAndroidEquipmentFac
 import { CharacterAndroidEquipmentHairDto } from './characterAndroidEquipmentHairDto';
 import { CharacterAndroidEquipmentPresetDto } from './characterAndroidEquipmentPresetDto';
 import { CharacterAndroidEquipmentSkinDto } from './characterAndroidEquipmentSkinDto';
-import { CharacterAndroidEquipmentDtoBody } from '../../response/character/characterAndroidEquipmentDtoBody';
+import { CharacterAndroidEquipmentBody } from '../../response/character/characterAndroidEquipmentBody';
 
 /**
  * 캐릭터 안드로이드 장비 정보
@@ -99,7 +99,7 @@ class CharacterAndroidEquipmentDto {
    */
   androidPreset3: CharacterAndroidEquipmentPresetDto | null;
 
-  constructor(obj: CharacterAndroidEquipmentDtoBody) {
+  constructor(obj: CharacterAndroidEquipmentBody) {
     const {
       date,
       android_name,

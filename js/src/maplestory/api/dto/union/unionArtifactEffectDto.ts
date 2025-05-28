@@ -1,4 +1,4 @@
-import { UnionArtifactEffectDtoBody } from '../../response/union/unionArtifactDtoBody';
+import { UnionArtifactEffectBody } from '../../response/union/unionArtifactBody';
 
 /**
  * 유니온 아티팩트 효과 정보
@@ -14,7 +14,7 @@ class UnionArtifactEffectDto {
    */
   level: number;
 
-  constructor(obj: UnionArtifactEffectDtoBody) {
+  constructor(obj: UnionArtifactEffectBody) {
     const { name, level } = obj;
 
     this.name = name;

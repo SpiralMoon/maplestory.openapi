@@ -1,4 +1,4 @@
-import { CharacterBeautyEquipmentHairDtoBody } from '../../response/character/characterBeautyEquipmentDtoBody';
+import { CharacterBeautyEquipmentHairBody } from '../../response/character/characterBeautyEquipmentBody';
 
 /**
  * 캐릭터 헤어 정보
@@ -24,7 +24,7 @@ class CharacterBeautyEquipmentHairDto {
    */
   mixRate: string;
 
-  constructor(obj: CharacterBeautyEquipmentHairDtoBody) {
+  constructor(obj: CharacterBeautyEquipmentHairBody) {
     const { hair_name, base_color, mix_color, mix_rate } = obj;
 
     this.hairName = hair_name;

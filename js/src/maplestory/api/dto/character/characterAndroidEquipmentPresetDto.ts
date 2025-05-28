@@ -1,7 +1,7 @@
 import { CharacterAndroidEquipmentFaceDto } from './characterAndroidEquipmentFaceDto';
 import { CharacterAndroidEquipmentHairDto } from './characterAndroidEquipmentHairDto';
 import { CharacterAndroidEquipmentSkinDto } from './characterAndroidEquipmentSkinDto';
-import { CharacterAndroidEquipmentPresetDtoBody } from '../../response/character/characterAndroidEquipmentDtoBody';
+import { CharacterAndroidEquipmentPresetBody } from '../../response/character/characterAndroidEquipmentBody';
 
 /**
  * 캐릭터 안드로이드 프리셋 정보
@@ -68,7 +68,7 @@ class CharacterAndroidEquipmentPresetDto {
    */
   androidShopUsableFlag: string;
 
-  constructor(obj: CharacterAndroidEquipmentPresetDtoBody) {
+  constructor(obj: CharacterAndroidEquipmentPresetBody) {
     const {
       android_name,
       android_nickname,

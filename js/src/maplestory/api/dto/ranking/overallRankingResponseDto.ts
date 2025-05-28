@@ -1,5 +1,5 @@
 import { OverallRankingDto } from './overallRankingDto';
-import { OverallRankingResponseDtoBody } from '../../response/ranking/overallRankingResponseDtoBody';
+import { OverallRankingResponseBody } from '../../response/ranking/overallRankingBody';
 
 /**
  * 종합 랭킹 응답 정보
@@ -10,7 +10,7 @@ class OverallRankingResponseDto {
    */
   ranking: OverallRankingDto[];
 
-  constructor(obj: OverallRankingResponseDtoBody) {
+  constructor(obj: OverallRankingResponseBody) {
     const { ranking } = obj;
 
     this.ranking = ranking.map((rank) => new OverallRankingDto(rank));

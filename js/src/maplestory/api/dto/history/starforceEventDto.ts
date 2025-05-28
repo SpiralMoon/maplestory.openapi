@@ -1,4 +1,4 @@
-import { StarforceEventDtoBody } from '../../response/history/starforceEventDtoBody';
+import { StarforceEventBody } from '../../response/history/starforceHistoryBody';
 
 /**
  * 스타포스 강화 이벤트 정보
@@ -29,7 +29,7 @@ class StarforceEventDto {
    */
   starforceEventRange: string;
 
-  constructor(obj: StarforceEventDtoBody) {
+  constructor(obj: StarforceEventBody) {
     const {
       success_rate,
       destroy_decrease_rate,

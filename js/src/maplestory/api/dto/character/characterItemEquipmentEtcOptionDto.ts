@@ -1,4 +1,4 @@
-import { CharacterItemEquipmentEtcOptionDtoBody } from '../../response/character/characterItemEquipmentDtoBody';
+import { CharacterItemEquipmentEtcOptionBody } from '../../response/character/characterItemEquipmentBody';
 
 /**
  * 캐릭터 장비 기타 옵션 정보
@@ -59,7 +59,7 @@ class CharacterItemEquipmentEtcOptionDto {
    */
   jump: string;
 
-  constructor(obj: CharacterItemEquipmentEtcOptionDtoBody) {
+  constructor(obj: CharacterItemEquipmentEtcOptionBody) {
     const {
       str,
       dex,

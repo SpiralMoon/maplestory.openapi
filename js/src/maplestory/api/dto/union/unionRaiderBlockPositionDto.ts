@@ -1,4 +1,4 @@
-import { UnionRaiderBlockPositionDtoBody } from '../../response/union/unionRaiderDtoBody';
+import { UnionRaiderBlockPositionBody } from '../../response/union/unionRaiderBody';
 
 /**
  * 유니온 블록이 차지하고 있는 영역 좌표들
@@ -14,7 +14,7 @@ class UnionRaiderBlockPositionDto {
    */
   y: number;
 
-  constructor(obj: UnionRaiderBlockPositionDtoBody) {
+  constructor(obj: UnionRaiderBlockPositionBody) {
     const { x, y } = obj;
 
     this.x = x;

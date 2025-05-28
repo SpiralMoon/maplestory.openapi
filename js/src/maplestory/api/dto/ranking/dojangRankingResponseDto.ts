@@ -1,5 +1,5 @@
 import { DojangRankingDto } from './dojangRankingDto';
-import { DojangRankingResponseDtoBody } from '../../response/ranking/dojangRankingResponseDtoBody';
+import { DojangRankingResponseBody } from '../../response/ranking/dojangRankingBody';
 
 /**
  * 무릉도장 랭킹 응답 정보
@@ -10,7 +10,7 @@ class DojangRankingResponseDto {
    */
   ranking: DojangRankingDto[];
 
-  constructor(obj: DojangRankingResponseDtoBody) {
+  constructor(obj: DojangRankingResponseBody) {
     const { ranking } = obj;
 
     this.ranking = ranking.map((rank) => new DojangRankingDto(rank));

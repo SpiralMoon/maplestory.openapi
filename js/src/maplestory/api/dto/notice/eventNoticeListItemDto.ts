@@ -1,4 +1,4 @@
-import { EventNoticeListItemDtoBody } from '../../response/notice/eventNoticeListDtoBody';
+import { EventNoticeListItemDtoBody } from '../../response/notice/eventNoticeListBody';
 
 /**
  * 진행 중 이벤트 공지

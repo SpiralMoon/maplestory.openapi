@@ -1,4 +1,4 @@
-import { OverallRankingDtoBody } from '../../response/ranking/overallRankingResponseDtoBody';
+import { OverallRankingBody } from '../../response/ranking/overallRankingBody';
 
 /**
  * 종합 랭킹 정보
@@ -54,7 +54,7 @@ class OverallRankingDto {
    */
   characterGuildName: string | null;
 
-  constructor(obj: OverallRankingDtoBody) {
+  constructor(obj: OverallRankingBody) {
     const {
       date,
       ranking,

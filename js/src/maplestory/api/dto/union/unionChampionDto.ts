@@ -1,8 +1,8 @@
 import { UnionChampionBadgeInfoDto } from './unionChampionBadgeInfoDto';
 import { UnionChampionInfoDto } from './unionChampionInfoDto';
 import {
-  UnionChampionDtoBody,
-} from '../../response/union/unionChampionDtoBody';
+  UnionChampionBody,
+} from '../../response/union/unionChampionBody';
 
 /**
  * 유니온 챔피언 정보
@@ -24,7 +24,7 @@ class UnionChampionDto {
    */
   championBadgeTotalInfo: UnionChampionBadgeInfoDto[];
 
-  constructor(obj: UnionChampionDtoBody) {
+  constructor(obj: UnionChampionBody) {
     const { date, union_champion, champion_badge_total_info } = obj;
 
     this.date = date ? new Date(date) : null;

@@ -1,5 +1,5 @@
 import { StarforceHistoryDto } from './starforceHistoryDto';
-import { StarforceHistoryResponseDtoBody } from '../../response/history/starforceHistoryResponseDtoBody';
+import { StarforceHistoryResponseBody } from '../../response/history/starforceHistoryBody';
 
 /**
  * 스타포스 히스토리 응답 정보
@@ -20,7 +20,7 @@ class StarforceHistoryResponseDto {
    */
   nextCursor: string | null;
 
-  constructor(obj: StarforceHistoryResponseDtoBody) {
+  constructor(obj: StarforceHistoryResponseBody) {
     const { count, starforce_history, next_cursor } = obj;
 
     this.count = count;

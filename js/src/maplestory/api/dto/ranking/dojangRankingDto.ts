@@ -1,4 +1,4 @@
-import { DojangRankingDtoBody } from '../../response/ranking/dojangRankingResponseDtoBody';
+import { DojangRankingBody } from '../../response/ranking/dojangRankingBody';
 
 /**
  * 무릉도장 랭킹 정보
@@ -49,7 +49,7 @@ class DojangRankingDto {
    */
   dojangTimeRecord: number;
 
-  constructor(obj: DojangRankingDtoBody) {
+  constructor(obj: DojangRankingBody) {
     const {
       date,
       ranking,

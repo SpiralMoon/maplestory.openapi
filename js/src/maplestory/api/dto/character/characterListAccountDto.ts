@@ -1,5 +1,5 @@
 import { CharacterListAccountCharacterDto } from './characterListAccountCharacterDto';
-import { CharacterListAccountDtoBody } from '../../response/character/characterListDtoBody';
+import { CharacterListAccountBody } from '../../response/character/characterListBody';
 
 /**
  * 메이플스토리 계정
@@ -16,7 +16,7 @@ class CharacterListAccountDto {
    */
   characterList: CharacterListAccountCharacterDto[];
 
-  constructor(obj: CharacterListAccountDtoBody) {
+  constructor(obj: CharacterListAccountBody) {
     const { account_id, character_list } = obj;
 
     this.accountId = account_id;

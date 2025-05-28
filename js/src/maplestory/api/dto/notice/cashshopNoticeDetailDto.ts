@@ -1,4 +1,4 @@
-import { CashshopNoticeDetailDtoBody } from '../../response/notice/cashshopNoticeDetailDtoBody';
+import { CashshopNoticeDetailBody } from '../../response/notice/cashshopNoticeDetailBody';
 
 /**
  * 캐시샵 공지 상세
@@ -40,7 +40,7 @@ class CashshopNoticeDetailDto {
    */
   ongoingFlag: string;
 
-  constructor(obj: CashshopNoticeDetailDtoBody) {
+  constructor(obj: CashshopNoticeDetailBody) {
     const { title, url, contents, date, date_sale_start, date_sale_end, ongoing_flag } = obj;
 
     this.title = title;

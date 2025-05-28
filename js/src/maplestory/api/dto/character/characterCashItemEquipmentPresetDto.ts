@@ -1,6 +1,6 @@
 import { CharacterCashItemEquipmentColoringPrismDto } from './characterCashItemEquipmentColoringPrismDto';
 import { CharacterCashItemEquipmentOptionDto } from './characterCashItemEquipmentOptionDto';
-import { CharacterCashItemEquipmentPresetDtoBody } from '../../response/character/characterCashItemEquipmentDtoBody';
+import { CharacterCashItemEquipmentPresetBody } from '../../response/character/characterCashItemEquipmentBody';
 
 /**
  * 캐릭터 프리셋 장착 캐시 장비 정보
@@ -76,7 +76,7 @@ class CharacterCashItemEquipmentPresetDto {
    */
   skills: string[];
 
-  constructor(obj: CharacterCashItemEquipmentPresetDtoBody) {
+  constructor(obj: CharacterCashItemEquipmentPresetBody) {
     const {
       cash_item_equipment_part,
       cash_item_equipment_slot,

@@ -2,8 +2,8 @@ import { CharacterBeautyEquipmentFaceDto } from './characterBeautyEquipmentFaceD
 import { CharacterBeautyEquipmentHairDto } from './characterBeautyEquipmentHairDto';
 import { CharacterBeautyEquipmentSkinDto } from './characterBeautyEquipmentSkinDto';
 import {
-  CharacterBeautyEquipmentDtoBody,
-} from '../../response/character/characterBeautyEquipmentDtoBody';
+  CharacterBeautyEquipmentBody,
+} from '../../response/character/characterBeautyEquipmentBody';
 
 /**
  * 캐릭터 헤어, 성형, 피부 정보
@@ -57,7 +57,7 @@ class CharacterBeautyEquipmentDto {
    */
   additionalCharacterSkin: CharacterBeautyEquipmentSkinDto | null;
 
-  constructor(obj: CharacterBeautyEquipmentDtoBody) {
+  constructor(obj: CharacterBeautyEquipmentBody) {
     const {
       date,
       character_gender,

@@ -1,4 +1,4 @@
-import { UnionChampionBadgeInfoDtoBody } from '../../response/union/unionChampionDtoBody';
+import { UnionChampionBadgeInfoBody } from '../../response/union/unionChampionBody';
 
 /**
  * 유니온 챔피언 휘장 정보
@@ -10,7 +10,7 @@ class UnionChampionBadgeInfoDto {
    */
   stat: string;
 
-  constructor(obj: UnionChampionBadgeInfoDtoBody) {
+  constructor(obj: UnionChampionBadgeInfoBody) {
     const { stat } = obj;
 
     this.stat = stat;

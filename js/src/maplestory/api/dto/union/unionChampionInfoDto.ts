@@ -1,5 +1,5 @@
 import { UnionChampionBadgeInfoDto } from './unionChampionBadgeInfoDto';
-import { UnionChampionInfoDtoBody } from '../../response/union/unionChampionDtoBody';
+import { UnionChampionInfoBody } from '../../response/union/unionChampionBody';
 
 /**
  * 유니온 챔피언 상세 정보
@@ -31,7 +31,7 @@ class UnionChampionInfoDto {
    */
   championBadgeInfo: UnionChampionBadgeInfoDto[];
 
-  constructor(obj: UnionChampionInfoDtoBody) {
+  constructor(obj: UnionChampionInfoBody) {
     const { champion_name, champion_slot, champion_grade, champion_class, champion_badge_info } = obj;
 
     this.championName = champion_name;

@@ -1,5 +1,5 @@
 import { CharacterHexaMatrixEquipmentLinkedSkillDto } from './characterHexaMatrixEquipmentLinkedSkillDto';
-import { CharacterHexaMatrixEquipmentDtoBody } from '../../response/character/characterHexaMatrixDtoBody';
+import { CharacterHexaMatrixEquipmentBody } from '../../response/character/characterHexaMatrixBody';
 
 /**
  * 캐릭터 HEXA 코어 정보
@@ -25,7 +25,7 @@ class CharacterHexaMatrixEquipmentDto {
    */
   linkedSkill: CharacterHexaMatrixEquipmentLinkedSkillDto[];
 
-  constructor(obj: CharacterHexaMatrixEquipmentDtoBody) {
+  constructor(obj: CharacterHexaMatrixEquipmentBody) {
     const { hexa_core_name, hexa_core_level, hexa_core_type, linked_skill } =
       obj;
 

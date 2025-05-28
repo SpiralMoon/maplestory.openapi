@@ -1,4 +1,4 @@
-import { GuildSkillDtoBody } from '../../response/guild/guildBasicDtoBody';
+import { GuildSkillBody } from '../../response/guild/guildBasicBody';
 
 /**
  * 길드 스킬 정보
@@ -29,7 +29,7 @@ class GuildSkillDto {
    */
   skillIcon: string;
 
-  constructor(obj: GuildSkillDtoBody) {
+  constructor(obj: GuildSkillBody) {
     const {
       skill_name,
       skill_description,

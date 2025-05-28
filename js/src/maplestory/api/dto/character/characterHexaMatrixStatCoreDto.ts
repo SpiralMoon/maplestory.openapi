@@ -1,4 +1,4 @@
-import { CharacterHexaMatrixStatCoreDtoBody } from '../../response/character/characterHexaMatrixStatDtoBody';
+import { CharacterHexaMatrixStatCoreBody } from '../../response/character/characterHexaMatrixStatBody';
 
 /**
  * 캐릭터 HEXA 스탯 코어 정보
@@ -44,7 +44,7 @@ class CharacterHexaMatrixStatCoreDto {
    */
   statGrade: number;
 
-  constructor(obj: CharacterHexaMatrixStatCoreDtoBody) {
+  constructor(obj: CharacterHexaMatrixStatCoreBody) {
     const {
       slot_id,
       main_stat_name,

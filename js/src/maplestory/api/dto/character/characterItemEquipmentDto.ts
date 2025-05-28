@@ -3,7 +3,7 @@ import { CharacterItemEquipmentInfoDto } from './characterItemEquipmentInfoDto';
 import { CharacterItemEquipmentMechanicInfoDto } from './characterItemEquipmentMechanicInfoDto';
 import { CharacterItemEquipmentMedalShapeDto } from './characterItemEquipmentMedalShapeDto';
 import { CharacterItemEquipmentTitleDto } from './characterItemEquipmentTitleDto';
-import { CharacterItemEquipmentDtoBody } from '../../response/character/characterItemEquipmentDtoBody';
+import { CharacterItemEquipmentBody } from '../../response/character/characterItemEquipmentBody';
 
 /**
  * 캐릭터 장비 아이템 정보
@@ -69,7 +69,7 @@ class CharacterItemEquipmentDto {
    */
   mechanicEquipment: CharacterItemEquipmentMechanicInfoDto[];
 
-  constructor(obj: CharacterItemEquipmentDtoBody) {
+  constructor(obj: CharacterItemEquipmentBody) {
     const {
       date,
       character_gender,
