@@ -5,103 +5,103 @@ import timezone from 'dayjs/plugin/timezone';
 import utc from 'dayjs/plugin/utc';
 import xml2js from 'xml2js';
 
-import { CharacterAbilityDto } from './dto/character/characterAbilityDto';
-import { CharacterAndroidEquipmentDto } from './dto/character/characterAndroidEquipmentDto';
-import { CharacterBasicDto } from './dto/character/characterBasicDto';
-import { CharacterBeautyEquipmentDto } from './dto/character/characterBeautyEquipmentDto';
-import { CharacterCashItemEquipmentDto } from './dto/character/characterCashItemEquipmentDto';
-import { CharacterDojangDto } from './dto/character/characterDojangDto';
-import { CharacterDto } from './dto/character/characterDto';
-import { CharacterHexaMatrixDto } from './dto/character/characterHexaMatrixDto';
-import { CharacterHexaMatrixStatDto } from './dto/character/characterHexaMatrixStatDto';
-import { CharacterHyperStatDto } from './dto/character/characterHyperStatDto';
+import { CharacterDto } from './dto/character/character';
+import { CharacterAbilityDto } from './dto/character/characterAbility';
+import { CharacterAndroidEquipmentDto } from './dto/character/characterAndroidEquipment';
+import { CharacterBasicDto } from './dto/character/characterBasic';
+import { CharacterBeautyEquipmentDto } from './dto/character/characterBeautyEquipment';
+import { CharacterCashItemEquipmentDto } from './dto/character/characterCashItemEquipment';
+import { CharacterDojangDto } from './dto/character/characterDojang';
+import { CharacterHexaMatrixDto } from './dto/character/characterHexaMatrix';
+import { CharacterHexaMatrixStatDto } from './dto/character/characterHexaMatrixStat';
+import { CharacterHyperStatDto } from './dto/character/characterHyperStat';
 import {
   CharacterImageAction,
   CharacterImageDto,
   CharacterImageEmotion,
   CharacterImageWeaponMotion,
-} from './dto/character/characterImageDto';
-import { CharacterItemEquipmentDto } from './dto/character/characterItemEquipmentDto';
-import { CharacterLinkSkillDto } from './dto/character/characterLinkSkillDto';
-import { CharacterListDto } from './dto/character/characterListDto';
-import { CharacterPetEquipmentDto } from './dto/character/characterPetEquipmentDto';
-import { CharacterPopularityDto } from './dto/character/characterPopularityDto';
-import { CharacterPropensityDto } from './dto/character/characterPropensityDto';
-import { CharacterSetEffectDto } from './dto/character/characterSetEffectDto';
-import { CharacterSkillDto } from './dto/character/characterSkillDto';
-import { CharacterStatDto } from './dto/character/characterStatDto';
-import { CharacterSymbolEquipmentDto } from './dto/character/characterSymbolEquipmentDto';
-import { CharacterVMatrixDto } from './dto/character/characterVMatrixDto';
-import { GuildBasicDto } from './dto/guild/guildBasicDto';
-import { GuildDto } from './dto/guild/guildDto';
-import { CubeHistoryResponseDto } from './dto/history/cubeHistoryResponseDto';
-import { PotentialHistoryResponseDto } from './dto/history/potentialHistoryResponseDto';
-import { StarforceHistoryResponseDto } from './dto/history/starforceHistoryResponseDto';
-import { InspectionInfoDto } from './dto/inspectionInfoDto';
-import { CashshopNoticeDetailDto } from './dto/notice/cashshopNoticeDetailDto';
-import { CashshopNoticeListDto } from './dto/notice/cashshopNoticeListDto';
-import { EventNoticeDetailDto } from './dto/notice/eventNoticeDetailDto';
-import { EventNoticeListDto } from './dto/notice/eventNoticeListDto';
-import { NoticeDetailDto } from './dto/notice/noticeDetailDto';
-import { NoticeListDto } from './dto/notice/noticeListDto';
-import { UpdateNoticeDetailDto } from './dto/notice/updateNoticeDetailDto';
-import { UpdateNoticeListDto } from './dto/notice/updateNoticeListDto';
-import { AchievementRankingResponseDto } from './dto/ranking/achievementRankingResponseDto';
-import { DojangRankingResponseDto } from './dto/ranking/dojangRankingResponseDto';
-import { GuildRankingResponseDto } from './dto/ranking/guildRankingResponseDto';
-import { OverallRankingResponseDto } from './dto/ranking/overallRankingResponseDto';
-import { TheSeedRankingResponseDto } from './dto/ranking/theSeedRankingResponseDto';
-import { UnionRankingResponseDto } from './dto/ranking/unionRankingResponseDto';
-import { UnionArtifactDto } from './dto/union/unionArtifactDto';
-import { UnionChampionDto } from './dto/union/unionChampionDto';
-import { UnionDto } from './dto/union/unionDto';
-import { UnionRaiderDto } from './dto/union/unionRaiderDto';
+} from './dto/character/characterImage';
+import { CharacterItemEquipmentDto } from './dto/character/characterItemEquipment';
+import { CharacterLinkSkillDto } from './dto/character/characterLinkSkill';
+import { CharacterListDto } from './dto/character/characterList';
+import { CharacterPetEquipmentDto } from './dto/character/characterPetEquipment';
+import { CharacterPopularityDto } from './dto/character/characterPopularity';
+import { CharacterPropensityDto } from './dto/character/characterPropensity';
+import { CharacterSetEffectDto } from './dto/character/characterSetEffect';
+import { CharacterSkillDto } from './dto/character/characterSkill';
+import { CharacterStatDto } from './dto/character/characterStat';
+import { CharacterSymbolEquipmentDto } from './dto/character/characterSymbolEquipment';
+import { CharacterVMatrixDto } from './dto/character/characterVMatrix';
+import { GuildDto } from './dto/guild/guild';
+import { GuildBasicDto } from './dto/guild/guildBasic';
+import { CubeHistoryResponseDto } from './dto/history/cubeHistory';
+import { PotentialHistoryResponseDto } from './dto/history/potentialHistory';
+import { StarforceHistoryResponseDto } from './dto/history/starforceHistory';
+import { InspectionInfoDto } from './dto/inspectionInfo';
+import { CashshopNoticeDetailDto } from './dto/notice/cashshopNoticeDetail';
+import { CashshopNoticeListDto } from './dto/notice/cashshopNoticeList';
+import { EventNoticeDetailDto } from './dto/notice/eventNoticeDetail';
+import { EventNoticeListDto } from './dto/notice/eventNoticeList';
+import { NoticeDetailDto } from './dto/notice/noticeDetail';
+import { NoticeListDto } from './dto/notice/noticeList';
+import { UpdateNoticeDetailDto } from './dto/notice/updateNoticeDetail';
+import { UpdateNoticeListDto } from './dto/notice/updateNoticeList';
+import { AchievementRankingResponseDto } from './dto/ranking/achievementRanking';
+import { DojangRankingResponseDto } from './dto/ranking/dojangRanking';
+import { GuildRankingResponseDto } from './dto/ranking/guildRanking';
+import { OverallRankingResponseDto } from './dto/ranking/overallRanking';
+import { TheSeedRankingResponseDto } from './dto/ranking/theSeedRanking';
+import { UnionRankingResponseDto } from './dto/ranking/unionRanking';
+import { UnionDto } from './dto/union/union';
+import { UnionArtifactDto } from './dto/union/unionArtifact';
+import { UnionChampionDto } from './dto/union/unionChampion';
+import { UnionRaiderDto } from './dto/union/unionRaider';
 import { MapleStoryApiError } from './mapleStoryApiError';
-import { CharacterAbilityDtoBody } from './response/character/characterAbilityDtoBody';
-import { CharacterAndroidEquipmentDtoBody } from './response/character/characterAndroidEquipmentDtoBody';
-import { CharacterBasicDtoBody } from './response/character/characterBasicDtoBody';
-import { CharacterBeautyEquipmentDtoBody } from './response/character/characterBeautyEquipmentDtoBody';
-import { CharacterCashItemEquipmentDtoBody } from './response/character/characterCashItemEquipmentDtoBody';
-import { CharacterDojangDtoBody } from './response/character/characterDojangDtoBody';
-import { CharacterDtoBody } from './response/character/characterDtoBody';
-import { CharacterHexaMatrixDtoBody } from './response/character/characterHexaMatrixDtoBody';
-import { CharacterHexaMatrixStatDtoBody } from './response/character/characterHexaMatrixStatDtoBody';
-import { CharacterHyperStatDtoBody } from './response/character/characterHyperStatDtoBody';
-import { CharacterItemEquipmentDtoBody } from './response/character/characterItemEquipmentDtoBody';
-import { CharacterLinkSkillDtoBody } from './response/character/characterLinkSkillDtoBody';
-import { CharacterListDtoBody } from './response/character/characterListDtoBody';
-import { CharacterPetEquipmentDtoBody } from './response/character/characterPetEquipmentDtoBody';
-import { CharacterPopularityDtoBody } from './response/character/characterPopularityDtoBody';
-import { CharacterPropensityDtoBody } from './response/character/characterPropensityDtoBody';
-import { CharacterSetEffectDtoBody } from './response/character/characterSetEffectDtoBody';
-import { CharacterSkillDtoBody } from './response/character/characterSkillDtoBody';
-import { CharacterStatDtoBody } from './response/character/characterStatDtoBody';
-import { CharacterSymbolEquipmentDtoBody } from './response/character/characterSymbolEquipmentDtoBody';
-import { CharacterVMatrixDtoBody } from './response/character/characterVMatrixDtoBody';
-import { GuildBasicDtoBody } from './response/guild/guildBasicDtoBody';
-import { GuildDtoBody } from './response/guild/guildDtoBody';
-import { CubeHistoryResponseDtoBody } from './response/history/cubeHistoryResponseDtoBody';
-import { PotentialHistoryResponseDtoBody } from './response/history/potentialHistoryResponseDtoBody';
-import { StarforceHistoryResponseDtoBody } from './response/history/starforceHistoryResponseDtoBody';
+import { CharacterAbilityBody } from './response/character/characterAbilityBody';
+import { CharacterAndroidEquipmentBody } from './response/character/characterAndroidEquipmentBody';
+import { CharacterBasicBody } from './response/character/characterBasicBody';
+import { CharacterBeautyEquipmentBody } from './response/character/characterBeautyEquipmentBody';
+import { CharacterBody } from './response/character/characterBody';
+import { CharacterCashItemEquipmentBody } from './response/character/characterCashItemEquipmentBody';
+import { CharacterDojangBody } from './response/character/characterDojangBody';
+import { CharacterHexaMatrixBody } from './response/character/characterHexaMatrixBody';
+import { CharacterHexaMatrixStatBody } from './response/character/characterHexaMatrixStatBody';
+import { CharacterHyperStatBody } from './response/character/characterHyperStatBody';
+import { CharacterItemEquipmentBody } from './response/character/characterItemEquipmentBody';
+import { CharacterLinkSkillBody } from './response/character/characterLinkSkillBody';
+import { CharacterListBody } from './response/character/characterListBody';
+import { CharacterPetEquipmentBody } from './response/character/characterPetEquipmentBody';
+import { CharacterPopularityBody } from './response/character/characterPopularityBody';
+import { CharacterPropensityBody } from './response/character/characterPropensityBody';
+import { CharacterSetEffectBody } from './response/character/characterSetEffectBody';
+import { CharacterSkillBody } from './response/character/characterSkillBody';
+import { CharacterStatBody } from './response/character/characterStatBody';
+import { CharacterSymbolEquipmentBody } from './response/character/characterSymbolEquipmentBody';
+import { CharacterVMatrixBody } from './response/character/characterVMatrixBody';
+import { GuildBasicBody } from './response/guild/guildBasicBody';
+import { GuildBody } from './response/guild/guildBody';
+import { CubeHistoryResponseBody } from './response/history/cubeHistoryBody';
+import { PotentialHistoryResponseBody } from './response/history/potentialHistoryBody';
+import { StarforceHistoryResponseBody } from './response/history/starforceHistoryBody';
 import { InspectionInfoSoapBody } from './response/inspectionInfoSoapBody';
-import { CashshopNoticeDetailDtoBody } from './response/notice/cashshopNoticeDetailDtoBody';
-import { CashshopNoticeListDtoBody } from './response/notice/cashshopNoticeListDtoBody';
-import { EventNoticeDetailDtoBody } from './response/notice/eventNoticeDetailDtoBody';
-import { EventNoticeListDtoBody } from './response/notice/eventNoticeListDtoBody';
-import { NoticeDetailDtoBody } from './response/notice/noticeDetailDtoBody';
-import { NoticeListDtoBody } from './response/notice/noticeListDtoBody';
-import { UpdateNoticeDetailDtoBody } from './response/notice/updateNoticeDetailDtoBody';
-import { UpdateNoticeListDtoBody } from './response/notice/updateNoticeListDtoBody';
-import { AchievementRankingResponseDtoBody } from './response/ranking/achievementRankingResponseDtoBody';
-import { DojangRankingResponseDtoBody } from './response/ranking/dojangRankingResponseDtoBody';
-import { GuildRankingResponseDtoBody } from './response/ranking/guildRankingResponseDtoBody';
-import { OverallRankingResponseDtoBody } from './response/ranking/overallRankingResponseDtoBody';
-import { TheSeedRankingResponseDtoBody } from './response/ranking/theSeedRankingResponseDtoBody';
-import { UnionRankingResponseDtoBody } from './response/ranking/unionRankingResponseDtoBody';
-import { UnionArtifactDtoBody } from './response/union/unionArtifactDtoBody';
-import { UnionChampionDtoBody } from './response/union/unionChampionDtoBody';
-import { UnionDtoBody } from './response/union/unionDtoBody';
-import { UnionRaiderDtoBody } from './response/union/unionRaiderDtoBody';
+import { CashshopNoticeDetailBody } from './response/notice/cashshopNoticeDetailBody';
+import { CashshopNoticeListBody } from './response/notice/cashshopNoticeListBody';
+import { EventNoticeDetailBody } from './response/notice/eventNoticeDetailBody';
+import { EventNoticeListBody } from './response/notice/eventNoticeListBody';
+import { NoticeDetailBody } from './response/notice/noticeDetailBody';
+import { NoticeListBody } from './response/notice/noticeListBody';
+import { UpdateNoticeDetailBody } from './response/notice/updateNoticeDetailBody';
+import { UpdateNoticeListBody } from './response/notice/updateNoticeListBody';
+import { AchievementRankingResponseBody } from './response/ranking/achievementRankingBody';
+import { DojangRankingResponseBody } from './response/ranking/dojangRankingBody';
+import { GuildRankingResponseBody } from './response/ranking/guildRankingBody';
+import { OverallRankingResponseBody } from './response/ranking/overallRankingBody';
+import { TheSeedRankingResponseBody } from './response/ranking/theSeedRankingBody';
+import { UnionRankingResponseBody } from './response/ranking/unionRankingBody';
+import { UnionArtifactBody } from './response/union/unionArtifactBody';
+import { UnionBody } from './response/union/unionBody';
+import { UnionChampionBody } from './response/union/unionChampionBody';
+import { UnionRaiderBody } from './response/union/unionRaiderBody';
 
 dayjs.extend(timezone);
 dayjs.extend(utc);
@@ -163,7 +163,7 @@ class MapleStoryApi {
    */
   public async getCharacter(characterName: string): Promise<CharacterDto> {
     const path = 'maplestory/v1/id';
-    const { data } = await this.client.get<CharacterDtoBody>(path, {
+    const { data } = await this.client.get<CharacterBody>(path, {
       params: {
         character_name: characterName,
       },
@@ -180,7 +180,7 @@ class MapleStoryApi {
    */
   public async getCharacterList(): Promise<CharacterListDto> {
     const path = 'maplestory/v1/character/list';
-    const { data } = await this.client.get<CharacterListDtoBody>(path);
+    const { data } = await this.client.get<CharacterListBody>(path);
 
     return new CharacterListDto(data);
   }
@@ -211,7 +211,7 @@ class MapleStoryApi {
       ocid: ocid,
       date: date,
     };
-    const { data } = await this.client.get<CharacterBasicDtoBody>(path, {
+    const { data } = await this.client.get<CharacterBasicBody>(path, {
       params: query,
     });
 
@@ -310,7 +310,7 @@ class MapleStoryApi {
       ocid: ocid,
       date: date,
     };
-    const { data } = await this.client.get<CharacterPopularityDtoBody>(path, {
+    const { data } = await this.client.get<CharacterPopularityBody>(path, {
       params: query,
     });
 
@@ -343,7 +343,7 @@ class MapleStoryApi {
       ocid: ocid,
       date: date,
     };
-    const { data } = await this.client.get<CharacterStatDtoBody>(path, {
+    const { data } = await this.client.get<CharacterStatBody>(path, {
       params: query,
     });
 
@@ -376,7 +376,7 @@ class MapleStoryApi {
       ocid: ocid,
       date: date,
     };
-    const { data } = await this.client.get<CharacterHyperStatDtoBody>(path, {
+    const { data } = await this.client.get<CharacterHyperStatBody>(path, {
       params: query,
     });
 
@@ -409,7 +409,7 @@ class MapleStoryApi {
       ocid: ocid,
       date: date,
     };
-    const { data } = await this.client.get<CharacterPropensityDtoBody>(path, {
+    const { data } = await this.client.get<CharacterPropensityBody>(path, {
       params: query,
     });
 
@@ -442,7 +442,7 @@ class MapleStoryApi {
       ocid: ocid,
       date: date,
     };
-    const { data } = await this.client.get<CharacterAbilityDtoBody>(path, {
+    const { data } = await this.client.get<CharacterAbilityBody>(path, {
       params: query,
     });
 
@@ -475,7 +475,7 @@ class MapleStoryApi {
       ocid: ocid,
       date: date,
     };
-    const { data } = await this.client.get<CharacterItemEquipmentDtoBody>(path, {
+    const { data } = await this.client.get<CharacterItemEquipmentBody>(path, {
       params: query,
     });
 
@@ -508,7 +508,7 @@ class MapleStoryApi {
       ocid: ocid,
       date: date,
     };
-    const { data } = await this.client.get<CharacterCashItemEquipmentDtoBody>(
+    const { data } = await this.client.get<CharacterCashItemEquipmentBody>(
       path,
       {
         params: query,
@@ -544,7 +544,7 @@ class MapleStoryApi {
       ocid: ocid,
       date: date,
     };
-    const { data } = await this.client.get<CharacterSymbolEquipmentDtoBody>(path, {
+    const { data } = await this.client.get<CharacterSymbolEquipmentBody>(path, {
       params: query,
     });
 
@@ -577,7 +577,7 @@ class MapleStoryApi {
       ocid: ocid,
       date: date,
     };
-    const { data } = await this.client.get<CharacterSetEffectDtoBody>(path, {
+    const { data } = await this.client.get<CharacterSetEffectBody>(path, {
       params: query,
     });
 
@@ -610,7 +610,7 @@ class MapleStoryApi {
       ocid: ocid,
       date: date,
     };
-    const { data } = await this.client.get<CharacterBeautyEquipmentDtoBody>(path, {
+    const { data } = await this.client.get<CharacterBeautyEquipmentBody>(path, {
       params: query,
     });
 
@@ -643,7 +643,7 @@ class MapleStoryApi {
       ocid: ocid,
       date: date,
     };
-    const { data } = await this.client.get<CharacterAndroidEquipmentDtoBody>(path, {
+    const { data } = await this.client.get<CharacterAndroidEquipmentBody>(path, {
       params: query,
     });
 
@@ -676,7 +676,7 @@ class MapleStoryApi {
       ocid: ocid,
       date: date,
     };
-    const { data } = await this.client.get<CharacterPetEquipmentDtoBody>(path, {
+    const { data } = await this.client.get<CharacterPetEquipmentBody>(path, {
       params: query,
     });
 
@@ -723,7 +723,7 @@ class MapleStoryApi {
       character_skill_grade: characterSkillGrade,
       date: date,
     };
-    const { data } = await this.client.get<CharacterSkillDtoBody>(path, {
+    const { data } = await this.client.get<CharacterSkillBody>(path, {
       params: query,
     });
 
@@ -756,7 +756,7 @@ class MapleStoryApi {
       ocid: ocid,
       date: date,
     };
-    const { data } = await this.client.get<CharacterLinkSkillDtoBody>(path, {
+    const { data } = await this.client.get<CharacterLinkSkillBody>(path, {
       params: query,
     });
 
@@ -789,7 +789,7 @@ class MapleStoryApi {
       ocid: ocid,
       date: date,
     };
-    const { data } = await this.client.get<CharacterVMatrixDtoBody>(path, {
+    const { data } = await this.client.get<CharacterVMatrixBody>(path, {
       params: query,
     });
 
@@ -822,7 +822,7 @@ class MapleStoryApi {
       ocid: ocid,
       date: date,
     };
-    const { data } = await this.client.get<CharacterHexaMatrixDtoBody>(path, {
+    const { data } = await this.client.get<CharacterHexaMatrixBody>(path, {
       params: query,
     });
 
@@ -855,7 +855,7 @@ class MapleStoryApi {
       ocid: ocid,
       date: date,
     };
-    const { data } = await this.client.get<CharacterHexaMatrixStatDtoBody>(path, {
+    const { data } = await this.client.get<CharacterHexaMatrixStatBody>(path, {
       params: query,
     });
 
@@ -888,7 +888,7 @@ class MapleStoryApi {
       ocid: ocid,
       date: date,
     };
-    const { data } = await this.client.get<CharacterDojangDtoBody>(path, {
+    const { data } = await this.client.get<CharacterDojangBody>(path, {
       params: query,
     });
 
@@ -925,7 +925,7 @@ class MapleStoryApi {
       ocid: ocid,
       date: date,
     };
-    const { data } = await this.client.get<UnionDtoBody>(path, {
+    const { data } = await this.client.get<UnionBody>(path, {
       params: query,
     });
 
@@ -958,7 +958,7 @@ class MapleStoryApi {
       ocid: ocid,
       date: date,
     };
-    const { data } = await this.client.get<UnionRaiderDtoBody>(path, {
+    const { data } = await this.client.get<UnionRaiderBody>(path, {
       params: query,
     });
 
@@ -991,7 +991,7 @@ class MapleStoryApi {
       ocid: ocid,
       date: date,
     };
-    const { data } = await this.client.get<UnionArtifactDtoBody>(path, {
+    const { data } = await this.client.get<UnionArtifactBody>(path, {
       params: query,
     });
 
@@ -1025,7 +1025,7 @@ class MapleStoryApi {
       ocid: ocid,
       date: date,
     };
-    const { data } = await this.client.get<UnionChampionDtoBody>(path, {
+    const { data } = await this.client.get<UnionChampionBody>(path, {
       params: query,
     });
 
@@ -1051,7 +1051,7 @@ class MapleStoryApi {
     worldName: string,
   ): Promise<GuildDto> {
     const path = 'maplestory/v1/guild/id';
-    const { data } = await this.client.get<GuildDtoBody>(path, {
+    const { data } = await this.client.get<GuildBody>(path, {
       params: {
         guild_name: guildName,
         world_name: worldName,
@@ -1087,7 +1087,7 @@ class MapleStoryApi {
       oguild_id: guildId,
       date: date,
     };
-    const { data } = await this.client.get<GuildBasicDtoBody>(path, {
+    const { data } = await this.client.get<GuildBasicBody>(path, {
       params: query,
     });
 
@@ -1162,7 +1162,7 @@ class MapleStoryApi {
       );
     }
 
-    const { data } = await this.client.get<StarforceHistoryResponseDtoBody>(path, {
+    const { data } = await this.client.get<StarforceHistoryResponseBody>(path, {
       params: query,
     });
 
@@ -1226,7 +1226,7 @@ class MapleStoryApi {
       );
     }
 
-    const { data } = await this.client.get<CubeHistoryResponseDtoBody>(path, {
+    const { data } = await this.client.get<CubeHistoryResponseBody>(path, {
       params: query,
     });
 
@@ -1297,7 +1297,7 @@ class MapleStoryApi {
       );
     }
 
-    const { data } = await this.client.get<PotentialHistoryResponseDtoBody>(path, {
+    const { data } = await this.client.get<PotentialHistoryResponseBody>(path, {
       params: query,
     });
 
@@ -1346,7 +1346,7 @@ class MapleStoryApi {
       query.page = page;
     }
 
-    const { data } = await this.client.get<OverallRankingResponseDtoBody>(path, {
+    const { data } = await this.client.get<OverallRankingResponseBody>(path, {
       params: query,
     });
 
@@ -1387,7 +1387,7 @@ class MapleStoryApi {
       query.page = page;
     }
 
-    const { data } = await this.client.get<UnionRankingResponseDtoBody>(path, {
+    const { data } = await this.client.get<UnionRankingResponseBody>(path, {
       params: query,
     });
 
@@ -1430,7 +1430,7 @@ class MapleStoryApi {
       query.page = page;
     }
 
-    const { data } = await this.client.get<GuildRankingResponseDtoBody>(path, {
+    const { data } = await this.client.get<GuildRankingResponseBody>(path, {
       params: query,
     });
 
@@ -1475,7 +1475,7 @@ class MapleStoryApi {
       query.page = page;
     }
 
-    const { data } = await this.client.get<DojangRankingResponseDtoBody>(path, {
+    const { data } = await this.client.get<DojangRankingResponseBody>(path, {
       params: query,
     });
 
@@ -1516,7 +1516,7 @@ class MapleStoryApi {
       query.page = page;
     }
 
-    const { data } = await this.client.get<TheSeedRankingResponseDtoBody>(path, {
+    const { data } = await this.client.get<TheSeedRankingResponseBody>(path, {
       params: query,
     });
 
@@ -1556,7 +1556,7 @@ class MapleStoryApi {
       query.page = page;
     }
 
-    const { data } = await this.client.get<AchievementRankingResponseDtoBody>(
+    const { data } = await this.client.get<AchievementRankingResponseBody>(
       path,
       {
         params: query,
@@ -1579,7 +1579,7 @@ class MapleStoryApi {
   public async getNoticeList(): Promise<NoticeListDto> {
     const path = 'maplestory/v1/notice';
 
-    const { data } = await this.client.get<NoticeListDtoBody>(
+    const { data } = await this.client.get<NoticeListBody>(
       path,
     );
 
@@ -1599,7 +1599,7 @@ class MapleStoryApi {
       notice_id: noticeId,
     };
 
-    const { data } = await this.client.get<NoticeDetailDtoBody>(
+    const { data } = await this.client.get<NoticeDetailBody>(
       path,
       {
         params: query,
@@ -1618,7 +1618,7 @@ class MapleStoryApi {
   public async getUpdateNoticeList(): Promise<UpdateNoticeListDto> {
     const path = 'maplestory/v1/notice-update';
 
-    const { data } = await this.client.get<UpdateNoticeListDtoBody>(
+    const { data } = await this.client.get<UpdateNoticeListBody>(
       path,
     );
 
@@ -1638,7 +1638,7 @@ class MapleStoryApi {
       notice_id: noticeId,
     };
 
-    const { data } = await this.client.get<UpdateNoticeDetailDtoBody>(
+    const { data } = await this.client.get<UpdateNoticeDetailBody>(
       path,
       {
         params: query,
@@ -1657,7 +1657,7 @@ class MapleStoryApi {
   public async getEventNoticeList(): Promise<EventNoticeListDto> {
     const path = 'maplestory/v1/notice-event';
 
-    const { data } = await this.client.get<EventNoticeListDtoBody>(
+    const { data } = await this.client.get<EventNoticeListBody>(
       path,
     );
 
@@ -1677,7 +1677,7 @@ class MapleStoryApi {
       notice_id: noticeId,
     };
 
-    const { data } = await this.client.get<EventNoticeDetailDtoBody>(
+    const { data } = await this.client.get<EventNoticeDetailBody>(
       path,
       {
         params: query,
@@ -1696,7 +1696,7 @@ class MapleStoryApi {
   public async getCashshopNoticeList(): Promise<CashshopNoticeListDto> {
     const path = 'maplestory/v1/notice-cashshop';
 
-    const { data } = await this.client.get<CashshopNoticeListDtoBody>(
+    const { data } = await this.client.get<CashshopNoticeListBody>(
       path,
     );
 
@@ -1716,7 +1716,7 @@ class MapleStoryApi {
       notice_id: noticeId,
     };
 
-    const { data } = await this.client.get<CashshopNoticeDetailDtoBody>(
+    const { data } = await this.client.get<CashshopNoticeDetailBody>(
       path,
       {
         params: query,

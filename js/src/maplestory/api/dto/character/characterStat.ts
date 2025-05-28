@@ -1,0 +1,57 @@
+import { CharacterFinalStatBody, CharacterStatBody } from '../../response/character/characterStatBody';
+
+/**
+ * 캐릭터 스탯 정보
+ */
+export class CharacterStatDto {
+  /**
+   * 조회 기준일
+   */
+  date: Date | null;
+
+  /**
+   * 캐릭터 직업
+   */
+  characterClass: string | null;
+
+  /**
+   * 현재 스탯 정보
+   */
+  finalStat: CharacterFinalStatDto[];
+
+  /**
+   * 잔여 AP
+   */
+  remainAP: number | null;
+
+  constructor(obj: CharacterStatBody) {
+    const { date, character_class, final_stat, remain_ap } = obj;
+
+    this.date = date ? new Date(date) : null;
+    this.characterClass = character_class;
+    this.finalStat = final_stat.map((stat) => new CharacterFinalStatDto(stat));
+    this.remainAP = remain_ap;
+  }
+}
+
+/**
+ * 캐릭터 현재 스탯 정보
+ */
+export class CharacterFinalStatDto {
+  /**
+   * 스탯 명
+   */
+  statName: string;
+
+  /**
+   * 스탯 값
+   */
+  statValue: string;
+
+  constructor(obj: CharacterFinalStatBody) {
+    const { stat_name, stat_value } = obj;
+
+    this.statName = stat_name;
+    this.statValue = stat_value;
+  }
+}
