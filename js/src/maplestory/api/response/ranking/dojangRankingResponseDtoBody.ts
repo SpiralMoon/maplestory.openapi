@@ -1,9 +1,9 @@
 import { RankingResponseDtoBody } from './rankingResponseDtoBody';
 
-type DojangRankingResponseDtoBody =
+export type DojangRankingResponseDtoBody =
   RankingResponseDtoBody<DojangRankingDtoBody>;
 
-type DojangRankingDtoBody = {
+export type DojangRankingDtoBody = {
   date: string;
   ranking: number;
   character_name: string;
@@ -14,5 +14,3 @@ type DojangRankingDtoBody = {
   dojang_floor: number;
   dojang_time_record: number;
 };
-
-export type { DojangRankingResponseDtoBody, DojangRankingDtoBody };

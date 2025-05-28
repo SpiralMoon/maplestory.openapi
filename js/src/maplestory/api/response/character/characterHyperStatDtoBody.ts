@@ -1,4 +1,4 @@
-type CharacterHyperStatDtoBody = {
+export type CharacterHyperStatDtoBody = {
   date: string | null;
   character_class: string | null;
   use_preset_no: string | null;
@@ -11,11 +11,9 @@ type CharacterHyperStatDtoBody = {
   hyper_stat_preset_3_remain_point: number | null;
 };
 
-type CharacterHyperStatPresetDtoBody = {
+export type CharacterHyperStatPresetDtoBody = {
   stat_type: string;
   stat_point: number | null;
   stat_level: number;
   stat_increase: string | null;
 };
-
-export type { CharacterHyperStatDtoBody, CharacterHyperStatPresetDtoBody };

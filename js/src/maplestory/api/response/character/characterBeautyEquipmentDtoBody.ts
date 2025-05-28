@@ -1,4 +1,4 @@
-type CharacterBeautyEquipmentDtoBody = {
+export type CharacterBeautyEquipmentDtoBody = {
   date: string | null;
   character_gender: string;
   character_class: string;
@@ -10,31 +10,24 @@ type CharacterBeautyEquipmentDtoBody = {
   additional_character_skin: CharacterBeautyEquipmentSkinDtoBody | null;
 };
 
-type CharacterBeautyEquipmentHairDtoBody = {
+export type CharacterBeautyEquipmentHairDtoBody = {
   hair_name: string;
   base_color: string;
   mix_color: string | null;
   mix_rate: string;
 };
 
-type CharacterBeautyEquipmentFaceDtoBody = {
+export type CharacterBeautyEquipmentFaceDtoBody = {
   face_name: string;
   base_color: string;
   mix_color: string | null;
   mix_rate: string;
 };
 
-type CharacterBeautyEquipmentSkinDtoBody = {
+export type CharacterBeautyEquipmentSkinDtoBody = {
   skin_name: string;
   color_style: string | null;
   hue: number | null;
   saturation: number | null;
   brightness: number | null;
-};
-
-export type {
-  CharacterBeautyEquipmentDtoBody,
-  CharacterBeautyEquipmentHairDtoBody,
-  CharacterBeautyEquipmentFaceDtoBody,
-  CharacterBeautyEquipmentSkinDtoBody,
 };

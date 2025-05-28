@@ -1,9 +1,9 @@
 import { RankingResponseDtoBody } from './rankingResponseDtoBody';
 
-type OverallRankingResponseDtoBody =
+export type OverallRankingResponseDtoBody =
   RankingResponseDtoBody<OverallRankingDtoBody>;
 
-type OverallRankingDtoBody = {
+export type OverallRankingDtoBody = {
   date: string;
   ranking: number;
   character_name: string;
@@ -15,5 +15,3 @@ type OverallRankingDtoBody = {
   character_popularity: number;
   character_guildname: string | null;
 };
-
-export type { OverallRankingResponseDtoBody, OverallRankingDtoBody };

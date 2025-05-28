@@ -1,10 +1,10 @@
-type PotentialHistoryResponseDtoBody = {
+export type PotentialHistoryResponseDtoBody = {
   count: number;
   potential_history: PotentialHistoryDtoBody[];
   next_cursor: string | null;
 };
 
-type PotentialHistoryDtoBody = {
+export type PotentialHistoryDtoBody = {
   id: string;
   character_name: string;
   date_create: string;
@@ -24,13 +24,7 @@ type PotentialHistoryDtoBody = {
   after_additional_potential_option: PotentialResultOptionDtoBody[];
 };
 
-type PotentialResultOptionDtoBody = {
+export type PotentialResultOptionDtoBody = {
   value: string;
   grade: string;
-};
-
-export type {
-  PotentialHistoryResponseDtoBody,
-  PotentialHistoryDtoBody,
-  PotentialResultOptionDtoBody,
 };

@@ -1,4 +1,4 @@
-type EventNoticeDetailDtoBody = {
+export type EventNoticeDetailDtoBody = {
   title: string;
   url: string;
   contents: string;
@@ -6,5 +6,3 @@ type EventNoticeDetailDtoBody = {
   date_event_start: string;
   date_event_end: string;
 }
-
-export type { EventNoticeDetailDtoBody };

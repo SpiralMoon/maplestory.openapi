@@ -1,4 +1,4 @@
-type GuildBasicDtoBody = {
+export type GuildBasicDtoBody = {
   date: string | null;
   world_name: string;
   guild_name: string;
@@ -12,12 +12,10 @@ type GuildBasicDtoBody = {
   guild_noblesse_skill: GuildSkillDtoBody[];
 };
 
-type GuildSkillDtoBody = {
+export type GuildSkillDtoBody = {
   skill_name: string;
   skill_description: string;
   skill_level: number;
   skill_effect: string;
   skill_icon: string;
 };
-
-export type { GuildBasicDtoBody, GuildSkillDtoBody };

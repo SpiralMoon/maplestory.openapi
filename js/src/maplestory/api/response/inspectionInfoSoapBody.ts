@@ -1,4 +1,4 @@
-type InspectionInfoSoapBody = {
+export type InspectionInfoSoapBody = {
   'soap:Envelope': {
     $: {
       'xmlns:soap': 'http://schemas.xmlsoap.org/soap/envelope/';
@@ -126,5 +126,3 @@ type InspectionInfoSoapBody = {
     ];
   };
 };
-
-export type { InspectionInfoSoapBody };

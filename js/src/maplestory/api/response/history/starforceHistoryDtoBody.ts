@@ -1,6 +1,6 @@
-import { StarforceEventDtoBody } from '@src/maplestory/api/response/history/starforceEventDtoBody';
+import { StarforceEventDtoBody } from './starforceEventDtoBody';
 
-type StarforceHistoryDtoBody = {
+export type StarforceHistoryDtoBody = {
   id: string;
   item_upgrade_result: string;
   before_starforce_count: number;
@@ -19,5 +19,3 @@ type StarforceHistoryDtoBody = {
   date_create: string;
   starforce_event_list: StarforceEventDtoBody[] | null;
 };
-
-export type { StarforceHistoryDtoBody };

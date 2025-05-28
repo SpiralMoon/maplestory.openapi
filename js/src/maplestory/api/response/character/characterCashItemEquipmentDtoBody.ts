@@ -1,4 +1,4 @@
-type CharacterCashItemEquipmentDtoBody = {
+export type CharacterCashItemEquipmentDtoBody = {
   date: string | null;
   character_gender: string | null;
   character_class: string | null;
@@ -14,7 +14,7 @@ type CharacterCashItemEquipmentDtoBody = {
   additional_cash_item_equipment_preset_3: CharacterCashItemEquipmentPresetDtoBody[];
 };
 
-type CharacterCashItemEquipmentPresetDtoBody = {
+export type CharacterCashItemEquipmentPresetDtoBody = {
   cash_item_equipment_part: string;
   cash_item_equipment_slot: string;
   cash_item_name: string;
@@ -29,21 +29,14 @@ type CharacterCashItemEquipmentPresetDtoBody = {
   skills: string[];
 };
 
-type CharacterCashItemEquipmentOptionDtoBody = {
+export type CharacterCashItemEquipmentOptionDtoBody = {
   option_type: string;
   option_value: string;
 };
 
-type CharacterCashItemEquipmentColoringPrismDtoBody = {
+export type CharacterCashItemEquipmentColoringPrismDtoBody = {
   color_range: string;
   hue: number;
   saturation: number;
   value: number;
-};
-
-export type {
-  CharacterCashItemEquipmentDtoBody,
-  CharacterCashItemEquipmentPresetDtoBody,
-  CharacterCashItemEquipmentOptionDtoBody,
-  CharacterCashItemEquipmentColoringPrismDtoBody,
 };

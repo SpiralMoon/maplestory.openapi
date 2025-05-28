@@ -1,8 +1,8 @@
 import { RankingResponseDtoBody } from './rankingResponseDtoBody';
 
-type UnionRankingResponseDtoBody = RankingResponseDtoBody<UnionRankingDtoBody>;
+export type UnionRankingResponseDtoBody = RankingResponseDtoBody<UnionRankingDtoBody>;
 
-type UnionRankingDtoBody = {
+export type UnionRankingDtoBody = {
   date: string;
   ranking: number;
   character_name: string;
@@ -12,5 +12,3 @@ type UnionRankingDtoBody = {
   union_level: number;
   union_power: number;
 };
-
-export type { UnionRankingResponseDtoBody, UnionRankingDtoBody };

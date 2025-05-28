@@ -1,6 +1,6 @@
-import { CubeResultOptionDtoBody } from '@src/maplestory/api/response/history/cubeResultOptionDtoBody';
+import { CubeResultOptionDtoBody } from './cubeResultOptionDtoBody';
 
-type CubeHistoryDtoBody = {
+export type CubeHistoryDtoBody = {
   id: string;
   character_name: string;
   world_name: string;
@@ -20,5 +20,3 @@ type CubeHistoryDtoBody = {
   after_potential_option: CubeResultOptionDtoBody[];
   after_additional_potential_option: CubeResultOptionDtoBody[];
 };
-
-export type { CubeHistoryDtoBody };

@@ -1,7 +1,4 @@
-type CubeResultOptionDtoBody = {
+export type CubeResultOptionDtoBody = {
   value: string;
-
   grade: string;
 };
-
-export type { CubeResultOptionDtoBody };

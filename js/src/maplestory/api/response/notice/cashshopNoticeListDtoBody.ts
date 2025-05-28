@@ -1,8 +1,8 @@
-type CashshopNoticeListDtoBody = {
+export type CashshopNoticeListDtoBody = {
   cashshop_notice: CashshopNoticeListItemDtoBody[];
 }
 
-type CashshopNoticeListItemDtoBody = {
+export type CashshopNoticeListItemDtoBody = {
   title: string;
   url: string;
   notice_id: number;
@@ -11,5 +11,3 @@ type CashshopNoticeListItemDtoBody = {
   date_sale_end: string | null;
   ongoing_flag: string;
 }
-
-export type { CashshopNoticeListDtoBody, CashshopNoticeListItemDtoBody };

@@ -1,4 +1,4 @@
-type CharacterPropensityDtoBody = {
+export type CharacterPropensityDtoBody = {
   date: string | null;
   charisma_level: number | null;
   sensibility_level: number | null;
@@ -7,5 +7,3 @@ type CharacterPropensityDtoBody = {
   handicraft_level: number | null;
   charm_level: number | null;
 };
-
-export type { CharacterPropensityDtoBody };

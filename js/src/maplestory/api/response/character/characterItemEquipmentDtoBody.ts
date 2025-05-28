@@ -1,4 +1,4 @@
-type CharacterItemEquipmentDtoBody = {
+export type CharacterItemEquipmentDtoBody = {
   date: string | null;
   character_gender: string | null;
   character_class: string | null;
@@ -9,11 +9,11 @@ type CharacterItemEquipmentDtoBody = {
   item_equipment_preset_3: CharacterItemEquipmentInfoDtoBody[] | null;
   title: CharacterItemEquipmentTitleDtoBody | null;
   medal_shape: CharacterItemEquipmentMedalShapeDtoBody | null;
-  dragon_equipment: CharacterItemEquipmentInfoDtoBody[];
-  mechanic_equipment: CharacterItemEquipmentInfoDtoBody[];
+  dragon_equipment: CharacterItemEquipmentDragonInfoDtoBody[];
+  mechanic_equipment: CharacterItemEquipmentMechanicInfoDtoBody[];
 };
 
-type CharacterItemEquipmentInfoDtoBody = {
+export type CharacterItemEquipmentInfoDtoBody = {
   item_equipment_part: string;
   item_equipment_slot: string;
   item_name: string;
@@ -52,7 +52,7 @@ type CharacterItemEquipmentInfoDtoBody = {
   date_expire: string | null;
 };
 
-type CharacterItemEquipmentMechanicInfoDtoBody = {
+export type CharacterItemEquipmentMechanicInfoDtoBody = {
   item_equipment_part: string;
   item_equipment_slot: string;
   item_name: string;
@@ -83,10 +83,10 @@ type CharacterItemEquipmentMechanicInfoDtoBody = {
   date_expire: string | null;
 };
 
-type CharacterItemEquipmentDragonInfoDtoBody =
+export type CharacterItemEquipmentDragonInfoDtoBody =
   CharacterItemEquipmentMechanicInfoDtoBody;
 
-type CharacterItemEquipmentOptionDtoBody = {
+export type CharacterItemEquipmentOptionDtoBody = {
   str: string;
   dex: string;
   int: string;
@@ -107,7 +107,7 @@ type CharacterItemEquipmentOptionDtoBody = {
   max_mp_rate: string;
 };
 
-type CharacterItemEquipmentExceptionalOptionDtoBody = {
+export type CharacterItemEquipmentExceptionalOptionDtoBody = {
   str: string;
   dex: string;
   int: string;
@@ -119,7 +119,7 @@ type CharacterItemEquipmentExceptionalOptionDtoBody = {
   exceptional_upgrade: number | null;
 };
 
-type CharacterItemEquipmentTotalOptionDtoBody = {
+export type CharacterItemEquipmentTotalOptionDtoBody = {
   str: string;
   dex: string;
   int: string;
@@ -140,7 +140,7 @@ type CharacterItemEquipmentTotalOptionDtoBody = {
   max_mp_rate: string;
 };
 
-type CharacterItemEquipmentBaseOptionDtoBody = {
+export type CharacterItemEquipmentBaseOptionDtoBody = {
   str: string;
   dex: string;
   int: string;
@@ -160,7 +160,7 @@ type CharacterItemEquipmentBaseOptionDtoBody = {
   base_equipment_level: number;
 };
 
-type CharacterItemEquipmentAddOptionDtoBody = {
+export type CharacterItemEquipmentAddOptionDtoBody = {
   str: string;
   dex: string;
   int: string;
@@ -178,7 +178,7 @@ type CharacterItemEquipmentAddOptionDtoBody = {
   equipment_level_decrease: number;
 };
 
-type CharacterItemEquipmentEtcOptionDtoBody = {
+export type CharacterItemEquipmentEtcOptionDtoBody = {
   str: string;
   dex: string;
   int: string;
@@ -192,10 +192,10 @@ type CharacterItemEquipmentEtcOptionDtoBody = {
   jump: string;
 };
 
-type CharacterItemEquipmentStarforceOptionDtoBody =
+export type CharacterItemEquipmentStarforceOptionDtoBody =
   CharacterItemEquipmentEtcOptionDtoBody;
 
-type CharacterItemEquipmentTitleDtoBody = {
+export type CharacterItemEquipmentTitleDtoBody = {
   title_name: string | null;
   title_icon: string | null;
   title_description: string | null;
@@ -206,7 +206,7 @@ type CharacterItemEquipmentTitleDtoBody = {
   title_shape_description: string | null;
 };
 
-type CharacterItemEquipmentMedalShapeDtoBody = {
+export type CharacterItemEquipmentMedalShapeDtoBody = {
   medal_shape_name: string;
   medal_shape_icon: string;
   medal_shape_description: string;
@@ -214,19 +214,3 @@ type CharacterItemEquipmentMedalShapeDtoBody = {
   medal_shape_changed_icon: string;
   medal_shape_changed_description: string;
 }
-
-export type {
-  CharacterItemEquipmentDtoBody,
-  CharacterItemEquipmentInfoDtoBody,
-  CharacterItemEquipmentTitleDtoBody,
-  CharacterItemEquipmentOptionDtoBody,
-  CharacterItemEquipmentExceptionalOptionDtoBody,
-  CharacterItemEquipmentTotalOptionDtoBody,
-  CharacterItemEquipmentMedalShapeDtoBody,
-  CharacterItemEquipmentBaseOptionDtoBody,
-  CharacterItemEquipmentAddOptionDtoBody,
-  CharacterItemEquipmentEtcOptionDtoBody,
-  CharacterItemEquipmentStarforceOptionDtoBody,
-  CharacterItemEquipmentDragonInfoDtoBody,
-  CharacterItemEquipmentMechanicInfoDtoBody,
-};

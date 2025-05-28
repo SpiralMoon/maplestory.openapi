@@ -1,8 +1,8 @@
 import { RankingResponseDtoBody } from './rankingResponseDtoBody';
 
-type TheSeedRankingResponseDtoBody = RankingResponseDtoBody<TheSeedRankingDtoBody>;
+export type TheSeedRankingResponseDtoBody = RankingResponseDtoBody<TheSeedRankingDtoBody>;
 
-type TheSeedRankingDtoBody = {
+export type TheSeedRankingDtoBody = {
   date: string;
   ranking: number;
   character_name: string;
@@ -13,5 +13,3 @@ type TheSeedRankingDtoBody = {
   theseed_floor: number;
   theseed_time_record: number;
 };
-
-export type { TheSeedRankingResponseDtoBody, TheSeedRankingDtoBody };

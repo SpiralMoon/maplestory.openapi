@@ -1,9 +1,9 @@
 import { RankingResponseDtoBody } from './rankingResponseDtoBody';
 
-type AchievementRankingResponseDtoBody =
+export type AchievementRankingResponseDtoBody =
   RankingResponseDtoBody<AchievementRankingDtoBody>;
 
-type AchievementRankingDtoBody = {
+export type AchievementRankingDtoBody = {
   date: string;
   ranking: number;
   character_name: string;
@@ -13,5 +13,3 @@ type AchievementRankingDtoBody = {
   trophy_grade: string;
   trophy_score: number;
 };
-
-export type { AchievementRankingResponseDtoBody, AchievementRankingDtoBody };

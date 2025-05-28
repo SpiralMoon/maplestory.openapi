@@ -1,4 +1,4 @@
-type CharacterLinkSkillDtoBody = {
+export type CharacterLinkSkillDtoBody = {
   date: string | null;
   character_class: string | null;
   character_link_skill: CharacterLinkSkillInfoDtoBody[];
@@ -11,7 +11,7 @@ type CharacterLinkSkillDtoBody = {
   character_owned_link_skill_preset_3: CharacterLinkSkillInfoDtoBody | null;
 };
 
-type CharacterLinkSkillInfoDtoBody = {
+export type CharacterLinkSkillInfoDtoBody = {
   skill_name: string;
   skill_description: string;
   skill_level: number;
@@ -19,5 +19,3 @@ type CharacterLinkSkillInfoDtoBody = {
   skill_effect_next: string | null;
   skill_icon: string;
 };
-
-export type { CharacterLinkSkillDtoBody, CharacterLinkSkillInfoDtoBody };

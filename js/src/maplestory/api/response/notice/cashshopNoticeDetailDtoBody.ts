@@ -1,4 +1,4 @@
-type CashshopNoticeDetailDtoBody = {
+export type CashshopNoticeDetailDtoBody = {
   title: string;
   url: string;
   contents: string;
@@ -7,5 +7,3 @@ type CashshopNoticeDetailDtoBody = {
   date_sale_end: string | null;
   ongoing_flag: string;
 }
-
-export type { CashshopNoticeDetailDtoBody };

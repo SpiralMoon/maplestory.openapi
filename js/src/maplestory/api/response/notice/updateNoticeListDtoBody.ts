@@ -1,12 +1,10 @@
-type UpdateNoticeListDtoBody = {
+export type UpdateNoticeListDtoBody = {
   update_notice: UpdateNoticeListItemDtoBody[];
 };
 
-type UpdateNoticeListItemDtoBody = {
+export type UpdateNoticeListItemDtoBody = {
   title: string;
   url: string;
   notice_id: number;
   date: string;
 };
-
-export type { UpdateNoticeListDtoBody, UpdateNoticeListItemDtoBody };

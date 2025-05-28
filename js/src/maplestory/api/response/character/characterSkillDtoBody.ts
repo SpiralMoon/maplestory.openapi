@@ -1,11 +1,11 @@
-type CharacterSkillDtoBody = {
+export type CharacterSkillDtoBody = {
   date: string | null;
   character_class: string | null;
   character_skill_grade: string | null;
   character_skill: CharacterSkillInfoDtoBody[];
 };
 
-type CharacterSkillInfoDtoBody = {
+export type CharacterSkillInfoDtoBody = {
   skill_name: string;
   skill_description: string;
   skill_level: number;
@@ -13,5 +13,3 @@ type CharacterSkillInfoDtoBody = {
   skill_effect_next: string | null;
   skill_icon: string;
 };
-
-export type { CharacterSkillDtoBody, CharacterSkillInfoDtoBody };

@@ -1,4 +1,4 @@
-type CharacterPetEquipmentDtoBody = {
+export type CharacterPetEquipmentDtoBody = {
   date: string | null;
   pet_1_name: string | null;
   pet_1_nickname: string | null;
@@ -35,7 +35,7 @@ type CharacterPetEquipmentDtoBody = {
   pet_3_appearance_icon: string | null;
 };
 
-type CharacterPetEquipmentItemDtoBody = {
+export type CharacterPetEquipmentItemDtoBody = {
   item_name: string | null;
   item_icon: string | null;
   item_description: string | null;
@@ -46,21 +46,14 @@ type CharacterPetEquipmentItemDtoBody = {
   item_shape_icon: string | null;
 };
 
-type CharacterPetEquipmentItemOptionDtoBody = {
+export type CharacterPetEquipmentItemOptionDtoBody = {
   option_type: string;
   option_value: string;
 };
 
-type CharacterPetEquipmentAutoSkillDtoBody = {
+export type CharacterPetEquipmentAutoSkillDtoBody = {
   skill_1: string | null;
   skill_1_icon: string | null;
   skill_2: string | null;
   skill_2_icon: string | null;
-};
-
-export type {
-  CharacterPetEquipmentDtoBody,
-  CharacterPetEquipmentItemDtoBody,
-  CharacterPetEquipmentItemOptionDtoBody,
-  CharacterPetEquipmentAutoSkillDtoBody,
 };

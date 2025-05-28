@@ -1,8 +1,8 @@
 import { RankingResponseDtoBody } from './rankingResponseDtoBody';
 
-type GuildRankingResponseDtoBody = RankingResponseDtoBody<GuildRankingDtoBody>;
+export type GuildRankingResponseDtoBody = RankingResponseDtoBody<GuildRankingDtoBody>;
 
-type GuildRankingDtoBody = {
+export type GuildRankingDtoBody = {
   date: string;
   ranking: number;
   guild_name: string;
@@ -12,5 +12,3 @@ type GuildRankingDtoBody = {
   guild_mark: string;
   guild_point: number;
 };
-
-export type { GuildRankingResponseDtoBody, GuildRankingDtoBody };

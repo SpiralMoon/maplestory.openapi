@@ -1,4 +1,4 @@
-type CharacterAbilityDtoBody = {
+export type CharacterAbilityDtoBody = {
   date: string | null;
   ability_grade: string | null;
   ability_info: CharacterAbilityInfoDtoBody[];
@@ -9,15 +9,13 @@ type CharacterAbilityDtoBody = {
   ability_preset_3: CharacterAbilityPresetDtoBody | null;
 };
 
-type CharacterAbilityInfoDtoBody = {
+export type CharacterAbilityInfoDtoBody = {
   ability_no: string;
   ability_grade: string;
   ability_value: string;
 };
 
-type CharacterAbilityPresetDtoBody = {
+export type CharacterAbilityPresetDtoBody = {
   ability_preset_grade: string;
   ability_info: CharacterAbilityInfoDtoBody[];
 };
-
-export { CharacterAbilityDtoBody, CharacterAbilityInfoDtoBody, CharacterAbilityPresetDtoBody };

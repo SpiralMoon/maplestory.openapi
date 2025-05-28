@@ -1,11 +1,11 @@
-type CharacterStatDtoBody = {
+export type CharacterStatDtoBody = {
   date: string | null;
   character_class: string | null;
-  final_stat: {
-    stat_name: string;
-    stat_value: string;
-  }[];
+  final_stat: CharacterFinalStatDtoBody[];
   remain_ap: number | null;
 };
 
-export type { CharacterStatDtoBody };
+export type CharacterFinalStatDtoBody = {
+  stat_name: string;
+  stat_value: string;
+};

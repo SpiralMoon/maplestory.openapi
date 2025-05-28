@@ -1,4 +1,4 @@
-type CharacterBasicDtoBody = {
+export type CharacterBasicDtoBody = {
   date: string | null;
   character_name: string;
   world_name: string;
@@ -14,5 +14,3 @@ type CharacterBasicDtoBody = {
   access_flag: 'true' | 'false';
   liberation_quest_clear_flag: 'true' | 'false';
 };
-
-export type { CharacterBasicDtoBody };
