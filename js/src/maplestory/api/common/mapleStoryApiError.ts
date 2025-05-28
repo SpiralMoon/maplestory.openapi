@@ -1,10 +1,10 @@
-import { MapleStoryErrorBody } from './mapleStoryApi';
+import { MapleStoryErrorBody } from './mapleStoryApiErrorBody'
 
 /**
  * MapleStory OpenAPI error.<br>
  * Please refer to <a href="https://openapi.nexon.com/guide/request-api/">MapleStory API guide</a> for the error details.
  */
-class MapleStoryApiError extends Error {
+export class MapleStoryApiError extends Error {
   readonly name = 'MapleStoryApiError';
 
   readonly errorCode: MapleStoryApiErrorCode;
@@ -16,7 +16,7 @@ class MapleStoryApiError extends Error {
 
     super(message);
 
-    this.errorCode = errorMap[name];
+    this.errorCode = ERROR_MAP[name];
     this.message = message;
   }
 }
@@ -25,7 +25,7 @@ class MapleStoryApiError extends Error {
  * MapleStory OpenAPI error codes.<br>
  * Please refer to <a href="https://openapi.nexon.com/guide/request-api/">MapleStory API guide</a> for the error code details.
  */
-enum MapleStoryApiErrorCode {
+export enum MapleStoryApiErrorCode {
   OPENAPI00001,
   OPENAPI00002,
   OPENAPI00003,
@@ -38,7 +38,7 @@ enum MapleStoryApiErrorCode {
   OPENAPI00011,
 }
 
-const errorMap: {
+const ERROR_MAP: {
   [key: string]: MapleStoryApiErrorCode;
 } = {
   ['OPENAPI00001']: MapleStoryApiErrorCode.OPENAPI00001,
@@ -52,5 +52,3 @@ const errorMap: {
   ['OPENAPI00010']: MapleStoryApiErrorCode.OPENAPI00010,
   ['OPENAPI00011']: MapleStoryApiErrorCode.OPENAPI00011,
 };
-
-export { MapleStoryApiError, MapleStoryApiErrorCode };

@@ -56,7 +56,7 @@ import { UnionDto } from './dto/union/union';
 import { UnionArtifactDto } from './dto/union/unionArtifact';
 import { UnionChampionDto } from './dto/union/unionChampion';
 import { UnionRaiderDto } from './dto/union/unionRaider';
-import { MapleStoryApiError } from './mapleStoryApiError';
+import { MapleStoryApiError } from '../common/mapleStoryApiError';
 import { CharacterAbilityBody } from './response/character/characterAbilityBody';
 import { CharacterAndroidEquipmentBody } from './response/character/characterAndroidEquipmentBody';
 import { CharacterBasicBody } from './response/character/characterBasicBody';
@@ -110,7 +110,7 @@ dayjs.extend(utc);
  * MapleStory OpenAPI client.<br>
  * This is an implementation of <a href="https://openapi.nexon.com/game/maplestory">MapleStory API</a>
  */
-class MapleStoryApi {
+export class MapleStoryApi {
   private readonly apiKey: string;
 
   private readonly client: Axios;
@@ -2428,5 +2428,3 @@ type MapleStoryErrorBody = {
     message: string;
   };
 };
-
-export { MapleStoryApi, MapleStoryErrorBody };

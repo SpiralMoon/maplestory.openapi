@@ -1,16 +1,12 @@
-import {
-  PotentialHistoryBody,
-  PotentialHistoryResponseBody,
-  PotentialResultOptionBody,
-} from '../../response/history/potentialHistoryBody';
-import { PotentialOptionGrade, potentialOptionGradeFromString } from '../potentialOptionGrade';
+import { CubeHistoryBody, CubeHistoryResponseBody, CubeResultOptionBody } from '../../response/history/cubeHistoryBody';
+import { PotentialOptionGrade, potentialOptionGradeFromString } from '../../../common/potentialOptionGrade';
 
 /**
- * 잠재능력 재설정 히스토리
+ * 큐브 히스토리
  */
-export class PotentialHistoryDto {
+export class CubeHistoryDto {
   /**
-   * 잠재능력 재설정 히스토리 식별자
+   * 큐브 히스토리 식별자
    */
   id: string;
 
@@ -20,14 +16,19 @@ export class PotentialHistoryDto {
   characterName: string;
 
   /**
+   * 월드 명
+   */
+  worldName: string;
+
+  /**
    * 사용 일시
    */
   dateCreate: Date;
 
   /**
-   * 대상 잠재능력 타입 (잠재능력, 에디셔널 잠재능력)
+   * 사용 큐브
    */
-  potentialType: string;
+  cubeType: string;
 
   /**
    * 사용 결과
@@ -50,7 +51,7 @@ export class PotentialHistoryDto {
   itemLevel: number;
 
   /**
-   * 잠재능력 재설정 장비 명
+   * 큐브 사용한 장비
    */
   targetItem: string;
 
@@ -77,29 +78,30 @@ export class PotentialHistoryDto {
   /**
    * 사용 전 잠재능력 옵션
    */
-  beforePotentialOption: PotentialResultOptionDto[];
+  beforePotentialOption: CubeResultOptionDto[];
 
   /**
    * 사용 전 에디셔널 잠재능력 옵션
    */
-  beforeAdditionalPotentialOption: PotentialResultOptionDto[];
+  beforeAdditionalPotentialOption: CubeResultOptionDto[];
 
   /**
    * 사용 후 잠재능력 옵션
    */
-  afterPotentialOption: PotentialResultOptionDto[];
+  afterPotentialOption: CubeResultOptionDto[];
 
   /**
    * 사용 후 에디셔널 잠재능력 옵션
    */
-  afterAdditionalPotentialOption: PotentialResultOptionDto[];
+  afterAdditionalPotentialOption: CubeResultOptionDto[];
 
-  constructor(obj: PotentialHistoryBody) {
+  constructor(obj: CubeHistoryBody) {
     const {
       id,
       character_name,
+      world_name,
       date_create,
-      potential_type,
+      cube_type,
       item_upgrade_result,
       miracle_time_flag,
       item_equipment_part,
@@ -117,8 +119,9 @@ export class PotentialHistoryDto {
 
     this.id = id;
     this.characterName = character_name;
+    this.worldName = world_name;
     this.dateCreate = new Date(date_create);
-    this.potentialType = potential_type;
+    this.cubeType = cube_type;
     this.itemUpgradeResult = item_upgrade_result;
     this.miracleTimeFlag = miracle_time_flag;
     this.itemEquipmentPart = item_equipment_part;
@@ -129,17 +132,17 @@ export class PotentialHistoryDto {
     this.upgradeGuarantee = upgrade_guarantee;
     this.upgradeGuaranteeCount = upgrade_guarantee_count;
     this.beforePotentialOption = before_potential_option.map(
-      (origin) => new PotentialResultOptionDto(origin),
+      (origin) => new CubeResultOptionDto(origin),
     );
     this.beforeAdditionalPotentialOption =
       before_additional_potential_option.map(
-        (origin) => new PotentialResultOptionDto(origin),
+        (origin) => new CubeResultOptionDto(origin),
       );
     this.afterPotentialOption = after_potential_option.map(
-      (origin) => new PotentialResultOptionDto(origin),
+      (origin) => new CubeResultOptionDto(origin),
     );
     this.afterAdditionalPotentialOption = after_additional_potential_option.map(
-      (origin) => new PotentialResultOptionDto(origin),
+      (origin) => new CubeResultOptionDto(origin),
     );
   }
 
@@ -161,9 +164,9 @@ export class PotentialHistoryDto {
 }
 
 /**
- * 잠재능력 재설정 결과 옵션 정보
+ * 큐브 결과 옵션 정보
  */
-export class PotentialResultOptionDto {
+export class CubeResultOptionDto {
   /**
    * 옵션 명
    */
@@ -174,7 +177,7 @@ export class PotentialResultOptionDto {
    */
   grade: string;
 
-  constructor(obj: PotentialResultOptionBody) {
+  constructor(obj: CubeResultOptionBody) {
     const { value, grade } = obj;
 
     this.value = value;
@@ -187,31 +190,29 @@ export class PotentialResultOptionDto {
 }
 
 /**
- * 잠재능력 재설정 히스토리 응답 정보
+ * 큐브 히스토리 응답 정보
  */
-export class PotentialHistoryResponseDto {
+export class CubeHistoryResponseDto {
   /**
    * 결과 건 수
    */
   count: number;
 
   /**
-   * 잠재능력 재설정 히스토리
+   * 큐브 히스토리
    */
-  potentialHistory: PotentialHistoryDto[];
+  cubeHistory: CubeHistoryDto[];
 
   /**
    * 페이징 처리를 위한 cursor
    */
   nextCursor: string | null;
 
-  constructor(obj: PotentialHistoryResponseBody) {
-    const { count, potential_history, next_cursor } = obj;
+  constructor(obj: CubeHistoryResponseBody) {
+    const { count, cube_history, next_cursor } = obj;
 
     this.count = count;
-    this.potentialHistory = potential_history.map(
-      (origin) => new PotentialHistoryDto(origin),
-    );
+    this.cubeHistory = cube_history.map((origin) => new CubeHistoryDto(origin));
     this.nextCursor = next_cursor;
   }
 }
