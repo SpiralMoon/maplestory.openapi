@@ -1,0 +1,91 @@
+import { CharacterSkillBody, CharacterSkillInfoBody } from '../../response/character/characterSkillBody';
+
+/**
+ * 캐릭터 스킬 정보
+ */
+export class CharacterSkillDto {
+  /**
+   * 조회 기준일
+   */
+  date: Date | null;
+
+  /**
+   * 캐릭터 직업
+   */
+  characterClass: string | null;
+
+  /**
+   * 스킬 전직 차수
+   */
+  characterSkillGrade: string | null;
+
+  /**
+   * 스킬 정보
+   */
+  characterSkill: CharacterSkillInfoDto[];
+
+  constructor(obj: CharacterSkillBody) {
+    const { date, character_class, character_skill_grade, character_skill } =
+      obj;
+
+    this.date = date ? new Date(date) : null;
+    this.characterClass = character_class;
+    this.characterSkillGrade = character_skill_grade;
+    this.characterSkill = character_skill.map(
+      (skill) => new CharacterSkillInfoDto(skill),
+    );
+  }
+}
+
+/**
+ * 캐릭터 스킬 상세 정보
+ */
+export class CharacterSkillInfoDto {
+  /**
+   * 스킬 명
+   */
+  skillName: string;
+
+  /**
+   * 스킬 설명
+   */
+  skillDescription: string;
+
+  /**
+   * 스킬 레벨
+   */
+  skillLevel: number;
+
+  /**
+   * 스킬 레벨 별 효과 설명
+   */
+  skillEffect: string;
+
+  /**
+   * 다음 스킬 레벨 효과 설명
+   */
+  skillEffectNext: string | null;
+
+  /**
+   * 스킬 아이콘
+   */
+  skillIcon: string;
+
+  constructor(obj: CharacterSkillInfoBody) {
+    const {
+      skill_name,
+      skill_description,
+      skill_level,
+      skill_effect,
+      skill_effect_next,
+      skill_icon,
+    } = obj;
+
+    this.skillName = skill_name;
+    this.skillDescription = skill_description;
+    this.skillLevel = skill_level;
+    this.skillEffect = skill_effect;
+    this.skillEffectNext = skill_effect_next;
+    this.skillIcon = skill_icon;
+  }
+}

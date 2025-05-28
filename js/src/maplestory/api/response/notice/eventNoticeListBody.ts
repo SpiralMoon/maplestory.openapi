@@ -1,8 +1,8 @@
 export type EventNoticeListBody = {
-  event_notice: EventNoticeListItemDtoBody[];
+  event_notice: EventNoticeListItemBody[];
 }
 
-export type EventNoticeListItemDtoBody = {
+export type EventNoticeListItemBody = {
   title: string;
   url: string;
   notice_id: number;

@@ -1,8 +1,8 @@
 export type NoticeListBody = {
-  notice: NoticeListItemDtoBody[];
+  notice: NoticeListItemBody[];
 };
 
-export type NoticeListItemDtoBody = {
+export type NoticeListItemBody = {
   title: string;
   url: string;
   notice_id: number;

@@ -1,10 +1,10 @@
 export type CharacterSymbolEquipmentBody = {
   date: string | null;
   character_class: string | null;
-  symbol: CharacterSymbolEquipmentInfoDtoBody[];
+  symbol: CharacterSymbolEquipmentInfoBody[];
 };
 
-export type CharacterSymbolEquipmentInfoDtoBody = {
+export type CharacterSymbolEquipmentInfoBody = {
   symbol_name: string;
   symbol_icon: string;
   symbol_description: string;
