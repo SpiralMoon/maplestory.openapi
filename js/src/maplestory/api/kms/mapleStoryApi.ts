@@ -1,8 +1,5 @@
-import axios, { Axios, AxiosError } from 'axios';
+import axios from 'axios';
 import { Buffer } from 'buffer/'; // polyfill of Buffer for browser
-import dayjs, { Dayjs } from 'dayjs';
-import timezone from 'dayjs/plugin/timezone';
-import utc from 'dayjs/plugin/utc';
 import xml2js from 'xml2js';
 
 import { CharacterDto } from './dto/character/character';
@@ -101,54 +98,21 @@ import {
   CharacterImageEmotion,
   CharacterImageWeaponMotion,
 } from '../common/enum/characterImage';
-import { MapleStoryApiError } from '../common/mapleStoryApiError';
-
-dayjs.extend(timezone);
-dayjs.extend(utc);
+import { DateOptions } from '../common/mapleStoryApi';
+import * as base from '../common/mapleStoryApi';
 
 /**
- * MapleStory OpenAPI client.<br>
+ * MapleStory OpenAPI client for KMS.<br>
  * This is an implementation of <a href="https://openapi.nexon.com/game/maplestory">MapleStory API</a>
  */
-export class MapleStoryApi {
-  private readonly apiKey: string;
+export class MapleStoryApi extends base.MapleStoryApi {
 
-  private readonly client: Axios;
-
-  private static readonly BASE_URL: string = 'https://open.api.nexon.com/';
-
-  private static readonly DEFAULT_TIMEOUT: number = 5000;
-
-  get timeout() {
-    return this.client.defaults.timeout!;
-  }
-
-  set timeout(value: number) {
-    this.client.defaults.timeout = value;
-  }
+  protected override subUrl: string = 'maplestory';
+  
+  protected override timezoneOffset: number = 540;
 
   public constructor(apiKey: string) {
-    this.apiKey = apiKey;
-    this.client = axios.create({
-      baseURL: MapleStoryApi.BASE_URL,
-      timeout: MapleStoryApi.DEFAULT_TIMEOUT,
-      headers: {
-        'x-nxopen-api-key': this.apiKey,
-      },
-    });
-    this.client.interceptors.response.use(
-      (response) => response,
-      (error) => {
-        if (error instanceof AxiosError) {
-          const errorBody = (error as AxiosError<MapleStoryErrorBody>).response!
-            .data;
-
-          throw new MapleStoryApiError(errorBody);
-        }
-
-        throw error;
-      },
-    );
+    super(apiKey);
   }
 
   //#region 캐릭터 정보 조회
@@ -163,7 +127,7 @@ export class MapleStoryApi {
    * @param characterName    캐릭터 명
    */
   public async getCharacter(characterName: string): Promise<CharacterDto> {
-    const path = 'maplestory/v1/id';
+    const path = `${this.subUrl}/v1/id`;
     const { data } = await this.client.get<CharacterBody>(path, {
       params: {
         character_name: characterName,
@@ -180,7 +144,7 @@ export class MapleStoryApi {
    * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
    */
   public async getCharacterList(): Promise<CharacterListDto> {
-    const path = 'maplestory/v1/character/list';
+    const path = `${this.subUrl}/v1/character/list`;
     const { data } = await this.client.get<CharacterListBody>(path);
 
     return new CharacterListDto(data);
@@ -200,9 +164,9 @@ export class MapleStoryApi {
     ocid: string,
     dateOptions?: DateOptions,
   ): Promise<CharacterBasicDto> {
-    const path = 'maplestory/v1/character/basic';
+    const path = `${this.subUrl}/v1/character/basic`;
     const date = dateOptions
-      ? toDateString(dateOptions, {
+      ? this.toDateString(dateOptions, {
           year: 2023,
           month: 12,
           day: 21,
@@ -309,9 +273,9 @@ export class MapleStoryApi {
     ocid: string,
     dateOptions?: DateOptions,
   ): Promise<CharacterPopularityDto> {
-    const path = 'maplestory/v1/character/popularity';
+    const path = `${this.subUrl}/v1/character/popularity`;
     const date = dateOptions
-      ? toDateString(dateOptions, {
+      ? this.toDateString(dateOptions, {
           year: 2023,
           month: 12,
           day: 21,
@@ -342,9 +306,9 @@ export class MapleStoryApi {
     ocid: string,
     dateOptions?: DateOptions,
   ): Promise<CharacterStatDto> {
-    const path = 'maplestory/v1/character/stat';
+    const path = `${this.subUrl}/v1/character/stat`;
     const date = dateOptions
-      ? toDateString(dateOptions, {
+      ? this.toDateString(dateOptions, {
           year: 2023,
           month: 12,
           day: 21,
@@ -375,9 +339,9 @@ export class MapleStoryApi {
     ocid: string,
     dateOptions?: DateOptions,
   ): Promise<CharacterHyperStatDto> {
-    const path = 'maplestory/v1/character/hyper-stat';
+    const path = `${this.subUrl}/v1/character/hyper-stat`;
     const date = dateOptions
-      ? toDateString(dateOptions, {
+      ? this.toDateString(dateOptions, {
           year: 2023,
           month: 12,
           day: 21,
@@ -408,9 +372,9 @@ export class MapleStoryApi {
     ocid: string,
     dateOptions?: DateOptions,
   ): Promise<CharacterPropensityDto> {
-    const path = 'maplestory/v1/character/propensity';
+    const path = `${this.subUrl}/v1/character/propensity`;
     const date = dateOptions
-      ? toDateString(dateOptions, {
+      ? this.toDateString(dateOptions, {
           year: 2023,
           month: 12,
           day: 21,
@@ -441,9 +405,9 @@ export class MapleStoryApi {
     ocid: string,
     dateOptions?: DateOptions,
   ): Promise<CharacterAbilityDto> {
-    const path = 'maplestory/v1/character/ability';
+    const path = `${this.subUrl}/v1/character/ability`;
     const date = dateOptions
-      ? toDateString(dateOptions, {
+      ? this.toDateString(dateOptions, {
           year: 2023,
           month: 12,
           day: 21,
@@ -474,9 +438,9 @@ export class MapleStoryApi {
     ocid: string,
     dateOptions?: DateOptions,
   ): Promise<CharacterItemEquipmentDto> {
-    const path = 'maplestory/v1/character/item-equipment';
+    const path = `${this.subUrl}/v1/character/item-equipment`;
     const date = dateOptions
-      ? toDateString(dateOptions, {
+      ? this.toDateString(dateOptions, {
           year: 2023,
           month: 12,
           day: 21,
@@ -507,9 +471,9 @@ export class MapleStoryApi {
     ocid: string,
     dateOptions?: DateOptions,
   ): Promise<CharacterCashItemEquipmentDto> {
-    const path = 'maplestory/v1/character/cashitem-equipment';
+    const path = `${this.subUrl}/v1/character/cashitem-equipment`;
     const date = dateOptions
-      ? toDateString(dateOptions, {
+      ? this.toDateString(dateOptions, {
           year: 2023,
           month: 12,
           day: 21,
@@ -543,9 +507,9 @@ export class MapleStoryApi {
     ocid: string,
     dateOptions?: DateOptions,
   ): Promise<CharacterSymbolEquipmentDto> {
-    const path = 'maplestory/v1/character/symbol-equipment';
+    const path = `${this.subUrl}/v1/character/symbol-equipment`;
     const date = dateOptions
-      ? toDateString(dateOptions, {
+      ? this.toDateString(dateOptions, {
           year: 2023,
           month: 12,
           day: 21,
@@ -576,9 +540,9 @@ export class MapleStoryApi {
     ocid: string,
     dateOptions?: DateOptions,
   ): Promise<CharacterSetEffectDto> {
-    const path = 'maplestory/v1/character/set-effect';
+    const path = `${this.subUrl}/v1/character/set-effect`;
     const date = dateOptions
-      ? toDateString(dateOptions, {
+      ? this.toDateString(dateOptions, {
           year: 2023,
           month: 12,
           day: 21,
@@ -609,9 +573,9 @@ export class MapleStoryApi {
     ocid: string,
     dateOptions?: DateOptions,
   ): Promise<CharacterBeautyEquipmentDto> {
-    const path = 'maplestory/v1/character/beauty-equipment';
+    const path = `${this.subUrl}/v1/character/beauty-equipment`;
     const date = dateOptions
-      ? toDateString(dateOptions, {
+      ? this.toDateString(dateOptions, {
           year: 2023,
           month: 12,
           day: 21,
@@ -642,9 +606,9 @@ export class MapleStoryApi {
     ocid: string,
     dateOptions?: DateOptions,
   ): Promise<CharacterAndroidEquipmentDto> {
-    const path = 'maplestory/v1/character/android-equipment';
+    const path = `${this.subUrl}/v1/character/android-equipment`;
     const date = dateOptions
-      ? toDateString(dateOptions, {
+      ? this.toDateString(dateOptions, {
           year: 2023,
           month: 12,
           day: 21,
@@ -678,9 +642,9 @@ export class MapleStoryApi {
     ocid: string,
     dateOptions?: DateOptions,
   ): Promise<CharacterPetEquipmentDto> {
-    const path = 'maplestory/v1/character/pet-equipment';
+    const path = `${this.subUrl}/v1/character/pet-equipment`;
     const date = dateOptions
-      ? toDateString(dateOptions, {
+      ? this.toDateString(dateOptions, {
           year: 2023,
           month: 12,
           day: 21,
@@ -724,9 +688,9 @@ export class MapleStoryApi {
     characterSkillGrade: string,
     dateOptions?: DateOptions,
   ): Promise<CharacterSkillDto> {
-    const path = 'maplestory/v1/character/skill';
+    const path = `${this.subUrl}/v1/character/skill`;
     const date = dateOptions
-      ? toDateString(dateOptions, {
+      ? this.toDateString(dateOptions, {
           year: 2023,
           month: 12,
           day: 21,
@@ -758,9 +722,9 @@ export class MapleStoryApi {
     ocid: string,
     dateOptions?: DateOptions,
   ): Promise<CharacterLinkSkillDto> {
-    const path = 'maplestory/v1/character/link-skill';
+    const path = `${this.subUrl}/v1/character/link-skill`;
     const date = dateOptions
-      ? toDateString(dateOptions, {
+      ? this.toDateString(dateOptions, {
           year: 2023,
           month: 12,
           day: 21,
@@ -791,9 +755,9 @@ export class MapleStoryApi {
     ocid: string,
     dateOptions?: DateOptions,
   ): Promise<CharacterVMatrixDto> {
-    const path = 'maplestory/v1/character/vmatrix';
+    const path = `${this.subUrl}/v1/character/vmatrix`;
     const date = dateOptions
-      ? toDateString(dateOptions, {
+      ? this.toDateString(dateOptions, {
           year: 2023,
           month: 12,
           day: 21,
@@ -824,9 +788,9 @@ export class MapleStoryApi {
     ocid: string,
     dateOptions?: DateOptions,
   ): Promise<CharacterHexaMatrixDto> {
-    const path = 'maplestory/v1/character/hexamatrix';
+    const path = `${this.subUrl}/v1/character/hexamatrix`;
     const date = dateOptions
-      ? toDateString(dateOptions, {
+      ? this.toDateString(dateOptions, {
           year: 2023,
           month: 12,
           day: 21,
@@ -857,9 +821,9 @@ export class MapleStoryApi {
     ocid: string,
     dateOptions?: DateOptions,
   ): Promise<CharacterHexaMatrixStatDto> {
-    const path = 'maplestory/v1/character/hexamatrix-stat';
+    const path = `${this.subUrl}/v1/character/hexamatrix-stat`;
     const date = dateOptions
-      ? toDateString(dateOptions, {
+      ? this.toDateString(dateOptions, {
           year: 2023,
           month: 12,
           day: 21,
@@ -890,9 +854,9 @@ export class MapleStoryApi {
     ocid: string,
     dateOptions?: DateOptions,
   ): Promise<CharacterDojangDto> {
-    const path = 'maplestory/v1/character/dojang';
+    const path = `${this.subUrl}/v1/character/dojang`;
     const date = dateOptions
-      ? toDateString(dateOptions, {
+      ? this.toDateString(dateOptions, {
           year: 2023,
           month: 12,
           day: 21,
@@ -927,9 +891,9 @@ export class MapleStoryApi {
     ocid: string,
     dateOptions?: DateOptions,
   ): Promise<UnionDto> {
-    const path = 'maplestory/v1/user/union';
+    const path = `${this.subUrl}/v1/user/union`;
     const date = dateOptions
-      ? toDateString(dateOptions, {
+      ? this.toDateString(dateOptions, {
           year: 2023,
           month: 12,
           day: 21,
@@ -960,9 +924,9 @@ export class MapleStoryApi {
     ocid: string,
     dateOptions?: DateOptions,
   ): Promise<UnionRaiderDto> {
-    const path = 'maplestory/v1/user/union-raider';
+    const path = `${this.subUrl}/v1/user/union-raider`;
     const date = dateOptions
-      ? toDateString(dateOptions, {
+      ? this.toDateString(dateOptions, {
           year: 2023,
           month: 12,
           day: 21,
@@ -993,9 +957,9 @@ export class MapleStoryApi {
     ocid: string,
     dateOptions?: DateOptions,
   ): Promise<UnionArtifactDto> {
-    const path = 'maplestory/v1/user/union-artifact';
+    const path = `${this.subUrl}/v1/user/union-artifact`;
     const date = dateOptions
-      ? toDateString(dateOptions, {
+      ? this.toDateString(dateOptions, {
           year: 2023,
           month: 12,
           day: 21,
@@ -1027,9 +991,9 @@ export class MapleStoryApi {
     ocid: string,
     dateOptions?: DateOptions,
   ): Promise<UnionChampionDto> {
-    const path = 'maplestory/v1/user/union-champion';
+    const path = `${this.subUrl}/v1/user/union-champion`;
     const date = dateOptions
-      ? toDateString(dateOptions, {
+      ? this.toDateString(dateOptions, {
           year: 2023,
           month: 12,
           day: 21,
@@ -1064,7 +1028,7 @@ export class MapleStoryApi {
     guildName: string,
     worldName: string,
   ): Promise<GuildDto> {
-    const path = 'maplestory/v1/guild/id';
+    const path = `${this.subUrl}/v1/guild/id`;
     const { data } = await this.client.get<GuildBody>(path, {
       params: {
         guild_name: guildName,
@@ -1089,9 +1053,9 @@ export class MapleStoryApi {
     guildId: string,
     dateOptions?: DateOptions,
   ): Promise<GuildBasicDto> {
-    const path = 'maplestory/v1/guild/basic';
+    const path = `${this.subUrl}/v1/guild/basic`;
     const date = dateOptions
-      ? toDateString(dateOptions, {
+      ? this.toDateString(dateOptions, {
           year: 2023,
           month: 12,
           day: 21,
@@ -1153,7 +1117,7 @@ export class MapleStoryApi {
     count: number,
     parameter?: DateOptions | string,
   ): Promise<StarforceHistoryResponseDto> {
-    const path = 'maplestory/v1/history/starforce';
+    const path = `${this.subUrl}/v1/history/starforce`;
     const query: StarforceApiQuery = {
       count,
     };
@@ -1161,9 +1125,9 @@ export class MapleStoryApi {
     if (typeof parameter === 'string') {
       query.cursor = parameter;
     } else if (typeof parameter === 'object' || parameter === undefined) {
-      query.date = toDateString(
+      query.date = this.toDateString(
         parameter ??
-          getProperDefaultDateOptions({
+          this.getProperDefaultDateOptions({
             hour: 0,
             minute: 0,
             dateOffset: 0,
@@ -1222,7 +1186,7 @@ export class MapleStoryApi {
     count: number,
     parameter?: DateOptions | string,
   ): Promise<CubeHistoryResponseDto> {
-    const path = 'maplestory/v1/history/cube';
+    const path = `${this.subUrl}/v1/history/cube`;
     const query: CubeApiQuery = {
       count,
     };
@@ -1230,9 +1194,9 @@ export class MapleStoryApi {
     if (typeof parameter === 'string') {
       query.cursor = parameter;
     } else if (typeof parameter === 'object' || parameter === undefined) {
-      query.date = toDateString(
+      query.date = this.toDateString(
         parameter ??
-          getProperDefaultDateOptions({
+          this.getProperDefaultDateOptions({
             hour: 0,
             minute: 0,
             dateOffset: 0,
@@ -1288,7 +1252,7 @@ export class MapleStoryApi {
     count: number,
     parameter?: DateOptions | string,
   ): Promise<PotentialHistoryResponseDto> {
-    const path = 'maplestory/v1/history/potential';
+    const path = `${this.subUrl}/v1/history/potential`;
     const query: PotentialApiQuery = {
       count,
     };
@@ -1296,9 +1260,9 @@ export class MapleStoryApi {
     if (typeof parameter === 'string') {
       query.cursor = parameter;
     } else if (typeof parameter === 'object' || parameter === undefined) {
-      query.date = toDateString(
+      query.date = this.toDateString(
         parameter ??
-          getProperDefaultDateOptions({
+          this.getProperDefaultDateOptions({
             hour: 0,
             minute: 0,
             dateOffset: 0,
@@ -1334,15 +1298,15 @@ export class MapleStoryApi {
    */
   public async getOverallRanking(
     filterOptions?: OverallRankingApiFilterOptions,
-    dateOptions: DateOptions = getProperDefaultDateOptions({
+    dateOptions: DateOptions = this.getProperDefaultDateOptions({
       hour: 8,
       minute: 30,
       dateOffset: 0,
     }),
   ): Promise<OverallRankingResponseDto> {
-    const path = 'maplestory/v1/ranking/overall';
+    const path = `${this.subUrl}/v1/ranking/overall`;
     const query: OverallRankingApiQuery = {
-      date: toDateString(dateOptions, {
+      date: this.toDateString(dateOptions, {
         year: 2023,
         month: 12,
         day: 22,
@@ -1378,15 +1342,15 @@ export class MapleStoryApi {
    */
   public async getUnionRanking(
     filterOptions?: UnionRankingApiFilterOptions,
-    dateOptions: DateOptions = getProperDefaultDateOptions({
+    dateOptions: DateOptions = this.getProperDefaultDateOptions({
       hour: 8,
       minute: 30,
       dateOffset: 0,
     }),
   ): Promise<UnionRankingResponseDto> {
-    const path = 'maplestory/v1/ranking/union';
+    const path = `${this.subUrl}/v1/ranking/union`;
     const query: UnionRankingApiQuery = {
-      date: toDateString(dateOptions, {
+      date: this.toDateString(dateOptions, {
         year: 2023,
         month: 12,
         day: 22,
@@ -1419,15 +1383,15 @@ export class MapleStoryApi {
    */
   public async getGuildRanking(
     filterOptions?: GuildRankingApiFilterOptions,
-    dateOptions: DateOptions = getProperDefaultDateOptions({
+    dateOptions: DateOptions = this.getProperDefaultDateOptions({
       hour: 8,
       minute: 30,
       dateOffset: 0,
     }),
   ): Promise<GuildRankingResponseDto> {
-    const path = 'maplestory/v1/ranking/guild';
+    const path = `${this.subUrl}/v1/ranking/guild`;
     const query: GuildRankingApiQuery = {
-      date: toDateString(dateOptions, {
+      date: this.toDateString(dateOptions, {
         year: 2023,
         month: 12,
         day: 22,
@@ -1462,15 +1426,15 @@ export class MapleStoryApi {
    */
   public async getDojangRanking(
     filterOptions?: DojangRankingApiFilterOptions,
-    dateOptions: DateOptions = getProperDefaultDateOptions({
+    dateOptions: DateOptions = this.getProperDefaultDateOptions({
       hour: 8,
       minute: 30,
       dateOffset: 0,
     }),
   ): Promise<DojangRankingResponseDto> {
-    const path = 'maplestory/v1/ranking/dojang';
+    const path = `${this.subUrl}/v1/ranking/dojang`;
     const query: DojangRankingApiQuery = {
-      date: toDateString(dateOptions, {
+      date: this.toDateString(dateOptions, {
         year: 2023,
         month: 12,
         day: 22,
@@ -1507,15 +1471,15 @@ export class MapleStoryApi {
    */
   public async getSeedRanking(
     filterOptions?: TheSeedRankingApiFilterOptions,
-    dateOptions: DateOptions = getProperDefaultDateOptions({
+    dateOptions: DateOptions = this.getProperDefaultDateOptions({
       hour: 8,
       minute: 30,
       dateOffset: 0,
     }),
   ): Promise<TheSeedRankingResponseDto> {
-    const path = 'maplestory/v1/ranking/theseed';
+    const path = `${this.subUrl}/v1/ranking/theseed`;
     const query: TheSeedRankingApiQuery = {
-      date: toDateString(dateOptions, {
+      date: this.toDateString(dateOptions, {
         year: 2023,
         month: 12,
         day: 22,
@@ -1548,15 +1512,15 @@ export class MapleStoryApi {
    */
   public async getAchievementRanking(
     filterOptions?: AchievementRankingApiFilterOptions,
-    dateOptions: DateOptions = getProperDefaultDateOptions({
+    dateOptions: DateOptions = this.getProperDefaultDateOptions({
       hour: 8,
       minute: 30,
       dateOffset: 0,
     }),
   ): Promise<AchievementRankingResponseDto> {
-    const path = 'maplestory/v1/ranking/achievement';
+    const path = `${this.subUrl}/v1/ranking/achievement`;
     const query: AchievementRankingApiQuery = {
-      date: toDateString(dateOptions, {
+      date: this.toDateString(dateOptions, {
         year: 2023,
         month: 12,
         day: 22,
@@ -1591,7 +1555,7 @@ export class MapleStoryApi {
    * - 실시간으로 정보를 제공하지 않는 경우, 신규/수정 공지 내용이 반영되지 않을 수 있으니 서비스 이용 유저에게 홈페이지 공지 사항을 확인하라는 가이드를 제공해주세요.
    */
   public async getNoticeList(): Promise<NoticeListDto> {
-    const path = 'maplestory/v1/notice';
+    const path = `${this.subUrl}/v1/notice`;
 
     const { data } = await this.client.get<NoticeListBody>(path);
 
@@ -1606,7 +1570,7 @@ export class MapleStoryApi {
    * @param noticeId 공지 식별자
    */
   public async getNoticeDetail(noticeId: number): Promise<NoticeDetailDto> {
-    const path = 'maplestory/v1/notice/detail';
+    const path = `${this.subUrl}/v1/notice/detail`;
     const query: NoticeApiQuery = {
       notice_id: noticeId,
     };
@@ -1625,7 +1589,7 @@ export class MapleStoryApi {
    * - 실시간으로 정보를 제공하지 않는 경우, 신규/수정 공지 내용이 반영되지 않을 수 있으니 서비스 이용 유저에게 홈페이지 공지 사항을 확인하라는 가이드를 제공해주세요.
    */
   public async getUpdateNoticeList(): Promise<UpdateNoticeListDto> {
-    const path = 'maplestory/v1/notice-update';
+    const path = `${this.subUrl}/v1/notice-update`;
 
     const { data } = await this.client.get<UpdateNoticeListBody>(path);
 
@@ -1642,7 +1606,7 @@ export class MapleStoryApi {
   public async getUpdateNoticeDetail(
     noticeId: number,
   ): Promise<UpdateNoticeDetailDto> {
-    const path = 'maplestory/v1/notice-update/detail';
+    const path = `${this.subUrl}/v1/notice-update/detail`;
     const query: NoticeApiQuery = {
       notice_id: noticeId,
     };
@@ -1661,7 +1625,7 @@ export class MapleStoryApi {
    * - 실시간으로 정보를 제공하지 않는 경우, 신규/수정 공지 내용이 반영되지 않을 수 있으니 서비스 이용 유저에게 홈페이지 공지 사항을 확인하라는 가이드를 제공해주세요.
    */
   public async getEventNoticeList(): Promise<EventNoticeListDto> {
-    const path = 'maplestory/v1/notice-event';
+    const path = `${this.subUrl}/v1/notice-event`;
 
     const { data } = await this.client.get<EventNoticeListBody>(path);
 
@@ -1678,7 +1642,7 @@ export class MapleStoryApi {
   public async getEventNoticeDetail(
     noticeId: number,
   ): Promise<EventNoticeDetailDto> {
-    const path = 'maplestory/v1/notice-event/detail';
+    const path = `${this.subUrl}/v1/notice-event/detail`;
     const query: NoticeApiQuery = {
       notice_id: noticeId,
     };
@@ -1697,7 +1661,7 @@ export class MapleStoryApi {
    * - 실시간으로 정보를 제공하지 않는 경우, 신규/수정 공지 내용이 반영되지 않을 수 있으니 서비스 이용 유저에게 홈페이지 공지 사항을 확인하라는 가이드를 제공해주세요.
    */
   public async getCashshopNoticeList(): Promise<CashshopNoticeListDto> {
-    const path = 'maplestory/v1/notice-cashshop';
+    const path = `${this.subUrl}/v1/notice-cashshop`;
 
     const { data } = await this.client.get<CashshopNoticeListBody>(path);
 
@@ -1714,7 +1678,7 @@ export class MapleStoryApi {
   public async getCashshopNoticeDetail(
     noticeId: number,
   ): Promise<CashshopNoticeDetailDto> {
-    const path = 'maplestory/v1/notice-cashshop/detail';
+    const path = `${this.subUrl}/v1/notice-cashshop/detail`;
     const query: NoticeApiQuery = {
       notice_id: noticeId,
     };
@@ -1771,100 +1735,6 @@ export class MapleStoryApi {
     return new InspectionInfoDto(xml);
   }
 }
-
-const KST_OFFSET = 540;
-
-/**
- * API 서버의 데이터 갱신 시간에 따라 데이터가 조회 가능한 최신 날짜를 반환합니다.
- *
- * @param options
- */
-const getProperDefaultDateOptions = (
-  options: LatestApiUpdateTimeOptions,
-): DateOptions => {
-  const { hour, minute, dateOffset } = options;
-
-  const kstNow = dayjs().utcOffset(KST_OFFSET);
-  const updateDate = dayjs().utcOffset(KST_OFFSET).hour(hour).minute(minute);
-
-  let adjustedDate: Dayjs;
-
-  if (kstNow.isAfter(updateDate)) {
-    adjustedDate = kstNow;
-  } else {
-    adjustedDate = kstNow.subtract(1, 'day');
-  }
-
-  adjustedDate = adjustedDate.subtract(dateOffset ?? 0, 'day');
-
-  return {
-    year: adjustedDate.year(),
-    month: adjustedDate.month() + 1,
-    day: adjustedDate.date(),
-  };
-};
-
-/**
- * 날짜 정보를 API 서버에서 요구하는 포맷으로 변환합니다.
- *
- * @param dateOptions 조회 하려는 날짜
- * @param minDateOptions API 호출 가능한 최소 날짜
- */
-const toDateString = (
-  dateOptions: DateOptions,
-  minDateOptions?: DateOptions,
-): string | never => {
-  const convert = (dateOptions: DateOptions) => {
-    let year: number;
-    let month: number;
-    let day: number;
-    let d: Dayjs;
-
-    if (dateOptions instanceof Date) {
-      d = dayjs(dateOptions).utcOffset(KST_OFFSET);
-      year = d.year();
-      month = d.month() + 1;
-      day = d.date();
-    } else {
-      year = dateOptions.year;
-      month = dateOptions.month;
-      day = dateOptions.day;
-      d = dayjs(`${year}-${month}-${day}`).utcOffset(KST_OFFSET);
-    }
-
-    return {
-      year,
-      month,
-      day,
-      d,
-    };
-  };
-  const { year, month, day, d } = convert(dateOptions);
-
-  const str = d.format('YYYY-MM-DD');
-
-  if (minDateOptions) {
-    const {
-      year: minYear,
-      month: minMonth,
-      day: minDay,
-    } = convert(minDateOptions);
-
-    if (
-      year < minYear ||
-      (year === minYear && month < minMonth) ||
-      (year === minYear && month === minMonth && day < minDay)
-    ) {
-      throw new Error(
-        `You can only retrieve data after ${dayjs(
-          `${minYear}-${minMonth}-${minDay}`,
-        ).format('YYYY-MM-DD')}.`,
-      );
-    }
-  }
-
-  return str;
-};
 
 type CharacterImageOptions = {
   /**
@@ -2309,29 +2179,6 @@ type AchievementRankingApiFilterOptions = {
   page?: number;
 };
 
-type YMD = {
-  year: number;
-  month: number;
-  day: number;
-};
-
-/**
- * 날짜 옵션
- * - Date 객체 또는 YMD 형식의 객체를 사용할 수 있습니다.
- * - 날짜는 해당 서비스 지역의 표준 시를 사용 합니다.
- * - Date 객체의 offset이 해당 서비스 지역의 offset과 다를 경우 자동으로 변환 됩니다.
- */
-type DateOptions = YMD | Date;
-
-/**
- * API 서버의 데이터 갱신 시각과 조회 가능한 최근 날짜와 현재 날짜와의 차이
- */
-type LatestApiUpdateTimeOptions = {
-  hour: number;
-  minute: number;
-  dateOffset?: number;
-};
-
 type CharacterApiQuery = {
   ocid: string;
   date?: string;
@@ -2419,11 +2266,4 @@ type AchievementRankingApiQuery = {
 
 type NoticeApiQuery = {
   notice_id: number;
-};
-
-type MapleStoryErrorBody = {
-  error: {
-    name: string;
-    message: string;
-  };
 };
