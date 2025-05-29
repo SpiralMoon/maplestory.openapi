@@ -22,7 +22,7 @@ export type CharacterItemEquipmentInfoBody = {
   item_shape_name: string;
   item_shape_icon: string;
   item_gender: string | null;
-  item_total_option: CharacterItemEquipmentOptionBody;
+  item_total_option: CharacterItemEquipmentTotalOptionBody;
   item_base_option: CharacterItemEquipmentBaseOptionBody;
   potential_option_grade: string | null;
   additional_potential_option_grade: string | null;
@@ -44,10 +44,10 @@ export type CharacterItemEquipmentInfoBody = {
   scroll_upgradeable_count: string;
   soul_name: string | null;
   soul_option: string | null;
-  item_etc_option: CharacterItemEquipmentOptionBody;
+  item_etc_option: CharacterItemEquipmentEtcOptionBody;
   starforce: string;
   starforce_scroll_flag: string;
-  item_starforce_option: CharacterItemEquipmentOptionBody;
+  item_starforce_option: CharacterItemEquipmentStarforceOptionBody;
   special_ring_level: number;
   date_expire: string | null;
 };
