@@ -12,5 +12,4 @@ export type DojangRankingBody = {
   dojang_time_record: number;
 };
 
-export type DojangRankingResponseBody =
-  RankingResponseBody<DojangRankingBody>;
+export type DojangRankingResponseBody = RankingResponseBody<DojangRankingBody>;

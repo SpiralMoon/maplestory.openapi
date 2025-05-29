@@ -1,9 +1,4 @@
-enum PotentialOptionGrade {
-  RARE,
-  EPIC,
-  UNIQUE,
-  LEGENDARY,
-}
+import { PotentialOptionGrade } from './enum/potentialOptionGrade';
 
 type PotentialOptionGradeKeys = '레어' | '에픽' | '유니크' | '레전드리';
 
@@ -12,7 +7,9 @@ type PotentialOptionGradeKeys = '레어' | '에픽' | '유니크' | '레전드�
  *
  * @param text support only "레어", "에픽", "유니크", "레전드리"
  */
-const potentialOptionGradeFromString = (text: string): PotentialOptionGrade => {
+export const potentialOptionGradeFromString = (
+  text: string,
+): PotentialOptionGrade => {
   const potentialOptionGradeMap: {
     [key in PotentialOptionGradeKeys]: PotentialOptionGrade;
   } = {
@@ -30,5 +27,3 @@ const potentialOptionGradeFromString = (text: string): PotentialOptionGrade => {
 
   return grade;
 };
-
-export { PotentialOptionGrade, potentialOptionGradeFromString };

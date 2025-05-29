@@ -1,65 +1,71 @@
-import { GuildBasicBody, GuildSkillBody } from '../../response/guild/guildBasicBody';
+import * as base from '../../../common/dto/guild/guildBasic';
+import {
+  GuildBasicBody,
+  GuildSkillBody,
+} from '../../response/guild/guildBasicBody';
 
 /**
  * 길드 기본 정보
  */
-export class GuildBasicDto {
+export class GuildBasicDto extends base.GuildBasicDto {
   /**
    * 조회 기준일
    */
-  date: Date | null;
+  public override date: Date | null;
 
   /**
    * 월드 명
    */
-  worldName: string;
+  public override worldName: string;
 
   /**
    * 길드 명
    */
-  guildName: string;
+  public override guildName: string;
 
   /**
    * 길드 레벨
    */
-  guildLevel: number;
+  public override guildLevel: number;
 
   /**
    * 길드 명성치
    */
-  guildFame: number;
+  public override guildFame: number;
 
   /**
    * 길드 포인트(GP)
    */
-  guildPoint: number;
+  public override guildPoint: number;
 
   /**
    * 길드 마스터 캐릭터 명
    */
-  guildMasterName: string;
+  public override guildMasterName: string;
 
   /**
    * 길드원 수
    */
-  guildMemberCount: number;
+  public override guildMemberCount: number;
 
   /**
    * 길드원 목록
    */
-  guildMember: string[];
+  public override guildMember: string[];
 
   /**
    * 길드 스킬 목록
    */
-  guildSkill: GuildSkillDto[];
+  public override guildSkill: GuildSkillDto[];
 
   /**
    * 노블레스 스킬 목록
    */
-  guildNoblesseSkill: GuildSkillDto[];
+  public override guildNoblesseSkill: GuildSkillDto[];
 
   constructor(obj: GuildBasicBody) {
+    super();
+
     const {
       date,
       world_name,
@@ -93,33 +99,35 @@ export class GuildBasicDto {
 /**
  * 길드 스킬 정보
  */
-export class GuildSkillDto {
+export class GuildSkillDto extends base.GuildSkillDto {
   /**
    * 스킬 명
    */
-  skillName: string;
+  public override skillName: string;
 
   /**
    * 스킬 설명
    */
-  skillDescription: string;
+  public override skillDescription: string;
 
   /**
    * 스킬 레벨
    */
-  skillLevel: number;
+  public override skillLevel: number;
 
   /**
    * 스킬 레벨 별 효과
    */
-  skillEffect: string;
+  public override skillEffect: string;
 
   /**
    * 스킬 아이콘
    */
-  skillIcon: string;
+  public override skillIcon: string;
 
   constructor(obj: GuildSkillBody) {
+    super();
+
     const {
       skill_name,
       skill_description,

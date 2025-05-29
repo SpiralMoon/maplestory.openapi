@@ -130,9 +130,9 @@ export class StarforceHistoryDto {
     this.worldName = world_name;
     this.targetItem = target_item;
     this.dateCreate = new Date(date_create);
-    this.starforceEventList = starforce_event_list?.map(
-      (event) => new StarforceEventDto(event),
-    ) ?? null;
+    this.starforceEventList =
+      starforce_event_list?.map((event) => new StarforceEventDto(event)) ??
+      null;
   }
 }
 

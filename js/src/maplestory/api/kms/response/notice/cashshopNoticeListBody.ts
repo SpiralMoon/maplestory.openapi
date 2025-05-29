@@ -1,6 +1,6 @@
 export type CashshopNoticeListBody = {
   cashshop_notice: CashshopNoticeListItemBody[];
-}
+};
 
 export type CashshopNoticeListItemBody = {
   title: string;
@@ -10,4 +10,4 @@ export type CashshopNoticeListItemBody = {
   date_sale_start: string | null;
   date_sale_end: string | null;
   ongoing_flag: string;
-}
+};

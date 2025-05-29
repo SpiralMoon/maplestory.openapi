@@ -1,4 +1,7 @@
-import { UnionRankingBody, UnionRankingResponseBody } from '../../response/ranking/unionRankingBody';
+import {
+  UnionRankingBody,
+  UnionRankingResponseBody,
+} from '../../response/ranking/unionRankingBody';
 
 /**
  * 유니온 랭킹 정보

@@ -1,5 +1,10 @@
-import { CubeHistoryBody, CubeHistoryResponseBody, CubeResultOptionBody } from '../../response/history/cubeHistoryBody';
-import { PotentialOptionGrade, potentialOptionGradeFromString } from '../../../common/potentialOptionGrade';
+import { PotentialOptionGrade } from '../../../common/enum/potentialOptionGrade';
+import { potentialOptionGradeFromString } from '../../../common/lib';
+import {
+  CubeHistoryBody,
+  CubeHistoryResponseBody,
+  CubeResultOptionBody,
+} from '../../response/history/cubeHistoryBody';
 
 /**
  * 큐브 히스토리

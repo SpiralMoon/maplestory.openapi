@@ -1,40 +1,43 @@
+import * as base from '../../../common/dto/character/characterDojang';
 import { CharacterDojangBody } from '../../response/character/characterDojangBody';
 
 /**
  * 캐릭터 무릉도장 정보
  */
-export class CharacterDojangDto {
+export class CharacterDojangDto extends base.CharacterDojangDto {
   /**
    * 조회 기준일
    */
-  date: Date | null;
+  public override date: Date | null;
 
   /**
    * 캐릭터 직업
    */
-  characterClass: string | null;
+  public override characterClass: string | null;
 
   /**
    * 월드 명
    */
-  worldName: string | null;
+  public override worldName: string | null;
 
   /**
    * 무릉도장 최고 기록 층수
    */
-  dojangBestFloor: number | null;
+  public override dojangBestFloor: number | null;
 
   /**
    * 무릉도장 최고 기록 달성 일 (KST, 일 단위 데이터로 시, 분은 일괄 0으로 표기)
    */
-  dateDojangRecord: Date | null;
+  public override dateDojangRecord: Date | null;
 
   /**
    * 무릉도장 최고 층수 클리어에 걸린 시간 (초)
    */
-  dojangBestTime: number | null;
+  public override dojangBestTime: number | null;
 
   constructor(obj: CharacterDojangBody) {
+    super();
+
     const {
       date,
       character_class,

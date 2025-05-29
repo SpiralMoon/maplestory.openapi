@@ -1,10 +1,12 @@
-import { UpdateNoticeListBody, UpdateNoticeListItemBody } from '../../response/notice/updateNoticeListBody';
+import {
+  UpdateNoticeListBody,
+  UpdateNoticeListItemBody,
+} from '../../response/notice/updateNoticeListBody';
 
 /**
  * 업데이트 목록
  */
 export class UpdateNoticeListDto {
-
   /**
    * 공지 목록
    */
@@ -13,7 +15,9 @@ export class UpdateNoticeListDto {
   constructor(obj: UpdateNoticeListBody) {
     const { update_notice } = obj;
 
-    this.updateNotice = update_notice.map(notice => new UpdateNoticeListItemDto(notice));
+    this.updateNotice = update_notice.map(
+      (notice) => new UpdateNoticeListItemDto(notice),
+    );
   }
 }
 
@@ -21,7 +25,6 @@ export class UpdateNoticeListDto {
  * 업데이트 공지
  */
 export class UpdateNoticeListItemDto {
-
   /**
    * 공지 제목
    */

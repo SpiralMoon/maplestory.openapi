@@ -1,3 +1,4 @@
+import * as base from '../../../common/dto/character/characterSetEffect';
 import {
   CharacterSetEffectBody,
   CharacterSetEffectInfoBody,
@@ -8,18 +9,20 @@ import {
 /**
  * 캐릭터 세트 효과 정보
  */
-export class CharacterSetEffectDto {
+export class CharacterSetEffectDto extends base.CharacterSetEffectDto {
   /**
    * 조회 기준일
    */
-  date: Date | null;
+  public override date: Date | null;
 
   /**
    * 세트 효과 정보
    */
-  setEffect: CharacterSetEffectSetDto[];
+  public override setEffect: CharacterSetEffectSetDto[];
 
   constructor(obj: CharacterSetEffectBody) {
+    super();
+
     const { date, set_effect } = obj;
     this.date = date ? new Date(date) : null;
     this.setEffect = set_effect.map(
@@ -31,18 +34,20 @@ export class CharacterSetEffectDto {
 /**
  * 적용 중인 세트 효과 정보
  */
-export class CharacterSetEffectInfoDto {
+export class CharacterSetEffectInfoDto extends base.CharacterSetEffectInfoDto {
   /**
    * 세트 효과 레벨 (장비 수)
    */
-  setCount: number;
+  public override setCount: number;
 
   /**
    * 세트 효과
    */
-  setOption: string;
+  public override setOption: string;
 
   constructor(obj: CharacterSetEffectInfoBody) {
+    super();
+
     const { set_count, set_option } = obj;
 
     this.setCount = set_count;
@@ -53,18 +58,20 @@ export class CharacterSetEffectInfoDto {
 /**
  * 모든 세트 효과 정보
  */
-export class CharacterSetEffectOptionFullDto {
+export class CharacterSetEffectOptionFullDto extends base.CharacterSetEffectOptionFullDto {
   /**
    * 세트 효과 레벨 (장비 수)
    */
-  setCount: number;
+  public override setCount: number;
 
   /**
    * 세트 효과
    */
-  setOption: string;
+  public override setOption: string;
 
   constructor(obj: CharacterSetEffectOptionFullBody) {
+    super();
+
     const { set_count, set_option } = obj;
 
     this.setCount = set_count;
@@ -75,28 +82,30 @@ export class CharacterSetEffectOptionFullDto {
 /**
  * 세트 효과 정보
  */
-export class CharacterSetEffectSetDto {
+export class CharacterSetEffectSetDto extends base.CharacterSetEffectSetDto {
   /**
    * 세트 효과 명
    */
-  setName: string;
+  public override setName: string;
 
   /**
    * 세트 개수 (럭키 아이템 포함)
    */
-  totalSetCount: number;
+  public override totalSetCount: number;
 
   /**
    * 적용 중인 세트 효과 정보
    */
-  setEffectInfo: CharacterSetEffectInfoDto[];
+  public override setEffectInfo: CharacterSetEffectInfoDto[];
 
   /**
    * 모든 세트 효과 정보
    */
-  setOptionFull: CharacterSetEffectOptionFullDto[];
+  public override setOptionFull: CharacterSetEffectOptionFullDto[];
 
   constructor(obj: CharacterSetEffectSetBody) {
+    super();
+
     const { set_name, total_set_count, set_effect_info, set_option_full } = obj;
 
     this.setName = set_name;

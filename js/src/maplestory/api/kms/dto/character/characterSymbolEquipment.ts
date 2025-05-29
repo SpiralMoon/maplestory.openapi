@@ -1,3 +1,4 @@
+import * as base from '../../../common/dto/character/characterSymbolEquipment';
 import {
   CharacterSymbolEquipmentBody,
   CharacterSymbolEquipmentInfoBody,
@@ -6,23 +7,25 @@ import {
 /**
  * 캐릭터 심볼 정보
  */
-export class CharacterSymbolEquipmentDto {
+export class CharacterSymbolEquipmentDto extends base.CharacterSymbolEquipmentDto {
   /**
    * 조회 기준일
    */
-  date: Date | null;
+  public override date: Date | null;
 
   /**
    * 캐릭터 직업
    */
-  characterClass: string | null;
+  public override characterClass: string | null;
 
   /**
    * 심볼 정보
    */
-  symbol: CharacterSymbolEquipmentInfoDto[];
+  public override symbol: CharacterSymbolEquipmentInfoDto[];
 
   constructor(obj: CharacterSymbolEquipmentBody) {
+    super();
+
     const { date, character_class, symbol } = obj;
 
     this.date = date ? new Date(date) : null;
@@ -34,83 +37,85 @@ export class CharacterSymbolEquipmentDto {
 /**
  * 캐릭터 심볼 상세 정보
  */
-export class CharacterSymbolEquipmentInfoDto {
+export class CharacterSymbolEquipmentInfoDto extends base.CharacterSymbolEquipmentInfoDto {
   /**
    * 심볼 명
    */
-  symbolName: string;
+  public override symbolName: string;
 
   /**
    * 심볼 아이콘
    */
-  symbolIcon: string;
+  public override symbolIcon: string;
 
   /**
    * 심볼 설명
    */
-  symbolDescription: string;
+  public override symbolDescription: string;
 
   /**
    * 심볼로 인한 증가 수치
    */
-  symbolForce: string;
+  public override symbolForce: string;
 
   /**
    * 심볼 레벨
    */
-  symbolLevel: number;
+  public override symbolLevel: number;
 
   /**
    * 심볼로 증가한 힘
    */
-  symbolStr: string;
+  public override symbolStr: string;
 
   /**
    * 심볼로 증가한 민첩
    */
-  symbolDex: string;
+  public override symbolDex: string;
 
   /**
    * 심볼로 증가한 지력
    */
-  symbolInt: string;
+  public override symbolInt: string;
 
   /**
    * 심볼로 증가한 운
    */
-  symbolLuk: string;
+  public override symbolLuk: string;
 
   /**
    * 심볼로 증가한 체력
    */
-  symbolHp: string;
+  public override symbolHp: string;
 
   /**
    * 심볼로 증가한 아이템 드롭률
    */
-  symbolDropRate: string;
+  public override symbolDropRate: string;
 
   /**
    * 심볼로 증가한 메소 획득량
    */
-  symbolMesoRate: string;
+  public override symbolMesoRate: string;
 
   /**
    * 심볼로 증가한 경험치 획득량
    */
-  symbolExpRate: string;
+  public override symbolExpRate: string;
 
   /**
    * 현재 보유 성장치
    */
-  symbolGrowthCount: number;
+  public override symbolGrowthCount: number;
 
   /**
    * 성장 시 필요한 성장치
    */
-  symbolRequireGrowthCount: number;
+  public override symbolRequireGrowthCount: number;
 
   constructor(obj: CharacterSymbolEquipmentInfoBody) {
+    super();
+
     const {
       symbol_name,
       symbol_icon,

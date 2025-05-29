@@ -12,4 +12,5 @@ export type TheSeedRankingBody = {
   theseed_time_record: number;
 };
 
-export type TheSeedRankingResponseBody = RankingResponseBody<TheSeedRankingBody>;
+export type TheSeedRankingResponseBody =
+  RankingResponseBody<TheSeedRankingBody>;

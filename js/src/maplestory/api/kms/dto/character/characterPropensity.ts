@@ -1,42 +1,45 @@
+import * as base from '../../../common/dto/character/characterPropensity';
 import { CharacterPropensityBody } from '../../response/character/characterPropensityBody';
 
 /**
  * 캐릭터 성향 정보
  */
-export class CharacterPropensityDto {
-  date: Date | null;
+export class CharacterPropensityDto extends base.CharacterPropensityDto {
+  public override date: Date | null;
 
   /**
    * 카리스마 레벨
    */
-  charismaLevel: number | null;
+  public override charismaLevel: number | null;
 
   /**
    * 감성 레벨
    */
-  sensibilityLevel: number | null;
+  public override sensibilityLevel: number | null;
 
   /**
    * 통찰력 레벨
    */
-  insightLevel: number | null;
+  public override insightLevel: number | null;
 
   /**
    *  의지 레벨
    */
-  willingnessLevel: number | null;
+  public override willingnessLevel: number | null;
 
   /**
    * 손재주 레벨
    */
-  handicraftLevel: number | null;
+  public override handicraftLevel: number | null;
 
   /**
    * 매력 레벨
    */
-  charmLevel: number | null;
+  public override charmLevel: number | null;
 
   constructor(obj: CharacterPropensityBody) {
+    super();
+
     const {
       date,
       charisma_level,

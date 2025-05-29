@@ -1,6 +1,6 @@
 export type EventNoticeListBody = {
   event_notice: EventNoticeListItemBody[];
-}
+};
 
 export type EventNoticeListItemBody = {
   title: string;

@@ -1,10 +1,12 @@
-import { CashshopNoticeListBody, CashshopNoticeListItemBody } from '../../response/notice/cashshopNoticeListBody';
+import {
+  CashshopNoticeListBody,
+  CashshopNoticeListItemBody,
+} from '../../response/notice/cashshopNoticeListBody';
 
 /**
  * 캐시샵 공지 목록
  */
 export class CashshopNoticeListDto {
-
   /**
    * 공지 목록
    */
@@ -13,7 +15,9 @@ export class CashshopNoticeListDto {
   constructor(obj: CashshopNoticeListBody) {
     const { cashshop_notice } = obj;
 
-    this.cashshopNotice = cashshop_notice.map(notice => new CashshopNoticeListItemDto(notice));
+    this.cashshopNotice = cashshop_notice.map(
+      (notice) => new CashshopNoticeListItemDto(notice),
+    );
   }
 }
 
@@ -21,7 +25,6 @@ export class CashshopNoticeListDto {
  * 캐시샵 공지
  */
 export class CashshopNoticeListItemDto {
-
   /**
    * 공지 제목
    */
@@ -58,8 +61,15 @@ export class CashshopNoticeListItemDto {
   ongoingFlag: string;
 
   constructor(obj: CashshopNoticeListItemBody) {
-
-    const { title, url, notice_id, date, date_sale_start, date_sale_end, ongoing_flag } = obj;
+    const {
+      title,
+      url,
+      notice_id,
+      date,
+      date_sale_start,
+      date_sale_end,
+      ongoing_flag,
+    } = obj;
 
     this.title = title;
     this.url = url;
@@ -69,7 +79,6 @@ export class CashshopNoticeListItemDto {
     this.dateSaleEnd = date_sale_end ? new Date(date_sale_end) : null;
     this.ongoingFlag = ongoing_flag;
   }
-
 
   /**
    * 상시 판매 여부 (true - 상시)

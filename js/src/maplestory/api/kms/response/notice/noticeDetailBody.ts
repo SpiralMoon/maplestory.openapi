@@ -3,4 +3,4 @@ export type NoticeDetailBody = {
   url: string;
   contents: string;
   date: string;
-}
+};

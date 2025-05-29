@@ -1,77 +1,83 @@
+import * as base from '../../../common/dto/character/characterBasic';
 import { CharacterBasicBody } from '../../response/character/characterBasicBody';
 
 /**
  * 캐릭터 기본 정보
  */
-export class CharacterBasicDto {
-  date: Date | null;
+export class CharacterBasicDto extends base.CharacterBasicDto {
+  /**
+   * 조회 기준일
+   */
+  public override date: Date | null;
 
   /**
    * 캐릭터 명
    */
-  characterName: string;
+  public override characterName: string;
 
   /**
    * 월드 명
    */
-  worldName: string;
+  public override worldName: string;
 
   /**
    * 캐릭터 성별
    */
-  characterGender: string;
+  public override characterGender: string;
 
   /**
    * 캐릭터 직업
    */
-  characterClass: string;
+  public override characterClass: string;
 
   /**
    * 캐릭터 전직 차수
    */
-  characterClassLevel: string;
+  public override characterClassLevel: string;
 
   /**
    * 캐릭터 레벨
    */
-  characterLevel: number;
+  public override characterLevel: number;
 
   /**
    * 현재 레벨에서 보유한 경험치
    */
-  characterExp: number;
+  public override characterExp: number;
 
   /**
    * 현재 레벨에서 경험치 퍼센트
    */
-  characterExpRate: string;
+  public override characterExpRate: string;
 
   /**
    * 캐릭터 소속 길드 명
    */
-  characterGuildName: string | null;
+  public override characterGuildName: string | null;
 
   /**
    * 캐릭터 외형 이미지
    */
-  characterImage: string;
+  public override characterImage: string;
 
   /**
    * 캐릭터 생성일
    */
-  characterDateCreate: Date;
+  public override characterDateCreate: Date;
 
   /**
    * 최근 7일간 접속 여부
    */
-  accessFlag: 'true' | 'false';
+  public override accessFlag: 'true' | 'false';
 
   /**
    * 해방 퀘스트 완료 여부
    */
-  liberationQuestClearFlag: 'true' | 'false';
+  public override liberationQuestClearFlag: 'true' | 'false';
 
   constructor(obj: CharacterBasicBody) {
+    super();
+
     const {
       date,
       character_name,
@@ -108,14 +114,14 @@ export class CharacterBasicDto {
   /**
    * 최근 7일간 접속 여부
    */
-  get isAccessFlag() {
-    return this.accessFlag === 'true';
+  public override get isAccessFlag() {
+    return super.isAccessFlag;
   }
 
   /**
    * 해방 퀘스트 완료 여부
    */
-  get isLiberationQuestClearFlag() {
-    return this.liberationQuestClearFlag === 'true';
+  public override get isLiberationQuestClearFlag() {
+    return super.isLiberationQuestClearFlag;
   }
 }

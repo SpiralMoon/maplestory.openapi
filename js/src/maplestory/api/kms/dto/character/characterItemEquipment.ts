@@ -1,3 +1,4 @@
+import * as base from '../../../common/dto/character/characterItemEquipment';
 import {
   CharacterItemEquipmentAddOptionBody,
   CharacterItemEquipmentBaseOptionBody,
@@ -16,68 +17,70 @@ import {
 /**
  * 캐릭터 장비 아이템 정보
  */
-export class CharacterItemEquipmentDto {
+export class CharacterItemEquipmentDto extends base.CharacterItemEquipmentDto {
   /**
    * 조회 기준일
    */
-  date: Date | null;
+  public override date: Date | null;
 
   /**
    * 캐릭터 성별
    */
-  characterGender: string | null;
+  public override characterGender: string | null;
 
   /**
    * 캐릭터 직업
    */
-  characterClass: string | null;
+  public override characterClass: string | null;
 
   /**
    * 적용 중인 장비 프리셋 번호
    */
-  presetNo: number | null;
+  public override presetNo: number | null;
 
   /**
    * 장비 정보
    */
-  itemEquipment: CharacterItemEquipmentInfoDto[];
+  public override itemEquipment: CharacterItemEquipmentInfoDto[];
 
   /**
    * 1번 프리셋 장비 정보
    */
-  itemEquipmentPreset1: CharacterItemEquipmentInfoDto[];
+  public override itemEquipmentPreset1: CharacterItemEquipmentInfoDto[];
 
   /**
    * 2번 프리셋 장비 정보
    */
-  itemEquipmentPreset2: CharacterItemEquipmentInfoDto[];
+  public override itemEquipmentPreset2: CharacterItemEquipmentInfoDto[];
 
   /**
    * 3번 프리셋 장비 정보
    */
-  itemEquipmentPreset3: CharacterItemEquipmentInfoDto[];
+  public override itemEquipmentPreset3: CharacterItemEquipmentInfoDto[];
 
   /**
    * 칭호 정보
    */
-  title: CharacterItemEquipmentTitleDto | null;
+  public override title: CharacterItemEquipmentTitleDto | null;
 
   /**
    * 외형 설정에 등록한 훈장 외형 정보
    */
-  medalShape: CharacterItemEquipmentMedalShapeDto | null;
+  public medalShape: CharacterItemEquipmentMedalShapeDto | null;
 
   /**
    * 에반 드래곤 장비 정보 (에반인 경우 응답)
    */
-  dragonEquipment: CharacterItemEquipmentDragonInfoDto[];
+  public override dragonEquipment: CharacterItemEquipmentDragonInfoDto[];
 
   /**
    * 메카닉 장비 정보 (메카닉인 경우 응답)
    */
-  mechanicEquipment: CharacterItemEquipmentMechanicInfoDto[];
+  public override mechanicEquipment: CharacterItemEquipmentMechanicInfoDto[];
 
   constructor(obj: CharacterItemEquipmentBody) {
+    super();
+
     const {
       date,
       character_gender,
@@ -100,17 +103,22 @@ export class CharacterItemEquipmentDto {
     this.itemEquipment = item_equipment.map(
       (equipment) => new CharacterItemEquipmentInfoDto(equipment),
     );
-    this.itemEquipmentPreset1 = item_equipment_preset_1?.map(
-      (equipment) => new CharacterItemEquipmentInfoDto(equipment),
-    ) ?? [];
-    this.itemEquipmentPreset2 = item_equipment_preset_2?.map(
-      (equipment) => new CharacterItemEquipmentInfoDto(equipment),
-    ) ?? [];
-    this.itemEquipmentPreset3 = item_equipment_preset_3?.map(
-      (equipment) => new CharacterItemEquipmentInfoDto(equipment),
-    ) ?? [];
+    this.itemEquipmentPreset1 =
+      item_equipment_preset_1?.map(
+        (equipment) => new CharacterItemEquipmentInfoDto(equipment),
+      ) ?? [];
+    this.itemEquipmentPreset2 =
+      item_equipment_preset_2?.map(
+        (equipment) => new CharacterItemEquipmentInfoDto(equipment),
+      ) ?? [];
+    this.itemEquipmentPreset3 =
+      item_equipment_preset_3?.map(
+        (equipment) => new CharacterItemEquipmentInfoDto(equipment),
+      ) ?? [];
     this.title = title ? new CharacterItemEquipmentTitleDto(title) : null;
-    this.medalShape = medal_shape ? new CharacterItemEquipmentMedalShapeDto(medal_shape) : null;
+    this.medalShape = medal_shape
+      ? new CharacterItemEquipmentMedalShapeDto(medal_shape)
+      : null;
     this.dragonEquipment = dragon_equipment.map(
       (equipment) => new CharacterItemEquipmentDragonInfoDto(equipment),
     );
@@ -123,58 +131,60 @@ export class CharacterItemEquipmentDto {
 /**
  * 캐릭터 칭호 아이템 정보
  */
-export class CharacterItemEquipmentTitleDto {
+export class CharacterItemEquipmentTitleDto extends base.CharacterItemEquipmentTitleDto {
   /**
    * 칭호 장비 명
    */
-  titleName: string | null;
+  public override titleName: string | null;
 
   /**
    * 칭호 아이콘
    */
-  titleIcon: string | null;
+  public override titleIcon: string | null;
 
   /**
    * 칭호 설명
    */
-  titleDescription: string | null;
+  public override titleDescription: string | null;
 
   /**
    * 칭호 유효 기간
    */
-  dateExpire: Date | null = null;
+  public override dateExpire: Date | null = null;
 
   /**
    * 칭호 유효 기간 만료 여부
    */
-  isExpired: boolean | null = null;
+  public override isExpired: boolean | null = null;
 
   /**
    * 칭호 옵션 유효 기간
    */
-  dateOptionExpire: Date | null = null;
+  public override dateOptionExpire: Date | null = null;
 
   /**
    * 칭호 옵션 유효 기간 만료 여부
    */
-  isOptionExpired: boolean | null = null;
+  public override isOptionExpired: boolean | null = null;
 
   /**
    * 외형 설정에 등록한 칭호 장비 명
    */
-  titleShapeName: string | null;
+  public override titleShapeName: string | null;
 
   /**
    * 외형 설정에 등록한 칭호 아이콘
    */
-  titleShapeIcon: string | null;
+  public override titleShapeIcon: string | null;
 
   /**
    * 외형 설정에 등록한 칭호 설명
    */
-  titleShapeDescription: string | null;
+  public override titleShapeDescription: string | null;
 
   constructor(obj: CharacterItemEquipmentTitleBody) {
+    super();
+
     const {
       title_name,
       title_icon,
@@ -196,9 +206,7 @@ export class CharacterItemEquipmentTitleDto {
     if (date_expire === 'expired') {
       this.isExpired = true;
     } else if (typeof date_expire === 'string') {
-      this.dateExpire = date_expire
-        ? new Date(date_expire)
-        : null;
+      this.dateExpire = date_expire ? new Date(date_expire) : null;
     }
 
     if (date_option_expire === 'expired') {
@@ -218,32 +226,32 @@ export class CharacterItemEquipmentMedalShapeDto {
   /**
    * 외형 설정에 등록한 훈장 장비 명
    */
-  medalShapeName: string;
+  public medalShapeName: string;
 
   /**
    * 외형 설정에 등록한 훈장 아이콘
    */
-  medalShapeIcon: string;
+  public medalShapeIcon: string;
 
   /**
    * 외형 설정에 등록한 훈장 설명
    */
-  medalShapeDescription: string;
+  public medalShapeDescription: string;
 
   /**
    * 외형 설정에 등록한 훈장의 모루 적용 장비 명
    */
-  medalShapeChangedName: string;
+  public medalShapeChangedName: string;
 
   /**
    * 외형 설정에 등록한 훈장의 모루 적용 아이콘
    */
-  medalShapeChangedIcon: string;
+  public medalShapeChangedIcon: string;
 
   /**
    * 외형 설정에 등록한 훈장의 모루 적용 훈장 설명
    */
-  medalShapeChangedDescription: string;
+  public medalShapeChangedDescription: string;
 
   constructor(obj: CharacterItemEquipmentMedalShapeBody) {
     const {
@@ -267,83 +275,85 @@ export class CharacterItemEquipmentMedalShapeDto {
 /**
  * 캐릭터 장비 추가 옵션 정보
  */
-export class CharacterItemEquipmentAddOptionDto {
+export class CharacterItemEquipmentAddOptionDto extends base.CharacterItemEquipmentAddOptionDto {
   /**
    * STR
    */
-  str: string;
+  public override str: string;
 
   /**
    * DEX
    */
-  dex: string;
+  public override dex: string;
 
   /**
    * INT
    */
-  int: string;
+  public override int: string;
 
   /**
    * LUK
    */
-  luk: string;
+  public override luk: string;
 
   /**
    * 최대 HP
    */
-  maxHp: string;
+  public override maxHp: string;
 
   /**
    * 최대 MP
    */
-  maxMp: string;
+  public override maxMp: string;
 
   /**
    * 공격력
    */
-  attackPower: string;
+  public override attackPower: string;
 
   /**
    * 마력
    */
-  magicPower: string;
+  public override magicPower: string;
 
   /**
    * 방어력
    */
-  armor: string;
+  public override armor: string;
 
   /**
    * 이동속도
    */
-  speed: string;
+  public override speed: string;
 
   /**
    * 점프력
    */
-  jump: string;
+  public override jump: string;
 
   /**
    * 보스 공격 시 데미지 증가(%)
    */
-  bossDamage: string;
+  public override bossDamage: string;
 
   /**
    * 데미지(%)
    */
-  damage: string;
+  public override damage: string;
 
   /**
    * 올스탯(%)
    */
-  allStat: string;
+  public override allStat: string;
 
   /**
    * 착용 레벨 감소
    */
-  equipmentLevelDecrease: number;
+  public override equipmentLevelDecrease: number;
 
   constructor(obj: CharacterItemEquipmentAddOptionBody) {
+    super();
+
     const {
       str,
       dex,
@@ -383,93 +393,95 @@ export class CharacterItemEquipmentAddOptionDto {
 /**
  * 캐릭터 장비 기본 옵션 정보
  */
-export class CharacterItemEquipmentBaseOptionDto {
+export class CharacterItemEquipmentBaseOptionDto extends base.CharacterItemEquipmentBaseOptionDto {
   /**
    * STR
    */
-  str: string;
+  public override str: string;
 
   /**
    * DEX
    */
-  dex: string;
+  public override dex: string;
 
   /**
    * INT
    */
-  int: string;
+  public override int: string;
 
   /**
    * LUK
    */
-  luk: string;
+  public override luk: string;
 
   /**
    * 최대 HP
    */
-  maxHp: string;
+  public override maxHp: string;
 
   /**
    * 최대 MP
    */
-  maxMp: string;
+  public override maxMp: string;
 
   /**
    * 공격력
    */
-  attackPower: string;
+  public override attackPower: string;
 
   /**
    * 마력
    */
-  magicPower: string;
+  public override magicPower: string;
 
   /**
    * 방어력
    */
-  armor: string;
+  public override armor: string;
 
   /**
    * 이동속도
    */
-  speed: string;
+  public override speed: string;
 
   /**
    * 점프력
    */
-  jump: string;
+  public override jump: string;
 
   /**
    * 보스 공격 시 데미지 증가(%)
    */
-  bossDamage: string;
+  public override bossDamage: string;
 
   /**
    * 몬스터 방어율 무시(%)
    */
-  ignoreMonsterArmor: string;
+  public override ignoreMonsterArmor: string;
 
   /**
    * 올스탯(%)
    */
-  allStat: string;
+  public override allStat: string;
 
   /**
    * 최대 HP(%)
    */
-  maxHpRate: string;
+  public override maxHpRate: string;
 
   /**
    * 최대 MP(%)
    */
-  maxMpRate: string;
+  public override maxMpRate: string;
 
   /**
    * 기본 착용 레벨
    */
-  baseEquipmentLevel: number;
+  public override baseEquipmentLevel: number;
 
   constructor(obj: CharacterItemEquipmentBaseOptionBody) {
+    super();
+
     const {
       str,
       dex,
@@ -513,63 +525,65 @@ export class CharacterItemEquipmentBaseOptionDto {
 /**
  * 캐릭터 장비 기타 옵션 정보
  */
-export class CharacterItemEquipmentEtcOptionDto {
+export class CharacterItemEquipmentEtcOptionDto extends base.CharacterItemEquipmentEtcOptionDto {
   /**
    * STR
    */
-  str: string;
+  public override str: string;
 
   /**
    * DEX
    */
-  dex: string;
+  public override dex: string;
 
   /**
    * INT
    */
-  int: string;
+  public override int: string;
 
   /**
    * LUK
    */
-  luk: string;
+  public override luk: string;
 
   /**
    * 최대 HP
    */
-  maxHp: string;
+  public override maxHp: string;
 
   /**
    * 최대 MP
    */
-  maxMp: string;
+  public override maxMp: string;
 
   /**
    * 공격력
    */
-  attackPower: string;
+  public override attackPower: string;
 
   /**
    * 마력
    */
-  magicPower: string;
+  public override magicPower: string;
 
   /**
    * 방어력
    */
-  armor: string;
+  public override armor: string;
 
   /**
    * 이동속도
    */
-  speed: string;
+  public override speed: string;
 
   /**
    * 점프력
    */
-  jump: string;
+  public override jump: string;
 
   constructor(obj: CharacterItemEquipmentEtcOptionBody) {
+    super();
+
     const {
       str,
       dex,
@@ -601,55 +615,66 @@ export class CharacterItemEquipmentEtcOptionDto {
 /**
  * 캐릭터 장비 특별 옵션 정보
  */
-export class CharacterItemEquipmentExceptionalOptionDto {
+export class CharacterItemEquipmentExceptionalOptionDto extends base.CharacterItemEquipmentExceptionalOptionDto {
   /**
    * STR
    */
-  str: string;
+  public override str: string;
 
   /**
    * DEX
    */
-  dex: string;
+  public override dex: string;
 
   /**
    * INT
    */
-  int: string;
+  public override int: string;
 
   /**
    * LUK
    */
-  luk: string;
+  public override luk: string;
 
   /**
    * 최대 HP
    */
-  maxHp: string;
+  public override maxHp: string;
 
   /**
    * 최대 MP
    */
-  maxMp: string;
+  public override maxMp: string;
 
   /**
    * 공격력
    */
-  attackPower: string;
+  public override attackPower: string;
 
   /**
    * 마력
    */
-  magicPower: string;
+  public override magicPower: string;
 
   /**
    * 익셉셔널 강화 적용 횟수
    */
-  exceptionalUpgrade: number;
+  public override exceptionalUpgrade: number;
 
   constructor(obj: CharacterItemEquipmentExceptionalOptionBody) {
-    const { str, dex, int, luk, max_hp, max_mp, attack_power, magic_power, exceptional_upgrade } =
-      obj;
+    super();
+
+    const {
+      str,
+      dex,
+      int,
+      luk,
+      max_hp,
+      max_mp,
+      attack_power,
+      magic_power,
+      exceptional_upgrade,
+    } = obj;
 
     this.str = str;
     this.dex = dex;
@@ -666,63 +691,65 @@ export class CharacterItemEquipmentExceptionalOptionDto {
 /**
  * 캐릭터 장비 스타포스 옵션 정보
  */
-export class CharacterItemEquipmentStarforceOptionDto {
+export class CharacterItemEquipmentStarforceOptionDto extends base.CharacterItemEquipmentStarforceOptionDto {
   /**
    * STR
    */
-  str: string;
+  public override str: string;
 
   /**
    * DEX
    */
-  dex: string;
+  public override dex: string;
 
   /**
    * INT
    */
-  int: string;
+  public override int: string;
 
   /**
    * LUK
    */
-  luk: string;
+  public override luk: string;
 
   /**
    * 최대 HP
    */
-  maxHp: string;
+  public override maxHp: string;
 
   /**
    * 최대 MP
    */
-  maxMp: string;
+  public override maxMp: string;
 
   /**
    * 공격력
    */
-  attackPower: string;
+  public override attackPower: string;
 
   /**
    * 마력
    */
-  magicPower: string;
+  public override magicPower: string;
 
   /**
    * 방어력
    */
-  armor: string;
+  public override armor: string;
 
   /**
    * 이동속도
    */
-  speed: string;
+  public override speed: string;
 
   /**
    * 점프력
    */
-  jump: string;
+  public override jump: string;
 
   constructor(obj: CharacterItemEquipmentStarforceOptionBody) {
+    super();
+
     const {
       str,
       dex,
@@ -754,98 +781,100 @@ export class CharacterItemEquipmentStarforceOptionDto {
 /**
  * 캐릭터 장비 최종 옵션 정보
  */
-export class CharacterItemEquipmentTotalOptionDto {
+export class CharacterItemEquipmentTotalOptionDto extends base.CharacterItemEquipmentTotalOptionDto {
   /**
    * STR
    */
-  str: string;
+  public override str: string;
 
   /**
    * DEX
    */
-  dex: string;
+  public override dex: string;
 
   /**
    * INT
    */
-  int: string;
+  public override int: string;
 
   /**
    * LUK
    */
-  luk: string;
+  public override luk: string;
 
   /**
    * 최대 HP
    */
-  maxHp: string;
+  public override maxHp: string;
 
   /**
    * 최대 MP
    */
-  maxMp: string;
+  public override maxMp: string;
 
   /**
    * 공격력
    */
-  attackPower: string;
+  public override attackPower: string;
 
   /**
    * 마력
    */
-  magicPower: string;
+  public override magicPower: string;
 
   /**
    * 방어력
    */
-  armor: string;
+  public override armor: string;
 
   /**
    * 이동속도
    */
-  speed: string;
+  public override speed: string;
 
   /**
    * 점프력
    */
-  jump: string;
+  public override jump: string;
 
   /**
    * 보스 공격 시 데미지 증가(%)
    */
-  bossDamage: string;
+  public override bossDamage: string;
 
   /**
    * 몬스터 방어율 무시(%)
    */
-  ignoreMonsterArmor: string;
+  public override ignoreMonsterArmor: string;
 
   /**
    * 올스탯(%)
    */
-  allStat: string;
+  public override allStat: string;
 
   /**
    * 데미지(%)
    */
-  damage: string;
+  public override damage: string;
 
   /**
    * 착용 레벨 감소
    */
-  equipmentLevelDecrease: number;
+  public override equipmentLevelDecrease: number;
 
   /**
    * 최대 HP(%)
    */
-  maxHpRate: string;
+  public override maxHpRate: string;
 
   /**
    * 최대 MP(%)
    */
-  maxMpRate: string;
+  public override maxMpRate: string;
 
   constructor(obj: CharacterItemEquipmentTotalOptionBody) {
+    super();
+
     const {
       str,
       dex,
@@ -891,153 +920,155 @@ export class CharacterItemEquipmentTotalOptionDto {
 /**
  * 에반 드래곤 장비 정보
  */
-export class CharacterItemEquipmentDragonInfoDto {
+export class CharacterItemEquipmentDragonInfoDto extends base.CharacterItemEquipmentDragonInfoDto {
   /**
    * 장비 부위 명
    */
-  itemEquipmentPart: string;
+  public override itemEquipmentPart: string;
 
   /**
    * 장비 슬롯 위치
    */
-  itemEquipmentSlot: string;
+  public override itemEquipmentSlot: string;
 
   /**
    * 장비 명
    */
-  itemName: string;
+  public override itemName: string;
 
   /**
    * 장비 아이콘
    */
-  itemIcon: string;
+  public override itemIcon: string;
 
   /**
    * 장비 설명
    */
-  itemDescription: string | null;
+  public override itemDescription: string | null;
 
   /**
    * 장비 외형
    */
-  itemShapeName: string;
+  public override itemShapeName: string;
 
   /**
    * 장비 외형 아이콘
    */
-  itemShapeIcon: string;
+  public override itemShapeIcon: string;
 
   /**
    * 전용 성별
    */
-  itemGender: string | null;
+  public override itemGender: string | null;
 
   /**
    * 장비 최종 옵션
    */
-  itemTotalOption: CharacterItemEquipmentTotalOptionDto;
+  public override itemTotalOption: CharacterItemEquipmentTotalOptionDto;
 
   /**
    * 장비 기본 옵션
    */
-  itemBaseOption: CharacterItemEquipmentBaseOptionDto;
+  public override itemBaseOption: CharacterItemEquipmentBaseOptionDto;
 
   /**
    * 착용 레벨 증가
    */
-  equipmentLevelIncrease: number;
+  public override equipmentLevelIncrease: number;
 
   /**
    * 장비 특별 옵션
    */
-  itemExceptionalOption: CharacterItemEquipmentExceptionalOptionDto;
+  public override itemExceptionalOption: CharacterItemEquipmentExceptionalOptionDto;
 
   /**
    * 장비 추가 옵션
    */
-  itemAddOption: CharacterItemEquipmentAddOptionDto;
+  public override itemAddOption: CharacterItemEquipmentAddOptionDto;
 
   /**
    * 성장 경험치
    */
-  growthExp: number;
+  public override growthExp: number;
 
   /**
    * 성장 레벨
    */
-  growthLevel: number;
+  public override growthLevel: number;
 
   /**
    * 업그레이드 횟수
    */
-  scrollUpgrade: string;
+  public override scrollUpgrade: string;
 
   /**
    * 가위 사용 가능 횟수 (교환 불가 장비, 가위 횟수가 없는 교환 가능 장비는 255)
    */
-  cuttableCount: string;
+  public override cuttableCount: string;
 
   /**
    * 황금 망치 재련 적용 (1:적용, 이외 미 적용)
    */
-  goldenHammerFlag: string;
+  public override goldenHammerFlag: string;
 
   /**
    * 복구 가능 횟수
    */
-  scrollResilienceCount: string;
+  public override scrollResilienceCount: string;
 
   /**
    * 업그레이드 가능 횟수
    */
-  scrollUpgradeableCount: string;
+  public override scrollUpgradeableCount: string;
 
   /**
    * 소울 명
    */
-  soulName: string | null;
+  public override soulName: string | null;
 
   /**
    * 소울 옵션
    */
-  soulOption: string | null;
+  public override soulOption: string | null;
 
   /**
    * 장비 기타 옵션
    */
-  itemEtcOption: CharacterItemEquipmentEtcOptionDto;
+  public override itemEtcOption: CharacterItemEquipmentEtcOptionDto;
 
   /**
    * 강화 단계
    */
-  starforce: string;
+  public override starforce: string;
 
   /**
    * 놀라운 장비 강화 주문서 사용 여부 (0:미사용, 1:사용)
    */
-  starforceScrollFlag: string;
+  public override starforceScrollFlag: string;
 
   /**
    * 장비 스타포스 옵션
    */
-  itemStarforceOption: CharacterItemEquipmentStarforceOptionDto;
+  public override itemStarforceOption: CharacterItemEquipmentStarforceOptionDto;
 
   /**
    * 특수 반지 레벨
    */
-  specialRingLevel: number;
+  public override specialRingLevel: number;
 
   /**
    * 장비 유효 기간
    */
-  dateExpire: Date | null = null;
+  public override dateExpire: Date | null = null;
 
   /**
    * 장비 유효 기간 만료 여부
    */
-  isExpired: boolean | null = null;
+  public override isExpired: boolean | null = null;
 
   constructor(obj: CharacterItemEquipmentDragonInfoBody) {
+    super();
+
     const {
       item_equipment_part,
       item_equipment_slot,
@@ -1112,9 +1143,7 @@ export class CharacterItemEquipmentDragonInfoDto {
     if (date_expire === 'expired') {
       this.isExpired = true;
     } else if (typeof date_expire === 'string') {
-      this.dateExpire = date_expire
-        ? new Date(date_expire)
-        : null;
+      this.dateExpire = date_expire ? new Date(date_expire) : null;
     }
   }
 }
@@ -1122,153 +1151,155 @@ export class CharacterItemEquipmentDragonInfoDto {
 /**
  * 메카닉 장비 정보
  */
-export class CharacterItemEquipmentMechanicInfoDto {
+export class CharacterItemEquipmentMechanicInfoDto extends base.CharacterItemEquipmentMechanicInfoDto {
   /**
    * 장비 부위 명
    */
-  itemEquipmentPart: string;
+  public override itemEquipmentPart: string;
 
   /**
    * 장비 슬롯 위치
    */
-  itemEquipmentSlot: string;
+  public override itemEquipmentSlot: string;
 
   /**
    * 장비 명
    */
-  itemName: string;
+  public override itemName: string;
 
   /**
    * 장비 아이콘
    */
-  itemIcon: string;
+  public override itemIcon: string;
 
   /**
    * 장비 설명
    */
-  itemDescription: string | null;
+  public override itemDescription: string | null;
 
   /**
    * 장비 외형
    */
-  itemShapeName: string;
+  public override itemShapeName: string;
 
   /**
    * 장비 외형 아이콘
    */
-  itemShapeIcon: string;
+  public override itemShapeIcon: string;
 
   /**
    * 전용 성별
    */
-  itemGender: string | null;
+  public override itemGender: string | null;
 
   /**
    * 장비 최종 옵션
    */
-  itemTotalOption: CharacterItemEquipmentTotalOptionDto;
+  public override itemTotalOption: CharacterItemEquipmentTotalOptionDto;
 
   /**
    * 장비 기본 옵션
    */
-  itemBaseOption: CharacterItemEquipmentBaseOptionDto;
+  public override itemBaseOption: CharacterItemEquipmentBaseOptionDto;
 
   /**
    * 착용 레벨 증가
    */
-  equipmentLevelIncrease: number;
+  public override equipmentLevelIncrease: number;
 
   /**
    * 장비 특별 옵션
    */
-  itemExceptionalOption: CharacterItemEquipmentExceptionalOptionDto;
+  public override itemExceptionalOption: CharacterItemEquipmentExceptionalOptionDto;
 
   /**
    * 장비 추가 옵션
    */
-  itemAddOption: CharacterItemEquipmentAddOptionDto;
+  public override itemAddOption: CharacterItemEquipmentAddOptionDto;
 
   /**
    * 성장 경험치
    */
-  growthExp: number;
+  public override growthExp: number;
 
   /**
    * 성장 레벨
    */
-  growthLevel: number;
+  public override growthLevel: number;
 
   /**
    * 업그레이드 횟수
    */
-  scrollUpgrade: string;
+  public override scrollUpgrade: string;
 
   /**
    * 가위 사용 가능 횟수 (교환 불가 장비, 가위 횟수가 없는 교환 가능 장비는 255)
    */
-  cuttableCount: string;
+  public override cuttableCount: string;
 
   /**
    * 황금 망치 재련 적용 (1:적용, 이외 미 적용)
    */
-  goldenHammerFlag: string;
+  public override goldenHammerFlag: string;
 
   /**
    * 복구 가능 횟수
    */
-  scrollResilienceCount: string;
+  public override scrollResilienceCount: string;
 
   /**
    * 업그레이드 가능 횟수
    */
-  scrollUpgradeableCount: string;
+  public override scrollUpgradeableCount: string;
 
   /**
    * 소울 명
    */
-  soulName: string | null;
+  public override soulName: string | null;
 
   /**
    * 소울 옵션
    */
-  soulOption: string | null;
+  public override soulOption: string | null;
 
   /**
    * 장비 기타 옵션
    */
-  itemEtcOption: CharacterItemEquipmentEtcOptionDto;
+  public override itemEtcOption: CharacterItemEquipmentEtcOptionDto;
 
   /**
    * 강화 단계
    */
-  starforce: string;
+  public override starforce: string;
 
   /**
    * 놀라운 장비 강화 주문서 사용 여부 (0:미사용, 1:사용)
    */
-  starforceScrollFlag: string;
+  public override starforceScrollFlag: string;
 
   /**
    * 장비 스타포스 옵션
    */
-  itemStarforceOption: CharacterItemEquipmentStarforceOptionDto;
+  public override itemStarforceOption: CharacterItemEquipmentStarforceOptionDto;
 
   /**
    * 특수 반지 레벨
    */
-  specialRingLevel: number;
+  public override specialRingLevel: number;
 
   /**
    * 장비 유효 기간
    */
-  dateExpire: Date | null = null;
+  public override dateExpire: Date | null = null;
 
   /**
    * 장비 유효 기간 만료 여부
    */
-  isExpired: boolean | null = null;
+  public override isExpired: boolean | null = null;
 
   constructor(obj: CharacterItemEquipmentMechanicInfoBody) {
+    super();
+
     const {
       item_equipment_part,
       item_equipment_slot,
@@ -1343,9 +1374,7 @@ export class CharacterItemEquipmentMechanicInfoDto {
     if (date_expire === 'expired') {
       this.isExpired = true;
     } else if (typeof date_expire === 'string') {
-      this.dateExpire = date_expire
-        ? new Date(date_expire)
-        : null;
+      this.dateExpire = date_expire ? new Date(date_expire) : null;
     }
   }
 }
@@ -1353,193 +1382,195 @@ export class CharacterItemEquipmentMechanicInfoDto {
 /**
  * 캐릭터 장비 아이템 상세 정보
  */
-export class CharacterItemEquipmentInfoDto {
+export class CharacterItemEquipmentInfoDto extends base.CharacterItemEquipmentInfoDto {
   /**
    * 장비 부위 명
    */
-  itemEquipmentPart: string;
+  public override itemEquipmentPart: string;
 
   /**
    * 장비 슬롯 위치
    */
-  itemEquipmentSlot: string;
+  public override itemEquipmentSlot: string;
 
   /**
    * 장비 명
    */
-  itemName: string;
+  public override itemName: string;
 
   /**
    * 장비 아이콘
    */
-  itemIcon: string;
+  public override itemIcon: string;
 
   /**
    * 장비 설명
    */
-  itemDescription: string | null;
+  public override itemDescription: string | null;
 
   /**
    * 장비 외형
    */
-  itemShapeName: string;
+  public override itemShapeName: string;
 
   /**
    * 장비 외형 아이콘
    */
-  itemShapeIcon: string;
+  public override itemShapeIcon: string;
 
   /**
    * 전용 성별
    */
-  itemGender: string | null;
+  public override itemGender: string | null;
 
   /**
    * 장비 최종 옵션
    */
-  itemTotalOption: CharacterItemEquipmentTotalOptionDto;
+  public override itemTotalOption: CharacterItemEquipmentTotalOptionDto;
 
   /**
    * 장비 기본 옵션
    */
-  itemBaseOption: CharacterItemEquipmentBaseOptionDto;
+  public override itemBaseOption: CharacterItemEquipmentBaseOptionDto;
 
   /**
    * 잠재능력 등급
    */
-  potentialOptionGrade: string | null;
+  public override potentialOptionGrade: string | null;
 
   /**
    * 에디셔널 잠재능력 등급
    */
-  additionalPotentialOptionGrade: string | null;
+  public override additionalPotentialOptionGrade: string | null;
 
   /**
    * 잠재능력 첫 번째 옵션
    */
-  potentialOption1: string | null;
+  public override potentialOption1: string | null;
 
   /**
    * 잠재능력 두 번째 옵션
    */
-  potentialOption2: string | null;
+  public override potentialOption2: string | null;
 
   /**
    * 잠재능력 세 번째 옵션
    */
-  potentialOption3: string | null;
+  public override potentialOption3: string | null;
 
   /**
    * 에디셔널 잠재능력 첫 번째 옵션
    */
-  additionalPotentialOption1: string | null;
+  public override additionalPotentialOption1: string | null;
 
   /**
    * 에디셔널 잠재능력 두 번째 옵션
    */
-  additionalPotentialOption2: string | null;
+  public override additionalPotentialOption2: string | null;
 
   /**
    * 에디셔널 잠재능력 세 번째 옵션
    */
-  additionalPotentialOption3: string | null;
+  public override additionalPotentialOption3: string | null;
 
   /**
    * 착용 레벨 증가
    */
-  equipmentLevelIncrease: number;
+  public override equipmentLevelIncrease: number;
 
   /**
    * 장비 특별 옵션
    */
-  itemExceptionalOption: CharacterItemEquipmentExceptionalOptionDto;
+  public override itemExceptionalOption: CharacterItemEquipmentExceptionalOptionDto;
 
   /**
    * 장비 추가 옵션
    */
-  itemAddOption: CharacterItemEquipmentAddOptionDto;
+  public override itemAddOption: CharacterItemEquipmentAddOptionDto;
 
   /**
    * 성장 경험치
    */
-  growthExp: number;
+  public override growthExp: number;
 
   /**
    * 성장 레벨
    */
-  growthLevel: number;
+  public override growthLevel: number;
 
   /**
    * 업그레이드 횟수
    */
-  scrollUpgrade: string;
+  public override scrollUpgrade: string;
 
   /**
    * 가위 사용 가능 횟수 (교환 불가 장비, 가위 횟수가 없는 교환 가능 장비는 255)
    */
-  cuttableCount: string;
+  public override cuttableCount: string;
 
   /**
    * 황금 망치 재련 적용 (1:적용, 이외 미 적용)
    */
-  goldenHammerFlag: string;
+  public override goldenHammerFlag: string;
 
   /**
    * 복구 가능 횟수
    */
-  scrollResilienceCount: string;
+  public override scrollResilienceCount: string;
 
   /**
    * 업그레이드 가능 횟수
    */
-  scrollUpgradeableCount: string;
+  public override scrollUpgradeableCount: string;
 
   /**
    * 소울 명
    */
-  soulName: string | null;
+  public override soulName: string | null;
 
   /**
    * 소울 옵션
    */
-  soulOption: string | null;
+  public override soulOption: string | null;
 
   /**
    * 장비 기타 옵션
    */
-  itemEtcOption: CharacterItemEquipmentEtcOptionDto;
+  public override itemEtcOption: CharacterItemEquipmentEtcOptionDto;
 
   /**
    * 강화 단계
    */
-  starforce: string;
+  public override starforce: string;
 
   /**
    * 놀라운 장비 강화 주문서 사용 여부 (0:미사용, 1:사용)
    */
-  starforceScrollFlag: string;
+  public override starforceScrollFlag: string;
 
   /**
    * 장비 스타포스 옵션
    */
-  itemStarforceOption: CharacterItemEquipmentStarforceOptionDto;
+  public override itemStarforceOption: CharacterItemEquipmentStarforceOptionDto;
 
   /**
    * 특수 반지 레벨
    */
-  specialRingLevel: number;
+  public override specialRingLevel: number;
 
   /**
    * 장비 유효 기간
    */
-  dateExpire: Date | null = null;
+  public override dateExpire: Date | null = null;
 
   /**
    * 장비 유효 기간 만료 여부
    */
-  isExpired: boolean | null = null;
+  public override isExpired: boolean | null = null;
 
   constructor(obj: CharacterItemEquipmentInfoBody) {
+    super();
+
     const {
       item_equipment_part,
       item_equipment_slot,
@@ -1630,9 +1661,7 @@ export class CharacterItemEquipmentInfoDto {
     if (date_expire === 'expired') {
       this.isExpired = true;
     } else if (typeof date_expire === 'string') {
-      this.dateExpire = date_expire
-        ? new Date(date_expire)
-        : null;
+      this.dateExpire = date_expire ? new Date(date_expire) : null;
     }
   }
 }

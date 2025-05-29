@@ -1,30 +1,36 @@
-import { CharacterSkillBody, CharacterSkillInfoBody } from '../../response/character/characterSkillBody';
+import * as base from '../../../common/dto/character/characterSkill';
+import {
+  CharacterSkillBody,
+  CharacterSkillInfoBody,
+} from '../../response/character/characterSkillBody';
 
 /**
  * 캐릭터 스킬 정보
  */
-export class CharacterSkillDto {
+export class CharacterSkillDto extends base.CharacterSkillDto {
   /**
    * 조회 기준일
    */
-  date: Date | null;
+  public override date: Date | null;
 
   /**
    * 캐릭터 직업
    */
-  characterClass: string | null;
+  public override characterClass: string | null;
 
   /**
    * 스킬 전직 차수
    */
-  characterSkillGrade: string | null;
+  public override characterSkillGrade: string | null;
 
   /**
    * 스킬 정보
    */
-  characterSkill: CharacterSkillInfoDto[];
+  public override characterSkill: CharacterSkillInfoDto[];
 
   constructor(obj: CharacterSkillBody) {
+    super();
+
     const { date, character_class, character_skill_grade, character_skill } =
       obj;
 
@@ -40,38 +46,40 @@ export class CharacterSkillDto {
 /**
  * 캐릭터 스킬 상세 정보
  */
-export class CharacterSkillInfoDto {
+export class CharacterSkillInfoDto extends base.CharacterSkillInfoDto {
   /**
    * 스킬 명
    */
-  skillName: string;
+  public override skillName: string;
 
   /**
    * 스킬 설명
    */
-  skillDescription: string;
+  public override skillDescription: string;
 
   /**
    * 스킬 레벨
    */
-  skillLevel: number;
+  public override skillLevel: number;
 
   /**
    * 스킬 레벨 별 효과 설명
    */
-  skillEffect: string;
+  public override skillEffect: string;
 
   /**
    * 다음 스킬 레벨 효과 설명
    */
-  skillEffectNext: string | null;
+  public override skillEffectNext: string | null;
 
   /**
    * 스킬 아이콘
    */
-  skillIcon: string;
+  public override skillIcon: string;
 
   constructor(obj: CharacterSkillInfoBody) {
+    super();
+
     const {
       skill_name,
       skill_description,

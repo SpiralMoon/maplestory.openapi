@@ -1,10 +1,12 @@
-import { EventNoticeListBody, EventNoticeListItemBody } from '../../response/notice/eventNoticeListBody';
+import {
+  EventNoticeListBody,
+  EventNoticeListItemBody,
+} from '../../response/notice/eventNoticeListBody';
 
 /**
  * 진행 중 이벤트 공지 목록
  */
 export class EventNoticeListDto {
-
   /**
    * 공지 목록
    */
@@ -13,7 +15,9 @@ export class EventNoticeListDto {
   constructor(obj: EventNoticeListBody) {
     const { event_notice } = obj;
 
-    this.eventNotice = event_notice.map(notice => new EventNoticeListItemDto(notice));
+    this.eventNotice = event_notice.map(
+      (notice) => new EventNoticeListItemDto(notice),
+    );
   }
 }
 
@@ -21,7 +25,6 @@ export class EventNoticeListDto {
  * 진행 중 이벤트 공지
  */
 export class EventNoticeListItemDto {
-
   /**
    * 공지 제목
    */
@@ -53,7 +56,8 @@ export class EventNoticeListItemDto {
   dateEventEnd: Date;
 
   constructor(obj: EventNoticeListItemBody) {
-    const { title, url, notice_id, date, date_event_start, date_event_end } = obj;
+    const { title, url, notice_id, date, date_event_start, date_event_end } =
+      obj;
 
     this.title = title;
     this.url = url;

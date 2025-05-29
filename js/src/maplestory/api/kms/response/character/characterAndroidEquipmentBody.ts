@@ -11,8 +11,8 @@ export type CharacterAndroidEquipmentBody = {
   android_ear_sensor_clip_flag: string | null;
   android_gender: string | null;
   android_grade: string | null;
-  android_non_humanoid_flag : string | null;
-  android_shop_usable_flag : string | null;
+  android_non_humanoid_flag: string | null;
+  android_shop_usable_flag: string | null;
   preset_no: number | null;
   android_preset_1: CharacterAndroidEquipmentPresetBody | null;
   android_preset_2: CharacterAndroidEquipmentPresetBody | null;

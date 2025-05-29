@@ -1,60 +1,66 @@
-import { CharacterHyperStatBody, CharacterHyperStatPresetBody } from '../../response/character/characterHyperStatBody';
+import * as base from '../../../common/dto/character/characterHyperStat';
+import {
+  CharacterHyperStatBody,
+  CharacterHyperStatPresetBody,
+} from '../../response/character/characterHyperStatBody';
 
 /**
  * 캐릭터 하이퍼 스탯 정보
  */
-export class CharacterHyperStatDto {
+export class CharacterHyperStatDto extends base.CharacterHyperStatDto {
   /**
    * 조회 기준일
    */
-  date: Date | null;
+  public override date: Date | null;
 
   /**
    * 캐릭터 직업
    */
-  characterClass: string | null;
+  public override characterClass: string | null;
 
   /**
    * 적용 중인 프리셋 번호
    */
-  usePresetNo: string | null;
+  public override usePresetNo: string | null;
 
   /**
    * 사용 가능한 최대 하이퍼스탯 포인트
    */
-  useAvailableHyperStat: number | null;
+  public override useAvailableHyperStat: number | null;
 
   /**
    * 프리셋 1번 하이퍼 스탯 정보
    */
-  hyperStatPreset1: CharacterHyperStatPresetDto[];
+  public override hyperStatPreset1: CharacterHyperStatPresetDto[];
 
   /**
    * 프리셋 1번 하이퍼 스탯 잔여 포인트
    */
-  hyperStatPreset1RemainPoint: number | null;
+  public override hyperStatPreset1RemainPoint: number | null;
 
   /**
    * 프리셋 2번 하이퍼 스탯 정보
    */
-  hyperStatPreset2: CharacterHyperStatPresetDto[];
+  public override hyperStatPreset2: CharacterHyperStatPresetDto[];
 
   /**
    * 프리셋 2번 하이퍼 스탯 잔여 포인트
    */
-  hyperStatPreset2RemainPoint: number | null;
+  public override hyperStatPreset2RemainPoint: number | null;
 
   /**
    * 프리셋 3번 하이퍼 스탯 정보
    */
-  hyperStatPreset3: CharacterHyperStatPresetDto[];
+  public override hyperStatPreset3: CharacterHyperStatPresetDto[];
 
   /**
    * 프리셋 3번 하이퍼 스탯 잔여 포인트
    */
-  hyperStatPreset3RemainPoint: number | null;
+  public override hyperStatPreset3RemainPoint: number | null;
 
   constructor(obj: CharacterHyperStatBody) {
+    super();
+
     const {
       date,
       character_class,
@@ -90,28 +96,30 @@ export class CharacterHyperStatDto {
 /**
  * 캐릭터 하이퍼 스탯 프리셋 정보
  */
-export class CharacterHyperStatPresetDto {
+export class CharacterHyperStatPresetDto extends base.CharacterHyperStatPresetDto {
   /**
    * 스탯 종류
    */
-  statType: string;
+  public override statType: string;
 
   /**
    * 스탯 투자 포인트
    */
-  statPoint: number | null;
+  public override statPoint: number | null;
 
   /**
    * 스탯 레벨
    */
-  statLevel: number;
+  public override statLevel: number;
 
   /**
    * 스탯 상승량
    */
-  statIncrease: string | null;
+  public override statIncrease: string | null;
 
   constructor(obj: CharacterHyperStatPresetBody) {
+    super();
+
     const { stat_type, stat_point, stat_level, stat_increase } = obj;
 
     this.statType = stat_type;

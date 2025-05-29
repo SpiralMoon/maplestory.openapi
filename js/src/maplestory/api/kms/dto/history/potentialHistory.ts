@@ -1,9 +1,10 @@
+import { PotentialOptionGrade } from '../../../common/enum/potentialOptionGrade';
+import { potentialOptionGradeFromString } from '../../../common/lib';
 import {
   PotentialHistoryBody,
   PotentialHistoryResponseBody,
   PotentialResultOptionBody,
 } from '../../response/history/potentialHistoryBody';
-import { PotentialOptionGrade, potentialOptionGradeFromString } from '../../../common/potentialOptionGrade';
 
 /**
  * 잠재능력 재설정 히스토리

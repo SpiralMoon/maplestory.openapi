@@ -4,7 +4,6 @@ import { EventNoticeDetailBody } from '../../response/notice/eventNoticeDetailBo
  * 진행 중 이벤트 상세
  */
 export class EventNoticeDetailDto {
-
   /**
    * 공지 제목
    */
@@ -36,7 +35,8 @@ export class EventNoticeDetailDto {
   dateEventEnd: Date;
 
   constructor(obj: EventNoticeDetailBody) {
-    const { title, url, contents, date, date_event_start, date_event_end } = obj;
+    const { title, url, contents, date, date_event_start, date_event_end } =
+      obj;
 
     this.title = title;
     this.url = url;

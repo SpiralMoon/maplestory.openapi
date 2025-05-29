@@ -1,10 +1,12 @@
-import { NoticeListBody, NoticeListItemBody } from '../../response/notice/noticeListBody';
+import {
+  NoticeListBody,
+  NoticeListItemBody,
+} from '../../response/notice/noticeListBody';
 
 /**
  * 공지사항 목록
  */
 export class NoticeListDto {
-
   /**
    * 공지 목록
    */
@@ -13,7 +15,7 @@ export class NoticeListDto {
   constructor(obj: NoticeListBody) {
     const { notice } = obj;
 
-    this.notice = notice.map(notice => new NoticeListItemDto(notice));
+    this.notice = notice.map((notice) => new NoticeListItemDto(notice));
   }
 }
 
@@ -21,7 +23,6 @@ export class NoticeListDto {
  * 공지사항
  */
 export class NoticeListItemDto {
-
   /**
    * 공지 제목
    */
@@ -51,4 +52,3 @@ export class NoticeListItemDto {
     this.date = new Date(date);
   }
 }
-

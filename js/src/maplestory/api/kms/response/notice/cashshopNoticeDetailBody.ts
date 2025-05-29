@@ -6,4 +6,4 @@ export type CashshopNoticeDetailBody = {
   date_sale_start: string | null;
   date_sale_end: string | null;
   ongoing_flag: string;
-}
+};

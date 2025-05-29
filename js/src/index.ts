@@ -1,5 +1,6 @@
 export * from './maplestory/api/common/mapleStoryApiError';
-export * from './maplestory/api/common/potentialOptionGrade';
+export * from './maplestory/api/common/enum/characterImage';
+export * from './maplestory/api/common/enum/potentialOptionGrade';
 
 export * from './maplestory/api/kms/mapleStoryApi';
 

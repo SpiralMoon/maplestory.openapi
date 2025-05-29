@@ -15,12 +15,7 @@ import { CharacterDojangDto } from './dto/character/characterDojang';
 import { CharacterHexaMatrixDto } from './dto/character/characterHexaMatrix';
 import { CharacterHexaMatrixStatDto } from './dto/character/characterHexaMatrixStat';
 import { CharacterHyperStatDto } from './dto/character/characterHyperStat';
-import {
-  CharacterImageAction,
-  CharacterImageDto,
-  CharacterImageEmotion,
-  CharacterImageWeaponMotion,
-} from './dto/character/characterImage';
+import { CharacterImageDto } from './dto/character/characterImage';
 import { CharacterItemEquipmentDto } from './dto/character/characterItemEquipment';
 import { CharacterLinkSkillDto } from './dto/character/characterLinkSkill';
 import { CharacterListDto } from './dto/character/characterList';
@@ -56,7 +51,6 @@ import { UnionDto } from './dto/union/union';
 import { UnionArtifactDto } from './dto/union/unionArtifact';
 import { UnionChampionDto } from './dto/union/unionChampion';
 import { UnionRaiderDto } from './dto/union/unionRaider';
-import { MapleStoryApiError } from '../common/mapleStoryApiError';
 import { CharacterAbilityBody } from './response/character/characterAbilityBody';
 import { CharacterAndroidEquipmentBody } from './response/character/characterAndroidEquipmentBody';
 import { CharacterBasicBody } from './response/character/characterBasicBody';
@@ -102,6 +96,12 @@ import { UnionArtifactBody } from './response/union/unionArtifactBody';
 import { UnionBody } from './response/union/unionBody';
 import { UnionChampionBody } from './response/union/unionChampionBody';
 import { UnionRaiderBody } from './response/union/unionRaiderBody';
+import {
+  CharacterImageAction,
+  CharacterImageEmotion,
+  CharacterImageWeaponMotion,
+} from '../common/enum/characterImage';
+import { MapleStoryApiError } from '../common/mapleStoryApiError';
 
 dayjs.extend(timezone);
 dayjs.extend(utc);
@@ -139,15 +139,16 @@ export class MapleStoryApi {
     this.client.interceptors.response.use(
       (response) => response,
       (error) => {
-
         if (error instanceof AxiosError) {
-          const errorBody = (error as AxiosError<MapleStoryErrorBody>).response!.data;
+          const errorBody = (error as AxiosError<MapleStoryErrorBody>).response!
+            .data;
 
           throw new MapleStoryApiError(errorBody);
         }
 
         throw error;
-      });
+      },
+    );
   }
 
   //#region 캐릭터 정보 조회
@@ -202,10 +203,10 @@ export class MapleStoryApi {
     const path = 'maplestory/v1/character/basic';
     const date = dateOptions
       ? toDateString(dateOptions, {
-        year: 2023,
-        month: 12,
-        day: 21,
-      })
+          year: 2023,
+          month: 12,
+          day: 21,
+        })
       : undefined;
     const query: CharacterApiQuery = {
       ocid: ocid,
@@ -229,8 +230,15 @@ export class MapleStoryApi {
    * @param imageOptions 캐릭터 외형 파라미터
    * @param dateOptions 조회 기준일 (KST)
    */
-  public async getCharacterImage(ocid: string, imageOptions?: CharacterImageOptions, dateOptions?: DateOptions): Promise<CharacterImageDto> {
-    const { date, characterImage: path } = await this.getCharacterBasic(ocid, dateOptions);
+  public async getCharacterImage(
+    ocid: string,
+    imageOptions?: CharacterImageOptions,
+    dateOptions?: DateOptions,
+  ): Promise<CharacterImageDto> {
+    const { date, characterImage: path } = await this.getCharacterBasic(
+      ocid,
+      dateOptions,
+    );
     const action = imageOptions?.action ?? CharacterImageAction.Stand1;
     const emotion = imageOptions?.emotion ?? CharacterImageEmotion.Default;
     const wmotion = imageOptions?.wmotion ?? CharacterImageWeaponMotion.Default;
@@ -251,7 +259,10 @@ export class MapleStoryApi {
       y,
     };
 
-    const urlImageToBase64 = async (path: string, query?: object): Promise<string> => {
+    const urlImageToBase64 = async (
+      path: string,
+      query?: object,
+    ): Promise<string> => {
       const { data, headers } = await axios.get<string>(path, {
         params: query,
         responseType: 'arraybuffer',
@@ -301,10 +312,10 @@ export class MapleStoryApi {
     const path = 'maplestory/v1/character/popularity';
     const date = dateOptions
       ? toDateString(dateOptions, {
-        year: 2023,
-        month: 12,
-        day: 21,
-      })
+          year: 2023,
+          month: 12,
+          day: 21,
+        })
       : undefined;
     const query: CharacterApiQuery = {
       ocid: ocid,
@@ -334,10 +345,10 @@ export class MapleStoryApi {
     const path = 'maplestory/v1/character/stat';
     const date = dateOptions
       ? toDateString(dateOptions, {
-        year: 2023,
-        month: 12,
-        day: 21,
-      })
+          year: 2023,
+          month: 12,
+          day: 21,
+        })
       : undefined;
     const query: CharacterApiQuery = {
       ocid: ocid,
@@ -367,10 +378,10 @@ export class MapleStoryApi {
     const path = 'maplestory/v1/character/hyper-stat';
     const date = dateOptions
       ? toDateString(dateOptions, {
-        year: 2023,
-        month: 12,
-        day: 21,
-      })
+          year: 2023,
+          month: 12,
+          day: 21,
+        })
       : undefined;
     const query: CharacterApiQuery = {
       ocid: ocid,
@@ -400,10 +411,10 @@ export class MapleStoryApi {
     const path = 'maplestory/v1/character/propensity';
     const date = dateOptions
       ? toDateString(dateOptions, {
-        year: 2023,
-        month: 12,
-        day: 21,
-      })
+          year: 2023,
+          month: 12,
+          day: 21,
+        })
       : undefined;
     const query: CharacterApiQuery = {
       ocid: ocid,
@@ -433,10 +444,10 @@ export class MapleStoryApi {
     const path = 'maplestory/v1/character/ability';
     const date = dateOptions
       ? toDateString(dateOptions, {
-        year: 2023,
-        month: 12,
-        day: 21,
-      })
+          year: 2023,
+          month: 12,
+          day: 21,
+        })
       : undefined;
     const query: CharacterApiQuery = {
       ocid: ocid,
@@ -466,10 +477,10 @@ export class MapleStoryApi {
     const path = 'maplestory/v1/character/item-equipment';
     const date = dateOptions
       ? toDateString(dateOptions, {
-        year: 2023,
-        month: 12,
-        day: 21,
-      })
+          year: 2023,
+          month: 12,
+          day: 21,
+        })
       : undefined;
     const query: CharacterApiQuery = {
       ocid: ocid,
@@ -499,10 +510,10 @@ export class MapleStoryApi {
     const path = 'maplestory/v1/character/cashitem-equipment';
     const date = dateOptions
       ? toDateString(dateOptions, {
-        year: 2023,
-        month: 12,
-        day: 21,
-      })
+          year: 2023,
+          month: 12,
+          day: 21,
+        })
       : undefined;
     const query: CharacterApiQuery = {
       ocid: ocid,
@@ -535,10 +546,10 @@ export class MapleStoryApi {
     const path = 'maplestory/v1/character/symbol-equipment';
     const date = dateOptions
       ? toDateString(dateOptions, {
-        year: 2023,
-        month: 12,
-        day: 21,
-      })
+          year: 2023,
+          month: 12,
+          day: 21,
+        })
       : undefined;
     const query: CharacterApiQuery = {
       ocid: ocid,
@@ -568,10 +579,10 @@ export class MapleStoryApi {
     const path = 'maplestory/v1/character/set-effect';
     const date = dateOptions
       ? toDateString(dateOptions, {
-        year: 2023,
-        month: 12,
-        day: 21,
-      })
+          year: 2023,
+          month: 12,
+          day: 21,
+        })
       : undefined;
     const query: CharacterApiQuery = {
       ocid: ocid,
@@ -601,10 +612,10 @@ export class MapleStoryApi {
     const path = 'maplestory/v1/character/beauty-equipment';
     const date = dateOptions
       ? toDateString(dateOptions, {
-        year: 2023,
-        month: 12,
-        day: 21,
-      })
+          year: 2023,
+          month: 12,
+          day: 21,
+        })
       : undefined;
     const query: CharacterApiQuery = {
       ocid: ocid,
@@ -634,18 +645,21 @@ export class MapleStoryApi {
     const path = 'maplestory/v1/character/android-equipment';
     const date = dateOptions
       ? toDateString(dateOptions, {
-        year: 2023,
-        month: 12,
-        day: 21,
-      })
+          year: 2023,
+          month: 12,
+          day: 21,
+        })
       : undefined;
     const query: CharacterApiQuery = {
       ocid: ocid,
       date: date,
     };
-    const { data } = await this.client.get<CharacterAndroidEquipmentBody>(path, {
-      params: query,
-    });
+    const { data } = await this.client.get<CharacterAndroidEquipmentBody>(
+      path,
+      {
+        params: query,
+      },
+    );
 
     return new CharacterAndroidEquipmentDto(data);
   }
@@ -667,10 +681,10 @@ export class MapleStoryApi {
     const path = 'maplestory/v1/character/pet-equipment';
     const date = dateOptions
       ? toDateString(dateOptions, {
-        year: 2023,
-        month: 12,
-        day: 21,
-      })
+          year: 2023,
+          month: 12,
+          day: 21,
+        })
       : undefined;
     const query: CharacterApiQuery = {
       ocid: ocid,
@@ -713,10 +727,10 @@ export class MapleStoryApi {
     const path = 'maplestory/v1/character/skill';
     const date = dateOptions
       ? toDateString(dateOptions, {
-        year: 2023,
-        month: 12,
-        day: 21,
-      })
+          year: 2023,
+          month: 12,
+          day: 21,
+        })
       : undefined;
     const query: CharacterSkillApiQuery = {
       ocid: ocid,
@@ -747,10 +761,10 @@ export class MapleStoryApi {
     const path = 'maplestory/v1/character/link-skill';
     const date = dateOptions
       ? toDateString(dateOptions, {
-        year: 2023,
-        month: 12,
-        day: 21,
-      })
+          year: 2023,
+          month: 12,
+          day: 21,
+        })
       : undefined;
     const query: CharacterApiQuery = {
       ocid: ocid,
@@ -780,10 +794,10 @@ export class MapleStoryApi {
     const path = 'maplestory/v1/character/vmatrix';
     const date = dateOptions
       ? toDateString(dateOptions, {
-        year: 2023,
-        month: 12,
-        day: 21,
-      })
+          year: 2023,
+          month: 12,
+          day: 21,
+        })
       : undefined;
     const query: CharacterApiQuery = {
       ocid: ocid,
@@ -813,10 +827,10 @@ export class MapleStoryApi {
     const path = 'maplestory/v1/character/hexamatrix';
     const date = dateOptions
       ? toDateString(dateOptions, {
-        year: 2023,
-        month: 12,
-        day: 21,
-      })
+          year: 2023,
+          month: 12,
+          day: 21,
+        })
       : undefined;
     const query: CharacterApiQuery = {
       ocid: ocid,
@@ -846,10 +860,10 @@ export class MapleStoryApi {
     const path = 'maplestory/v1/character/hexamatrix-stat';
     const date = dateOptions
       ? toDateString(dateOptions, {
-        year: 2023,
-        month: 12,
-        day: 21,
-      })
+          year: 2023,
+          month: 12,
+          day: 21,
+        })
       : undefined;
     const query: CharacterApiQuery = {
       ocid: ocid,
@@ -879,10 +893,10 @@ export class MapleStoryApi {
     const path = 'maplestory/v1/character/dojang';
     const date = dateOptions
       ? toDateString(dateOptions, {
-        year: 2023,
-        month: 12,
-        day: 21,
-      })
+          year: 2023,
+          month: 12,
+          day: 21,
+        })
       : undefined;
     const query: CharacterApiQuery = {
       ocid: ocid,
@@ -916,10 +930,10 @@ export class MapleStoryApi {
     const path = 'maplestory/v1/user/union';
     const date = dateOptions
       ? toDateString(dateOptions, {
-        year: 2023,
-        month: 12,
-        day: 21,
-      })
+          year: 2023,
+          month: 12,
+          day: 21,
+        })
       : undefined;
     const query: UnionApiQuery = {
       ocid: ocid,
@@ -949,10 +963,10 @@ export class MapleStoryApi {
     const path = 'maplestory/v1/user/union-raider';
     const date = dateOptions
       ? toDateString(dateOptions, {
-        year: 2023,
-        month: 12,
-        day: 21,
-      })
+          year: 2023,
+          month: 12,
+          day: 21,
+        })
       : undefined;
     const query: UnionApiQuery = {
       ocid: ocid,
@@ -982,10 +996,10 @@ export class MapleStoryApi {
     const path = 'maplestory/v1/user/union-artifact';
     const date = dateOptions
       ? toDateString(dateOptions, {
-        year: 2023,
-        month: 12,
-        day: 21,
-      })
+          year: 2023,
+          month: 12,
+          day: 21,
+        })
       : undefined;
     const query: UnionApiQuery = {
       ocid: ocid,
@@ -1016,10 +1030,10 @@ export class MapleStoryApi {
     const path = 'maplestory/v1/user/union-champion';
     const date = dateOptions
       ? toDateString(dateOptions, {
-        year: 2023,
-        month: 12,
-        day: 21,
-      })
+          year: 2023,
+          month: 12,
+          day: 21,
+        })
       : undefined;
     const query: UnionApiQuery = {
       ocid: ocid,
@@ -1078,10 +1092,10 @@ export class MapleStoryApi {
     const path = 'maplestory/v1/guild/basic';
     const date = dateOptions
       ? toDateString(dateOptions, {
-        year: 2023,
-        month: 12,
-        day: 21,
-      })
+          year: 2023,
+          month: 12,
+          day: 21,
+        })
       : undefined;
     const query: GuildApiQuery = {
       oguild_id: guildId,
@@ -1149,11 +1163,11 @@ export class MapleStoryApi {
     } else if (typeof parameter === 'object' || parameter === undefined) {
       query.date = toDateString(
         parameter ??
-        getProperDefaultDateOptions({
-          hour: 0,
-          minute: 0,
-          dateOffset: 0,
-        }),
+          getProperDefaultDateOptions({
+            hour: 0,
+            minute: 0,
+            dateOffset: 0,
+          }),
         {
           year: 2023,
           month: 12,
@@ -1218,11 +1232,11 @@ export class MapleStoryApi {
     } else if (typeof parameter === 'object' || parameter === undefined) {
       query.date = toDateString(
         parameter ??
-        getProperDefaultDateOptions({
-          hour: 0,
-          minute: 0,
-          dateOffset: 0,
-        })
+          getProperDefaultDateOptions({
+            hour: 0,
+            minute: 0,
+            dateOffset: 0,
+          }),
       );
     }
 
@@ -1284,11 +1298,11 @@ export class MapleStoryApi {
     } else if (typeof parameter === 'object' || parameter === undefined) {
       query.date = toDateString(
         parameter ??
-        getProperDefaultDateOptions({
-          hour: 0,
-          minute: 0,
-          dateOffset: 0,
-        }),
+          getProperDefaultDateOptions({
+            hour: 0,
+            minute: 0,
+            dateOffset: 0,
+          }),
         {
           year: 2024,
           month: 1,
@@ -1329,9 +1343,9 @@ export class MapleStoryApi {
     const path = 'maplestory/v1/ranking/overall';
     const query: OverallRankingApiQuery = {
       date: toDateString(dateOptions, {
-          year: 2023,
-          month: 12,
-          day: 22,
+        year: 2023,
+        month: 12,
+        day: 22,
       }),
     };
 
@@ -1579,9 +1593,7 @@ export class MapleStoryApi {
   public async getNoticeList(): Promise<NoticeListDto> {
     const path = 'maplestory/v1/notice';
 
-    const { data } = await this.client.get<NoticeListBody>(
-      path,
-    );
+    const { data } = await this.client.get<NoticeListBody>(path);
 
     return new NoticeListDto(data);
   }
@@ -1599,12 +1611,9 @@ export class MapleStoryApi {
       notice_id: noticeId,
     };
 
-    const { data } = await this.client.get<NoticeDetailBody>(
-      path,
-      {
-        params: query,
-      },
-    );
+    const { data } = await this.client.get<NoticeDetailBody>(path, {
+      params: query,
+    });
 
     return new NoticeDetailDto(data);
   }
@@ -1618,9 +1627,7 @@ export class MapleStoryApi {
   public async getUpdateNoticeList(): Promise<UpdateNoticeListDto> {
     const path = 'maplestory/v1/notice-update';
 
-    const { data } = await this.client.get<UpdateNoticeListBody>(
-      path,
-    );
+    const { data } = await this.client.get<UpdateNoticeListBody>(path);
 
     return new UpdateNoticeListDto(data);
   }
@@ -1632,18 +1639,17 @@ export class MapleStoryApi {
    * - 실시간으로 정보를 제공하지 않는 경우, 신규/수정 공지 내용이 반영되지 않을 수 있으니 서비스 이용 유저에게 홈페이지 공지 사항을 확인하라는 가이드를 제공해주세요.
    * @param noticeId 공지 식별자
    */
-  public async getUpdateNoticeDetail(noticeId: number): Promise<UpdateNoticeDetailDto> {
+  public async getUpdateNoticeDetail(
+    noticeId: number,
+  ): Promise<UpdateNoticeDetailDto> {
     const path = 'maplestory/v1/notice-update/detail';
     const query: NoticeApiQuery = {
       notice_id: noticeId,
     };
 
-    const { data } = await this.client.get<UpdateNoticeDetailBody>(
-      path,
-      {
-        params: query,
-      },
-    );
+    const { data } = await this.client.get<UpdateNoticeDetailBody>(path, {
+      params: query,
+    });
 
     return new UpdateNoticeDetailDto(data);
   }
@@ -1657,9 +1663,7 @@ export class MapleStoryApi {
   public async getEventNoticeList(): Promise<EventNoticeListDto> {
     const path = 'maplestory/v1/notice-event';
 
-    const { data } = await this.client.get<EventNoticeListBody>(
-      path,
-    );
+    const { data } = await this.client.get<EventNoticeListBody>(path);
 
     return new EventNoticeListDto(data);
   }
@@ -1671,18 +1675,17 @@ export class MapleStoryApi {
    * - 실시간으로 정보를 제공하지 않는 경우, 신규/수정 공지 내용이 반영되지 않을 수 있으니 서비스 이용 유저에게 홈페이지 공지 사항을 확인하라는 가이드를 제공해주세요.
    * @param noticeId 공지 식별자
    */
-  public async getEventNoticeDetail(noticeId: number): Promise<EventNoticeDetailDto> {
+  public async getEventNoticeDetail(
+    noticeId: number,
+  ): Promise<EventNoticeDetailDto> {
     const path = 'maplestory/v1/notice-event/detail';
     const query: NoticeApiQuery = {
       notice_id: noticeId,
     };
 
-    const { data } = await this.client.get<EventNoticeDetailBody>(
-      path,
-      {
-        params: query,
-      },
-    );
+    const { data } = await this.client.get<EventNoticeDetailBody>(path, {
+      params: query,
+    });
 
     return new EventNoticeDetailDto(data);
   }
@@ -1696,9 +1699,7 @@ export class MapleStoryApi {
   public async getCashshopNoticeList(): Promise<CashshopNoticeListDto> {
     const path = 'maplestory/v1/notice-cashshop';
 
-    const { data } = await this.client.get<CashshopNoticeListBody>(
-      path,
-    );
+    const { data } = await this.client.get<CashshopNoticeListBody>(path);
 
     return new CashshopNoticeListDto(data);
   }
@@ -1710,18 +1711,17 @@ export class MapleStoryApi {
    * - 실시간으로 정보를 제공하지 않는 경우, 신규/수정 공지 내용이 반영되지 않을 수 있으니 서비스 이용 유저에게 홈페이지 공지 사항을 확인하라는 가이드를 제공해주세요.
    * @param noticeId 공지 식별자
    */
-  public async getCashshopNoticeDetail(noticeId: number): Promise<CashshopNoticeDetailDto> {
+  public async getCashshopNoticeDetail(
+    noticeId: number,
+  ): Promise<CashshopNoticeDetailDto> {
     const path = 'maplestory/v1/notice-cashshop/detail';
     const query: NoticeApiQuery = {
       notice_id: noticeId,
     };
 
-    const { data } = await this.client.get<CashshopNoticeDetailBody>(
-      path,
-      {
-        params: query,
-      },
-    );
+    const { data } = await this.client.get<CashshopNoticeDetailBody>(path, {
+      params: query,
+    });
 
     return new CashshopNoticeDetailDto(data);
   }
@@ -1785,10 +1785,7 @@ const getProperDefaultDateOptions = (
   const { hour, minute, dateOffset } = options;
 
   const kstNow = dayjs().utcOffset(KST_OFFSET);
-  const updateDate = dayjs()
-    .utcOffset(KST_OFFSET)
-    .hour(hour)
-    .minute(minute);
+  const updateDate = dayjs().utcOffset(KST_OFFSET).hour(hour).minute(minute);
 
   let adjustedDate: Dayjs;
 
@@ -1805,7 +1802,7 @@ const getProperDefaultDateOptions = (
     month: adjustedDate.month() + 1,
     day: adjustedDate.date(),
   };
-}
+};
 
 /**
  * 날짜 정보를 API 서버에서 요구하는 포맷으로 변환합니다.
@@ -1817,7 +1814,6 @@ const toDateString = (
   dateOptions: DateOptions,
   minDateOptions?: DateOptions,
 ): string | never => {
-
   const convert = (dateOptions: DateOptions) => {
     let year: number;
     let month: number;
@@ -1841,14 +1837,18 @@ const toDateString = (
       month,
       day,
       d,
-    }
-  }
+    };
+  };
   const { year, month, day, d } = convert(dateOptions);
 
   const str = d.format('YYYY-MM-DD');
 
   if (minDateOptions) {
-    const { year: minYear, month: minMonth, day: minDay } = convert(minDateOptions);
+    const {
+      year: minYear,
+      month: minMonth,
+      day: minDay,
+    } = convert(minDateOptions);
 
     if (
       year < minYear ||
@@ -1864,22 +1864,21 @@ const toDateString = (
   }
 
   return str;
-}
-
+};
 
 type CharacterImageOptions = {
   /**
    * 캐릭터 액션
    */
-  action?: CharacterImageAction,
+  action?: CharacterImageAction;
   /**
    * 캐릭터 감정표현
    */
-  emotion?: CharacterImageEmotion,
+  emotion?: CharacterImageEmotion;
   /**
    * 캐릭터 무기 모션
    */
-  wmotion?: CharacterImageWeaponMotion,
+  wmotion?: CharacterImageWeaponMotion;
   /**
    * 캐릭터 액션 프레임.
    */
@@ -1891,19 +1890,19 @@ type CharacterImageOptions = {
   /**
    * 가로 길이. 배경 크기에 해당함, 96 (default) ~ 1000
    */
-  width?: number,
+  width?: number;
   /**
    * 세로 길이. 배경 크기에 해당함, 96 (default) ~ 1000
    */
-  height?: number,
+  height?: number;
   /**
    * 캐릭터의 가로 좌표
    */
-  x?: number,
+  x?: number;
   /**
    * 캐릭터의 세로 좌표.
    */
-  y?: number,
+  y?: number;
 };
 
 type OverallRankingApiFilterOptions = {

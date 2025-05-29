@@ -4,7 +4,6 @@ import { CashshopNoticeDetailBody } from '../../response/notice/cashshopNoticeDe
  * 캐시샵 공지 상세
  */
 export class CashshopNoticeDetailDto {
-
   /**
    * 공지 제목
    */
@@ -41,7 +40,15 @@ export class CashshopNoticeDetailDto {
   ongoingFlag: string;
 
   constructor(obj: CashshopNoticeDetailBody) {
-    const { title, url, contents, date, date_sale_start, date_sale_end, ongoing_flag } = obj;
+    const {
+      title,
+      url,
+      contents,
+      date,
+      date_sale_start,
+      date_sale_end,
+      ongoing_flag,
+    } = obj;
 
     this.title = title;
     this.url = url;

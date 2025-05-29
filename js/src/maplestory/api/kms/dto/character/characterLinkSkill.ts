@@ -1,60 +1,66 @@
-import { CharacterLinkSkillBody, CharacterLinkSkillInfoBody } from '../../response/character/characterLinkSkillBody';
+import * as base from '../../../common/dto/character/characterLinkSkill';
+import {
+  CharacterLinkSkillBody,
+  CharacterLinkSkillInfoBody,
+} from '../../response/character/characterLinkSkillBody';
 
 /**
  * 캐릭터 링크 스킬 정보
  */
-export class CharacterLinkSkillDto {
+export class CharacterLinkSkillDto extends base.CharacterLinkSkillDto {
   /**
    * 조회 기준일
    */
-  date: Date | null;
+  public override date: Date | null;
 
   /**
    * 캐릭터 직업
    */
-  characterClass: string | null;
+  public override characterClass: string | null;
 
   /**
    * 링크 스킬 정보
    */
-  characterLinkSkill: CharacterLinkSkillInfoDto[];
+  public override characterLinkSkill: CharacterLinkSkillInfoDto[];
 
   /**
    * 링크 스킬 1번 프리셋 정보
    */
-  characterLinkSkillPreset1: CharacterLinkSkillInfoDto[];
+  public override characterLinkSkillPreset1: CharacterLinkSkillInfoDto[];
 
   /**
    * 링크 스킬 2번 프리셋 정보
    */
-  characterLinkSkillPreset2: CharacterLinkSkillInfoDto[];
+  public override characterLinkSkillPreset2: CharacterLinkSkillInfoDto[];
 
   /**
    * 링크 스킬 3번 프리셋 정보
    */
-  characterLinkSkillPreset3: CharacterLinkSkillInfoDto[];
+  public override characterLinkSkillPreset3: CharacterLinkSkillInfoDto[];
 
   /**
    * 내 링크 스킬 정보
    */
-  characterOwnedLinkSkill: CharacterLinkSkillInfoDto | null;
+  public override characterOwnedLinkSkill: CharacterLinkSkillInfoDto | null;
 
   /**
    * 내 링크 스킬 1번 프리셋 정보
    */
-  characterOwnedLinkSkillPreset1: CharacterLinkSkillInfoDto | null;
+  public override characterOwnedLinkSkillPreset1: CharacterLinkSkillInfoDto | null;
 
   /**
    * 내 링크 스킬 2번 프리셋 정보
    */
-  characterOwnedLinkSkillPreset2: CharacterLinkSkillInfoDto | null;
+  public override characterOwnedLinkSkillPreset2: CharacterLinkSkillInfoDto | null;
 
   /**
    * 내 링크 스킬 3번 프리셋 정보
    */
-  characterOwnedLinkSkillPreset3: CharacterLinkSkillInfoDto | null;
+  public override characterOwnedLinkSkillPreset3: CharacterLinkSkillInfoDto | null;
 
   constructor(obj: CharacterLinkSkillBody) {
+    super();
+
     const {
       date,
       character_class,
@@ -82,56 +88,58 @@ export class CharacterLinkSkillDto {
     this.characterLinkSkillPreset3 = character_link_skill_preset_3.map(
       (skill) => new CharacterLinkSkillInfoDto(skill),
     );
-    this.characterOwnedLinkSkill = character_owned_link_skill ? new CharacterLinkSkillInfoDto(
-      character_owned_link_skill,
-    ) : null;
-    this.characterOwnedLinkSkillPreset1 = character_owned_link_skill_preset_1 ? new CharacterLinkSkillInfoDto(
-      character_owned_link_skill_preset_1,
-    ) : null;
-    this.characterOwnedLinkSkillPreset2 = character_owned_link_skill_preset_2 ?  new CharacterLinkSkillInfoDto(
-      character_owned_link_skill_preset_2,
-    ) : null;
-    this.characterOwnedLinkSkillPreset3 =  character_owned_link_skill_preset_3 ? new CharacterLinkSkillInfoDto(
-      character_owned_link_skill_preset_3,
-    ) : null;
+    this.characterOwnedLinkSkill = character_owned_link_skill
+      ? new CharacterLinkSkillInfoDto(character_owned_link_skill)
+      : null;
+    this.characterOwnedLinkSkillPreset1 = character_owned_link_skill_preset_1
+      ? new CharacterLinkSkillInfoDto(character_owned_link_skill_preset_1)
+      : null;
+    this.characterOwnedLinkSkillPreset2 = character_owned_link_skill_preset_2
+      ? new CharacterLinkSkillInfoDto(character_owned_link_skill_preset_2)
+      : null;
+    this.characterOwnedLinkSkillPreset3 = character_owned_link_skill_preset_3
+      ? new CharacterLinkSkillInfoDto(character_owned_link_skill_preset_3)
+      : null;
   }
 }
 
 /**
  * 캐릭터 링크 스킬 정보
  */
-export class CharacterLinkSkillInfoDto {
+export class CharacterLinkSkillInfoDto extends base.CharacterLinkSkillInfoDto {
   /**
    * 스킬 명
    */
-  skillName: string;
+  public override skillName: string;
 
   /**
    * 스킬 설명
    */
-  skillDescription: string;
+  public override skillDescription: string;
 
   /**
    * 스킬 레벨
    */
-  skillLevel: number;
+  public override skillLevel: number;
 
   /**
    * 스킬 효과
    */
-  skillEffect: string;
+  public override skillEffect: string;
 
   /**
    * 다음 레벨의 스킬 효과
    */
-  skillEffectNext: string | null;
+  public override skillEffectNext: string | null;
 
   /**
    * 스킬 아이콘
    */
-  skillIcon: string;
+  public override skillIcon: string;
 
   constructor(obj: CharacterLinkSkillInfoBody) {
+    super();
+
     const {
       skill_name,
       skill_description,

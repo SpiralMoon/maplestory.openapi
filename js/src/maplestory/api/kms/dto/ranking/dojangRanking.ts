@@ -1,4 +1,7 @@
-import { DojangRankingBody, DojangRankingResponseBody } from '../../response/ranking/dojangRankingBody';
+import {
+  DojangRankingBody,
+  DojangRankingResponseBody,
+} from '../../response/ranking/dojangRankingBody';
 
 /**
  * 무릉도장 랭킹 정보

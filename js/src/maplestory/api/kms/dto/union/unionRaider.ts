@@ -1,68 +1,72 @@
+import * as base from '../../../common/dto/union/unionRaider';
 import {
   UnionRaiderBlockBody,
   UnionRaiderBlockControlPointBody,
   UnionRaiderBlockPositionBody,
   UnionRaiderBody,
-  UnionRaiderInnerStatBody, UnionRaiderPresetBody,
+  UnionRaiderInnerStatBody,
+  UnionRaiderPresetBody,
 } from '../../response/union/unionRaiderBody';
 
 /**
  * 유니온 공격대 정보
  */
-export class UnionRaiderDto {
-  date: Date | null;
+export class UnionRaiderDto extends base.UnionRaiderDto {
+  public override date: Date | null;
 
   /**
    * 유니온 공격대원 효과
    */
-  unionRaiderStat: string[];
+  public override unionRaiderStat: string[];
 
   /**
    * 유니온 공격대 점령 효과
    */
-  unionOccupiedStat: string[];
+  public override unionOccupiedStat: string[];
 
   /**
    * 유니온 공격대 배치
    */
-  unionInnerStat: UnionRaiderInnerStatDto[];
+  public override unionInnerStat: UnionRaiderInnerStatDto[];
 
   /**
    * 유니온 블록 정보
    */
-  unionBlock: UnionRaiderBlockDto[];
+  public override unionBlock: UnionRaiderBlockDto[];
 
   /**
    * 적용 중인 프리셋 번호
    */
-  usePresetNo: number;
+  public override usePresetNo: number;
 
   /**
    * 유니온 프리셋 1번 정보
    */
-  unionRaiderPreset1: UnionRaiderPresetDto | null;
+  public override unionRaiderPreset1: UnionRaiderPresetDto | null;
 
   /**
    * 유니온 프리셋 2번 정보
    */
-  unionRaiderPreset2: UnionRaiderPresetDto | null;
+  public override unionRaiderPreset2: UnionRaiderPresetDto | null;
 
   /**
    * 유니온 프리셋 3번 정보
    */
-  unionRaiderPreset3: UnionRaiderPresetDto | null;
+  public override unionRaiderPreset3: UnionRaiderPresetDto | null;
 
   /**
    * 유니온 프리셋 4번 정보
    */
-  unionRaiderPreset4: UnionRaiderPresetDto | null;
+  public override unionRaiderPreset4: UnionRaiderPresetDto | null;
 
   /**
    * 유니온 프리셋 5번 정보
    */
-  unionRaiderPreset5: UnionRaiderPresetDto | null;
+  public override unionRaiderPreset5: UnionRaiderPresetDto | null;
 
   constructor(obj: UnionRaiderBody) {
+    super();
+
     const {
       date,
       union_raider_stat,
@@ -108,18 +112,20 @@ export class UnionRaiderDto {
 /**
  * 유니온 공격대 배치 정보
  */
-export class UnionRaiderInnerStatDto {
+export class UnionRaiderInnerStatDto extends base.UnionRaiderInnerStatDto {
   /**
    * 공격대 배치 위치 (11시 방향부터 시계 방향 순서대로 0~7)
    */
-  statFieldId: string;
+  public override statFieldId: string;
 
   /**
    * 해당 지역 점령 효과
    */
-  statFieldEffect: string;
+  public override statFieldEffect: string;
 
   constructor(obj: UnionRaiderInnerStatBody) {
+    super();
+
     const { stat_field_id, stat_field_effect } = obj;
 
     this.statFieldId = stat_field_id;
@@ -130,18 +136,20 @@ export class UnionRaiderInnerStatDto {
 /**
  * 유니온 블록이 차지하고 있는 영역 좌표들
  */
-export class UnionRaiderBlockPositionDto {
+export class UnionRaiderBlockPositionDto extends base.UnionRaiderBlockPositionDto {
   /**
    * 블록 X좌표
    */
-  x: number;
+  public override x: number;
 
   /**
    * 블록 Y좌표
    */
-  y: number;
+  public override y: number;
 
   constructor(obj: UnionRaiderBlockPositionBody) {
+    super();
+
     const { x, y } = obj;
 
     this.x = x;
@@ -152,18 +160,20 @@ export class UnionRaiderBlockPositionDto {
 /**
  * 유니온 블록 기준점 좌표 정보
  */
-export class UnionRaiderBlockControlPointDto {
+export class UnionRaiderBlockControlPointDto extends base.UnionRaiderBlockControlPointDto {
   /**
    * 블록 기준점 X좌표
    */
-  x: number;
+  public override x: number;
 
   /**
    * 블록 기준점 Y좌표
    */
-  y: number;
+  public override y: number;
 
   constructor(obj: UnionRaiderBlockControlPointBody) {
+    super();
+
     const { x, y } = obj;
 
     this.x = x;
@@ -174,33 +184,35 @@ export class UnionRaiderBlockControlPointDto {
 /**
  * 유니온 블록 정보
  */
-export class UnionRaiderBlockDto {
+export class UnionRaiderBlockDto extends base.UnionRaiderBlockDto {
   /**
    * 블록 모양 (전사, 마법사, 궁수, 도적, 해적, 메이플m, 하이브리드)
    */
-  blockType: string;
+  public override blockType: string;
 
   /**
    * 블록 해당 캐릭터 직업
    */
-  blockClass: string;
+  public override blockClass: string;
 
   /**
    * 블록 해당 캐릭터 레벨
    */
-  blockLevel: string;
+  public override blockLevel: string;
 
   /**
    * 블록 기준점 좌표
    */
-  blockControlPoint: UnionRaiderBlockControlPointDto;
+  public override blockControlPoint: UnionRaiderBlockControlPointDto;
 
   /**
    * 블록이 차지하고 있는 영역 좌표들 (null:미 배치 시)
    */
-  blockPosition: UnionRaiderBlockPositionDto[] | null;
+  public override blockPosition: UnionRaiderBlockPositionDto[] | null;
 
   constructor(obj: UnionRaiderBlockBody) {
+    super();
+
     const {
       block_type,
       block_class,
@@ -217,8 +229,8 @@ export class UnionRaiderBlockDto {
     );
     this.blockPosition = block_position
       ? block_position.map(
-        (position) => new UnionRaiderBlockPositionDto(position),
-      )
+          (position) => new UnionRaiderBlockPositionDto(position),
+        )
       : null;
   }
 }
@@ -226,29 +238,30 @@ export class UnionRaiderBlockDto {
 /**
  * 유니온 프리셋 정보
  */
-export class UnionRaiderPresetDto {
-
+export class UnionRaiderPresetDto extends base.UnionRaiderPresetDto {
   /**
    * 유니온 공격대원 효과
    */
-  unionRaiderStat: string[];
+  public override unionRaiderStat: string[];
 
   /**
    * 유니온 공격대 점령 효과
    */
-  unionOccupiedStat: string[];
+  public override unionOccupiedStat: string[];
 
   /**
    * 유니온 공격대 배치
    */
-  unionInnerStat: UnionRaiderInnerStatDto[];
+  public override unionInnerStat: UnionRaiderInnerStatDto[];
 
   /**
    * 유니온 블록 정보
    */
-  unionBlock: UnionRaiderBlockDto[];
+  public override unionBlock: UnionRaiderBlockDto[];
 
   constructor(obj: UnionRaiderPresetBody) {
+    super();
+
     const {
       union_raider_stat,
       union_occupied_stat,

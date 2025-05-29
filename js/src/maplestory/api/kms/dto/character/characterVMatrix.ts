@@ -1,3 +1,4 @@
+import * as base from '../../../common/dto/character/characterVMatrix';
 import {
   CharacterVMatrixBody,
   CharacterVMatrixCoreEquipmentDtoBody,
@@ -6,28 +7,30 @@ import {
 /**
  * 캐릭터 V매트릭스 정보
  */
-export class CharacterVMatrixDto {
+export class CharacterVMatrixDto extends base.CharacterVMatrixDto {
   /**
    * 조회 기준일
    */
-  date: Date | null;
+  public override date: Date | null;
 
   /**
    * 캐릭터 직업
    */
-  characterClass: string | null;
+  public override characterClass: string | null;
 
   /**
    * V코어 정보
    */
-  characterVCoreEquipment: CharacterVMatrixCodeEquipmentDto[];
+  public override characterVCoreEquipment: CharacterVMatrixCodeEquipmentDto[];
 
   /**
    * 캐릭터 잔여 매트릭스 강화 포인트
    */
-  characterVMatrixRemainSlotUpgradePoint: number | null;
+  public override characterVMatrixRemainSlotUpgradePoint: number | null;
 
   constructor(obj: CharacterVMatrixBody) {
+    super();
+
     const {
       date,
       character_class,
@@ -48,48 +51,50 @@ export class CharacterVMatrixDto {
 /**
  * 캐릭터 V코어 정보
  */
-export class CharacterVMatrixCodeEquipmentDto {
+export class CharacterVMatrixCodeEquipmentDto extends base.CharacterVMatrixCodeEquipmentDto {
   /**
    * 슬롯 인덱스
    */
-  slotId: string;
+  public override slotId: string;
 
   /**
    * 슬롯 레벨
    */
-  slotLevel: number;
+  public override slotLevel: number;
 
   /**
    * 코어 명
    */
-  vCoreName: string | null;
+  public override vCoreName: string | null;
 
   /**
    * 코어 타입
    */
-  vCoreType: string | null;
+  public override vCoreType: string | null;
 
   /**
    * 코어 레벨
    */
-  vCoreLevel: number;
+  public override vCoreLevel: number;
 
   /**
    * 코어에 해당하는 스킬 명
    */
-  vCoreSkill1: string;
+  public override vCoreSkill1: string;
 
   /**
    * (강화 코어인 경우) 코어에 해당하는 두 번째 스킬 명
    */
-  vCoreSkill2: string | null;
+  public override vCoreSkill2: string | null;
 
   /**
    * (강화 코어인 경우) 코어에 해당하는 세 번째 스킬 명
    */
-  vCoreSkill3: string | null;
+  public override vCoreSkill3: string | null;
 
   constructor(obj: CharacterVMatrixCoreEquipmentDtoBody) {
+    super();
+
     const {
       slot_id,
       slot_level,

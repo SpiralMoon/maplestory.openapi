@@ -1,3 +1,4 @@
+import * as base from '../../../common/dto/character/characterAbility';
 import {
   CharacterAbilityBody,
   CharacterAbilityInfoBody,
@@ -7,48 +8,50 @@ import {
 /**
  * 캐릭터 어빌리티 정보
  */
-export class CharacterAbilityDto {
+export class CharacterAbilityDto extends base.CharacterAbilityDto {
   /**
    * 조회 기준일
    */
-  date: Date | null;
+  public override date: Date | null;
 
   /**
    * 어빌리티 등급
    */
-  abilityGrade: string | null;
+  public override abilityGrade: string | null;
 
   /**
    *  어빌리티 정보
    */
-  abilityInfo: CharacterAbilityInfoDto[];
+  public override abilityInfo: CharacterAbilityInfoDto[];
 
   /**
    * 보유 명성치
    */
-  remainFame: number | null;
+  public override remainFame: number | null;
 
   /**
    * 적용 중인 어빌리티 프리셋 번호
    */
-  presetNo: number | null;
+  public override presetNo: number | null;
 
   /**
    * 어빌리티 1번 프리셋 전체 정보
    */
-  abilityPreset1: CharacterAbilityPresetDto | null;
+  public override abilityPreset1: CharacterAbilityPresetDto | null;
 
   /**
    * 어빌리티 2번 프리셋 전체 정보
    */
-  abilityPreset2: CharacterAbilityPresetDto | null;
+  public override abilityPreset2: CharacterAbilityPresetDto | null;
 
   /**
    * 어빌리티 3번 프리셋 전체 정보
    */
-  abilityPreset3: CharacterAbilityPresetDto | null;
+  public override abilityPreset3: CharacterAbilityPresetDto | null;
 
   constructor(obj: CharacterAbilityBody) {
+    super();
+
     const {
       date,
       ability_grade,
@@ -60,7 +63,6 @@ export class CharacterAbilityDto {
       ability_preset_3,
     } = obj;
 
-    // 날짜는 Date 객체로 변환
     this.date = date ? new Date(date) : null;
     this.abilityGrade = ability_grade;
     this.abilityInfo = ability_info.map(
@@ -83,23 +85,25 @@ export class CharacterAbilityDto {
 /**
  * 캐릭터 어빌리티 상세 정보
  */
-export class CharacterAbilityInfoDto {
+export class CharacterAbilityInfoDto extends base.CharacterAbilityInfoDto {
   /**
    * 어빌리티 번호
    */
-  abilityNo: string;
+  public override abilityNo: string;
 
   /**
    * 어빌리티 등급
    */
-  abilityGrade: string;
+  public override abilityGrade: string;
 
   /**
    * 어빌리티 옵션 및 수치
    */
-  abilityValue: string;
+  public override abilityValue: string;
 
   constructor(obj: CharacterAbilityInfoBody) {
+    super();
+
     const { ability_no, ability_grade, ability_value } = obj;
 
     this.abilityNo = ability_no;
@@ -111,18 +115,20 @@ export class CharacterAbilityInfoDto {
 /**
  * 캐릭터 어빌리티 프리셋 정보
  */
-export class CharacterAbilityPresetDto {
+export class CharacterAbilityPresetDto extends base.CharacterAbilityPresetDto {
   /**
    * 프리셋의 어빌리티 등급
    */
-  abilityPresetGrade: string;
+  public override abilityPresetGrade: string;
 
   /**
    * 프리셋의 어빌리티 정보
    */
-  abilityInfo: CharacterAbilityInfoDto[];
+  public override abilityInfo: CharacterAbilityInfoDto[];
 
   constructor(obj: CharacterAbilityPresetBody) {
+    super();
+
     const { ability_preset_grade, ability_info } = obj;
 
     this.abilityPresetGrade = ability_preset_grade;

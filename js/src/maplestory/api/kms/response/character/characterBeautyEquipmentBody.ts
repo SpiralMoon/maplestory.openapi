@@ -3,7 +3,7 @@ export type CharacterBeautyEquipmentBody = {
   character_gender: string;
   character_class: string;
   character_hair: CharacterBeautyEquipmentHairBody | null;
-  character_face: CharacterBeautyEquipmentFaceBody | null
+  character_face: CharacterBeautyEquipmentFaceBody | null;
   character_skin: CharacterBeautyEquipmentSkinBody | null;
   additional_character_hair: CharacterBeautyEquipmentHairBody | null;
   additional_character_face: CharacterBeautyEquipmentFaceBody | null;

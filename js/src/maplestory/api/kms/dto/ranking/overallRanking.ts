@@ -1,4 +1,7 @@
-import { OverallRankingBody, OverallRankingResponseBody } from '../../response/ranking/overallRankingBody';
+import {
+  OverallRankingBody,
+  OverallRankingResponseBody,
+} from '../../response/ranking/overallRankingBody';
 
 /**
  * 종합 랭킹 정보

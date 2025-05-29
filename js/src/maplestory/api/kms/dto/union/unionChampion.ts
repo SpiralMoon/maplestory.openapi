@@ -8,7 +8,6 @@ import {
  * 유니온 챔피언 정보
  */
 export class UnionChampionDto {
-
   /**
    * 조회 기준일
    */
@@ -28,8 +27,12 @@ export class UnionChampionDto {
     const { date, union_champion, champion_badge_total_info } = obj;
 
     this.date = date ? new Date(date) : null;
-    this.unionChampion = union_champion.map((info) => new UnionChampionInfoDto(info))
-    this.championBadgeTotalInfo = champion_badge_total_info.map((info) => new UnionChampionBadgeInfoDto(info));
+    this.unionChampion = union_champion.map(
+      (info) => new UnionChampionInfoDto(info),
+    );
+    this.championBadgeTotalInfo = champion_badge_total_info.map(
+      (info) => new UnionChampionBadgeInfoDto(info),
+    );
   }
 }
 
@@ -37,7 +40,6 @@ export class UnionChampionDto {
  * 유니온 챔피언 휘장 정보
  */
 export class UnionChampionBadgeInfoDto {
-
   /**
    * 유니온 챔피언 휘장 효과
    */
@@ -54,7 +56,6 @@ export class UnionChampionBadgeInfoDto {
  * 유니온 챔피언 상세 정보
  */
 export class UnionChampionInfoDto {
-
   /**
    * 유니온 챔피언 캐릭터 명
    */
@@ -81,12 +82,20 @@ export class UnionChampionInfoDto {
   championBadgeInfo: UnionChampionBadgeInfoDto[];
 
   constructor(obj: UnionChampionInfoBody) {
-    const { champion_name, champion_slot, champion_grade, champion_class, champion_badge_info } = obj;
+    const {
+      champion_name,
+      champion_slot,
+      champion_grade,
+      champion_class,
+      champion_badge_info,
+    } = obj;
 
     this.championName = champion_name;
     this.championSlot = champion_slot;
     this.championGrade = champion_grade;
     this.championClass = champion_class;
-    this.championBadgeInfo = champion_badge_info.map((info) => new UnionChampionBadgeInfoDto(info));
+    this.championBadgeInfo = champion_badge_info.map(
+      (info) => new UnionChampionBadgeInfoDto(info),
+    );
   }
 }

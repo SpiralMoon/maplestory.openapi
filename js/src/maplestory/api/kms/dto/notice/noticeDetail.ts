@@ -4,7 +4,6 @@ import { NoticeDetailBody } from '../../response/notice/noticeDetailBody';
  * 공지사항 상세
  */
 export class NoticeDetailDto {
-
   /**
    * 공지 제목
    */

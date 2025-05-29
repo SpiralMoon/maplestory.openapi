@@ -1,30 +1,36 @@
-import { CharacterFinalStatBody, CharacterStatBody } from '../../response/character/characterStatBody';
+import * as base from '../../../common/dto/character/characterStat';
+import {
+  CharacterFinalStatBody,
+  CharacterStatBody,
+} from '../../response/character/characterStatBody';
 
 /**
  * 캐릭터 스탯 정보
  */
-export class CharacterStatDto {
+export class CharacterStatDto extends base.CharacterStatDto {
   /**
    * 조회 기준일
    */
-  date: Date | null;
+  public override date: Date | null;
 
   /**
    * 캐릭터 직업
    */
-  characterClass: string | null;
+  public override characterClass: string | null;
 
   /**
    * 현재 스탯 정보
    */
-  finalStat: CharacterFinalStatDto[];
+  public override finalStat: CharacterFinalStatDto[];
 
   /**
    * 잔여 AP
    */
-  remainAP: number | null;
+  public override remainAP: number | null;
 
   constructor(obj: CharacterStatBody) {
+    super();
+
     const { date, character_class, final_stat, remain_ap } = obj;
 
     this.date = date ? new Date(date) : null;
@@ -37,18 +43,20 @@ export class CharacterStatDto {
 /**
  * 캐릭터 현재 스탯 정보
  */
-export class CharacterFinalStatDto {
+export class CharacterFinalStatDto extends base.CharacterFinalStatDto {
   /**
    * 스탯 명
    */
-  statName: string;
+  public override statName: string;
 
   /**
    * 스탯 값
    */
-  statValue: string;
+  public override statValue: string;
 
   constructor(obj: CharacterFinalStatBody) {
+    super();
+
     const { stat_name, stat_value } = obj;
 
     this.statName = stat_name;

@@ -5,4 +5,4 @@ export type EventNoticeDetailBody = {
   date: string;
   date_event_start: string;
   date_event_end: string;
-}
+};

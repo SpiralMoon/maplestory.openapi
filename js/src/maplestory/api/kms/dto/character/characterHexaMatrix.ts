@@ -1,3 +1,4 @@
+import * as base from '../../../common/dto/character/characterHexaMatrix';
 import {
   CharacterHexaMatrixBody,
   CharacterHexaMatrixEquipmentBody,
@@ -7,37 +8,42 @@ import {
 /**
  * 캐릭터 HEXA 코어 정보
  */
-export class CharacterHexaMatrixDto {
+export class CharacterHexaMatrixDto extends base.CharacterHexaMatrixDto {
   /**
    * 조회 기준일
    */
-  date: Date | null;
+  public override date: Date | null;
 
   /**
    * HEXA 코어 정보
    */
-  characterHexaCoreEquipment: CharacterHexaMatrixEquipmentDto[];
+  public override characterHexaCoreEquipment: CharacterHexaMatrixEquipmentDto[];
 
   constructor(obj: CharacterHexaMatrixBody) {
+    super();
+
     const { date, character_hexa_core_equipment } = obj;
 
     this.date = date ? new Date(date) : null;
-    this.characterHexaCoreEquipment = character_hexa_core_equipment?.map(
-      (equipment) => new CharacterHexaMatrixEquipmentDto(equipment),
-    ) ?? [];
+    this.characterHexaCoreEquipment =
+      character_hexa_core_equipment?.map(
+        (equipment) => new CharacterHexaMatrixEquipmentDto(equipment),
+      ) ?? [];
   }
 }
 
 /**
  * 연결된 HEXA 스킬 정보
  */
-export class CharacterHexaMatrixEquipmentLinkedSkillDto {
+export class CharacterHexaMatrixEquipmentLinkedSkillDto extends base.CharacterHexaMatrixEquipmentLinkedSkillDto {
   /**
    * HEXA 스킬 명
    */
-  hexaSkillId: string;
+  public override hexaSkillId: string;
 
   constructor(obj: CharacterHexaMatrixEquipmentLinkedSkillBody) {
+    super();
+
     const { hexa_skill_id } = obj;
 
     this.hexaSkillId = hexa_skill_id;
@@ -47,28 +53,30 @@ export class CharacterHexaMatrixEquipmentLinkedSkillDto {
 /**
  * 캐릭터 HEXA 코어 정보
  */
-export class CharacterHexaMatrixEquipmentDto {
+export class CharacterHexaMatrixEquipmentDto extends base.CharacterHexaMatrixEquipmentDto {
   /**
    * 코어 명
    */
-  hexaCoreName: string;
+  public override hexaCoreName: string;
 
   /**
    * 코어 레벨
    */
-  hexaCoreLevel: number;
+  public override hexaCoreLevel: number;
 
   /**
    * 코어 타입
    */
-  hexaCoreType: string;
+  public override hexaCoreType: string;
 
   /**
    * 연결된 스킬 목록
    */
-  linkedSkill: CharacterHexaMatrixEquipmentLinkedSkillDto[];
+  public override linkedSkill: CharacterHexaMatrixEquipmentLinkedSkillDto[];
 
   constructor(obj: CharacterHexaMatrixEquipmentBody) {
+    super();
+
     const { hexa_core_name, hexa_core_level, hexa_core_type, linked_skill } =
       obj;
 

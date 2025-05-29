@@ -1,4 +1,7 @@
-import { TheSeedRankingBody, TheSeedRankingResponseBody } from '../../response/ranking/theSeedRankingBody';
+import {
+  TheSeedRankingBody,
+  TheSeedRankingResponseBody,
+} from '../../response/ranking/theSeedRankingBody';
 
 /**
  * 더 시드 랭킹 정보

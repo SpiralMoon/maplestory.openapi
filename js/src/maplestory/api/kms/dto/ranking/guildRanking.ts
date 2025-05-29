@@ -1,4 +1,7 @@
-import { GuildRankingBody, GuildRankingResponseBody } from '../../response/ranking/guildRankingBody';
+import {
+  GuildRankingBody,
+  GuildRankingResponseBody,
+} from '../../response/ranking/guildRankingBody';
 
 /**
  * 길드 랭킹 정보

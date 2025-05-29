@@ -213,4 +213,4 @@ export type CharacterItemEquipmentMedalShapeBody = {
   medal_shape_changed_name: string;
   medal_shape_changed_icon: string;
   medal_shape_changed_description: string;
-}
+};

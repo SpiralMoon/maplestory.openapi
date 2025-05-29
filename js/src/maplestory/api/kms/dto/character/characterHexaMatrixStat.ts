@@ -1,3 +1,4 @@
+import * as base from '../../../common/dto/character/characterHexaMatrixStat';
 import {
   CharacterHexaMatrixStatBody,
   CharacterHexaMatrixStatCoreBody,
@@ -6,48 +7,50 @@ import {
 /**
  * 캐릭터 HEXA 스탯 코어 정보
  */
-export class CharacterHexaMatrixStatDto {
+export class CharacterHexaMatrixStatDto extends base.CharacterHexaMatrixStatDto {
   /**
    * 조회 기준일
    */
-  date: Date | null;
+  public override date: Date | null;
 
   /**
    * 캐릭터 직업
    */
-  characterClass: string | null;
+  public override characterClass: string | null;
 
   /**
    * HEXA 스탯 I 코어 정보
    */
-  characterHexaStatCore: CharacterHexaMatrixStatCoreDto[];
+  public override characterHexaStatCore: CharacterHexaMatrixStatCoreDto[];
 
   /**
    * HEXA 스탯 II 코어 정보
    */
-  characterHexaStatCore2: CharacterHexaMatrixStatCoreDto[];
+  public override characterHexaStatCore2: CharacterHexaMatrixStatCoreDto[];
 
   /**
    * HEXA 스탯 III 코어 정보
    */
-  characterHexaStatCore3: CharacterHexaMatrixStatCoreDto[];
+  public override characterHexaStatCore3: CharacterHexaMatrixStatCoreDto[];
 
   /**
    * 프리셋 HEXA 스탯 I 코어 정보
    */
-  presetHexaStatCore: CharacterHexaMatrixStatCoreDto[];
+  public override presetHexaStatCore: CharacterHexaMatrixStatCoreDto[];
 
   /**
    * 프리셋 HEXA 스탯 II 코어 정보
    */
-  presetHexaStatCore2: CharacterHexaMatrixStatCoreDto[];
+  public override presetHexaStatCore2: CharacterHexaMatrixStatCoreDto[];
 
   /**
    * 프리셋 HEXA 스탯 III 코어 정보
    */
-  presetHexaStatCore3: CharacterHexaMatrixStatCoreDto[];
+  public override presetHexaStatCore3: CharacterHexaMatrixStatCoreDto[];
 
   constructor(obj: CharacterHexaMatrixStatBody) {
+    super();
+
     const {
       date,
       character_class,
@@ -61,72 +64,80 @@ export class CharacterHexaMatrixStatDto {
 
     this.date = date ? new Date(date) : null;
     this.characterClass = character_class;
-    this.characterHexaStatCore = character_hexa_stat_core?.map(
-      (core) => new CharacterHexaMatrixStatCoreDto(core),
-    ) ?? [];
-    this.characterHexaStatCore2 = character_hexa_stat_core_2?.map(
-      (core) => new CharacterHexaMatrixStatCoreDto(core),
-    ) ?? [];
-    this.characterHexaStatCore3 = character_hexa_stat_core_3?.map(
-      (core) => new CharacterHexaMatrixStatCoreDto(core),
-    ) ?? [];
-    this.presetHexaStatCore = preset_hexa_stat_core?.map(
-      (core) => new CharacterHexaMatrixStatCoreDto(core),
-    ) ?? [];
-    this.presetHexaStatCore2 = preset_hexa_stat_core_2?.map(
-      (core) => new CharacterHexaMatrixStatCoreDto(core),
-    ) ?? [];
-    this.presetHexaStatCore3 = preset_hexa_stat_core_3?.map(
-      (core) => new CharacterHexaMatrixStatCoreDto(core),
-    ) ?? [];
+    this.characterHexaStatCore =
+      character_hexa_stat_core?.map(
+        (core) => new CharacterHexaMatrixStatCoreDto(core),
+      ) ?? [];
+    this.characterHexaStatCore2 =
+      character_hexa_stat_core_2?.map(
+        (core) => new CharacterHexaMatrixStatCoreDto(core),
+      ) ?? [];
+    this.characterHexaStatCore3 =
+      character_hexa_stat_core_3?.map(
+        (core) => new CharacterHexaMatrixStatCoreDto(core),
+      ) ?? [];
+    this.presetHexaStatCore =
+      preset_hexa_stat_core?.map(
+        (core) => new CharacterHexaMatrixStatCoreDto(core),
+      ) ?? [];
+    this.presetHexaStatCore2 =
+      preset_hexa_stat_core_2?.map(
+        (core) => new CharacterHexaMatrixStatCoreDto(core),
+      ) ?? [];
+    this.presetHexaStatCore3 =
+      preset_hexa_stat_core_3?.map(
+        (core) => new CharacterHexaMatrixStatCoreDto(core),
+      ) ?? [];
   }
 }
 
 /**
  * 캐릭터 HEXA 스탯 코어 정보
  */
-export class CharacterHexaMatrixStatCoreDto {
+export class CharacterHexaMatrixStatCoreDto extends base.CharacterHexaMatrixStatCoreDto {
   /**
    * 슬롯 인덱스
    */
-  slotId: string;
+  public override slotId: string;
 
   /**
    * 메인 스탯 명
    */
-  mainStatName: string;
+  public override mainStatName: string;
 
   /**
    * 첫 번째 서브 명
    */
-  subStatName1: string;
+  public override subStatName1: string;
 
   /**
    * 두 번째 서브 명
    */
-  subStatName2: string;
+  public override subStatName2: string;
 
   /**
    * 메인 스탯 레벨
    */
-  mainStatLevel: number;
+  public override mainStatLevel: number;
 
   /**
    * 첫 번째 서브 레벨
    */
-  subStatLevel1: number;
+  public override subStatLevel1: number;
 
   /**
    * 두 번째 서브 레벨
    */
-  subStatLevel2: number;
+  public override subStatLevel2: number;
 
   /**
    * 스탯 코어 등급
    */
-  statGrade: number;
+  public override statGrade: number;
 
   constructor(obj: CharacterHexaMatrixStatCoreBody) {
+    super();
+
     const {
       slot_id,
       main_stat_name,
