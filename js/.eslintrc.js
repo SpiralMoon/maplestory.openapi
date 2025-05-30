@@ -49,15 +49,15 @@ module.exports = {
     {
       // api response object에서 snake case to camel case를 허용하기 위한 off
       files: [
-        './src/maplestory/api/response/**',
-        './src/maplestory/api/dto/**',
+        './src/maplestory/api/*/response/**',
+        './src/maplestory/api/*/dto/**',
       ],
       rules: {
         camelcase: 'off',
       },
     },
     {
-      files: ['./src/maplestory/api/dto/**'],
+      files: ['./src/maplestory/api/*/dto/**'],
       rules: {
         'require-jsdoc': 'off',
       },
