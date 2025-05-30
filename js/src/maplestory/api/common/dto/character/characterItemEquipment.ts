@@ -20,9 +20,6 @@ export abstract class CharacterItemEquipmentTitleDto {
   public abstract isExpired: boolean | null;
   public abstract dateOptionExpire: Date | null;
   public abstract isOptionExpired: boolean | null;
-  public abstract titleShapeName: string | null;
-  public abstract titleShapeIcon: string | null;
-  public abstract titleShapeDescription: string | null;
 }
 
 export abstract class CharacterItemEquipmentAddOptionDto {
