@@ -1,9 +1,37 @@
 import axios, { Axios, AxiosError } from 'axios';
-import { MapleStoryApiError } from './mapleStoryApiError';
-import { MapleStoryErrorBody } from './mapleStoryApiErrorBody';
 import dayjs, { Dayjs } from 'dayjs';
 import timezone from 'dayjs/plugin/timezone';
 import utc from 'dayjs/plugin/utc';
+
+import { CharacterDto } from './dto/character/character';
+import { CharacterAbilityDto } from './dto/character/characterAbility';
+import { CharacterAndroidEquipmentDto } from './dto/character/characterAndroidEquipment';
+import { CharacterBasicDto } from './dto/character/characterBasic';
+import { CharacterBeautyEquipmentDto } from './dto/character/characterBeautyEquipment';
+import { CharacterCashItemEquipmentDto } from './dto/character/characterCashItemEquipment';
+import { CharacterDojangDto } from './dto/character/characterDojang';
+import { CharacterHexaMatrixDto } from './dto/character/characterHexaMatrix';
+import { CharacterHexaMatrixStatDto } from './dto/character/characterHexaMatrixStat';
+import { CharacterHyperStatDto } from './dto/character/characterHyperStat';
+import { CharacterImageDto } from './dto/character/characterImage';
+import { CharacterItemEquipmentDto } from './dto/character/characterItemEquipment';
+import { CharacterLinkSkillDto } from './dto/character/characterLinkSkill';
+import { CharacterPetEquipmentDto } from './dto/character/characterPetEquipment';
+import { CharacterPopularityDto } from './dto/character/characterPopularity';
+import { CharacterPropensityDto } from './dto/character/characterPropensity';
+import { CharacterSetEffectDto } from './dto/character/characterSetEffect';
+import { CharacterSkillDto } from './dto/character/characterSkill';
+import { CharacterStatDto } from './dto/character/characterStat';
+import { CharacterSymbolEquipmentDto } from './dto/character/characterSymbolEquipment';
+import { CharacterVMatrixDto } from './dto/character/characterVMatrix';
+import { GuildDto } from './dto/guild/guild';
+import { GuildBasicDto } from './dto/guild/guildBasic';
+import { UnionDto } from './dto/union/union';
+import { UnionArtifactDto } from './dto/union/unionArtifact';
+import { UnionRaiderDto } from './dto/union/unionRaider';
+import { CharacterImageAction, CharacterImageEmotion, CharacterImageWeaponMotion } from './enum/characterImage';
+import { MapleStoryApiError } from './mapleStoryApiError';
+import { MapleStoryErrorBody } from './mapleStoryApiErrorBody';
 
 dayjs.extend(timezone);
 dayjs.extend(utc);
@@ -55,6 +83,47 @@ export abstract class MapleStoryApi {
       },
     );
   }
+
+  //#region Character Information Retrieval
+
+  public abstract getCharacter(characterName: string): Promise<CharacterDto>;
+  public abstract getCharacterBasic(ocid: string, dateOptions?: DateOptions): Promise<CharacterBasicDto>;
+  public abstract getCharacterImage(ocid: string, imageOptions?: CharacterImageOptions, dateOptions?: DateOptions): Promise<CharacterImageDto>;
+  public abstract getCharacterPopularity(ocid: string, dateOptions?: DateOptions): Promise<CharacterPopularityDto>;
+  public abstract getCharacterStat(ocid: string, dateOptions?: DateOptions): Promise<CharacterStatDto>;
+  public abstract getCharacterHyperStat(ocid: string, dateOptions?: DateOptions): Promise<CharacterHyperStatDto>;
+  public abstract getCharacterPropensity(ocid: string, dateOptions?: DateOptions): Promise<CharacterPropensityDto>;
+  public abstract getCharacterAbility(ocid: string, dateOptions?: DateOptions): Promise<CharacterAbilityDto>;
+  public abstract getCharacterItemEquipment(ocid: string, dateOptions?: DateOptions): Promise<CharacterItemEquipmentDto>;
+  public abstract getCharacterCashItemEquipment(ocid: string, dateOptions?: DateOptions): Promise<CharacterCashItemEquipmentDto>;
+  public abstract getCharacterSymbolEquipment(ocid: string, dateOptions?: DateOptions): Promise<CharacterSymbolEquipmentDto>;
+  public abstract getCharacterSetEffect(ocid: string, dateOptions?: DateOptions): Promise<CharacterSetEffectDto>;
+  public abstract getCharacterBeautyEquipment(ocid: string, dateOptions?: DateOptions): Promise<CharacterBeautyEquipmentDto>;
+  public abstract getCharacterAndroidEquipment(ocid: string, dateOptions?: DateOptions): Promise<CharacterAndroidEquipmentDto>;
+  public abstract getCharacterPetEquipment(ocid: string, dateOptions?: DateOptions): Promise<CharacterPetEquipmentDto>;
+  public abstract getCharacterSkill(ocid: string, characterSkillGrade: string, dateOptions?: DateOptions): Promise<CharacterSkillDto>;
+  public abstract getCharacterLinkSkill(ocid: string, dateOptions?: DateOptions): Promise<CharacterLinkSkillDto>;
+  public abstract getCharacterVMatrix(ocid: string, dateOptions?: DateOptions): Promise<CharacterVMatrixDto>;
+  public abstract getCharacterHexaMatrix(ocid: string, dateOptions?: DateOptions): Promise<CharacterHexaMatrixDto>;
+  public abstract getCharacterHexaMatrixStat(ocid: string, dateOptions?: DateOptions): Promise<CharacterHexaMatrixStatDto>;
+  public abstract getCharacterDojang(ocid: string, dateOptions?: DateOptions): Promise<CharacterDojangDto>;
+
+  //#endregion
+
+  //#region Union Information Retrieval
+
+  public abstract getUnion(ocid: string, dateOptions?: DateOptions): Promise<UnionDto>;
+  public abstract getUnionRaider(ocid: string, dateOptions?: DateOptions): Promise<UnionRaiderDto>;
+  public abstract getUnionArtifact(ocid: string, dateOptions?: DateOptions): Promise<UnionArtifactDto>;
+
+  //#endregion
+
+  //#region Guild Information Retrieval
+
+  public abstract getGuild(guildName: string, worldName: string): Promise<GuildDto>;
+  public abstract getGuildBasic(guildId: string, dateOptions?: DateOptions): Promise<GuildBasicDto>;
+
+  //#endregion
 
   /**
    * API 서버의 데이터 갱신 시간에 따라 데이터가 조회 가능한 최신 날짜를 반환합니다.
@@ -171,4 +240,43 @@ type YMD = {
  * - Date 객체의 offset이 해당 서비스 지역의 offset과 다를 경우 자동으로 변환 됩니다.
  */
 export type DateOptions = YMD | Date;
+
+type CharacterImageOptions = {
+  /**
+   * Character action
+   */
+  action?: CharacterImageAction;
+  /**
+   * Character emotion
+   */
+  emotion?: CharacterImageEmotion;
+  /**
+   * Character weapon motion
+   */
+  wmotion?: CharacterImageWeaponMotion;
+  /**
+   * Character action frame
+   */
+  actionFrame?: number;
+  /**
+   * Character emotion frame
+   */
+  emotionFrame?: number;
+  /**
+   * Horizontal length (corresponding to the background size, 96 (default) ~ 1000)
+   */
+  width?: number;
+  /**
+   * Vertical length (corresponding to the background size, 96 (default) ~ 1000)
+   */
+  height?: number;
+  /**
+   * Horizontal coordinate of the character (coordinate range 0 < x < width, 0 is the left starting point)
+   */
+  x?: number;
+  /**
+   * Vertical coordinate of the character (coordinate range 0 < y < height, 0 is the top starting point)
+   */
+  y?: number;
+};
 

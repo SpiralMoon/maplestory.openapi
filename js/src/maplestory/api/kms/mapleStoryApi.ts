@@ -108,7 +108,7 @@ import * as base from '../common/mapleStoryApi';
 export class MapleStoryApi extends base.MapleStoryApi {
 
   protected override subUrl: string = 'maplestory';
-  
+
   protected override timezoneOffset: number = 540;
 
   public constructor(apiKey: string) {
@@ -126,7 +126,7 @@ export class MapleStoryApi extends base.MapleStoryApi {
    *
    * @param characterName    캐릭터 명
    */
-  public async getCharacter(characterName: string): Promise<CharacterDto> {
+  public override async getCharacter(characterName: string): Promise<CharacterDto> {
     const path = `${this.subUrl}/v1/id`;
     const { data } = await this.client.get<CharacterBody>(path, {
       params: {
@@ -160,7 +160,7 @@ export class MapleStoryApi extends base.MapleStoryApi {
    * @param ocid 캐릭터 식별자
    * @param dateOptions 조회 기준일 (KST)
    */
-  public async getCharacterBasic(
+  public override async getCharacterBasic(
     ocid: string,
     dateOptions?: DateOptions,
   ): Promise<CharacterBasicDto> {
@@ -194,7 +194,7 @@ export class MapleStoryApi extends base.MapleStoryApi {
    * @param imageOptions 캐릭터 외형 파라미터
    * @param dateOptions 조회 기준일 (KST)
    */
-  public async getCharacterImage(
+  public override async getCharacterImage(
     ocid: string,
     imageOptions?: CharacterImageOptions,
     dateOptions?: DateOptions,
@@ -269,7 +269,7 @@ export class MapleStoryApi extends base.MapleStoryApi {
    * @param ocid 캐릭터 식별자
    * @param dateOptions 조회 기준일 (KST)
    */
-  public async getCharacterPopularity(
+  public override async getCharacterPopularity(
     ocid: string,
     dateOptions?: DateOptions,
   ): Promise<CharacterPopularityDto> {
@@ -302,7 +302,7 @@ export class MapleStoryApi extends base.MapleStoryApi {
    * @param ocid 캐릭터 식별자
    * @param dateOptions 조회 기준일 (KST)
    */
-  public async getCharacterStat(
+  public override async getCharacterStat(
     ocid: string,
     dateOptions?: DateOptions,
   ): Promise<CharacterStatDto> {
@@ -335,7 +335,7 @@ export class MapleStoryApi extends base.MapleStoryApi {
    * @param ocid 캐릭터 식별자
    * @param dateOptions 조회 기준일 (KST)
    */
-  public async getCharacterHyperStat(
+  public override async getCharacterHyperStat(
     ocid: string,
     dateOptions?: DateOptions,
   ): Promise<CharacterHyperStatDto> {
@@ -368,7 +368,7 @@ export class MapleStoryApi extends base.MapleStoryApi {
    * @param ocid 캐릭터 식별자
    * @param dateOptions 조회 기준일 (KST)
    */
-  public async getCharacterPropensity(
+  public override async getCharacterPropensity(
     ocid: string,
     dateOptions?: DateOptions,
   ): Promise<CharacterPropensityDto> {
@@ -401,7 +401,7 @@ export class MapleStoryApi extends base.MapleStoryApi {
    * @param ocid 캐릭터 식별자
    * @param dateOptions 조회 기준일 (KST)
    */
-  public async getCharacterAbility(
+  public override async getCharacterAbility(
     ocid: string,
     dateOptions?: DateOptions,
   ): Promise<CharacterAbilityDto> {
@@ -434,7 +434,7 @@ export class MapleStoryApi extends base.MapleStoryApi {
    * @param ocid 캐릭터 식별자
    * @param dateOptions 조회 기준일 (KST)
    */
-  public async getCharacterItemEquipment(
+  public override async getCharacterItemEquipment(
     ocid: string,
     dateOptions?: DateOptions,
   ): Promise<CharacterItemEquipmentDto> {
@@ -467,7 +467,7 @@ export class MapleStoryApi extends base.MapleStoryApi {
    * @param ocid 캐릭터 식별자
    * @param dateOptions 조회 기준일 (KST)
    */
-  public async getCharacterCashItemEquipment(
+  public override async getCharacterCashItemEquipment(
     ocid: string,
     dateOptions?: DateOptions,
   ): Promise<CharacterCashItemEquipmentDto> {
@@ -503,7 +503,7 @@ export class MapleStoryApi extends base.MapleStoryApi {
    * @param ocid 캐릭터 식별자
    * @param dateOptions 조회 기준일 (KST)
    */
-  public async getCharacterSymbolEquipment(
+  public override async getCharacterSymbolEquipment(
     ocid: string,
     dateOptions?: DateOptions,
   ): Promise<CharacterSymbolEquipmentDto> {
@@ -536,7 +536,7 @@ export class MapleStoryApi extends base.MapleStoryApi {
    * @param ocid 캐릭터 식별자
    * @param dateOptions 조회 기준일 (KST)
    */
-  public async getCharacterSetEffect(
+  public override async getCharacterSetEffect(
     ocid: string,
     dateOptions?: DateOptions,
   ): Promise<CharacterSetEffectDto> {
@@ -569,7 +569,7 @@ export class MapleStoryApi extends base.MapleStoryApi {
    * @param ocid 캐릭터 식별자
    * @param dateOptions 조회 기준일 (KST)
    */
-  public async getCharacterBeautyEquipment(
+  public override async getCharacterBeautyEquipment(
     ocid: string,
     dateOptions?: DateOptions,
   ): Promise<CharacterBeautyEquipmentDto> {
@@ -602,7 +602,7 @@ export class MapleStoryApi extends base.MapleStoryApi {
    * @param ocid 캐릭터 식별자
    * @param dateOptions 조회 기준일 (KST)
    */
-  public async getCharacterAndroidEquipment(
+  public override async getCharacterAndroidEquipment(
     ocid: string,
     dateOptions?: DateOptions,
   ): Promise<CharacterAndroidEquipmentDto> {
@@ -638,7 +638,7 @@ export class MapleStoryApi extends base.MapleStoryApi {
    * @param ocid 캐릭터 식별자
    * @param dateOptions 조회 기준일 (KST)
    */
-  public async getCharacterPetEquipment(
+  public override async getCharacterPetEquipment(
     ocid: string,
     dateOptions?: DateOptions,
   ): Promise<CharacterPetEquipmentDto> {
@@ -683,7 +683,7 @@ export class MapleStoryApi extends base.MapleStoryApi {
    *  - 6: 6차 스킬
    *  @param dateOptions 조회 기준일 (KST)
    */
-  public async getCharacterSkill(
+  public override async getCharacterSkill(
     ocid: string,
     characterSkillGrade: string,
     dateOptions?: DateOptions,
@@ -718,7 +718,7 @@ export class MapleStoryApi extends base.MapleStoryApi {
    * @param ocid 캐릭터 식별자
    * @param dateOptions 조회 기준일 (KST)
    */
-  public async getCharacterLinkSkill(
+  public override async getCharacterLinkSkill(
     ocid: string,
     dateOptions?: DateOptions,
   ): Promise<CharacterLinkSkillDto> {
@@ -751,7 +751,7 @@ export class MapleStoryApi extends base.MapleStoryApi {
    * @param ocid 캐릭터 식별자
    * @param dateOptions 조회 기준일 (KST)
    */
-  public async getCharacterVMatrix(
+  public override async getCharacterVMatrix(
     ocid: string,
     dateOptions?: DateOptions,
   ): Promise<CharacterVMatrixDto> {
@@ -784,7 +784,7 @@ export class MapleStoryApi extends base.MapleStoryApi {
    * @param ocid 캐릭터 식별자
    * @param dateOptions 조회 기준일 (KST)
    */
-  public async getCharacterHexaMatrix(
+  public override async getCharacterHexaMatrix(
     ocid: string,
     dateOptions?: DateOptions,
   ): Promise<CharacterHexaMatrixDto> {
@@ -817,7 +817,7 @@ export class MapleStoryApi extends base.MapleStoryApi {
    * @param ocid 캐릭터 식별자
    * @param dateOptions 조회 기준일 (KST)
    */
-  public async getCharacterHexaMatrixStat(
+  public override async getCharacterHexaMatrixStat(
     ocid: string,
     dateOptions?: DateOptions,
   ): Promise<CharacterHexaMatrixStatDto> {
@@ -850,7 +850,7 @@ export class MapleStoryApi extends base.MapleStoryApi {
    * @param ocid 캐릭터 식별자
    * @param dateOptions 조회 기준일 (KST)
    */
-  public async getCharacterDojang(
+  public override async getCharacterDojang(
     ocid: string,
     dateOptions?: DateOptions,
   ): Promise<CharacterDojangDto> {
@@ -887,7 +887,7 @@ export class MapleStoryApi extends base.MapleStoryApi {
    * @param ocid 캐릭터 식별자
    * @param dateOptions 조회 기준일 (KST)
    */
-  public async getUnion(
+  public override async getUnion(
     ocid: string,
     dateOptions?: DateOptions,
   ): Promise<UnionDto> {
@@ -920,7 +920,7 @@ export class MapleStoryApi extends base.MapleStoryApi {
    * @param ocid 캐릭터 식별자
    * @param dateOptions 조회 기준일 (KST)
    */
-  public async getUnionRaider(
+  public override async getUnionRaider(
     ocid: string,
     dateOptions?: DateOptions,
   ): Promise<UnionRaiderDto> {
@@ -953,7 +953,7 @@ export class MapleStoryApi extends base.MapleStoryApi {
    * @param ocid 캐릭터 식별자
    * @param dateOptions 조회 기준일 (KST)
    */
-  public async getUnionArtifact(
+  public override async getUnionArtifact(
     ocid: string,
     dateOptions?: DateOptions,
   ): Promise<UnionArtifactDto> {
@@ -1024,7 +1024,7 @@ export class MapleStoryApi extends base.MapleStoryApi {
    * @param guildName 길드 명
    * @param worldName 월드 명
    */
-  public async getGuild(
+  public override async getGuild(
     guildName: string,
     worldName: string,
   ): Promise<GuildDto> {
@@ -1049,7 +1049,7 @@ export class MapleStoryApi extends base.MapleStoryApi {
    * @param guildId 길드 식별자
    * @param dateOptions 조회 기준일 (KST)
    */
-  public async getGuildBasic(
+  public override async getGuildBasic(
     guildId: string,
     dateOptions?: DateOptions,
   ): Promise<GuildBasicDto> {

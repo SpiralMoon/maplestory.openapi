@@ -85,7 +85,7 @@ export class MapleStoryApi extends base.MapleStoryApi {
    * - This API provides data for MapleStory SEA.
    * @param characterName Character name
    */
-  public async getCharacter(characterName: string): Promise<CharacterDto> {
+  public override async getCharacter(characterName: string): Promise<CharacterDto> {
     const path = `${this.subUrl}/v1/id`;
     const { data } = await this.client.get<CharacterBody>(path, {
       params: {
@@ -106,7 +106,7 @@ export class MapleStoryApi extends base.MapleStoryApi {
    * @param ocid Character identifier
    * @param dateOptions Reference date for query (SGT)
    */
-  public async getCharacterBasic(
+  public override async getCharacterBasic(
     ocid: string,
     dateOptions?: DateOptions,
   ): Promise<CharacterBasicDto> {
@@ -140,7 +140,7 @@ export class MapleStoryApi extends base.MapleStoryApi {
    * @param imageOptions Image options
    * @param dateOptions Reference date for query (SGT)
    */
-  public async getCharacterImage(
+  public override async getCharacterImage(
     ocid: string,
     imageOptions?: CharacterImageOptions,
     dateOptions?: DateOptions,
@@ -215,7 +215,7 @@ export class MapleStoryApi extends base.MapleStoryApi {
    * @param ocid Character identifier
    * @param dateOptions Reference date for query (SGT)
    */
-  public async getCharacterPopularity(
+  public override async getCharacterPopularity(
     ocid: string,
     dateOptions?: DateOptions,
   ): Promise<CharacterPopularityDto> {
@@ -248,7 +248,7 @@ export class MapleStoryApi extends base.MapleStoryApi {
    * @param ocid Character identifier
    * @param dateOptions Reference date for query (SGT)
    */
-  public async getCharacterStat(
+  public override async getCharacterStat(
     ocid: string,
     dateOptions?: DateOptions,
   ): Promise<CharacterStatDto> {
@@ -281,7 +281,7 @@ export class MapleStoryApi extends base.MapleStoryApi {
    * @param ocid Character identifier
    * @param dateOptions Reference date for query (SGT)
    */
-  public async getCharacterHyperStat(
+  public override async getCharacterHyperStat(
     ocid: string,
     dateOptions?: DateOptions,
   ): Promise<CharacterHyperStatDto> {
@@ -314,7 +314,7 @@ export class MapleStoryApi extends base.MapleStoryApi {
    * @param ocid Character identifier
    * @param dateOptions Reference date for query (SGT)
    */
-  public async getCharacterPropensity(
+  public override async getCharacterPropensity(
     ocid: string,
     dateOptions?: DateOptions,
   ): Promise<CharacterPropensityDto> {
@@ -347,7 +347,7 @@ export class MapleStoryApi extends base.MapleStoryApi {
    * @param ocid Character identifier
    * @param dateOptions Reference date for query (SGT)
    */
-  public async getCharacterAbility(
+  public override async getCharacterAbility(
     ocid: string,
     dateOptions?: DateOptions,
   ): Promise<CharacterAbilityDto> {
@@ -380,7 +380,7 @@ export class MapleStoryApi extends base.MapleStoryApi {
    * @param ocid Character identifier
    * @param dateOptions Reference date for query (SGT)
    */
-  public async getCharacterItemEquipment(
+  public override async getCharacterItemEquipment(
     ocid: string,
     dateOptions?: DateOptions,
   ): Promise<CharacterItemEquipmentDto> {
@@ -413,7 +413,7 @@ export class MapleStoryApi extends base.MapleStoryApi {
    * @param ocid Character identifier
    * @param dateOptions Reference date for query (SGT)
    */
-  public async getCharacterCashItemEquipment(
+  public override async getCharacterCashItemEquipment(
     ocid: string,
     dateOptions?: DateOptions,
   ): Promise<CharacterCashItemEquipmentDto> {
@@ -449,7 +449,7 @@ export class MapleStoryApi extends base.MapleStoryApi {
    * @param ocid Character identifier
    * @param dateOptions Reference date for query (SGT)
    */
-  public async getCharacterSymbolEquipment(
+  public override async getCharacterSymbolEquipment(
     ocid: string,
     dateOptions?: DateOptions,
   ): Promise<CharacterSymbolEquipmentDto> {
@@ -482,7 +482,7 @@ export class MapleStoryApi extends base.MapleStoryApi {
    * @param ocid Character identifier
    * @param dateOptions Reference date for query (SGT)
    */
-  public async getCharacterSetEffect(
+  public override async getCharacterSetEffect(
     ocid: string,
     dateOptions?: DateOptions,
   ): Promise<CharacterSetEffectDto> {
@@ -515,7 +515,7 @@ export class MapleStoryApi extends base.MapleStoryApi {
    * @param ocid Character identifier
    * @param dateOptions Reference date for query (SGT)
    */
-  public async getCharacterBeautyEquipment(
+  public override async getCharacterBeautyEquipment(
     ocid: string,
     dateOptions?: DateOptions,
   ): Promise<CharacterBeautyEquipmentDto> {
@@ -548,7 +548,7 @@ export class MapleStoryApi extends base.MapleStoryApi {
    * @param ocid Character identifier
    * @param dateOptions Reference date for query (SGT)
    */
-  public async getCharacterAndroidEquipment(
+  public override async getCharacterAndroidEquipment(
     ocid: string,
     dateOptions?: DateOptions,
   ): Promise<CharacterAndroidEquipmentDto> {
@@ -584,7 +584,7 @@ export class MapleStoryApi extends base.MapleStoryApi {
    * @param ocid Character identifier
    * @param dateOptions Reference date for query (SGT)
    */
-  public async getCharacterPetEquipment(
+  public override async getCharacterPetEquipment(
     ocid: string,
     dateOptions?: DateOptions,
   ): Promise<CharacterPetEquipmentDto> {
@@ -629,7 +629,7 @@ export class MapleStoryApi extends base.MapleStoryApi {
    * - 6: 6th job skills
    *  @param dateOptions Reference date for query (SGT)
    */
-  public async getCharacterSkill(
+  public override async getCharacterSkill(
     ocid: string,
     characterSkillGrade: string,
     dateOptions?: DateOptions,
@@ -664,7 +664,7 @@ export class MapleStoryApi extends base.MapleStoryApi {
    * @param ocid Character identifier
    * @param dateOptions Reference date for query (SGT)
    */
-  public async getCharacterLinkSkill(
+  public override async getCharacterLinkSkill(
     ocid: string,
     dateOptions?: DateOptions,
   ): Promise<CharacterLinkSkillDto> {
@@ -697,7 +697,7 @@ export class MapleStoryApi extends base.MapleStoryApi {
    * @param ocid Character identifier
    * @param dateOptions Reference date for query (SGT)
    */
-  public async getCharacterVMatrix(
+  public override async getCharacterVMatrix(
     ocid: string,
     dateOptions?: DateOptions,
   ): Promise<CharacterVMatrixDto> {
@@ -730,7 +730,7 @@ export class MapleStoryApi extends base.MapleStoryApi {
    * @param ocid Character identifier
    * @param dateOptions Reference date for query (SGT)
    */
-  public async getCharacterHexaMatrix(
+  public override async getCharacterHexaMatrix(
     ocid: string,
     dateOptions?: DateOptions,
   ): Promise<CharacterHexaMatrixDto> {
@@ -763,7 +763,7 @@ export class MapleStoryApi extends base.MapleStoryApi {
    * @param ocid Character identifier
    * @param dateOptions Reference date for query (SGT)
    */
-  public async getCharacterHexaMatrixStat(
+  public override async getCharacterHexaMatrixStat(
     ocid: string,
     dateOptions?: DateOptions,
   ): Promise<CharacterHexaMatrixStatDto> {
@@ -796,7 +796,7 @@ export class MapleStoryApi extends base.MapleStoryApi {
    * @param ocid Character identifier
    * @param dateOptions Reference date for query (SGT)
    */
-  public async getCharacterDojang(
+  public override async getCharacterDojang(
     ocid: string,
     dateOptions?: DateOptions,
   ): Promise<CharacterDojangDto> {
@@ -833,7 +833,7 @@ export class MapleStoryApi extends base.MapleStoryApi {
    * @param ocid Character identifier
    * @param dateOptions Reference date for query (SGT)
    */
-  public async getUnion(
+  public override async getUnion(
     ocid: string,
     dateOptions?: DateOptions,
   ): Promise<UnionDto> {
@@ -866,7 +866,7 @@ export class MapleStoryApi extends base.MapleStoryApi {
    * @param ocid Character identifier
    * @param dateOptions Reference date for query (SGT)
    */
-  public async getUnionRaider(
+  public override async getUnionRaider(
     ocid: string,
     dateOptions?: DateOptions,
   ): Promise<UnionRaiderDto> {
@@ -899,7 +899,7 @@ export class MapleStoryApi extends base.MapleStoryApi {
    * @param ocid Character identifier
    * @param dateOptions Reference date for query (SGT)
    */
-  public async getUnionArtifact(
+  public override async getUnionArtifact(
     ocid: string,
     dateOptions?: DateOptions,
   ): Promise<UnionArtifactDto> {
@@ -936,7 +936,7 @@ export class MapleStoryApi extends base.MapleStoryApi {
    * @param guildName Guild name
    * @param worldName World name
    */
-  public async getGuild(
+  public override async getGuild(
     guildName: string,
     worldName: string,
   ): Promise<GuildDto> {
@@ -961,7 +961,7 @@ export class MapleStoryApi extends base.MapleStoryApi {
    * @param guildId Guild identifier
    * @param dateOptions Reference date for query (SGT)
    */
-  public async getGuildBasic(
+  public override async getGuildBasic(
     guildId: string,
     dateOptions?: DateOptions,
   ): Promise<GuildBasicDto> {
@@ -989,39 +989,39 @@ export class MapleStoryApi extends base.MapleStoryApi {
 
 type CharacterImageOptions = {
   /**
-   * 캐릭터 액션
+   * Character action
    */
   action?: CharacterImageAction;
   /**
-   * 캐릭터 감정표현
+   * Character emotion
    */
   emotion?: CharacterImageEmotion;
   /**
-   * 캐릭터 무기 모션
+   * Character weapon motion
    */
   wmotion?: CharacterImageWeaponMotion;
   /**
-   * 캐릭터 액션 프레임.
+   * Character action frame
    */
   actionFrame?: number;
   /**
-   * 캐릭터 감정표현 프레임
+   * Character emotion frame
    */
   emotionFrame?: number;
   /**
-   * 가로 길이. 배경 크기에 해당함, 96 (default) ~ 1000
+   * Horizontal length (corresponding to the background size, 96 (default) ~ 1000)
    */
   width?: number;
   /**
-   * 세로 길이. 배경 크기에 해당함, 96 (default) ~ 1000
+   * Vertical length (corresponding to the background size, 96 (default) ~ 1000)
    */
   height?: number;
   /**
-   * 캐릭터의 가로 좌표
+   * Horizontal coordinate of the character (coordinate range 0 < x < width, 0 is the left starting point)
    */
   x?: number;
   /**
-   * 캐릭터의 세로 좌표.
+   * Vertical coordinate of the character (coordinate range 0 < y < height, 0 is the top starting point)
    */
   y?: number;
 };
