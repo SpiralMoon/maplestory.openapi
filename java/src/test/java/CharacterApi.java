@@ -1,5 +1,5 @@
-import dev.spiralmoon.maplestory.api.MapleStoryApi;
-import dev.spiralmoon.maplestory.api.dto.character.*;
+import dev.spiralmoon.maplestory.api.kms.MapleStoryApi;
+import dev.spiralmoon.maplestory.api.kms.dto.character.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
