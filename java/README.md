@@ -35,9 +35,8 @@ implementation 'dev.spiralmoon:maplestory-openapi:+'
 아래 코드는 닉네임을 바탕으로 특정 캐릭터의 식별자를 조회한 후 캐릭터의 기본 정보를 조회하는 예시입니다.
 
 ```java
-import dev.spiralmoon.maplestory.api.MapleStoryApi;
-import dev.spiralmoon.maplestory.api.MapleStoryApiException;
-import dev.spiralmoon.maplestory.api.dto.*;
+import dev.spiralmoon.maplestory.api.kms.MapleStoryApi;
+import dev.spiralmoon.maplestory.api.common.MapleStoryApiException;
 
 class Sample {
     public static void main(String[] args) {
