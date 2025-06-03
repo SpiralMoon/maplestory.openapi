@@ -1,22 +1,27 @@
 from datetime import datetime
 from pydantic import BaseModel
 
-class UnionChampionBadgeInfo(BaseModel):
-    """유니온 챔피언 휘장 정보
 
-    stat(str): 유니온 챔피언 휘장 효과
+class UnionChampionBadgeInfo(BaseModel):
+    """
+    유니온 챔피언 휘장 정보
+
+    Attributes:
+        stat (str): 유니온 챔피언 휘장 효과
     """
     stat: str
 
 
 class UnionChampionInfo(BaseModel):
-    """유니온 챔피언 상세 정보
+    """
+    유니온 챔피언 상세 정보
 
-    champion_name(str): 유니온 챔피언 캐릭터 명
-    champion_slot(int): 유니온 챔피언 슬롯
-    champion_grade(str): 유니온 챔피언 등급
-    champion_class(str): 유니온 챔피언 캐릭터의 직업
-    champion_badge_info(list[UnionChampionBadgeInfo]): 챔피언 휘장 효과
+    Attributes:
+        champion_name (str): 유니온 챔피언 캐릭터 명
+        champion_slot (int): 유니온 챔피언 슬롯
+        champion_grade (str): 유니온 챔피언 등급
+        champion_class (str): 유니온 챔피언 캐릭터의 직업
+        champion_badge_info (list[UnionChampionBadgeInfo]): 챔피언 휘장 효과 목록
     """
     champion_name: str
     champion_slot: int
@@ -26,11 +31,13 @@ class UnionChampionInfo(BaseModel):
 
 
 class UnionChampion(BaseModel):
-    """유니온 챔피언 정보
+    """
+    유니온 챔피언 정보
 
-    date(datetime): 조회 기준일
-    union_champion(list[UnionArtifactEffect]): 유니온 챔피언 정보
-    champion_badge_total_info(list[UnionArtifactCrystal]): 유니온 챔피언 휘장 정보
+    Attributes:
+        date (datetime or None): 조회 기준일
+        union_champion (list[UnionChampionInfo]): 유니온 챔피언 정보
+        champion_badge_total_info (list[UnionChampionBadgeInfo]): 유니온 챔피언 휘장 정보
     """
     date: datetime | None
     union_champion: list[UnionChampionInfo]

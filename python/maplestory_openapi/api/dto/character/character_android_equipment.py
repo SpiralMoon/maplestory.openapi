@@ -3,12 +3,14 @@ from pydantic import BaseModel, model_validator
 
 
 class CharacterAndroidEquipmentHair(BaseModel):
-    """안드로이드 헤어 정보
+    """
+    안드로이드 헤어 정보
 
-    hair_name(str): 안드로이드 헤어 명
-    base_color(str): 안드로이드 헤어 베이스 컬러
-    mix_color(str): 안드로이드 헤어 믹스 컬러
-    mix_rate(str): 안드로이드 헤어 믹스 컬러의 염색 비율
+    Attributes:
+        hair_name (str or None): 안드로이드 헤어 명
+        base_color (str or None): 안드로이드 헤어 베이스 컬러
+        mix_color (str or None): 안드로이드 헤어 믹스 컬러
+        mix_rate (str): 안드로이드 헤어 믹스 컬러의 염색 비율
     """
     hair_name: str | None
     base_color: str | None
@@ -101,19 +103,22 @@ class CharacterAndroidCashItemEquipmentOption(BaseModel):
 
 
 class CharacterAndroidCashItemEquipment(BaseModel):
-    """안드로이드 캐시 아이템 장착 정보
-    cash_item_equipment_part(str): 안드로이드 캐시 아이템 부위 명
-    cash_item_equipment_slot(str): 안드로이드 캐시 아이템 슬롯 위치
-    cash_item_name(str): 안드로이드 캐시 아이템 명
-    cash_item_icon(str): 안드로이드 캐시 아이템 아이콘
-    cash_item_description(str): 안드로이드 캐시 아이템 설명
-    cash_item_option(list[CharacterAndroidCashItemEquipmentOption]): 안드로이드 캐시 아이템 옵션
-    date_expire(datetime): 안드로이드 캐시 아이템 유효 기간 (KST)
-    is_option_expired(bool): 안드로이드 캐시 아이템 유효 기간 만료 여부
-    date_option_expire(datetime): 안드로이드 캐시 아이템 옵션 유효 기간 (KST, 시간 단위 데이터로 분은 일괄 0으로 표기)
-    is_option_expired(bool): 안드로이드 캐시 아이템 옵션 유효 기간 만료 여부
-    cash_item_label(str): 안드로이드 캐시 아이템 라벨 정보 (스페셜라벨, 레드라벨, 블랙라벨, 마스터라벨)
-    cash_item_coloring_prism(CharacterAndroidCashItemEquipmentColoringPrism): 안드로이드 캐시 아이템 컬러링프리즘 정보
+    """
+    안드로이드 캐시 아이템 장착 정보
+
+    Attributes:
+        cash_item_equipment_part (str): 안드로이드 캐시 아이템 부위 명
+        cash_item_equipment_slot (str): 안드로이드 캐시 아이템 슬롯 위치
+        cash_item_name (str): 안드로이드 캐시 아이템 명
+        cash_item_icon (str): 안드로이드 캐시 아이템 아이콘
+        cash_item_description (str or None): 안드로이드 캐시 아이템 설명
+        cash_item_option (list[CharacterAndroidCashItemEquipmentOption]): 안드로이드 캐시 아이템 옵션
+        date_expire (datetime or None): 안드로이드 캐시 아이템 유효 기간 (KST)
+        is_expired (bool): 안드로이드 캐시 아이템 유효 기간 만료 여부
+        date_option_expire (datetime or None): 안드로이드 캐시 아이템 옵션 유효 기간 (KST)
+        is_option_expired (bool): 안드로이드 캐시 아이템 옵션 유효 기간 만료 여부
+        cash_item_label (str or None): 안드로이드 캐시 아이템 라벨 정보
+        cash_item_coloring_prism (CharacterAndroidCashItemEquipmentColoringPrism or None): 컬러링프리즘 정보
     """
     cash_item_equipment_part: str
     cash_item_equipment_slot: str
@@ -146,26 +151,28 @@ class CharacterAndroidCashItemEquipment(BaseModel):
 
 
 class CharacterAndroidEquipment(BaseModel):
-    """안드로이드 장비 정보
+    """
+    안드로이드 장비 정보
 
-    date(datetime): 조회 기준일 (KST)
-    android_name(str): 안드로이드 명
-    android_nickname(str): 안드로이드 닉네임
-    android_icon(str): 안드로이드 아이콘
-    android_description(str): 안드로이드 아이템 설명
-    android_hair(CharacterAndroidEquipmentHair): 안드로이드 헤어 정보
-    android_face(CharacterAndroidEquipmentFace): 안드로이드 성형 정보
-    android_skin(CharacterAndroidEquipmentSkin): 안드로이드 피부 정보
-    android_cash_item_equipment(list[CharacterAndroidCashItemEquipment]): 안드로이드 캐시 아이템 장착 정보
-    android_ear_sensor_clip_flag(str): 안드로이드 이어센서 클립 적용 여부
-    android_gender(str): 안드로이드 성별
-    android_grade(str): 안드로이드 등급
-    android_non_humanoid_flag(str): 비인간형 안드로이드 여부
-    android_shop_usable_flag(str): 잡화상점 기능 이용 가능 여부
-    preset_no(int): 적용 중인 장비 프리셋 번호
-    android_preset_1(CharacterAndroidEquipmentPreset): 1번 프리셋 안드로이드 정보
-    android_preset_2(CharacterAndroidEquipmentPreset): 2번 프리셋 안드로이드 정보
-    android_preset_3(CharacterAndroidEquipmentPreset): 3번 프리셋 안드로이드 정보
+    Attributes:
+        date (datetime or None): 조회 기준일 (KST)
+        android_name (str or None): 안드로이드 명
+        android_nickname (str or None): 안드로이드 닉네임
+        android_icon (str or None): 안드로이드 아이콘
+        android_description (str or None): 안드로이드 아이템 설명
+        android_hair (CharacterAndroidEquipmentHair or None): 안드로이드 헤어 정보
+        android_face (CharacterAndroidEquipmentFace or None): 안드로이드 성형 정보
+        android_skin (CharacterAndroidEquipmentSkin or None): 안드로이드 피부 정보
+        android_cash_item_equipment (list[CharacterAndroidCashItemEquipment]): 캐시 아이템 장착 정보
+        android_ear_sensor_clip_flag (str or None): 이어센서 클립 적용 여부
+        android_gender (str or None): 안드로이드 성별
+        android_grade (str or None): 안드로이드 등급
+        android_non_humanoid_flag (str or None): 비인간형 여부
+        android_shop_usable_flag (str or None): 잡화상점 기능 이용 가능 여부
+        preset_no (int or None): 적용 중인 장비 프리셋 번호
+        android_preset_1 (CharacterAndroidEquipmentPreset or None): 1번 프리셋 정보
+        android_preset_2 (CharacterAndroidEquipmentPreset or None): 2번 프리셋 정보
+        android_preset_3 (CharacterAndroidEquipmentPreset or None): 3번 프리셋 정보
     """
     date: datetime | None
     android_name: str | None

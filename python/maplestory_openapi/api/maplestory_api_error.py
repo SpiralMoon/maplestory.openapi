@@ -7,7 +7,8 @@ class MapleStoryApiError(BaseModel):
 
 
 class MapleStoryApiException(Exception):
-    """MapleStory API Exception
+    """
+    MapleStory API Exception
 
     https://openapi.nexon.com/guide/request-api/#error-code-table
     """

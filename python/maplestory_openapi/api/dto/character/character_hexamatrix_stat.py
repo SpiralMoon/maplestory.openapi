@@ -4,16 +4,18 @@ from pydantic import BaseModel, model_validator
 
 
 class CharacterHexaMatrixStatCore(BaseModel):
-    """HEXA 코어 스탯 정보
+    """
+    HEXA 코어 스탯 정보
 
-    slot_id(str): 슬롯 인덱스
-    main_stat_name(str): 메인 스탯 명
-    sub_stat_name_1(str): 첫 번째 서브 명
-    sub_stat_name_2(str): 두 번째 서브 명
-    main_stat_level(int): 메인 스탯 레벨
-    sub_stat_level_1(int): 첫 번째 서브 레벨
-    sub_stat_level_2(int): 두 번째 서브 레벨
-    stat_grade(int): 스탯 코어 등급
+    Attributes:
+        slot_id (str): 슬롯 인덱스
+        main_stat_name (str): 메인 스탯 명
+        sub_stat_name_1 (str): 첫 번째 서브 명
+        sub_stat_name_2 (str): 두 번째 서브 명
+        main_stat_level (int): 메인 스탯 레벨
+        sub_stat_level_1 (int): 첫 번째 서브 레벨
+        sub_stat_level_2 (int): 두 번째 서브 레벨
+        stat_grade (int): 스탯 코어 등급
     """
     slot_id: str
     main_stat_name: str
@@ -26,16 +28,18 @@ class CharacterHexaMatrixStatCore(BaseModel):
 
 
 class CharacterHexaMatrixStat(BaseModel):
-    """HEXA 코어 스탯
+    """
+    HEXA 코어 스탯 정보
 
-    date(datetime): 조회 기준일 (KST, 일 단위 데이터로 시, 분은 일괄 0으로 표기)
-    character_class(str): 캐릭터 직업
-    character_hexa_stat_core(list[CharacterHexaMatrixStatCore]): HEXA 스탯 I 코어 정보
-    character_hexa_stat_core_2(list[CharacterHexaMatrixStatCore]): HEXA 스탯 II 코어 정보
-    character_hexa_stat_core_3(list[CharacterHexaMatrixStatCore]): HEXA 스탯 III 코어 정보
-    preset_hexa_stat_core(list[CharacterHexaMatrixStatCore]): 프리셋 HEXA 스탯 I 코어 정보
-    preset_hexa_stat_core_2(list[CharacterHexaMatrixStatCore]): 프리셋 HEXA 스탯 II 코어 정보
-    preset_hexa_stat_core_3(list[CharacterHexaMatrixStatCore]): 프리셋 HEXA 스탯 III 코어 정보
+    Attributes:
+        date (datetime or None): 조회 기준일 (KST, 일 단위 데이터로 시, 분은 일괄 0으로 표기)
+        character_class (str or None): 캐릭터 직업
+        character_hexa_stat_core (list[CharacterHexaMatrixStatCore]): HEXA 스탯 I 코어 정보
+        character_hexa_stat_core_2 (list[CharacterHexaMatrixStatCore]): HEXA 스탯 II 코어 정보
+        character_hexa_stat_core_3 (list[CharacterHexaMatrixStatCore]): HEXA 스탯 III 코어 정보
+        preset_hexa_stat_core (list[CharacterHexaMatrixStatCore]): 프리셋 HEXA 스탯 I 코어 정보
+        preset_hexa_stat_core_2 (list[CharacterHexaMatrixStatCore]): 프리셋 HEXA 스탯 II 코어 정보
+        preset_hexa_stat_core_3 (list[CharacterHexaMatrixStatCore]): 프리셋 HEXA 스탯 III 코어 정보
     """
     date: datetime | None
     character_class: str | None
