@@ -19,12 +19,14 @@ class CharacterAndroidEquipmentHair(BaseModel):
 
 
 class CharacterAndroidEquipmentFace(BaseModel):
-    """안드로이드 성형 정보
+    """
+    안드로이드 성형 정보
 
-    face_name(str): 안드로이드 성형 명
-    base_color(str): 안드로이드 성형 베이스 컬러
-    mix_color(str): 안드로이드 성형 믹스 컬러
-    mix_rate(str): 안드로이드 성형 믹스 컬러의 염색 비율
+    Attributes:
+        face_name(str): 안드로이드 성형 명
+        base_color(str): 안드로이드 성형 베이스 컬러
+        mix_color(str): 안드로이드 성형 믹스 컬러
+        mix_rate(str): 안드로이드 성형 믹스 컬러의 염색 비율
     """
     face_name: str | None
     base_color: str | None
@@ -33,7 +35,8 @@ class CharacterAndroidEquipmentFace(BaseModel):
 
 
 class CharacterAndroidEquipmentSkin(BaseModel):
-    """안드로이드 피부 정보
+    """
+    안드로이드 피부 정보
 
     skin_name(str): 피부 명
     color_style(str): 색상 계열
@@ -49,20 +52,22 @@ class CharacterAndroidEquipmentSkin(BaseModel):
 
 
 class CharacterAndroidEquipmentPreset(BaseModel):
-    """안드로이드 프리셋 정보
+    """
+    안드로이드 프리셋 정보
 
-    android_name(str): 안드로이드 명
-    android_nickname(str): 안드로이드 닉네임
-    android_icon(str): 안드로이드 아이콘
-    android_description(str): 안드로이드 아이템 설명
-    android_gender(str): 안드로이드 성별
-    android_grade(str): 안드로이드 등급
-    android_hair(CharacterAndroidEquipmentHair): 안드로이드 헤어 정보
-    android_face(CharacterAndroidEquipmentFace): 안드로이드 성형 정보
-    android_skin(CharacterAndroidEquipmentSkin): 안드로이드 피부 정보
-    android_ear_sensor_clip_flag(str): 안드로이드 이어센서 클립 적용 여부
-    android_non_humanoid_flag(str): 비인간형 안드로이드 여부
-    android_shop_usable_flag(str): 잡화상점 기능 이용 가능 여부
+    Attributes:
+        android_name(str): 안드로이드 명
+        android_nickname(str): 안드로이드 닉네임
+        android_icon(str): 안드로이드 아이콘
+        android_description(str): 안드로이드 아이템 설명
+        android_gender(str): 안드로이드 성별
+        android_grade(str): 안드로이드 등급
+        android_hair(CharacterAndroidEquipmentHair): 안드로이드 헤어 정보
+        android_face(CharacterAndroidEquipmentFace): 안드로이드 성형 정보
+        android_skin(CharacterAndroidEquipmentSkin): 안드로이드 피부 정보
+        android_ear_sensor_clip_flag(str): 안드로이드 이어센서 클립 적용 여부
+        android_non_humanoid_flag(str): 비인간형 안드로이드 여부
+        android_shop_usable_flag(str): 잡화상점 기능 이용 가능 여부
     """
     android_name: str
     android_nickname: str
@@ -79,12 +84,14 @@ class CharacterAndroidEquipmentPreset(BaseModel):
 
 
 class CharacterAndroidCashItemEquipmentColoringPrism(BaseModel):
-    """안드로이드 캐시아이템 컬러링프리즘 정보
+    """
+    안드로이드 캐시아이템 컬러링프리즘 정보
 
-    color_range(str): 컬러링프리즘 색상 범위
-    hue(int): 컬러링프리즘 색조
-    saturation(int): 컬러링프리즘 채도
-    value(int): 컬러링프리즘 명도
+    Attributes:
+        color_range(str): 컬러링프리즘 색상 범위
+        hue(int): 컬러링프리즘 색조
+        saturation(int): 컬러링프리즘 채도
+        value(int): 컬러링프리즘 명도
     """
     color_range: str
     hue: int
@@ -93,10 +100,12 @@ class CharacterAndroidCashItemEquipmentColoringPrism(BaseModel):
 
 
 class CharacterAndroidCashItemEquipmentOption(BaseModel):
-    """안드로이드 캐시아이템 옵션
+    """
+    안드로이드 캐시아이템 옵션
 
-    option_type(str): 옵션 타입
-    option_value(str): 옵션 값
+    Attributes:
+        option_type(str): 옵션 타입
+        option_value(str): 옵션 값
     """
     option_type: str
     option_value: str
