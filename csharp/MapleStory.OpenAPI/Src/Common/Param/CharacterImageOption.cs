@@ -1,54 +1,51 @@
-﻿using MapleStory.OpenAPI.Dto;
+﻿using MapleStory.OpenAPI.Common.Enum;
 
-namespace MapleStory.OpenAPI.Param
+namespace MapleStory.OpenAPI.Common.Param
 {
-    /// <summary>
-    /// 캐릭터 외형 이미지 파라미터
-    /// </summary>
     public class CharacterImageOption
     {
         /// <summary>
-        /// 캐릭터 액션
+        /// Character action
         /// </summary>
         public CharacterImageAction Action { get; set; } = CharacterImageAction.Stand1;
 
         /// <summary>
-        /// 캐릭터 감정표현
+        /// Character emotion
         /// </summary>
         public CharacterImageEmotion Emotion { get; set; } = CharacterImageEmotion.Default;
 
         /// <summary>
-        /// 캐릭터 무기 모션
+        /// Character weapon motion
         /// </summary>
         public CharacterImageWeaponMotion Wmotion { get; set; } = CharacterImageWeaponMotion.Default;
 
         /// <summary>
-        /// 캐릭터 액션 프레임
+        /// Character action frame
         /// </summary>
         public int ActionFrame { get; set; } = 0;
 
         /// <summary>
-        /// 캐릭터 감정표현 프레임
+        /// Character emotion frame
         /// </summary>
         public int EmotionFrame { get; set; } = 0;
 
         /// <summary>
-        /// 가로 길이. 배경 크기에 해당함, 96 (default) ~ 1000
+        /// Horizontal length (corresponding to the background size, 96 (default) ~ 1000)
         /// </summary>
         public int Width { get; set; } = 96;
 
         /// <summary>
-        /// 세로 길이. 배경 크기에 해당함, 96 (default) ~ 1000
+        /// Vertical length (corresponding to the background size, 96 (default) ~ 1000)
         /// </summary>
         public int Height { get; set; } = 96;
 
         /// <summary>
-        ///  캐릭터의 가로 좌표
+        /// Horizontal coordinate of the character (coordinate range 0 < x < width, 0 is the left starting point)
         /// </summary>
         public int? X { get; set; }
 
         /// <summary>
-        ///  캐릭터의 세로 좌표
+        /// Vertical coordinate of the character (coordinate range 0 < y < height, 0 is the top starting point)
         /// </summary>
         public int? Y { get; set; }
     }

@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace MapleStory.OpenAPI
+namespace MapleStory.OpenAPI.Common
 {
     internal class MapleStoryAPIErrorBody
     {

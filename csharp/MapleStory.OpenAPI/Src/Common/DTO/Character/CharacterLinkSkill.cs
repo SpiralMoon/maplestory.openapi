@@ -4,14 +4,14 @@
     {
         public abstract DateTimeOffset? Date { get; set; }
         public abstract string? CharacterClass { get; set; }
-        public abstract List<CharacterLinkSkillInfoDTO> CharacterLinkSkill { get; set; }
-        public abstract List<CharacterLinkSkillInfoDTO> CharacterLinkSkillPreset1 { get; set; }
-        public abstract List<CharacterLinkSkillInfoDTO> CharacterLinkSkillPreset2 { get; set; }
-        public abstract List<CharacterLinkSkillInfoDTO> CharacterLinkSkillPreset3 { get; set; }
-        public abstract CharacterLinkSkillInfoDTO? CharacterOwnedLinkSkill { get; set; }
-        public abstract CharacterLinkSkillInfoDTO? CharacterOwnedLinkSkillPreset1 { get; set; }
-        public abstract CharacterLinkSkillInfoDTO? CharacterOwnedLinkSkillPreset2 { get; set; }
-        public abstract CharacterLinkSkillInfoDTO? CharacterOwnedLinkSkillPreset3 { get; set; }
+        public abstract List<TCharacterLinkSkillInfo> CharacterLinkSkill { get; set; }
+        public abstract List<TCharacterLinkSkillInfo> CharacterLinkSkillPreset1 { get; set; }
+        public abstract List<TCharacterLinkSkillInfo> CharacterLinkSkillPreset2 { get; set; }
+        public abstract List<TCharacterLinkSkillInfo> CharacterLinkSkillPreset3 { get; set; }
+        public abstract TCharacterLinkSkillInfo? CharacterOwnedLinkSkill { get; set; }
+        public abstract TCharacterLinkSkillInfo? CharacterOwnedLinkSkillPreset1 { get; set; }
+        public abstract TCharacterLinkSkillInfo? CharacterOwnedLinkSkillPreset2 { get; set; }
+        public abstract TCharacterLinkSkillInfo? CharacterOwnedLinkSkillPreset3 { get; set; }
     }
 
     public abstract class CharacterLinkSkillDTO : CharacterLinkSkillDTO<CharacterLinkSkillInfoDTO>

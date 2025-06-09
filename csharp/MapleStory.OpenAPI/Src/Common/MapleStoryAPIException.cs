@@ -1,4 +1,4 @@
-﻿namespace MapleStory.OpenAPI
+﻿namespace MapleStory.OpenAPI.Common
 {
     /// <summary>
     /// MapleStory OpenAPI exception.
@@ -12,16 +12,16 @@
 
         internal MapleStoryAPIException(MapleStoryAPIErrorCode errorCode, string message): base(message)
         {
-            this.Message = message;
-            this.ErrorCode = errorCode;
+            Message = message;
+            ErrorCode = errorCode;
         }
 
         internal MapleStoryAPIException(MapleStoryAPIErrorBody errorBody) : base(errorBody.Error.Message)
         {
             var error = errorBody.Error;
 
-            this.Message = error.Message;
-            this.ErrorCode = FromString(error.Name);
+            Message = error.Message;
+            ErrorCode = FromString(error.Name);
         }
 
         internal static MapleStoryAPIErrorCode FromString(string name)
