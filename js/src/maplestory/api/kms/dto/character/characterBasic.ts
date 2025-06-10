@@ -1,0 +1,127 @@
+import * as base from '../../../common/dto/character/characterBasic';
+import { CharacterBasicBody } from '../../response/character/characterBasicBody';
+
+/**
+ * 캐릭터 기본 정보
+ */
+export class CharacterBasicDto extends base.CharacterBasicDto {
+  /**
+   * 조회 기준일
+   */
+  public override date: Date | null;
+
+  /**
+   * 캐릭터 명
+   */
+  public override characterName: string;
+
+  /**
+   * 월드 명
+   */
+  public override worldName: string;
+
+  /**
+   * 캐릭터 성별
+   */
+  public override characterGender: string;
+
+  /**
+   * 캐릭터 직업
+   */
+  public override characterClass: string;
+
+  /**
+   * 캐릭터 전직 차수
+   */
+  public override characterClassLevel: string;
+
+  /**
+   * 캐릭터 레벨
+   */
+  public override characterLevel: number;
+
+  /**
+   * 현재 레벨에서 보유한 경험치
+   */
+  public override characterExp: number;
+
+  /**
+   * 현재 레벨에서 경험치 퍼센트
+   */
+  public override characterExpRate: string;
+
+  /**
+   * 캐릭터 소속 길드 명
+   */
+  public override characterGuildName: string | null;
+
+  /**
+   * 캐릭터 외형 이미지
+   */
+  public override characterImage: string;
+
+  /**
+   * 캐릭터 생성일
+   */
+  public override characterDateCreate: Date;
+
+  /**
+   * 최근 7일간 접속 여부
+   */
+  public override accessFlag: 'true' | 'false';
+
+  /**
+   * 해방 퀘스트 완료 여부
+   */
+  public override liberationQuestClearFlag: 'true' | 'false';
+
+  constructor(obj: CharacterBasicBody) {
+    super();
+
+    const {
+      date,
+      character_name,
+      world_name,
+      character_gender,
+      character_class,
+      character_class_level,
+      character_level,
+      character_exp,
+      character_exp_rate,
+      character_guild_name,
+      character_image,
+      character_date_create,
+      access_flag,
+      liberation_quest_clear_flag,
+    } = obj;
+
+    this.date = date ? new Date(date) : null;
+    this.characterName = character_name;
+    this.worldName = world_name;
+    this.characterGender = character_gender;
+    this.characterClass = character_class;
+    this.characterClassLevel = character_class_level;
+    this.characterLevel = character_level;
+    this.characterExp = character_exp;
+    this.characterExpRate = character_exp_rate;
+    this.characterGuildName = character_guild_name;
+    this.characterImage = character_image;
+    this.characterDateCreate = new Date(character_date_create);
+    this.accessFlag = access_flag;
+    this.liberationQuestClearFlag = liberation_quest_clear_flag;
+  }
+
+  /**
+   * 최근 7일간 접속 여부
+   */
+  public override get isAccessFlag() {
+    return super.isAccessFlag;
+  }
+
+  /**
+   * 해방 퀘스트 완료 여부
+   */
+  public override get isLiberationQuestClearFlag() {
+    return super.isLiberationQuestClearFlag;
+  }
+}

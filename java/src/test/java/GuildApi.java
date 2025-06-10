@@ -1,5 +1,6 @@
-import dev.spiralmoon.maplestory.api.MapleStoryApi;
-import dev.spiralmoon.maplestory.api.dto.guild.*;
+import dev.spiralmoon.maplestory.api.kms.MapleStoryApi;
+import dev.spiralmoon.maplestory.api.kms.dto.guild.GuildBasicDTO;
+import dev.spiralmoon.maplestory.api.kms.dto.guild.GuildDTO;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

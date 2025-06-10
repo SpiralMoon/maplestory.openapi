@@ -1,5 +1,7 @@
-import dev.spiralmoon.maplestory.api.MapleStoryApi;
-import dev.spiralmoon.maplestory.api.dto.history.*;
+import dev.spiralmoon.maplestory.api.kms.MapleStoryApi;
+import dev.spiralmoon.maplestory.api.kms.dto.history.CubeHistoryResponseDTO;
+import dev.spiralmoon.maplestory.api.kms.dto.history.PotentialHistoryResponseDTO;
+import dev.spiralmoon.maplestory.api.kms.dto.history.StarforceHistoryResponseDTO;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

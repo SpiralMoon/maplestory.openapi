@@ -35,9 +35,8 @@ Before using the library, register your application and obtain an **api key** fr
 Below is an example code that retrieves the identifier of a specific character based on the nickname and then fetches the basic information of that character.
 
 ```java
-import dev.spiralmoon.maplestory.api.MapleStoryApi;
-import dev.spiralmoon.maplestory.api.MapleStoryApiException;
-import dev.spiralmoon.maplestory.api.dto.*;
+import dev.spiralmoon.maplestory.api.kms.MapleStoryApi;
+import dev.spiralmoon.maplestory.api.common.MapleStoryApiException;
 
 class Sample {
     public static void main(String[] args) {

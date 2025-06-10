@@ -1,0 +1,54 @@
+import { MapleStoryErrorBody } from './mapleStoryApiErrorBody';
+
+/**
+ * MapleStory OpenAPI error.<br>
+ * Please refer to <a href="https://openapi.nexon.com/guide/request-api/">MapleStory API guide</a> for the error details.
+ */
+export class MapleStoryApiError extends Error {
+  readonly name = 'MapleStoryApiError';
+
+  readonly errorCode: MapleStoryApiErrorCode;
+
+  readonly message: string;
+
+  constructor(errorBody: MapleStoryErrorBody) {
+    const { name, message } = errorBody.error;
+
+    super(message);
+
+    this.errorCode = ERROR_MAP[name];
+    this.message = message;
+  }
+}
+
+/**
+ * MapleStory OpenAPI error codes.<br>
+ * Please refer to <a href="https://openapi.nexon.com/guide/request-api/">MapleStory API guide</a> for the error code details.
+ */
+export enum MapleStoryApiErrorCode {
+  OPENAPI00001,
+  OPENAPI00002,
+  OPENAPI00003,
+  OPENAPI00004,
+  OPENAPI00005,
+  OPENAPI00006,
+  OPENAPI00007,
+  OPENAPI00009,
+  OPENAPI00010,
+  OPENAPI00011,
+}
+
+const ERROR_MAP: {
+  [key: string]: MapleStoryApiErrorCode;
+} = {
+  ['OPENAPI00001']: MapleStoryApiErrorCode.OPENAPI00001,
+  ['OPENAPI00002']: MapleStoryApiErrorCode.OPENAPI00002,
+  ['OPENAPI00003']: MapleStoryApiErrorCode.OPENAPI00003,
+  ['OPENAPI00004']: MapleStoryApiErrorCode.OPENAPI00004,
+  ['OPENAPI00005']: MapleStoryApiErrorCode.OPENAPI00005,
+  ['OPENAPI00006']: MapleStoryApiErrorCode.OPENAPI00006,
+  ['OPENAPI00007']: MapleStoryApiErrorCode.OPENAPI00007,
+  ['OPENAPI00009']: MapleStoryApiErrorCode.OPENAPI00009,
+  ['OPENAPI00010']: MapleStoryApiErrorCode.OPENAPI00010,
+  ['OPENAPI00011']: MapleStoryApiErrorCode.OPENAPI00011,
+};

@@ -1,5 +1,8 @@
-import dev.spiralmoon.maplestory.api.MapleStoryApi;
-import dev.spiralmoon.maplestory.api.dto.union.*;
+import dev.spiralmoon.maplestory.api.kms.MapleStoryApi;
+import dev.spiralmoon.maplestory.api.kms.dto.union.UnionArtifactDTO;
+import dev.spiralmoon.maplestory.api.kms.dto.union.UnionChampionDTO;
+import dev.spiralmoon.maplestory.api.kms.dto.union.UnionDTO;
+import dev.spiralmoon.maplestory.api.kms.dto.union.UnionRaiderDTO;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
