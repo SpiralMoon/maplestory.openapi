@@ -23,8 +23,19 @@
   "author": "SpiralMoon",
   "exports": {
     ".": {
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.js"
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js",
+      "types": "./types/index.d.ts"
+    },
+    "./kms": {
+      "import": "./dist/esm/maplestory/api/kms/kms.js",
+      "require": "./dist/cjs/maplestory/api/kms/kms.js",
+      "types": "./types/maplestory/api/kms/index.d.ts"
+    },
+    "./msea": {
+      "import": "./dist/esm/maplestory/api/msea/msea.js",
+      "require": "./dist/cjs/maplestory/api/msea/msea.js",
+      "types": "./types/maplestory/api/msea/index.d.ts"
     },
     "./package.json": "./package.json"
   },
