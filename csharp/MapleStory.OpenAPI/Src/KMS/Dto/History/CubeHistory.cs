@@ -1,4 +1,4 @@
-﻿using MapleStory.OpenAPI.Src.Common.Enum;
+﻿using MapleStory.OpenAPI.Common.Enum;
 using Newtonsoft.Json;
 
 namespace MapleStory.OpenAPI.KMS.DTO
