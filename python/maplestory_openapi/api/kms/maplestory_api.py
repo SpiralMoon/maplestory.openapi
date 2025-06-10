@@ -471,18 +471,7 @@ class MapleStoryApi(BaseMapleStoryApi):
         Args:
             ocid(str): 캐릭터 식별자
             date(datetime or None): 조회 기준일 (KST)
-            character_skill_grade(str): 조회하고자 하는 전직 차수
-                - 0: 0차 스킬 및 제로 공용스킬
-                - 1: 1차 스킬
-                - 1.5: 1.5차 스킬
-                - 2: 2차 스킬
-                - 2.5: 2.5차 스킬
-                - 3: 3차 스킬
-                - 4: 4차 스킬 및 제로 알파/베타 스킬
-                - hyperpassive: 하이퍼 패시브 스킬
-                - hyperactive: 하이퍼 액티브 스킬
-                - 5: 5차 스킬
-                - 6: 6차 스킬
+            character_skill_grade(str): 조회하고자 하는 전직 차수 (Available values: https://openapi.nexon.com/ko/game/maplestory/?id=14)
         """
         path = self.sub_url + '/v1/character/skill'
         query = {

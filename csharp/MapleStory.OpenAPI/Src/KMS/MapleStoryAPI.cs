@@ -25,6 +25,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
         /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
+        /// <para>- 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.</para>
         /// </summary>
         /// <param name="characterName">캐릭터 명</param>
         public override async Task<CharacterDTO> GetCharacter(string characterName)
@@ -43,6 +44,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <para>- 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.</para>
         /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
+        /// <para>- 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.</para>
         /// </summary>
         public async Task<CharacterListDTO> GetCharacterList()
         {
@@ -57,6 +59,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
         /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
+        /// <para>- 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.</para>
         /// </summary>
         /// <param name="ocid">캐릭터 식별자</param>
         public override Task<CharacterBasicDTO> GetCharacterBasic(string ocid)
@@ -70,6 +73,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
         /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
+        /// <para>- 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.</para>
         /// </summary>
         /// <param name="ocid">캐릭터 식별자</param>
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
@@ -95,6 +99,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
         /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
+        /// <para>- 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.</para>
         /// </summary>
         /// <param name="ocid">캐릭터 식별자</param>
         public override Task<CharacterImageDTO> GetCharacterImage(string ocid)
@@ -108,6 +113,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
         /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
+        /// <para>- 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.</para>
         /// </summary>
         /// <param name="ocid">캐릭터 식별자</param>
         /// <param name="imageOption">캐릭터 외형 파라미터</param>
@@ -122,6 +128,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
         /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
+        /// <para>- 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.</para>
         /// </summary>
         /// <param name="ocid">캐릭터 식별자</param>
         /// <param name="imageOption">캐릭터 외형 파라미터</param>
@@ -183,6 +190,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
         /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
+        /// <para>- 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.</para>
         /// </summary>
         /// <param name="ocid">캐릭터 식별자</param>
         public override Task<CharacterPopularityDTO> GetCharacterPopularity(string ocid)
@@ -196,6 +204,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
         /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
+        /// <para>- 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.</para>
         /// </summary>
         /// <param name="ocid">캐릭터 식별자</param>
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
@@ -220,6 +229,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
         /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
+        /// <para>- 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.</para>
         /// </summary>
         public override Task<CharacterStatDTO> GetCharacterStat(string ocid)
         {
@@ -232,6 +242,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
         /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
+        /// <para>- 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.</para>
         /// </summary>
         /// <param name="ocid">캐릭터 식별자</param>
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
@@ -256,6 +267,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
         /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
+        /// <para>- 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.</para>
         /// </summary>
         /// <param name="ocid">캐릭터 식별자</param>
         public override Task<CharacterHyperStatDTO> GetCharacterHyperStat(string ocid)
@@ -269,6 +281,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
         /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
+        /// <para>- 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.</para>
         /// </summary>
         /// <param name="ocid">캐릭터 식별자</param>
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
@@ -293,6 +306,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
         /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
+        /// <para>- 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.</para>
         /// </summary>
         /// <param name="ocid">캐릭터 식별자</param>
         public override Task<CharacterPropensityDTO> GetCharacterPropensity(string ocid)
@@ -306,6 +320,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
         /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
+        /// <para>- 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.</para>
         /// </summary>
         /// <param name="ocid">캐릭터 식별자</param>
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
@@ -330,6 +345,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
         /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
+        /// <para>- 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.</para>
         /// </summary>
         /// <param name="ocid">캐릭터 식별자</param>
         public override Task<CharacterAbilityDTO> GetCharacterAbility(string ocid)
@@ -343,6 +359,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
         /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
+        /// <para>- 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.</para>
         /// </summary>
         /// <param name="ocid">캐릭터 식별자</param>
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
@@ -367,6 +384,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
         /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
+        /// <para>- 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.</para>
         /// </summary>
         /// <param name="ocid">캐릭터 식별자</param>
         public override Task<CharacterItemEquipmentDTO> GetCharacterItemEquipment(string ocid)
@@ -380,6 +398,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
         /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
+        /// <para>- 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.</para>
         /// </summary>
         /// <param name="ocid">캐릭터 식별자</param>
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
@@ -404,6 +423,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
         /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
+        /// <para>- 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.</para>
         /// </summary>
         /// <param name="ocid">캐릭터 식별자</param>
         public override Task<CharacterCashItemEquipmentDTO> GetCharacterCashItemEquipment(string ocid)
@@ -417,6 +437,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
         /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
+        /// <para>- 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.</para>
         /// </summary>
         /// <param name="ocid">캐릭터 식별자</param>
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
@@ -441,6 +462,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
         /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
+        /// <para>- 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.</para>
         /// </summary>
         /// <param name="ocid">캐릭터 식별자</param>
         public override Task<CharacterSymbolEquipmentDTO> GetCharacterSymbolEquipment(string ocid)
@@ -454,6 +476,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
         /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
+        /// <para>- 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.</para>
         /// </summary>
         /// <param name="ocid">캐릭터 식별자</param>
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
@@ -478,6 +501,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
         /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
+        /// <para>- 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.</para>
         /// </summary>
         /// <param name="ocid">캐릭터 식별자</param>
         public override Task<CharacterSetEffectDTO> GetCharacterSetEffect(string ocid)
@@ -491,6 +515,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
         /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
+        /// <para>- 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.</para>
         /// </summary>
         /// <param name="ocid">캐릭터 식별자</param>
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
@@ -515,6 +540,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
         /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
+        /// <para>- 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.</para>
         /// </summary>
         /// <param name="ocid">캐릭터 식별자</param>
         public override Task<CharacterBeautyEquipmentDTO> GetCharacterBeautyEquipment(string ocid)
@@ -528,6 +554,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
         /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
+        /// <para>- 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.</para>
         /// </summary>
         /// <param name="ocid">캐릭터 식별자</param>
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
@@ -552,6 +579,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
         /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
+        /// <para>- 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.</para>
         /// </summary>
         /// <param name="ocid">캐릭터 식별자</param>
         public override Task<CharacterAndroidEquipmentDTO> GetCharacterAndroidEquipment(string ocid)
@@ -565,6 +593,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
         /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
+        /// <para>- 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.</para>
         /// </summary>
         /// <param name="ocid">캐릭터 식별자</param>
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
@@ -589,6 +618,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
         /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
+        /// <para>- 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.</para>
         /// </summary>
         /// <param name="ocid">캐릭터 식별자</param>
         public override Task<CharacterPetEquipmentDTO> GetCharacterPetEquipment(string ocid)
@@ -602,6 +632,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
         /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
+        /// <para>- 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.</para>
         /// </summary>
         /// <param name="ocid">캐릭터 식별자</param>
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
@@ -626,21 +657,10 @@ namespace MapleStory.OpenAPI.KMS
         /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
         /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
+        /// <para>- 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.</para>
         /// </summary>
         /// <param name="ocid">캐릭터 식별자</param>
-        /// <param name="characterSkillGrade">조회하고자 하는 전직 차수
-        /// <para>0: 0차 스킬 및 제로 공용스킬</para>
-        /// <para>1: 1차 스킬</para>
-        /// <para>1.5: 1.5차 스킬</para>
-        /// <para>2: 2차 스킬</para>
-        /// <para>2.5: 2.5차 스킬</para>
-        /// <para>3: 3차 스킬</para>
-        /// <para>4: 4차 스킬 및 제로 알파/베타 스킬</para>
-        /// <para>hyperpassive: 하이퍼 패시브 스킬</para>
-        /// <para>hyperactive: 하이퍼 액티브 스킬</para>
-        /// <para>5: 5차 스킬</para>
-        /// <para>6: 6차 스킬</para>
-        /// </param>
+        /// <param name="characterSkillGrade">조회하고자 하는 전직 차수 <a href="https://openapi.nexon.com/ko/game/maplestory/?id=14">Available values</a></param>
         public override Task<CharacterSkillDTO> GetCharacterSkill(string ocid, string characterSkillGrade)
         {
             return GetCharacterSkill(ocid, characterSkillGrade, null);
@@ -652,21 +672,10 @@ namespace MapleStory.OpenAPI.KMS
         /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
         /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
+        /// <para>- 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.</para>
         /// </summary>
         /// <param name="ocid">캐릭터 식별자</param>
-        /// <param name="characterSkillGrade">조회하고자 하는 전직 차수
-        /// <para>0: 0차 스킬 및 제로 공용스킬</para>
-        /// <para>1: 1차 스킬</para>
-        /// <para>1.5: 1.5차 스킬</para>
-        /// <para>2: 2차 스킬</para>
-        /// <para>2.5: 2.5차 스킬</para>
-        /// <para>3: 3차 스킬</para>
-        /// <para>4: 4차 스킬 및 제로 알파/베타 스킬</para>
-        /// <para>hyperpassive: 하이퍼 패시브 스킬</para>
-        /// <para>hyperactive: 하이퍼 액티브 스킬</para>
-        /// <para>5: 5차 스킬</para>
-        /// <para>6: 6차 스킬</para>
-        /// </param>
+        /// <param name="characterSkillGrade">조회하고자 하는 전직 차수 <a href="https://openapi.nexon.com/ko/game/maplestory/?id=14">Available values</a></param>
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
 
         public override async Task<CharacterSkillDTO> GetCharacterSkill(string ocid, string characterSkillGrade, DateTimeOffset? dateTimeOffset)
@@ -691,6 +700,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
         /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
+        /// <para>- 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.</para>
         /// </summary>
         /// <param name="ocid">캐릭터 식별자</param>
         public override Task<CharacterLinkSkillDTO> GetCharacterLinkSkill(string ocid)
@@ -704,6 +714,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
         /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
+        /// <para>- 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.</para>
         /// </summary>
         /// <param name="ocid">캐릭터 식별자</param>
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
@@ -728,6 +739,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
         /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
+        /// <para>- 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.</para>
         /// </summary>
         /// <param name="ocid">캐릭터 식별자</param>
         public override Task<CharacterVMatrixDTO> GetCharacterVMatrix(string ocid)
@@ -741,6 +753,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
         /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
+        /// <para>- 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.</para>
         /// </summary>
         /// <param name="ocid">캐릭터 식별자</param>
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
@@ -765,6 +778,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
         /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
+        /// <para>- 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.</para>
         /// </summary>
         /// <param name="ocid">캐릭터 식별자</param>
         public override Task<CharacterHexaMatrixDTO> GetCharacterHexaMatrix(string ocid)
@@ -778,6 +792,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
         /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
+        /// <para>- 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.</para>
         /// </summary>
         /// <param name="ocid">캐릭터 식별자</param>
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
@@ -802,6 +817,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
         /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
+        /// <para>- 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.</para>
         /// </summary>
         /// <param name="ocid">캐릭터 식별자</param>
         public override Task<CharacterHexaMatrixStatDTO> GetCharacterHexaMatrixStat(string ocid)
@@ -815,6 +831,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
         /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
+        /// <para>- 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.</para>
         /// </summary>
         /// <param name="ocid">캐릭터 식별자</param>
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
@@ -839,6 +856,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
         /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
+        /// <para>- 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.</para>
         /// </summary>
         /// <param name="ocid">캐릭터 식별자</param>
         public override Task<CharacterDojangDTO> GetCharacterDojang(string ocid)
@@ -852,6 +870,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
         /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
+        /// <para>- 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.</para>
         /// </summary>
         /// <param name="ocid">캐릭터 식별자</param>
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
@@ -880,6 +899,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
         /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
+        /// <para>- 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.</para>
         /// </summary>
         /// <param name="ocid">캐릭터 식별자</param>
         public override Task<UnionDTO> GetUnion(string ocid)
@@ -893,6 +913,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
         /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
+        /// <para>- 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.</para>
         /// </summary>
         /// <param name="ocid">캐릭터 식별자</param>
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
@@ -917,6 +938,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
         /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
+        /// <para>- 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.</para>
         /// </summary>
         /// <param name="ocid">캐릭터 식별자</param>
         public override Task<UnionRaiderDTO> GetUnionRaider(string ocid)
@@ -930,6 +952,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
         /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
+        /// <para>- 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.</para>
         /// </summary>
         /// <param name="ocid">캐릭터 식별자</param>
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
@@ -954,6 +977,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
         /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
+        /// <para>- 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.</para>
         /// </summary>
         /// <param name="ocid">캐릭터 식별자</param>
         public override Task<UnionArtifactDTO> GetUnionArtifact(string ocid)
@@ -967,6 +991,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
         /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
+        /// <para>- 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.</para>
         /// </summary>
         /// <param name="ocid">캐릭터 식별자</param>
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
@@ -992,6 +1017,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
         /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
+        /// <para>- 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.</para>
         /// </summary>
         /// <param name="ocid">캐릭터 식별자</param>
         public Task<UnionChampionDTO> GetUnionChampion(string ocid)
@@ -1006,6 +1032,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
         /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
+        /// <para>- 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.</para>
         /// </summary>
         /// <param name="ocid">캐릭터 식별자</param>
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
@@ -1034,27 +1061,10 @@ namespace MapleStory.OpenAPI.KMS
         /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
         /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
+        /// <para>- 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.</para>
         /// </summary>
         /// <param name="guildName">길드 명</param>
-        /// <param name="wolrdName">월드 명
-        /// <para>스카니아</para>
-        /// <para>베라</para>
-        /// <para>루나</para>
-        /// <para>제니스</para>
-        /// <para>크로아</para>
-        /// <para>유니온</para>
-        /// <para>엘리시움</para>
-        /// <para>이노시스</para>
-        /// <para>레드</para>
-        /// <para>오로라</para>
-        /// <para>아케인</para>
-        /// <para>노바</para>
-        /// <para>에오스</para>
-        /// <para>헬리오스</para>
-        /// <para>버닝</para>
-        /// <para>버닝2</para>
-        /// <para>버닝3</para>
-        /// </param>
+        /// <param name="wolrdName">월드 명 <a href="https://openapi.nexon.com/ko/game/maplestory/?id=16">Available values</a></param>
         public override async Task<GuildDTO> GetGuild(string guildName, string wolrdName)
         {
             var path = $"{subUrl}/v1/guild/id";
@@ -1073,6 +1083,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
         /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
+        /// <para>- 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.</para>
         /// </summary>
         /// <param name="oGuildId">길드 식별자</param>
         public override Task<GuildBasicDTO> GetGuildBasic(string oGuildId)
@@ -1086,6 +1097,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
         /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
+        /// <para>- 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.</para>
         /// </summary>
         /// <param name="oGuildId">길드 식별자</param>
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
@@ -1281,124 +1293,9 @@ namespace MapleStory.OpenAPI.KMS
         /// <para>- 오전 8시 30분부터 오늘의 랭킹 정보를 조회할 수 있습니다.</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
         /// </summary>
-        /// <param name="worldName">월드 명
-        /// <para>스카니아</para>
-        /// <para>베라</para>
-        /// <para>루나</para>
-        /// <para>제니스</para>
-        /// <para>크로아</para>
-        /// <para>유니온</para>
-        /// <para>엘리시움</para>
-        /// <para>이노시스</para>
-        /// <para>레드</para>
-        /// <para>오로라</para>
-        /// <para>아케인</para>
-        /// <para>노바</para>
-        /// <para>에오스</para>
-        /// <para>헬리오스</para>
-        /// <para>버닝</para>
-        /// <para>버닝2</para>
-        /// <para>버닝3</para>
-        /// </param>
+        /// <param name="worldName">월드 명 <a href="https://openapi.nexon.com/ko/game/maplestory/?id=18">Available values</a></param>
         /// <param name="worldType">월드 타입 (0:일반, 1:에오스,헬리오스) (기본 값은 0이며, worldName 입력 시 미 반영)</param>
-        /// <param name="characterClass">직업 및 전직
-        /// <para>초보자-전체 전직</para>
-        /// <para>전사-전체 전직</para>
-        /// <para>전사-검사</para>
-        /// <para>전사-파이터</para>
-        /// <para>전사-페이지</para>
-        /// <para>전사-스피어맨</para>
-        /// <para>전사-크루세이더</para>
-        /// <para>전사-나이트</para>
-        /// <para>전사-버서커</para>
-        /// <para>전사-히어로</para>
-        /// <para>전사-팔라딘</para>
-        /// <para>전사-다크나이트</para>
-        /// <para>마법사-전체 전직</para>
-        /// <para>마법사-매지션</para>
-        /// <para>마법사-위자드(불,독)</para>
-        /// <para>마법사-위자드(썬,콜)</para>
-        /// <para>마법사-클레릭</para>
-        /// <para>마법사-메이지(불,독)</para>
-        /// <para>마법사-메이지(썬,콜)</para>
-        /// <para>마법사-프리스트</para>
-        /// <para>마법사-아크메이지(불,독)</para>
-        /// <para>마법사-아크메이지(썬,콜)</para>
-        /// <para>마법사-비숍</para>
-        /// <para>궁수-전체 전직</para>
-        /// <para>궁수-아처</para>
-        /// <para>궁수-헌터</para>
-        /// <para>궁수-사수</para>
-        /// <para>궁수-레인저</para>
-        /// <para>궁수-저격수</para>
-        /// <para>궁수-보우마스터</para>
-        /// <para>궁수-신궁</para>
-        /// <para>궁수-아처(패스파인더)</para>
-        /// <para>궁수-에인션트아처</para>
-        /// <para>궁수-체이서</para>
-        /// <para>궁수-패스파인더</para>
-        /// <para>도적-전체 전직</para>
-        /// <para>도적-로그</para>
-        /// <para>도적-어쌔신</para>
-        /// <para>도적-시프</para>
-        /// <para>도적-허밋</para>
-        /// <para>도적-시프마스터</para>
-        /// <para>도적-나이트로드</para>
-        /// <para>도적-섀도어</para>
-        /// <para>도적-세미듀어러</para>
-        /// <para>도적-듀어러</para>
-        /// <para>도적-듀얼마스터</para>
-        /// <para>도적-슬래셔</para>
-        /// <para>도적-듀얼블레이더</para>
-        /// <para>해적-전체 전직</para>
-        /// <para>해적-해적</para>
-        /// <para>해적-인파이터</para>
-        /// <para>해적-건슬링거</para>
-        /// <para>해적-캐논슈터</para>
-        /// <para>해적-버커니어</para>
-        /// <para>해적-발키리</para>
-        /// <para>해적-캐논블래스터</para>
-        /// <para>해적-바이퍼</para>
-        /// <para>해적-캡틴</para>
-        /// <para>해적-캐논마스터</para>
-        /// <para>기사단-전체 전직</para>
-        /// <para>기사단-노블레스</para>
-        /// <para>기사단-소울마스터</para>
-        /// <para>기사단-플레임위자드</para>
-        /// <para>기사단-윈드브레이커</para>
-        /// <para>기사단-나이트워커</para>
-        /// <para>기사단-스트라이커</para>
-        /// <para>기사단-미하일</para>
-        /// <para>아란-전체 전직</para>
-        /// <para>에반-전체 전직</para>
-        /// <para>레지스탕스-전체 전직</para>
-        /// <para>레지스탕스-시티즌</para>
-        /// <para>레지스탕스-배틀메이지</para>
-        /// <para>레지스탕스-와일드헌터</para>
-        /// <para>레지스탕스-메카닉</para>
-        /// <para>레지스탕스-데몬슬레이어</para>
-        /// <para>레지스탕스-데몬어벤져</para>
-        /// <para>레지스탕스-제논</para>
-        /// <para>레지스탕스-블래스터</para>
-        /// <para>메르세데스-전체 전직</para>
-        /// <para>팬텀-전체 전직</para>
-        /// <para>루미너스-전체 전직</para>
-        /// <para>카이저-전체 전직</para>
-        /// <para>엔젤릭버스터-전체 전직</para>
-        /// <para>초월자-전체 전직</para>
-        /// <para>초월자-제로</para>
-        /// <para>은월-전체 전직</para>
-        /// <para>프렌즈 월드-전체 전직</para>
-        /// <para>프렌즈 월드-키네시스</para>
-        /// <para>카데나-전체 전직</para>
-        /// <para>일리움-전체 전직</para>
-        /// <para>아크-전체 전직</para>
-        /// <para>호영-전체 전직</para>
-        /// <para>아델-전체 전직</para>
-        /// <para>카인-전체 전직</para>
-        /// <para>라라-전체 전직</para>
-        /// <para>칼리-전체 전직</para>
-        /// </param>
+        /// <param name="characterClass">직업 및 전직 <a href="https://openapi.nexon.com/ko/game/maplestory/?id=18">Available values</a></param>
         /// <param name="ocid">캐릭터 식별자</param>
         /// <param name="page">페이지 번호</param>
         public Task<OverallRankingResponseDTO> GetOverallRanking(string? worldName, int? worldType, string? characterClass, string? ocid, int? page)
@@ -1417,124 +1314,9 @@ namespace MapleStory.OpenAPI.KMS
         /// <para>- 오전 8시 30분부터 오늘의 랭킹 정보를 조회할 수 있습니다.</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
         /// </summary>
-        /// <param name="worldName">월드 명
-        /// <para>스카니아</para>
-        /// <para>베라</para>
-        /// <para>루나</para>
-        /// <para>제니스</para>
-        /// <para>크로아</para>
-        /// <para>유니온</para>
-        /// <para>엘리시움</para>
-        /// <para>이노시스</para>
-        /// <para>레드</para>
-        /// <para>오로라</para>
-        /// <para>아케인</para>
-        /// <para>노바</para>
-        /// <para>에오스</para>
-        /// <para>헬리오스</para>
-        /// <para>버닝</para>
-        /// <para>버닝2</para>
-        /// <para>버닝3</para>
-        /// </param>
-        /// <param name="worldType">월드 타입 (0:일반, 1:리부트) (기본 값은 0이며, worldName 입력 시 미 반영)</param>
-        /// <param name="characterClass">직업 및 전직
-        /// <para>초보자-전체 전직</para>
-        /// <para>전사-전체 전직</para>
-        /// <para>전사-검사</para>
-        /// <para>전사-파이터</para>
-        /// <para>전사-페이지</para>
-        /// <para>전사-스피어맨</para>
-        /// <para>전사-크루세이더</para>
-        /// <para>전사-나이트</para>
-        /// <para>전사-버서커</para>
-        /// <para>전사-히어로</para>
-        /// <para>전사-팔라딘</para>
-        /// <para>전사-다크나이트</para>
-        /// <para>마법사-전체 전직</para>
-        /// <para>마법사-매지션</para>
-        /// <para>마법사-위자드(불,독)</para>
-        /// <para>마법사-위자드(썬,콜)</para>
-        /// <para>마법사-클레릭</para>
-        /// <para>마법사-메이지(불,독)</para>
-        /// <para>마법사-메이지(썬,콜)</para>
-        /// <para>마법사-프리스트</para>
-        /// <para>마법사-아크메이지(불,독)</para>
-        /// <para>마법사-아크메이지(썬,콜)</para>
-        /// <para>마법사-비숍</para>
-        /// <para>궁수-전체 전직</para>
-        /// <para>궁수-아처</para>
-        /// <para>궁수-헌터</para>
-        /// <para>궁수-사수</para>
-        /// <para>궁수-레인저</para>
-        /// <para>궁수-저격수</para>
-        /// <para>궁수-보우마스터</para>
-        /// <para>궁수-신궁</para>
-        /// <para>궁수-아처(패스파인더)</para>
-        /// <para>궁수-에인션트아처</para>
-        /// <para>궁수-체이서</para>
-        /// <para>궁수-패스파인더</para>
-        /// <para>도적-전체 전직</para>
-        /// <para>도적-로그</para>
-        /// <para>도적-어쌔신</para>
-        /// <para>도적-시프</para>
-        /// <para>도적-허밋</para>
-        /// <para>도적-시프마스터</para>
-        /// <para>도적-나이트로드</para>
-        /// <para>도적-섀도어</para>
-        /// <para>도적-세미듀어러</para>
-        /// <para>도적-듀어러</para>
-        /// <para>도적-듀얼마스터</para>
-        /// <para>도적-슬래셔</para>
-        /// <para>도적-듀얼블레이더</para>
-        /// <para>해적-전체 전직</para>
-        /// <para>해적-해적</para>
-        /// <para>해적-인파이터</para>
-        /// <para>해적-건슬링거</para>
-        /// <para>해적-캐논슈터</para>
-        /// <para>해적-버커니어</para>
-        /// <para>해적-발키리</para>
-        /// <para>해적-캐논블래스터</para>
-        /// <para>해적-바이퍼</para>
-        /// <para>해적-캡틴</para>
-        /// <para>해적-캐논마스터</para>
-        /// <para>기사단-전체 전직</para>
-        /// <para>기사단-노블레스</para>
-        /// <para>기사단-소울마스터</para>
-        /// <para>기사단-플레임위자드</para>
-        /// <para>기사단-윈드브레이커</para>
-        /// <para>기사단-나이트워커</para>
-        /// <para>기사단-스트라이커</para>
-        /// <para>기사단-미하일</para>
-        /// <para>아란-전체 전직</para>
-        /// <para>에반-전체 전직</para>
-        /// <para>레지스탕스-전체 전직</para>
-        /// <para>레지스탕스-시티즌</para>
-        /// <para>레지스탕스-배틀메이지</para>
-        /// <para>레지스탕스-와일드헌터</para>
-        /// <para>레지스탕스-메카닉</para>
-        /// <para>레지스탕스-데몬슬레이어</para>
-        /// <para>레지스탕스-데몬어벤져</para>
-        /// <para>레지스탕스-제논</para>
-        /// <para>레지스탕스-블래스터</para>
-        /// <para>메르세데스-전체 전직</para>
-        /// <para>팬텀-전체 전직</para>
-        /// <para>루미너스-전체 전직</para>
-        /// <para>카이저-전체 전직</para>
-        /// <para>엔젤릭버스터-전체 전직</para>
-        /// <para>초월자-전체 전직</para>
-        /// <para>초월자-제로</para>
-        /// <para>은월-전체 전직</para>
-        /// <para>프렌즈 월드-전체 전직</para>
-        /// <para>프렌즈 월드-키네시스</para>
-        /// <para>카데나-전체 전직</para>
-        /// <para>일리움-전체 전직</para>
-        /// <para>아크-전체 전직</para>
-        /// <para>호영-전체 전직</para>
-        /// <para>아델-전체 전직</para>
-        /// <para>카인-전체 전직</para>
-        /// <para>라라-전체 전직</para>
-        /// <para>칼리-전체 전직</para>
-        /// </param>
+        /// <param name="worldName">월드 명 <a href="https://openapi.nexon.com/ko/game/maplestory/?id=18">Available values</a></param>
+        /// <param name="worldType">월드 타입 (0:일반, 1:에오스,헬리오스) (기본 값은 0이며, worldName 입력 시 미 반영)</param>
+        /// <param name="characterClass">직업 및 전직 <a href="https://openapi.nexon.com/ko/game/maplestory/?id=18">Available values</a></param>
         /// <param name="ocid">캐릭터 식별자</param>
         /// <param name="page">페이지 번호</param>
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
@@ -1560,25 +1342,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <para>- 오전 8시 30분부터 오늘의 랭킹 정보를 조회할 수 있습니다.</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
         /// </summary>
-        /// <param name="worldName">월드 명
-        /// <para>스카니아</para>
-        /// <para>베라</para>
-        /// <para>루나</para>
-        /// <para>제니스</para>
-        /// <para>크로아</para>
-        /// <para>유니온</para>
-        /// <para>엘리시움</para>
-        /// <para>이노시스</para>
-        /// <para>레드</para>
-        /// <para>오로라</para>
-        /// <para>아케인</para>
-        /// <para>노바</para>
-        /// <para>에오스</para>
-        /// <para>헬리오스</para>
-        /// <para>버닝</para>
-        /// <para>버닝2</para>
-        /// <para>버닝3</para>
-        /// </param>
+        /// <param name="worldName">월드 명 <a href="https://openapi.nexon.com/ko/game/maplestory/?id=18">Available values</a></param>
         /// <param name="ocid">캐릭터 식별자</param>
         /// <param name="page">페이지 번호</param>
         public Task<UnionRankingResponseDTO> GetUnionRanking(string? worldName, string? ocid, int? page)
@@ -1597,25 +1361,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <para>- 오전 8시 30분부터 오늘의 랭킹 정보를 조회할 수 있습니다.</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
         /// </summary>
-        /// <param name="worldName">월드 명
-        /// <para>스카니아</para>
-        /// <para>베라</para>
-        /// <para>루나</para>
-        /// <para>제니스</para>
-        /// <para>크로아</para>
-        /// <para>유니온</para>
-        /// <para>엘리시움</para>
-        /// <para>이노시스</para>
-        /// <para>레드</para>
-        /// <para>오로라</para>
-        /// <para>아케인</para>
-        /// <para>노바</para>
-        /// <para>에오스</para>
-        /// <para>헬리오스</para>
-        /// <para>버닝</para>
-        /// <para>버닝2</para>
-        /// <para>버닝3</para>
-        /// </param>
+        /// <param name="worldName">월드 명 <a href="https://openapi.nexon.com/ko/game/maplestory/?id=18">Available values</a></param>
         /// <param name="ocid">캐릭터 식별자</param>
         /// <param name="page">페이지 번호</param>
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
@@ -1639,25 +1385,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <para>- 오전 8시 30분부터 오늘의 랭킹 정보를 조회할 수 있습니다.</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
         /// </summary>
-        /// <param name="worldName">월드 명
-        /// <para>스카니아</para>
-        /// <para>베라</para>
-        /// <para>루나</para>
-        /// <para>제니스</para>
-        /// <para>크로아</para>
-        /// <para>유니온</para>
-        /// <para>엘리시움</para>
-        /// <para>이노시스</para>
-        /// <para>레드</para>
-        /// <para>오로라</para>
-        /// <para>아케인</para>
-        /// <para>노바</para>
-        /// <para>에오스</para>
-        /// <para>헬리오스</para>
-        /// <para>버닝</para>
-        /// <para>버닝2</para>
-        /// <para>버닝3</para>
-        /// </param>
+        /// <param name="worldName">월드 명 <a href="https://openapi.nexon.com/ko/game/maplestory/?id=18">Available values</a></param>
         /// <param name="rankingType">랭킹 타입 (0:주간 명성치, 1:플래그 레이스, 2:지하 수로)</param>
         /// <param name="guildName">길드 명</param>
         /// <param name="page">페이지 번호</param>
@@ -1677,25 +1405,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <para>- 오전 8시 30분부터 오늘의 랭킹 정보를 조회할 수 있습니다.</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
         /// </summary>
-        /// <param name="worldName">월드 명
-        /// <para>스카니아</para>
-        /// <para>베라</para>
-        /// <para>루나</para>
-        /// <para>제니스</para>
-        /// <para>크로아</para>
-        /// <para>유니온</para>
-        /// <para>엘리시움</para>
-        /// <para>이노시스</para>
-        /// <para>레드</para>
-        /// <para>오로라</para>
-        /// <para>아케인</para>
-        /// <para>노바</para>
-        /// <para>에오스</para>
-        /// <para>헬리오스</para>
-        /// <para>버닝</para>
-        /// <para>버닝2</para>
-        /// <para>버닝3</para>
-        /// </param>
+        /// <param name="worldName">월드 명 <a href="https://openapi.nexon.com/ko/game/maplestory/?id=18">Available values</a></param>
         /// <param name="rankingType">랭킹 타입 (0:주간 명성치, 1:플래그 레이스, 2:지하 수로)</param>
         /// <param name="guildName">길드 명</param>
         /// <param name="page">페이지 번호</param>
@@ -1721,124 +1431,9 @@ namespace MapleStory.OpenAPI.KMS
         /// <para>- 오전 8시 30분부터 오늘의 랭킹 정보를 조회할 수 있습니다.</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
         /// </summary>
-        /// <param name="worldName">월드 명
-        /// <para>스카니아</para>
-        /// <para>베라</para>
-        /// <para>루나</para>
-        /// <para>제니스</para>
-        /// <para>크로아</para>
-        /// <para>유니온</para>
-        /// <para>엘리시움</para>
-        /// <para>이노시스</para>
-        /// <para>레드</para>
-        /// <para>오로라</para>
-        /// <para>아케인</para>
-        /// <para>노바</para>
-        /// <para>에오스</para>
-        /// <para>헬리오스</para>
-        /// <para>버닝</para>
-        /// <para>버닝2</para>
-        /// <para>버닝3</para>
-        /// </param>
+        /// <param name="worldName">월드 명 <a href="https://openapi.nexon.com/ko/game/maplestory/?id=18">Available values</a></param>
         /// <param name="difficulty">구간 (0:일반, 1:통달)</param>
-        /// <param name="characterClass">직업 및 전직
-        /// <para>초보자-전체 전직</para>
-        /// <para>전사-전체 전직</para>
-        /// <para>전사-검사</para>
-        /// <para>전사-파이터</para>
-        /// <para>전사-페이지</para>
-        /// <para>전사-스피어맨</para>
-        /// <para>전사-크루세이더</para>
-        /// <para>전사-나이트</para>
-        /// <para>전사-버서커</para>
-        /// <para>전사-히어로</para>
-        /// <para>전사-팔라딘</para>
-        /// <para>전사-다크나이트</para>
-        /// <para>마법사-전체 전직</para>
-        /// <para>마법사-매지션</para>
-        /// <para>마법사-위자드(불,독)</para>
-        /// <para>마법사-위자드(썬,콜)</para>
-        /// <para>마법사-클레릭</para>
-        /// <para>마법사-메이지(불,독)</para>
-        /// <para>마법사-메이지(썬,콜)</para>
-        /// <para>마법사-프리스트</para>
-        /// <para>마법사-아크메이지(불,독)</para>
-        /// <para>마법사-아크메이지(썬,콜)</para>
-        /// <para>마법사-비숍</para>
-        /// <para>궁수-전체 전직</para>
-        /// <para>궁수-아처</para>
-        /// <para>궁수-헌터</para>
-        /// <para>궁수-사수</para>
-        /// <para>궁수-레인저</para>
-        /// <para>궁수-저격수</para>
-        /// <para>궁수-보우마스터</para>
-        /// <para>궁수-신궁</para>
-        /// <para>궁수-아처(패스파인더)</para>
-        /// <para>궁수-에인션트아처</para>
-        /// <para>궁수-체이서</para>
-        /// <para>궁수-패스파인더</para>
-        /// <para>도적-전체 전직</para>
-        /// <para>도적-로그</para>
-        /// <para>도적-어쌔신</para>
-        /// <para>도적-시프</para>
-        /// <para>도적-허밋</para>
-        /// <para>도적-시프마스터</para>
-        /// <para>도적-나이트로드</para>
-        /// <para>도적-섀도어</para>
-        /// <para>도적-세미듀어러</para>
-        /// <para>도적-듀어러</para>
-        /// <para>도적-듀얼마스터</para>
-        /// <para>도적-슬래셔</para>
-        /// <para>도적-듀얼블레이더</para>
-        /// <para>해적-전체 전직</para>
-        /// <para>해적-해적</para>
-        /// <para>해적-인파이터</para>
-        /// <para>해적-건슬링거</para>
-        /// <para>해적-캐논슈터</para>
-        /// <para>해적-버커니어</para>
-        /// <para>해적-발키리</para>
-        /// <para>해적-캐논블래스터</para>
-        /// <para>해적-바이퍼</para>
-        /// <para>해적-캡틴</para>
-        /// <para>해적-캐논마스터</para>
-        /// <para>기사단-전체 전직</para>
-        /// <para>기사단-노블레스</para>
-        /// <para>기사단-소울마스터</para>
-        /// <para>기사단-플레임위자드</para>
-        /// <para>기사단-윈드브레이커</para>
-        /// <para>기사단-나이트워커</para>
-        /// <para>기사단-스트라이커</para>
-        /// <para>기사단-미하일</para>
-        /// <para>아란-전체 전직</para>
-        /// <para>에반-전체 전직</para>
-        /// <para>레지스탕스-전체 전직</para>
-        /// <para>레지스탕스-시티즌</para>
-        /// <para>레지스탕스-배틀메이지</para>
-        /// <para>레지스탕스-와일드헌터</para>
-        /// <para>레지스탕스-메카닉</para>
-        /// <para>레지스탕스-데몬슬레이어</para>
-        /// <para>레지스탕스-데몬어벤져</para>
-        /// <para>레지스탕스-제논</para>
-        /// <para>레지스탕스-블래스터</para>
-        /// <para>메르세데스-전체 전직</para>
-        /// <para>팬텀-전체 전직</para>
-        /// <para>루미너스-전체 전직</para>
-        /// <para>카이저-전체 전직</para>
-        /// <para>엔젤릭버스터-전체 전직</para>
-        /// <para>초월자-전체 전직</para>
-        /// <para>초월자-제로</para>
-        /// <para>은월-전체 전직</para>
-        /// <para>프렌즈 월드-전체 전직</para>
-        /// <para>프렌즈 월드-키네시스</para>
-        /// <para>카데나-전체 전직</para>
-        /// <para>일리움-전체 전직</para>
-        /// <para>아크-전체 전직</para>
-        /// <para>호영-전체 전직</para>
-        /// <para>아델-전체 전직</para>
-        /// <para>카인-전체 전직</para>
-        /// <para>라라-전체 전직</para>
-        /// <para>칼리-전체 전직</para>
-        /// </param>
+        /// <param name="characterClass">직업 및 전직 <a href="https://openapi.nexon.com/ko/game/maplestory/?id=18">Available values</a></param>
         /// <param name="ocid">캐릭터 식별자</param>
         /// <param name="page">페이지 번호</param>
         public Task<DojangRankingResponseDTO> GetDojangRanking(string? worldName, int difficulty, string? characterClass, string ocid, int? page)
@@ -1857,124 +1452,9 @@ namespace MapleStory.OpenAPI.KMS
         /// <para>- 오전 8시 30분부터 오늘의 랭킹 정보를 조회할 수 있습니다.</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
         /// </summary>
-        /// <param name="worldName">월드 명
-        /// <para>스카니아</para>
-        /// <para>베라</para>
-        /// <para>루나</para>
-        /// <para>제니스</para>
-        /// <para>크로아</para>
-        /// <para>유니온</para>
-        /// <para>엘리시움</para>
-        /// <para>이노시스</para>
-        /// <para>레드</para>
-        /// <para>오로라</para>
-        /// <para>아케인</para>
-        /// <para>노바</para>
-        /// <para>에오스</para>
-        /// <para>헬리오스</para>
-        /// <para>버닝</para>
-        /// <para>버닝2</para>
-        /// <para>버닝3</para>
-        /// </param>
+        /// <param name="worldName">월드 명 <a href="https://openapi.nexon.com/ko/game/maplestory/?id=18">Available values</a></param>
         /// <param name="difficulty">구간 (0:일반, 1:통달)</param>
-        /// <param name="characterClass">직업 및 전직
-        /// <para>초보자-전체 전직</para>
-        /// <para>전사-전체 전직</para>
-        /// <para>전사-검사</para>
-        /// <para>전사-파이터</para>
-        /// <para>전사-페이지</para>
-        /// <para>전사-스피어맨</para>
-        /// <para>전사-크루세이더</para>
-        /// <para>전사-나이트</para>
-        /// <para>전사-버서커</para>
-        /// <para>전사-히어로</para>
-        /// <para>전사-팔라딘</para>
-        /// <para>전사-다크나이트</para>
-        /// <para>마법사-전체 전직</para>
-        /// <para>마법사-매지션</para>
-        /// <para>마법사-위자드(불,독)</para>
-        /// <para>마법사-위자드(썬,콜)</para>
-        /// <para>마법사-클레릭</para>
-        /// <para>마법사-메이지(불,독)</para>
-        /// <para>마법사-메이지(썬,콜)</para>
-        /// <para>마법사-프리스트</para>
-        /// <para>마법사-아크메이지(불,독)</para>
-        /// <para>마법사-아크메이지(썬,콜)</para>
-        /// <para>마법사-비숍</para>
-        /// <para>궁수-전체 전직</para>
-        /// <para>궁수-아처</para>
-        /// <para>궁수-헌터</para>
-        /// <para>궁수-사수</para>
-        /// <para>궁수-레인저</para>
-        /// <para>궁수-저격수</para>
-        /// <para>궁수-보우마스터</para>
-        /// <para>궁수-신궁</para>
-        /// <para>궁수-아처(패스파인더)</para>
-        /// <para>궁수-에인션트아처</para>
-        /// <para>궁수-체이서</para>
-        /// <para>궁수-패스파인더</para>
-        /// <para>도적-전체 전직</para>
-        /// <para>도적-로그</para>
-        /// <para>도적-어쌔신</para>
-        /// <para>도적-시프</para>
-        /// <para>도적-허밋</para>
-        /// <para>도적-시프마스터</para>
-        /// <para>도적-나이트로드</para>
-        /// <para>도적-섀도어</para>
-        /// <para>도적-세미듀어러</para>
-        /// <para>도적-듀어러</para>
-        /// <para>도적-듀얼마스터</para>
-        /// <para>도적-슬래셔</para>
-        /// <para>도적-듀얼블레이더</para>
-        /// <para>해적-전체 전직</para>
-        /// <para>해적-해적</para>
-        /// <para>해적-인파이터</para>
-        /// <para>해적-건슬링거</para>
-        /// <para>해적-캐논슈터</para>
-        /// <para>해적-버커니어</para>
-        /// <para>해적-발키리</para>
-        /// <para>해적-캐논블래스터</para>
-        /// <para>해적-바이퍼</para>
-        /// <para>해적-캡틴</para>
-        /// <para>해적-캐논마스터</para>
-        /// <para>기사단-전체 전직</para>
-        /// <para>기사단-노블레스</para>
-        /// <para>기사단-소울마스터</para>
-        /// <para>기사단-플레임위자드</para>
-        /// <para>기사단-윈드브레이커</para>
-        /// <para>기사단-나이트워커</para>
-        /// <para>기사단-스트라이커</para>
-        /// <para>기사단-미하일</para>
-        /// <para>아란-전체 전직</para>
-        /// <para>에반-전체 전직</para>
-        /// <para>레지스탕스-전체 전직</para>
-        /// <para>레지스탕스-시티즌</para>
-        /// <para>레지스탕스-배틀메이지</para>
-        /// <para>레지스탕스-와일드헌터</para>
-        /// <para>레지스탕스-메카닉</para>
-        /// <para>레지스탕스-데몬슬레이어</para>
-        /// <para>레지스탕스-데몬어벤져</para>
-        /// <para>레지스탕스-제논</para>
-        /// <para>레지스탕스-블래스터</para>
-        /// <para>메르세데스-전체 전직</para>
-        /// <para>팬텀-전체 전직</para>
-        /// <para>루미너스-전체 전직</para>
-        /// <para>카이저-전체 전직</para>
-        /// <para>엔젤릭버스터-전체 전직</para>
-        /// <para>초월자-전체 전직</para>
-        /// <para>초월자-제로</para>
-        /// <para>은월-전체 전직</para>
-        /// <para>프렌즈 월드-전체 전직</para>
-        /// <para>프렌즈 월드-키네시스</para>
-        /// <para>카데나-전체 전직</para>
-        /// <para>일리움-전체 전직</para>
-        /// <para>아크-전체 전직</para>
-        /// <para>호영-전체 전직</para>
-        /// <para>아델-전체 전직</para>
-        /// <para>카인-전체 전직</para>
-        /// <para>라라-전체 전직</para>
-        /// <para>칼리-전체 전직</para>
-        /// </param>
+        /// <param name="characterClass">직업 및 전직 <a href="https://openapi.nexon.com/ko/game/maplestory/?id=18">Available values</a></param>
         /// <param name="ocid">캐릭터 식별자</param>
         /// <param name="page">페이지 번호</param>
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
@@ -2000,25 +1480,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <para>- 오전 8시 30분부터 오늘의 랭킹 정보를 조회할 수 있습니다.</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
         /// </summary>
-        /// <param name="worldName">월드 명
-        /// <para>스카니아</para>
-        /// <para>베라</para>
-        /// <para>루나</para>
-        /// <para>제니스</para>
-        /// <para>크로아</para>
-        /// <para>유니온</para>
-        /// <para>엘리시움</para>
-        /// <para>이노시스</para>
-        /// <para>레드</para>
-        /// <para>오로라</para>
-        /// <para>아케인</para>
-        /// <para>노바</para>
-        /// <para>에오스</para>
-        /// <para>헬리오스</para>
-        /// <para>버닝</para>
-        /// <para>버닝2</para>
-        /// <para>버닝3</para>
-        /// </param>
+        /// <param name="worldName">월드 명 <a href="https://openapi.nexon.com/ko/game/maplestory/?id=18">Available values</a></param>
         /// <param name="ocid">캐릭터 식별자</param>
         /// <param name="page">페이지 번호</param>
         public Task<TheSeedRankingResponseDTO> GetTheSeedRanking(string? worldName, string? ocid, int? page)
@@ -2038,24 +1500,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
         /// </summary>
         /// <param name="worldName">월드 명
-        /// <para>스카니아</para>
-        /// <para>베라</para>
-        /// <para>루나</para>
-        /// <para>제니스</para>
-        /// <para>크로아</para>
-        /// <para>유니온</para>
-        /// <para>엘리시움</para>
-        /// <para>이노시스</para>
-        /// <para>레드</para>
-        /// <para>오로라</para>
-        /// <para>아케인</para>
-        /// <para>노바</para>
-        /// <para>에오스</para>
-        /// <para>헬리오스</para>
-        /// <para>버닝</para>
-        /// <para>버닝2</para>
-        /// <para>버닝3</para>
-        /// </param>
+        /// <para>스카니아</para> <a href="https://openapi.nexon.com/ko/game/maplestory/?id=18">Available values</a></param>
         /// <param name="ocid">캐릭터 식별자</param>
         /// <param name="page">페이지 번호</param>
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>

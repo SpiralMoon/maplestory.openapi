@@ -691,18 +691,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
      * - Due to game content changes, the ocid may be updated. Please pay attention to this when updating services based on ocid.<br>
      * - This API provides data for MapleStory SEA.<br>
      * @param ocid                Character identifier
-     * @param characterSkillGrade Job advancement tier to query<br>
-     *                            0: 0th job skills and Zero shared skills<br>
-     *                            1: 1st job skills<br>
-     *                            1.5: 1.5th job skills<br>
-     *                            2: 2nd job skills<br>
-     *                            2.5: 2.5th job skills<br>
-     *                            3: 3rd job skills<br>
-     *                            4: 4th job skills and Zero Alpha/Beta skills<br>
-     *                            hyperpassive: Hyper passive skills<br>
-     *                            hyperactive: Hyper active skills<br>
-     *                            5: 5th job skills<br>
-     *                            6: 6th job skills<br>
+     * @param characterSkillGrade Job advancement tier to query <a href="https://openapi.nexon.com/game/maplestorysea/?id=45">Available values</a>
      */
     public CompletableFuture<CharacterSkillDTO> getCharacterSkill(@NonNull String ocid, @NonNull String characterSkillGrade) {
         return this.getCharacterSkill(ocid, characterSkillGrade, null);
@@ -715,18 +704,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
      * - Historical data can be queried by specifying the desired date, and data from the previous day can be accessed starting at 2 AM the next day. (For example, when querying data for December 22, data from 00:00 to 24:00 on December 22 will be retrieved.)<br>
      * - Due to game content changes, the ocid may be updated. Please pay attention to this when updating services based on ocid.<br>
      * - This API provides data for MapleStory SEA.<br>
-     * @param characterSkillGrade Job advancement tier to query<br>
-     *                            0: 0th job skills and Zero shared skills<br>
-     *                            1: 1st job skills<br>
-     *                            1.5: 1.5th job skills<br>
-     *                            2: 2nd job skills<br>
-     *                            2.5: 2.5th job skills<br>
-     *                            3: 3rd job skills<br>
-     *                            4: 4th job skills and Zero Alpha/Beta skills<br>
-     *                            hyperpassive: Hyper passive skills<br>
-     *                            hyperactive: Hyper active skills<br>
-     *                            5: 5th job skills<br>
-     *                            6: 6th job skills<br>
+     * @param characterSkillGrade Job advancement tier to query <a href="https://openapi.nexon.com/game/maplestorysea/?id=45">Available values</a>
      * @param localDateTime       Reference date for query (SGT)
      */
     public CompletableFuture<CharacterSkillDTO> getCharacterSkill(@NonNull String ocid, @NonNull String characterSkillGrade, LocalDateTime localDateTime) {
@@ -1100,7 +1078,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
      * - Due to game content changes, the ocid may be updated. Please pay attention to this when updating services based on ocid.<br>
      * - This API provides data for MapleStory SEA.<br>
      * @param guildName Guild name
-     * @param worldName World name
+     * @param worldName World name <a href="https://openapi.nexon.com/game/maplestorysea/?id=47">Available values</a>
      */
     public CompletableFuture<GuildDTO> getGuild(@NonNull String guildName, @NonNull String worldName) {
         final CompletableFuture<GuildDTO> future = new CompletableFuture<>();

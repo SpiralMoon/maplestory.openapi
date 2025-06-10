@@ -644,19 +644,7 @@ namespace MapleStory.OpenAPI.MSEA
         /// <para>- This API provides data for MapleStory SEA.</para>
         /// </summary>
         /// <param name="ocid">Character identifier</param>
-        /// <param name="characterSkillGrade">Job advancement tier to query
-        /// <para>0: 0th job skills and Zero shared skills</para>
-        /// <para>1: 1st job skills</para>
-        /// <para>1.5: 1.5th job skills</para>
-        /// <para>2: 2nd job skills</para>
-        /// <para>2.5: 2.5th job skills</para>
-        /// <para>3: 3rd job skills</para>
-        /// <para>4: 4th job skills and Zero Alpha/Beta skills</para>
-        /// <para>hyperpassive: Hyper passive skills</para>
-        /// <para>hyperactive: Hyper active skills</para>
-        /// <para>5: 5th job skills</para>
-        /// <para>6: 6th job skills</para>
-        /// </param>
+        /// <param name="characterSkillGrade">Job advancement tier to query <a href="https://openapi.nexon.com/game/maplestorysea/?id=45">Available values</a></param>
         public override Task<CharacterSkillDTO> GetCharacterSkill(string ocid, string characterSkillGrade)
         {
             return GetCharacterSkill(ocid, characterSkillGrade, null);
@@ -671,19 +659,7 @@ namespace MapleStory.OpenAPI.MSEA
         /// <para>- This API provides data for MapleStory SEA.</para>
         /// </summary>
         /// <param name="ocid">Character identifier</param>
-        /// <param name="characterSkillGrade">Job advancement tier to query
-        /// <para>0: 0th job skills and Zero shared skills</para>
-        /// <para>1: 1st job skills</para>
-        /// <para>1.5: 1.5th job skills</para>
-        /// <para>2: 2nd job skills</para>
-        /// <para>2.5: 2.5th job skills</para>
-        /// <para>3: 3rd job skills</para>
-        /// <para>4: 4th job skills and Zero Alpha/Beta skills</para>
-        /// <para>hyperpassive: Hyper passive skills</para>
-        /// <para>hyperactive: Hyper active skills</para>
-        /// <para>5: 5th job skills</para>
-        /// <para>6: 6th job skills</para>
-        /// </param>
+        /// <param name="characterSkillGrade">Job advancement tier to query <a href="https://openapi.nexon.com/game/maplestorysea/?id=45">Available values</a></param>
         /// <param name="dateTimeOffset">Reference date for query (SGT)</param>
 
         public override async Task<CharacterSkillDTO> GetCharacterSkill(string ocid, string characterSkillGrade, DateTimeOffset? dateTimeOffset)

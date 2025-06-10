@@ -58,6 +58,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
      * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     * - 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.<br>
      *
      * @param characterName 캐릭터 명
      */
@@ -77,6 +78,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
      * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
      * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     * - 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.<br>
      */
     public CompletableFuture<CharacterListDTO> getCharacterList() {
         final CompletableFuture<CharacterListDTO> future = new CompletableFuture<>();
@@ -95,6 +97,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
      * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     * - 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.<br>
      *
      * @param ocid 캐릭터 식별자
      */
@@ -108,6 +111,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
      * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     * - 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.<br>
      *
      * @param ocid          캐릭터 식별자
      * @param localDateTime 조회 기준일 (KST)
@@ -137,6 +141,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
      * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     * - 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.<br>
      *
      * @param ocid 캐릭터 식별자
      */
@@ -150,6 +155,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
      * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     * - 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.<br>
      *
      * @param ocid        캐릭터 식별자
      * @param imageOption 캐릭터 외형 파라미터
@@ -164,6 +170,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
      * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     * - 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.<br>
      *
      * @param ocid          캐릭터 식별자
      * @param imageOption   캐릭터 외형 파라미터
@@ -217,6 +224,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
      * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     * - 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.<br>
      *
      * @param ocid 캐릭터 식별자
      */
@@ -230,6 +238,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
      * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     * - 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.<br>
      *
      * @param ocid          캐릭터 식별자
      * @param localDateTime 조회 기준일 (KST)
@@ -259,6 +268,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
      * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     * - 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.<br>
      *
      * @param ocid 캐릭터 식별자
      */
@@ -272,6 +282,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
      * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     * - 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.<br>
      *
      * @param ocid          캐릭터 식별자
      * @param localDateTime 조회 기준일 (KST)
@@ -302,6 +313,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
      * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     * - 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.<br>
      *
      * @param ocid 캐릭터 식별자
      */
@@ -315,6 +327,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
      * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     * - 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.<br>
      *
      * @param ocid          캐릭터 식별자
      * @param localDateTime 조회 기준일 (KST)
@@ -344,6 +357,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
      * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     * - 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.<br>
      *
      * @param ocid 캐릭터 식별자
      */
@@ -357,6 +371,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
      * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     * - 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.<br>
      *
      * @param ocid          캐릭터 식별자
      * @param localDateTime 조회 기준일 (KST)
@@ -386,6 +401,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
      * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     * - 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.<br>
      *
      * @param ocid 캐릭터 식별자
      */
@@ -399,6 +415,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
      * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     * - 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.<br>
      *
      * @param ocid 캐릭터 식별자
      */
@@ -427,6 +444,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
      * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     * - 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.<br>
      *
      * @param ocid 캐릭터 식별자
      */
@@ -440,6 +458,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
      * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     * - 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.<br>
      *
      * @param ocid          캐릭터 식별자
      * @param localDateTime 조회 기준일 (KST)
@@ -469,6 +488,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
      * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     * - 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.<br>
      *
      * @param ocid 캐릭터 식별자
      */
@@ -482,6 +502,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
      * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     * - 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.<br>
      *
      * @param ocid          캐릭터 식별자
      * @param localDateTime 조회 기준일 (KST)
@@ -511,6 +532,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
      * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     * - 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.<br>
      *
      * @param ocid 캐릭터 식별자
      */
@@ -524,6 +546,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
      * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     * - 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.<br>
      *
      * @param ocid          캐릭터 식별자
      * @param localDateTime 조회 기준일 (KST)
@@ -553,6 +576,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
      * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     * - 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.<br>
      *
      * @param ocid 캐릭터 식별자
      */
@@ -566,6 +590,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
      * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     * - 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.<br>
      *
      * @param ocid 캐릭터 식별자
      */
@@ -594,6 +619,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
      * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     * - 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.<br>
      *
      * @param ocid 캐릭터 식별자
      */
@@ -607,6 +633,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
      * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     * - 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.<br>
      *
      * @param ocid          캐릭터 식별자
      * @param localDateTime 조회 기준일 (KST)
@@ -636,6 +663,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
      * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     * - 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.<br>
      *
      * @param ocid 캐릭터 식별자
      */
@@ -649,6 +677,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
      * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     * - 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.<br>
      *
      * @param ocid          캐릭터 식별자
      * @param localDateTime 조회 기준일 (KST)
@@ -678,6 +707,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
      * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     * - 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.<br>
      *
      * @param ocid 캐릭터 식별자
      */
@@ -691,6 +721,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
      * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     * - 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.<br>
      *
      * @param ocid          캐릭터 식별자
      * @param localDateTime 조회 기준일 (KST)
@@ -720,6 +751,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
      * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     * - 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.<br>
      *
      * @param ocid                캐릭터 식별자
      * @param characterSkillGrade 조회하고자 하는 전직 차수<br>
@@ -745,20 +777,10 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
      * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     * - 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.<br>
      *
      * @param ocid                캐릭터 식별자
-     * @param characterSkillGrade 조회하고자 하는 전직 차수<br>
-     *                            0: 0차 스킬 및 제로 공용스킬<br>
-     *                            1: 1차 스킬<br>
-     *                            1.5: 1.5차 스킬<br>
-     *                            2: 2차 스킬<br>
-     *                            2.5: 2.5차 스킬<br>
-     *                            3: 3차 스킬<br>
-     *                            4: 4차 스킬 및 제로 알파/베타 스킬<br>
-     *                            hyperpassive: 하이퍼 패시브 스킬<br>
-     *                            hyperactive: 하이퍼 액티브 스킬<br>
-     *                            5: 5차 스킬<br>
-     *                            6: 6차 스킬<br>
+     * @param characterSkillGrade 조회하고자 하는 전직 차수 <a href="https://openapi.nexon.com/ko/game/maplestory/?id=14">Available values</a><br>
      * @param localDateTime       조회 기준일 (KST)
      */
     public CompletableFuture<CharacterSkillDTO> getCharacterSkill(@NonNull String ocid, @NonNull String characterSkillGrade, LocalDateTime localDateTime) {
@@ -786,6 +808,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
      * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     * - 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.<br>
      *
      * @param ocid 캐릭터 식별자
      */
@@ -799,6 +822,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
      * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     * - 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.<br>
      *
      * @param ocid          캐릭터 식별자
      * @param localDateTime 조회 기준일 (KST)
@@ -828,6 +852,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
      * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     * - 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.<br>
      *
      * @param ocid 캐릭터 식별자
      */
@@ -841,6 +866,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
      * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     * - 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.<br>
      *
      * @param ocid          캐릭터 식별자
      * @param localDateTime 조회 기준일 (KST)
@@ -870,6 +896,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
      * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     * - 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.<br>
      *
      * @param ocid 캐릭터 식별자
      */
@@ -883,6 +910,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
      * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     * - 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.<br>
      *
      * @param ocid          캐릭터 식별자
      * @param localDateTime 조회 기준일 (KST)
@@ -912,6 +940,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
      * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     * - 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.<br>
      *
      * @param ocid 캐릭터 식별자
      */
@@ -925,6 +954,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
      * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     * - 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.<br>
      *
      * @param ocid          캐릭터 식별자
      * @param localDateTime 조회 기준일 (KST)
@@ -954,6 +984,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
      * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     * - 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.<br>
      *
      * @param ocid 캐릭터 식별자
      */
@@ -967,6 +998,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
      * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     * - 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.<br>
      *
      * @param ocid          캐릭터 식별자
      * @param localDateTime 조회 기준일 (KST)
@@ -1000,6 +1032,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
      * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     * - 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.<br>
      *
      * @param ocid 캐릭터 식별자
      */
@@ -1013,6 +1046,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
      * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     * - 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.<br>
      *
      * @param ocid          캐릭터 식별자
      * @param localDateTime 조회 기준일 (KST)
@@ -1042,6 +1076,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
      * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     * - 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.<br>
      *
      * @param ocid 캐릭터 식별자
      */
@@ -1055,6 +1090,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
      * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     * - 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.<br>
      *
      * @param ocid          캐릭터 식별자
      * @param localDateTime 조회 기준일 (KST)
@@ -1084,6 +1120,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
      * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     * - 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.<br>
      *
      * @param ocid 캐릭터 식별자
      */
@@ -1097,6 +1134,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
      * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     * - 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.<br>
      *
      * @param ocid          캐릭터 식별자
      * @param localDateTime 조회 기준일 (KST)
@@ -1127,6 +1165,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
      * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     * - 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.<br>
      *
      * @param ocid 캐릭터 식별자
      */
@@ -1141,6 +1180,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
      * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     * - 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.<br>
      *
      * @param ocid          캐릭터 식별자
      * @param localDateTime 조회 기준일 (KST)
@@ -1174,26 +1214,10 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
      * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     * - 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.<br>
      *
      * @param guildName 길드 명
-     * @param worldName 월드 명<br>
-     *                  스카니아<br>
-     *                  베라<br>
-     *                  루나<br>
-     *                  제니스<br>
-     *                  크로아<br>
-     *                  유니온<br>
-     *                  엘리시움<br>
-     *                  이노시스<br>
-     *                  레드<br>
-     *                  오로라<br>
-     *                  아케인<br>
-     *                  노바<br>
-     *                  에오스<br>
-     *                  헬리오스<br>
-     *                  버닝<br>
-     *                  버닝2<br>
-     *                  버닝3<br>
+     * @param worldName 월드 명 <a href="https://openapi.nexon.com/ko/game/maplestory/?id=16">Available values</a>
      */
     public CompletableFuture<GuildDTO> getGuild(@NonNull String guildName, @NonNull String worldName) {
         final CompletableFuture<GuildDTO> future = new CompletableFuture<>();
@@ -1212,6 +1236,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
      * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     * - 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.<br>
      *
      * @param oguildId 길드 식별자
      */
@@ -1225,6 +1250,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
      * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.<br>
      * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     * - 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.<br>
      *
      * @param oguildId      길드 식별자
      * @param localDateTime 조회 기준일 (KST)
@@ -1427,122 +1453,9 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
      * - 오전 8시 30분부터 오늘의 랭킹 정보를 조회할 수 있습니다.<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
-     * @param worldName      월드 명<br>
-     *                       스카니아<br>
-     *                       베라<br>
-     *                       루나<br>
-     *                       제니스<br>
-     *                       크로아<br>
-     *                       유니온<br>
-     *                       엘리시움<br>
-     *                       이노시스<br>
-     *                       레드<br>
-     *                       오로라<br>
-     *                       아케인<br>
-     *                       노바<br>
-     *                       에오스<br>
-     *                       헬리오스<br>
-     *                       버닝<br>
-     *                       버닝2<br>
-     *                       버닝3<br>
+     * @param worldName      월드 명 <a href="https://openapi.nexon.com/ko/game/maplestory/?id=18">Available values</a>
      * @param worldType      월드 타입 (0:일반, 1:에오스,헬리오스) (기본 값은 0이며, worldName 입력 시 미 반영)
-     * @param characterClass 직업 및 전직<br>
-     *                       초보자-전체 전직<br>
-     *                       전사-전체 전직<br>
-     *                       전사-검사<br>
-     *                       전사-파이터<br>
-     *                       전사-페이지<br>
-     *                       전사-스피어맨<br>
-     *                       전사-크루세이더<br>
-     *                       전사-나이트<br>
-     *                       전사-버서커<br>
-     *                       전사-히어로<br>
-     *                       전사-팔라딘<br>
-     *                       전사-다크나이트<br>
-     *                       마법사-전체 전직<br>
-     *                       마법사-매지션<br>
-     *                       마법사-위자드(불,독)<br>
-     *                       마법사-위자드(썬,콜)<br>
-     *                       마법사-클레릭<br>
-     *                       마법사-메이지(불,독)<br>
-     *                       마법사-메이지(썬,콜)<br>
-     *                       마법사-프리스트<br>
-     *                       마법사-아크메이지(불,독)<br>
-     *                       마법사-아크메이지(썬,콜)<br>
-     *                       마법사-비숍<br>
-     *                       궁수-전체 전직<br>
-     *                       궁수-아처<br>
-     *                       궁수-헌터<br>
-     *                       궁수-사수<br>
-     *                       궁수-레인저<br>
-     *                       궁수-저격수<br>
-     *                       궁수-보우마스터<br>
-     *                       궁수-신궁<br>
-     *                       궁수-아처(패스파인더)<br>
-     *                       궁수-에인션트아처<br>
-     *                       궁수-체이서<br>
-     *                       궁수-패스파인더<br>
-     *                       도적-전체 전직<br>
-     *                       도적-로그<br>
-     *                       도적-어쌔신<br>
-     *                       도적-시프<br>
-     *                       도적-허밋<br>
-     *                       도적-시프마스터<br>
-     *                       도적-나이트로드<br>
-     *                       도적-섀도어<br>
-     *                       도적-세미듀어러<br>
-     *                       도적-듀어러<br>
-     *                       도적-듀얼마스터<br>
-     *                       도적-슬래셔<br>
-     *                       도적-듀얼블레이더<br>
-     *                       해적-전체 전직<br>
-     *                       해적-해적<br>
-     *                       해적-인파이터<br>
-     *                       해적-건슬링거<br>
-     *                       해적-캐논슈터<br>
-     *                       해적-버커니어<br>
-     *                       해적-발키리<br>
-     *                       해적-캐논블래스터<br>
-     *                       해적-바이퍼<br>
-     *                       해적-캡틴<br>
-     *                       해적-캐논마스터<br>
-     *                       기사단-전체 전직<br>
-     *                       기사단-노블레스<br>
-     *                       기사단-소울마스터<br>
-     *                       기사단-플레임위자드<br>
-     *                       기사단-윈드브레이커<br>
-     *                       기사단-나이트워커<br>
-     *                       기사단-스트라이커<br>
-     *                       기사단-미하일<br>
-     *                       아란-전체 전직<br>
-     *                       에반-전체 전직<br>
-     *                       레지스탕스-전체 전직<br>
-     *                       레지스탕스-시티즌<br>
-     *                       레지스탕스-배틀메이지<br>
-     *                       레지스탕스-와일드헌터<br>
-     *                       레지스탕스-메카닉<br>
-     *                       레지스탕스-데몬슬레이어<br>
-     *                       레지스탕스-데몬어벤져<br>
-     *                       레지스탕스-제논<br>
-     *                       레지스탕스-블래스터<br>
-     *                       메르세데스-전체 전직<br>
-     *                       팬텀-전체 전직<br>
-     *                       루미너스-전체 전직<br>
-     *                       카이저-전체 전직<br>
-     *                       엔젤릭버스터-전체 전직<br>
-     *                       초월자-전체 전직<br>
-     *                       초월자-제로<br>
-     *                       은월-전체 전직<br>
-     *                       프렌즈 월드-전체 전직<br>
-     *                       프렌즈 월드-키네시스<br>
-     *                       카데나-전체 전직<br>
-     *                       일리움-전체 전직<br>
-     *                       아크-전체 전직<br>
-     *                       호영-전체 전직<br>
-     *                       아델-전체 전직<br>
-     *                       카인-전체 전직<br>
-     *                       라라-전체 전직<br>
-     *                       칼리-전체 전직<br>
+     * @param characterClass 직업 및 전직 <a href="https://openapi.nexon.com/ko/game/maplestory/?id=14">Available values</a>
      * @param ocid           캐릭터 식별자
      * @param page           페이지 번호
      */
@@ -1556,122 +1469,9 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
      * - 오전 8시 30분부터 오늘의 랭킹 정보를 조회할 수 있습니다.<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
-     * @param worldName      월드 명<br>
-     *                       스카니아<br>
-     *                       베라<br>
-     *                       루나<br>
-     *                       제니스<br>
-     *                       크로아<br>
-     *                       유니온<br>
-     *                       엘리시움<br>
-     *                       이노시스<br>
-     *                       레드<br>
-     *                       오로라<br>
-     *                       아케인<br>
-     *                       노바<br>
-     *                       에오스<br>
-     *                       헬리오스<br>
-     *                       버닝<br>
-     *                       버닝2<br>
-     *                       버닝3<br>
-     * @param worldType      월드 타입 (0:일반, 1:리부트) (기본 값은 0이며, worldName 입력 시 미 반영)
-     * @param characterClass 직업 및 전직<br>
-     *                       초보자-전체 전직<br>
-     *                       전사-전체 전직<br>
-     *                       전사-검사<br>
-     *                       전사-파이터<br>
-     *                       전사-페이지<br>
-     *                       전사-스피어맨<br>
-     *                       전사-크루세이더<br>
-     *                       전사-나이트<br>
-     *                       전사-버서커<br>
-     *                       전사-히어로<br>
-     *                       전사-팔라딘<br>
-     *                       전사-다크나이트<br>
-     *                       마법사-전체 전직<br>
-     *                       마법사-매지션<br>
-     *                       마법사-위자드(불,독)<br>
-     *                       마법사-위자드(썬,콜)<br>
-     *                       마법사-클레릭<br>
-     *                       마법사-메이지(불,독)<br>
-     *                       마법사-메이지(썬,콜)<br>
-     *                       마법사-프리스트<br>
-     *                       마법사-아크메이지(불,독)<br>
-     *                       마법사-아크메이지(썬,콜)<br>
-     *                       마법사-비숍<br>
-     *                       궁수-전체 전직<br>
-     *                       궁수-아처<br>
-     *                       궁수-헌터<br>
-     *                       궁수-사수<br>
-     *                       궁수-레인저<br>
-     *                       궁수-저격수<br>
-     *                       궁수-보우마스터<br>
-     *                       궁수-신궁<br>
-     *                       궁수-아처(패스파인더)<br>
-     *                       궁수-에인션트아처<br>
-     *                       궁수-체이서<br>
-     *                       궁수-패스파인더<br>
-     *                       도적-전체 전직<br>
-     *                       도적-로그<br>
-     *                       도적-어쌔신<br>
-     *                       도적-시프<br>
-     *                       도적-허밋<br>
-     *                       도적-시프마스터<br>
-     *                       도적-나이트로드<br>
-     *                       도적-섀도어<br>
-     *                       도적-세미듀어러<br>
-     *                       도적-듀어러<br>
-     *                       도적-듀얼마스터<br>
-     *                       도적-슬래셔<br>
-     *                       도적-듀얼블레이더<br>
-     *                       해적-전체 전직<br>
-     *                       해적-해적<br>
-     *                       해적-인파이터<br>
-     *                       해적-건슬링거<br>
-     *                       해적-캐논슈터<br>
-     *                       해적-버커니어<br>
-     *                       해적-발키리<br>
-     *                       해적-캐논블래스터<br>
-     *                       해적-바이퍼<br>
-     *                       해적-캡틴<br>
-     *                       해적-캐논마스터<br>
-     *                       기사단-전체 전직<br>
-     *                       기사단-노블레스<br>
-     *                       기사단-소울마스터<br>
-     *                       기사단-플레임위자드<br>
-     *                       기사단-윈드브레이커<br>
-     *                       기사단-나이트워커<br>
-     *                       기사단-스트라이커<br>
-     *                       기사단-미하일<br>
-     *                       아란-전체 전직<br>
-     *                       에반-전체 전직<br>
-     *                       레지스탕스-전체 전직<br>
-     *                       레지스탕스-시티즌<br>
-     *                       레지스탕스-배틀메이지<br>
-     *                       레지스탕스-와일드헌터<br>
-     *                       레지스탕스-메카닉<br>
-     *                       레지스탕스-데몬슬레이어<br>
-     *                       레지스탕스-데몬어벤져<br>
-     *                       레지스탕스-제논<br>
-     *                       레지스탕스-블래스터<br>
-     *                       메르세데스-전체 전직<br>
-     *                       팬텀-전체 전직<br>
-     *                       루미너스-전체 전직<br>
-     *                       카이저-전체 전직<br>
-     *                       엔젤릭버스터-전체 전직<br>
-     *                       초월자-전체 전직<br>
-     *                       초월자-제로<br>
-     *                       은월-전체 전직<br>
-     *                       프렌즈 월드-전체 전직<br>
-     *                       프렌즈 월드-키네시스<br>
-     *                       카데나-전체 전직<br>
-     *                       일리움-전체 전직<br>
-     *                       아크-전체 전직<br>
-     *                       호영-전체 전직<br>
-     *                       아델-전체 전직<br>
-     *                       카인-전체 전직<br>
-     *                       라라-전체 전직<br>
-     *                       칼리-전체 전직<br>
+     * @param worldName      월드 명 <a href="https://openapi.nexon.com/ko/game/maplestory/?id=14">Available values</a>
+     * @param worldType      월드 타입 (0:일반, 1:에오스,헬리오스) (기본 값은 0이며, worldName 입력 시 미 반영)
+     * @param characterClass 직업 및 전직 <a href="https://openapi.nexon.com/ko/game/maplestory/?id=14">Available values</a>
      * @param ocid           캐릭터 식별자
      * @param page           페이지 번호
      * @param localDateTime  조회 기준일 (KST)
@@ -1699,24 +1499,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
      * - 오전 8시 30분부터 오늘의 랭킹 정보를 조회할 수 있습니다.<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
-     * @param worldName 월드 명<br>
-     *                  스카니아<br>
-     *                  베라<br>
-     *                  루나<br>
-     *                  제니스<br>
-     *                  크로아<br>
-     *                  유니온<br>
-     *                  엘리시움<br>
-     *                  이노시스<br>
-     *                  레드<br>
-     *                  오로라<br>
-     *                  아케인<br>
-     *                  노바<br>
-     *                  에오스<br>
-     *                  헬리오스<br>
-     *                  버닝<br>
-     *                  버닝2<br>
-     *                  버닝3<br>
+     * @param worldName 월드 명 <a href="https://openapi.nexon.com/ko/game/maplestory/?id=14">Available values</a>
      * @param ocid      캐릭터 식별자
      * @param page      페이지 번호
      */
@@ -1730,24 +1513,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
      * - 오전 8시 30분부터 오늘의 랭킹 정보를 조회할 수 있습니다.<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
-     * @param worldName     월드 명<br>
-     *                      스카니아<br>
-     *                      베라<br>
-     *                      루나<br>
-     *                      제니스<br>
-     *                      크로아<br>
-     *                      유니온<br>
-     *                      엘리시움<br>
-     *                      이노시스<br>
-     *                      레드<br>
-     *                      오로라<br>
-     *                      아케인<br>
-     *                      노바<br>
-     *                      에오스<br>
-     *                      헬리오스<br>
-     *                      버닝<br>
-     *                      버닝2<br>
-     *                      버닝3<br>
+     * @param worldName     월드 명 <a href="https://openapi.nexon.com/ko/game/maplestory/?id=14">Available values</a>
      * @param ocid          캐릭터 식별자
      * @param page          페이지 번호
      * @param localDateTime 조회 기준일 (KST)
@@ -1775,24 +1541,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
      * - 오전 8시 30분부터 오늘의 랭킹 정보를 조회할 수 있습니다.<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
-     * @param worldName   월드 명<br>
-     *                    스카니아<br>
-     *                    베라<br>
-     *                    루나<br>
-     *                    제니스<br>
-     *                    크로아<br>
-     *                    유니온<br>
-     *                    엘리시움<br>
-     *                    이노시스<br>
-     *                    레드<br>
-     *                    오로라<br>
-     *                    아케인<br>
-     *                    노바<br>
-     *                    에오스<br>
-     *                    헬리오스<br>
-     *                    버닝<br>
-     *                    버닝2<br>
-     *                    버닝3<br>
+     * @param worldName   월드 명 <a href="https://openapi.nexon.com/ko/game/maplestory/?id=14">Available values</a>
      * @param rankingType 랭킹 타입 (0:주간 명성치, 1:플래그 레이스, 2:지하 수로)
      * @param guildName   길드 명
      * @param page        페이지 번호
@@ -1807,24 +1556,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
      * - 오전 8시 30분부터 오늘의 랭킹 정보를 조회할 수 있습니다.<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
-     * @param worldName     월드 명<br>
-     *                      스카니아<br>
-     *                      베라<br>
-     *                      루나<br>
-     *                      제니스<br>
-     *                      크로아<br>
-     *                      유니온<br>
-     *                      엘리시움<br>
-     *                      이노시스<br>
-     *                      레드<br>
-     *                      오로라<br>
-     *                      아케인<br>
-     *                      노바<br>
-     *                      에오스<br>
-     *                      헬리오스<br>
-     *                      버닝<br>
-     *                      버닝2<br>
-     *                      버닝3<br>
+     * @param worldName     월드 명 <a href="https://openapi.nexon.com/ko/game/maplestory/?id=14">Available values</a>
      * @param rankingType   랭킹 타입 (0:주간 명성치, 1:플래그 레이스, 2:지하 수로)
      * @param guildName     길드 명
      * @param page          페이지 번호
@@ -1853,122 +1585,9 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
      * - 오전 8시 30분부터 오늘의 랭킹 정보를 조회할 수 있습니다.<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
-     * @param worldName      월드 명<br>
-     *                       스카니아<br>
-     *                       베라<br>
-     *                       루나<br>
-     *                       제니스<br>
-     *                       크로아<br>
-     *                       유니온<br>
-     *                       엘리시움<br>
-     *                       이노시스<br>
-     *                       레드<br>
-     *                       오로라<br>
-     *                       아케인<br>
-     *                       노바<br>
-     *                       에오스<br>
-     *                       헬리오스<br>
-     *                       버닝<br>
-     *                       버닝2<br>
-     *                       버닝3<br>
+     * @param worldName      월드 명 <a href="https://openapi.nexon.com/ko/game/maplestory/?id=14">Available values</a>
      * @param difficulty     구간 (0:일반, 1:통달)
-     * @param characterClass 직업 및 전직<br>
-     *                       초보자-전체 전직<br>
-     *                       전사-전체 전직<br>
-     *                       전사-검사<br>
-     *                       전사-파이터<br>
-     *                       전사-페이지<br>
-     *                       전사-스피어맨<br>
-     *                       전사-크루세이더<br>
-     *                       전사-나이트<br>
-     *                       전사-버서커<br>
-     *                       전사-히어로<br>
-     *                       전사-팔라딘<br>
-     *                       전사-다크나이트<br>
-     *                       마법사-전체 전직<br>
-     *                       마법사-매지션<br>
-     *                       마법사-위자드(불,독)<br>
-     *                       마법사-위자드(썬,콜)<br>
-     *                       마법사-클레릭<br>
-     *                       마법사-메이지(불,독)<br>
-     *                       마법사-메이지(썬,콜)<br>
-     *                       마법사-프리스트<br>
-     *                       마법사-아크메이지(불,독)<br>
-     *                       마법사-아크메이지(썬,콜)<br>
-     *                       마법사-비숍<br>
-     *                       궁수-전체 전직<br>
-     *                       궁수-아처<br>
-     *                       궁수-헌터<br>
-     *                       궁수-사수<br>
-     *                       궁수-레인저<br>
-     *                       궁수-저격수<br>
-     *                       궁수-보우마스터<br>
-     *                       궁수-신궁<br>
-     *                       궁수-아처(패스파인더)<br>
-     *                       궁수-에인션트아처<br>
-     *                       궁수-체이서<br>
-     *                       궁수-패스파인더<br>
-     *                       도적-전체 전직<br>
-     *                       도적-로그<br>
-     *                       도적-어쌔신<br>
-     *                       도적-시프<br>
-     *                       도적-허밋<br>
-     *                       도적-시프마스터<br>
-     *                       도적-나이트로드<br>
-     *                       도적-섀도어<br>
-     *                       도적-세미듀어러<br>
-     *                       도적-듀어러<br>
-     *                       도적-듀얼마스터<br>
-     *                       도적-슬래셔<br>
-     *                       도적-듀얼블레이더<br>
-     *                       해적-전체 전직<br>
-     *                       해적-해적<br>
-     *                       해적-인파이터<br>
-     *                       해적-건슬링거<br>
-     *                       해적-캐논슈터<br>
-     *                       해적-버커니어<br>
-     *                       해적-발키리<br>
-     *                       해적-캐논블래스터<br>
-     *                       해적-바이퍼<br>
-     *                       해적-캡틴<br>
-     *                       해적-캐논마스터<br>
-     *                       기사단-전체 전직<br>
-     *                       기사단-노블레스<br>
-     *                       기사단-소울마스터<br>
-     *                       기사단-플레임위자드<br>
-     *                       기사단-윈드브레이커<br>
-     *                       기사단-나이트워커<br>
-     *                       기사단-스트라이커<br>
-     *                       기사단-미하일<br>
-     *                       아란-전체 전직<br>
-     *                       에반-전체 전직<br>
-     *                       레지스탕스-전체 전직<br>
-     *                       레지스탕스-시티즌<br>
-     *                       레지스탕스-배틀메이지<br>
-     *                       레지스탕스-와일드헌터<br>
-     *                       레지스탕스-메카닉<br>
-     *                       레지스탕스-데몬슬레이어<br>
-     *                       레지스탕스-데몬어벤져<br>
-     *                       레지스탕스-제논<br>
-     *                       레지스탕스-블래스터<br>
-     *                       메르세데스-전체 전직<br>
-     *                       팬텀-전체 전직<br>
-     *                       루미너스-전체 전직<br>
-     *                       카이저-전체 전직<br>
-     *                       엔젤릭버스터-전체 전직<br>
-     *                       초월자-전체 전직<br>
-     *                       초월자-제로<br>
-     *                       은월-전체 전직<br>
-     *                       프렌즈 월드-전체 전직<br>
-     *                       프렌즈 월드-키네시스<br>
-     *                       카데나-전체 전직<br>
-     *                       일리움-전체 전직<br>
-     *                       아크-전체 전직<br>
-     *                       호영-전체 전직<br>
-     *                       아델-전체 전직<br>
-     *                       카인-전체 전직<br>
-     *                       라라-전체 전직<br>
-     *                       칼리-전체 전직<br>
+     * @param characterClass 직업 및 전직 <a href="https://openapi.nexon.com/ko/game/maplestory/?id=14">Available values</a>
      * @param ocid           캐릭터 식별자
      * @param page           페이지 번호
      */
@@ -1982,122 +1601,9 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
      * - 오전 8시 30분부터 오늘의 랭킹 정보를 조회할 수 있습니다.<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
-     * @param worldName      월드 명<br>
-     *                       스카니아<br>
-     *                       베라<br>
-     *                       루나<br>
-     *                       제니스<br>
-     *                       크로아<br>
-     *                       유니온<br>
-     *                       엘리시움<br>
-     *                       이노시스<br>
-     *                       레드<br>
-     *                       오로라<br>
-     *                       아케인<br>
-     *                       노바<br>
-     *                       에오스<br>
-     *                       헬리오스<br>
-     *                       버닝<br>
-     *                       버닝2<br>
-     *                       버닝3<br>
+     * @param worldName      월드 명 <a href="https://openapi.nexon.com/ko/game/maplestory/?id=14">Available values</a>
      * @param difficulty     구간 (0:일반, 1:통달)
-     * @param characterClass 직업 및 전직<br>
-     *                       초보자-전체 전직<br>
-     *                       전사-전체 전직<br>
-     *                       전사-검사<br>
-     *                       전사-파이터<br>
-     *                       전사-페이지<br>
-     *                       전사-스피어맨<br>
-     *                       전사-크루세이더<br>
-     *                       전사-나이트<br>
-     *                       전사-버서커<br>
-     *                       전사-히어로<br>
-     *                       전사-팔라딘<br>
-     *                       전사-다크나이트<br>
-     *                       마법사-전체 전직<br>
-     *                       마법사-매지션<br>
-     *                       마법사-위자드(불,독)<br>
-     *                       마법사-위자드(썬,콜)<br>
-     *                       마법사-클레릭<br>
-     *                       마법사-메이지(불,독)<br>
-     *                       마법사-메이지(썬,콜)<br>
-     *                       마법사-프리스트<br>
-     *                       마법사-아크메이지(불,독)<br>
-     *                       마법사-아크메이지(썬,콜)<br>
-     *                       마법사-비숍<br>
-     *                       궁수-전체 전직<br>
-     *                       궁수-아처<br>
-     *                       궁수-헌터<br>
-     *                       궁수-사수<br>
-     *                       궁수-레인저<br>
-     *                       궁수-저격수<br>
-     *                       궁수-보우마스터<br>
-     *                       궁수-신궁<br>
-     *                       궁수-아처(패스파인더)<br>
-     *                       궁수-에인션트아처<br>
-     *                       궁수-체이서<br>
-     *                       궁수-패스파인더<br>
-     *                       도적-전체 전직<br>
-     *                       도적-로그<br>
-     *                       도적-어쌔신<br>
-     *                       도적-시프<br>
-     *                       도적-허밋<br>
-     *                       도적-시프마스터<br>
-     *                       도적-나이트로드<br>
-     *                       도적-섀도어<br>
-     *                       도적-세미듀어러<br>
-     *                       도적-듀어러<br>
-     *                       도적-듀얼마스터<br>
-     *                       도적-슬래셔<br>
-     *                       도적-듀얼블레이더<br>
-     *                       해적-전체 전직<br>
-     *                       해적-해적<br>
-     *                       해적-인파이터<br>
-     *                       해적-건슬링거<br>
-     *                       해적-캐논슈터<br>
-     *                       해적-버커니어<br>
-     *                       해적-발키리<br>
-     *                       해적-캐논블래스터<br>
-     *                       해적-바이퍼<br>
-     *                       해적-캡틴<br>
-     *                       해적-캐논마스터<br>
-     *                       기사단-전체 전직<br>
-     *                       기사단-노블레스<br>
-     *                       기사단-소울마스터<br>
-     *                       기사단-플레임위자드<br>
-     *                       기사단-윈드브레이커<br>
-     *                       기사단-나이트워커<br>
-     *                       기사단-스트라이커<br>
-     *                       기사단-미하일<br>
-     *                       아란-전체 전직<br>
-     *                       에반-전체 전직<br>
-     *                       레지스탕스-전체 전직<br>
-     *                       레지스탕스-시티즌<br>
-     *                       레지스탕스-배틀메이지<br>
-     *                       레지스탕스-와일드헌터<br>
-     *                       레지스탕스-메카닉<br>
-     *                       레지스탕스-데몬슬레이어<br>
-     *                       레지스탕스-데몬어벤져<br>
-     *                       레지스탕스-제논<br>
-     *                       레지스탕스-블래스터<br>
-     *                       메르세데스-전체 전직<br>
-     *                       팬텀-전체 전직<br>
-     *                       루미너스-전체 전직<br>
-     *                       카이저-전체 전직<br>
-     *                       엔젤릭버스터-전체 전직<br>
-     *                       초월자-전체 전직<br>
-     *                       초월자-제로<br>
-     *                       은월-전체 전직<br>
-     *                       프렌즈 월드-전체 전직<br>
-     *                       프렌즈 월드-키네시스<br>
-     *                       카데나-전체 전직<br>
-     *                       일리움-전체 전직<br>
-     *                       아크-전체 전직<br>
-     *                       호영-전체 전직<br>
-     *                       아델-전체 전직<br>
-     *                       카인-전체 전직<br>
-     *                       라라-전체 전직<br>
-     *                       칼리-전체 전직<br>
+     * @param characterClass 직업 및 전직 <a href="https://openapi.nexon.com/ko/game/maplestory/?id=14">Available values</a>
      * @param ocid           캐릭터 식별자
      * @param page           페이지 번호
      * @param localDateTime  조회 기준일 (KST)
@@ -2125,24 +1631,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
      * - 오전 8시 30분부터 오늘의 랭킹 정보를 조회할 수 있습니다.<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
-     * @param worldName 월드 명<br>
-     *                  스카니아<br>
-     *                  베라<br>
-     *                  루나<br>
-     *                  제니스<br>
-     *                  크로아<br>
-     *                  유니온<br>
-     *                  엘리시움<br>
-     *                  이노시스<br>
-     *                  레드<br>
-     *                  오로라<br>
-     *                  아케인<br>
-     *                  노바<br>
-     *                  에오스<br>
-     *                  헬리오스<br>
-     *                  버닝<br>
-     *                  버닝2<br>
-     *                  버닝3<br>
+     * @param worldName 월드 명 <a href="https://openapi.nexon.com/ko/game/maplestory/?id=14">Available values</a>
      * @param ocid      캐릭터 식별자
      * @param page      페이지 번호
      */
@@ -2156,24 +1645,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
      * - 오전 8시 30분부터 오늘의 랭킹 정보를 조회할 수 있습니다.<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
-     * @param worldName     월드 명<br>
-     *                      스카니아<br>
-     *                      베라<br>
-     *                      루나<br>
-     *                      제니스<br>
-     *                      크로아<br>
-     *                      유니온<br>
-     *                      엘리시움<br>
-     *                      이노시스<br>
-     *                      레드<br>
-     *                      오로라<br>
-     *                      아케인<br>
-     *                      노바<br>
-     *                      에오스<br>
-     *                      헬리오스<br>
-     *                      버닝<br>
-     *                      버닝2<br>
-     *                      버닝3<br>
+     * @param worldName     월드 명 <a href="https://openapi.nexon.com/ko/game/maplestory/?id=14">Available values</a>
      * @param ocid          캐릭터 식별자
      * @param page          페이지 번호
      * @param localDateTime 조회 기준일 (KST)

@@ -615,18 +615,7 @@ export class MapleStoryApi extends base.MapleStoryApi {
    * - Due to game content changes, the ocid may be updated. Please pay attention to this when updating services based on ocid.
    * - This API provides data for MapleStory SEA.
    * @param ocid Character identifier
-   * @param characterSkillGrade Job advancement tier to query
-   * - 0: 0th job skills and Zero shared skills
-   * - 1: 1st job skills
-   * - 1.5: 1.5th job skills
-   * - 2: 2nd job skills
-   * - 2.5: 2.5th job skills
-   * - 3: 3rd job skills
-   * - 4: 4th job skills and Zero Alpha/Beta skills
-   * - hyperpassive: Hyper passive skills
-   * - hyperactive: Hyper active skills
-   * - 5: 5th job skills
-   * - 6: 6th job skills
+   * @param characterSkillGrade Job advancement tier to query <a href="https://openapi.nexon.com/game/maplestorysea/?id=45">Available values</a>
    *  @param dateOptions Reference date for query (SGT)
    */
   public override async getCharacterSkill(

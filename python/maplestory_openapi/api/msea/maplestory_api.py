@@ -451,18 +451,7 @@ class MapleStoryApi(BaseMapleStoryApi):
         Args:
             ocid (str): Character identifier
             date (datetime or None): Reference date for query (SGT)
-            character_skill_grade(str): Job advancement tier to query
-                - 0: 0th job skills and Zero shared skills
-                - 1: 1st job skills
-                - 1.5: 1.5th job skills
-                - 2: 2nd job skills
-                - 2.5: 2.5th job skills
-                - 3: 3rd job skills
-                - 4: 4th job skills and Zero Alpha/Beta skills
-                - hyperpassive: Hyper passive skills
-                - hyperactive: Hyper active skills
-                - 5: 5th job skills
-                - 6: 6th job skills
+            character_skill_grade(str): Job advancement tier to query (Available values: https://openapi.nexon.com/game/maplestorysea/?id=45)
         """
         path = self.sub_url + '/v1/character/skill'
         query = {
@@ -669,7 +658,7 @@ class MapleStoryApi(BaseMapleStoryApi):
 
         Args:
             guild_name (str): Guild name
-            world_name (str): World name
+            world_name (str): World name (Available values: https://openapi.nexon.com/game/maplestorysea/?id=47)
         """
         path = self.sub_url + '/v1/guild/id'
         query = {
