@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.ToString;
 
 /**
- * Artifact artifact information
+ * Artifact effect information
  */
 @AllArgsConstructor
 @Data

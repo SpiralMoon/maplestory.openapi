@@ -137,7 +137,7 @@ export class UnionRaiderInnerStatDto extends base.UnionRaiderInnerStatDto {
 }
 
 /**
- * Coordinates of the area occupied by the block (null if not placed)
+ * Coordinates of the area occupied by the block
  */
 export class UnionRaiderBlockPositionDto extends base.UnionRaiderBlockPositionDto {
   /**

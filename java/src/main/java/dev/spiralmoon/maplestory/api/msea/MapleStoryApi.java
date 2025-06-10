@@ -600,7 +600,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
     }
 
     /**
-     * Retrieves equipped andriod information.<br>
+     * Retrieves equipped android information.<br>
      * - MapleStory game data can be verified approximately 15 minutes after updates.<br>
      * - Data is available starting from April 20, 2025.<br>
      * - Historical data can be queried by specifying the desired date, and data from the previous day can be accessed starting at 2 AM the next day. (For example, when querying data for December 22, data from 00:00 to 24:00 on December 22 will be retrieved.)<br>
@@ -613,7 +613,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
     }
 
     /**
-     * Retrieves equipped andriod information.<br>
+     * Retrieves equipped android information.<br>
      * - MapleStory game data can be verified approximately 15 minutes after updates.<br>
      * - Data is available starting from April 20, 2025.<br>
      * - Historical data can be queried by specifying the desired date, and data from the previous day can be accessed starting at 2 AM the next day. (For example, when querying data for December 22, data from 00:00 to 24:00 on December 22 will be retrieved.)<br>
