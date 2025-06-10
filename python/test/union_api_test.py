@@ -4,12 +4,12 @@ import unittest
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../')))
 
-from maplestory_openapi import MapleStoryApi
+from maplestory_openapi.api.kms import MapleStoryApi
 
-api_key = 'live_d6144a2c50ace54e9775764d74f3218c721bc66b55c53c61e6d867a187d3257eefe8d04e6d233bd35cf2fabdeb93fb0d'
+api_key = os.environ['API_KEY']  # Your API Key
 api = MapleStoryApi(api_key)
 
-ocid = '84d3c6421c167fd10c146741ff1e3e5d'
+ocid = 'e0a4f439e53c369866b55297d2f5f4eb'
 
 
 # 유니온 정보 조회
