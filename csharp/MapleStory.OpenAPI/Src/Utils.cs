@@ -1,5 +1,4 @@
 ﻿using MapleStory.OpenAPI.Common.Enum;
-using MapleStory.OpenAPI.Dto;
 
 namespace MapleStory.OpenAPI
 {
