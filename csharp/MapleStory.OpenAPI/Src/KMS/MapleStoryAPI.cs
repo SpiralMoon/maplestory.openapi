@@ -29,7 +29,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <param name="characterName">캐릭터 명</param>
         public override async Task<CharacterDTO> GetCharacter(string characterName)
         {
-            var path = "maplestory/v1/id";
+            var path = $"{subUrl}/v1/id";
             var query = new Dictionary<string, string?>()
             {
                 { "character_name", characterName }
@@ -46,7 +46,7 @@ namespace MapleStory.OpenAPI.KMS
         /// </summary>
         public async Task<CharacterListDTO> GetCharacterList()
         {
-            var path = "maplestory/v1/character/list";
+            var path = $"{subUrl}/v1/character/list";
 
             return await Get<CharacterListDTO>(path);
         }
@@ -75,7 +75,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
         public override async Task<CharacterBasicDTO> GetCharacterBasic(string ocid, DateTimeOffset? dateTimeOffset)
         {
-            var path = "maplestory/v1/character/basic";
+            var path = $"{subUrl}/v1/character/basic";
             var date = dateTimeOffset != null
                 ? ToDateString((DateTimeOffset) dateTimeOffset, MinDate(2023, 12, 21))
                 : null;
@@ -102,8 +102,8 @@ namespace MapleStory.OpenAPI.KMS
             return GetCharacterImage(ocid, new CharacterImageOption(), null);
         }
 
-        /// 캐릭터 외형 이미지 정보를 조회합니다.
         /// <summary>
+        /// 캐릭터 외형 이미지 정보를 조회합니다.
         /// <para>- 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.</para>
         /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
         /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
@@ -201,7 +201,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
         public override async Task<CharacterPopularityDTO> GetCharacterPopularity(string ocid, DateTimeOffset? dateTimeOffset)
         {
-            var path = "maplestory/v1/character/popularity";
+            var path = $"{subUrl}/v1/character/popularity";
             var date = dateTimeOffset != null
                 ? ToDateString((DateTimeOffset) dateTimeOffset, MinDate(2023, 12, 21))
                 : null;
@@ -237,7 +237,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
         public override async Task<CharacterStatDTO> GetCharacterStat(string ocid, DateTimeOffset? dateTimeOffset)
         {
-            var path = "maplestory/v1/character/stat";
+            var path = $"{subUrl}/v1/character/stat";
             var date = dateTimeOffset != null
                 ? ToDateString((DateTimeOffset) dateTimeOffset, MinDate(2023, 12, 21))
                 : null;
@@ -274,7 +274,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
         public override async Task<CharacterHyperStatDTO> GetCharacterHyperStat(string ocid, DateTimeOffset? dateTimeOffset)
         {
-            var path = "maplestory/v1/character/hyper-stat";
+            var path = $"{subUrl}/v1/character/hyper-stat";
             var date = dateTimeOffset != null
                 ? ToDateString((DateTimeOffset) dateTimeOffset, MinDate(2023, 12, 21))
                 : null;
@@ -311,7 +311,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
         public override async Task<CharacterPropensityDTO> GetCharacterPropensity(string ocid, DateTimeOffset? dateTimeOffset)
         {
-            var path = "maplestory/v1/character/propensity";
+            var path = $"{subUrl}/v1/character/propensity";
             var date = dateTimeOffset != null
                 ? ToDateString((DateTimeOffset) dateTimeOffset, MinDate(2023, 12, 21))
                 : null;
@@ -348,7 +348,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
         public override async Task<CharacterAbilityDTO> GetCharacterAbility(string ocid, DateTimeOffset? dateTimeOffset)
         {
-            var path = "maplestory/v1/character/ability";
+            var path = $"{subUrl}/v1/character/ability";
             var date = dateTimeOffset != null
                 ? ToDateString((DateTimeOffset) dateTimeOffset, MinDate(2023, 12, 21))
                 : null;
@@ -385,7 +385,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
         public override async Task<CharacterItemEquipmentDTO> GetCharacterItemEquipment(string ocid, DateTimeOffset? dateTimeOffset)
         {
-            var path = "maplestory/v1/character/item-equipment";
+            var path = $"{subUrl}/v1/character/item-equipment";
             var date = dateTimeOffset != null
                 ? ToDateString((DateTimeOffset) dateTimeOffset, MinDate(2023, 12, 21))
                 : null;
@@ -422,7 +422,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
         public override async Task<CharacterCashItemEquipmentDTO> GetCharacterCashItemEquipment(string ocid, DateTimeOffset? dateTimeOffset)
         {
-            var path = "maplestory/v1/character/cashitem-equipment";
+            var path = $"{subUrl}/v1/character/cashitem-equipment";
             var date = dateTimeOffset != null
                 ? ToDateString((DateTimeOffset) dateTimeOffset, MinDate(2023, 12, 21))
                 : null;
@@ -459,7 +459,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
         public override async Task<CharacterSymbolEquipmentDTO> GetCharacterSymbolEquipment(string ocid, DateTimeOffset? dateTimeOffset)
         {
-            var path = "maplestory/v1/character/symbol-equipment";
+            var path = $"{subUrl}/v1/character/symbol-equipment";
             var date = dateTimeOffset != null
                 ? ToDateString((DateTimeOffset) dateTimeOffset, MinDate(2023, 12, 21))
                 : null;
@@ -496,7 +496,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
         public override async Task<CharacterSetEffectDTO> GetCharacterSetEffect(string ocid, DateTimeOffset? dateTimeOffset)
         {
-            var path = "maplestory/v1/character/set-effect";
+            var path = $"{subUrl}/v1/character/set-effect";
             var date = dateTimeOffset != null
                 ? ToDateString((DateTimeOffset) dateTimeOffset, MinDate(2023, 12, 21))
                 : null;
@@ -533,7 +533,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
         public override async Task<CharacterBeautyEquipmentDTO> GetCharacterBeautyEquipment(string ocid, DateTimeOffset? dateTimeOffset)
         {
-            var path = "maplestory/v1/character/beauty-equipment";
+            var path = $"{subUrl}/v1/character/beauty-equipment";
             var date = dateTimeOffset != null
                 ? ToDateString((DateTimeOffset) dateTimeOffset, MinDate(2023, 12, 21))
                 : null;
@@ -570,7 +570,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
         public override async Task<CharacterAndroidEquipmentDTO> GetCharacterAndroidEquipment(string ocid, DateTimeOffset? dateTimeOffset)
         {
-            var path = "maplestory/v1/character/android-equipment";
+            var path = $"{subUrl}/v1/character/android-equipment";
             var date = dateTimeOffset != null
                 ? ToDateString((DateTimeOffset) dateTimeOffset, MinDate(2023, 12, 21))
                 : null;
@@ -607,7 +607,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
         public override async Task<CharacterPetEquipmentDTO> GetCharacterPetEquipment(string ocid, DateTimeOffset? dateTimeOffset)
         {
-            var path = "maplestory/v1/character/pet-equipment";
+            var path = $"{subUrl}/v1/character/pet-equipment";
             var date = dateTimeOffset != null
                 ? ToDateString((DateTimeOffset) dateTimeOffset, MinDate(2023, 12, 21))
                 : null;
@@ -671,7 +671,7 @@ namespace MapleStory.OpenAPI.KMS
 
         public override async Task<CharacterSkillDTO> GetCharacterSkill(string ocid, string characterSkillGrade, DateTimeOffset? dateTimeOffset)
         {
-            var path = "maplestory/v1/character/skill";
+            var path = $"{subUrl}/v1/character/skill";
             var date = dateTimeOffset != null
                 ? ToDateString((DateTimeOffset) dateTimeOffset, MinDate(2023, 12, 21))
                 : null;
@@ -709,7 +709,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
         public override async Task<CharacterLinkSkillDTO> GetCharacterLinkSkill(string ocid, DateTimeOffset? dateTimeOffset)
         {
-            var path = "maplestory/v1/character/link-skill";
+            var path = $"{subUrl}/v1/character/link-skill";
             var date = dateTimeOffset != null
                 ? ToDateString((DateTimeOffset) dateTimeOffset, MinDate(2023, 12, 21))
                 : null;
@@ -746,7 +746,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
         public override async Task<CharacterVMatrixDTO> GetCharacterVMatrix(string ocid, DateTimeOffset? dateTimeOffset)
         {
-            var path = "maplestory/v1/character/vmatrix";
+            var path = $"{subUrl}/v1/character/vmatrix";
             var date = dateTimeOffset != null
                 ? ToDateString((DateTimeOffset) dateTimeOffset, MinDate(2023, 12, 21))
                 : null;
@@ -783,7 +783,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
         public override async Task<CharacterHexaMatrixDTO> GetCharacterHexaMatrix(string ocid, DateTimeOffset? dateTimeOffset)
         {
-            var path = "maplestory/v1/character/hexamatrix";
+            var path = $"{subUrl}/v1/character/hexamatrix";
             var date = dateTimeOffset != null
                 ? ToDateString((DateTimeOffset) dateTimeOffset, MinDate(2023, 12, 21))
                 : null;
@@ -820,7 +820,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
         public override async Task<CharacterHexaMatrixStatDTO> GetCharacterHexaMatrixStat(string ocid, DateTimeOffset? dateTimeOffset)
         {
-            var path = "maplestory/v1/character/hexamatrix-stat";
+            var path = $"{subUrl}/v1/character/hexamatrix-stat";
             var date = dateTimeOffset != null
                 ? ToDateString((DateTimeOffset) dateTimeOffset, MinDate(2023, 12, 21))
                 : null;
@@ -857,7 +857,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
         public override async Task<CharacterDojangDTO> GetCharacterDojang(string ocid, DateTimeOffset? dateTimeOffset)
         {
-            var path = "maplestory/v1/character/dojang";
+            var path = $"{subUrl}/v1/character/dojang";
             var date = dateTimeOffset != null
                 ? ToDateString((DateTimeOffset) dateTimeOffset, MinDate(2023, 12, 21))
                 : null;
@@ -898,7 +898,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
         public override async Task<UnionDTO> GetUnion(string ocid, DateTimeOffset? dateTimeOffset)
         {
-            var path = "maplestory/v1/user/union";
+            var path = $"{subUrl}/v1/user/union";
             var date = dateTimeOffset != null
                 ? ToDateString((DateTimeOffset) dateTimeOffset, MinDate(2023, 12, 21))
                 : null;
@@ -935,7 +935,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
         public override async Task<UnionRaiderDTO> GetUnionRaider(string ocid, DateTimeOffset? dateTimeOffset)
         {
-            var path = "maplestory/v1/user/union-raider";
+            var path = $"{subUrl}/v1/user/union-raider";
             var date = dateTimeOffset != null
                 ? ToDateString((DateTimeOffset) dateTimeOffset, MinDate(2023, 12, 21))
                 : null;
@@ -972,7 +972,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
         public override async Task<UnionArtifactDTO> GetUnionArtifact(string ocid, DateTimeOffset? dateTimeOffset)
         {
-            var path = "maplestory/v1/user/union-artifact";
+            var path = $"{subUrl}/v1/user/union-artifact";
             var date = dateTimeOffset != null
                 ? ToDateString((DateTimeOffset) dateTimeOffset, MinDate(2023, 12, 21))
                 : null;
@@ -1011,7 +1011,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
         public async Task<UnionChampionDTO> GetUnionChampion(string ocid, DateTimeOffset? dateTimeOffset)
         {
-            var path = "maplestory/v1/user/union-champion";
+            var path = $"{subUrl}/v1/user/union-champion";
             var date = dateTimeOffset != null
                 ? ToDateString((DateTimeOffset) dateTimeOffset, MinDate(2023, 12, 21))
                 : null;
@@ -1057,7 +1057,7 @@ namespace MapleStory.OpenAPI.KMS
         /// </param>
         public override async Task<GuildDTO> GetGuild(string guildName, string wolrdName)
         {
-            var path = "maplestory/v1/guild/id";
+            var path = $"{subUrl}/v1/guild/id";
             var query = new Dictionary<string, string?>()
             {
                 { "guild_name", guildName },
@@ -1092,7 +1092,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <returns>길드 기본 정보</returns>
         public override async Task<GuildBasicDTO> GetGuildBasic(string oGuildId, DateTimeOffset? dateTimeOffset)
         {
-            var path = "maplestory/v1/guild/basic";
+            var path = $"{subUrl}/v1/guild/basic";
             var date = dateTimeOffset != null
                 ? ToDateString((DateTimeOffset) dateTimeOffset, MinDate(2023, 12, 21))
                 : null;
@@ -1134,7 +1134,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
         public async Task<StarforceHistoryResponseDTO> GetStarforceHistory(int count, DateTimeOffset dateTimeOffset)
         {
-            var path = "maplestory/v1/history/starforce";
+            var path = $"{subUrl}/v1/history/starforce";
             var query = new Dictionary<string, string?>()
             {
                 { "count", count.ToString() },
@@ -1153,7 +1153,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <param name="cursor">페이징 처리를 위한 cursor</param>
         public async Task<StarforceHistoryResponseDTO> GetStarforceHistory(int count, string cursor)
         {
-            var path = "maplestory/v1/history/starforce";
+            var path = $"{subUrl}/v1/history/starforce";
             var query = new Dictionary<string, string?>()
             {
                 { "count", count.ToString() },
@@ -1188,7 +1188,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
         public async Task<CubeHistoryResponseDTO> GetCubeHistory(int count, DateTimeOffset dateTimeOffset)
         {
-            var path = "maplestory/v1/history/cube";
+            var path = $"{subUrl}/v1/history/cube";
             var query = new Dictionary<string, string?>()
             {
                 { "count", count.ToString() },
@@ -1207,7 +1207,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <param name="cursor">페이징 처리를 위한 cursor</param>
         public async Task<CubeHistoryResponseDTO> GetCubeHistory(int count, string cursor)
         {
-            var path = "maplestory/v1/history/cube";
+            var path = $"{subUrl}/v1/history/cube";
             var query = new Dictionary<string, string?>()
             {
                 { "count", count.ToString() },
@@ -1242,7 +1242,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
         public async Task<PotentialHistoryResponseDTO> GetPotentialHistory(int count, DateTimeOffset dateTimeOffset)
         {
-            var path = "maplestory/v1/history/potential";
+            var path = $"{subUrl}/v1/history/potential";
             var query = new Dictionary<string, string?>()
             {
                 { "count", count.ToString() },
@@ -1261,7 +1261,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <param name="cursor">페이징 처리를 위한 cursor</param>
         public async Task<PotentialHistoryResponseDTO> GetPotentialHistory(int count, string cursor)
         {
-            var path = "maplestory/v1/history/potential";
+            var path = $"{subUrl}/v1/history/potential";
             var query = new Dictionary<string, string?>()
             {
                 { "count", count.ToString() },
@@ -1540,7 +1540,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
         public async Task<OverallRankingResponseDTO> GetOverallRanking(string? worldName, int? worldType, string? characterClass, string? ocid, int? page, DateTimeOffset dateTimeOffset)
         {
-            var path = "maplestory/v1/ranking/overall";
+            var path = $"{subUrl}/v1/ranking/overall";
             var query = new Dictionary<string, string?>()
             {
                 { "date", ToDateString(dateTimeOffset, MinDate(2023, 12, 22)) },
@@ -1621,7 +1621,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
         public async Task<UnionRankingResponseDTO> GetUnionRanking(string? worldName, string? ocid, int? page, DateTimeOffset dateTimeOffset)
         {
-            var path = "maplestory/v1/ranking/union";
+            var path = $"{subUrl}/v1/ranking/union";
             var query = new Dictionary<string, string?>()
             {
                 { "date", ToDateString(dateTimeOffset, MinDate(2023, 12, 22)) },
@@ -1702,7 +1702,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
         public async Task<GuildRankingResponseDTO> GetGuildRanking(string? worldName, int rankingType, string? guildName, int? page, DateTimeOffset dateTimeOffset)
         {
-            var path = "maplestory/v1/ranking/guild";
+            var path = $"{subUrl}/v1/ranking/guild";
             var query = new Dictionary<string, string?>()
             {
                 { "date", ToDateString(dateTimeOffset, MinDate(2023, 12, 22)) },
@@ -1980,7 +1980,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
         public async Task<DojangRankingResponseDTO> GetDojangRanking(string? worldName, int difficulty, string? characterClass, string? ocid, int? page, DateTimeOffset dateTimeOffset)
         {
-            var path = "maplestory/v1/ranking/dojang";
+            var path = $"{subUrl}/v1/ranking/dojang";
             var query = new Dictionary<string, string?>()
             {
                 { "date", ToDateString(dateTimeOffset, MinDate(2023, 12, 22)) },
@@ -2061,7 +2061,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
         public async Task<TheSeedRankingResponseDTO> GetTheSeedRanking(string? worldName, string? ocid, int? page, DateTimeOffset dateTimeOffset)
         {
-            var path = "maplestory/v1/ranking/theseed";
+            var path = $"{subUrl}/v1/ranking/theseed";
             var query = new Dictionary<string, string?>()
             {
                 { "date", ToDateString(dateTimeOffset, MinDate(2023, 12, 22)) },
@@ -2103,7 +2103,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
         public async Task<AchievementRankingResponseDTO> GetAchievementRanking(string? ocid, int? page, DateTimeOffset dateTimeOffset)
         {
-            var path = "maplestory/v1/ranking/achievement";
+            var path = $"{subUrl}/v1/ranking/achievement";
             var query = new Dictionary<string, string?>()
             {
                 { "date", ToDateString(dateTimeOffset, MinDate(2023, 12, 22)) },
@@ -2125,7 +2125,7 @@ namespace MapleStory.OpenAPI.KMS
         /// </summary>
         public async Task<NoticeListDTO> GetNoticeList()
         {
-            var path = "maplestory/v1/notice";
+            var path = $"{subUrl}/v1/notice";
 
             return await Get<NoticeListDTO>(path);
         }
@@ -2138,7 +2138,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <param name="noticeId">공지 식별자</param>
         public async Task<NoticeDetailDTO> GetNoticeDetail(int noticeId)
         {
-            var path = "maplestory/v1/notice/detail";
+            var path = $"{subUrl}/v1/notice/detail";
             var query = new Dictionary<string, string?>()
             {
                 { "notice_id", noticeId.ToString() },
@@ -2154,7 +2154,7 @@ namespace MapleStory.OpenAPI.KMS
         /// </summary>
         public async Task<UpdateNoticeListDTO> GetUpdateNoticeList()
         {
-            var path = "maplestory/v1/notice-update";
+            var path = $"{subUrl}/v1/notice-update";
 
             return await Get<UpdateNoticeListDTO>(path);
         }
@@ -2167,7 +2167,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <param name="noticeId">공지 식별자</param>
         public async Task<UpdateNoticeDetailDTO> GetUpdateNoticeDetail(int noticeId)
         {
-            var path = "maplestory/v1/notice-update/detail";
+            var path = $"{subUrl}/v1/notice-update/detail";
             var query = new Dictionary<string, string?>()
             {
                 { "notice_id", noticeId.ToString() },
@@ -2183,7 +2183,7 @@ namespace MapleStory.OpenAPI.KMS
         /// </summary>
         public async Task<EventNoticeListDTO> GetEventNoticeList()
         {
-            var path = "maplestory/v1/notice-event";
+            var path = $"{subUrl}/v1/notice-event";
 
             return await Get<EventNoticeListDTO>(path);
         }
@@ -2196,7 +2196,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <param name="noticeId">공지 식별자</param>
         public async Task<EventNoticeDetailDTO> GetEventNoticeDetail(int noticeId)
         {
-            var path = "maplestory/v1/notice-event/detail";
+            var path = $"{subUrl}/v1/notice-event/detail";
             var query = new Dictionary<string, string?>()
             {
                 { "notice_id", noticeId.ToString() },
@@ -2212,7 +2212,7 @@ namespace MapleStory.OpenAPI.KMS
         /// </summary>
         public async Task<CashshopNoticeListDTO> GetCashshopNoticeList()
         {
-            var path = "maplestory/v1/notice-cashshop";
+            var path = $"{subUrl}/v1/notice-cashshop";
 
             return await Get<CashshopNoticeListDTO>(path);
         }
@@ -2225,7 +2225,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <param name="noticeId">공지 식별자</param>
         public async Task<CashshopNoticeDetailDTO> GetCashshopNoticeDetail(int noticeId)
         {
-            var path = "maplestory/v1/notice-cashshop/detail";
+            var path = $"{subUrl}/v1/notice-cashshop/detail";
             var query = new Dictionary<string, string?>()
             {
                 { "notice_id", noticeId.ToString() },
