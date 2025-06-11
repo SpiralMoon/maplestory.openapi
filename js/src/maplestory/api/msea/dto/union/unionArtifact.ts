@@ -51,7 +51,7 @@ export class UnionArtifactDto extends base.UnionArtifactDto {
 }
 
 /**
- * Artifact artifact information
+ * Artifact effect information
  */
 export class UnionArtifactEffectDto extends base.UnionArtifactEffectDto {
   /**

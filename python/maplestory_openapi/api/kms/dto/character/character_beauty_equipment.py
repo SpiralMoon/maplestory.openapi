@@ -62,7 +62,7 @@ class CharacterBeautyEquipment(BaseModel, BaseCharacterBeautyEquipment):
     캐릭터 헤어, 성형, 피부 정보
 
     Attributes:
-        date (datetime or None): 조회 기준일 (KST)
+        date (datetime or None): 조회 기준일 (KST, 일 단위 데이터로 시, 분은 일괄 0으로 표기)
         character_gender (str or None): 캐릭터 성별
         character_class (str or None): 캐릭터 직업
         character_hair (CharacterBeautyEquipmentHair or None): 캐릭터 헤어 정보 (제로: 알파, 엔젤릭버스터: 일반 모드)

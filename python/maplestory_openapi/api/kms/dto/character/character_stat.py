@@ -22,7 +22,7 @@ class CharacterStat(BaseModel, BaseCharacterStat):
     캐릭터 스탯 정보
 
     Attributes:
-        date (datetime or None): 조회 기준일
+        date (datetime or None): 조회 기준일 (KST, 일 단위 데이터로 시, 분은 일괄 0으로 표기)
         character_class (str or None): 직업
         final_stat (list[CharacterStatInfo]): 현재 스탯 정보
         remain_ap (int or None): 잔여 AP

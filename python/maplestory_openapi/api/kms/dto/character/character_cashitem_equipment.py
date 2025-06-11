@@ -76,7 +76,7 @@ class CharacterCashitemEquipment(BaseModel, BaseCharacterCashitemEquipment):
     캐릭터 캐시 장비 아이템 정보
 
     Attributes:
-        date (datetime or None): 조회 기준일
+        date (datetime or None): 조회 기준일 (KST, 일 단위 데이터로 시, 분은 일괄 0으로 표기)
         character_gender (str or None): 캐릭터 성별
         character_class (str or None): 캐릭터 직업
         character_look_mode (str or None): 캐릭터 외형 모드 (0: 일반 모드, 1: 제로인 경우 베타, 엔젤릭버스터인 경우 드레스 업 모드)

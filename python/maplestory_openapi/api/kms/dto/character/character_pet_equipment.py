@@ -64,7 +64,7 @@ class CharacterPetEquipment(BaseModel, BaseCharacterPetEquipment):
     캐릭터 펫 장비 정보
 
     Attributes:
-        date (datetime or None): 조회 기준일 (KST)
+        date (datetime or None): 조회 기준일 (KST, 일 단위 데이터로 시, 분은 일괄 0으로 표기)
         pet_1_name (str or None): 펫1 명
         pet_1_nickname (str or None): 펫1 닉네임
         pet_1_icon (str or None): 펫1 아이콘

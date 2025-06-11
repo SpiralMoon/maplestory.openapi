@@ -10,7 +10,7 @@ class CharacterImage(BaseModel, BaseCharacterImage):
     캐릭터 기본 정보
 
     Attributes:
-        date (datetime or None): 조회 기준일 (KST)
+        date (datetime or None): 조회 기준일 (KST, 일 단위 데이터로 시, 분은 일괄 0으로 표기)
         origin_url (str): 캐릭터 외형 이미지 원본 (URL)
         origin_image (str): 캐릭터 외형 기본 이미지 (base64)
         image (str): 캐릭터 외형 이미지 (base64)

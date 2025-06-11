@@ -158,7 +158,7 @@ class CharacterAndroidEquipment(BaseModel, BaseCharacterAndroidEquipment):
     안드로이드 장비 정보
 
     Attributes:
-        date (datetime or None): 조회 기준일 (KST)
+        date (datetime or None): 조회 기준일 (KST, 일 단위 데이터로 시, 분은 일괄 0으로 표기)
         android_name (str or None): 안드로이드 명
         android_nickname (str or None): 안드로이드 닉네임
         android_icon (str or None): 안드로이드 아이콘

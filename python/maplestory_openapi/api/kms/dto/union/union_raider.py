@@ -89,7 +89,7 @@ class UnionRaider(BaseModel, BaseUnionRaider):
     유니온 공격대 전체 정보
 
     Attributes:
-        date (datetime or None): 조회 기준일 (KST)
+        date (datetime or None): 조회 기준일 (KST, 일 단위 데이터로 시, 분은 일괄 0으로 표기)
         union_raider_stat (list[str]): 공격대원 효과
         union_occupied_stat (list[str]): 점령 효과
         union_inner_stat (list[UnionRaiderInnerStat]): 공격대 배치

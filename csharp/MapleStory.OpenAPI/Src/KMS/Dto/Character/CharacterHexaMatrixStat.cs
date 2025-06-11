@@ -9,7 +9,7 @@ namespace MapleStory.OpenAPI.KMS.DTO
     public class CharacterHexaMatrixStatDTO : Base.CharacterHexaMatrixStatDTO<CharacterHexaMatrixStatCoreDTO>
     {
         /// <summary>
-        /// 조회 기준일 (KST)
+        /// 조회 기준일 (KST, 일 단위 데이터로 시, 분은 일괄 0으로 표기)
         /// </summary>
         [JsonProperty("date")]
         public override DateTimeOffset? Date

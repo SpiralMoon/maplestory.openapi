@@ -1,12 +1,10 @@
 package dev.spiralmoon.maplestory.api.kms.dto.character;
 
 import com.google.gson.annotations.SerializedName;
-import dev.spiralmoon.maplestory.api.Utils;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.ToString;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 /**

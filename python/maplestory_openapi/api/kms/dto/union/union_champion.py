@@ -35,7 +35,7 @@ class UnionChampion(BaseModel):
     유니온 챔피언 정보
 
     Attributes:
-        date (datetime or None): 조회 기준일
+        date (datetime or None): 조회 기준일 (KST, 일 단위 데이터로 시, 분은 일괄 0으로 표기)
         union_champion (list[UnionChampionInfo]): 유니온 챔피언 정보
         champion_badge_total_info (list[UnionChampionBadgeInfo]): 유니온 챔피언 휘장 정보
     """

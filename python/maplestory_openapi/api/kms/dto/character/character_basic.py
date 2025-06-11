@@ -9,7 +9,7 @@ class CharacterBasic(BaseModel, BaseCharacterBasic):
     캐릭터 기본 정보
 
     Attributes:
-        date (datetime or None): 조회 기준일 (KST)
+        date (datetime or None): 조회 기준일 (KST, 일 단위 데이터로 시, 분은 일괄 0으로 표기)
         character_name (str): 캐릭터 명
         world_name (str): 월드 명
         character_gender (str): 캐릭터 성별

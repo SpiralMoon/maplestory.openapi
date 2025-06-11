@@ -37,7 +37,7 @@ class CharacterAbility(BaseModel, BaseCharacterAbility):
     캐릭터 어빌리티 정보
 
     Attributes:
-        date (datetime or None): 조회 기준일
+        date (datetime or None): 조회 기준일 (KST, 일 단위 데이터로 시, 분은 일괄 0으로 표기)
         ability_grade (str or None): 어빌리티 등급
         ability_info (list[CharacterAbilityInfo]): 어빌리티 정보
         remain_fame (int or None): 보유 명성치

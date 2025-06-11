@@ -10,7 +10,7 @@ namespace MapleStory.OpenAPI.KMS.DTO
     public class UnionArtifactDTO : Base.UnionArtifactDTO<UnionArtifactEffectDTO, UnionArtifactCrystalDTO>
     {
         /// <summary>
-        /// 조회 기준일
+        /// 조회 기준일 (KST, 일 단위 데이터로 시, 분은 일괄 0으로 표기)
         /// </summary>
         [JsonProperty("date")]
         public DateTimeOffset? Date

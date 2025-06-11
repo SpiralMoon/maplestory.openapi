@@ -6,7 +6,7 @@ import { CharacterBasicBody } from '../../response/character/characterBasicBody'
  */
 export class CharacterBasicDto extends base.CharacterBasicDto {
   /**
-   * 조회 기준일
+   * 조회 기준일 (KST, 일 단위 데이터로 시, 분은 일괄 0으로 표기)
    */
   public override date: Date | null;
 

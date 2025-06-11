@@ -26,7 +26,7 @@ class CharacterHyperStat(BaseModel, BaseCharacterHyperStat):
     캐릭터 하이퍼스탯 정보
 
     Attributes:
-        date (datetime or None): 조회 기준일
+        date (datetime or None): 조회 기준일 (KST, 일 단위 데이터로 시, 분은 일괄 0으로 표기)
         character_class (str or None): 캐릭터 직업
         use_preset_no (str or None): 적용 중인 프리셋 번호
         use_available_hyper_stat (int or None): 사용 가능한 최대 하이퍼스탯 포인트
