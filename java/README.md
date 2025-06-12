@@ -9,6 +9,12 @@
 
 (English document is [HERE](https://github.com/SpiralMoon/maplestory.openapi/blob/master/java/README-en.md))
 
+## Notice
+
+>🌏 알림1: 3.0.0 버전부터 여러 서비스 지역에 대한 지원이 추가 되었습니다. 현재 [KMS](https://maplestory.nexon.com/), [MSEA](http://www.maplesea.com/index/)의 데이터를 조회 가능합니다.
+>
+>💡 알림2: Version 2.x.x → 3.0.0 업데이트 과정에서 마이그레이션이 필요합니다. [Migration](https://github.com/SpiralMoon/maplestory.openapi/tree/master/java/docs/migration-ko.md) 항목을 참고 해주세요.
+
 ## Installation
 
 Java 기반 프로젝트에 아래 정보를 입력하여 패키지를 추가하세요:
@@ -30,9 +36,23 @@ implementation 'dev.spiralmoon:maplestory-openapi:+'
 
 라이브러리를 사용하기 전에 [Nexon Open API 콘솔](https://openapi.nexon.com/my-application/)에서 애플리케이션을 등록하고 **api key**를 발급 받으세요.
 
+애플리케이션은 지역별로 따로 등록해야 합니다. (KMS의 api key로 MSEA의 데이터를 요청할 수 없음)
+
+### Region
+
+현재 KMS, MSEA 지역에 대한 데이터 조회를 지원 합니다. 조회를 원하는 지역별로 패키지 경로를 다르게 설정 합니다.
+
+```java
+import dev.spiralmoon.maplestory.api.kms.MapleStoryApi; // data from KMS
+// or
+import dev.spiralmoon.maplestory.api.msea.MapleStoryApi; // data from MSEA
+```
+
+지역이 달라도 동일한 인터페이스를 상속하기 때문에 API의 사용 경험은 기본적으로 동일 합니다.
+
 ### Sample Code
 
-아래 코드는 닉네임을 바탕으로 특정 캐릭터의 식별자를 조회한 후 캐릭터의 기본 정보를 조회하는 예시입니다.
+아래 코드는 KMS 서버에서 닉네임을 바탕으로 특정 캐릭터의 식별자를 조회한 후 캐릭터의 기본 정보를 조회하는 예시입니다.
 
 ```java
 import dev.spiralmoon.maplestory.api.kms.MapleStoryApi;
@@ -45,14 +65,14 @@ class Sample {
 
         // run your code
         try {
-            final CharacterDTO character = api.getCharacter("{Your Character Name}");
+            final CharacterDTO character = api.getCharacter("{Your Character Name}").join();
             final CharacterBasicDTO characterBasic = api.getCharacterBasic(character.getOcid());
 
             System.out.println(characterBasic.toString());
         }
         // exception handling
         catch (Exception exception) {
-            if (exception instanceof MapleStoryApiException) {
+            if (exception.getCause() instanceof MapleStoryApiException) {
                 // handle MapleStoryApiException
             } else {
                 // handle

@@ -9,6 +9,12 @@ Packages written in other languages can be found [HERE](https://github.com/Spira
 
 (한국어 문서는 [이쪽](https://github.com/SpiralMoon/maplestory.openapi/blob/master/java/README.md)입니다.)
 
+## Notice
+
+>🌏 Notice 1: Starting from version 3.0.0, support for multiple service regions has been added. You can now retrieve data from [KMS](https://maplestory.nexon.com/) and [MSEA](http://www.maplesea.com/index/).
+>
+>💡 Notice 2: Migration is required when updating from version 2.x.x to 3.0.0. Please refer to the documentation for [Migration](https://github.com/SpiralMoon/maplestory.openapi/tree/master/java/docs/migration-en.md).
+
 ## Installation
 
 Install the latest version of the Java library in your java project:
@@ -30,9 +36,23 @@ implementation 'dev.spiralmoon:maplestory-openapi:+'
 
 Before using the library, register your application and obtain an **api key** from the [Nexon Open API Console](https://openapi.nexon.com/my-application/).
 
+Applications must be registered separately for each region. (For example, an API key issued for KMS cannot be used to request data from MSEA.)
+
+### Region
+
+Currently, this library supports data retrieval from the KMS and MSEA regions. To access data from a specific region, import the corresponding namespace.
+
+```java
+import dev.spiralmoon.maplestory.api.kms.*; // data from KMS
+// or
+import dev.spiralmoon.maplestory.api.msea.*; // data from MSEA
+```
+
+Even though the regions differ, each package inherits the same interface, ensuring a consistent API usage experience across all regions.
+
 ### Sample Code
 
-Below is an example code that retrieves the identifier of a specific character based on the nickname and then fetches the basic information of that character.
+Below is an example that retrieves the identifier of a specific character from the KMS server based on the nickname, and then fetches that character’s basic information.
 
 ```java
 import dev.spiralmoon.maplestory.api.kms.MapleStoryApi;
@@ -45,14 +65,14 @@ class Sample {
 
         // run your code
         try {
-            final CharacterDTO character = api.getCharacter("{Your Character Name}");
+            final CharacterDTO character = api.getCharacter("{Your Character Name}").join();
             final CharacterBasicDTO characterBasic = api.getCharacterBasic(character.getOcid());
 
             System.out.println(characterBasic.toString());
         }
         // exception handling
         catch (Exception exception) {
-            if (exception instanceof MapleStoryApiException) {
+            if (exception.getCause() instanceof MapleStoryApiException) {
                 // handle MapleStoryApiException
             } else {
                 // handle

@@ -22,12 +22,14 @@
 <h1 align="center">🍁 MapleStory OpenAPI Library 🍁</h1>
 <p align="center">This library project enables the use of the MapleStory OpenAPI of Nexon.</p>
 
->💡 Note: This library project is capable of retrieving only [KMS](https://maplestory.nexon.com/)(Korea MapleStory) data.
->
 >💻 This library is maintained in sync with Nexon OpenAPI patches. It is recommended to always use the latest version.
+> 
+> 🌏 Notice 1: Starting from version 3.0.0, support for multiple service regions has been added. You can now retrieve data from [KMS](https://maplestory.nexon.com/) and [MSEA](http://www.maplesea.com/index/).
+> 
+> 💡 Notice 2: Migration is required when updating from version 2.x.x to 3.0.0. Please refer to the documentation for details.
 
-## Getting Started
-### Supported Languages
+## Supported
+### Languages
 <div align="center">
     <table>
       <tr>
@@ -82,7 +84,7 @@
 
 This library project is concurrently provided in various languages, including JavaScript(TypeScript), Java, C#, Python, and more, and is available on package repositories.
 
-### Supported Regions
+### Regions
 <div align="center">
     <table>
       <tr>
@@ -139,7 +141,7 @@ This library project is concurrently provided in various languages, including Ja
       <tr>
         <td align="center">
           <a href="https://openapi.nexon.com/en/game/maplestorysea/?id=45" target="_blank" rel="noreferrer">
-            <img src="https://img.shields.io/badge/MSEA-planned-yellow" />
+            <img src="https://img.shields.io/badge/MSEA-support-green" />
           </a>
         </td>
         <td align="center">
@@ -156,9 +158,9 @@ This library project is concurrently provided in various languages, including Ja
     </table>
 </div>
 
-This library can only query data from service regions supported by the Nexon Open API.
+This library can only retrieve data from the service regions supported by the Nexon Open API. If Nexon releases an API for a new region, this project plans to support it as well.
 
-### Documentation
+## Documentation
 Before getting started, please read the document in the README list below that matches your development environment.
 
 - Go to read [**JavaScript(TypeScript)** document](./js/README-en.md).
@@ -181,7 +183,8 @@ And, while not part of the MapleStory OpenAPI specifications, it additionally su
 - [Get server inspection information](https://api.maplestory.nexon.com/soap/maplestory.asmx?op=GetInspectionInfo)
 
 ## Release note
-The main changes to this library are documented in the [release notes](https://github.com/SpiralMoon/maplestory.openapi/releases).
+1. The main changes to this library are documented in the [release notes](https://github.com/SpiralMoon/maplestory.openapi/releases).
+2. Migration is required during major version updates. Please refer to the documentation for each package.
 
 ## Contributors
 <a href="https://github.com/SpiralMoon/maplestory.openapi/graphs/contributors">
