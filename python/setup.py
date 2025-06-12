@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='maplestory_openapi',
-    version='2.13.1',
+    version='3.0.0',
     description='This Python library enables the use of the MapleStory OpenAPI of Nexon.',
     author='so99ynoodles',
     url='https://github.com/SpiralMoon/maplestory.openapi',
