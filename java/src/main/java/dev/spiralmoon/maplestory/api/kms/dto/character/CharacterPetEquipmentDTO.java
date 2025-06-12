@@ -228,6 +228,9 @@ public class CharacterPetEquipmentDTO implements dev.spiralmoon.maplestory.api.c
                 : null;
     }
 
+    /**
+     * 펫1 마법의 시간 (KST, 시간 단위 데이터로 분은 일괄 0으로 표기)
+     */
     public ZonedDateTime getPet1DateExpire() {
         if (this.pet1DateExpire != null && !"expired".equals(this.pet1DateExpire)) {
             return Utils.toZonedDateTime(this.pet1DateExpire);
@@ -248,6 +251,9 @@ public class CharacterPetEquipmentDTO implements dev.spiralmoon.maplestory.api.c
         return "expired".equals(this.pet1DateExpire);
     }
 
+    /**
+     * 펫2 마법의 시간 (KST, 시간 단위 데이터로 분은 일괄 0으로 표기)
+     */
     public ZonedDateTime getPet2DateExpire() {
         if (this.pet2DateExpire != null && !"expired".equals(this.pet2DateExpire)) {
             return Utils.toZonedDateTime(this.pet2DateExpire);
@@ -268,6 +274,9 @@ public class CharacterPetEquipmentDTO implements dev.spiralmoon.maplestory.api.c
         return "expired".equals(this.pet2DateExpire);
     }
 
+    /**
+     * 펫3 마법의 시간 (KST, 시간 단위 데이터로 분은 일괄 0으로 표기)
+     */
     public ZonedDateTime getPet3DateExpire() {
         if (this.pet3DateExpire != null && !"expired".equals(this.pet3DateExpire)) {
             return Utils.toZonedDateTime(this.pet3DateExpire);

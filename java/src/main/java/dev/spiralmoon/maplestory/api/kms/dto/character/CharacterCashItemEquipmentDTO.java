@@ -96,6 +96,9 @@ public class CharacterCashItemEquipmentDTO implements dev.spiralmoon.maplestory.
     @SerializedName("additional_cash_item_equipment_preset_3")
     private List<CharacterCashItemEquipmentPresetDTO> additionalCashItemEquipmentPreset3;
 
+    /**
+     * 조회 기준일 (KST, 일 단위 데이터로 시, 분은 일괄 0으로 표기)
+     */
     public ZonedDateTime getDate() {
         return date != null
                 ? Utils.toZonedDateTime(this.date)

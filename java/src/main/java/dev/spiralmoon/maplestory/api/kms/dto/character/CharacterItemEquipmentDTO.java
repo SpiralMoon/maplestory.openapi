@@ -93,6 +93,9 @@ public class CharacterItemEquipmentDTO implements dev.spiralmoon.maplestory.api.
     @SerializedName("mechanic_equipment")
     private List<CharacterItemEquipmentMechanicInfoDTO> mechanicEquipment;
 
+    /**
+     * 조회 기준일 (KST, 일 단위 데이터로 시, 분은 일괄 0으로 표기)
+     */
     public ZonedDateTime getDate() {
         return date != null
                 ? Utils.toZonedDateTime(this.date)

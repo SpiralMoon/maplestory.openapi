@@ -78,6 +78,9 @@ public class CharacterLinkSkillDTO implements dev.spiralmoon.maplestory.api.comm
     @SerializedName("character_owned_link_skill_preset_3")
     private CharacterLinkSkillInfoDTO characterOwnedLinkSkillPreset3;
 
+    /**
+     * 조회 기준일 (KST, 일 단위 데이터로 시, 분은 일괄 0으로 표기)
+     */
     public ZonedDateTime getDate() {
         return date != null
                 ? Utils.toZonedDateTime(this.date)

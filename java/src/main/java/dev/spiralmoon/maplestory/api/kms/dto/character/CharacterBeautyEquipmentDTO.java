@@ -76,6 +76,9 @@ public class CharacterBeautyEquipmentDTO implements dev.spiralmoon.maplestory.ap
     @SerializedName("additional_character_skin")
     private CharacterBeautyEquipmentSkinDTO additionalCharacterSkin;
 
+    /**
+     * 조회 기준일 (KST, 일 단위 데이터로 시, 분은 일괄 0으로 표기)
+     */
     public ZonedDateTime getDate() {
         return date != null
                 ? Utils.toZonedDateTime(this.date)

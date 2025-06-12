@@ -30,6 +30,9 @@ public class CharacterHexaMatrixDTO implements dev.spiralmoon.maplestory.api.com
     @SerializedName("character_hexa_core_equipment")
     private List<CharacterHexaMatrixEquipmentDTO> characterHexaCoreEquipment;
 
+    /**
+     * 조회 기준일 (KST, 일 단위 데이터로 시, 분은 일괄 0으로 표기)
+     */
     public ZonedDateTime getDate() {
         return date != null
                 ? Utils.toZonedDateTime(this.date)

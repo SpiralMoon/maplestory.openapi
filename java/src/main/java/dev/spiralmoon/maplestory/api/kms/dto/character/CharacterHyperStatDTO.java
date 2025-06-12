@@ -78,6 +78,9 @@ public class CharacterHyperStatDTO implements dev.spiralmoon.maplestory.api.comm
     @SerializedName("hyper_stat_preset_3_remain_point")
     private Integer hyperStatPreset3RemainPoint;
 
+    /**
+     * 조회 기준일 (KST, 일 단위 데이터로 시, 분은 일괄 0으로 표기)
+     */
     public ZonedDateTime getDate() {
         return date != null
                 ? Utils.toZonedDateTime(this.date)
