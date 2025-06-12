@@ -1,5 +1,5 @@
 ﻿using NUnit.Framework;
-using MapleStory.OpenAPI.MSEA;
+using MapleStory.OpenAPI.KMS;
 
 namespace MapleStory.Test
 {
