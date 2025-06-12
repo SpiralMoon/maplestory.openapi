@@ -1,4 +1,5 @@
-﻿using MapleStory.OpenAPI;
+﻿using MapleStory.OpenAPI.KMS;
+using MapleStory.OpenAPI.Common;
 
 var apiKey = "{Your API Key}";
 var api = new MapleStoryAPI(apiKey);

@@ -1,12 +1,13 @@
 package dev.spiralmoon.sample;
 
-import dev.spiralmoon.maplestory.api.MapleStoryApi;
-import dev.spiralmoon.maplestory.api.MapleStoryApiException;
-import dev.spiralmoon.maplestory.api.dto.history.CubeHistoryDTO;
-import dev.spiralmoon.maplestory.api.dto.history.CubeHistoryResponseDTO;
+import dev.spiralmoon.maplestory.api.kms.MapleStoryApi;
+import dev.spiralmoon.maplestory.api.common.MapleStoryApiException;
+import dev.spiralmoon.maplestory.api.kms.dto.history.CubeHistoryDTO;
+import dev.spiralmoon.maplestory.api.kms.dto.history.CubeHistoryResponseDTO;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.concurrent.CompletionException;
 
 class SyncApiCallSample {
     public static void main(String[] args) {
@@ -18,7 +19,7 @@ class SyncApiCallSample {
         // run your code
         try {
 
-            final CubeHistoryResponseDTO response = api.getCubeHistory(1000, localDateTime);
+            final CubeHistoryResponseDTO response = api.getCubeHistory(1000, localDateTime).join();
 
             final int count = response.getCount();
             final List<CubeHistoryDTO> cubeHistory = response.getCubeHistory();
@@ -27,8 +28,8 @@ class SyncApiCallSample {
             System.out.println("You used " + count + " cubes.");
         }
         // exception handling
-        catch (Exception exception) {
-            if (exception instanceof MapleStoryApiException) {
+        catch (CompletionException exception) {
+            if (exception.getCause() instanceof MapleStoryApiException) {
                 // handle MapleStoryApiException
             } else {
                 // handle

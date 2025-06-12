@@ -1,4 +1,3 @@
-from maplestory_openapi.api.maplestory_api import MapleStoryApi
-from maplestory_openapi.api.maplestory_api_error import MapleStoryApiError
+from .api import kms, msea, common
 
-__all__ = ['MapleStoryApi', 'MapleStoryApiError']
+__all__ = ['kms', 'msea', 'common']

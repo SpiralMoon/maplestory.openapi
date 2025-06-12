@@ -9,6 +9,12 @@
 
 (English document is [HERE](https://github.com/SpiralMoon/maplestory.openapi/blob/master/js/README-en.md))
 
+## Notice
+
+>🌏 알림1: 3.0.0 버전부터 여러 서비스 지역에 대한 지원이 추가 되었습니다. 현재 [KMS](https://maplestory.nexon.com/), [MSEA](http://www.maplesea.com/index/)의 데이터를 조회 가능합니다.
+>
+>💡 알림2: Version 2.x.x → 3.0.0 업데이트 과정에서 마이그레이션이 필요합니다. [Migration](https://github.com/SpiralMoon/maplestory.openapi/tree/master/js/docs/migration-ko.md) 항목을 참고 해주세요.
+
 ## Installation
 
 npm 기반 프로젝트에 아래 정보를 입력하여 패키지를 추가하세요:
@@ -23,25 +29,50 @@ npm install maplestory-openapi
 
 라이브러리를 사용하기 전에 [Nexon Open API 콘솔](https://openapi.nexon.com/my-application/)에서 애플리케이션을 등록하고 **api key**를 발급 받으세요.
 
+애플리케이션은 지역별로 따로 등록해야 합니다. (KMS의 api key로 MSEA의 데이터를 요청할 수 없음)
+
+### Region
+
+현재 KMS, MSEA 지역에 대한 데이터 조회를 지원 합니다. 조회를 원하는 지역별로 패키지 경로를 다르게 설정 합니다.
+
+```typescript
+import { MapleStoryApi } from 'maplestory-openapi/kms'; // data from KMS
+// or
+import { MapleStoryApi } from 'maplestory-openapi/msea'; // data from MSEA
+```
+
+지역이 달라도 동일한 인터페이스를 상속하기 때문에 API의 사용 경험은 기본적으로 동일 합니다.
+
 ### Supports
 
-1. **CommonJS, ESM 지원**: 이 라이브러리는 CommonJS 와 ESM 방식을 모두 지원합니다.
+1. **TypeScript 지원**: 타입 정의가 포함되어 있으므로 타입스크립트 환경에서도 사용 가능합니다.
+
+2. **CommonJS, ESM 지원**: 이 라이브러리는 CommonJS 와 ESM 방식을 모두 지원합니다.
 
 ```javascript
-const {MapleStoryApi, MapleStoryApiError} = require('maplestory-openapi'); // CommonJS
+const { MapleStoryApi } = require('maplestory-openapi/kms'); // CommonJS
 ```
 ```typescript
-import {MapleStoryApi, MapleStoryApiError} from 'maplestory-openapi'; // ESM
+import { MapleStoryApi } from 'maplestory-openapi/kms'; // ESM
 ```
 
-2. **TypeScript 지원**: 타입 정의가 포함되어 있으므로 타입스크립트 환경에서도 사용 가능합니다.
+3. **TS2307 Cannot find module** 오류 대응: `moduleResolution`이 `node`인 경우 패키지를 못 찾을 수 있습니다. `node16`, `nodenext`, `bundler` 등으로 설정 합니다.
+
+```json
+{
+  "compilerOptions": {
+    "moduleResolution": "nodenext"
+  }
+}
+```
 
 ### Sample Code
 
-아래 코드는 닉네임을 바탕으로 특정 캐릭터의 식별자를 조회한 후 캐릭터의 기본 정보를 조회하는 예시입니다.
+아래 코드는 KMS 서버에서 닉네임을 바탕으로 특정 캐릭터의 식별자를 조회한 후 캐릭터의 기본 정보를 조회하는 예시입니다.
 
 ```javascript
-const {MapleStoryApi, MapleStoryApiError} = require('maplestory-openapi');
+const { MapleStoryApi } = require('maplestory-openapi/kms');
+const { MapleStoryApiError } = require('maplestory-openapi');
 
 const apiKey = '{Your API Key}';
 const api = new MapleStoryApi(apiKey);

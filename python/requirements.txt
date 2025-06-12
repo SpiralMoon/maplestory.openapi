@@ -1,4 +1,4 @@
-requests
+httpx
 pydantic>=2.5.3
 python-dotenv
 pytest

@@ -22,12 +22,15 @@
 <h1 align="center">🍁 MapleStory OpenAPI Library 🍁</h1>
 <p align="center">넥슨의 MapleStory OpenAPI를 사용할 수 있게 해주는 라이브러리입니다.</p>
 
->💡 알림: [KMS](https://maplestory.nexon.com/)(한국 메이플스토리)의 데이터만 조회할 수 있습니다.
+> 💻 넥슨 OpenAPI 패치를 따라가며 관리되고 있습니다. 항상 최신 버전 사용을 권장합니다.
 > 
->💻 넥슨 OpenAPI 패치를 따라가며 관리되고 있습니다. 항상 최신 버전 사용을 권장합니다.
+>🌏 알림1: 3.0.0 버전부터 여러 서비스 지역에 대한 지원이 추가 되었습니다. 현재 [KMS](https://maplestory.nexon.com/), [MSEA](http://www.maplesea.com/index/)의 데이터를 조회 가능합니다.
+> 
+>💡 알림2: Version 2.x.x → 3.0.0 업데이트 과정에서 마이그레이션이 필요합니다. 문서를 참고 해주세요.
 
-## Getting Started
-### Supported Languages
+
+## Supported
+### Languages
 <div align="center">
     <table>
       <tr>
@@ -82,7 +85,7 @@
 
 이 라이브러리 프로젝트는 JavaScript(TypeScript), Java, C#, Python 등 여러 언어로 개발되어 패키지 저장소에서 동시에 제공됩니다.
 
-### Supported Regions
+### Regions
 <div align="center">
     <table>
       <tr>
@@ -139,7 +142,7 @@
       <tr>
         <td align="center">
           <a href="https://openapi.nexon.com/en/game/maplestorysea/?id=45" target="_blank" rel="noreferrer">
-            <img src="https://img.shields.io/badge/MSEA-planned-yellow" />
+            <img src="https://img.shields.io/badge/MSEA-support-green" />
           </a>
         </td>
         <td align="center">
@@ -156,9 +159,9 @@
     </table>
 </div>
 
-이 라이브러리는 Nexon Open API에서 지원하는 서비스 지역의 데이터만 조회할 수 있습니다.
+이 라이브러리는 Nexon Open API에서 지원하는 서비스 지역의 데이터만 조회할 수 있습니다. 넥슨이 새로운 지역에 대한 API를 공개할 경우 이 프로젝트에서도 지원할 계획입니다.
 
-### Documentation
+## Documentation
 시작하기 전에, 아래의 README 목록에서 자신의 개발 환경과 일치하는 문서를 읽어보세요.
 
 - [**JavaScript(TypeScript)** 사용법](./js/README.md)
@@ -182,7 +185,8 @@
 - [서버 점검 정보 조회](https://api.maplestory.nexon.com/soap/maplestory.asmx?op=GetInspectionInfo)
 
 ## Release note
-이 라이브러리의 주요 변경사항은 [릴리즈 노트](https://github.com/SpiralMoon/maplestory.openapi/releases)를 통해 안내하고 있습니다.
+1. 이 라이브러리의 주요 변경사항은 [릴리즈 노트](https://github.com/SpiralMoon/maplestory.openapi/releases)를 통해 안내하고 있습니다.
+2. 주요 버전 업데이트 과정에서 마이그레이션이 필요합니다. 패키지별 문서를 참고 해주세요.
 
 ## Contributors
 <a href="https://github.com/SpiralMoon/maplestory.openapi/graphs/contributors">

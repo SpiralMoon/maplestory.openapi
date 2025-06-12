@@ -9,6 +9,12 @@ Packages written in other languages can be found [HERE](https://github.com/Spira
 
 (한국어 문서는 [이쪽](https://github.com/SpiralMoon/maplestory.openapi/blob/master/js/README.md)입니다.)
 
+## Notice
+
+>🌏 Notice 1: Starting from version 3.0.0, support for multiple service regions has been added. You can now retrieve data from [KMS](https://maplestory.nexon.com/) and [MSEA](http://www.maplesea.com/index/).
+>
+>💡 Notice 2: Migration is required when updating from version 2.x.x to 3.0.0. Please refer to the documentation for [Migration](https://github.com/SpiralMoon/maplestory.openapi/tree/master/js/docs/migration-en.md).
+
 ## Installation
 
 Install the latest version of the JavaScript/TypeScript library in your npm project:
@@ -23,25 +29,50 @@ npm install maplestory-openapi
 
 Before using the library, register your application and obtain an **api key** from the [Nexon Open API Console](https://openapi.nexon.com/my-application/).
 
+Applications must be registered separately for each region. (For example, an API key issued for KMS cannot be used to request data from MSEA.)
+
+### Region
+
+Currently, this library supports data retrieval from the KMS and MSEA regions. To access data from a specific region, import the corresponding package path.
+
+```typescript
+import { MapleStoryApi } from 'maplestory-openapi/kms'; // data from KMS
+// or
+import { MapleStoryApi } from 'maplestory-openapi/msea'; // data from MSEA
+```
+
+Even though the regions differ, each package inherits the same interface, ensuring a consistent API usage experience across all regions.
+
 ### Supports
 
-1. **CommonJS, ESM Support**: The library supports both CommonJS and ESM usage.
+1. **TypeScript Support**: TypeScript is fully supported. Type definitions are included.
+
+2. **CommonJS, ESM Support**: The library supports both CommonJS and ESM usage.
 
 ```javascript
-const {MapleStoryApi, MapleStoryApiError} = require('maplestory-openapi'); // CommonJS
+const { MapleStoryApi } = require('maplestory-openapi/kms'); // CommonJS
 ```
 ```typescript
-import {MapleStoryApi, MapleStoryApiError} from 'maplestory-openapi'; // ESM
+import { MapleStoryApi } from 'maplestory-openapi/kms'; // ESM
 ```
 
-2. **TypeScript Support**: TypeScript is fully supported. Type definitions are included.
+3. **TS2307 Cannot find module**: it may be due to the `moduleResolution` option being set to `node`. In such cases, update it to `node16`, `nodenext`, or `bundler` as shown below
+
+```json
+{
+  "compilerOptions": {
+    "moduleResolution": "nodenext"
+  }
+}
+```
 
 ### Sample Code
 
-Below is an example code that retrieves the identifier of a specific character based on the nickname and then fetches the basic information of that character.
+Below is an example that retrieves the identifier of a specific character from the KMS server based on the nickname, and then fetches that character’s basic information.
 
 ```javascript
-const {MapleStoryApi, MapleStoryApiError} = require('maplestory-openapi');
+const { MapleStoryApi } = require('maplestory-openapi/kms');
+const { MapleStoryApiError } = require('maplestory-openapi');
 
 const apiKey = '{Your API Key}';
 const api = new MapleStoryApi(apiKey);

@@ -1,8 +1,8 @@
 package dev.spiralmoon.sample;
 
-import dev.spiralmoon.maplestory.api.MapleStoryApi;
-import dev.spiralmoon.maplestory.api.MapleStoryApiException;
-import dev.spiralmoon.maplestory.api.dto.history.CubeHistoryDTO;
+import dev.spiralmoon.maplestory.api.kms.MapleStoryApi;
+import dev.spiralmoon.maplestory.api.common.MapleStoryApiException;
+import dev.spiralmoon.maplestory.api.kms.dto.history.CubeHistoryDTO;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -14,8 +14,8 @@ class AsyncApiCallSample {
 
         final LocalDateTime localDateTime = LocalDateTime.of(2023, 10, 15, 0, 0);
 
-        api.getCubeHistoryAsync(1000, localDateTime,
-                (response) -> {
+        api.getCubeHistory(1000, localDateTime)
+                .thenAccept(response -> {
                     // run your code
 
                     final int count = response.getCount();
@@ -23,16 +23,17 @@ class AsyncApiCallSample {
                     final String nextCursor = response.getNextCursor();
 
                     System.out.println("You used " + count + " cubes.");
-                }, (throwable) -> {
+                })
+                .exceptionally(throwable -> {
                     // exception handling
-
-                    if (throwable instanceof MapleStoryApiException) {
+                    if (throwable.getCause() instanceof MapleStoryApiException) {
                         // handle MapleStoryApiException
                     } else {
                         // handle
                     }
 
                     throwable.printStackTrace();
+                    return null;
                 });
     }
 }
