@@ -143,7 +143,7 @@ namespace MapleStory.OpenAPI.Common
         {
             var request = new RestRequest(path);
 
-            request.Timeout = this.timeOut;
+            request.Timeout = TimeSpan.FromMilliseconds(this.timeOut);
             request.AddHeader("x-nxopen-api-key", this.apiKey);
 
             if (query != null)
@@ -173,7 +173,7 @@ namespace MapleStory.OpenAPI.Common
         {
             var request = new RestRequest(path);
 
-            request.Timeout = this.timeOut;
+            request.Timeout = TimeSpan.FromMilliseconds(this.timeOut);
             request.AddHeader("x-nxopen-api-key", this.apiKey);
 
             if (query != null)

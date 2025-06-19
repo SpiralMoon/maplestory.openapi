@@ -1697,7 +1697,7 @@ namespace MapleStory.OpenAPI.KMS
 
             var request = new RestRequest(path);
 
-            request.Timeout = timeOut;
+            request.Timeout = TimeSpan.FromMilliseconds(this.timeOut);
             request.AddHeader("SOAPAction", "https://api.maplestory.nexon.com/soap/GetInspectionInfo");
             request.AddHeader("content-type", "text/xml; charset=utf-8");
             request.AddStringBody(soapEnvelop, ContentType.Xml);
