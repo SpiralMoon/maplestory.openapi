@@ -127,7 +127,7 @@ jreleaser {
                     url = 'https://central.sonatype.com/api/v1/publisher'
                     username.set(centralUsername)
                     password.set(centralPassword)
-                    stagingRepository('target/staging-deploy')
+                    stagingRepository('build/staging-deploy')
                 }
             }
         }
