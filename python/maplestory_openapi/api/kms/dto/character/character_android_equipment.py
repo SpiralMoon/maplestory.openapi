@@ -156,6 +156,7 @@ class CharacterAndroidCashItemEquipment(BaseModel, BaseCharacterAndroidCashItemE
         is_option_expired (bool): 안드로이드 캐시 아이템 옵션 유효 기간 만료 여부
         cash_item_label (str or None): 안드로이드 캐시 아이템 라벨 정보
         cash_item_coloring_prism (CharacterAndroidCashItemEquipmentColoringPrism or None): 컬러링프리즘 정보
+        android_item_gender (str or None): 아이템 장착 가능 성별
         freestyle_flag (str or None): 프리스타일 쿠폰 적용 여부 (0:미적용, 1:적용)
     """
     cash_item_equipment_part: str
@@ -170,6 +171,7 @@ class CharacterAndroidCashItemEquipment(BaseModel, BaseCharacterAndroidCashItemE
     is_option_expired: bool = False
     cash_item_label: str | None
     cash_item_coloring_prism: CharacterAndroidCashItemEquipmentColoringPrism | None
+    android_item_gender: str | None
     freestyle_flag: str | None
 
     @property
