@@ -162,6 +162,20 @@ namespace MapleStory.OpenAPI.KMS.DTO
         /// </summary>
         [JsonProperty("mix_rate")]
         public override string MixRate { get; set; }
+
+        /// <summary>
+        /// 프리스타일 쿠폰 적용 여부 (0:미적용, 1:적용)
+        /// </summary>
+        [JsonProperty("freestyle_flag")]
+        public string? FreestyleFlag { get; set; }
+
+        /// <summary>
+        /// 프리스타일 쿠폰 적용 여부
+        /// </summary>
+        public bool IsFreestyleFlag
+        {
+            get => this.FreestyleFlag == "1";
+        }
     }
 
     /// <summary>
@@ -192,6 +206,20 @@ namespace MapleStory.OpenAPI.KMS.DTO
         /// </summary>
         [JsonProperty("mix_rate")]
         public override string MixRate { get; set; }
+
+        /// <summary>
+        /// 프리스타일 쿠폰 적용 여부 (0:미적용, 1:적용)
+        /// </summary>
+        [JsonProperty("freestyle_flag")]
+        public string? FreestyleFlag { get; set; }
+
+        /// <summary>
+        /// 프리스타일 쿠폰 적용 여부
+        /// </summary>
+        public bool IsFreestyleFlag
+        {
+            get => this.FreestyleFlag == "1";
+        }
     }
 
     /// <summary>
@@ -478,5 +506,19 @@ namespace MapleStory.OpenAPI.KMS.DTO
         /// </summary>
         [JsonProperty("cash_item_coloring_prism")]
         public override CharacterAndroidCashItemEquipmentColoringPrismDTO? CashItemColoringPrism { get; set; }
+
+        /// <summary>
+        /// 프리스타일 쿠폰 적용 여부 (0:미적용, 1:적용)
+        /// </summary>
+        [JsonProperty("freestyle_flag")]
+        public string? FreestyleFlag { get; set; }
+
+        /// <summary>
+        /// 프리스타일 쿠폰 적용 여부
+        /// </summary>
+        public bool IsFreestyleFlag
+        {
+            get => this.FreestyleFlag == "1";
+        }
     }
 }
