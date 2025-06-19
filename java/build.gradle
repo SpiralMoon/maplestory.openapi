@@ -2,6 +2,7 @@ plugins {
     id 'java-library'
     id 'signing'
     id 'maven-publish'
+    id 'org.jreleaser' version '1.17.0'
 }
 
 group = 'dev.spiralmoon'
@@ -44,7 +45,7 @@ task javadocJar(type: Jar) {
 
 publishing {
     publications {
-        mavenJava(MavenPublication) {
+        maven(MavenPublication) {
             from components.java
             artifact sourcesJar
             artifact javadocJar
@@ -84,12 +85,7 @@ publishing {
 
     repositories {
         maven {
-            name 'OSSRH'
-            url uri('https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/')
-            credentials {
-                username = project.findProperty('ossrhUsername')?.toString()
-                password = project.findProperty('ossrhPassword')?.toString()
-            }
+            url = layout.buildDirectory.dir('staging-deploy')
         }
     }
 }
@@ -97,7 +93,29 @@ publishing {
 def gpgSecretKey = project.findProperty('gpgSecretKey')
 def gpgPassphrase = project.findProperty('gpgPassphrase')
 
-signing {
-    useInMemoryPgpKeys(gpgSecretKey, gpgPassphrase)
-    sign publishing.publications.mavenJava
+def centralUsername = project.findProperty('centralUsername')
+def centralPassword = project.findProperty('centralPassword')
+
+jreleaser {
+    signing {
+        active = 'ALWAYS'
+        armored = true
+        mode = 'MEMORY'
+        secretKey.set(gpgSecretKey)
+        passphrase.set(gpgPassphrase)
+    }
+
+    deploy {
+        maven {
+            mavenCentral {
+                sonatype {
+                    active = 'ALWAYS'
+                    url = 'https://central.sonatype.com/api/v1/publisher'
+                    username.set(centralUsername)
+                    password.set(centralPassword)
+                    stagingRepository('target/staging-deploy')
+                }
+            }
+        }
+    }
 }

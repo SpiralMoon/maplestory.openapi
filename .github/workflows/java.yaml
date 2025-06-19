@@ -11,8 +11,8 @@ jobs:
         working-directory: './java'
 
     env:
-      OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
-      OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
+      CENTRAL_USERNAME: ${{ secrets.CENTRAL_USERNAME }}
+      CENTRAL_PASSWORD: ${{ secrets.CENTRAL_PASSWORD }}
       GPG_SECRET_KEY: ${{ secrets.GPG_SECRET_KEY }}
       GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
 
@@ -34,8 +34,8 @@ jobs:
 
       - name: Publish to Maven Repository
         run: |
-          echo "ossrhUsername=${OSSRH_USERNAME}" >> gradle.properties
-          echo "ossrhPassword=${OSSRH_PASSWORD}" >> gradle.properties
+          echo "centralUsername=${CENTRAL_USERNAME}" >> gradle.properties
+          echo "centralPassword=${CENTRAL_PASSWORD}" >> gradle.properties
           echo "gpgSecretKey=${GPG_SECRET_KEY}" >>  gradle.properties
           echo "gpgPassphrase=${GPG_PASSPHRASE}" >> gradle.properties
           echo "Publishing to Maven repository"
