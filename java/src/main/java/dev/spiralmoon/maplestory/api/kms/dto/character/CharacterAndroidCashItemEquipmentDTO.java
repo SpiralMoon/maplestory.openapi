@@ -80,6 +80,12 @@ public class CharacterAndroidCashItemEquipmentDTO implements dev.spiralmoon.mapl
     private CharacterAndroidCashItemEquipmentColoringPrismDTO cashItemColoringPrism;
 
     /**
+     * 프리스타일 쿠폰 적용 여부 (0:미적용, 1:적용)
+     */
+    @SerializedName("freestyle_flag")
+    private String freestyleFlag;
+
+    /**
      * 안드로이드 캐시 아이템 유효 기간 (KST)
      */
     public ZonedDateTime getDateExpire() {
@@ -123,5 +129,12 @@ public class CharacterAndroidCashItemEquipmentDTO implements dev.spiralmoon.mapl
         }
 
         return "expired".equals(this.dateOptionExpire);
+    }
+
+    /**
+     * 프리스타일 쿠폰 적용 여부
+     */
+    public boolean isFreestyleFlag() {
+        return this.freestyleFlag.equals("1");
     }
 }

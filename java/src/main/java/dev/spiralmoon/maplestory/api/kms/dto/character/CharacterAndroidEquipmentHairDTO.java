@@ -36,4 +36,17 @@ public class CharacterAndroidEquipmentHairDTO implements dev.spiralmoon.maplesto
      */
     @SerializedName("mix_rate")
     private String mixRate;
+
+    /**
+     * 프리스타일 쿠폰 적용 여부 (0:미적용, 1:적용)
+     */
+    @SerializedName("freestyle_flag")
+    private String freestyleFlag;
+
+    /**
+     * 프리스타일 쿠폰 적용 여부
+     */
+    public boolean isFreestyleFlag() {
+        return this.freestyleFlag.equals("1");
+    }
 }
