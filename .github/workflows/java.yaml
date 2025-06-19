@@ -40,5 +40,6 @@ jobs:
           echo "gpgPassphrase=${GPG_PASSPHRASE}" >> gradle.properties
           echo "Publishing to Maven repository"
           ./gradlew publish
+          ./gradlew jreleaserFullRelease
         env:
           GRADLE_USER_HOME: ./gradle
