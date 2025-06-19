@@ -474,5 +474,11 @@ namespace MapleStory.OpenAPI.MSEA.DTO
         /// </summary>
         [JsonProperty("cash_item_coloring_prism")]
         public override CharacterAndroidCashItemEquipmentColoringPrismDTO? CashItemColoringPrism { get; set; }
+
+        /// <summary>
+        /// Gender compatibility for item equipment
+        /// </summary>
+        [JsonProperty("android_item_gender")]
+        public override string? AndroidItemGender { get; set; }
     }
 }
