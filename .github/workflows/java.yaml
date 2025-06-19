@@ -11,8 +11,10 @@ jobs:
         working-directory: './java'
 
     env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       CENTRAL_USERNAME: ${{ secrets.CENTRAL_USERNAME }}
       CENTRAL_PASSWORD: ${{ secrets.CENTRAL_PASSWORD }}
+      GPG_PUBLIC_KEY: ${{ secrets.GPG_PUBLIC_KEY }}
       GPG_SECRET_KEY: ${{ secrets.GPG_SECRET_KEY }}
       GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
 
@@ -36,8 +38,10 @@ jobs:
         run: |
           echo "centralUsername=${CENTRAL_USERNAME}" >> gradle.properties
           echo "centralPassword=${CENTRAL_PASSWORD}" >> gradle.properties
+          echo "gpgPublicKey=${GPG_PUBLIC_KEY}" >>  gradle.properties
           echo "gpgSecretKey=${GPG_SECRET_KEY}" >>  gradle.properties
           echo "gpgPassphrase=${GPG_PASSPHRASE}" >> gradle.properties
+          echo "githubToken=${GITHUB_TOKEN}" >> gradle.properties
           echo "Publishing to Maven repository"
           ./gradlew publish
           ./gradlew jreleaserFullRelease

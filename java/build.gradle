@@ -90,6 +90,9 @@ publishing {
     }
 }
 
+def githubToken = project.findProperty('githubToken')
+
+def gpgPublicKey = project.findProperty('gpgPublicKey')
 def gpgSecretKey = project.findProperty('gpgSecretKey')
 def gpgPassphrase = project.findProperty('gpgPassphrase')
 
@@ -101,10 +104,17 @@ jreleaser {
         gitRootSearch = true
     }
 
+    release {
+        github {
+            token.set(githubToken)
+        }
+    }
+
     signing {
         active = 'ALWAYS'
         armored = true
         mode = 'MEMORY'
+        publicKey.set(gpgPublicKey)
         secretKey.set(gpgSecretKey)
         passphrase.set(gpgPassphrase)
     }
