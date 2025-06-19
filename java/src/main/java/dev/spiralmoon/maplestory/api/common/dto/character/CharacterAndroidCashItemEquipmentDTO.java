@@ -16,4 +16,5 @@ public interface CharacterAndroidCashItemEquipmentDTO<CharacterAndroidCashItemEq
     Boolean isOptionExpired();
     String getCashItemLabel();
     CharacterAndroidCashItemEquipmentColoringPrism getCashItemColoringPrism();
+    String getAndroidItemGender();
 }

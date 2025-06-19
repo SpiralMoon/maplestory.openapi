@@ -86,6 +86,12 @@ public class CharacterAndroidCashItemEquipmentDTO implements dev.spiralmoon.mapl
     private String freestyleFlag;
 
     /**
+     * 아이템 장착 가능 성별
+     */
+    @SerializedName("android_item_gender")
+    private String androidItemGender;
+
+    /**
      * 안드로이드 캐시 아이템 유효 기간 (KST)
      */
     public ZonedDateTime getDateExpire() {

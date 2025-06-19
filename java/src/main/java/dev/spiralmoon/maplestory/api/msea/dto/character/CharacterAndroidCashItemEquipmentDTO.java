@@ -78,6 +78,12 @@ public class CharacterAndroidCashItemEquipmentDTO implements dev.spiralmoon.mapl
     private CharacterAndroidCashItemEquipmentColoringPrismDTO cashItemColoringPrism;
 
     /**
+     * Gender compatibility for item equipment
+     */
+    @SerializedName("android_item_gender")
+    private String androidItemGender;
+
+    /**
      * Android cash item validity period (SGT)
      */
     public ZonedDateTime getDateExpire() {
