@@ -54,6 +54,7 @@ class CharacterCashitemEquipmentPreset(BaseModel, BaseCharacterCashitemEquipment
         cash_item_coloring_prism (CharacterCashitemEquipmentColoringPrism or None): 캐시 장비 컬러링프리즘 정보
         item_gender (str or None): 아이템 장착 가능 성별
         skills (list[str]): 스킬명
+        freestyle_flag (str or None): 프리스타일 쿠폰 적용 여부 (0:미적용, 1:적용)
     """
     cash_item_equipment_part: str
     cash_item_equipment_slot: str
@@ -69,7 +70,14 @@ class CharacterCashitemEquipmentPreset(BaseModel, BaseCharacterCashitemEquipment
     cash_item_coloring_prism: CharacterCashitemEquipmentColoringPrism | None
     item_gender: str | None
     skills: list[str]
+    freestyle_flag: str | None
 
+    @property
+    def is_freestyle_flag(self) -> bool:
+        """
+        프리스타일 쿠폰 적용 여부
+        """
+        return self.freestyle_flag == '1'
 
 class CharacterCashitemEquipment(BaseModel, BaseCharacterCashitemEquipment):
     """
