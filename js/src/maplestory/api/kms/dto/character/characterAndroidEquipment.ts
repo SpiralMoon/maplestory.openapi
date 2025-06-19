@@ -187,15 +187,28 @@ export class CharacterAndroidEquipmentFaceDto extends base.CharacterAndroidEquip
    */
   public override mixRate: string;
 
+  /**
+   * 프리스타일 쿠폰 적용 여부 (0:미적용, 1:적용)
+   */
+  public freestyleFlag: string | null;
+
   constructor(obj: CharacterAndroidEquipmentFaceBody) {
     super();
 
-    const { face_name, base_color, mix_color, mix_rate } = obj;
+    const { face_name, base_color, mix_color, mix_rate, freestyle_flag } = obj;
 
     this.faceName = face_name;
     this.baseColor = base_color;
     this.mixColor = mix_color;
     this.mixRate = mix_rate;
+    this.freestyleFlag = freestyle_flag;
+  }
+
+  /**
+   * 프리스타일 쿠폰 적용 여부
+   */
+  public get isFreestyleFlag() {
+    return this.freestyleFlag === '1';
   }
 }
 
@@ -223,15 +236,28 @@ export class CharacterAndroidEquipmentHairDto extends base.CharacterAndroidEquip
    */
   public override mixRate: string;
 
+  /**
+   * 프리스타일 쿠폰 적용 여부 (0:미적용, 1:적용)
+   */
+  public freestyleFlag: string | null;
+
   constructor(obj: CharacterAndroidEquipmentHairBody) {
     super();
 
-    const { hair_name, base_color, mix_color, mix_rate } = obj;
+    const { hair_name, base_color, mix_color, mix_rate, freestyle_flag } = obj;
 
     this.hairName = hair_name;
     this.baseColor = base_color;
     this.mixColor = mix_color;
     this.mixRate = mix_rate;
+    this.freestyleFlag = freestyle_flag;
+  }
+
+  /**
+   * 프리스타일 쿠폰 적용 여부
+   */
+  public get isFreestyleFlag() {
+    return this.freestyleFlag === '1';
   }
 }
 
@@ -500,6 +526,11 @@ export class CharacterAndroidCashItemEquipmentDto extends base.CharacterAndroidC
    */
   public override cashItemColoringPrism: CharacterAndroidCashItemEquipmentColoringPrismDto | null;
 
+  /**
+   * 프리스타일 쿠폰 적용 여부 (0:미적용, 1:적용)
+   */
+  public freestyleFlag: string | null;
+
   constructor(obj: CharacterAndroidCashItemEquipmentBody) {
     super();
 
@@ -514,6 +545,7 @@ export class CharacterAndroidCashItemEquipmentDto extends base.CharacterAndroidC
       date_option_expire,
       cash_item_label,
       cash_item_coloring_prism,
+      freestyle_flag,
     } = obj;
 
     this.cashItemEquipmentPart = cash_item_equipment_part;
@@ -530,6 +562,7 @@ export class CharacterAndroidCashItemEquipmentDto extends base.CharacterAndroidC
           cash_item_coloring_prism,
         )
       : null;
+    this.freestyleFlag = freestyle_flag;
 
     if (date_expire === 'expired') {
       this.isExpired = true;
@@ -544,5 +577,12 @@ export class CharacterAndroidCashItemEquipmentDto extends base.CharacterAndroidC
         ? new Date(date_option_expire)
         : null;
     }
+  }
+
+  /**
+   * 프리스타일 쿠폰 적용 여부
+   */
+  public get isFreestyleFlag() {
+    return this.freestyleFlag === '1';
   }
 }
