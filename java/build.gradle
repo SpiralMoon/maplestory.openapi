@@ -97,6 +97,10 @@ def centralUsername = project.findProperty('centralUsername')
 def centralPassword = project.findProperty('centralPassword')
 
 jreleaser {
+    project {
+        gitRootSearch = true
+    }
+
     signing {
         active = 'ALWAYS'
         armored = true
