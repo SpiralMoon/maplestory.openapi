@@ -501,6 +501,11 @@ export class CharacterAndroidCashItemEquipmentDto extends base.CharacterAndroidC
    */
   public override cashItemColoringPrism: CharacterAndroidCashItemEquipmentColoringPrismDto | null;
 
+  /**
+   * Gender compatibility for item equipment
+   */
+  public override androidItemGender: string | null;
+
   constructor(obj: CharacterAndroidCashItemEquipmentBody) {
     super();
 
@@ -515,6 +520,7 @@ export class CharacterAndroidCashItemEquipmentDto extends base.CharacterAndroidC
       date_option_expire,
       cash_item_label,
       cash_item_coloring_prism,
+      android_item_gender,
     } = obj;
 
     this.cashItemEquipmentPart = cash_item_equipment_part;
@@ -531,6 +537,7 @@ export class CharacterAndroidCashItemEquipmentDto extends base.CharacterAndroidC
           cash_item_coloring_prism,
         )
       : null;
+    this.androidItemGender = android_item_gender;
 
     if (date_expire === 'expired') {
       this.isExpired = true;

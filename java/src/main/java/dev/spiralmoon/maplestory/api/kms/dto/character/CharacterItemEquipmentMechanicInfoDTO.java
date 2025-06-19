@@ -191,6 +191,12 @@ public class CharacterItemEquipmentMechanicInfoDTO implements dev.spiralmoon.map
     private String dateExpire;
 
     /**
+     * 프리스타일 쿠폰 적용 여부 (0:미적용, 1:적용)
+     */
+    @SerializedName("freestyle_flag")
+    private String freestyleFlag;
+
+    /**
      * 장비 유효 기간(KST)
      */
     public ZonedDateTime getDateExpire() {
@@ -211,5 +217,12 @@ public class CharacterItemEquipmentMechanicInfoDTO implements dev.spiralmoon.map
         }
 
         return "expired".equals(this.dateExpire);
+    }
+
+    /**
+     * 프리스타일 쿠폰 적용 여부
+     */
+    public boolean isFreestyleFlag() {
+        return this.freestyleFlag.equals("1");
     }
 }

@@ -81,4 +81,5 @@ export abstract class CharacterAndroidCashItemEquipmentDto {
   public abstract isOptionExpired: boolean | null;
   public abstract cashItemLabel: string | null;
   public abstract cashItemColoringPrism: CharacterAndroidCashItemEquipmentColoringPrismDto | null;
+  public abstract androidItemGender: string | null;
 }

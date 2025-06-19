@@ -16,11 +16,20 @@ class CharacterBeautyEquipmentHair(BaseModel, BaseCharacterBeautyEquipmentHair):
         base_color (str): 헤어 베이스 컬러
         mix_color (str or None): 헤어 믹스 컬러
         mix_rate (str): 헤어 믹스 컬러의 염색 비율
+        freestyle_flag (str or None): 프리스타일 쿠폰 적용 여부 (0:미적용, 1:적용)
     """
     hair_name: str
     base_color: str
     mix_color: str | None
     mix_rate: str
+    freestyle_flag: str | None
+
+    @property
+    def is_freestyle_flag(self) -> bool:
+        """
+        프리스타일 쿠폰 적용 여부
+        """
+        return self.freestyle_flag == '1'
 
 
 class CharacterBeautyEquipmentFace(BaseModel, BaseCharacterBeautyEquipmentFace):
@@ -32,11 +41,20 @@ class CharacterBeautyEquipmentFace(BaseModel, BaseCharacterBeautyEquipmentFace):
         base_color (str): 성형 베이스 컬러
         mix_color (str or None): 성형 믹스 컬러
         mix_rate (str): 성형 믹스 컬러의 염색 비율
+        freestyle_flag (str or None): 프리스타일 쿠폰 적용 여부 (0:미적용, 1:적용)
     """
     face_name: str
     base_color: str
     mix_color: str | None
     mix_rate: str
+    freestyle_flag: str | None
+
+    @property
+    def is_freestyle_flag(self) -> bool:
+        """
+        프리스타일 쿠폰 적용 여부
+        """
+        return self.freestyle_flag == '1'
 
 
 class CharacterBeautyEquipmentSkin(BaseModel, BaseCharacterBeautyEquipmentSkin):

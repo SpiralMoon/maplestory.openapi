@@ -138,6 +138,7 @@ class CharacterAndroidCashItemEquipment(BaseModel, BaseCharacterAndroidCashItemE
         is_option_expired (bool): Cash item option expiration status
         cash_item_label (str or None): Cash item label
         cash_item_coloring_prism (CharacterAndroidCashItemEquipmentColoringPrism or None): Coloring prism information
+        android_item_gender (str or None): Gender compatibility for item equipment
     """
     cash_item_equipment_part: str
     cash_item_equipment_slot: str
@@ -151,6 +152,7 @@ class CharacterAndroidCashItemEquipment(BaseModel, BaseCharacterAndroidCashItemE
     is_option_expired: bool = False
     cash_item_label: str | None
     cash_item_coloring_prism: CharacterAndroidCashItemEquipmentColoringPrism | None
+    android_item_gender: str | None
 
 
 class CharacterAndroidEquipment(BaseModel, BaseCharacterAndroidEquipment):

@@ -64,6 +64,7 @@ class CharacterAndroidCashItemEquipment:
     is_option_expired: bool = False
     cash_item_label: str | None
     cash_item_coloring_prism: CharacterAndroidCashItemEquipmentColoringPrism | None
+    android_item_gender: str | None
 
     @model_validator(mode="before")
     @classmethod

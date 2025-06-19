@@ -1066,6 +1066,11 @@ export class CharacterItemEquipmentDragonInfoDto extends base.CharacterItemEquip
    */
   public override isExpired: boolean | null = null;
 
+  /**
+   * 프리스타일 쿠폰 적용 여부 (0:미적용, 1:적용)
+   */
+  public freestyleFlag: string | null;
+
   constructor(obj: CharacterItemEquipmentDragonInfoBody) {
     super();
 
@@ -1098,6 +1103,7 @@ export class CharacterItemEquipmentDragonInfoDto extends base.CharacterItemEquip
       item_starforce_option,
       special_ring_level,
       date_expire,
+      freestyle_flag,
     } = obj;
 
     this.itemEquipmentPart = item_equipment_part;
@@ -1139,12 +1145,20 @@ export class CharacterItemEquipmentDragonInfoDto extends base.CharacterItemEquip
       item_starforce_option,
     );
     this.specialRingLevel = special_ring_level;
+    this.freestyleFlag = freestyle_flag;
 
     if (date_expire === 'expired') {
       this.isExpired = true;
     } else if (typeof date_expire === 'string') {
       this.dateExpire = date_expire ? new Date(date_expire) : null;
     }
+  }
+
+  /**
+   * 프리스타일 쿠폰 적용 여부
+   */
+  public get isFreestyleFlag() {
+    return this.freestyleFlag === '1';
   }
 }
 
@@ -1297,6 +1311,11 @@ export class CharacterItemEquipmentMechanicInfoDto extends base.CharacterItemEqu
    */
   public override isExpired: boolean | null = null;
 
+  /**
+   * 프리스타일 쿠폰 적용 여부 (0:미적용, 1:적용)
+   */
+  public freestyleFlag: string | null;
+
   constructor(obj: CharacterItemEquipmentMechanicInfoBody) {
     super();
 
@@ -1329,6 +1348,7 @@ export class CharacterItemEquipmentMechanicInfoDto extends base.CharacterItemEqu
       item_starforce_option,
       special_ring_level,
       date_expire,
+      freestyle_flag,
     } = obj;
 
     this.itemEquipmentPart = item_equipment_part;
@@ -1370,12 +1390,20 @@ export class CharacterItemEquipmentMechanicInfoDto extends base.CharacterItemEqu
       item_starforce_option,
     );
     this.specialRingLevel = special_ring_level;
+    this.freestyleFlag = freestyle_flag;
 
     if (date_expire === 'expired') {
       this.isExpired = true;
     } else if (typeof date_expire === 'string') {
       this.dateExpire = date_expire ? new Date(date_expire) : null;
     }
+  }
+
+  /**
+   * 프리스타일 쿠폰 적용 여부
+   */
+  public get isFreestyleFlag() {
+    return this.freestyleFlag === '1';
   }
 }
 
@@ -1568,6 +1596,11 @@ export class CharacterItemEquipmentInfoDto extends base.CharacterItemEquipmentIn
    */
   public override isExpired: boolean | null = null;
 
+  /**
+   * 프리스타일 쿠폰 적용 여부 (0:미적용, 1:적용)
+   */
+  public freestyleFlag: string | null;
+
   constructor(obj: CharacterItemEquipmentInfoBody) {
     super();
 
@@ -1608,6 +1641,7 @@ export class CharacterItemEquipmentInfoDto extends base.CharacterItemEquipmentIn
       item_starforce_option,
       special_ring_level,
       date_expire,
+      freestyle_flag,
     } = obj;
 
     this.itemEquipmentPart = item_equipment_part;
@@ -1657,11 +1691,19 @@ export class CharacterItemEquipmentInfoDto extends base.CharacterItemEquipmentIn
       item_starforce_option,
     );
     this.specialRingLevel = special_ring_level;
+    this.freestyleFlag = freestyle_flag;
 
     if (date_expire === 'expired') {
       this.isExpired = true;
     } else if (typeof date_expire === 'string') {
       this.dateExpire = date_expire ? new Date(date_expire) : null;
     }
+  }
+
+  /**
+   * 프리스타일 쿠폰 적용 여부
+   */
+  public get isFreestyleFlag() {
+    return this.freestyleFlag === '1';
   }
 }

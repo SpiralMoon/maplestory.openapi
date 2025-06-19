@@ -1,5 +1,5 @@
 from datetime import datetime
-from pydantic import BaseModel, model_validator
+from pydantic import BaseModel
 
 from maplestory_openapi.api.common.dto.character.character_item_equipment import CharacterItemEquipmentAddOption as BaseCharacterItemEquipmentAddOption
 from maplestory_openapi.api.common.dto.character.character_item_equipment import CharacterItemEquipmentBaseOption as BaseCharacterItemEquipmentBaseOption
@@ -265,6 +265,7 @@ class CharacterItemEquipmentInfo(BaseModel, BaseCharacterItemEquipmentInfo):
         special_ring_level(int): 특수 반지 레벨
         date_expire(datetime or None): 장비 유효 기간
         is_expired(bool): 장비 유효 기간 만료 여부
+        freestyle_flag(str or None): 프리스타일 쿠폰 적용 여부 (0:미적용, 1:적용)
     """
     item_equipment_part: str
     item_equipment_slot: str
@@ -303,6 +304,14 @@ class CharacterItemEquipmentInfo(BaseModel, BaseCharacterItemEquipmentInfo):
     special_ring_level: int
     date_expire: datetime | None
     is_expired: bool = False
+    freestyle_flag: str | None
+
+    @property
+    def is_freestyle_flag(self) -> bool:
+        """
+        프리스타일 쿠폰 적용 여부
+        """
+        return self.freestyle_flag == '1'
 
 
 class CharacterItemEquipmentDragonInfo(BaseModel, BaseCharacterItemEquipmentDragonInfo):
@@ -339,6 +348,7 @@ class CharacterItemEquipmentDragonInfo(BaseModel, BaseCharacterItemEquipmentDrag
         special_ring_level(int): 특수 반지 레벨
         date_expire(datetime or None): 장비 유효 기간
         is_expired(bool): 장비 유효 기간 만료 여부
+        freestyle_flag(str or None): 프리스타일 쿠폰 적용 여부 (0:미적용, 1:적용)
     """
     item_equipment_part: str
     item_equipment_slot: str
@@ -369,6 +379,14 @@ class CharacterItemEquipmentDragonInfo(BaseModel, BaseCharacterItemEquipmentDrag
     special_ring_level: int
     date_expire: datetime | None
     is_expired: bool = False
+    freestyle_flag: str | None
+
+    @property
+    def is_freestyle_flag(self) -> bool:
+        """
+        프리스타일 쿠폰 적용 여부
+        """
+        return self.freestyle_flag == '1'
 
 
 class CharacterItemEquipmentMechanicInfo(BaseModel, BaseCharacterItemEquipmentMechanicInfo):
@@ -405,6 +423,7 @@ class CharacterItemEquipmentMechanicInfo(BaseModel, BaseCharacterItemEquipmentMe
         special_ring_level(int): 특수 반지 레벨
         date_expire(datetime or None): 장비 유효 기간
         is_expired(bool): 장비 유효 기간 만료 여부
+        freestyle_flag(str or None): 프리스타일 쿠폰 적용 여부 (0:미적용, 1:적용)
     """
     item_equipment_part: str
     item_equipment_slot: str
@@ -435,6 +454,14 @@ class CharacterItemEquipmentMechanicInfo(BaseModel, BaseCharacterItemEquipmentMe
     special_ring_level: int
     date_expire: datetime | None
     is_expired: bool = False
+    freestyle_flag: str | None
+
+    @property
+    def is_freestyle_flag(self) -> bool:
+        """
+        프리스타일 쿠폰 적용 여부
+        """
+        return self.freestyle_flag == '1'
 
 
 class CharacterItemEquipmentTitle(BaseModel, BaseCharacterItemEquipmentTitle):

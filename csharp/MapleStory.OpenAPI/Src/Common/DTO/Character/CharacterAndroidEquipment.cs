@@ -101,6 +101,7 @@
         public abstract bool? IsOptionExpired { get; }
         public abstract string? CashItemLabel { get; set; }
         public abstract TCharacterAndroidCashItemEquipmentColoringPrism? CashItemColoringPrism { get; set; }
+        public abstract string? AndroidItemGender { get; set; }
     }
 
     public abstract class CharacterAndroidCashItemEquipmentDTO : CharacterAndroidCashItemEquipmentDTO<CharacterAndroidCashItemEquipmentOptionDTO, CharacterAndroidCashItemEquipmentColoringPrismDTO>
