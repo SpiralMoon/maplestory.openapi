@@ -527,6 +527,11 @@ export class CharacterAndroidCashItemEquipmentDto extends base.CharacterAndroidC
   public override cashItemColoringPrism: CharacterAndroidCashItemEquipmentColoringPrismDto | null;
 
   /**
+   * 아이템 장착 가능 성별
+   */
+  public override androidItemGender: string | null;
+
+  /**
    * 프리스타일 쿠폰 적용 여부 (0:미적용, 1:적용)
    */
   public freestyleFlag: string | null;
@@ -545,6 +550,7 @@ export class CharacterAndroidCashItemEquipmentDto extends base.CharacterAndroidC
       date_option_expire,
       cash_item_label,
       cash_item_coloring_prism,
+      android_item_gender,
       freestyle_flag,
     } = obj;
 
@@ -562,6 +568,7 @@ export class CharacterAndroidCashItemEquipmentDto extends base.CharacterAndroidC
           cash_item_coloring_prism,
         )
       : null;
+    this.androidItemGender = android_item_gender;
     this.freestyleFlag = freestyle_flag;
 
     if (date_expire === 'expired') {

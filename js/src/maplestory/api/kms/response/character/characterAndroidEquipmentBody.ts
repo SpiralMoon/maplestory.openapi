@@ -69,6 +69,7 @@ export type CharacterAndroidCashItemEquipmentBody = {
   date_option_expire: string | null;
   cash_item_label: string | null;
   cash_item_coloring_prism: CharacterAndroidCashItemEquipmentColoringPrismBody | null;
+  android_item_gender: string;
   freestyle_flag: string | null;
 };
 
