@@ -16,6 +16,7 @@ import dev.spiralmoon.maplestory.api.kms.dto.union.UnionArtifactDTO;
 import dev.spiralmoon.maplestory.api.kms.dto.union.UnionChampionDTO;
 import dev.spiralmoon.maplestory.api.kms.dto.union.UnionDTO;
 import dev.spiralmoon.maplestory.api.kms.dto.union.UnionRaiderDTO;
+import dev.spiralmoon.maplestory.api.kms.dto.user.AchievementDTO;
 import dev.spiralmoon.maplestory.api.kms.template.*;
 import dev.spiralmoon.maplestory.api.common.param.CharacterImageOption;
 import lombok.*;
@@ -49,6 +50,28 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
         this.timezone = "Asia/Seoul";
         this.subUrl = "maplestory";
     }
+
+    //#region 계정 정보 조회
+
+    /**
+     * 계정의 업적 정보를 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     * - 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.<br>
+     */
+    public CompletableFuture<AchievementDTO> getAchievement() {
+        final CompletableFuture<AchievementDTO> future = new CompletableFuture<>();
+
+        buildRetrofit()
+                .create(UserApi.class)
+                .getAchievement(this.apiKey)
+                .enqueue(createCallback(future));
+
+        return future;
+    }
+
+    //#endregion
 
     //#region 캐릭터 정보 조회
 
