@@ -51,4 +51,6 @@ export * from './dto/union/unionArtifact';
 export * from './dto/union/unionChampion';
 export * from './dto/union/unionRaider';
 
+export * from './dto/user/achievement';
+
 export * from './dto/inspectionInfo';
