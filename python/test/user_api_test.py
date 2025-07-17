@@ -12,6 +12,10 @@ api = MapleStoryApi(api_key)
 # 계정 정보 조회
 
 class CharacterApi(unittest.IsolatedAsyncioTestCase):
+    async def test_character_list(self):
+        response = await api.get_character_list()
+        print(response)
+
     async def test_achievement(self):
         response = await api.get_achievement()
         print(response)

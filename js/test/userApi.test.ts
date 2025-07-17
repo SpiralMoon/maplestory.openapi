@@ -7,6 +7,12 @@ const apiKey = process.env.API_KEY! // Your API Key
 const api = new MapleStoryApi(apiKey);
 
 describe('계정 정보 조회', () => {
+  test('캐릭터 목록 조회', async () => {
+    const response = await api.getCharacterList();
+
+    console.log(toString(response));
+  });
+
   test('업적 정보 조회', async () => {
     const response = await api.getAchievement();
 

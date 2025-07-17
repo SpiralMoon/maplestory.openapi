@@ -21,13 +21,6 @@ public class CharacterApi {
     }
 
     @Test
-    @DisplayName("캐릭터 목록 조회")
-    void getCharacterList() throws IOException {
-        CharacterListDTO response = api.getCharacterList().join();
-        System.out.println(response.toString());
-    }
-
-    @Test
     @DisplayName("기본 정보 조회")
     void getCharacterBasic() throws IOException {
         CharacterBasicDTO response = api.getCharacterBasic(ocid).join();
