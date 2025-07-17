@@ -22,8 +22,3 @@ class CharacterBasic(ABC):
     @abstractmethod
     def is_access_flag(self) -> bool:
         pass
-
-    @property
-    @abstractmethod
-    def is_liberation_quest_clear_flag(self) -> bool:
-        pass

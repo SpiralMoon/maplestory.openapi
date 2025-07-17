@@ -73,7 +73,7 @@ export class CharacterBasicDto extends base.CharacterBasicDto {
   /**
    * Liberation quest completion status (true:completed, false:not completed)
    */
-  public override liberationQuestClearFlag: 'true' | 'false';
+  public liberationQuestClearFlag: 'true' | 'false';
 
   constructor(obj: CharacterBasicBody) {
     super();
@@ -121,7 +121,7 @@ export class CharacterBasicDto extends base.CharacterBasicDto {
   /**
    * Liberation quest completion status
    */
-  public override get isLiberationQuestClearFlag() {
-    return super.isLiberationQuestClearFlag;
+  public get isLiberationQuestClearFlag() {
+    return this.liberationQuestClearFlag === 'true';
   }
 }
