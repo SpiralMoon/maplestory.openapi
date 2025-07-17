@@ -71,9 +71,9 @@ export class CharacterBasicDto extends base.CharacterBasicDto {
   public override accessFlag: 'true' | 'false';
 
   /**
-   * 해방 퀘스트 완료 여부
+   * 해방 퀘스트 완료 여부 (0:미완료, 1:제네시스 무기 해방, 2:데스티니 무기 1차 해방)
    */
-  public override liberationQuestClearFlag: 'true' | 'false';
+  public liberationQuestClear: string;
 
   constructor(obj: CharacterBasicBody) {
     super();
@@ -92,7 +92,7 @@ export class CharacterBasicDto extends base.CharacterBasicDto {
       character_image,
       character_date_create,
       access_flag,
-      liberation_quest_clear_flag,
+      liberation_quest_clear,
     } = obj;
 
     this.date = date ? new Date(date) : null;
@@ -108,7 +108,7 @@ export class CharacterBasicDto extends base.CharacterBasicDto {
     this.characterImage = character_image;
     this.characterDateCreate = new Date(character_date_create);
     this.accessFlag = access_flag;
-    this.liberationQuestClearFlag = liberation_quest_clear_flag;
+    this.liberationQuestClear = liberation_quest_clear;
   }
 
   /**
@@ -116,12 +116,5 @@ export class CharacterBasicDto extends base.CharacterBasicDto {
    */
   public override get isAccessFlag() {
     return super.isAccessFlag;
-  }
-
-  /**
-   * 해방 퀘스트 완료 여부
-   */
-  public override get isLiberationQuestClearFlag() {
-    return super.isLiberationQuestClearFlag;
   }
 }

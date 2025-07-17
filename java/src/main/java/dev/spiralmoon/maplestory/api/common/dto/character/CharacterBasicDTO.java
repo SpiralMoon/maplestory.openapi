@@ -16,5 +16,4 @@ public interface CharacterBasicDTO {
     String getCharacterImage();
     ZonedDateTime getCharacterDateCreate();
     boolean isAccessFlag();
-    boolean isLiberationQuestClearFlag();
 }

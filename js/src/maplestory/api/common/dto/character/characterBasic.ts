@@ -12,13 +12,8 @@ export abstract class CharacterBasicDto {
   public abstract characterImage: string;
   public abstract characterDateCreate: Date;
   public abstract accessFlag: 'true' | 'false';
-  public abstract liberationQuestClearFlag: 'true' | 'false';
 
   public get isAccessFlag() {
     return this.accessFlag === 'true';
-  }
-
-  public get isLiberationQuestClearFlag() {
-    return this.liberationQuestClearFlag === 'true';
   }
 }
