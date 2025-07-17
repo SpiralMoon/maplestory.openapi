@@ -11,9 +11,6 @@ public interface CharacterApi {
     @GET("maplestory/v1/id")
     Call<CharacterDTO> getCharacter(@Header("x-nxopen-api-key") String apiKey, @Query("character_name") String characterName);
 
-    @GET("maplestory/v1/character/list")
-    Call<CharacterListDTO> getCharacterList(@Header("x-nxopen-api-key") String apiKey);
-
     @GET("maplestory/v1/character/basic")
     Call<CharacterBasicDTO> getCharacterBasic(@Header("x-nxopen-api-key") String apiKey, @Query("ocid") String ocid, @Query("date") String date);
 

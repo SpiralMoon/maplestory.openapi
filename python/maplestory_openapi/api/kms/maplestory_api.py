@@ -19,7 +19,6 @@ from maplestory_openapi.api.kms.dto.character.character_android_equipment import
 from maplestory_openapi.api.kms.dto.character.character_pet_equipment import CharacterPetEquipment
 from maplestory_openapi.api.kms.dto.character.character_skill import CharacterSkill
 from maplestory_openapi.api.kms.dto.character.character_link_skill import CharacterLinkSkill
-from maplestory_openapi.api.kms.dto.character.character_list import CharacterList
 from maplestory_openapi.api.kms.dto.character.character_vmatrix import CharacterVMatrix
 from maplestory_openapi.api.kms.dto.character.character_hexamatrix import CharacterHexaMatrix
 from maplestory_openapi.api.kms.dto.character.character_hexamatrix_stat import CharacterHexaMatrixStat
@@ -55,6 +54,7 @@ from maplestory_openapi.api.kms.dto.notice.update_notice_detail import UpdateNot
 from maplestory_openapi.api.kms.dto.notice.update_notice_list import UpdateNoticeList
 
 from maplestory_openapi.api.kms.dto.user.achievement import Achievement
+from maplestory_openapi.api.kms.dto.user.character_list import CharacterList
 
 from maplestory_openapi.api.common.param.character_image_option import CharacterImageOption
 
@@ -72,6 +72,20 @@ class MapleStoryApi(BaseMapleStoryApi):
         )
 
     #region 계정 정보 조회
+
+    async def get_character_list(self) -> CharacterList:
+        """
+        계정의 보유 캐릭터 목록을 조회합니다.
+
+        - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.
+        - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)
+        - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
+        """
+
+        path = self.sub_url + '/v1/character/list'
+        query = {}
+        r = await self.fetch(path, query)
+        return CharacterList(**r)
 
     async def get_achievement(self) -> Achievement:
         """
@@ -110,20 +124,6 @@ class MapleStoryApi(BaseMapleStoryApi):
         }
         r = await self.fetch(path, query)
         return Character(**r)
-
-    async def get_character_list(self) -> CharacterList:
-        """
-        계정의 보유 캐릭터 목록을 조회합니다.
-
-        - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.
-        - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)
-        - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
-        """
-
-        path = self.sub_url + '/v1/character/list'
-        query = {}
-        r = await self.fetch(path, query)
-        return CharacterList(**r)
 
     async def get_character_basic(self, ocid: str, date: datetime | None = None) -> CharacterBasic:
         """

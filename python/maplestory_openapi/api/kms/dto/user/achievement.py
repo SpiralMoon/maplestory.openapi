@@ -1,5 +1,6 @@
 from pydantic import BaseModel
 
+
 class AchievementAchieve(BaseModel):
     """
     달성 업적 정보
