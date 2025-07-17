@@ -10,6 +10,7 @@ namespace MapleStory.OpenAPI.KMS.DTO
         /// <summary>
         /// 메이플스토리 계정
         /// </summary>
+        [JsonProperty("account_list")]
         public List<AchievementAccountListDTO> AccountList { get; set; }
     }
 
