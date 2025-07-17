@@ -19,10 +19,6 @@ class CharacterApi(unittest.IsolatedAsyncioTestCase):
         response = await api.get_character_id(nickname)
         print(response)
 
-    async def test_character_list(self):
-        response = await api.get_character_list()
-        print(response)
-
     async def test_character_basic(self):
         response = await api.get_character_basic(ocid)
         print(response)

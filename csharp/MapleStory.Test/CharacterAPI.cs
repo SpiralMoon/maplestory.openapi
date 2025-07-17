@@ -19,13 +19,6 @@ namespace MapleStory.Test
         }
 
         [Test]
-        public async Task GetCharacterList()
-        {
-            var response = await api.GetCharacterList();
-            Console.WriteLine(response.ToJson());
-        }
-
-        [Test]
         public async Task GetCharacterBasic()
         {
             var response = await api.GetCharacterBasic(ocid);

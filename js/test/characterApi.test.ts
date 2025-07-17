@@ -16,12 +16,6 @@ describe('캐릭터 정보 조회', () => {
     console.log(toString(response));
   });
 
-  test('캐릭터 목록 조회', async () => {
-    const response = await api.getCharacterList();
-
-    console.log(toString(response));
-  });
-
   test('기본 정보 조회', async () => {
     const response = await api.getCharacterBasic(ocid);
 
