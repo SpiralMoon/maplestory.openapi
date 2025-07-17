@@ -20,6 +20,20 @@ namespace MapleStory.OpenAPI.KMS
         #region 계정 정보 조회
 
         /// <summary>
+        /// 계정의 보유 캐릭터 목록을 조회합니다.
+        /// <para>- 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.</para>
+        /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
+        /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
+        /// <para>- 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.</para>
+        /// </summary>
+        public async Task<CharacterListDTO> GetCharacterList()
+        {
+            var path = $"{subUrl}/v1/character/list";
+
+            return await Get<CharacterListDTO>(path);
+        }
+
+        /// <summary>
         /// 계정의 업적 정보를 조회합니다.
         /// <para>- 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.</para>
         /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
@@ -55,20 +69,6 @@ namespace MapleStory.OpenAPI.KMS
             };
 
             return await Get<CharacterDTO>(path, query);
-        }
-
-        /// <summary>
-        /// 계정의 보유 캐릭터 목록을 조회합니다.
-        /// <para>- 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.</para>
-        /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
-        /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
-        /// <para>- 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.</para>
-        /// </summary>
-        public async Task<CharacterListDTO> GetCharacterList()
-        {
-            var path = $"{subUrl}/v1/character/list";
-
-            return await Get<CharacterListDTO>(path);
         }
 
         /// <summary>

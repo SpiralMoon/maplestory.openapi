@@ -13,7 +13,6 @@ export * from './dto/character/characterHyperStat';
 export * from './dto/character/characterImage';
 export * from './dto/character/characterItemEquipment';
 export * from './dto/character/characterLinkSkill';
-export * from './dto/character/characterList';
 export * from './dto/character/characterPetEquipment';
 export * from './dto/character/characterPopularity';
 export * from './dto/character/characterPropensity';
@@ -52,5 +51,6 @@ export * from './dto/union/unionChampion';
 export * from './dto/union/unionRaider';
 
 export * from './dto/user/achievement';
+export * from './dto/user/characterList';
 
 export * from './dto/inspectionInfo';

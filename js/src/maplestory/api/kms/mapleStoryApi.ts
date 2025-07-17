@@ -15,7 +15,7 @@ import { CharacterHyperStatDto } from './dto/character/characterHyperStat';
 import { CharacterImageDto } from './dto/character/characterImage';
 import { CharacterItemEquipmentDto } from './dto/character/characterItemEquipment';
 import { CharacterLinkSkillDto } from './dto/character/characterLinkSkill';
-import { CharacterListDto } from './dto/character/characterList';
+
 import { CharacterPetEquipmentDto } from './dto/character/characterPetEquipment';
 import { CharacterPopularityDto } from './dto/character/characterPopularity';
 import { CharacterPropensityDto } from './dto/character/characterPropensity';
@@ -60,7 +60,6 @@ import { CharacterHexaMatrixStatBody } from './response/character/characterHexaM
 import { CharacterHyperStatBody } from './response/character/characterHyperStatBody';
 import { CharacterItemEquipmentBody } from './response/character/characterItemEquipmentBody';
 import { CharacterLinkSkillBody } from './response/character/characterLinkSkillBody';
-import { CharacterListBody } from './response/character/characterListBody';
 import { CharacterPetEquipmentBody } from './response/character/characterPetEquipmentBody';
 import { CharacterPopularityBody } from './response/character/characterPopularityBody';
 import { CharacterPropensityBody } from './response/character/characterPropensityBody';
@@ -93,6 +92,10 @@ import { UnionArtifactBody } from './response/union/unionArtifactBody';
 import { UnionBody } from './response/union/unionBody';
 import { UnionChampionBody } from './response/union/unionChampionBody';
 import { UnionRaiderBody } from './response/union/unionRaiderBody';
+import { AchievementDto } from './dto/user/achievement';
+import { AchievementBody } from './response/user/achievementBody';
+import { CharacterListDto } from './dto/user/characterList';
+import { CharacterListBody } from './response/user/characterListBody';
 import {
   CharacterImageAction,
   CharacterImageEmotion,
@@ -100,8 +103,6 @@ import {
 } from '../common/enum/characterImage';
 import { DateOptions } from '../common/mapleStoryApi';
 import * as base from '../common/mapleStoryApi';
-import { AchievementDto } from './dto/user/achievement';
-import { AchievementBody } from './response/user/achievementBody';
 
 /**
  * MapleStory OpenAPI client for KMS.<br>
@@ -118,6 +119,20 @@ export class MapleStoryApi extends base.MapleStoryApi {
   }
 
   //#region 계정 정보 조회
+
+  /**
+   * 계정의 보유 캐릭터 목록을 조회합니다.
+   * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.
+   * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)
+   * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
+   * - 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.
+   */
+  public async getCharacterList(): Promise<CharacterListDto> {
+    const path = `${this.subUrl}/v1/character/list`;
+    const { data } = await this.client.get<CharacterListBody>(path);
+
+    return new CharacterListDto(data);
+  }
 
   /**
    * 계정의 업적 정보를 조회합니다.
@@ -156,20 +171,6 @@ export class MapleStoryApi extends base.MapleStoryApi {
     });
 
     return new CharacterDto(data);
-  }
-
-  /**
-   * 계정의 보유 캐릭터 목록을 조회합니다.
-   * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.
-   * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)
-   * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
-   * - 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.
-   */
-  public async getCharacterList(): Promise<CharacterListDto> {
-    const path = `${this.subUrl}/v1/character/list`;
-    const { data } = await this.client.get<CharacterListBody>(path);
-
-    return new CharacterListDto(data);
   }
 
   /**

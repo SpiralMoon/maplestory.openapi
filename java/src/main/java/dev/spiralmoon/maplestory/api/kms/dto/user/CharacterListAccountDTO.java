@@ -1,4 +1,4 @@
-package dev.spiralmoon.maplestory.api.kms.dto.character;
+package dev.spiralmoon.maplestory.api.kms.dto.user;
 
 import com.google.gson.annotations.SerializedName;
 import lombok.AllArgsConstructor;
