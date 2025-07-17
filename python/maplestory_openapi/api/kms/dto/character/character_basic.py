@@ -22,7 +22,7 @@ class CharacterBasic(BaseModel, BaseCharacterBasic):
         character_image (str): 캐릭터 외형 이미지
         character_date_create (datetime): 캐릭터 생성일
         access_flag (str): 최근 7일간 접속 여부 (문자열 'true' 또는 'false')
-        liberation_quest_clear_flag (str): 해방 퀘스트 완료 여부 (문자열 'true' 또는 'false')
+        liberation_quest_clear (str): 해방 퀘스트 완료 여부 (0:미완료, 1:제네시스 무기 해방, 2:데스티니 무기 1차 해방)
     """
 
     date: datetime | None
@@ -38,7 +38,7 @@ class CharacterBasic(BaseModel, BaseCharacterBasic):
     character_image: str
     character_date_create: datetime
     access_flag: str
-    liberation_quest_clear_flag: str
+    liberation_quest_clear: str
 
     @property
     def is_access_flag(self) -> bool:
@@ -46,10 +46,3 @@ class CharacterBasic(BaseModel, BaseCharacterBasic):
         최근 7일간 접속 여부
         """
         return self.access_flag == 'true'
-
-    @property
-    def is_liberation_quest_clear_flag(self) -> bool:
-        """
-        해방 퀘스트 완료 여부
-        """
-        return self.liberation_quest_clear_flag == 'true'

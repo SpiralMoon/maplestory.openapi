@@ -95,10 +95,10 @@ public class CharacterBasicDTO implements dev.spiralmoon.maplestory.api.common.d
     private String accessFlag;
 
     /**
-     * 해방 퀘스트 완료 여부
+     * 해방 퀘스트 완료 여부 (0:미완료, 1:제네시스 무기 해방, 2:데스티니 무기 1차 해방)
      */
-    @SerializedName("liberation_quest_clear_flag")
-    private String liberationQuestClearFlag;
+    @SerializedName("liberation_quest_clear")
+    private String liberationQuestClear;
 
     /**
      * 조회 기준일 (KST, 일 단위 데이터로 시, 분은 일괄 0으로 표기)
@@ -121,12 +121,5 @@ public class CharacterBasicDTO implements dev.spiralmoon.maplestory.api.common.d
      */
     public boolean isAccessFlag() {
         return "true".equals(this.accessFlag);
-    }
-
-    /**
-     * 해방 퀘스트 완료 여부
-     */
-    public boolean isLiberationQuestClearFlag() {
-        return "true".equals(this.liberationQuestClearFlag);
     }
 }

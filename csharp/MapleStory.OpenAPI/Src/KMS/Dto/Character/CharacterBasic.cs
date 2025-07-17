@@ -119,17 +119,9 @@ namespace MapleStory.OpenAPI.KMS.DTO
         private string _accessFlag { get; set; }
 
         /// <summary>
-        /// 해방 퀘스트 완료 여부
+        /// 해방 퀘스트 완료 여부 (0:미완료, 1:제네시스 무기 해방, 2:데스티니 무기 1차 해방)
         /// </summary>
-        public override bool LiberationQuestClearFlag
-        {
-            get
-            {
-                return _liberationQuestClearFlag == "true";
-            }
-        }
-
-        [JsonProperty("liberation_quest_clear_flag")]
-        private string _liberationQuestClearFlag { get; set; }
+        [JsonProperty("liberation_quest_clear")]
+        public string  LiberationQuestClear {  get; set; }
     }
 }

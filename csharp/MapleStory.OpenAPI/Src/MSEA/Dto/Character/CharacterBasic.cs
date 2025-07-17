@@ -121,7 +121,7 @@ namespace MapleStory.OpenAPI.MSEA.DTO
         /// <summary>
         /// Liberation quest completion status (true:completed, false:not completed)
         /// </summary>
-        public override bool LiberationQuestClearFlag
+        public bool LiberationQuestClearFlag
         {
             get
             {
