@@ -2,10 +2,16 @@ name: Build and Publish Python
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - master
+    paths:
+      - 'python/setup.py'
 
 jobs:
   build_and_publish_python:
     runs-on: ubuntu-latest
+    if: contains(github.event.head_commit.message, '[release]') || startsWith(github.event.head_commit.message, 'release:')
     defaults:
       run:
         working-directory: './python'

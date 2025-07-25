@@ -2,10 +2,16 @@ name: Build and Publish Java
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - master
+    paths:
+      - 'java/build.gradle'
 
 jobs:
   build_and_publish_java:
     runs-on: ubuntu-latest
+    if: contains(github.event.head_commit.message, '[release]') || startsWith(github.event.head_commit.message, 'release:')
     defaults:
       run:
         working-directory: './java'
