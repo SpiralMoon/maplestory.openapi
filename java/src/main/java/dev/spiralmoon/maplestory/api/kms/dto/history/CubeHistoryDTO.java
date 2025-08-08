@@ -31,12 +31,6 @@ public class CubeHistoryDTO {
     private String characterName;
 
     /**
-     * 월드 명
-     */
-    @SerializedName("world_name")
-    private String worldName;
-
-    /**
      * 사용 일시
      */
     @SerializedName("date_create")

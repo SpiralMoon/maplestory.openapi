@@ -6,7 +6,6 @@ export type CubeResultOptionBody = {
 export type CubeHistoryBody = {
   id: string;
   character_name: string;
-  world_name: string;
   date_create: string;
   cube_type: string;
   item_upgrade_result: string;

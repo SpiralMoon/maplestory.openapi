@@ -21,11 +21,6 @@ export class CubeHistoryDto {
   characterName: string;
 
   /**
-   * 월드 명
-   */
-  worldName: string;
-
-  /**
    * 사용 일시
    */
   dateCreate: Date;
@@ -104,7 +99,6 @@ export class CubeHistoryDto {
     const {
       id,
       character_name,
-      world_name,
       date_create,
       cube_type,
       item_upgrade_result,
@@ -124,7 +118,6 @@ export class CubeHistoryDto {
 
     this.id = id;
     this.characterName = character_name;
-    this.worldName = world_name;
     this.dateCreate = new Date(date_create);
     this.cubeType = cube_type;
     this.itemUpgradeResult = item_upgrade_result;

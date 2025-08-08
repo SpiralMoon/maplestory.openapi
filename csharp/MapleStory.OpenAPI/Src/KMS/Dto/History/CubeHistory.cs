@@ -21,12 +21,6 @@ namespace MapleStory.OpenAPI.KMS.DTO
         public string CharacterName { get; set; }
 
         /// <summary>
-        /// 월드 명
-        /// </summary>
-        [JsonProperty("world_name")]
-        public string WorldName { get; set; }
-
-        /// <summary>
         /// 사용 일시
         /// </summary>
         [JsonProperty("date_create")]
