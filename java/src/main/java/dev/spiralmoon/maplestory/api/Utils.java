@@ -10,9 +10,10 @@ public class Utils {
 
     public static ZonedDateTime toZonedDateTime(@NonNull String date) {
         final String[] patterns = {
-                "yyyy-MM-dd'T'HH:mm:ss.SSSX", // with millis + offset
-                "yyyy-MM-dd'T'HH:mmXXX",      // without millis + offset
-                "yyyy-MM-dd"                  // date only
+                "yyyy-MM-dd'T'HH:mm:ss.SSSXXX", // with millis + offset
+                "yyyy-MM-dd'T'HH:mm:ss.SSS",    // with millis
+                "yyyy-MM-dd'T'HH:mmXXX",        // without millis + offset
+                "yyyy-MM-dd"                    // date only
         };
 
         ZonedDateTime dateTime = null;
