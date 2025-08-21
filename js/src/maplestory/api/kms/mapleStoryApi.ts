@@ -15,6 +15,7 @@ import { CharacterHyperStatDto } from './dto/character/characterHyperStat';
 import { CharacterImageDto } from './dto/character/characterImage';
 import { CharacterItemEquipmentDto } from './dto/character/characterItemEquipment';
 import { CharacterLinkSkillDto } from './dto/character/characterLinkSkill';
+import { CharacterOtherStatDto } from './dto/character/characterOtherStat';
 import { CharacterPetEquipmentDto } from './dto/character/characterPetEquipment';
 import { CharacterPopularityDto } from './dto/character/characterPopularity';
 import { CharacterPropensityDto } from './dto/character/characterPropensity';
@@ -61,6 +62,7 @@ import { CharacterHexaMatrixStatBody } from './response/character/characterHexaM
 import { CharacterHyperStatBody } from './response/character/characterHyperStatBody';
 import { CharacterItemEquipmentBody } from './response/character/characterItemEquipmentBody';
 import { CharacterLinkSkillBody } from './response/character/characterLinkSkillBody';
+import { CharacterOtherStatBody } from './response/character/characterOtherStatBody';
 import { CharacterPetEquipmentBody } from './response/character/characterPetEquipmentBody';
 import { CharacterPopularityBody } from './response/character/characterPopularityBody';
 import { CharacterPropensityBody } from './response/character/characterPropensityBody';
@@ -898,6 +900,40 @@ export class MapleStoryApi extends base.MapleStoryApi {
     });
 
     return new CharacterDojangDto(data);
+  }
+
+  /**
+   * 능력치에 영향을 주는 요소 중 다른 조회에서 능력치 확인이 어려운 정보를 조회합니다.
+   * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.
+   * - 2025년 8월 21일 데이터부터 조회할 수 있습니다.
+   * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)
+   * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
+   * - 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.
+   *
+   * @param ocid 캐릭터 식별자
+   * @param dateOptions 조회 기준일 (KST)
+   */
+  public async getCharacterOtherStat(
+    ocid: string,
+    dateOptions?: DateOptions,
+  ): Promise<CharacterOtherStatDto> {
+    const path = `${this.subUrl}/v1/character/other-stat`;
+    const date = dateOptions
+      ? this.toDateString(dateOptions, {
+        year: 2025,
+        month: 8,
+        day: 21,
+      })
+      : undefined;
+    const query: CharacterApiQuery = {
+      ocid: ocid,
+      date: date,
+    };
+    const { data } = await this.client.get<CharacterOtherStatBody>(path, {
+      params: query,
+    });
+
+    return new CharacterOtherStatDto(data);
   }
 
   //#endregion
