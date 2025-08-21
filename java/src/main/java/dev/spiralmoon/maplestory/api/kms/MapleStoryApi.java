@@ -1093,6 +1093,51 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
         return future;
     }
 
+    /**
+     * 캐릭터 링 익스체인지 스킬 장비 정보를 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
+     * - 2025년 8월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (8월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     * - 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.<br>
+     *
+     * @param ocid 캐릭터 식별자
+     */
+    public CompletableFuture<CharacterRingExchangeSkillEquipmentDTO> getCharacterRingExchangeSkillEquipment(@NonNull String ocid) {
+        return this.getCharacterRingExchangeSkillEquipment(ocid, null);
+    }
+
+    /**
+     * 캐릭터 링 익스체인지 스킬 장비 정보를 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
+     * - 2025년 8월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (8월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     * - 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.<br>
+     *
+     * @param ocid          캐릭터 식별자
+     * @param localDateTime 조회 기준일 (KST)
+     */
+    public CompletableFuture<CharacterRingExchangeSkillEquipmentDTO> getCharacterRingExchangeSkillEquipment(@NonNull String ocid, LocalDateTime localDateTime) {
+        final CompletableFuture<CharacterRingExchangeSkillEquipmentDTO> future = new CompletableFuture<>();
+
+        try {
+            final String date = localDateTime != null
+                    ? toDateString(localDateTime, minDate(2025, 8, 21))
+                    : null;
+
+            buildRetrofit()
+                    .create(CharacterApi.class)
+                    .getCharacterRingExchangeSkillEquipment(this.apiKey, ocid, date)
+                    .enqueue(createCallback(future));
+
+        } catch (Exception e) {
+            future.completeExceptionally(e);
+        }
+
+        return future;
+    }
+
     //#endregion
 
     //#region 유니온 정보 조회
