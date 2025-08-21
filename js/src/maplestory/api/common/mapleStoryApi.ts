@@ -262,21 +262,5 @@ type CharacterImageOptions = {
    * Character emotion frame
    */
   emotionFrame?: number;
-  /**
-   * Horizontal length (corresponding to the background size, 96 (default) ~ 1000)
-   */
-  width?: number;
-  /**
-   * Vertical length (corresponding to the background size, 96 (default) ~ 1000)
-   */
-  height?: number;
-  /**
-   * Horizontal coordinate of the character (coordinate range 0 < x < width, 0 is the left starting point)
-   */
-  x?: number;
-  /**
-   * Vertical coordinate of the character (coordinate range 0 < y < height, 0 is the top starting point)
-   */
-  y?: number;
 };
 

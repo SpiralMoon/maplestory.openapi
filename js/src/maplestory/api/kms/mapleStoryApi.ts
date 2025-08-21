@@ -15,7 +15,6 @@ import { CharacterHyperStatDto } from './dto/character/characterHyperStat';
 import { CharacterImageDto } from './dto/character/characterImage';
 import { CharacterItemEquipmentDto } from './dto/character/characterItemEquipment';
 import { CharacterLinkSkillDto } from './dto/character/characterLinkSkill';
-
 import { CharacterPetEquipmentDto } from './dto/character/characterPetEquipment';
 import { CharacterPopularityDto } from './dto/character/characterPopularity';
 import { CharacterPropensityDto } from './dto/character/characterPropensity';
@@ -48,6 +47,8 @@ import { UnionDto } from './dto/union/union';
 import { UnionArtifactDto } from './dto/union/unionArtifact';
 import { UnionChampionDto } from './dto/union/unionChampion';
 import { UnionRaiderDto } from './dto/union/unionRaider';
+import { AchievementDto } from './dto/user/achievement';
+import { CharacterListDto } from './dto/user/characterList';
 import { CharacterAbilityBody } from './response/character/characterAbilityBody';
 import { CharacterAndroidEquipmentBody } from './response/character/characterAndroidEquipmentBody';
 import { CharacterBasicBody } from './response/character/characterBasicBody';
@@ -92,9 +93,7 @@ import { UnionArtifactBody } from './response/union/unionArtifactBody';
 import { UnionBody } from './response/union/unionBody';
 import { UnionChampionBody } from './response/union/unionChampionBody';
 import { UnionRaiderBody } from './response/union/unionRaiderBody';
-import { AchievementDto } from './dto/user/achievement';
 import { AchievementBody } from './response/user/achievementBody';
-import { CharacterListDto } from './dto/user/characterList';
 import { CharacterListBody } from './response/user/characterListBody';
 import {
   CharacterImageAction,
@@ -148,7 +147,7 @@ export class MapleStoryApi extends base.MapleStoryApi {
     return new AchievementDto(data);
   }
 
-  //#endregin
+  //#endregion
 
   //#region 캐릭터 정보 조회
 
@@ -233,19 +232,15 @@ export class MapleStoryApi extends base.MapleStoryApi {
     const wmotion = imageOptions?.wmotion ?? CharacterImageWeaponMotion.Default;
     const actionFrame = imageOptions?.actionFrame ?? 0;
     const emotionFrame = imageOptions?.emotionFrame ?? 0;
-    const width = 96;
-    const height = 96;
-    const x = imageOptions?.x ?? null;
-    const y = imageOptions?.y ?? null;
+    const width = 300;
+    const height = 300;
+    const x = 150;
+    const y = 200;
 
     const query = {
       action: `${action}.${actionFrame}`,
       emotion: `${emotion}.${emotionFrame}`,
       wmotion,
-      width,
-      height,
-      x,
-      y,
     };
 
     const urlImageToBase64 = async (
@@ -1795,22 +1790,6 @@ type CharacterImageOptions = {
    * 캐릭터 감정표현 프레임
    */
   emotionFrame?: number;
-  /**
-   * 가로 길이. 배경 크기에 해당함, 96 (default) ~ 1000
-   */
-  width?: number;
-  /**
-   * 세로 길이. 배경 크기에 해당함, 96 (default) ~ 1000
-   */
-  height?: number;
-  /**
-   * 캐릭터의 가로 좌표
-   */
-  x?: number;
-  /**
-   * 캐릭터의 세로 좌표.
-   */
-  y?: number;
 };
 
 type OverallRankingApiFilterOptions = {
