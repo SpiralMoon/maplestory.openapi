@@ -1,5 +1,5 @@
-﻿using MapleStory.OpenAPI.Common.Param;
-using MapleStory.OpenAPI.MSEA.DTO;
+﻿using MapleStory.OpenAPI.MSEA.DTO;
+using MapleStory.OpenAPI.MSEA.Param;
 using Base = MapleStory.OpenAPI.Common;
 
 namespace MapleStory.OpenAPI.MSEA
@@ -1082,7 +1082,8 @@ namespace MapleStory.OpenAPI.MSEA
         UnionRaiderDTO,
         UnionArtifactDTO,
         GuildDTO,
-        GuildBasicDTO>
+        GuildBasicDTO,
+        CharacterImageOption>
     {
         public MapleStoryAPIInherit(string apiKey, string subUrl, int timezoneOffset) : base(apiKey, subUrl, timezoneOffset)
         {

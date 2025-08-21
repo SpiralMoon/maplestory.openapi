@@ -2,51 +2,31 @@
 
 namespace MapleStory.OpenAPI.Common.Param
 {
-    public class CharacterImageOption
+    public abstract class CharacterImageOption
     {
         /// <summary>
         /// Character action
         /// </summary>
-        public CharacterImageAction Action { get; set; } = CharacterImageAction.Stand1;
+        public abstract CharacterImageAction Action { get; set; }
 
         /// <summary>
         /// Character emotion
         /// </summary>
-        public CharacterImageEmotion Emotion { get; set; } = CharacterImageEmotion.Default;
+        public abstract CharacterImageEmotion Emotion { get; set; }
 
         /// <summary>
         /// Character weapon motion
         /// </summary>
-        public CharacterImageWeaponMotion Wmotion { get; set; } = CharacterImageWeaponMotion.Default;
+        public abstract CharacterImageWeaponMotion Wmotion { get; set; }
 
         /// <summary>
         /// Character action frame
         /// </summary>
-        public int ActionFrame { get; set; } = 0;
+        public abstract int ActionFrame { get; set; }
 
         /// <summary>
         /// Character emotion frame
         /// </summary>
-        public int EmotionFrame { get; set; } = 0;
-
-        /// <summary>
-        /// Horizontal length (corresponding to the background size, 96 (default) ~ 1000)
-        /// </summary>
-        public int Width { get; set; } = 96;
-
-        /// <summary>
-        /// Vertical length (corresponding to the background size, 96 (default) ~ 1000)
-        /// </summary>
-        public int Height { get; set; } = 96;
-
-        /// <summary>
-        /// Horizontal coordinate of the character (coordinate range 0 < x < width, 0 is the left starting point)
-        /// </summary>
-        public int? X { get; set; }
-
-        /// <summary>
-        /// Vertical coordinate of the character (coordinate range 0 < y < height, 0 is the top starting point)
-        /// </summary>
-        public int? Y { get; set; }
+        public abstract int EmotionFrame { get; set; }
     }
 }

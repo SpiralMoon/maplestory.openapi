@@ -1,6 +1,6 @@
 ﻿using MapleStory.OpenAPI.Common;
-using MapleStory.OpenAPI.Common.Param;
 using MapleStory.OpenAPI.KMS.DTO;
+using MapleStory.OpenAPI.KMS.Param;
 using RestSharp;
 using Base = MapleStory.OpenAPI.Common;
 
@@ -160,10 +160,6 @@ namespace MapleStory.OpenAPI.KMS
             var wmotion = imageOption.Wmotion;
             var actionFrame = imageOption.ActionFrame;
             var emotionFrame = imageOption.EmotionFrame;
-            var width = imageOption.Width;
-            var height = imageOption.Height;
-            var x = imageOption.X;
-            var y = imageOption.Y;
 
             var path = basic.CharacterImage.Replace(BASE_URL, "");
             var query = new Dictionary<string, string?>()
@@ -171,10 +167,6 @@ namespace MapleStory.OpenAPI.KMS
                 { "action", $"{action.GetValue()}.{actionFrame}" },
                 { "emotion", $"{emotion.GetValue()}.{emotionFrame}" },
                 { "wmotion", wmotion.GetValue() },
-                { "width", width.ToString() },
-                { "height", height.ToString() },
-                { "x", x?.ToString() },
-                { "y", y?.ToString() },
             };
 
             var tasks = await Task.WhenAll(new List<Task<string>>()
@@ -195,10 +187,10 @@ namespace MapleStory.OpenAPI.KMS
                 Wmotion = wmotion,
                 ActionFrame = actionFrame,
                 EmotionFrame = emotionFrame,
-                Width = width,
-                Height = height,
-                X = x,
-                Y = y,
+                Width = 300,
+                Height = 300,
+                X = 150,
+                Y = 200,
             };
         }
 
@@ -1147,7 +1139,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <param name="count">한번에 가져오려는 결과의 개수(최소 10, 최대 1000)</param>
         public Task<StarforceHistoryResponseDTO> GetStarforceHistory(int count)
         {
-            return GetStarforceHistory(count, GetProperDefaultDateTimeOffset(new LatestApiUpdateTimeOption
+            return GetStarforceHistory(count, GetProperDefaultDateTimeOffset(new Base.Param.LatestApiUpdateTimeOption
             {
                 Hour = 0,
                 Minute = 0,
@@ -1201,7 +1193,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <param name="count">한번에 가져오려는 결과의 개수(최소 10, 최대 1000)</param>
         public Task<CubeHistoryResponseDTO> GetCubeHistory(int count)
         {
-            return GetCubeHistory(count, GetProperDefaultDateTimeOffset(new LatestApiUpdateTimeOption
+            return GetCubeHistory(count, GetProperDefaultDateTimeOffset(new Base.Param.LatestApiUpdateTimeOption
             {
                 Hour = 0,
                 Minute = 0,
@@ -1255,7 +1247,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <param name="count">한번에 가져오려는 결과의 개수(최소 10, 최대 1000)</param>
         public Task<PotentialHistoryResponseDTO> GetPotentialHistory(int count)
         {
-            return GetPotentialHistory(count, GetProperDefaultDateTimeOffset(new LatestApiUpdateTimeOption
+            return GetPotentialHistory(count, GetProperDefaultDateTimeOffset(new Base.Param.LatestApiUpdateTimeOption
             {
                 Hour = 0,
                 Minute = 0,
@@ -1318,7 +1310,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <param name="page">페이지 번호</param>
         public Task<OverallRankingResponseDTO> GetOverallRanking(string? worldName, int? worldType, string? characterClass, string? ocid, int? page)
         {
-            return GetOverallRanking(worldName, worldType, characterClass, ocid, page, GetProperDefaultDateTimeOffset(new LatestApiUpdateTimeOption
+            return GetOverallRanking(worldName, worldType, characterClass, ocid, page, GetProperDefaultDateTimeOffset(new Base.Param.LatestApiUpdateTimeOption
             {
                 Hour = 8,
                 Minute = 30,
@@ -1365,7 +1357,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <param name="page">페이지 번호</param>
         public Task<UnionRankingResponseDTO> GetUnionRanking(string? worldName, string? ocid, int? page)
         {
-            return GetUnionRanking(worldName, ocid, page, GetProperDefaultDateTimeOffset(new LatestApiUpdateTimeOption
+            return GetUnionRanking(worldName, ocid, page, GetProperDefaultDateTimeOffset(new Base.Param.LatestApiUpdateTimeOption
             {
                 Hour = 8,
                 Minute = 30,
@@ -1409,7 +1401,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <param name="page">페이지 번호</param>
         public Task<GuildRankingResponseDTO> GetGuildRanking(string? worldName, int rankingType, string? guildName, int? page)
         {
-            return GetGuildRanking(worldName, rankingType, guildName, page, GetProperDefaultDateTimeOffset(new LatestApiUpdateTimeOption
+            return GetGuildRanking(worldName, rankingType, guildName, page, GetProperDefaultDateTimeOffset(new Base.Param.LatestApiUpdateTimeOption
             {
                 Hour = 8,
                 Minute = 30,
@@ -1456,7 +1448,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <param name="page">페이지 번호</param>
         public Task<DojangRankingResponseDTO> GetDojangRanking(string? worldName, int difficulty, string? characterClass, string ocid, int? page)
         {
-            return GetDojangRanking(worldName, difficulty, characterClass, ocid, page, GetProperDefaultDateTimeOffset(new LatestApiUpdateTimeOption
+            return GetDojangRanking(worldName, difficulty, characterClass, ocid, page, GetProperDefaultDateTimeOffset(new Base.Param.LatestApiUpdateTimeOption
             {
                 Hour = 8,
                 Minute = 30,
@@ -1503,7 +1495,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <param name="page">페이지 번호</param>
         public Task<TheSeedRankingResponseDTO> GetTheSeedRanking(string? worldName, string? ocid, int? page)
         {
-            return GetTheSeedRanking(worldName, ocid, page, GetProperDefaultDateTimeOffset(new LatestApiUpdateTimeOption
+            return GetTheSeedRanking(worldName, ocid, page, GetProperDefaultDateTimeOffset(new Base.Param.LatestApiUpdateTimeOption
             {
                 Hour = 8,
                 Minute = 30,
@@ -1547,7 +1539,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <param name="page">페이지 번호</param>
         public Task<AchievementRankingResponseDTO> GetAchievementRanking(string? ocid, int? page)
         {
-            return GetAchievementRanking(ocid, page, GetProperDefaultDateTimeOffset(new LatestApiUpdateTimeOption
+            return GetAchievementRanking(ocid, page, GetProperDefaultDateTimeOffset(new Base.Param.LatestApiUpdateTimeOption
             {
                 Hour = 8,
                 Minute = 30,
@@ -1759,7 +1751,8 @@ namespace MapleStory.OpenAPI.KMS
         UnionRaiderDTO,
         UnionArtifactDTO,
         GuildDTO,
-        GuildBasicDTO>
+        GuildBasicDTO,
+        CharacterImageOption>
     {
         public MapleStoryAPIInherit(string apiKey, string subUrl, int timezoneOffset) : base(apiKey, subUrl, timezoneOffset)
         {
