@@ -20,6 +20,9 @@ public interface CharacterApi {
     @GET("maplestory/v1/character/stat")
     Call<CharacterStatDTO> getCharacterStat(@Header("x-nxopen-api-key") String apiKey, @Query("ocid") String ocid, @Query("date") String date);
 
+    @GET("maplestory/v1/character/other-stat")
+    Call<CharacterOtherStatDTO> getCharacterOtherStat(@Header("x-nxopen-api-key") String apiKey, @Query("ocid") String ocid, @Query("date") String date);
+
     @GET("maplestory/v1/character/hyper-stat")
     Call<CharacterHyperStatDTO> getCharacterHyperStat(@Header("x-nxopen-api-key") String apiKey, @Query("ocid") String ocid, @Query("date") String date);
 
