@@ -56,7 +56,7 @@ from maplestory_openapi.api.kms.dto.notice.update_notice_list import UpdateNotic
 from maplestory_openapi.api.kms.dto.user.achievement import Achievement
 from maplestory_openapi.api.kms.dto.user.character_list import CharacterList
 
-from maplestory_openapi.api.common.param.character_image_option import CharacterImageOption
+from maplestory_openapi.api.kms.param.character_image_option import CharacterImageOption
 
 from maplestory_openapi.api.common.maplestory_api import MapleStoryApi as BaseMapleStoryApi
 
@@ -171,19 +171,11 @@ class MapleStoryApi(BaseMapleStoryApi):
         wmotion = image_option.wmotion
         action_frame = image_option.action_frame
         emotion_frame = image_option.emotion_frame
-        width = image_option.width
-        height = image_option.height
-        x = image_option.x
-        y = image_option.y
 
         query = {
             'action': action.value + '.' + str(action_frame),
             'emotion': emotion.value + '.' + str(emotion_frame),
             'wmotion': wmotion.value,
-            'width': width,
-            'height': height,
-            'x': x,
-            'y': y,
         }
 
         async with httpx.AsyncClient(timeout=self.timeout) as client:
@@ -214,10 +206,10 @@ class MapleStoryApi(BaseMapleStoryApi):
             wmotion=wmotion,
             action_frame=action_frame,
             emotion_frame=emotion_frame,
-            width=width,
-            height=height,
-            x=x,
-            y=y,
+            width=300,
+            height=300,
+            x=150,
+            y=200,
         )
 
     async def get_character_popularity(self, ocid: str, date: datetime | None = None) -> CharacterPopularity:

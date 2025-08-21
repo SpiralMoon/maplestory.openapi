@@ -32,7 +32,7 @@ from maplestory_openapi.api.msea.dto.union.union_raider import UnionRaider
 from maplestory_openapi.api.msea.dto.guild.guild import Guild
 from maplestory_openapi.api.msea.dto.guild.guild_basic import GuildBasic
 
-from maplestory_openapi.api.common.param.character_image_option import CharacterImageOption
+from maplestory_openapi.api.msea.param.character_image_option import CharacterImageOption
 
 from maplestory_openapi.api.common.maplestory_api import MapleStoryApi as BaseMapleStoryApi
 
