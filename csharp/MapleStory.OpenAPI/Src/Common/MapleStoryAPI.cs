@@ -33,7 +33,8 @@ namespace MapleStory.OpenAPI.Common
         TUnionRaider,
         TUnionArtifact,
         TGuild,
-        TGuildBasic>
+        TGuildBasic,
+        PCharacterImageOption>
     {
         private readonly string apiKey;
 
@@ -63,8 +64,8 @@ namespace MapleStory.OpenAPI.Common
         public abstract Task<TCharacterBasic> GetCharacterBasic(string ocid);
         public abstract Task<TCharacterBasic> GetCharacterBasic(string ocid, DateTimeOffset? dateTimeOffset);
         public abstract Task<TCharacterImage> GetCharacterImage(string ocid);
-        public abstract Task<TCharacterImage> GetCharacterImage(string ocid, CharacterImageOption imageOption);
-        public abstract Task<TCharacterImage> GetCharacterImage(string ocid, CharacterImageOption imageOption, DateTimeOffset? dateTimeOffset);
+        public abstract Task<TCharacterImage> GetCharacterImage(string ocid, PCharacterImageOption imageOption);
+        public abstract Task<TCharacterImage> GetCharacterImage(string ocid, PCharacterImageOption imageOption, DateTimeOffset? dateTimeOffset);
         protected async Task<string> urlImageToBase64(string path, Dictionary<string, string?>? query)
         {
             var response = await Get(path, query);

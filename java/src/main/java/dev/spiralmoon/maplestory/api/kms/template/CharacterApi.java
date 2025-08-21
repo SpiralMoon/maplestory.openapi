@@ -67,4 +67,10 @@ public interface CharacterApi {
 
     @GET("maplestory/v1/character/dojang")
     Call<CharacterDojangDTO> getCharacterDojang(@Header("x-nxopen-api-key") String apiKey, @Query("ocid") String ocid, @Query("date") String date);
+
+    @GET("maplestory/v1/character/other-stat")
+    Call<CharacterOtherStatDTO> getCharacterOtherStat(@Header("x-nxopen-api-key") String apiKey, @Query("ocid") String ocid, @Query("date") String date);
+
+    @GET("maplestory/v1/character/ring-exchange-skill-equipment")
+    Call<CharacterRingExchangeSkillEquipmentDTO> getCharacterRingExchangeSkillEquipment(@Header("x-nxopen-api-key") String apiKey, @Query("ocid") String ocid, @Query("date") String date);
 }

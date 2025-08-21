@@ -12,7 +12,7 @@ import dev.spiralmoon.maplestory.api.kms.dto.ranking.*;
 import dev.spiralmoon.maplestory.api.kms.dto.union.*;
 import dev.spiralmoon.maplestory.api.kms.dto.user.*;
 import dev.spiralmoon.maplestory.api.kms.template.*;
-import dev.spiralmoon.maplestory.api.common.param.CharacterImageOption;
+import dev.spiralmoon.maplestory.api.kms.param.*;
 import lombok.*;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
@@ -23,6 +23,9 @@ import retrofit2.Retrofit;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 import java.time.LocalDateTime;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
 /**
@@ -202,12 +205,18 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
             return getCharacterBasic(ocid, localDateTime)
                     .thenCompose(basic -> {
                         final String path = basic.getCharacterImage().replace(MapleStoryApi.BASE_URL, "");
+                        final Map<String, String> queryMap = new HashMap<>();
+                        queryMap.put("action", imageOption.getAction().getValue());
+                        queryMap.put("emotion", imageOption.getEmotion().getValue());
+                        queryMap.put("wmotion", imageOption.getWmotion().getValue());
+                        queryMap.put("actionFrame", String.valueOf(imageOption.getActionFrame()));
+                        queryMap.put("emotionFrame", String.valueOf(imageOption.getEmotionFrame()));
 
                         CompletableFuture<String> originImageFuture =
-                                getCharacterUrlImageToBase64(ocid, path, new CharacterImageOption(), date);
+                                getCharacterUrlImageToBase64(ocid, path, Collections.emptyMap(), date);
 
                         CompletableFuture<String> imageFuture =
-                                getCharacterUrlImageToBase64(ocid, path, imageOption, date);
+                                getCharacterUrlImageToBase64(ocid, path, queryMap, date);
 
                         return originImageFuture.thenCombine(imageFuture, (originImage, image) ->
                                 new CharacterImageDTO(
@@ -220,10 +229,10 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
                                         imageOption.getWmotion(),
                                         imageOption.getActionFrame(),
                                         imageOption.getEmotionFrame(),
-                                        imageOption.getWidth(),
-                                        imageOption.getHeight(),
-                                        imageOption.getX(),
-                                        imageOption.getY()
+                                        300,
+                                        300,
+                                        150,
+                                        200
                                 )
                         );
                     });
@@ -1032,6 +1041,96 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
                     .create(CharacterApi.class)
                     .getCharacterDojang(this.apiKey, ocid, date)
                     .enqueue(createCallback(future));
+        } catch (Exception e) {
+            future.completeExceptionally(e);
+        }
+
+        return future;
+    }
+
+    /**
+     * 캐릭터 기타 능력치에 영향을 주는 요소 정보를 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
+     * - 2025년 8월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     * - 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.<br>
+     *
+     * @param ocid 캐릭터 식별자
+     */
+    public CompletableFuture<CharacterOtherStatDTO> getCharacterOtherStat(@NonNull String ocid) {
+        return this.getCharacterOtherStat(ocid, null);
+    }
+
+    /**
+     * 캐릭터 기타 능력치에 영향을 주는 요소 정보를 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
+     * - 2025년 8월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     * - 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.<br>
+     *
+     * @param ocid          캐릭터 식별자
+     * @param localDateTime 조회 기준일 (KST)
+     */
+    public CompletableFuture<CharacterOtherStatDTO> getCharacterOtherStat(@NonNull String ocid, LocalDateTime localDateTime) {
+        final CompletableFuture<CharacterOtherStatDTO> future = new CompletableFuture<>();
+
+        try {
+            final String date = localDateTime != null
+                    ? toDateString(localDateTime, minDate(2025, 8, 21))
+                    : null;
+
+            buildRetrofit()
+                    .create(CharacterApi.class)
+                    .getCharacterOtherStat(this.apiKey, ocid, date)
+                    .enqueue(createCallback(future));
+
+        } catch (Exception e) {
+            future.completeExceptionally(e);
+        }
+
+        return future;
+    }
+
+    /**
+     * 링 익스체인지 스킬 등록 장비를 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
+     * - 2025년 8월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (8월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     * - 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.<br>
+     *
+     * @param ocid 캐릭터 식별자
+     */
+    public CompletableFuture<CharacterRingExchangeSkillEquipmentDTO> getCharacterRingExchangeSkillEquipment(@NonNull String ocid) {
+        return this.getCharacterRingExchangeSkillEquipment(ocid, null);
+    }
+
+    /**
+     * 링 익스체인지 스킬 등록 장비를 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
+     * - 2025년 8월 21일 데이터부터 조회할 수 있습니다.<br>
+     * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (8월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     * - 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.<br>
+     *
+     * @param ocid          캐릭터 식별자
+     * @param localDateTime 조회 기준일 (KST)
+     */
+    public CompletableFuture<CharacterRingExchangeSkillEquipmentDTO> getCharacterRingExchangeSkillEquipment(@NonNull String ocid, LocalDateTime localDateTime) {
+        final CompletableFuture<CharacterRingExchangeSkillEquipmentDTO> future = new CompletableFuture<>();
+
+        try {
+            final String date = localDateTime != null
+                    ? toDateString(localDateTime, minDate(2025, 8, 21))
+                    : null;
+
+            buildRetrofit()
+                    .create(CharacterApi.class)
+                    .getCharacterRingExchangeSkillEquipment(this.apiKey, ocid, date)
+                    .enqueue(createCallback(future));
+
         } catch (Exception e) {
             future.completeExceptionally(e);
         }

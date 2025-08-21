@@ -158,5 +158,19 @@ namespace MapleStory.Test
             var response = await api.GetCharacterDojang(ocid);
             Console.WriteLine(response.ToJson());
         }
+
+        [Test]
+        public async Task GetCharacterOtherStat()
+        {
+            var response = await api.GetCharacterOtherStat(ocid);
+            Console.WriteLine(response.ToJson());
+        }
+
+        [Test]
+        public async Task GetCharacterRingExchangeSkillEquipment()
+        {
+            var response = await api.GetCharacterRingExchangeSkillEquipment(ocid);
+            Console.WriteLine(response.ToJson());
+        }
     }
 }

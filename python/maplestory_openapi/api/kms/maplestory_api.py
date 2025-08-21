@@ -7,6 +7,8 @@ from maplestory_openapi.api.kms.dto.character.character import Character
 from maplestory_openapi.api.kms.dto.character.character_basic import CharacterBasic
 from maplestory_openapi.api.kms.dto.character.character_popularity import CharacterPopularity
 from maplestory_openapi.api.kms.dto.character.character_stat import CharacterStat
+from maplestory_openapi.api.kms.dto.character.character_other_stat import CharacterOtherStat
+from maplestory_openapi.api.kms.dto.character.character_ring_exchange_skill_equipment import CharacterRingExchangeSkillEquipment
 from maplestory_openapi.api.kms.dto.character.character_hyper_stat import CharacterHyperStat
 from maplestory_openapi.api.kms.dto.character.character_propensity import CharacterPropensity
 from maplestory_openapi.api.kms.dto.character.character_ability import CharacterAbility
@@ -56,7 +58,7 @@ from maplestory_openapi.api.kms.dto.notice.update_notice_list import UpdateNotic
 from maplestory_openapi.api.kms.dto.user.achievement import Achievement
 from maplestory_openapi.api.kms.dto.user.character_list import CharacterList
 
-from maplestory_openapi.api.common.param.character_image_option import CharacterImageOption
+from maplestory_openapi.api.kms.param.character_image_option import CharacterImageOption
 
 from maplestory_openapi.api.common.maplestory_api import MapleStoryApi as BaseMapleStoryApi
 
@@ -171,19 +173,11 @@ class MapleStoryApi(BaseMapleStoryApi):
         wmotion = image_option.wmotion
         action_frame = image_option.action_frame
         emotion_frame = image_option.emotion_frame
-        width = image_option.width
-        height = image_option.height
-        x = image_option.x
-        y = image_option.y
 
         query = {
             'action': action.value + '.' + str(action_frame),
             'emotion': emotion.value + '.' + str(emotion_frame),
             'wmotion': wmotion.value,
-            'width': width,
-            'height': height,
-            'x': x,
-            'y': y,
         }
 
         async with httpx.AsyncClient(timeout=self.timeout) as client:
@@ -214,10 +208,10 @@ class MapleStoryApi(BaseMapleStoryApi):
             wmotion=wmotion,
             action_frame=action_frame,
             emotion_frame=emotion_frame,
-            width=width,
-            height=height,
-            x=x,
-            y=y,
+            width=300,
+            height=300,
+            x=150,
+            y=200,
         )
 
     async def get_character_popularity(self, ocid: str, date: datetime | None = None) -> CharacterPopularity:
@@ -606,6 +600,47 @@ class MapleStoryApi(BaseMapleStoryApi):
         }
         r = await self.fetch(path, query)
         return CharacterDojang(**r)
+
+    async def get_character_other_stat(self, ocid: str, date: datetime | None = None) -> CharacterOtherStat:
+        """
+        기타 능력치에 영향을 주는 요소 정보를 조회합니다.
+
+        - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.
+        - 2025년 8월 21일 데이터부터 조회할 수 있습니다.
+        - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)
+        - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
+
+        Args:
+            ocid(str): 캐릭터 식별자
+            date(datetime or None): 조회 기준일 (KST)
+        """
+        path = self.sub_url + '/v1/character/other-stat'
+        query = {
+            'ocid': ocid,
+            'date': self._to_date_string(date, datetime(2025, 8, 21)) if date is not None else None
+        }
+        r = await self.fetch(path, query)
+
+        return CharacterOtherStat(**r)
+
+    async def get_character_ring_exchange_skill_equipment(self, ocid: str, date: datetime | None = None) -> CharacterRingExchangeSkillEquipment:
+        """
+        링 익스체인지 스킬 등록 장비를 조회합니다.
+        - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.
+        - 2025년 8월 21일 데이터부터 조회할 수 있습니다.
+        - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (8월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)
+        - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
+        Args:
+            ocid(str): 캐릭터 식별자
+            date(datetime or None): 조회 기준일 (KST)
+        """
+        path = self.sub_url + '/v1/character/ring-exchange-skill-equipment'
+        query = {
+            'ocid': ocid,
+            'date': self._to_date_string(date, datetime(2025, 8, 21)) if date is not None else None
+        }
+        r = await self.fetch(path, query)
+        return CharacterRingExchangeSkillEquipment(**r)
 
     #endregion
 

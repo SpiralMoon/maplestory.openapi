@@ -13,6 +13,7 @@ export * from './dto/character/characterHyperStat';
 export * from './dto/character/characterImage';
 export * from './dto/character/characterItemEquipment';
 export * from './dto/character/characterLinkSkill';
+export * from './dto/character/characterOtherStat';
 export * from './dto/character/characterPetEquipment';
 export * from './dto/character/characterPopularity';
 export * from './dto/character/characterPropensity';

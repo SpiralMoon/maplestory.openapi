@@ -68,12 +68,12 @@ namespace MapleStory.OpenAPI.KMS.DTO
         public override int? EmotionFrame { get; set; }
 
         /// <summary>
-        /// 가로 길이. 배경 크기에 해당함, 96 (default) ~ 1000
+        /// 가로 길이. 배경 크기에 해당함
         /// </summary>
         public override int Width { get; set; }
 
         /// <summary>
-        /// 세로 길이. 배경 크기에 해당함, 96 (default) ~ 1000
+        /// 세로 길이. 배경 크기에 해당함
         /// </summary>
         public override int Height { get; set; }
 

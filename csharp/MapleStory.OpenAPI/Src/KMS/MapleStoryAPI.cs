@@ -1,6 +1,6 @@
 ﻿using MapleStory.OpenAPI.Common;
-using MapleStory.OpenAPI.Common.Param;
 using MapleStory.OpenAPI.KMS.DTO;
+using MapleStory.OpenAPI.KMS.Param;
 using RestSharp;
 using Base = MapleStory.OpenAPI.Common;
 
@@ -160,10 +160,6 @@ namespace MapleStory.OpenAPI.KMS
             var wmotion = imageOption.Wmotion;
             var actionFrame = imageOption.ActionFrame;
             var emotionFrame = imageOption.EmotionFrame;
-            var width = imageOption.Width;
-            var height = imageOption.Height;
-            var x = imageOption.X;
-            var y = imageOption.Y;
 
             var path = basic.CharacterImage.Replace(BASE_URL, "");
             var query = new Dictionary<string, string?>()
@@ -171,10 +167,6 @@ namespace MapleStory.OpenAPI.KMS
                 { "action", $"{action.GetValue()}.{actionFrame}" },
                 { "emotion", $"{emotion.GetValue()}.{emotionFrame}" },
                 { "wmotion", wmotion.GetValue() },
-                { "width", width.ToString() },
-                { "height", height.ToString() },
-                { "x", x?.ToString() },
-                { "y", y?.ToString() },
             };
 
             var tasks = await Task.WhenAll(new List<Task<string>>()
@@ -195,10 +187,10 @@ namespace MapleStory.OpenAPI.KMS
                 Wmotion = wmotion,
                 ActionFrame = actionFrame,
                 EmotionFrame = emotionFrame,
-                Width = width,
-                Height = height,
-                X = x,
-                Y = y,
+                Width = 300,
+                Height = 300,
+                X = 150,
+                Y = 200,
             };
         }
 
@@ -907,6 +899,83 @@ namespace MapleStory.OpenAPI.KMS
             return await Get<CharacterDojangDTO>(path, query);
         }
 
+        /// <summary>
+        /// 캐릭터 기타 능력치에 영향을 주는 요소 정보를 조회합니다.
+        /// <para>- 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.</para>
+        /// <para>- 2025년 8월 21일 데이터부터 조회할 수 있습니다.</para>
+        /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
+        /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
+        /// <para>- 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.</para>
+        /// </summary>
+        /// <param name="ocid">캐릭터 식별자</param>
+        public async Task<CharacterOtherStatDTO> GetCharacterOtherStat(string ocid)
+        {
+            return await GetCharacterOtherStat(ocid, null);
+        }
+
+        /// <summary>
+        /// 캐릭터 기타 능력치에 영향을 주는 요소 정보를 조회합니다.
+        /// <para>- 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.</para>
+        /// <para>- 2025년 8월 21일 데이터부터 조회할 수 있습니다.</para>
+        /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
+        /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
+        /// <para>- 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.</para>
+        /// </summary>
+        /// <param name="ocid">캐릭터 식별자</param>
+        /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
+        public async Task<CharacterOtherStatDTO> GetCharacterOtherStat(string ocid, DateTimeOffset? dateTimeOffset)
+        {
+            var path = $"{subUrl}/v1/character/other-stat";
+            var date = dateTimeOffset != null
+                ? ToDateString((DateTimeOffset) dateTimeOffset, MinDate(2025, 8, 21))
+                : null;
+            var query = new Dictionary<string, string?>()
+            {
+                { "ocid", ocid },
+                { "date", date }
+            };
+
+            return await Get<CharacterOtherStatDTO>(path, query);
+        }
+
+        /// <summary>
+        /// 링 익스체인지 스킬 등록 장비를 조회합니다.
+        /// <para>- 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.</para>
+        /// <para>- 2025년 8월 21일 데이터부터 조회할 수 있습니다.</para>
+        /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (8월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
+        /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
+        /// <para>- 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.</para>
+        /// </summary>
+        /// <param name="ocid">캐릭터 식별자</param>
+        public async Task<CharacterRingExchangeSkillEquipmentDTO> GetCharacterRingExchangeSkillEquipment(string ocid)
+        {
+            return await GetCharacterRingExchangeSkillEquipment(ocid, null);
+        }
+
+        /// <summary>
+        /// 링 익스체인지 스킬 등록 장비를 조회합니다.
+        /// <para>- 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.</para>
+        /// <para>- 2025년 8월 21일 데이터부터 조회할 수 있습니다.</para>
+        /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (8월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
+        /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
+        /// <para>- 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.</para>
+        /// </summary>
+        /// <param name="ocid">캐릭터 식별자</param>
+        /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
+        public async Task<CharacterRingExchangeSkillEquipmentDTO> GetCharacterRingExchangeSkillEquipment(string ocid, DateTimeOffset? dateTimeOffset)
+        {
+            var path = $"{subUrl}/v1/character/ring-exchange-skill-equipment";
+            var date = dateTimeOffset != null
+                ? ToDateString((DateTimeOffset) dateTimeOffset, MinDate(2025, 8, 21))
+                : null;
+            var query = new Dictionary<string, string?>()
+            {
+                { "ocid", ocid },
+                { "date", date }
+            };
+            return await Get<CharacterRingExchangeSkillEquipmentDTO>(path, query);
+        }
+
         #endregion
 
         #region 유니온 정보 조회
@@ -1147,7 +1216,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <param name="count">한번에 가져오려는 결과의 개수(최소 10, 최대 1000)</param>
         public Task<StarforceHistoryResponseDTO> GetStarforceHistory(int count)
         {
-            return GetStarforceHistory(count, GetProperDefaultDateTimeOffset(new LatestApiUpdateTimeOption
+            return GetStarforceHistory(count, GetProperDefaultDateTimeOffset(new Base.Param.LatestApiUpdateTimeOption
             {
                 Hour = 0,
                 Minute = 0,
@@ -1201,7 +1270,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <param name="count">한번에 가져오려는 결과의 개수(최소 10, 최대 1000)</param>
         public Task<CubeHistoryResponseDTO> GetCubeHistory(int count)
         {
-            return GetCubeHistory(count, GetProperDefaultDateTimeOffset(new LatestApiUpdateTimeOption
+            return GetCubeHistory(count, GetProperDefaultDateTimeOffset(new Base.Param.LatestApiUpdateTimeOption
             {
                 Hour = 0,
                 Minute = 0,
@@ -1255,7 +1324,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <param name="count">한번에 가져오려는 결과의 개수(최소 10, 최대 1000)</param>
         public Task<PotentialHistoryResponseDTO> GetPotentialHistory(int count)
         {
-            return GetPotentialHistory(count, GetProperDefaultDateTimeOffset(new LatestApiUpdateTimeOption
+            return GetPotentialHistory(count, GetProperDefaultDateTimeOffset(new Base.Param.LatestApiUpdateTimeOption
             {
                 Hour = 0,
                 Minute = 0,
@@ -1318,7 +1387,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <param name="page">페이지 번호</param>
         public Task<OverallRankingResponseDTO> GetOverallRanking(string? worldName, int? worldType, string? characterClass, string? ocid, int? page)
         {
-            return GetOverallRanking(worldName, worldType, characterClass, ocid, page, GetProperDefaultDateTimeOffset(new LatestApiUpdateTimeOption
+            return GetOverallRanking(worldName, worldType, characterClass, ocid, page, GetProperDefaultDateTimeOffset(new Base.Param.LatestApiUpdateTimeOption
             {
                 Hour = 8,
                 Minute = 30,
@@ -1365,7 +1434,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <param name="page">페이지 번호</param>
         public Task<UnionRankingResponseDTO> GetUnionRanking(string? worldName, string? ocid, int? page)
         {
-            return GetUnionRanking(worldName, ocid, page, GetProperDefaultDateTimeOffset(new LatestApiUpdateTimeOption
+            return GetUnionRanking(worldName, ocid, page, GetProperDefaultDateTimeOffset(new Base.Param.LatestApiUpdateTimeOption
             {
                 Hour = 8,
                 Minute = 30,
@@ -1409,7 +1478,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <param name="page">페이지 번호</param>
         public Task<GuildRankingResponseDTO> GetGuildRanking(string? worldName, int rankingType, string? guildName, int? page)
         {
-            return GetGuildRanking(worldName, rankingType, guildName, page, GetProperDefaultDateTimeOffset(new LatestApiUpdateTimeOption
+            return GetGuildRanking(worldName, rankingType, guildName, page, GetProperDefaultDateTimeOffset(new Base.Param.LatestApiUpdateTimeOption
             {
                 Hour = 8,
                 Minute = 30,
@@ -1456,7 +1525,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <param name="page">페이지 번호</param>
         public Task<DojangRankingResponseDTO> GetDojangRanking(string? worldName, int difficulty, string? characterClass, string ocid, int? page)
         {
-            return GetDojangRanking(worldName, difficulty, characterClass, ocid, page, GetProperDefaultDateTimeOffset(new LatestApiUpdateTimeOption
+            return GetDojangRanking(worldName, difficulty, characterClass, ocid, page, GetProperDefaultDateTimeOffset(new Base.Param.LatestApiUpdateTimeOption
             {
                 Hour = 8,
                 Minute = 30,
@@ -1503,7 +1572,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <param name="page">페이지 번호</param>
         public Task<TheSeedRankingResponseDTO> GetTheSeedRanking(string? worldName, string? ocid, int? page)
         {
-            return GetTheSeedRanking(worldName, ocid, page, GetProperDefaultDateTimeOffset(new LatestApiUpdateTimeOption
+            return GetTheSeedRanking(worldName, ocid, page, GetProperDefaultDateTimeOffset(new Base.Param.LatestApiUpdateTimeOption
             {
                 Hour = 8,
                 Minute = 30,
@@ -1547,7 +1616,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <param name="page">페이지 번호</param>
         public Task<AchievementRankingResponseDTO> GetAchievementRanking(string? ocid, int? page)
         {
-            return GetAchievementRanking(ocid, page, GetProperDefaultDateTimeOffset(new LatestApiUpdateTimeOption
+            return GetAchievementRanking(ocid, page, GetProperDefaultDateTimeOffset(new Base.Param.LatestApiUpdateTimeOption
             {
                 Hour = 8,
                 Minute = 30,
@@ -1759,7 +1828,8 @@ namespace MapleStory.OpenAPI.KMS
         UnionRaiderDTO,
         UnionArtifactDTO,
         GuildDTO,
-        GuildBasicDTO>
+        GuildBasicDTO,
+        CharacterImageOption>
     {
         public MapleStoryAPIInherit(string apiKey, string subUrl, int timezoneOffset) : base(apiKey, subUrl, timezoneOffset)
         {

@@ -25,6 +25,7 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Base64;
+import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
 
@@ -57,19 +58,7 @@ public abstract class MapleStoryApi {
     public abstract <CharacterBasic extends CharacterBasicDTO> CompletableFuture<CharacterBasic> getCharacterBasic(@NonNull String ocid);
     public abstract <CharacterBasic extends CharacterBasicDTO> CompletableFuture<CharacterBasic> getCharacterBasic(@NonNull String ocid, LocalDateTime localDateTime);
     public abstract <CharacterImage extends CharacterImageDTO> CompletableFuture<CharacterImage> getCharacterImage(@NonNull String ocid);
-    public abstract <CharacterImage extends CharacterImageDTO> CompletableFuture<CharacterImage> getCharacterImage(@NonNull String ocid, @NonNull CharacterImageOption imageOption);
-    public abstract <CharacterImage extends CharacterImageDTO> CompletableFuture<CharacterImage> getCharacterImage(@NonNull String ocid, @NonNull CharacterImageOption imageOption, LocalDateTime localDateTime);
-    protected CompletableFuture<String> getCharacterUrlImageToBase64(@NonNull String ocid, @NonNull String path, @NonNull CharacterImageOption imageOption, String date) {
-        final CharacterImageAction action = imageOption.getAction();
-        final CharacterImageEmotion emotion = imageOption.getEmotion();
-        final CharacterImageWeaponMotion wmotion = imageOption.getWmotion();
-        final int actionFrame = imageOption.getActionFrame();
-        final int emotionFrame = imageOption.getEmotionFrame();
-        final Integer width = imageOption.getWidth();
-        final Integer height = imageOption.getHeight();
-        final Integer x = imageOption.getX();
-        final Integer y = imageOption.getY();
-
+    protected CompletableFuture<String> getCharacterUrlImageToBase64(@NonNull String ocid, @NonNull String path, @NonNull Map<String, String> imageOption, String date) {
         final CompletableFuture<String> future = new CompletableFuture<>();
 
         buildRetrofit()
@@ -79,13 +68,7 @@ public abstract class MapleStoryApi {
                         this.apiKey,
                         ocid,
                         date,
-                        action.getValue() + "." + actionFrame,
-                        emotion.getValue() + "." + emotionFrame,
-                        wmotion.getValue(),
-                        width,
-                        height,
-                        x,
-                        y
+                        imageOption
                 )
                 .enqueue(new Callback<ResponseBody>() {
                     @Override

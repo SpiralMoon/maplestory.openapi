@@ -63,12 +63,12 @@ public class CharacterImageDTO implements dev.spiralmoon.maplestory.api.common.d
     private int emotionFrame;
 
     /**
-     * 가로 길이. 배경 크기에 해당함, 96 (default) ~ 1000
+     * 가로 길이. 배경 크기에 해당함
      */
     private Integer width;
 
     /**
-     * 세로 길이. 배경 크기에 해당함, 96 (default) ~ 1000
+     * 세로 길이. 배경 크기에 해당함
      */
     private Integer height;
 

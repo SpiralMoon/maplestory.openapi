@@ -160,4 +160,18 @@ public class CharacterApi {
         CharacterDojangDTO response = api.getCharacterDojang(ocid).join();
         System.out.println(response.toString());
     }
+
+    @Test
+    @DisplayName("기타 능력치 영향 요소 정보 조회")
+    void getCharacterOtherStat() throws IOException {
+        CharacterOtherStatDTO response = api.getCharacterOtherStat(ocid).join();
+        System.out.println(response.toString());
+    }
+
+    @Test
+    @DisplayName("링 익스체인지 스킬 장비 정보 조회")
+    void getCharacterRingExchangeSkillEquipment() throws IOException {
+        CharacterRingExchangeSkillEquipmentDTO response = api.getCharacterRingExchangeSkillEquipment(ocid).join();
+        System.out.println(response.toString());
+    }
 }
