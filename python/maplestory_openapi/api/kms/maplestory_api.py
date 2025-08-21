@@ -8,6 +8,7 @@ from maplestory_openapi.api.kms.dto.character.character_basic import CharacterBa
 from maplestory_openapi.api.kms.dto.character.character_popularity import CharacterPopularity
 from maplestory_openapi.api.kms.dto.character.character_stat import CharacterStat
 from maplestory_openapi.api.kms.dto.character.character_other_stat import CharacterOtherStat
+from maplestory_openapi.api.kms.dto.character.character_ring_exchange_skill_equipment import CharacterRingExchangeSkillEquipment
 from maplestory_openapi.api.kms.dto.character.character_hyper_stat import CharacterHyperStat
 from maplestory_openapi.api.kms.dto.character.character_propensity import CharacterPropensity
 from maplestory_openapi.api.kms.dto.character.character_ability import CharacterAbility
@@ -621,6 +622,25 @@ class MapleStoryApi(BaseMapleStoryApi):
         r = await self.fetch(path, query)
 
         return CharacterOtherStat(**r)
+
+    async def get_character_ring_exchange_skill_equipment(self, ocid: str, date: datetime | None = None) -> CharacterRingExchangeSkillEquipment:
+        """
+        캐릭터 링 익스체인지 스킬 장비 정보를 조회합니다.
+        - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.
+        - 2025년 8월 21일 데이터부터 조회할 수 있습니다.
+        - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (8월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)
+        - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
+        Args:
+            ocid(str): 캐릭터 식별자
+            date(datetime or None): 조회 기준일 (KST)
+        """
+        path = self.sub_url + '/v1/character/ring-exchange-skill-equipment'
+        query = {
+            'ocid': ocid,
+            'date': self._to_date_string(date, datetime(2025, 8, 21)) if date is not None else None
+        }
+        r = await self.fetch(path, query)
+        return CharacterRingExchangeSkillEquipment(**r)
 
     #endregion
 
