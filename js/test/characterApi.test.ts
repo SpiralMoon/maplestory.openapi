@@ -142,4 +142,10 @@ describe('캐릭터 정보 조회', () => {
 
     console.log(toString(response));
   });
+
+  test('링 익스체인지 스킬 장비 정보 조회', async () => {
+    const response = await api.getCharacterRingExchangeSkillEquipment(ocid);
+
+    console.log(toString(response));
+  });
 });
