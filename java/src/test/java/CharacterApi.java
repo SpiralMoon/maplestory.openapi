@@ -167,4 +167,11 @@ public class CharacterApi {
         CharacterOtherStatDTO response = api.getCharacterOtherStat(ocid).join();
         System.out.println(response.toString());
     }
+
+    @Test
+    @DisplayName("링 익스체인지 스킬 장비 정보 조회")
+    void getCharacterRingExchangeSkillEquipment() throws IOException {
+        CharacterRingExchangeSkillEquipmentDTO response = api.getCharacterRingExchangeSkillEquipment(ocid).join();
+        System.out.println(response.toString());
+    }
 }
