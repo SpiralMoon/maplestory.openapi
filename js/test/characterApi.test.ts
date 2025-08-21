@@ -136,4 +136,10 @@ describe('캐릭터 정보 조회', () => {
 
     console.log(toString(response));
   });
+
+  test('기타 능력치 영향 요소 정보 조회', async () => {
+    const response = await api.getCharacterOtherStat(ocid);
+
+    console.log(toString(response));
+  });
 });
