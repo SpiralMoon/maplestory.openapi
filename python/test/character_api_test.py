@@ -100,6 +100,10 @@ class CharacterApi(unittest.IsolatedAsyncioTestCase):
         response = await api.get_character_dojang(ocid)
         print(response)
 
+    async def test_character_other_stat(self):
+        response = await api.get_character_other_stat(ocid)
+        print(response)
+
 
 if __name__ == '__main__':
     unittest.main()
