@@ -938,6 +938,44 @@ namespace MapleStory.OpenAPI.KMS
             return await Get<CharacterOtherStatDTO>(path, query);
         }
 
+        /// <summary>
+        /// 캐릭터 링 익스체인지 스킬 장비 정보를 조회합니다.
+        /// <para>- 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.</para>
+        /// <para>- 2025년 8월 21일 데이터부터 조회할 수 있습니다.</para>
+        /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (8월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
+        /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
+        /// <para>- 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.</para>
+        /// </summary>
+        /// <param name="ocid">캐릭터 식별자</param>
+        public async Task<CharacterRingExchangeSkillEquipmentDTO> GetCharacterRingExchangeSkillEquipment(string ocid)
+        {
+            return await GetCharacterRingExchangeSkillEquipment(ocid, null);
+        }
+
+        /// <summary>
+        /// 캐릭터 링 익스체인지 스킬 장비 정보를 조회합니다.
+        /// <para>- 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.</para>
+        /// <para>- 2025년 8월 21일 데이터부터 조회할 수 있습니다.</para>
+        /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (8월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
+        /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
+        /// <para>- 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.</para>
+        /// </summary>
+        /// <param name="ocid">캐릭터 식별자</param>
+        /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
+        public async Task<CharacterRingExchangeSkillEquipmentDTO> GetCharacterRingExchangeSkillEquipment(string ocid, DateTimeOffset? dateTimeOffset)
+        {
+            var path = $"{subUrl}/v1/character/ring-exchange-skill-equipment";
+            var date = dateTimeOffset != null
+                ? ToDateString((DateTimeOffset) dateTimeOffset, MinDate(2025, 8, 21))
+                : null;
+            var query = new Dictionary<string, string?>()
+            {
+                { "ocid", ocid },
+                { "date", date }
+            };
+            return await Get<CharacterRingExchangeSkillEquipmentDTO>(path, query);
+        }
+
         #endregion
 
         #region 유니온 정보 조회
