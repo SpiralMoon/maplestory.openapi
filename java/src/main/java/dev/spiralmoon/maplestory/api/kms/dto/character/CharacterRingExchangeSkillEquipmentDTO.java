@@ -9,7 +9,7 @@ import lombok.ToString;
 import java.time.ZonedDateTime;
 
 /**
- * 캐릭터 링 익스체인지 스킬 장비 정보
+ * 캐릭터 링 익스체인지 스킬 등록 장비 정보
  */
 @AllArgsConstructor
 @Data
