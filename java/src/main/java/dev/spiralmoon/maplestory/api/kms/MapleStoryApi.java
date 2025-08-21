@@ -12,7 +12,7 @@ import dev.spiralmoon.maplestory.api.kms.dto.ranking.*;
 import dev.spiralmoon.maplestory.api.kms.dto.union.*;
 import dev.spiralmoon.maplestory.api.kms.dto.user.*;
 import dev.spiralmoon.maplestory.api.kms.template.*;
-import dev.spiralmoon.maplestory.api.common.param.CharacterImageOption;
+import dev.spiralmoon.maplestory.api.kms.param.*;
 import lombok.*;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
@@ -23,6 +23,9 @@ import retrofit2.Retrofit;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 import java.time.LocalDateTime;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
 /**
@@ -202,12 +205,18 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
             return getCharacterBasic(ocid, localDateTime)
                     .thenCompose(basic -> {
                         final String path = basic.getCharacterImage().replace(MapleStoryApi.BASE_URL, "");
+                        final Map<String, String> queryMap = new HashMap<>();
+                        queryMap.put("action", imageOption.getAction().getValue());
+                        queryMap.put("emotion", imageOption.getEmotion().getValue());
+                        queryMap.put("wmotion", imageOption.getWmotion().getValue());
+                        queryMap.put("actionFrame", String.valueOf(imageOption.getActionFrame()));
+                        queryMap.put("emotionFrame", String.valueOf(imageOption.getEmotionFrame()));
 
                         CompletableFuture<String> originImageFuture =
-                                getCharacterUrlImageToBase64(ocid, path, new CharacterImageOption(), date);
+                                getCharacterUrlImageToBase64(ocid, path, Collections.emptyMap(), date);
 
                         CompletableFuture<String> imageFuture =
-                                getCharacterUrlImageToBase64(ocid, path, imageOption, date);
+                                getCharacterUrlImageToBase64(ocid, path, queryMap, date);
 
                         return originImageFuture.thenCombine(imageFuture, (originImage, image) ->
                                 new CharacterImageDTO(
@@ -220,10 +229,10 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
                                         imageOption.getWmotion(),
                                         imageOption.getActionFrame(),
                                         imageOption.getEmotionFrame(),
-                                        imageOption.getWidth(),
-                                        imageOption.getHeight(),
-                                        imageOption.getX(),
-                                        imageOption.getY()
+                                        300,
+                                        300,
+                                        150,
+                                        200
                                 )
                         );
                     });

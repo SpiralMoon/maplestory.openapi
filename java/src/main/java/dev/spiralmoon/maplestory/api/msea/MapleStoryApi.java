@@ -7,12 +7,15 @@ import dev.spiralmoon.maplestory.api.msea.dto.union.UnionArtifactDTO;
 import dev.spiralmoon.maplestory.api.msea.dto.union.UnionDTO;
 import dev.spiralmoon.maplestory.api.msea.dto.union.UnionRaiderDTO;
 import dev.spiralmoon.maplestory.api.msea.template.*;
-import dev.spiralmoon.maplestory.api.common.param.CharacterImageOption;
+import dev.spiralmoon.maplestory.api.msea.param.*;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
 /**
@@ -146,12 +149,22 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
             return getCharacterBasic(ocid, localDateTime)
                     .thenCompose(basic -> {
                         final String path = basic.getCharacterImage().replace(MapleStoryApi.BASE_URL, "");
+                        final Map<String, String> queryMap = new HashMap<>();
+                        queryMap.put("action", imageOption.getAction().getValue());
+                        queryMap.put("emotion", imageOption.getEmotion().getValue());
+                        queryMap.put("wmotion", imageOption.getWmotion().getValue());
+                        queryMap.put("actionFrame", String.valueOf(imageOption.getActionFrame()));
+                        queryMap.put("emotionFrame", String.valueOf(imageOption.getEmotionFrame()));
+                        queryMap.put("width", String.valueOf(imageOption.getWidth()));
+                        queryMap.put("height", String.valueOf(imageOption.getHeight()));
+                        queryMap.put("x", String.valueOf(imageOption.getX()));
+                        queryMap.put("y", String.valueOf(imageOption.getY()));
 
                         CompletableFuture<String> originImageFuture =
-                                getCharacterUrlImageToBase64(ocid, path, new CharacterImageOption(), date);
+                                getCharacterUrlImageToBase64(ocid, path, Collections.emptyMap(), date);
 
                         CompletableFuture<String> imageFuture =
-                                getCharacterUrlImageToBase64(ocid, path, imageOption, date);
+                                getCharacterUrlImageToBase64(ocid, path, queryMap, date);
 
                         return originImageFuture.thenCombine(imageFuture, (originImage, image) ->
                                 new CharacterImageDTO(
