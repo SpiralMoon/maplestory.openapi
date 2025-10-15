@@ -19,6 +19,8 @@ public interface CharacterItemEquipmentInfoDTO<
     String getItemGender();
     CharacterItemEquipmentTotalOption getItemTotalOption();
     CharacterItemEquipmentBaseOption getItemBaseOption();
+    String getPotentialOptionFlag();
+    String getAdditionalPotentialOptionFlag();
     String getPotentialOptionGrade();
     String getAdditionalPotentialOptionGrade();
     String getPotentialOption1();

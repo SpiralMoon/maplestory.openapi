@@ -119,6 +119,8 @@ class CharacterItemEquipmentInfo:
     item_gender: str | None
     item_total_option: CharacterItemEquipmentTotalOption
     item_base_option: CharacterItemEquipmentBaseOption
+    potential_option_flag: str | None
+    additional_potential_option_flag: str | None
     potential_option_grade: str | None
     additional_potential_option_grade: str | None
     potential_option_1: str | None

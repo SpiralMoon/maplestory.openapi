@@ -83,6 +83,18 @@ public class CharacterItemEquipmentInfoDTO implements dev.spiralmoon.maplestory.
     private CharacterItemEquipmentBaseOptionDTO itemBaseOption;
 
     /**
+     * 잠재능력 봉인 여부 (true 봉인, false 봉인 없음)
+     */
+    @SerializedName("potential_option_flag")
+    private String potentialOptionFlag;
+
+    /**
+     * 에디셔널 잠재능력 봉인 여부 (true 봉인, false 봉인 없음)
+     */
+    @SerializedName("additional_potential_option_flag")
+    private String additionalPotentialOptionFlag;
+
+    /**
      * 잠재능력 등급
      */
     @SerializedName("potential_option_grade")

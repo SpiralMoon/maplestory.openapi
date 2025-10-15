@@ -238,6 +238,8 @@ class CharacterItemEquipmentInfo(BaseModel, BaseCharacterItemEquipmentInfo):
         item_gender (str or None): Gender-specific equipment
         item_total_option (CharacterItemEquipmentTotalOption): Final equipment option information
         item_base_option (CharacterItemEquipmentBaseOption): Basic equipment option information
+        potential_option_flag (str or None): Potential seal status (true:sealed, false:not sealed)
+        additional_potential_option_flag (str or None): Additional potential seal status (true:sealed, false:not sealed)
         potential_option_grade (str or None): Potential grade
         additional_potential_option_grade (str or None): Additional potential grade
         potential_option_1 (str or None): First Potential option
@@ -276,6 +278,8 @@ class CharacterItemEquipmentInfo(BaseModel, BaseCharacterItemEquipmentInfo):
     item_gender: str | None
     item_total_option: CharacterItemEquipmentTotalOption
     item_base_option: CharacterItemEquipmentBaseOption
+    potential_option_flag: str | None
+    additional_potential_option_flag: str | None
     potential_option_grade: str | None
     additional_potential_option_grade: str | None
     potential_option_1: str | None

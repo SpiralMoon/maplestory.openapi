@@ -83,6 +83,18 @@ public class CharacterItemEquipmentInfoDTO implements dev.spiralmoon.maplestory.
     private CharacterItemEquipmentBaseOptionDTO itemBaseOption;
 
     /**
+     * Potential seal status (true:sealed, false:not sealed)
+     */
+    @SerializedName("potential_option_flag")
+    private String potentialOptionFlag;
+
+    /**
+     * Additional potential seal status (true:sealed, false:not sealed)
+     */
+    @SerializedName("additional_potential_option_flag")
+    private String additionalPotentialOptionFlag;
+
+    /**
      * Potential grade
      */
     @SerializedName("potential_option_grade")

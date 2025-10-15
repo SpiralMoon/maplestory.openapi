@@ -1289,6 +1289,18 @@ namespace MapleStory.OpenAPI.KMS.DTO
         public override CharacterItemEquipmentBaseOptionDTO ItemBaseOption { get; set; }
 
         /// <summary>
+        /// 잠재능력 봉인 여부 (true 봉인, false 봉인 없음)
+        /// </summary>
+        [JsonProperty("potential_option_flag")]
+        public override string? PotentialOptionFlag { get; set; }
+
+        /// <summary>
+        /// 에디셔널 잠재능력 봉인 여부 (true 봉인, false 봉인 없음)
+        /// </summary>
+        [JsonProperty("additional_potential_option_flag")]
+        public override string? AdditionalPotentialOptionFlag { get; set; }
+
+        /// <summary>
         /// 잠재능력 등급
         /// </summary>
         [JsonProperty("potential_option_grade")]

@@ -238,14 +238,16 @@ class CharacterItemEquipmentInfo(BaseModel, BaseCharacterItemEquipmentInfo):
         item_gender(str or None): 장비 전용 성별
         item_total_option(CharacterItemEquipmentTotalOption): 장비 최종 옵션
         item_base_option(CharacterItemEquipmentBaseOption): 장비 기본 옵션
-        potential_option_grade(str or None): 잠재 옵션 등급
-        additional_potential_option_grade(str or None): 에디셔널 잠재 옵션 등급
-        potential_option_1(str or None): 잠재 옵션 첫번째 옵션
-        potential_option_2(str or None): 잠재 옵션 두번째 옵션
-        potential_option_3(str or None): 잠재 옵션 세번째 옵션
-        additional_potential_option_1(str or None): 에디셔널 잠재 첫번째 옵션
-        additional_potential_option_2(str or None): 에디셔널 잠재 두번째 옵션
-        additional_potential_option_3(str or None): 에디셔널 잠재 세번째 옵션
+        potential_option_flag(str or None): 잠재능력 봉인 여부 (true 봉인, false 봉인 없음)
+        additional_potential_option_flag(str or None): 에디셔널 잠재능력 봉인 여부 (true 봉인, false 봉인 없음)
+        potential_option_grade(str or None): 잠재능력 등급
+        additional_potential_option_grade(str or None): 에디셔널 잠재능력 등급
+        potential_option_1(str or None): 잠재능력 첫번째 옵션
+        potential_option_2(str or None): 잠재능력 두번째 옵션
+        potential_option_3(str or None): 잠재능력 세번째 옵션
+        additional_potential_option_1(str or None): 에디셔널 잠재능력 첫번째 옵션
+        additional_potential_option_2(str or None): 에디셔널 잠재능력 두번째 옵션
+        additional_potential_option_3(str or None): 에디셔널 잠재능력 세번째 옵션
         equipment_level_increase(int): 장비 레벨 증가
         item_exceptional_option(CharacterItemEquipmentExceptionalOption): 장비 특별 옵션 정보
         item_add_option(CharacterItemEquipmentAddOption): 장비 추가 옵션
@@ -277,6 +279,8 @@ class CharacterItemEquipmentInfo(BaseModel, BaseCharacterItemEquipmentInfo):
     item_gender: str | None
     item_total_option: CharacterItemEquipmentTotalOption
     item_base_option: CharacterItemEquipmentBaseOption
+    potential_option_flag: str | None
+    additional_potential_option_flag: str | None
     potential_option_grade: str | None
     additional_potential_option_grade: str | None
     potential_option_1: str | None

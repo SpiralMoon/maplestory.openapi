@@ -232,6 +232,8 @@
         public abstract string? ItemGender { get; set; }
         public abstract TCharacterItemEquipmentTotalOption ItemTotalOption { get; set; }
         public abstract TCharacterItemEquipmentBaseOption ItemBaseOption { get; set; }
+        public abstract string? PotentialOptionFlag { get; set; }
+        public abstract string? AdditionalPotentialOptionFlag { get; set; }
         public abstract string? PotentialOptionGrade { get; set; }
         public abstract string? AdditionalPotentialOptionGrade { get; set; }
         public abstract string? PotentialOption1 { get; set; }

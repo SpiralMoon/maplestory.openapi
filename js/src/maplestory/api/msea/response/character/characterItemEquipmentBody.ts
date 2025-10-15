@@ -23,6 +23,8 @@ export type CharacterItemEquipmentInfoBody = {
   item_gender: string | null;
   item_total_option: CharacterItemEquipmentTotalOptionBody;
   item_base_option: CharacterItemEquipmentBaseOptionBody;
+  potential_option_flag: string | null;
+  additional_potential_option_flag: string | null;
   potential_option_grade: string | null;
   additional_potential_option_grade: string | null;
   potential_option_1: string | null;

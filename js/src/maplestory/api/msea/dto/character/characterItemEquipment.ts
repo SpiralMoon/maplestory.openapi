@@ -1350,6 +1350,16 @@ export class CharacterItemEquipmentInfoDto extends base.CharacterItemEquipmentIn
   public override itemBaseOption: CharacterItemEquipmentBaseOptionDto;
 
   /**
+   * Potential seal status (true:sealed, false:not sealed)
+   */
+  public override potentialOptionFlag: string | null;
+
+  /**
+   * Additional potential seal status (true:sealed, false:not sealed)
+   */
+  public override additionalPotentialOptionFlag: string | null;
+
+  /**
    * Potential grade
    */
   public override potentialOptionGrade: string | null;
@@ -1498,6 +1508,8 @@ export class CharacterItemEquipmentInfoDto extends base.CharacterItemEquipmentIn
       item_gender,
       item_total_option,
       item_base_option,
+      potential_option_flag,
+      additional_potential_option_flag,
       potential_option_grade,
       additional_potential_option_grade,
       potential_option_1,
@@ -1540,6 +1552,8 @@ export class CharacterItemEquipmentInfoDto extends base.CharacterItemEquipmentIn
     this.itemBaseOption = new CharacterItemEquipmentBaseOptionDto(
       item_base_option,
     );
+    this.potentialOptionFlag  = potential_option_flag;
+    this.additionalPotentialOptionFlag = additional_potential_option_flag;
     this.potentialOptionGrade = potential_option_grade;
     this.additionalPotentialOptionGrade = additional_potential_option_grade;
     this.potentialOption1 = potential_option_1;

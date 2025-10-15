@@ -196,6 +196,8 @@ export abstract class CharacterItemEquipmentInfoDto {
   public abstract itemGender: string | null;
   public abstract itemTotalOption: CharacterItemEquipmentTotalOptionDto;
   public abstract itemBaseOption: CharacterItemEquipmentBaseOptionDto;
+  public abstract potentialOptionFlag: string | null;
+  public abstract additionalPotentialOptionFlag: string | null;
   public abstract potentialOptionGrade: string | null;
   public abstract additionalPotentialOptionGrade: string | null;
   public abstract potentialOption1: string | null;

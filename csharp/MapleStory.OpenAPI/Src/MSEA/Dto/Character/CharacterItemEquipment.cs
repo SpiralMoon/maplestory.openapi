@@ -1197,6 +1197,18 @@ namespace MapleStory.OpenAPI.MSEA.DTO
         public override CharacterItemEquipmentBaseOptionDTO ItemBaseOption { get; set; }
 
         /// <summary>
+        /// Potential seal status (true:sealed, false:not sealed)
+        /// </summary>
+        [JsonProperty("potential_option_flag")]
+        public override string? PotentialOptionFlag { get; set; }
+
+        /// <summary>
+        /// Additional potential seal status (true:sealed, false:not sealed)
+        /// </summary>
+        [JsonProperty("additional_potential_option_flag")]
+        public override string? AdditionalPotentialOptionFlag { get; set; }
+
+        /// <summary>
         /// Potential grade
         /// </summary>
         [JsonProperty("potential_option_grade")]
