@@ -26,6 +26,7 @@ const moduleBuild = {
     index: 'src/index.ts',
     kms: 'src/maplestory/api/kms/index.ts',
     msea: 'src/maplestory/api/msea/index.ts',
+    tms: 'src/maplestory/api/tms/index.ts',
   },
   output: [
     {

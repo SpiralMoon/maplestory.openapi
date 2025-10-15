@@ -37,6 +37,11 @@
       "require": "./dist/cjs/maplestory/api/msea/msea.js",
       "types": "./types/maplestory/api/msea/index.d.ts"
     },
+    "./tms": {
+      "import": "./dist/esm/maplestory/api/tms/tms.js",
+      "require": "./dist/cjs/maplestory/api/tms/tms.js",
+      "types": "./types/maplestory/api/tms/index.d.ts"
+    },
     "./package.json": "./package.json"
   },
   "main": "dist/index.js",
