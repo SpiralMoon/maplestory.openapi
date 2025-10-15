@@ -18,7 +18,7 @@
         public abstract string SkillName { get; set; }
         public abstract string SkillDescription { get; set; }
         public abstract long? SkillLevel { get; set; }
-        public abstract string SkillEffect { get; set; }
+        public abstract string? SkillEffect { get; set; }
         public abstract string? SkillEffectNext { get; set; }
         public abstract string SkillIcon { get; set; }
     }

@@ -72,7 +72,7 @@ namespace MapleStory.OpenAPI.KMS.DTO
         /// 스킬 레벨 별 효과 설명
         /// </summary>
         [JsonProperty("skill_effect")]
-        public override string SkillEffect { get; set; }
+        public override string? SkillEffect { get; set; }
 
         /// <summary>
         /// 다음 스킬 레벨 효과 설명

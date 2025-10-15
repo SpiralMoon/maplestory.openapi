@@ -72,7 +72,7 @@ namespace MapleStory.OpenAPI.MSEA.DTO
         /// Effect description by skill level
         /// </summary>
         [JsonProperty("skill_effect")]
-        public override string SkillEffect { get; set; }
+        public override string? SkillEffect { get; set; }
 
         /// <summary>
         /// Effect description for the next skill level

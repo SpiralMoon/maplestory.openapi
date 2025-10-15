@@ -65,7 +65,7 @@ export class CharacterSkillInfoDto extends base.CharacterSkillInfoDto {
   /**
    * 스킬 레벨 별 효과 설명
    */
-  public override skillEffect: string;
+  public override skillEffect: string | null;
 
   /**
    * 다음 스킬 레벨 효과 설명

@@ -9,7 +9,7 @@ export abstract class CharacterSkillInfoDto {
   public abstract skillName: string;
   public abstract skillDescription: string;
   public abstract skillLevel: number;
-  public abstract skillEffect: string;
+  public abstract skillEffect: string | null;
   public abstract skillEffectNext: string | null;
   public abstract skillIcon: string;
 }
