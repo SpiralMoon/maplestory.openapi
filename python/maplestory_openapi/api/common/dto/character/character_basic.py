@@ -16,7 +16,6 @@ class CharacterBasic(ABC):
     character_image: str
     character_date_create: datetime
     access_flag: str
-    liberation_quest_clear_flag: str
 
     @property
     @abstractmethod
