@@ -17,7 +17,7 @@ public class CharacterSetEffectOptionFullDTO implements dev.spiralmoon.maplestor
      * 套裝效果等級 (裝備件數)
      */
     @SerializedName("set_count")
-    private Integer setCount;
+    private int setCount;
 
     /**
      * 套裝效果

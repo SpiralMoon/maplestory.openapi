@@ -26,7 +26,7 @@ public class CharacterPopularityDTO implements dev.spiralmoon.maplestory.api.com
      * 角色名聲
      */
     @SerializedName("popularity")
-    private Long popularity;
+    private long popularity;
 
     /**
      * 要搜尋的日期 (TST，每日資料中的小時與分鐘將顯示為 0)

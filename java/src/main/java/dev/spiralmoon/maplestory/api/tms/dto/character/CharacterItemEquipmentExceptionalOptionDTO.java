@@ -65,5 +65,5 @@ public class CharacterItemEquipmentExceptionalOptionDTO implements dev.spiralmoo
      * 已套用的卓越強化次數
      */
     @SerializedName("exceptional_upgrade")
-    private Integer exceptionalUpgrade;
+    private int exceptionalUpgrade;
 }

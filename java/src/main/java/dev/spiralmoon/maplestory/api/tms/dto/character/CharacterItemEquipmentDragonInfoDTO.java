@@ -182,7 +182,7 @@ public class CharacterItemEquipmentDragonInfoDTO implements dev.spiralmoon.maple
      * 特殊戒指等級
      */
     @SerializedName("special_ring_level")
-    private Long specialRingLevel;
+    private long specialRingLevel;
 
     /**
      * 道具有效期間 (TST)
