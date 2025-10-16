@@ -73,7 +73,7 @@ export class CharacterBasicDto extends base.CharacterBasicDto {
   /**
    * 解放任務完成狀態 (0：未完成，1：創世武器已解放)
    */
-  public liberationQuestClearFlag: string;
+  public liberationQuestClear: string;
 
   constructor(obj: CharacterBasicBody) {
     super();
@@ -92,7 +92,7 @@ export class CharacterBasicDto extends base.CharacterBasicDto {
       character_image,
       character_date_create,
       access_flag,
-      liberation_quest_clear_flag,
+      liberation_quest_clear,
     } = obj;
 
     this.date = date ? new Date(date) : null;
@@ -108,7 +108,7 @@ export class CharacterBasicDto extends base.CharacterBasicDto {
     this.characterImage = character_image;
     this.characterDateCreate = new Date(character_date_create);
     this.accessFlag = access_flag;
-    this.liberationQuestClearFlag = liberation_quest_clear_flag;
+    this.liberationQuestClear = liberation_quest_clear;
   }
 
   /**
