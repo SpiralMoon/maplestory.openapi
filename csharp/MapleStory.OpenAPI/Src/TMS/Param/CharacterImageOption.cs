@@ -6,47 +6,47 @@ namespace MapleStory.OpenAPI.TMS.Param
     public class CharacterImageOption : Base.CharacterImageOption
     {
         /// <summary>
-        /// Character action
+        /// 角色動作
         /// </summary>
         public override CharacterImageAction Action { get; set; } = CharacterImageAction.Stand1;
 
         /// <summary>
-        /// Character emotion
+        /// 角色表情
         /// </summary>
         public override CharacterImageEmotion Emotion { get; set; } = CharacterImageEmotion.Default;
 
         /// <summary>
-        /// Character weapon motion
+        /// 角色武器動作
         /// </summary>
         public override CharacterImageWeaponMotion Wmotion { get; set; } = CharacterImageWeaponMotion.Default;
 
         /// <summary>
-        /// Character action frame
+        /// 角色動作影格
         /// </summary>
         public override int ActionFrame { get; set; } = 0;
 
         /// <summary>
-        /// Character emotion frame
+        /// 角色表情影格
         /// </summary>
         public override int EmotionFrame { get; set; } = 0;
 
         /// <summary>
-        /// Horizontal length (corresponding to the background size, 96 (default) ~ 1000)
+        /// 寬度 (對應背景大小，96 (預設) 至 1000)
         /// </summary>
         public int Width { get; set; } = 96;
 
         /// <summary>
-        /// Vertical length (corresponding to the background size, 96 (default) ~ 1000)
+        /// 高度 (對應背景大小，96 (預設) 至 1000)
         /// </summary>
         public int Height { get; set; } = 96;
 
         /// <summary>
-        /// Horizontal coordinate of the character (coordinate range 0 < x < width, 0 is the left starting point)
+        /// 角色的水平座標 (座標範圍 0 < x < 寬度，0 對應至最左起點)
         /// </summary>
         public int? X { get; set; }
 
         /// <summary>
-        /// Vertical coordinate of the character (coordinate range 0 < y < height, 0 is the top starting point)
+        /// 角色的垂直座標 (座標範圍 0 < y < 高度，0 對應至最上方起點)
         /// </summary>
         public int? Y { get; set; }
     }
