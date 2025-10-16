@@ -39,21 +39,21 @@ namespace MapleStory.OpenAPI.TMS.DTO
         public override string? CharacterClass { get; set; }
 
         /// <summary>
-        /// 角色髮型資訊<br/>
+        /// 角色髮型資訊
         /// (神之子為 Alpha、天使破壞者為一般模式時)
         /// </summary>
         [JsonProperty("character_hair")]
         public override CharacterBeautyEquipmentHairDTO? CharacterHair { get; set; }
 
         /// <summary>
-        /// 角色臉型資訊<br/>
+        /// 角色臉型資訊
         /// (神之子為 Alpha、天使破壞者為一般模式時)
         /// </summary>
         [JsonProperty("character_face")]
         public override CharacterBeautyEquipmentFaceDTO? CharacterFace { get; set; }
 
         /// <summary>
-        /// 角色膚色資訊<br/>
+        /// 角色膚色資訊
         /// (神之子為 Alpha、天使破壞者為一般模式時)
         /// </summary>
         [JsonProperty("character_skin")]
