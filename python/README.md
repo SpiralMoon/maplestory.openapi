@@ -10,10 +10,11 @@
 (English document is [HERE](https://github.com/SpiralMoon/maplestory.openapi/blob/master/python/README-en.md))
 
 ## Notice
-
->🌏 알림1: 3.0.0 버전부터 여러 서비스 지역에 대한 지원이 추가 되었습니다. 현재 [KMS](https://maplestory.nexon.com/), [MSEA](http://www.maplesea.com/index/)의 데이터를 조회 가능합니다.
+>🌏 알림1: 3.4.0 버전부터 TMS 서비스 지역에 대한 지원이 추가 되었습니다. 현재 [KMS](https://maplestory.nexon.com/), [TMS](https://maplestory.beanfun.com/), [MSEA](http://www.maplesea.com/index/)의 데이터를 조회 가능합니다.
 >
->💡 알림2: Version 2.x.x → 3.0.0 업데이트 과정에서 마이그레이션이 필요합니다. [Migration](https://github.com/SpiralMoon/maplestory.openapi/tree/master/python/docs/migration-ko.md) 항목을 참고 해주세요.
+>🌏 알림2: 3.0.0 버전부터 MSEA 서비스 지역에 대한 지원이 추가 되었습니다.
+>
+>💡 알림3: Version 2.x.x → 3.0.0 업데이트 과정에서 마이그레이션이 필요합니다. [Migration](https://github.com/SpiralMoon/maplestory.openapi/tree/master/python/docs/migration-ko.md) 항목을 참고 해주세요.
 
 ## Installation
 
@@ -31,7 +32,7 @@ pip install maplestory-openapi
 
 ### Region
 
-현재 KMS, MSEA 지역에 대한 데이터 조회를 지원 합니다. 조회를 원하는 지역별로 패키지 경로를 다르게 설정 합니다.
+현재 KMS, TMS, MSEA 지역에 대한 데이터 조회를 지원 합니다. 조회를 원하는 지역별로 패키지 경로를 다르게 설정 합니다.
 
 ```python
 from maplestory_openapi.kms import MapleStoryApi # data from KMS
@@ -71,6 +72,16 @@ except MapleStoryApiException as e:
 - [확률 정보 조회](https://github.com/SpiralMoon/maplestory.openapi/blob/master/python/test/history_api_test.py)
 - [랭킹 정보 조회](https://github.com/SpiralMoon/maplestory.openapi/blob/master/python/test/ranking_api_test.py)
 - [공지 정보 조회](https://github.com/SpiralMoon/maplestory.openapi/blob/master/python/test/notice_api_test.py)
+
+### Features
+
+이 라이브러리는 메이플스토리 OpenAPI 공식 문서에 기재된 모든 API를 지원합니다.
+
+일부 기능은 특정 지역에서만 지원되므로 자세한 내용은 각 리전의 공식 문서를 참고하세요.
+
+- KMS: [https://openapi.nexon.com/game/maplestory](https://openapi.nexon.com/game/maplestory)
+- TMS: [https://openapi.nexon.com/game/maplestorytw](https://openapi.nexon.com/game/maplestorytw)
+- MSEA: [https://openapi.nexon.com/game/maplestorysea](https://openapi.nexon.com/game/maplestorysea)
 
 ### Exception Handling
 

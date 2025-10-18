@@ -23,10 +23,12 @@
 <p align="center">넥슨의 MapleStory OpenAPI를 사용할 수 있게 해주는 라이브러리입니다.</p>
 
 > 💻 넥슨 OpenAPI 패치를 따라가며 관리되고 있습니다. 항상 최신 버전 사용을 권장합니다.
+>
+>🌏 알림1: 3.4.0 버전부터 TMS 서비스 지역에 대한 지원이 추가 되었습니다. 현재 [KMS](https://maplestory.nexon.com/), [TMS](https://maplestory.beanfun.com/), [MSEA](http://www.maplesea.com/index/)의 데이터를 조회 가능합니다.
+>
+>🌏 알림2: 3.0.0 버전부터 MSEA 서비스 지역에 대한 지원이 추가 되었습니다.
 > 
->🌏 알림1: 3.0.0 버전부터 여러 서비스 지역에 대한 지원이 추가 되었습니다. 현재 [KMS](https://maplestory.nexon.com/), [MSEA](http://www.maplesea.com/index/)의 데이터를 조회 가능합니다.
-> 
->💡 알림2: Version 2.x.x → 3.0.0 업데이트 과정에서 마이그레이션이 필요합니다. 문서를 참고 해주세요.
+>💡 알림3: Version 2.x.x → 3.0.0 업데이트 과정에서 마이그레이션이 필요합니다. 문서를 참고 해주세요.
 
 
 ## Supported
@@ -91,17 +93,17 @@
       <tr>
         <td align="center">
           <a href="https://maplestory.nexon.com/" target="_blank" rel="noreferrer">
-            <img src="https://upload.wikimedia.org/wikipedia/ko/thumb/8/8a/MapleStory_logo.png/250px-MapleStory_logo.png" alt="KMS" />
+            <img src="https://github.com/SpiralMoon/maplestory.openapi/blob/develop/logo/kms.png" alt="KMS" />
           </a>
         </td>
         <td align="center">
           <a href="https://www.nexon.com/maplestory/" target="_blank" rel="noreferrer">
-            <img src="https://i.namu.wiki/i/-WKuX88iUEMC9-Lh5aRpA_pjgxZGmagDkhoyYLwBlxG-o60NbBlIG0B-dTXRRAO2cfSthfgBAav6X9AQOVZo69F3cr_ZvltIQ2TIwM5e0y380snj8jh_6UmDFV3u4mIPx9qv7I8mdbnZ5RJnVFCmwA.webp" alt="GMS" />
+            <img src="https://github.com/SpiralMoon/maplestory.openapi/blob/develop/logo/gms.png" alt="GMS" />
           </a>
         </td>
         <td align="center">
           <a href="https://maplestory.nexon.co.jp/" target="_blank" rel="noreferrer">
-            <img src="https://i.namu.wiki/i/co2Bfq0sjQPN-9FLFHuMzZIpXKj4QgtJx7gmH_REucvs70wVJ07YT7i89Yuk4pbpDW2a7r9dPJ7ShtVxKw-DzNwNA4E23gpVLz1DmZZsN_wqjkI5zYQ41gNzCOYE7QVGCz8AndqU7Q7YfkKl6BwMBg.webp" alt="JMS" />
+            <img src="https://github.com/SpiralMoon/maplestory.openapi/blob/develop/logo/jms.png" alt="JMS" />
           </a>
         </td>
       </tr>
@@ -125,17 +127,17 @@
       <tr>
         <td align="center">
           <a href="http://www.maplesea.com/index" target="_blank" rel="noreferrer">
-            <img src="https://media.playpark.net/pp/intro/images/msea_logo_w.png" alt="MSEA" />
+            <img src="https://github.com/SpiralMoon/maplestory.openapi/blob/develop/logo/msea.png" alt="MSEA" />
           </a>
         </td>
         <td align="center">
           <a href="http://maplestory.beanfun.com/" target="_blank" rel="noreferrer">
-            <img src="https://i.namu.wiki/i/UrML691KGq0k-HJYmrhRUlbgIGbO376uQWCwHiXmOUytxQyZMCFWPmdy4Lo5TXr3AoZ0ivireTjzu0WrzUuVw1Gg2rlI8x1P6Crz6KABCln_1fGkQ3J2uLeAjhiFr6mY8oPAA4QjnRoyVZEc-lQZ2g.webp" alt="TMS" />
+            <img src="https://github.com/SpiralMoon/maplestory.openapi/blob/develop/logo/tms.png" alt="TMS" />
           </a>
         </td>
         <td align="center">
           <a href="https://mxd.web.sdo.com/web7/home/index.html" target="_blank" rel="noreferrer">
-            <img src="https://i.namu.wiki/i/GkTPEQ8mkux1qZrMqFn_xcI_mA34L1rEKXM1gbGkJJaGZBn2hXcNKpy4PDYOhrwFJ7jhV_M-JwP6PLlIP9dPNg6jlXxSbpQ272ODLjQyJ4Mj2QUKI328NWEaipZGYLUgeN6i15fy-3StKgJWVyqOIA.webp" alt="CMS" />
+            <img src="https://github.com/SpiralMoon/maplestory.openapi/blob/develop/logo/cms.png" alt="CMS" />
           </a>
         </td>
       </tr>
@@ -147,7 +149,7 @@
         </td>
         <td align="center">
           <a target="_blank" rel="noreferrer">
-            <img src="https://img.shields.io/badge/TMS-not_supported-red" />
+            <img src="https://img.shields.io/badge/TMS-support-green" />
           </a>
         </td>
         <td align="center">
@@ -171,14 +173,20 @@
 
 ## Features
 
-이 라이브러리는 아래 [메이플스토리 OpenAPI 공식 문서](https://openapi.nexon.com/game/maplestory)에 기재된 모든 API를 지원합니다.
+이 라이브러리는 메이플스토리 OpenAPI 공식 문서에 기재된 모든 API를 지원합니다.
 
-- [캐릭터 정보 조회](https://openapi.nexon.com/game/maplestory/?id=14)
-- [유니온 정보 조회](https://openapi.nexon.com/game/maplestory/?id=15)
-- [길드 정보 조회](https://openapi.nexon.com/game/maplestory/?id=16)
-- [확률 정보 조회](https://openapi.nexon.com/game/maplestory/?id=17)
-- [랭킹 정보 조회](https://openapi.nexon.com/game/maplestory/?id=18)
-- [공지 정보 조회](https://openapi.nexon.com/game/maplestory/?id=24)
+- 캐릭터 정보 조회
+- 유니온 정보 조회
+- 길드 정보 조회
+- 확률 정보 조회
+- 랭킹 정보 조회
+- 공지 정보 조회
+
+일부 기능은 특정 지역에서만 지원되므로 자세한 내용은 각 리전의 공식 문서를 참고하세요.
+
+- KMS: [https://openapi.nexon.com/game/maplestory](https://openapi.nexon.com/game/maplestory)
+- TMS: [https://openapi.nexon.com/game/maplestorytw](https://openapi.nexon.com/game/maplestorytw)
+- MSEA: [https://openapi.nexon.com/game/maplestorysea](https://openapi.nexon.com/game/maplestorysea)
 
 그리고 메이플스토리 OpenAPI 사양에는 포함되어 있지 않지만, 추가적으로 아래 API를 지원합니다.
 

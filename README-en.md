@@ -23,8 +23,10 @@
 <p align="center">This library project enables the use of the MapleStory OpenAPI of Nexon.</p>
 
 >💻 This library is maintained in sync with Nexon OpenAPI patches. It is recommended to always use the latest version.
-> 
-> 🌏 Notice 1: Starting from version 3.0.0, support for multiple service regions has been added. You can now retrieve data from [KMS](https://maplestory.nexon.com/) and [MSEA](http://www.maplesea.com/index/).
+>
+>🌏 Notice 1: Starting from version 3.4.0, support for tms region has been added. You can now retrieve data from [KMS](https://maplestory.nexon.com/), [TMS](https://maplestory.beanfun.com/), [MSEA](http://www.maplesea.com/index/).
+>
+>🌏 Notice 2: Starting from version 3.0.0, support for msea region has been added.
 > 
 > 💡 Notice 2: Migration is required when updating from version 2.x.x to 3.0.0. Please refer to the documentation for details.
 
@@ -90,17 +92,17 @@ This library project is concurrently provided in various languages, including Ja
       <tr>
         <td align="center">
           <a href="https://maplestory.nexon.com/" target="_blank" rel="noreferrer">
-            <img src="https://upload.wikimedia.org/wikipedia/ko/thumb/8/8a/MapleStory_logo.png/250px-MapleStory_logo.png" alt="KMS" />
+            <img src="https://github.com/SpiralMoon/maplestory.openapi/blob/develop/logo/kms.png" alt="KMS" />
           </a>
         </td>
         <td align="center">
           <a href="https://www.nexon.com/maplestory/" target="_blank" rel="noreferrer">
-            <img src="https://i.namu.wiki/i/-WKuX88iUEMC9-Lh5aRpA_pjgxZGmagDkhoyYLwBlxG-o60NbBlIG0B-dTXRRAO2cfSthfgBAav6X9AQOVZo69F3cr_ZvltIQ2TIwM5e0y380snj8jh_6UmDFV3u4mIPx9qv7I8mdbnZ5RJnVFCmwA.webp" alt="GMS" />
+            <img src="https://github.com/SpiralMoon/maplestory.openapi/blob/develop/logo/gms.png" alt="GMS" />
           </a>
         </td>
         <td align="center">
           <a href="https://maplestory.nexon.co.jp/" target="_blank" rel="noreferrer">
-            <img src="https://i.namu.wiki/i/co2Bfq0sjQPN-9FLFHuMzZIpXKj4QgtJx7gmH_REucvs70wVJ07YT7i89Yuk4pbpDW2a7r9dPJ7ShtVxKw-DzNwNA4E23gpVLz1DmZZsN_wqjkI5zYQ41gNzCOYE7QVGCz8AndqU7Q7YfkKl6BwMBg.webp" alt="JMS" />
+            <img src="https://github.com/SpiralMoon/maplestory.openapi/blob/develop/logo/jms.png" alt="JMS" />
           </a>
         </td>
       </tr>
@@ -124,17 +126,17 @@ This library project is concurrently provided in various languages, including Ja
       <tr>
         <td align="center">
           <a href="http://www.maplesea.com/index" target="_blank" rel="noreferrer">
-            <img src="https://media.playpark.net/pp/intro/images/msea_logo_w.png" alt="MSEA" />
+            <img src="https://github.com/SpiralMoon/maplestory.openapi/blob/develop/logo/msea.png" alt="MSEA" />
           </a>
         </td>
         <td align="center">
           <a href="http://maplestory.beanfun.com/" target="_blank" rel="noreferrer">
-            <img src="https://i.namu.wiki/i/UrML691KGq0k-HJYmrhRUlbgIGbO376uQWCwHiXmOUytxQyZMCFWPmdy4Lo5TXr3AoZ0ivireTjzu0WrzUuVw1Gg2rlI8x1P6Crz6KABCln_1fGkQ3J2uLeAjhiFr6mY8oPAA4QjnRoyVZEc-lQZ2g.webp" alt="TMS" />
+            <img src="https://github.com/SpiralMoon/maplestory.openapi/blob/develop/logo/tms.png" alt="TMS" />
           </a>
         </td>
         <td align="center">
           <a href="https://mxd.web.sdo.com/web7/home/index.html" target="_blank" rel="noreferrer">
-            <img src="https://i.namu.wiki/i/GkTPEQ8mkux1qZrMqFn_xcI_mA34L1rEKXM1gbGkJJaGZBn2hXcNKpy4PDYOhrwFJ7jhV_M-JwP6PLlIP9dPNg6jlXxSbpQ272ODLjQyJ4Mj2QUKI328NWEaipZGYLUgeN6i15fy-3StKgJWVyqOIA.webp" alt="CMS" />
+            <img src="https://github.com/SpiralMoon/maplestory.openapi/blob/develop/logo/cms.png" alt="CMS" />
           </a>
         </td>
       </tr>
@@ -146,7 +148,7 @@ This library project is concurrently provided in various languages, including Ja
         </td>
         <td align="center">
           <a target="_blank" rel="noreferrer">
-            <img src="https://img.shields.io/badge/TMS-not_supported-red" />
+            <img src="https://img.shields.io/badge/TMS-support-green" />
           </a>
         </td>
         <td align="center">
@@ -169,14 +171,20 @@ Before getting started, please read the document in the README list below that m
 - Go to read [**Python** document](./python/README-en.md).
 
 ## Features
-This library supports all apis published in the [MapleStory OpenAPI official docs](https://openapi.nexon.com/game/maplestory) link below.
+This library supports all apis published in the MapleStory OpenAPI official docs.
 
-- [Get character information](https://openapi.nexon.com/ko/game/maplestory/?id=14)
-- [Get union information](https://openapi.nexon.com/ko/game/maplestory/?id=15)
-- [Get guild information](https://openapi.nexon.com/ko/game/maplestory/?id=16)
-- [Get history information](https://openapi.nexon.com/ko/game/maplestory/?id=17)
-- [Get ranking information](https://openapi.nexon.com/ko/game/maplestory/?id=18)
-- [Get notice information](https://openapi.nexon.com/ko/game/maplestory/?id=24)
+- Character Information Retrieval
+- Union Information Retrieval
+- Guild Information Retrieval
+- History Information Retrieval
+- Ranking Information Retrieval
+- Notice Information Retrieval
+
+Some features are supported only in specific regions. Please refer to the official documentation for each region for details.
+
+- KMS: [https://openapi.nexon.com/game/maplestory](https://openapi.nexon.com/game/maplestory)
+- TMS: [https://openapi.nexon.com/game/maplestorytw](https://openapi.nexon.com/game/maplestorytw)
+- MSEA: [https://openapi.nexon.com/game/maplestorysea](https://openapi.nexon.com/game/maplestorysea)
 
 And, while not part of the MapleStory OpenAPI specifications, it additionally supports the following API.
 
