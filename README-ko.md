@@ -1,4 +1,4 @@
-[한국어](./README.md) | English
+한국어 | [English](./README.md) 
 
 [![GitHub contributors](https://img.shields.io/github/contributors/SpiralMoon/maplestory.openapi.svg)](https://github.com/SpiralMoon/maplestory.openapi/graphs/contributors)
 [![GitHub issues](https://img.shields.io/github/issues/SpiralMoon/maplestory.openapi.svg)](https://github.com/SpiralMoon/maplestory.openapi/issues)
@@ -20,15 +20,16 @@
     <img src="./logo.png" width="120" height="120"/>
 </div>
 <h1 align="center">🍁 MapleStory OpenAPI Library 🍁</h1>
-<p align="center">This library project enables the use of the MapleStory OpenAPI of Nexon.</p>
+<p align="center">넥슨의 MapleStory OpenAPI를 사용할 수 있게 해주는 라이브러리입니다.</p>
 
->💻 This library is maintained in sync with Nexon OpenAPI patches. It is recommended to always use the latest version.
+> 💻 넥슨 OpenAPI 패치를 따라가며 관리되고 있습니다. 항상 최신 버전 사용을 권장합니다.
 >
->🌏 Notice 1: Starting from version 3.4.0, support for tms region has been added. You can now retrieve data from [KMS](https://maplestory.nexon.com/), [TMS](https://maplestory.beanfun.com/), [MSEA](http://www.maplesea.com/index/).
+>🌏 알림1: 3.4.0 버전부터 TMS 서비스 지역에 대한 지원이 추가 되었습니다. 현재 [KMS](https://maplestory.nexon.com/), [TMS](https://maplestory.beanfun.com/), [MSEA](http://www.maplesea.com/index/)의 데이터를 조회 가능합니다.
 >
->🌏 Notice 2: Starting from version 3.0.0, support for msea region has been added.
+>🌏 알림2: 3.0.0 버전부터 MSEA 서비스 지역에 대한 지원이 추가 되었습니다.
 > 
-> 💡 Notice 2: Migration is required when updating from version 2.x.x to 3.0.0. Please refer to the documentation for details.
+>💡 알림3: Version 2.x.x → 3.0.0 업데이트 과정에서 마이그레이션이 필요합니다. 문서를 참고 해주세요.
+
 
 ## Supported
 ### Languages
@@ -84,7 +85,7 @@
     </table>
 </div>
 
-This library project is concurrently provided in various languages, including JavaScript(TypeScript), Java, C#, Python, and more, and is available on package repositories.
+이 라이브러리 프로젝트는 JavaScript(TypeScript), Java, C#, Python 등 여러 언어로 개발되어 패키지 저장소에서 동시에 제공됩니다.
 
 ### Regions
 <div align="center">
@@ -92,17 +93,17 @@ This library project is concurrently provided in various languages, including Ja
       <tr>
         <td align="center">
           <a href="https://maplestory.nexon.com/" target="_blank" rel="noreferrer">
-            <img src="https://github.com/SpiralMoon/maplestory.openapi/blob/develop/logo/kms.png" alt="KMS" />
+            <img src="https://github.com/SpiralMoon/maplestory.openapi/blob/master/logo/kms.png" alt="KMS" />
           </a>
         </td>
         <td align="center">
           <a href="https://www.nexon.com/maplestory/" target="_blank" rel="noreferrer">
-            <img src="https://github.com/SpiralMoon/maplestory.openapi/blob/develop/logo/gms.png" alt="GMS" />
+            <img src="https://github.com/SpiralMoon/maplestory.openapi/blob/master/logo/gms.png" alt="GMS" />
           </a>
         </td>
         <td align="center">
           <a href="https://maplestory.nexon.co.jp/" target="_blank" rel="noreferrer">
-            <img src="https://github.com/SpiralMoon/maplestory.openapi/blob/develop/logo/jms.png" alt="JMS" />
+            <img src="https://github.com/SpiralMoon/maplestory.openapi/blob/master/logo/jms.png" alt="JMS" />
           </a>
         </td>
       </tr>
@@ -126,17 +127,17 @@ This library project is concurrently provided in various languages, including Ja
       <tr>
         <td align="center">
           <a href="http://www.maplesea.com/index" target="_blank" rel="noreferrer">
-            <img src="https://github.com/SpiralMoon/maplestory.openapi/blob/develop/logo/msea.png" alt="MSEA" />
+            <img src="https://github.com/SpiralMoon/maplestory.openapi/blob/master/logo/msea.png" alt="MSEA" />
           </a>
         </td>
         <td align="center">
           <a href="http://maplestory.beanfun.com/" target="_blank" rel="noreferrer">
-            <img src="https://github.com/SpiralMoon/maplestory.openapi/blob/develop/logo/tms.png" alt="TMS" />
+            <img src="https://github.com/SpiralMoon/maplestory.openapi/blob/master/logo/tms.png" alt="TMS" />
           </a>
         </td>
         <td align="center">
           <a href="https://mxd.web.sdo.com/web7/home/index.html" target="_blank" rel="noreferrer">
-            <img src="https://github.com/SpiralMoon/maplestory.openapi/blob/develop/logo/cms.png" alt="CMS" />
+            <img src="https://github.com/SpiralMoon/maplestory.openapi/blob/master/logo/cms.png" alt="CMS" />
           </a>
         </td>
       </tr>
@@ -160,58 +161,57 @@ This library project is concurrently provided in various languages, including Ja
     </table>
 </div>
 
-This library can only retrieve data from the service regions supported by the Nexon Open API. If Nexon releases an API for a new region, this project plans to support it as well.
+이 라이브러리는 Nexon Open API에서 지원하는 서비스 지역의 데이터만 조회할 수 있습니다. 넥슨이 새로운 지역에 대한 API를 공개할 경우 이 프로젝트에서도 지원할 계획입니다.
 
 ## Documentation
-Before getting started, please read the document in the README list below that matches your development environment.
+시작하기 전에, 아래의 README 목록에서 자신의 개발 환경과 일치하는 문서를 읽어보세요.
 
-- Go to read [**JavaScript(TypeScript)** document](./js/README-en.md).
-- Go to read [**Java** document](./java/README-en.md).
-- Go to read [**C#** document](./csharp/README-en.md).
-- Go to read [**Python** document](./python/README-en.md).
+- [**JavaScript(TypeScript)** 사용법](./js/README.md)
+- [**Java** 사용법](./java/README.md)
+- [**C#** 사용법](./csharp/README.md)
+- [**Python** 사용법](./python/README.md)
 
 ## Features
-This library supports all apis published in the MapleStory OpenAPI official docs.
 
-- Character Information Retrieval
-- Union Information Retrieval
-- Guild Information Retrieval
-- History Information Retrieval
-- Ranking Information Retrieval
-- Notice Information Retrieval
+이 라이브러리는 메이플스토리 OpenAPI 공식 문서에 기재된 모든 API를 지원합니다.
 
-Some features are supported only in specific regions. Please refer to the official documentation for each region for details.
+- 캐릭터 정보 조회
+- 유니온 정보 조회
+- 길드 정보 조회
+- 확률 정보 조회
+- 랭킹 정보 조회
+- 공지 정보 조회
+
+일부 기능은 특정 지역에서만 지원되므로 자세한 내용은 각 리전의 공식 문서를 참고하세요.
 
 - KMS: [https://openapi.nexon.com/game/maplestory](https://openapi.nexon.com/game/maplestory)
 - TMS: [https://openapi.nexon.com/game/maplestorytw](https://openapi.nexon.com/game/maplestorytw)
 - MSEA: [https://openapi.nexon.com/game/maplestorysea](https://openapi.nexon.com/game/maplestorysea)
 
-And, while not part of the MapleStory OpenAPI specifications, it additionally supports the following API.
+그리고 메이플스토리 OpenAPI 사양에는 포함되어 있지 않지만, 추가적으로 아래 API를 지원합니다.
 
-- [Get server inspection information](https://api.maplestory.nexon.com/soap/maplestory.asmx?op=GetInspectionInfo)
+- [서버 점검 정보 조회](https://api.maplestory.nexon.com/soap/maplestory.asmx?op=GetInspectionInfo)
 
 ## Release note
-1. The main changes to this library are documented in the [release notes](https://github.com/SpiralMoon/maplestory.openapi/releases).
-2. Migration is required during major version updates. Please refer to the documentation for each package.
+1. 이 라이브러리의 주요 변경사항은 [릴리즈 노트](https://github.com/SpiralMoon/maplestory.openapi/releases)를 통해 안내하고 있습니다.
+2. 주요 버전 업데이트 과정에서 마이그레이션이 필요합니다. 패키지별 문서를 참고 해주세요.
 
 ## Contributors
 <a href="https://github.com/SpiralMoon/maplestory.openapi/graphs/contributors">
     <img src="https://contrib.rocks/image?repo=SpiralMoon/maplestory.openapi" />
 </a>
 
-This project exists thanks to all the people who contribute.
+이 프로젝트는 기여해주신 모든 분들 덕분에 존재합니다. 다른 개발자의 참여를 환영합니다! 적극적으로 PR을 보내주세요.
 
-Contributions from other developers are welcome! Feel free to contribute by submitting pull requests.
-
-Please give us a ⭐ star ⭐ to support us. Thank you.💖
+⭐ 스타 ⭐를 눌러서 우리를 응원해주세요. 감사합니다 💖
 
 ## Additional Information
 
-1. The implementation details of the API are documented on the [MapleStory OpenAPI spec](https://openapi.nexon.com/game/maplestory). Refer to the documentation for each language.
-2. This library adheres to language-specific naming style guides, resulting in slight differences from the naming conventions in the official documentation. ex) 'cube_history' -> 'cubeHistory'
-3. The comments for the methods and properties provided by this library are synchronized with the official documentation.
-4. This library is nonofficial.
-5. Data based on [NEXON Open API](https://openapi.nexon.com)
+1. 이 라이브러리는 [MapleStory OpenAPI spec](https://openapi.nexon.com/game/maplestory)의 기능을 사용할 수 있도록 만든 구현체입니다. 언어별 문서를 확인하여 사용법을 확인하세요.
+2. 이 라이브러리는 언어별 네이밍 스타일가이드를 준수하였기 때문에 공식 문서의 네이밍 규칙과 약간의 차이가 있습니다. ex) 'cube_history' -> 'cubeHistory'
+3. 이 라이브러리에서 제공하는 메소드와 프로퍼티에 대한 주석은 공식 문서와 동기화하고 있습니다.
+4. 이 라이브러리는 공식이 아닙니다.
+5. 데이터는 [NEXON Open API](https://openapi.nexon.com)에서 제공받고 있습니다.
 
 ## License
 
