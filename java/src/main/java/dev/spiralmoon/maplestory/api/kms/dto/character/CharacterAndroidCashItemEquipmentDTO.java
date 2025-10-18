@@ -103,17 +103,6 @@ public class CharacterAndroidCashItemEquipmentDTO implements dev.spiralmoon.mapl
     }
 
     /**
-     * 안드로이드 캐시 아이템 옵션 유효 기간 (KST)
-     */
-    public ZonedDateTime getDateOptionExpire() {
-        if (this.dateOptionExpire != null && !"expired".equals(this.dateOptionExpire)) {
-            return Utils.toZonedDateTime(this.dateOptionExpire);
-        } else {
-            return null;
-        }
-    }
-
-    /**
      * 안드로이드 캐시 아이템 유효 기간 만료 여부
      */
     public Boolean isExpired() {
@@ -123,6 +112,17 @@ public class CharacterAndroidCashItemEquipmentDTO implements dev.spiralmoon.mapl
         }
 
         return "expired".equals(this.dateExpire);
+    }
+
+    /**
+     * 안드로이드 캐시 아이템 옵션 유효 기간 (KST)
+     */
+    public ZonedDateTime getDateOptionExpire() {
+        if (this.dateOptionExpire != null && !"expired".equals(this.dateOptionExpire)) {
+            return Utils.toZonedDateTime(this.dateOptionExpire);
+        } else {
+            return null;
+        }
     }
 
     /**

@@ -109,17 +109,6 @@ public class CharacterCashItemEquipmentPresetDTO implements dev.spiralmoon.maple
     }
 
     /**
-     * 캐시 장비 옵션 유효 기간 (KST, 시간 단위 데이터로 분은 일괄 0으로 표기)
-     */
-    public ZonedDateTime getDateOptionExpire() {
-        if (this.dateOptionExpire != null && !"expired".equals(this.dateOptionExpire)) {
-            return Utils.toZonedDateTime(this.dateOptionExpire);
-        } else {
-            return null;
-        }
-    }
-
-    /**
      * 캐시 장비 유효 기간 만료 여부
      */
     public Boolean isExpired() {
@@ -129,6 +118,17 @@ public class CharacterCashItemEquipmentPresetDTO implements dev.spiralmoon.maple
         }
 
         return "expired".equals(this.dateExpire);
+    }
+
+    /**
+     * 캐시 장비 옵션 유효 기간 (KST, 시간 단위 데이터로 분은 일괄 0으로 표기)
+     */
+    public ZonedDateTime getDateOptionExpire() {
+        if (this.dateOptionExpire != null && !"expired".equals(this.dateOptionExpire)) {
+            return Utils.toZonedDateTime(this.dateOptionExpire);
+        } else {
+            return null;
+        }
     }
 
     /**

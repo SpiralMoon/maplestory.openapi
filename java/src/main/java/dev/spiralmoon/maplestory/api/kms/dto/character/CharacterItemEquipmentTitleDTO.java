@@ -58,17 +58,6 @@ public class CharacterItemEquipmentTitleDTO implements dev.spiralmoon.maplestory
     }
 
     /**
-     * 칭호 옵션 유효 기간 (KST)
-     */
-    public ZonedDateTime getDateOptionExpire() {
-        if (this.dateOptionExpire != null && !"expired".equals(this.dateOptionExpire)) {
-            return Utils.toZonedDateTime(this.dateOptionExpire);
-        } else {
-            return null;
-        }
-    }
-
-    /**
      * 칭호 유효 기간 만료 여부
      */
     public Boolean isExpired() {
@@ -78,6 +67,17 @@ public class CharacterItemEquipmentTitleDTO implements dev.spiralmoon.maplestory
         }
 
         return "expired".equals(this.dateExpire);
+    }
+
+    /**
+     * 칭호 옵션 유효 기간 (KST)
+     */
+    public ZonedDateTime getDateOptionExpire() {
+        if (this.dateOptionExpire != null && !"expired".equals(this.dateOptionExpire)) {
+            return Utils.toZonedDateTime(this.dateOptionExpire);
+        } else {
+            return null;
+        }
     }
 
     /**

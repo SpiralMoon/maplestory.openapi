@@ -87,27 +87,45 @@ public class CharacterAndroidCashItemEquipmentDTO implements dev.spiralmoon.mapl
      * Android cash item validity period (SGT)
      */
     public ZonedDateTime getDateExpire() {
-        return dateExpire != null && !"expired".equals(dateExpire) ? Utils.toZonedDateTime(dateExpire) : null;
+        if (this.dateExpire != null && !"expired".equals(this.dateExpire)) {
+            return Utils.toZonedDateTime(this.dateExpire);
+        } else {
+            return null;
+        }
     }
 
     /**
      * Whether the Android cash item is expired
      */
     public Boolean isExpired() {
-        return "expired".equals(dateExpire);
+
+        if (this.dateExpire == null) {
+            return null;
+        }
+
+        return "expired".equals(this.dateExpire);
     }
 
     /**
      * Android cash item option validity period (SGT, data with minutes set to 0)
      */
     public ZonedDateTime getDateOptionExpire() {
-        return dateOptionExpire != null && !"expired".equals(dateOptionExpire) ? Utils.toZonedDateTime(dateOptionExpire) : null;
+        if (this.dateOptionExpire != null && !"expired".equals(this.dateOptionExpire)) {
+            return Utils.toZonedDateTime(this.dateOptionExpire);
+        } else {
+            return null;
+        }
     }
 
     /**
      * Whether the Android cash item option is expired
      */
     public Boolean isOptionExpired() {
-        return "expired".equals(dateOptionExpire);
+
+        if (this.dateOptionExpire == null) {
+            return null;
+        }
+
+        return "expired".equals(this.dateOptionExpire);
     }
 }
