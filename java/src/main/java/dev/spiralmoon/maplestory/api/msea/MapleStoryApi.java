@@ -717,6 +717,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
      * - Historical data can be queried by specifying the desired date, and data from the previous day can be accessed starting at 2 AM the next day. (For example, when querying data for December 22, data from 00:00 to 24:00 on December 22 will be retrieved.)<br>
      * - Due to game content changes, the ocid may be updated. Please pay attention to this when updating services based on ocid.<br>
      * - This API provides data for MapleStory SEA.<br>
+     * @param ocid                Character identifier
      * @param characterSkillGrade Job advancement tier to query <a href="https://openapi.nexon.com/game/maplestorysea/?id=45">Available values</a>
      * @param localDateTime       Reference date for query (SGT)
      */

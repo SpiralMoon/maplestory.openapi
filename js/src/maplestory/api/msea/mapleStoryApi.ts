@@ -923,7 +923,7 @@ export class MapleStoryApi extends base.MapleStoryApi {
    * - Due to game content changes, the ocid may be updated. Please pay attention to this when updating services based on ocid.
    * - This API provides data for MapleStory SEA.
    * @param guildName Guild name
-   * @param worldName World name
+   * @param worldName World name <a href="https://openapi.nexon.com/game/maplestorysea/?id=47">Available values</a>
    */
   public override async getGuild(
     guildName: string,

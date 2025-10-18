@@ -1001,7 +1001,7 @@ namespace MapleStory.OpenAPI.MSEA
         /// <para>- This API provides data for MapleStory SEA.</para>
         /// </summary>
         /// <param name="guildName">Guild name</param>
-        /// <param name="wolrdName">World name</param>
+        /// <param name="wolrdName">World name <a href="https://openapi.nexon.com/game/maplestorysea/?id=47">Available values</a></param>
         public override async Task<GuildDTO> GetGuild(string guildName, string wolrdName)
         {
             var path = $"{subUrl}/v1/guild/id";

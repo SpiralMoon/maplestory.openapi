@@ -1094,7 +1094,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
      * - 由於遊戲內容變動，OCID 可能會有所變更。在更新以 OCID 為基礎的服務時，請務必留意。<br>
      * - 此 API 提供來自楓之谷台灣的資料。<br>
      * @param guildName 公會名稱
-     * @param worldName 世界名稱 <a href="https://openapi.nexon.com/game/maplestorytw/?id=49">Available values</a>
+     * @param worldName 世界名稱 <a href="https://openapi.nexon.com/game/maplestorytw/?id=51">Available values</a>
      */
     public CompletableFuture<GuildDTO> getGuild(@NonNull String guildName, @NonNull String worldName) {
         final CompletableFuture<GuildDTO> future = new CompletableFuture<>();

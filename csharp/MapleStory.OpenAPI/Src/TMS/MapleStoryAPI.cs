@@ -1006,8 +1006,8 @@ namespace MapleStory.OpenAPI.TMS
         /// <para>- 由於遊戲內容變動，OCID 可能會有所變更。在更新以 OCID 為基礎的服務時，請務必留意。</para>
         /// <para>- 此 API 提供來自楓之谷台灣的資料。</para>
         /// </summary>
-        /// <param name="guildName">Guild name</param>
-        /// <param name="wolrdName">World name</param>
+        /// <param name="guildName">公會名稱</param>
+        /// <param name="wolrdName">世界名稱 <a href="https://openapi.nexon.com/game/maplestorytw/?id=51">Available values</a></param>
         public override async Task<GuildDTO> GetGuild(string guildName, string wolrdName)
         {
             var path = $"{subUrl}/v1/guild/id";
@@ -1028,7 +1028,7 @@ namespace MapleStory.OpenAPI.TMS
         /// <para>- 由於遊戲內容變動，OCID 可能會有所變更。在更新以 OCID 為基礎的服務時，請務必留意。</para>
         /// <para>- 此 API 提供來自楓之谷台灣的資料。</para>
         /// </summary>
-        /// <param name="oGuildId">Guild identifier</param>
+        /// <param name="oGuildId">公會識別碼</param>
         public override Task<GuildBasicDTO> GetGuildBasic(string oGuildId)
         {
             return GetGuildBasic(oGuildId, null);
@@ -1042,7 +1042,7 @@ namespace MapleStory.OpenAPI.TMS
         /// <para>- 由於遊戲內容變動，OCID 可能會有所變更。在更新以 OCID 為基礎的服務時，請務必留意。</para>
         /// <para>- 此 API 提供來自楓之谷台灣的資料。</para>
         /// </summary>
-        /// <param name="oGuildId">Guild identifier</param>
+        /// <param name="oGuildId">公會識別碼</param>
         /// <param name="dateTimeOffset">要搜尋的日期 (TST)</param>
         public override async Task<GuildBasicDTO> GetGuildBasic(string oGuildId, DateTimeOffset? dateTimeOffset)
         {

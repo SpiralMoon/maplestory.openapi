@@ -923,7 +923,7 @@ export class MapleStoryApi extends base.MapleStoryApi {
    * - 由於遊戲內容變動，OCID 可能會有所變更。在更新以 OCID 為基礎的服務時，請務必留意。
    * - 此 API 提供來自楓之谷台灣的資料。
    * @param guildName 公會名稱
-   * @param worldName 世界名稱
+   * @param worldName 世界名稱 <a href="https://openapi.nexon.com/game/maplestorytw/?id=51">Available values</a>
    */
   public override async getGuild(
     guildName: string,

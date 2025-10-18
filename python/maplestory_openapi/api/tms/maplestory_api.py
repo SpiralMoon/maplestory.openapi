@@ -658,7 +658,7 @@ class MapleStoryApi(BaseMapleStoryApi):
 
         Args:
             guild_name (str): 公會名稱
-            world_name (str): 世界名稱 (Available values: https://openapi.nexon.com/game/maplestorytw/?id=49)
+            world_name (str): 世界名稱 (Available values: https://openapi.nexon.com/game/maplestorytw/?id=51)
         """
         path = self.sub_url + '/v1/guild/id'
         query = {

@@ -105,8 +105,8 @@ class MapleStoryApi(BaseMapleStoryApi):
 
         Args:
             ocid (str): Character identifier
-            option (CharacterImageOption | None): Image options
-            date (datetime | None): Reference date for query (SGT)
+            option (CharacterImageOption or None): Image options
+            date (datetime or None): Reference date for query (SGT)
         """
 
         basic = await self.get_character_basic(ocid, date)

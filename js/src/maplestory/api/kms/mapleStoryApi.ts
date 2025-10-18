@@ -1129,7 +1129,7 @@ export class MapleStoryApi extends base.MapleStoryApi {
    * - 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.
    *
    * @param guildName 길드 명
-   * @param worldName 월드 명
+   * @param worldName 월드 명 <a href="https://openapi.nexon.com/game/maplestory/?id=16">Available values</a>
    */
   public override async getGuild(
     guildName: string,
