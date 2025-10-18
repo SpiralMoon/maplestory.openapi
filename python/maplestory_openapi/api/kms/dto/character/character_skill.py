@@ -21,7 +21,7 @@ class CharacterSkillInfo(BaseModel, BaseCharacterSkillInfo):
     skill_description: str
     skill_level: int
     skill_effect: str | None
-    skill_effect_next: str | None
+    skill_effect_next: str | None = None
     skill_icon: str
 
 
