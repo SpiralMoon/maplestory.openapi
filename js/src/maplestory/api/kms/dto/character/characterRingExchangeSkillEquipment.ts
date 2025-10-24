@@ -24,12 +24,31 @@ export class CharacterRingExchangeSkillEquipmentDto {
    */
   public specialRingExchangeLevel: number | null;
 
+  /**
+   * 링 익스체인지에 등록된 특수 반지 아이콘
+   */
+  public specialRingExchangeIcon: string | null;
+
+  /**
+   * 링 익스체인지에 등록된 특수 반지 설명
+   */
+  public specialRingExchangeDescription: string | null;
+
   constructor(obj: CharacterRingExchangeSkillEquipmentBody) {
-    const { date, character_class, special_ring_exchange_name, special_ring_exchange_level } = obj;
+    const {
+      date,
+      character_class,
+      special_ring_exchange_name,
+      special_ring_exchange_level,
+      special_ring_exchange_icon,
+      special_ring_exchange_description
+    } = obj;
 
     this.date = date ? new Date(date) : null;
     this.characterClass = character_class ?? '';
     this.specialRingExchangeName = special_ring_exchange_name ?? null;
     this.specialRingExchangeLevel = special_ring_exchange_level ?? null;
+    this.specialRingExchangeIcon = special_ring_exchange_icon ?? null;
+    this.specialRingExchangeDescription = special_ring_exchange_description ?? null;
   }
 }

@@ -11,8 +11,12 @@ class CharacterRingExchangeSkillEquipment(BaseModel):
         character_class (str or None): 캐릭터 직업
         special_ring_exchange_name (str or None): 링 익스체인지에 등록된 특수 반지
         special_ring_exchange_level (int or None): 링 익스체인지에 등록된 특수 반지 레벨
+        special_ring_exchange_icon (str or None): 링 익스체인지에 등록된 특수 반지 아이콘
+        special_ring_exchange_description (str or None): 링 익스체인지에 등록된 특수 반지 설명
     """
     date: datetime | None
     character_class: str
     special_ring_exchange_name: str | None
     special_ring_exchange_level: int | None
+    special_ring_exchange_icon: str | None
+    special_ring_exchange_description: str | None

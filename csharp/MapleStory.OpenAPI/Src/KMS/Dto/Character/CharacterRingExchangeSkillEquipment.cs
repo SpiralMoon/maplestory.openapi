@@ -35,12 +35,24 @@ namespace MapleStory.OpenAPI.KMS.DTO
         /// 링 익스체인지에 등록된 특수 반지
         /// </summary>
         [JsonProperty("special_ring_exchange_name")]
-        public string SpecialRingExchangeName { get; set; }
+        public string? SpecialRingExchangeName { get; set; }
 
         /// <summary>
         /// 링 익스체인지에 등록된 특수 반지 레벨
         /// </summary>
         [JsonProperty("special_ring_exchange_level")]
         public int? SpecialRingExchangeLevel { get; set; }
+
+        /// <summary>
+        /// 링 익스체인지에 등록된 특수 반지 아이콘
+        /// </summary>
+        [JsonProperty("special_ring_exchange_icon")]
+        public string? SpecialRingExchangeIcon { get; set; }
+
+        /// <summary>
+        /// 링 익스체인지에 등록된 특수 반지 설명
+        /// </summary>
+        [JsonProperty("special_ring_exchange_description")]
+        public string? SpecialRingExchangeDescription { get; set; }
     }
 }

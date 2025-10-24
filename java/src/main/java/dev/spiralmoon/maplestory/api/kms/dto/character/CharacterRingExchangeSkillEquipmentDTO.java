@@ -41,6 +41,18 @@ public class CharacterRingExchangeSkillEquipmentDTO {
     private Integer specialRingExchangeLevel;
 
     /**
+     * 링 익스체인지에 등록된 특수 반지 아이콘
+     */
+    @SerializedName("special_ring_exchange_icon")
+    private String specialRingExchangeIcon;
+
+    /**
+     * 링 익스체인지에 등록된 특수 반지 설명
+     */
+    @SerializedName("special_ring_exchange_description")
+    private String specialRingExchangeDescription;
+
+    /**
      * 조회 기준일 (KST, 일 단위 데이터로 시, 분은 일괄 0으로 표기)
      */
     public ZonedDateTime getDate() {
