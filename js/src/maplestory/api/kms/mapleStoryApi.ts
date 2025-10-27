@@ -1508,11 +1508,11 @@ export class MapleStoryApi extends base.MapleStoryApi {
     };
 
     if (filterOptions) {
-      const { worldName, rankingType, ocid, page } = filterOptions;
+      const { worldName, rankingType, guildName, page } = filterOptions;
 
       query.world_name = worldName;
       query.ranking_type = rankingType;
-      query.ocid = ocid;
+      query.guild_name = guildName;
       query.page = page;
     }
 
@@ -2073,9 +2073,9 @@ type GuildRankingApiFilterOptions = {
   rankingType: number;
 
   /**
-   * 캐릭터 식별자
+   * 길드 명
    */
-  ocid?: string;
+  guildName?: string;
 
   /**
    * 페이지 번호
@@ -2330,7 +2330,7 @@ type GuildRankingApiQuery = {
   date: string;
   world_name?: string;
   ranking_type: number;
-  ocid?: string;
+  guild_name?: string;
   page?: number;
 };
 
