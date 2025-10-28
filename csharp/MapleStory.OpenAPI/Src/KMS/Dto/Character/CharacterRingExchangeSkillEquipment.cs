@@ -29,7 +29,7 @@ namespace MapleStory.OpenAPI.KMS.DTO
         /// 캐릭터 직업
         /// </summary>
         [JsonProperty("character_class")]
-        public string CharacterClass { get; set; }
+        public string? CharacterClass { get; set; }
 
         /// <summary>
         /// 링 익스체인지에 등록된 특수 반지

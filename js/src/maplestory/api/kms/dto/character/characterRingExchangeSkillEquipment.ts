@@ -12,7 +12,7 @@ export class CharacterRingExchangeSkillEquipmentDto {
   /**
    * 캐릭터 직업
    */
-  public characterClass: string;
+  public characterClass: string | null;
 
   /**
    * 링 익스체인지에 등록된 특수 반지
@@ -45,7 +45,7 @@ export class CharacterRingExchangeSkillEquipmentDto {
     } = obj;
 
     this.date = date ? new Date(date) : null;
-    this.characterClass = character_class ?? '';
+    this.characterClass = character_class ?? null;
     this.specialRingExchangeName = special_ring_exchange_name ?? null;
     this.specialRingExchangeLevel = special_ring_exchange_level ?? null;
     this.specialRingExchangeIcon = special_ring_exchange_icon ?? null;
