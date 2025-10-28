@@ -113,7 +113,9 @@ public class CharacterBasicDTO implements dev.spiralmoon.maplestory.api.common.d
      * 角色建立日期 (TST，每日資料中的小時與分鐘將顯示為 0)
      */
     public ZonedDateTime getCharacterDateCreate() {
-        return Utils.toZonedDateTime(this.characterDateCreate);
+        return characterDateCreate != null
+                ? Utils.toZonedDateTime(this.characterDateCreate)
+                : null;
     }
 
     /**

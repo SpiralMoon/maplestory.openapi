@@ -10,7 +10,7 @@ export abstract class CharacterBasicDto {
   public abstract characterExpRate: string;
   public abstract characterGuildName: string | null;
   public abstract characterImage: string;
-  public abstract characterDateCreate: Date;
+  public abstract characterDateCreate: Date | null;
   public abstract accessFlag: 'true' | 'false';
 
   public get isAccessFlag() {

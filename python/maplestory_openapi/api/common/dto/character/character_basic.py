@@ -14,7 +14,7 @@ class CharacterBasic(ABC):
     character_exp_rate: str
     character_guild_name: str | None
     character_image: str
-    character_date_create: datetime
+    character_date_create: datetime | None
     access_flag: str
 
     @property

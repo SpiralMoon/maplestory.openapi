@@ -113,7 +113,9 @@ public class CharacterBasicDTO implements dev.spiralmoon.maplestory.api.common.d
      * 캐릭터 생성일
      */
     public ZonedDateTime getCharacterDateCreate() {
-        return Utils.toZonedDateTime(this.characterDateCreate);
+        return characterDateCreate != null
+                ? Utils.toZonedDateTime(this.characterDateCreate)
+                : null;
     }
 
     /**

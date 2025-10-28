@@ -63,7 +63,7 @@ export class CharacterBasicDto extends base.CharacterBasicDto {
   /**
    * Character creation date (SGT, daily data with hours and minutes set to 0)
    */
-  public override characterDateCreate: Date;
+  public override characterDateCreate: Date | null
 
   /**
    * Login status in the past 7 days (true:logged in, false:not logged in)
@@ -106,7 +106,7 @@ export class CharacterBasicDto extends base.CharacterBasicDto {
     this.characterExpRate = character_exp_rate;
     this.characterGuildName = character_guild_name;
     this.characterImage = character_image;
-    this.characterDateCreate = new Date(character_date_create);
+    this.characterDateCreate = character_date_create ? new Date(character_date_create) : null;
     this.accessFlag = access_flag;
     this.liberationQuestClearFlag = liberation_quest_clear_flag;
   }

@@ -63,7 +63,7 @@ export class CharacterBasicDto extends base.CharacterBasicDto {
   /**
    * 캐릭터 생성일
    */
-  public override characterDateCreate: Date;
+  public override characterDateCreate: Date | null;
 
   /**
    * 최근 7일간 접속 여부
@@ -106,7 +106,7 @@ export class CharacterBasicDto extends base.CharacterBasicDto {
     this.characterExpRate = character_exp_rate;
     this.characterGuildName = character_guild_name;
     this.characterImage = character_image;
-    this.characterDateCreate = new Date(character_date_create);
+    this.characterDateCreate = character_date_create ? new Date(character_date_create) : null;
     this.accessFlag = access_flag;
     this.liberationQuestClear = liberation_quest_clear;
   }

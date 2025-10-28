@@ -13,7 +13,7 @@
         public abstract string CharacterExpRate { get; set; }
         public abstract string? CharacterGuildName { get; set; }
         public abstract string CharacterImage { get; set; }
-        public abstract DateTimeOffset CharacterDateCreate { get; set; }
+        public abstract DateTimeOffset? CharacterDateCreate { get; set; }
         public abstract bool AccessFlag { get; }
     }
 }

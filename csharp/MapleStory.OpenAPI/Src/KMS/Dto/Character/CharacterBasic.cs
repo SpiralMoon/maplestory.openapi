@@ -90,11 +90,11 @@ namespace MapleStory.OpenAPI.KMS.DTO
         /// 캐릭터 생성일
         /// </summary>
         [JsonProperty("character_date_create")]
-        public override DateTimeOffset CharacterDateCreate
+        public override DateTimeOffset? CharacterDateCreate
         {
             get
             {
-                return _characterDateCreate.ToOffset(TimeSpan.FromHours(9));
+                return _characterDateCreate?.ToOffset(TimeSpan.FromHours(9));
             }
             set
             {
@@ -102,7 +102,7 @@ namespace MapleStory.OpenAPI.KMS.DTO
             }
         }
 
-        private DateTimeOffset _characterDateCreate;
+        private DateTimeOffset? _characterDateCreate;
 
         /// <summary>
         /// 최근 7일간 접속 여부

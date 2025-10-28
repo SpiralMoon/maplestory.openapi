@@ -10,7 +10,7 @@ export type CharacterBasicBody = {
   character_exp_rate: string;
   character_guild_name: string | null;
   character_image: string;
-  character_date_create: string;
+  character_date_create: string | null;
   access_flag: 'true' | 'false';
   liberation_quest_clear_flag: 'true' | 'false';
 };

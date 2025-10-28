@@ -63,7 +63,7 @@ export class CharacterBasicDto extends base.CharacterBasicDto {
   /**
    * 角色建立日期 (TST，每日資料中的小時與分鐘將顯示為 0)
    */
-  public override characterDateCreate: Date;
+  public override characterDateCreate: Date | null;
 
   /**
    * 過去 7 天的登入狀態 (true：已登入，false：未登入)
@@ -106,7 +106,7 @@ export class CharacterBasicDto extends base.CharacterBasicDto {
     this.characterExpRate = character_exp_rate;
     this.characterGuildName = character_guild_name;
     this.characterImage = character_image;
-    this.characterDateCreate = new Date(character_date_create);
+    this.characterDateCreate = character_date_create ? new Date(character_date_create) : null;
     this.accessFlag = access_flag;
     this.liberationQuestClear = liberation_quest_clear;
   }

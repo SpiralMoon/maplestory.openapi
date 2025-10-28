@@ -90,11 +90,11 @@ namespace MapleStory.OpenAPI.TMS.DTO
         /// 角色建立日期 (TST，每日資料中的小時與分鐘將顯示為 0)
         /// </summary>
         [JsonProperty("character_date_create")]
-        public override DateTimeOffset CharacterDateCreate
+        public override DateTimeOffset? CharacterDateCreate
         {
             get
             {
-                return _characterDateCreate.ToOffset(TimeSpan.FromHours(8));
+                return _characterDateCreate?.ToOffset(TimeSpan.FromHours(9));
             }
             set
             {
@@ -102,7 +102,7 @@ namespace MapleStory.OpenAPI.TMS.DTO
             }
         }
 
-        private DateTimeOffset _characterDateCreate;
+        private DateTimeOffset? _characterDateCreate;
 
         /// <summary>
         /// 過去 7 天的登入狀態 (true：已登入，false：未登入)

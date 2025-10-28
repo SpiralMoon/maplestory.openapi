@@ -90,11 +90,11 @@ namespace MapleStory.OpenAPI.MSEA.DTO
         /// Character creation date (SGT, daily data with hours and minutes set to 0)
         /// </summary>
         [JsonProperty("character_date_create")]
-        public override DateTimeOffset CharacterDateCreate
+        public override DateTimeOffset? CharacterDateCreate
         {
             get
             {
-                return _characterDateCreate.ToOffset(TimeSpan.FromHours(8));
+                return _characterDateCreate?.ToOffset(TimeSpan.FromHours(9));
             }
             set
             {
@@ -102,7 +102,7 @@ namespace MapleStory.OpenAPI.MSEA.DTO
             }
         }
 
-        private DateTimeOffset _characterDateCreate;
+        private DateTimeOffset? _characterDateCreate;
 
         /// <summary>
         /// Login status in the past 7 days (true:logged in, false:not logged in)
