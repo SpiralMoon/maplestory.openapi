@@ -108,6 +108,28 @@ public class CharacterCashItemEquipmentPresetDTO implements dev.spiralmoon.maple
     private List<String> skills;
 
     /**
+     * 現金道具有效期間 (TST)
+     */
+    public ZonedDateTime getDateExpire() {
+        if (this.dateExpire != null && !"expired".equals(this.dateExpire)) {
+            return Utils.toZonedDateTime(this.dateExpire);
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * 現金道具選項有效期間 (TST，時間單位資料中的分鐘顯示為 0)
+     */
+    public ZonedDateTime getDateOptionExpire() {
+        if (this.dateOptionExpire != null && !"expired".equals(this.dateOptionExpire)) {
+            return Utils.toZonedDateTime(this.dateOptionExpire);
+        } else {
+            return null;
+        }
+    }
+
+    /**
      * Whether the cash equipment is expired
      */
     public Boolean isExpired() {
