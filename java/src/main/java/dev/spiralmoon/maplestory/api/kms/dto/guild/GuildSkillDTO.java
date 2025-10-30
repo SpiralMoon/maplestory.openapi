@@ -1,14 +1,16 @@
 package dev.spiralmoon.maplestory.api.kms.dto.guild;
 
-import com.google.gson.annotations.SerializedName;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 /**
  * 길드 스킬 정보
  */
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
 @ToString
 public class GuildSkillDTO implements dev.spiralmoon.maplestory.api.common.dto.guild.GuildSkillDTO {
@@ -16,30 +18,30 @@ public class GuildSkillDTO implements dev.spiralmoon.maplestory.api.common.dto.g
     /**
      * 스킬 명
      */
-    @SerializedName("skill_name")
+    @JsonProperty("skill_name")
     private String skillName;
 
     /**
      * 스킬 설명
      */
-    @SerializedName("skill_description")
+    @JsonProperty("skill_description")
     private String skillDescription;
 
     /**
      * 스킬 레벨
      */
-    @SerializedName("skill_level")
+    @JsonProperty("skill_level")
     private long skillLevel;
 
     /**
      * 스킬 레벨 별 효과
      */
-    @SerializedName("skill_effect")
+    @JsonProperty("skill_effect")
     private String skillEffect;
 
     /**
      * 스킬 아이콘
      */
-    @SerializedName("skill_icon")
+    @JsonProperty("skill_icon")
     private String skillIcon;
 }

@@ -1,9 +1,10 @@
 package dev.spiralmoon.maplestory.api.tms.dto.character;
 
-import com.google.gson.annotations.SerializedName;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import dev.spiralmoon.maplestory.api.Utils;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.time.ZonedDateTime;
@@ -12,6 +13,7 @@ import java.time.ZonedDateTime;
  * 稱號資訊
  */
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
 @ToString
 public class CharacterItemEquipmentTitleDTO implements dev.spiralmoon.maplestory.api.common.dto.character.CharacterItemEquipmentTitleDTO {
@@ -19,26 +21,32 @@ public class CharacterItemEquipmentTitleDTO implements dev.spiralmoon.maplestory
     /**
      * 稱號道具名稱
      */
-    @SerializedName("title_name")
+    @JsonProperty("title_name")
     private String titleName;
 
     /**
      * 稱號圖示
      */
-    @SerializedName("title_icon")
+    @JsonProperty("title_icon")
     private String titleIcon;
 
     /**
      * 稱號描述
      */
-    @SerializedName("title_description")
+    @JsonProperty("title_description")
     private String titleDescription;
 
     /**
      * 稱號有效期間 (TST)
      */
-    @SerializedName("date_expire")
+    @JsonProperty("date_expire")
     private String dateExpire;
+
+    /**
+     * 稱號選項有效期間 (TST)
+     */
+    @JsonProperty("date_option_expire")
+    private String dateOptionExpire;
 
     /**
      * 稱號有效期間 (TST)
@@ -54,12 +62,6 @@ public class CharacterItemEquipmentTitleDTO implements dev.spiralmoon.maplestory
     /**
      * 稱號選項有效期間 (expired：已到期，null：無限期) (TST)
      */
-    @SerializedName("date_option_expire")
-    private String dateOptionExpire;
-
-    /**
-     * 稱號選項有效期間 (expired：已到期，null：無限期) (TST)
-     */
     public ZonedDateTime getDateOptionExpire() {
         if (this.dateOptionExpire != null && !"expired".equals(this.dateOptionExpire)) {
             return Utils.toZonedDateTime(this.dateOptionExpire);
@@ -71,23 +73,23 @@ public class CharacterItemEquipmentTitleDTO implements dev.spiralmoon.maplestory
     /**
      * 外型設定中已登錄稱號的道具名稱
      */
-    @SerializedName("title_shape_name")
+    @JsonProperty("title_shape_name")
     private String titleShapeName;
 
     /**
      * 外型設定中已登錄稱號的圖示
      */
-    @SerializedName("title_shape_icon")
+    @JsonProperty("title_shape_icon")
     private String titleShapeIcon;
 
     /**
      * 外型設定中已登錄稱號的描述
      */
-    @SerializedName("title_shape_description")
+    @JsonProperty("title_shape_description")
     private String titleShapeDescription;
 
     /**
-     * Whether the Android cash item is expired
+     * Whether the title is expired
      */
     public Boolean isExpired() {
 
@@ -99,7 +101,7 @@ public class CharacterItemEquipmentTitleDTO implements dev.spiralmoon.maplestory
     }
 
     /**
-     * Whether the Android cash item option is expired
+     * Whether the title option is expired
      */
     public Boolean isOptionExpired() {
 

@@ -1,14 +1,16 @@
 package dev.spiralmoon.maplestory.api.kms.dto.union;
 
-import com.google.gson.annotations.SerializedName;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 /**
  * 유니온 블록이 차지하고 있는 영역 좌표들
  */
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
 @ToString
 public class UnionRaiderBlockPositionDTO implements dev.spiralmoon.maplestory.api.common.dto.union.UnionRaiderBlockPositionDTO {
@@ -16,12 +18,12 @@ public class UnionRaiderBlockPositionDTO implements dev.spiralmoon.maplestory.ap
     /**
      * 블록 X좌표
      */
-    @SerializedName("x")
+    @JsonProperty("x")
     private long x;
 
     /**
      * 블록 Y좌표
      */
-    @SerializedName("y")
+    @JsonProperty("y")
     private long y;
 }

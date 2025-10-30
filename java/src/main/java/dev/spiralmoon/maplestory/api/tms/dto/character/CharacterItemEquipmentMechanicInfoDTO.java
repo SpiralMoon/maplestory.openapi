@@ -1,9 +1,10 @@
 package dev.spiralmoon.maplestory.api.tms.dto.character;
 
-import com.google.gson.annotations.SerializedName;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import dev.spiralmoon.maplestory.api.Utils;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.time.ZonedDateTime;
@@ -12,6 +13,7 @@ import java.time.ZonedDateTime;
  * 機甲戰神道具資訊 (僅在機甲戰神時回應)
  */
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
 @ToString
 public class CharacterItemEquipmentMechanicInfoDTO implements dev.spiralmoon.maplestory.api.common.dto.character.CharacterItemEquipmentMechanicInfoDTO<
@@ -25,169 +27,169 @@ public class CharacterItemEquipmentMechanicInfoDTO implements dev.spiralmoon.map
     /**
      * 道具部位名稱
      */
-    @SerializedName("item_equipment_part")
+    @JsonProperty("item_equipment_part")
     private String itemEquipmentPart;
 
     /**
      * 道具欄位位置
      */
-    @SerializedName("item_equipment_slot")
+    @JsonProperty("item_equipment_slot")
     private String itemEquipmentSlot;
 
     /**
      * 道具名稱
      */
-    @SerializedName("item_name")
+    @JsonProperty("item_name")
     private String itemName;
 
     /**
      * 道具圖示
      */
-    @SerializedName("item_icon")
+    @JsonProperty("item_icon")
     private String itemIcon;
 
     /**
      * 道具描述
      */
-    @SerializedName("item_description")
+    @JsonProperty("item_description")
     private String itemDescription;
 
     /**
      * 道具外型
      */
-    @SerializedName("item_shape_name")
+    @JsonProperty("item_shape_name")
     private String itemShapeName;
 
     /**
      * 道具外型圖示
      */
-    @SerializedName("item_shape_icon")
+    @JsonProperty("item_shape_icon")
     private String itemShapeIcon;
 
     /**
      * 性別限定
      */
-    @SerializedName("item_gender")
+    @JsonProperty("item_gender")
     private String itemGender;
 
     /**
      * 道具最終選項資訊
      */
-    @SerializedName("item_total_option")
+    @JsonProperty("item_total_option")
     private CharacterItemEquipmentTotalOptionDTO itemTotalOption;
 
     /**
      * 道具基本選項資訊
      */
-    @SerializedName("item_base_option")
+    @JsonProperty("item_base_option")
     private CharacterItemEquipmentBaseOptionDTO itemBaseOption;
 
     /**
      * 裝備等級增加
      */
-    @SerializedName("equipment_level_increase")
+    @JsonProperty("equipment_level_increase")
     private long equipmentLevelIncrease;
 
     /**
      * 道具特殊選項資訊
      */
-    @SerializedName("item_exceptional_option")
+    @JsonProperty("item_exceptional_option")
     private CharacterItemEquipmentExceptionalOptionDTO itemExceptionalOption;
 
     /**
      * 附加道具選項
      */
-    @SerializedName("item_add_option")
+    @JsonProperty("item_add_option")
     private CharacterItemEquipmentAddOptionDTO itemAddOption;
 
     /**
      * 成長經驗值
      */
-    @SerializedName("growth_exp")
+    @JsonProperty("growth_exp")
     private long growthExp;
 
     /**
      * 成長等級
      */
-    @SerializedName("growth_level")
+    @JsonProperty("growth_level")
     private long growthLevel;
 
     /**
      * 強化次數
      */
-    @SerializedName("scroll_upgrade")
+    @JsonProperty("scroll_upgrade")
     private String scrollUpgrade;
 
     /**
      * 可使用剪刀的次數 (不可交易道具、可交易但從未使用剪刀的道具：255)
      */
-    @SerializedName("cuttable_count")
+    @JsonProperty("cuttable_count")
     private String cuttableCount;
 
     /**
      * 黃金鐵鎚精煉 (true：已套用，false：未套用)
      */
-    @SerializedName("golden_hammer_flag")
+    @JsonProperty("golden_hammer_flag")
     private String goldenHammerFlag;
 
     /**
      * 道具可復原次數
      */
-    @SerializedName("scroll_resilience_count")
+    @JsonProperty("scroll_resilience_count")
     private String scrollResilienceCount;
 
     /**
      * 道具可升級次數
      */
-    @SerializedName("scroll_upgradeable_count")
+    @JsonProperty("scroll_upgradeable_count")
     private String scrollUpgradeableCount;
 
     /**
      * 靈魂名稱
      */
-    @SerializedName("soul_name")
+    @JsonProperty("soul_name")
     private String soulName;
 
     /**
      * 靈魂選項
      */
-    @SerializedName("soul_option")
+    @JsonProperty("soul_option")
     private String soulOption;
 
     /**
      * 道具其他選項資訊
      */
-    @SerializedName("item_etc_option")
+    @JsonProperty("item_etc_option")
     private CharacterItemEquipmentEtcOptionDTO itemEtcOption;
 
     /**
      * 強化階級
      */
-    @SerializedName("starforce")
+    @JsonProperty("starforce")
     private String starforce;
 
     /**
      * 驚異道具強化卷軸 (true：已使用，false：未使用)
      */
-    @SerializedName("starforce_scroll_flag")
+    @JsonProperty("starforce_scroll_flag")
     private String starforceScrollFlag;
 
     /**
      * 道具星星力量資訊
      */
-    @SerializedName("item_starforce_option")
+    @JsonProperty("item_starforce_option")
     private CharacterItemEquipmentStarforceOptionDTO itemStarforceOption;
 
     /**
      * 特殊戒指等級
      */
-    @SerializedName("special_ring_level")
+    @JsonProperty("special_ring_level")
     private long specialRingLevel;
 
     /**
      * 道具有效期間 (TST)
      */
-    @SerializedName("date_expire")
+    @JsonProperty("date_expire")
     private String dateExpire;
 
     /**

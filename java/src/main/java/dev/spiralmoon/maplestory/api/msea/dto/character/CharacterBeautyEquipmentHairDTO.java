@@ -1,14 +1,16 @@
 package dev.spiralmoon.maplestory.api.msea.dto.character;
 
-import com.google.gson.annotations.SerializedName;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 /**
  * Character hair information
  */
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
 @ToString
 public class CharacterBeautyEquipmentHairDTO implements dev.spiralmoon.maplestory.api.common.dto.character.CharacterBeautyEquipmentHairDTO {
@@ -16,24 +18,24 @@ public class CharacterBeautyEquipmentHairDTO implements dev.spiralmoon.maplestor
     /**
      * Hair name
      */
-    @SerializedName("hair_name")
+    @JsonProperty("hair_name")
     private String hairName;
 
     /**
      * Base hair color
      */
-    @SerializedName("base_color")
+    @JsonProperty("base_color")
     private String baseColor;
 
     /**
      * Mixed hair color
      */
-    @SerializedName("mix_color")
+    @JsonProperty("mix_color")
     private String mixColor;
 
     /**
      * Dye ratio for mixed hair color
      */
-    @SerializedName("mix_rate")
+    @JsonProperty("mix_rate")
     private String mixRate;
 }

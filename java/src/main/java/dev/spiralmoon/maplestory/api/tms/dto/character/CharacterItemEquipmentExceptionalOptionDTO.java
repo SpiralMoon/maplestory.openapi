@@ -1,14 +1,18 @@
 package dev.spiralmoon.maplestory.api.tms.dto.character;
 
-import com.google.gson.annotations.SerializedName;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
+
+import java.util.List;
 
 /**
  * 道具特殊選項資訊
  */
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
 @ToString
 public class CharacterItemEquipmentExceptionalOptionDTO implements dev.spiralmoon.maplestory.api.common.dto.character.CharacterItemEquipmentExceptionalOptionDTO {
@@ -16,54 +20,54 @@ public class CharacterItemEquipmentExceptionalOptionDTO implements dev.spiralmoo
     /**
      * 力量 (STR)
      */
-    @SerializedName("str")
+    @JsonProperty("str")
     private String strength;
 
     /**
      * 敏捷 (DEX)
      */
-    @SerializedName("dex")
+    @JsonProperty("dex")
     private String dexterity;
 
     /**
      * 敏捷 (DEX)
      */
-    @SerializedName("int")
+    @JsonProperty("int")
     private String intelligence;
 
     /**
      * 幸運 (LUK)
      */
-    @SerializedName("luk")
+    @JsonProperty("luk")
     private String luck;
 
     /**
      * 最大體力 (HP)
      */
-    @SerializedName("max_hp")
+    @JsonProperty("max_hp")
     private String maxHp;
 
     /**
      * 最大 MP
      */
-    @SerializedName("max_mp")
+    @JsonProperty("max_mp")
     private String maxMp;
 
     /**
      * 攻擊力
      */
-    @SerializedName("attack_power")
+    @JsonProperty("attack_power")
     private String attackPower;
 
     /**
      * 魔力
      */
-    @SerializedName("magic_power")
+    @JsonProperty("magic_power")
     private String magicPower;
 
     /**
      * 已套用的卓越強化次數
      */
-    @SerializedName("exceptional_upgrade")
+    @JsonProperty("exceptional_upgrade")
     private int exceptionalUpgrade;
 }

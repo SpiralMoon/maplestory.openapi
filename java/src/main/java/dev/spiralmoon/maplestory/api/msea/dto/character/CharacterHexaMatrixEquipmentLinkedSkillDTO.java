@@ -1,14 +1,16 @@
 package dev.spiralmoon.maplestory.api.msea.dto.character;
 
-import com.google.gson.annotations.SerializedName;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 /**
  * Linked skill
  */
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
 @ToString
 public class CharacterHexaMatrixEquipmentLinkedSkillDTO implements dev.spiralmoon.maplestory.api.common.dto.character.CharacterHexaMatrixEquipmentLinkedSkillDTO {
@@ -16,6 +18,6 @@ public class CharacterHexaMatrixEquipmentLinkedSkillDTO implements dev.spiralmoo
     /**
      * HEXA Skill name
      */
-    @SerializedName("hexa_skill_id")
+    @JsonProperty("hexa_skill_id")
     private String hexaSkillId;
 }

@@ -1,8 +1,11 @@
 package dev.spiralmoon.maplestory.api.tms.dto.union;
 
-import com.google.gson.annotations.SerializedName;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.annotation.Nulls;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.util.List;
@@ -11,6 +14,7 @@ import java.util.List;
  * 聯盟方塊資訊
  */
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
 @ToString
 public class UnionRaiderBlockDTO implements dev.spiralmoon.maplestory.api.common.dto.union.UnionRaiderBlockDTO<UnionRaiderBlockControlPointDTO, UnionRaiderBlockPositionDTO> {
@@ -18,30 +22,31 @@ public class UnionRaiderBlockDTO implements dev.spiralmoon.maplestory.api.common
     /**
      * 方塊編制 (戰士、法師、弓箭手、盜賊、海盜、混合)
      */
-    @SerializedName("block_type")
+    @JsonProperty("block_type")
     private String blockType;
 
     /**
      * 方塊角色職業
      */
-    @SerializedName("block_class")
+    @JsonProperty("block_class")
     private String blockClass;
 
     /**
      * 方塊角色等級
      */
-    @SerializedName("block_level")
+    @JsonProperty("block_level")
     private String blockLevel;
 
     /**
      * 方塊基準點座標
      */
-    @SerializedName("block_control_point")
+    @JsonProperty("block_control_point")
     private UnionRaiderBlockControlPointDTO blockControlPoint;
 
     /**
      * 方塊佔領區域的座標 (null：未部署時)
      */
-    @SerializedName("block_position")
+    @JsonProperty("block_position")
+    @JsonSetter(nulls = Nulls.AS_EMPTY)
     private List<UnionRaiderBlockPositionDTO> blockPosition;
 }

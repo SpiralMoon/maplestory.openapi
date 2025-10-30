@@ -1,11 +1,12 @@
 package dev.spiralmoon.maplestory.api.msea.dto.character;
 
-import com.google.gson.annotations.SerializedName;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import dev.spiralmoon.maplestory.api.common.enums.CharacterImageAction;
 import dev.spiralmoon.maplestory.api.common.enums.CharacterImageEmotion;
 import dev.spiralmoon.maplestory.api.common.enums.CharacterImageWeaponMotion;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.time.ZonedDateTime;
@@ -14,6 +15,7 @@ import java.time.ZonedDateTime;
  * Character image information
  */
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
 @ToString
 public class CharacterImageDTO implements dev.spiralmoon.maplestory.api.common.dto.character.CharacterImageDTO {
@@ -21,78 +23,78 @@ public class CharacterImageDTO implements dev.spiralmoon.maplestory.api.common.d
     /**
      * Reference date for query (SGT, daily data with hours and minutes set to 0)
      */
-    @SerializedName("date")
+    @JsonProperty("date")
     private ZonedDateTime date;
 
     /**
      * Character image original (URL)
      */
-    @SerializedName("origin_url")
+    @JsonProperty("origin_url")
     private String originUrl;
 
     /**
      * Character image original (base64)
      */
-    @SerializedName("origin_image")
+    @JsonProperty("origin_image")
     private String originImage;
 
     /**
      * Character image (base64)
      */
-    @SerializedName("image")
+    @JsonProperty("image")
     private String image;
 
     /**
      * Character action
      */
-    @SerializedName("action")
+    @JsonProperty("action")
     private CharacterImageAction action;
 
     /**
      * Character emotion
      */
-    @SerializedName("emotion")
+    @JsonProperty("emotion")
     private CharacterImageEmotion emotion;
 
     /**
      * Character weapon motion
      */
-    @SerializedName("wmotion")
+    @JsonProperty("wmotion")
     private CharacterImageWeaponMotion wmotion;
 
     /**
      * Character action frame
      */
-    @SerializedName("action_frame")
+    @JsonProperty("action_frame")
     private int actionFrame;
 
     /**
      * Character emotion frame
      */
-    @SerializedName("emotion_frame")
+    @JsonProperty("emotion_frame")
     private int emotionFrame;
 
     /**
      * Horizontal length (corresponding to the background size, 96 (default) ~ 1000)
      */
-    @SerializedName("width")
+    @JsonProperty("width")
     private Integer width;
 
     /**
      * Vertical length (corresponding to the background size, 96 (default) ~ 1000)
      */
-    @SerializedName("height")
+    @JsonProperty("height")
     private Integer height;
 
     /**
      * Horizontal coordinate of the character
      */
-    @SerializedName("x")
+    @JsonProperty("x")
     private Integer x;
 
     /**
      * Vertical coordinate of the character
      */
-    @SerializedName("y")
+    @JsonProperty("y")
     private Integer y;
 }

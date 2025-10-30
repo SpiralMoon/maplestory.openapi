@@ -1,14 +1,16 @@
 package dev.spiralmoon.maplestory.api.kms.dto.guild;
 
-import com.google.gson.annotations.SerializedName;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 /**
  * 길드 식별자 정보
  */
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
 @ToString
 public class GuildDTO implements dev.spiralmoon.maplestory.api.common.dto.guild.GuildDTO {
@@ -16,7 +18,7 @@ public class GuildDTO implements dev.spiralmoon.maplestory.api.common.dto.guild.
     /**
      * 길드 식별자
      */
-    @SerializedName("oguild_id")
+    @JsonProperty("oguild_id")
     private String oGuildId;
 }
 

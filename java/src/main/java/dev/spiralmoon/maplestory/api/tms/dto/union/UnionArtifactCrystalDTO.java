@@ -1,9 +1,10 @@
 package dev.spiralmoon.maplestory.api.tms.dto.union;
 
-import com.google.gson.annotations.SerializedName;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import dev.spiralmoon.maplestory.api.Utils;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.time.ZonedDateTime;
@@ -12,6 +13,7 @@ import java.time.ZonedDateTime;
  * 神器水晶資訊
  */
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
 @ToString
 public class UnionArtifactCrystalDTO implements dev.spiralmoon.maplestory.api.common.dto.union.UnionArtifactCrystalDTO {
@@ -19,43 +21,43 @@ public class UnionArtifactCrystalDTO implements dev.spiralmoon.maplestory.api.co
     /**
      * 神器水晶名稱
      */
-    @SerializedName("name")
+    @JsonProperty("name")
     private String name;
 
     /**
      * 能力有效性 (0：有效，1：無效)
      */
-    @SerializedName("validity_flag")
+    @JsonProperty("validity_flag")
     private String validityFlag;
 
     /**
      * 能力有效期間 (TST)
      */
-    @SerializedName("date_expire")
+    @JsonProperty("date_expire")
     private String dateExpire;
 
     /**
      * 神器水晶階級
      */
-    @SerializedName("level")
+    @JsonProperty("level")
     private int level;
 
     /**
      * 神器水晶第一選項名稱
      */
-    @SerializedName("crystal_option_name_1")
+    @JsonProperty("crystal_option_name_1")
     private String crystalOptionName1;
 
     /**
      * 神器水晶第二選項名稱
      */
-    @SerializedName("crystal_option_name_2")
+    @JsonProperty("crystal_option_name_2")
     private String crystalOptionName2;
 
     /**
      * 神器水晶第三選項名稱
      */
-    @SerializedName("crystal_option_name_3")
+    @JsonProperty("crystal_option_name_3")
     private String crystalOptionName3;
 
     /**

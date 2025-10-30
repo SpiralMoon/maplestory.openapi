@@ -1,14 +1,16 @@
 package dev.spiralmoon.maplestory.api.kms.dto.character;
 
-import com.google.gson.annotations.SerializedName;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 /**
  * 캐릭터 안드로이드 피부 정보
  */
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
 @ToString
 public class CharacterAndroidEquipmentSkinDTO implements dev.spiralmoon.maplestory.api.common.dto.character.CharacterAndroidEquipmentSkinDTO {
@@ -16,30 +18,30 @@ public class CharacterAndroidEquipmentSkinDTO implements dev.spiralmoon.maplesto
     /**
      * 피부 명
      */
-    @SerializedName("skin_name")
+    @JsonProperty("skin_name")
     private String skinName;
 
     /**
      * 색상 계열
      */
-    @SerializedName("color_style")
+    @JsonProperty("color_style")
     private String colorStyle;
 
     /**
      * 피부 색조
      */
-    @SerializedName("hue")
+    @JsonProperty("hue")
     private Integer hue;
 
     /**
      * 피부 채도
      */
-    @SerializedName("saturation")
+    @JsonProperty("saturation")
     private Integer saturation;
 
     /**
      * 피부 명도
      */
-    @SerializedName("brightness")
+    @JsonProperty("brightness")
     private Integer brightness;
 }

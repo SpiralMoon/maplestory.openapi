@@ -1,9 +1,10 @@
 package dev.spiralmoon.maplestory.api.msea.dto.character;
 
-import com.google.gson.annotations.SerializedName;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import dev.spiralmoon.maplestory.api.Utils;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.time.ZonedDateTime;
@@ -12,6 +13,7 @@ import java.time.ZonedDateTime;
  * Character basic information
  */
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
 @ToString
 public class CharacterBasicDTO implements dev.spiralmoon.maplestory.api.common.dto.character.CharacterBasicDTO {
@@ -19,85 +21,85 @@ public class CharacterBasicDTO implements dev.spiralmoon.maplestory.api.common.d
     /**
      * Reference date for query (SGT, daily data with hours and minutes set to 0)
      */
-    @SerializedName("date")
+    @JsonProperty("date")
     private String date;
 
     /**
      * Character name
      */
-    @SerializedName("character_name")
+    @JsonProperty("character_name")
     private String characterName;
 
     /**
      * World name
      */
-    @SerializedName("world_name")
+    @JsonProperty("world_name")
     private String worldName;
 
     /**
      * Character gender
      */
-    @SerializedName("character_gender")
+    @JsonProperty("character_gender")
     private String characterGender;
 
     /**
      * Character job
      */
-    @SerializedName("character_class")
+    @JsonProperty("character_class")
     private String characterClass;
 
     /**
      * Character job advancement tier
      */
-    @SerializedName("character_class_level")
+    @JsonProperty("character_class_level")
     private String characterClassLevel;
 
     /**
      * Character level
      */
-    @SerializedName("character_level")
+    @JsonProperty("character_level")
     private long characterLevel;
 
     /**
      * Experience points gained at the current level
      */
-    @SerializedName("character_exp")
+    @JsonProperty("character_exp")
     private long characterExp;
 
     /**
      * Percentage of experience points at the current level
      */
-    @SerializedName("character_exp_rate")
+    @JsonProperty("character_exp_rate")
     private String characterExpRate;
 
     /**
      * Guild name the character belongs to
      */
-    @SerializedName("character_guild_name")
+    @JsonProperty("character_guild_name")
     private String characterGuildName;
 
     /**
      * Character appearance image
      */
-    @SerializedName("character_image")
+    @JsonProperty("character_image")
     private String characterImage;
 
     /**
      * Character creation date (SGT, daily data with hours and minutes set to 0)
      */
-    @SerializedName("character_date_create")
+    @JsonProperty("character_date_create")
     private String characterDateCreate;
 
     /**
      * Login status in the past 7 days (true:logged in, false:not logged in)
      */
-    @SerializedName("access_flag")
+    @JsonProperty("access_flag")
     private String accessFlag;
 
     /**
      * Liberation quest completion status (true:completed, false:not completed)
      */
-    @SerializedName("liberation_quest_clear_flag")
+    @JsonProperty("liberation_quest_clear_flag")
     private String liberationQuestClearFlag;
 
     /**

@@ -1,9 +1,12 @@
 package dev.spiralmoon.maplestory.api.kms.dto.character;
 
-import com.google.gson.annotations.SerializedName;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.annotation.Nulls;
 import dev.spiralmoon.maplestory.api.Utils;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.time.ZonedDateTime;
@@ -13,6 +16,7 @@ import java.util.List;
  * 캐릭터 세트 효과 정보
  */
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
 @ToString
 public class CharacterSetEffectDTO implements dev.spiralmoon.maplestory.api.common.dto.character.CharacterSetEffectDTO<
@@ -21,13 +25,14 @@ public class CharacterSetEffectDTO implements dev.spiralmoon.maplestory.api.comm
     /**
      * 조회 기준일 (KST, 일 단위 데이터로 시, 분은 일괄 0으로 표기)
      */
-    @SerializedName("date")
+    @JsonProperty("date")
     private String date;
 
     /**
      * 세트 효과 정보 목록
      */
-    @SerializedName("set_effect")
+    @JsonProperty("set_effect")
+    @JsonSetter(nulls = Nulls.AS_EMPTY)
     private List<CharacterSetEffectSetDTO> setEffect;
 
     /**

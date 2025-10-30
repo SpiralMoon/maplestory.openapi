@@ -1,9 +1,12 @@
 package dev.spiralmoon.maplestory.api.msea.dto.character;
 
-import com.google.gson.annotations.SerializedName;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.annotation.Nulls;
 import dev.spiralmoon.maplestory.api.Utils;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.time.ZonedDateTime;
@@ -13,6 +16,7 @@ import java.util.List;
  * Character equipped pet information
  */
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
 @ToString
 public class CharacterPetEquipmentDTO implements dev.spiralmoon.maplestory.api.common.dto.character.CharacterPetEquipmentDTO<
@@ -21,205 +25,208 @@ public class CharacterPetEquipmentDTO implements dev.spiralmoon.maplestory.api.c
     /**
      * Reference date for query (SGT, daily data with hours and minutes set to 0)
      */
-    @SerializedName("date")
+    @JsonProperty("date")
     private String date;
 
     /**
      * Name of pet 1
      */
-    @SerializedName("pet_1_name")
+    @JsonProperty("pet_1_name")
     private String pet1Name;
 
     /**
      * Nickname of pet 1
      */
-    @SerializedName("pet_1_nickname")
+    @JsonProperty("pet_1_nickname")
     private String pet1Nickname;
 
     /**
      * Icon of pet 1
      */
-    @SerializedName("pet_1_icon")
+    @JsonProperty("pet_1_icon")
     private String pet1Icon;
 
     /**
      * Description of pet 1
      */
-    @SerializedName("pet_1_description")
+    @JsonProperty("pet_1_description")
     private String pet1Description;
 
     /**
      * Equipment information for pet 1
      */
-    @SerializedName("pet_1_equipment")
+    @JsonProperty("pet_1_equipment")
     private CharacterPetEquipmentItemDTO pet1Equipment;
 
     /**
      * Auto buff skill information for pet 1
      */
-    @SerializedName("pet_1_auto_skill")
+    @JsonProperty("pet_1_auto_skill")
     private CharacterPetEquipmentAutoSkillDTO pet1AutoSkill;
 
     /**
      * Wonder pet type of pet 1
      */
-    @SerializedName("pet_1_pet_type")
+    @JsonProperty("pet_1_pet_type")
     private String pet1PetType;
 
     /**
      * Skills possessed by pet 1
      */
-    @SerializedName("pet_1_skill")
+    @JsonProperty("pet_1_skill")
+    @JsonSetter(nulls = Nulls.AS_EMPTY)
     private List<String> pet1Skill;
 
     /**
      * Magic time for pet 1 (SGT, data with minutes set to 0)
      */
-    @SerializedName("pet_1_date_expire")
+    @JsonProperty("pet_1_date_expire")
     private String pet1DateExpire;
 
     /**
      * Appearance of pet 1
      */
-    @SerializedName("pet_1_appearance")
+    @JsonProperty("pet_1_appearance")
     private String pet1Appearance;
 
     /**
      * Appearance icon of pet 1
      */
-    @SerializedName("pet_1_appearance_icon")
+    @JsonProperty("pet_1_appearance_icon")
     private String Pet1AppearanceIcon;
 
     /**
      * Name of pet 2
      */
-    @SerializedName("pet_2_name")
+    @JsonProperty("pet_2_name")
     private String pet2Name;
 
     /**
      * Nickname of pet 2
      */
-    @SerializedName("pet_2_nickname")
+    @JsonProperty("pet_2_nickname")
     private String pet2Nickname;
 
     /**
      * Icon of pet 2
      */
-    @SerializedName("pet_2_icon")
+    @JsonProperty("pet_2_icon")
     private String pet2Icon;
 
     /**
      * Description of pet 2
      */
-    @SerializedName("pet_2_description")
+    @JsonProperty("pet_2_description")
     private String pet2Description;
 
     /**
      * Equipment information for pet 2
      */
-    @SerializedName("pet_2_equipment")
+    @JsonProperty("pet_2_equipment")
     private CharacterPetEquipmentItemDTO pet2Equipment;
 
     /**
      * Auto buff skill information for pet 2
      */
-    @SerializedName("pet_2_auto_skill")
+    @JsonProperty("pet_2_auto_skill")
     private CharacterPetEquipmentAutoSkillDTO pet2AutoSkill;
 
     /**
      * Wonder pet type of pet 2
      */
-    @SerializedName("pet_2_pet_type")
+    @JsonProperty("pet_2_pet_type")
     private String pet2PetType;
 
     /**
      * Skills possessed by pet 2
      */
-    @SerializedName("pet_2_skill")
+    @JsonProperty("pet_2_skill")
+    @JsonSetter(nulls = Nulls.AS_EMPTY)
     private List<String> pet2Skill;
 
     /**
      * Magic time for pet 2 (SGT, data with minutes set to 0)
      */
-    @SerializedName("pet_2_date_expire")
+    @JsonProperty("pet_2_date_expire")
     private String pet2DateExpire;
 
     /**
      * Appearance of pet 2
      */
-    @SerializedName("pet_2_appearance")
+    @JsonProperty("pet_2_appearance")
     private String pet2Appearance;
 
     /**
      * Appearance icon of pet 2
      */
-    @SerializedName("pet_2_appearance_icon")
+    @JsonProperty("pet_2_appearance_icon")
     private String Pet2AppearanceIcon;
 
     /**
      * Name of pet 3
      */
-    @SerializedName("pet_3_name")
+    @JsonProperty("pet_3_name")
     private String pet3Name;
 
     /**
      * Nickname of pet 3
      */
-    @SerializedName("pet_3_nickname")
+    @JsonProperty("pet_3_nickname")
     private String pet3Nickname;
 
     /**
      * Icon of pet 3
      */
-    @SerializedName("pet_3_icon")
+    @JsonProperty("pet_3_icon")
     private String pet3Icon;
 
     /**
      * Description of pet 3
      */
-    @SerializedName("pet_3_description")
+    @JsonProperty("pet_3_description")
     private String pet3Description;
 
     /**
      * Equipment information for pet 3
      */
-    @SerializedName("pet_3_equipment")
+    @JsonProperty("pet_3_equipment")
     private CharacterPetEquipmentItemDTO pet3Equipment;
 
     /**
      * Auto buff skill information for pet 3
      */
-    @SerializedName("pet_3_auto_skill")
+    @JsonProperty("pet_3_auto_skill")
     private CharacterPetEquipmentAutoSkillDTO pet3AutoSkill;
 
     /**
      * Wonder pet type of pet 3
      */
-    @SerializedName("pet_3_pet_type")
+    @JsonProperty("pet_3_pet_type")
     private String pet3PetType;
 
     /**
      * Skills possessed by pet 3
      */
-    @SerializedName("pet_3_skill")
+    @JsonProperty("pet_3_skill")
+    @JsonSetter(nulls = Nulls.AS_EMPTY)
     private List<String> pet3Skill;
 
     /**
      * Magic time for pet 3 (SGT, data with minutes set to 0)
      */
-    @SerializedName("pet_3_date_expire")
+    @JsonProperty("pet_3_date_expire")
     private String pet3DateExpire;
 
     /**
      * Appearance of pet 3
      */
-    @SerializedName("pet_3_appearance")
+    @JsonProperty("pet_3_appearance")
     private String pet3Appearance;
 
     /**
      * Appearance icon of pet 3
      */
-    @SerializedName("pet_3_appearance_icon")
+    @JsonProperty("pet_3_appearance_icon")
     private String Pet3AppearanceIcon;
 
     /**

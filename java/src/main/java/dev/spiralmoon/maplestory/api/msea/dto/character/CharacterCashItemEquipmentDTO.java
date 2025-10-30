@@ -1,9 +1,12 @@
 package dev.spiralmoon.maplestory.api.msea.dto.character;
 
-import com.google.gson.annotations.SerializedName;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.annotation.Nulls;
 import dev.spiralmoon.maplestory.api.Utils;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.time.ZonedDateTime;
@@ -13,6 +16,7 @@ import java.util.List;
  * Character cash item equipment information
  */
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
 @ToString
 public class CharacterCashItemEquipmentDTO implements dev.spiralmoon.maplestory.api.common.dto.character.CharacterCashItemEquipmentDTO<
@@ -21,79 +25,87 @@ public class CharacterCashItemEquipmentDTO implements dev.spiralmoon.maplestory.
     /**
      * Reference date for query (SGT, daily data with hours and minutes set to 0)
      */
-    @SerializedName("date")
+    @JsonProperty("date")
     private String date;
 
     /**
      * Character gender
      */
-    @SerializedName("character_gender")
+    @JsonProperty("character_gender")
     private String characterGender;
 
     /**
      * Character job
      */
-    @SerializedName("character_class")
+    @JsonProperty("character_class")
     private String characterClass;
 
     /**
      * Character appearance mode (0:Normal mode, 1:Beta for Zero, Dress-up mode for Angelic Buster)
      */
-    @SerializedName("character_look_mode")
+    @JsonProperty("character_look_mode")
     private String characterLookMode;
 
     /**
      * Preset number for equipped cash item
      */
-    @SerializedName("preset_no")
+    @JsonProperty("preset_no")
     private Integer presetNo;
 
     /**
      * Equipped cash item
      */
-    @SerializedName("cash_item_equipment_base")
+    @JsonProperty("cash_item_equipment_base")
+    @JsonSetter(nulls = Nulls.AS_EMPTY)
     private List<CharacterCashItemEquipmentPresetDTO> cashItemEquipmentBase;
 
     /**
      * Cosmetic item preset 1
      */
-    @SerializedName("cash_item_equipment_preset_1")
+    @JsonProperty("cash_item_equipment_preset_1")
+    @JsonSetter(nulls = Nulls.AS_EMPTY)
     private List<CharacterCashItemEquipmentPresetDTO> cashItemEquipmentPreset1;
 
     /**
      * Cosmetic item preset 2
      */
-    @SerializedName("cash_item_equipment_preset_2")
+    @JsonProperty("cash_item_equipment_preset_2")
+    @JsonSetter(nulls = Nulls.AS_EMPTY)
     private List<CharacterCashItemEquipmentPresetDTO> cashItemEquipmentPreset2;
 
     /**
      * Cosmetic item preset 3
      */
-    @SerializedName("cash_item_equipment_preset_3")
+    @JsonProperty("cash_item_equipment_preset_3")
+    @JsonSetter(nulls = Nulls.AS_EMPTY)
     private List<CharacterCashItemEquipmentPresetDTO> cashItemEquipmentPreset3;
 
     /**
      * Equipped cash items for Beta mode (if Zero) or Dress-up mode (if Angelic Buster)
      */
-    @SerializedName("additional_cash_item_equipment_base")
+    @JsonProperty("additional_cash_item_equipment_base")
+    @JsonSetter(nulls = Nulls.AS_EMPTY)
     private List<CharacterCashItemEquipmentPresetDTO> additionalCashItemEquipmentBase;
 
     /**
      * Cosmetic item preset 1 for Beta mode (if Zero) or Dress-up mode (if Angelic Buster)
      */
-    @SerializedName("additional_cash_item_equipment_preset_1")
+    @JsonProperty("additional_cash_item_equipment_preset_1")
+    @JsonSetter(nulls = Nulls.AS_EMPTY)
     private List<CharacterCashItemEquipmentPresetDTO> additionalCashItemEquipmentPreset1;
 
     /**
      * Cosmetic item preset 2 for Beta mode (if Zero) or Dress-up mode (if Angelic Buster)
      */
-    @SerializedName("additional_cash_item_equipment_preset_2")
+    @JsonProperty("additional_cash_item_equipment_preset_2")
+    @JsonSetter(nulls = Nulls.AS_EMPTY)
     private List<CharacterCashItemEquipmentPresetDTO> additionalCashItemEquipmentPreset2;
 
     /**
      * Cosmetic item preset 3 for Beta mode (if Zero) or Dress-up mode (if Angelic Buster)
      */
-    @SerializedName("additional_cash_item_equipment_preset_3")
+    @JsonProperty("additional_cash_item_equipment_preset_3")
+    @JsonSetter(nulls = Nulls.AS_EMPTY)
     private List<CharacterCashItemEquipmentPresetDTO> additionalCashItemEquipmentPreset3;
 
     /**

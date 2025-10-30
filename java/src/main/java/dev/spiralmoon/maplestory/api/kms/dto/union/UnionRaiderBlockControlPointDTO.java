@@ -1,8 +1,9 @@
 package dev.spiralmoon.maplestory.api.kms.dto.union;
 
-import com.google.gson.annotations.SerializedName;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 /**
@@ -14,6 +15,7 @@ import lombok.ToString;
  * - 위로 1칸씩 이동하면 y가 1씩 증가
  */
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
 @ToString
 public class UnionRaiderBlockControlPointDTO implements dev.spiralmoon.maplestory.api.common.dto.union.UnionRaiderBlockControlPointDTO {
@@ -21,12 +23,12 @@ public class UnionRaiderBlockControlPointDTO implements dev.spiralmoon.maplestor
     /**
      * 블록 기준점 X좌표
      */
-    @SerializedName("x")
+    @JsonProperty("x")
     private long x;
 
     /**
      * 블록 기준점 Y좌표
      */
-    @SerializedName("y")
+    @JsonProperty("y")
     private long y;
 }

@@ -1,9 +1,10 @@
 package dev.spiralmoon.maplestory.api.kms.dto.notice;
 
-import com.google.gson.annotations.SerializedName;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import dev.spiralmoon.maplestory.api.Utils;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.time.ZonedDateTime;
@@ -12,6 +13,7 @@ import java.time.ZonedDateTime;
  * 캐시샵 공지 상세
  */
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
 @ToString
 public class CashshopNoticeDetailDTO {
@@ -19,43 +21,43 @@ public class CashshopNoticeDetailDTO {
     /**
      * 공지 제목
      */
-    @SerializedName("id")
+    @JsonProperty("id")
     private String title;
 
     /**
      * 공지 링크
      */
-    @SerializedName("url")
+    @JsonProperty("url")
     private String url;
 
     /**
      * 공지 본문
      */
-    @SerializedName("contents")
+    @JsonProperty("contents")
     private String contents;
 
     /**
      * 공지 등록일
      */
-    @SerializedName("date")
+    @JsonProperty("date")
     private String date;
 
     /**
      * 판매 시작일
      */
-    @SerializedName("date_sale_start")
+    @JsonProperty("date_sale_start")
     private String dateSaleStart;
 
     /**
      * 판매 종료일
      */
-    @SerializedName("date_sale_end")
+    @JsonProperty("date_sale_end")
     private String dateSaleEnd;
 
     /**
      * 상시 판매 여부 (true - 상시)
      */
-    @SerializedName("ongoing_flag")
+    @JsonProperty("ongoing_flag")
     private String ongoingFlag;
 
     /**

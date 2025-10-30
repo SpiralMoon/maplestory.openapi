@@ -1,9 +1,10 @@
 package dev.spiralmoon.maplestory.api.msea.dto.character;
 
-import com.google.gson.annotations.SerializedName;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import dev.spiralmoon.maplestory.api.Utils;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.time.ZonedDateTime;
@@ -12,6 +13,7 @@ import java.time.ZonedDateTime;
  * Character popularity information
  */
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
 @ToString
 public class CharacterPopularityDTO implements dev.spiralmoon.maplestory.api.common.dto.character.CharacterPopularityDTO {
@@ -19,13 +21,13 @@ public class CharacterPopularityDTO implements dev.spiralmoon.maplestory.api.com
     /**
      * Reference date for query (SGT, daily data with hours and minutes set to 0)
      */
-    @SerializedName("date")
+    @JsonProperty("date")
     private String date;
 
     /**
      * Character popularity
      */
-    @SerializedName("popularity")
+    @JsonProperty("popularity")
     private long popularity;
 
     /**

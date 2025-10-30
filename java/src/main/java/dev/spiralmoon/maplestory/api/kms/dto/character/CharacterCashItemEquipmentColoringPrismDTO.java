@@ -1,14 +1,16 @@
 package dev.spiralmoon.maplestory.api.kms.dto.character;
 
-import com.google.gson.annotations.SerializedName;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 /**
  * 캐릭터 캐시 장비 컬러링프리즘
  */
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
 @ToString
 public class CharacterCashItemEquipmentColoringPrismDTO implements dev.spiralmoon.maplestory.api.common.dto.character.CharacterCashItemEquipmentColoringPrismDTO {
@@ -16,24 +18,24 @@ public class CharacterCashItemEquipmentColoringPrismDTO implements dev.spiralmoo
     /**
      * 컬러링프리즘 색상 범위
      */
-    @SerializedName("color_range")
+    @JsonProperty("color_range")
     private String colorRange;
 
     /**
      * 컬러링프리즘 색조
      */
-    @SerializedName("hue")
+    @JsonProperty("hue")
     private long hue;
 
     /**
      * 컬러링프리즘 채도
      */
-    @SerializedName("saturation")
+    @JsonProperty("saturation")
     private long saturation;
 
     /**
      * 컬러링프리즘 명도
      */
-    @SerializedName("value")
+    @JsonProperty("value")
     private long value;
 }
