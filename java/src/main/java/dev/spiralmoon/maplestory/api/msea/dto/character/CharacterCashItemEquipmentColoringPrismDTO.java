@@ -1,14 +1,16 @@
 package dev.spiralmoon.maplestory.api.msea.dto.character;
 
-import com.google.gson.annotations.SerializedName;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 /**
  * Cash equipment coloring prism information
  */
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
 @ToString
 public class CharacterCashItemEquipmentColoringPrismDTO implements dev.spiralmoon.maplestory.api.common.dto.character.CharacterCashItemEquipmentColoringPrismDTO {
@@ -16,24 +18,24 @@ public class CharacterCashItemEquipmentColoringPrismDTO implements dev.spiralmoo
     /**
      * Coloring prism color range
      */
-    @SerializedName("color_range")
+    @JsonProperty("color_range")
     private String colorRange;
 
     /**
      * Coloring prism hue
      */
-    @SerializedName("hue")
+    @JsonProperty("hue")
     private long hue;
 
     /**
      * Coloring prism saturation
      */
-    @SerializedName("saturation")
+    @JsonProperty("saturation")
     private long saturation;
 
     /**
      * Coloring prism brightness
      */
-    @SerializedName("value")
+    @JsonProperty("value")
     private long value;
 }

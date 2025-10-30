@@ -1,9 +1,12 @@
 package dev.spiralmoon.maplestory.api.kms.dto.character;
 
-import com.google.gson.annotations.SerializedName;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.annotation.Nulls;
 import dev.spiralmoon.maplestory.api.Utils;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.time.ZonedDateTime;
@@ -13,6 +16,7 @@ import java.util.List;
  * 캐릭터 프리셋 장착 캐시 장비 정보
  */
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
 @ToString
 public class CharacterCashItemEquipmentPresetDTO implements dev.spiralmoon.maplestory.api.common.dto.character.CharacterCashItemEquipmentPresetDTO<
@@ -22,79 +26,81 @@ public class CharacterCashItemEquipmentPresetDTO implements dev.spiralmoon.maple
     /**
      * 캐시 장비 부위 명
      */
-    @SerializedName("cash_item_equipment_part")
+    @JsonProperty("cash_item_equipment_part")
     private String cashItemEquipmentPart;
 
     /**
      * 캐시 장비 슬롯 위치
      */
-    @SerializedName("cash_item_equipment_slot")
+    @JsonProperty("cash_item_equipment_slot")
     private String cashItemEquipmentSlot;
 
     /**
      * 캐시 장비 명
      */
-    @SerializedName("cash_item_name")
+    @JsonProperty("cash_item_name")
     private String cashItemName;
 
     /**
      * 캐시 장비 아이콘
      */
-    @SerializedName("cash_item_icon")
+    @JsonProperty("cash_item_icon")
     private String cashItemIcon;
 
     /**
      * 캐시 장비 설명
      */
-    @SerializedName("cash_item_description")
+    @JsonProperty("cash_item_description")
     private String cashItemDescription;
 
     /**
      * 캐시 장비 옵션 목록
      */
-    @SerializedName("cash_item_option")
+    @JsonProperty("cash_item_option")
+    @JsonSetter(nulls = Nulls.AS_EMPTY)
     private List<CharacterCashItemEquipmentOptionDTO> cashItemOption;
 
     /**
      * 캐시 장비 유효 기간 (KST)
      */
-    @SerializedName("date_expire")
+    @JsonProperty("date_expire")
     private String dateExpire;
 
     /**
      * 캐시 장비 옵션 유효 기간 (KST, 시간 단위 데이터로 분은 일괄 0으로 표기)
      */
-    @SerializedName("date_option_expire")
+    @JsonProperty("date_option_expire")
     private String dateOptionExpire;
 
     /**
      * 캐시 장비 라벨 정보
      */
-    @SerializedName("cash_item_label")
+    @JsonProperty("cash_item_label")
     private String cashItemLabel;
 
     /**
      * 캐시 장비 컬러링프리즘 정보
      */
-    @SerializedName("cash_item_coloring_prism")
+    @JsonProperty("cash_item_coloring_prism")
     private CharacterCashItemEquipmentColoringPrismDTO cashItemColoringPrism;
 
     /**
      * 아이템 장착 가능 성별
      */
-    @SerializedName("item_gender")
+    @JsonProperty("item_gender")
     private String itemGender;
 
     /**
      * 스킬명
      */
-    @SerializedName("skills")
+    @JsonProperty("skills")
+    @JsonSetter(nulls = Nulls.AS_EMPTY)
     private List<String> skills;
 
     /**
      * 프리스타일 쿠폰 적용 여부 (0:미적용, 1:적용)
      */
-    @SerializedName("freestyle_flag")
+    @JsonProperty("freestyle_flag")
     private String freestyleFlag;
 
     /**

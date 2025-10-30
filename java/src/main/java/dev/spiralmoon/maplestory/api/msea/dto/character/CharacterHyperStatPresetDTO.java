@@ -1,14 +1,16 @@
 package dev.spiralmoon.maplestory.api.msea.dto.character;
 
-import com.google.gson.annotations.SerializedName;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 /**
  * Hyper Stat information for preset
  */
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
 @ToString
 public class CharacterHyperStatPresetDTO implements dev.spiralmoon.maplestory.api.common.dto.character.CharacterHyperStatPresetDTO {
@@ -16,24 +18,24 @@ public class CharacterHyperStatPresetDTO implements dev.spiralmoon.maplestory.ap
     /**
      * Stat type
      */
-    @SerializedName("stat_type")
+    @JsonProperty("stat_type")
     private String statType;
 
     /**
      * Stat points to invest
      */
-    @SerializedName("stat_point")
+    @JsonProperty("stat_point")
     private long statPoint;
 
     /**
      * Stat level
      */
-    @SerializedName("stat_level")
+    @JsonProperty("stat_level")
     private long statLevel;
 
     /**
      * Stat increases
      */
-    @SerializedName("stat_increase")
+    @JsonProperty("stat_increase")
     private String statIncrease;
 }

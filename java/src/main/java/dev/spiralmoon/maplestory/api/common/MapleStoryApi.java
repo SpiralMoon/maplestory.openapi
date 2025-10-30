@@ -1,8 +1,9 @@
 package dev.spiralmoon.maplestory.api.common;
 
-import com.google.gson.Gson;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import dev.spiralmoon.maplestory.api.common.param.LatestApiUpdateTimeOption;
-import dev.spiralmoon.maplestory.api.common.enums.*;
 import dev.spiralmoon.maplestory.api.common.dto.character.*;
 import dev.spiralmoon.maplestory.api.common.dto.guild.GuildBasicDTO;
 import dev.spiralmoon.maplestory.api.common.dto.guild.GuildDTO;
@@ -10,7 +11,6 @@ import dev.spiralmoon.maplestory.api.common.dto.union.UnionArtifactDTO;
 import dev.spiralmoon.maplestory.api.common.dto.union.UnionDTO;
 import dev.spiralmoon.maplestory.api.common.dto.union.UnionRaiderDTO;
 import dev.spiralmoon.maplestory.api.common.template.CharacterApi;
-import dev.spiralmoon.maplestory.api.common.param.CharacterImageOption;
 import lombok.*;
 import okhttp3.OkHttpClient;
 import okhttp3.ResponseBody;
@@ -18,7 +18,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.converter.jackson.JacksonConverterFactory;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -46,6 +46,14 @@ public abstract class MapleStoryApi {
     protected String subUrl;
 
     protected String timezone;
+
+    private static final ObjectMapper objectMapper;
+
+    static {
+        objectMapper = new ObjectMapper();
+        objectMapper.registerModule(new JavaTimeModule());
+        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+    }
 
     public MapleStoryApi(String apiKey) {
         this.apiKey = apiKey;
@@ -156,7 +164,7 @@ public abstract class MapleStoryApi {
     protected Retrofit buildRetrofit() {
         return new Retrofit.Builder()
                 .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(JacksonConverterFactory.create(objectMapper))
                 .client(this.buildClient())
                 .build();
     }
@@ -188,8 +196,8 @@ public abstract class MapleStoryApi {
     }
 
     protected static MapleStoryApiException parseError(Response<?> response) throws IOException {
-        final Gson gson = new Gson();
-        final MapleStoryApiErrorBody error = gson.fromJson(response.errorBody().string(), MapleStoryApiErrorBody.class);
+        final String errorJson = response.errorBody().string();
+        final MapleStoryApiErrorBody error = objectMapper.readValue(errorJson, MapleStoryApiErrorBody.class);
 
         return new MapleStoryApiException(error);
     }

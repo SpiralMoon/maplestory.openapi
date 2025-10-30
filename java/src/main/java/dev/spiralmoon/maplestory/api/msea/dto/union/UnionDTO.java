@@ -1,9 +1,10 @@
 package dev.spiralmoon.maplestory.api.msea.dto.union;
 
-import com.google.gson.annotations.SerializedName;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import dev.spiralmoon.maplestory.api.Utils;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.time.ZonedDateTime;
@@ -12,6 +13,7 @@ import java.time.ZonedDateTime;
  * Union information
  */
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
 @ToString
 public class UnionDTO implements dev.spiralmoon.maplestory.api.common.dto.union.UnionDTO {
@@ -19,37 +21,37 @@ public class UnionDTO implements dev.spiralmoon.maplestory.api.common.dto.union.
     /**
      * Reference date for query (SGT, daily data with hours and minutes set to 0)
      */
-    @SerializedName("date")
+    @JsonProperty("date")
     private String date;
 
     /**
      * Union level
      */
-    @SerializedName("union_level")
+    @JsonProperty("union_level")
     private Integer unionLevel;
 
     /**
      * Union grade
      */
-    @SerializedName("union_grade")
+    @JsonProperty("union_grade")
     private String unionGrade;
 
     /**
      * Artifact level
      */
-    @SerializedName("union_artifact_level")
+    @JsonProperty("union_artifact_level")
     private Integer unionArtifactLevel;
 
     /**
      * Earned Artifact EXP
      */
-    @SerializedName("union_artifact_exp")
+    @JsonProperty("union_artifact_exp")
     private Integer unionArtifactExp;
 
     /**
      * Earned Artifact Points
      */
-    @SerializedName("union_artifact_point")
+    @JsonProperty("union_artifact_point")
     private Integer unionArtifactPoint;
 
     /**

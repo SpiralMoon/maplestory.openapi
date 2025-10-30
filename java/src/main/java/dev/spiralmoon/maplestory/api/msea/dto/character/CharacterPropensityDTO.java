@@ -1,9 +1,10 @@
 package dev.spiralmoon.maplestory.api.msea.dto.character;
 
-import com.google.gson.annotations.SerializedName;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import dev.spiralmoon.maplestory.api.Utils;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.time.ZonedDateTime;
@@ -12,6 +13,7 @@ import java.time.ZonedDateTime;
  * Character traits information
  */
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
 @ToString
 public class CharacterPropensityDTO implements dev.spiralmoon.maplestory.api.common.dto.character.CharacterPropensityDTO {
@@ -19,43 +21,43 @@ public class CharacterPropensityDTO implements dev.spiralmoon.maplestory.api.com
     /**
      * Reference date for query (SGT, daily data with hours and minutes set to 0)
      */
-    @SerializedName("date")
+    @JsonProperty("date")
     private String date;
 
     /**
      * Ambition level
      */
-    @SerializedName("charisma_level")
+    @JsonProperty("charisma_level")
     private Integer charismaLevel;
 
     /**
      * Empathy level
      */
-    @SerializedName("sensibility_level")
+    @JsonProperty("sensibility_level")
     private Integer sensibilityLevel;
 
     /**
      * Insight level
      */
-    @SerializedName("insight_level")
+    @JsonProperty("insight_level")
     private Integer insightLevel;
 
     /**
      * Willpower level
      */
-    @SerializedName("willingness_level")
+    @JsonProperty("willingness_level")
     private Integer willingnessLevel;
 
     /**
      * Diligence level
      */
-    @SerializedName("handicraft_level")
+    @JsonProperty("handicraft_level")
     private Integer handicraftLevel;
 
     /**
      * Charm level
      */
-    @SerializedName("charm_level")
+    @JsonProperty("charm_level")
     private Integer charmLevel;
 
     /**

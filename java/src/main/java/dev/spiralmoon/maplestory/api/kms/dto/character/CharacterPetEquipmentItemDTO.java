@@ -1,8 +1,11 @@
 package dev.spiralmoon.maplestory.api.kms.dto.character;
 
-import com.google.gson.annotations.SerializedName;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.annotation.Nulls;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.util.List;
@@ -11,6 +14,7 @@ import java.util.List;
  * 캐릭터 펫 장비 아이템 정보
  */
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
 @ToString
 public class CharacterPetEquipmentItemDTO implements dev.spiralmoon.maplestory.api.common.dto.character.CharacterPetEquipmentItemDTO<
@@ -19,48 +23,49 @@ public class CharacterPetEquipmentItemDTO implements dev.spiralmoon.maplestory.a
     /**
      * 아이템 명
      */
-    @SerializedName("item_name")
+    @JsonProperty("item_name")
     private String itemName;
 
     /**
      * 아이템 아이콘
      */
-    @SerializedName("item_icon")
+    @JsonProperty("item_icon")
     private String itemIcon;
 
     /**
      * 아이템 설명
      */
-    @SerializedName("item_description")
+    @JsonProperty("item_description")
     private String itemDescription;
 
     /**
      * 아이템 표기상 옵션
      */
-    @SerializedName("item_option")
+    @JsonProperty("item_option")
+    @JsonSetter(nulls = Nulls.AS_EMPTY)
     private List<CharacterPetEquipmentItemOptionDTO> itemOption;
 
     /**
      * 업그레이드 횟수
      */
-    @SerializedName("scroll_upgrade")
+    @JsonProperty("scroll_upgrade")
     private int scrollUpgrade;
 
     /**
      * 업그레이드 가능 횟수
      */
-    @SerializedName("scroll_upgradable")
+    @JsonProperty("scroll_upgradable")
     private int scrollUpgradable;
 
     /**
      * 아이템 외형
      */
-    @SerializedName("item_shape")
+    @JsonProperty("item_shape")
     private String itemShape;
 
     /**
      * 아이템 외형 아이콘
      */
-    @SerializedName("item_shape_icon")
+    @JsonProperty("item_shape_icon")
     private String itemShapeIcon;
 }

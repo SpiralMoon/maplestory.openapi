@@ -1,8 +1,9 @@
 package dev.spiralmoon.maplestory.api.msea.dto.union;
 
-import com.google.gson.annotations.SerializedName;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 /**
@@ -14,6 +15,7 @@ import lombok.ToString;
  * - Moving one square upward increases y by 1.
  */
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
 @ToString
 public class UnionRaiderBlockControlPointDTO implements dev.spiralmoon.maplestory.api.common.dto.union.UnionRaiderBlockControlPointDTO {
@@ -21,12 +23,12 @@ public class UnionRaiderBlockControlPointDTO implements dev.spiralmoon.maplestor
     /**
      * Block reference point X-coordinate
      */
-    @SerializedName("x")
+    @JsonProperty("x")
     private long x;
 
     /**
      * Block reference point Y-coordinate
      */
-    @SerializedName("y")
+    @JsonProperty("y")
     private long y;
 }

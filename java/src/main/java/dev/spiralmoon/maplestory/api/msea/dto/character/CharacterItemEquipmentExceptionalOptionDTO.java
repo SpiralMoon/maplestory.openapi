@@ -1,68 +1,70 @@
 package dev.spiralmoon.maplestory.api.msea.dto.character;
 
-import com.google.gson.annotations.SerializedName;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 /**
  * Exceptional equipment option information
  */
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
 @ToString
 public class CharacterItemEquipmentExceptionalOptionDTO implements dev.spiralmoon.maplestory.api.common.dto.character.CharacterItemEquipmentExceptionalOptionDTO {
     /**
      * STR
      */
-    @SerializedName("str")
+    @JsonProperty("str")
     private String strength;
 
     /**
      * DEX
      */
-    @SerializedName("dex")
+    @JsonProperty("dex")
     private String dexterity;
 
     /**
      * INT
      */
-    @SerializedName("int")
+    @JsonProperty("int")
     private String intelligence;
 
     /**
      * LUK
      */
-    @SerializedName("luk")
+    @JsonProperty("luk")
     private String luck;
 
     /**
      * Max HP
      */
-    @SerializedName("max_hp")
+    @JsonProperty("max_hp")
     private String maxHp;
 
     /**
      * Max MP
      */
-    @SerializedName("max_mp")
+    @JsonProperty("max_mp")
     private String maxMp;
 
     /**
      * Attack Power
      */
-    @SerializedName("attack_power")
+    @JsonProperty("attack_power")
     private String attackPower;
 
     /**
      * Magic ATT
      */
-    @SerializedName("magic_power")
+    @JsonProperty("magic_power")
     private String magicPower;
 
     /**
      * Number of exceptional boost applications
      */
-    @SerializedName("exceptional_upgrade")
+    @JsonProperty("exceptional_upgrade")
     private int exceptionalUpgrade;
 }

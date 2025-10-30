@@ -1,8 +1,9 @@
 package dev.spiralmoon.maplestory.api.tms.dto.character;
 
-import com.google.gson.annotations.SerializedName;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.util.List;
@@ -11,6 +12,7 @@ import java.util.List;
  * 附加道具選項
  */
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
 @ToString
 public class CharacterItemEquipmentAddOptionDTO implements dev.spiralmoon.maplestory.api.common.dto.character.CharacterItemEquipmentAddOptionDTO {
@@ -18,90 +20,90 @@ public class CharacterItemEquipmentAddOptionDTO implements dev.spiralmoon.maples
     /**
      * 力量 (STR)
      */
-    @SerializedName("str")
+    @JsonProperty("str")
     private String strength;
 
     /**
      * 敏捷 (DEX)
      */
-    @SerializedName("dex")
+    @JsonProperty("dex")
     private String dexterity;
 
     /**
      * 敏捷 (DEX)
      */
-    @SerializedName("int")
+    @JsonProperty("int")
     private String intelligence;
 
     /**
      * 幸運 (LUK)
      */
-    @SerializedName("luk")
+    @JsonProperty("luk")
     private String luck;
 
     /**
      * 最大體力 (HP)
      */
-    @SerializedName("max_hp")
+    @JsonProperty("max_hp")
     private String maxHp;
 
     /**
      * 最大 MP
      */
-    @SerializedName("max_mp")
+    @JsonProperty("max_mp")
     private String maxMp;
 
     /**
      * 攻擊力
      */
-    @SerializedName("attack_power")
+    @JsonProperty("attack_power")
     private String attackPower;
 
     /**
      * 魔力
      */
-    @SerializedName("magic_power")
+    @JsonProperty("magic_power")
     private String magicPower;
 
     /**
      * 防禦力
      */
-    @SerializedName("armor")
+    @JsonProperty("armor")
     private String armor;
 
     /**
      * 移動速度
      */
-    @SerializedName("speed")
+    @JsonProperty("speed")
     private String speed;
 
     /**
      * 跳躍力
      */
-    @SerializedName("jump")
+    @JsonProperty("jump")
     private String jump;
 
     /**
      * 對首領傷害增加 (%)
      */
-    @SerializedName("boss_damage")
+    @JsonProperty("boss_damage")
     private String bossDamage;
 
     /**
      * 傷害 (%)
      */
-    @SerializedName("damage")
+    @JsonProperty("damage")
     private String damage;
 
     /**
      * 全部能力值 (%)
      */
-    @SerializedName("all_stat")
+    @JsonProperty("all_stat")
     private String allStat;
 
     /**
      * 裝備等級減少
      */
-    @SerializedName("equipment_level_decrease")
+    @JsonProperty("equipment_level_decrease")
     private Long equipmentLevelDecrease;
 }

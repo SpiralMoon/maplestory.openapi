@@ -1,14 +1,16 @@
 package dev.spiralmoon.maplestory.api.kms.dto.character;
 
-import com.google.gson.annotations.SerializedName;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 /**
  * 캐릭터 HEXA 스탯 코어 정보
  */
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
 @ToString
 public class CharacterHexaMatrixStatCoreDTO implements dev.spiralmoon.maplestory.api.common.dto.character.CharacterHexaMatrixStatCoreDTO {
@@ -16,48 +18,48 @@ public class CharacterHexaMatrixStatCoreDTO implements dev.spiralmoon.maplestory
     /**
      * 슬롯 인덱스
      */
-    @SerializedName("slot_id")
+    @JsonProperty("slot_id")
     private String slotId;
 
     /**
      * 메인 스탯 명
      */
-    @SerializedName("main_stat_name")
+    @JsonProperty("main_stat_name")
     private String mainStatName;
 
     /**
      * 첫 번째 서브 명
      */
-    @SerializedName("sub_stat_name_1")
+    @JsonProperty("sub_stat_name_1")
     private String subStatName1;
 
     /**
      * 두 번째 서브 명
      */
-    @SerializedName("sub_stat_name_2")
+    @JsonProperty("sub_stat_name_2")
     private String subStatName2;
 
     /**
      * 메인 스탯 레벨
      */
-    @SerializedName("main_stat_level")
+    @JsonProperty("main_stat_level")
     private long mainStatLevel;
 
     /**
      * 첫 번째 서브 레벨
      */
-    @SerializedName("sub_stat_level_1")
+    @JsonProperty("sub_stat_level_1")
     private long subStatLevel1;
 
     /**
      * 두 번째 서브 레벨
      */
-    @SerializedName("sub_stat_level_2")
+    @JsonProperty("sub_stat_level_2")
     private long subStatLevel2;
 
     /**
      * 스탯 코어 등급
      */
-    @SerializedName("stat_grade")
+    @JsonProperty("stat_grade")
     private long statGrade;
 }

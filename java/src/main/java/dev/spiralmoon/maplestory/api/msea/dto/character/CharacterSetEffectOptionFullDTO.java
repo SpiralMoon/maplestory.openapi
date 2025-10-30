@@ -1,14 +1,16 @@
 package dev.spiralmoon.maplestory.api.msea.dto.character;
 
-import com.google.gson.annotations.SerializedName;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 /**
  * All Set Item effect information
  */
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
 @ToString
 public class CharacterSetEffectOptionFullDTO implements dev.spiralmoon.maplestory.api.common.dto.character.CharacterSetEffectOptionFullDTO {
@@ -16,12 +18,12 @@ public class CharacterSetEffectOptionFullDTO implements dev.spiralmoon.maplestor
     /**
      * Set Item effect level (number of equipped items)
      */
-    @SerializedName("set_count")
+    @JsonProperty("set_count")
     private int setCount;
 
     /**
      * Set Item effect
      */
-    @SerializedName("set_option")
+    @JsonProperty("set_option")
     private String setOption;
 }

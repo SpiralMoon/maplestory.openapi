@@ -1,8 +1,9 @@
 package dev.spiralmoon.maplestory.api.tms.dto.character;
 
-import com.google.gson.annotations.SerializedName;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.util.List;
@@ -11,6 +12,7 @@ import java.util.List;
  * V 核心資訊
  */
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
 @ToString
 public class CharacterVMatrixCoreEquipmentDTO implements dev.spiralmoon.maplestory.api.common.dto.character.CharacterVMatrixCoreEquipmentDTO {
@@ -18,48 +20,48 @@ public class CharacterVMatrixCoreEquipmentDTO implements dev.spiralmoon.maplesto
     /**
      * 欄位索引
      */
-    @SerializedName("slot_id")
+    @JsonProperty("slot_id")
     private String slotId;
 
     /**
      * 欄位等級
      */
-    @SerializedName("slot_level")
+    @JsonProperty("slot_level")
     private long slotLevel;
 
     /**
      * 核心名稱
      */
-    @SerializedName("v_core_name")
+    @JsonProperty("v_core_name")
     private String vCoreName;
 
     /**
      * 核心類型
      */
-    @SerializedName("v_core_type")
+    @JsonProperty("v_core_type")
     private String vCoreType;
 
     /**
      * 核心等級
      */
-    @SerializedName("v_core_level")
+    @JsonProperty("v_core_level")
     private long vCoreLevel;
 
     /**
      * 對應核心的技能名稱
      */
-    @SerializedName("v_core_skill_1")
+    @JsonProperty("v_core_skill_1")
     private String vCoreSkill1;
 
     /**
      * (若為強化核心) 對應核心的第二個技能名稱
      */
-    @SerializedName("v_core_skill_2")
+    @JsonProperty("v_core_skill_2")
     private String vCoreSkill2;
 
     /**
      * (若為強化核心) 對應核心的第三個技能名稱
      */
-    @SerializedName("v_core_skill_3")
+    @JsonProperty("v_core_skill_3")
     private String vCoreSkill3;
 }

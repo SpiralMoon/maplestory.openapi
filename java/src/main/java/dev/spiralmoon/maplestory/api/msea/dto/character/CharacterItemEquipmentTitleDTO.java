@@ -1,9 +1,10 @@
 package dev.spiralmoon.maplestory.api.msea.dto.character;
 
-import com.google.gson.annotations.SerializedName;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import dev.spiralmoon.maplestory.api.Utils;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.time.ZonedDateTime;
@@ -12,6 +13,7 @@ import java.time.ZonedDateTime;
  * Title information
  */
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
 @ToString
 public class CharacterItemEquipmentTitleDTO implements dev.spiralmoon.maplestory.api.common.dto.character.CharacterItemEquipmentTitleDTO {
@@ -19,32 +21,26 @@ public class CharacterItemEquipmentTitleDTO implements dev.spiralmoon.maplestory
     /**
      * Title name
      */
-    @SerializedName("title_name")
+    @JsonProperty("title_name")
     private String titleName;
 
     /**
      * Title icon
      */
-    @SerializedName("title_icon")
+    @JsonProperty("title_icon")
     private String titleIcon;
 
     /**
      * Title description
      */
-    @SerializedName("title_description")
+    @JsonProperty("title_description")
     private String titleDescription;
 
     /**
      * Title validity period (SGT)
      */
-    @SerializedName("date_expire")
+    @JsonProperty("date_expire")
     private String dateExpire;
-
-    /**
-     * Title option validity period (expired:expired, null unlimited) (SGT)
-     */
-    @SerializedName("date_option_expire")
-    private String dateOptionExpire;
 
     /**
      * Title validity period (SGT)
@@ -56,6 +52,12 @@ public class CharacterItemEquipmentTitleDTO implements dev.spiralmoon.maplestory
             return null;
         }
     }
+
+    /**
+     * Title option validity period (expired:expired, null unlimited) (SGT)
+     */
+    @JsonProperty("date_option_expire")
+    private String dateOptionExpire;
 
     /**
      * Title option validity period (expired:expired, null unlimited) (SGT)

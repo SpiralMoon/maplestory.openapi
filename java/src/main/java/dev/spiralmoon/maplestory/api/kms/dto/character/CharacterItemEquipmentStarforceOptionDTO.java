@@ -1,14 +1,16 @@
 package dev.spiralmoon.maplestory.api.kms.dto.character;
 
-import com.google.gson.annotations.SerializedName;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 /**
  * 캐릭터 장비 스타포스 옵션 정보
  */
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
 @ToString
 public class CharacterItemEquipmentStarforceOptionDTO implements dev.spiralmoon.maplestory.api.common.dto.character.CharacterItemEquipmentStarforceOptionDTO {
@@ -16,66 +18,66 @@ public class CharacterItemEquipmentStarforceOptionDTO implements dev.spiralmoon.
     /**
      * STR
      */
-    @SerializedName("str")
+    @JsonProperty("str")
     private String strength;
 
     /**
      * DEX
      */
-    @SerializedName("dex")
+    @JsonProperty("dex")
     private String dexterity;
 
     /**
      * INT
      */
-    @SerializedName("int")
+    @JsonProperty("int")
     private String intelligence;
 
     /**
      * LUK
      */
-    @SerializedName("luk")
+    @JsonProperty("luk")
     private String luck;
 
     /**
      * 최대 HP
      */
-    @SerializedName("max_hp")
+    @JsonProperty("max_hp")
     private String maxHp;
 
     /**
      * 최대 MP
      */
-    @SerializedName("max_mp")
+    @JsonProperty("max_mp")
     private String maxMp;
 
     /**
      * 공격력
      */
-    @SerializedName("attack_power")
+    @JsonProperty("attack_power")
     private String attackPower;
 
     /**
      * 마력
      */
-    @SerializedName("magic_power")
+    @JsonProperty("magic_power")
     private String magicPower;
 
     /**
      * 방어력
      */
-    @SerializedName("armor")
+    @JsonProperty("armor")
     private String armor;
 
     /**
      * 이동속도
      */
-    @SerializedName("speed")
+    @JsonProperty("speed")
     private String speed;
 
     /**
      * 점프력
      */
-    @SerializedName("jump")
+    @JsonProperty("jump")
     private String jump;
 }

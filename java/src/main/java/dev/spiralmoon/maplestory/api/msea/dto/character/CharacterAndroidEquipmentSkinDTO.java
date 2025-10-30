@@ -1,14 +1,16 @@
 package dev.spiralmoon.maplestory.api.msea.dto.character;
 
-import com.google.gson.annotations.SerializedName;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 /**
  * Android skin information
  */
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
 @ToString
 public class CharacterAndroidEquipmentSkinDTO implements dev.spiralmoon.maplestory.api.common.dto.character.CharacterAndroidEquipmentSkinDTO {
@@ -16,30 +18,30 @@ public class CharacterAndroidEquipmentSkinDTO implements dev.spiralmoon.maplesto
     /**
      * Skin name
      */
-    @SerializedName("skin_name")
+    @JsonProperty("skin_name")
     private String skinName;
 
     /**
      * Color style
      */
-    @SerializedName("color_style")
+    @JsonProperty("color_style")
     private String colorStyle;
 
     /**
      * Skin hue
      */
-    @SerializedName("hue")
+    @JsonProperty("hue")
     private Integer hue;
 
     /**
      * Skin saturation
      */
-    @SerializedName("saturation")
+    @JsonProperty("saturation")
     private Integer saturation;
 
     /**
      * Skin brightness
      */
-    @SerializedName("brightness")
+    @JsonProperty("brightness")
     private Integer brightness;
 }

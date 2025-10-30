@@ -1,14 +1,16 @@
 package dev.spiralmoon.maplestory.api.msea.dto.union;
 
-import com.google.gson.annotations.SerializedName;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 /**
  * Artifact effect information
  */
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
 @ToString
 public class UnionArtifactEffectDTO implements dev.spiralmoon.maplestory.api.common.dto.union.UnionArtifactEffectDTO {
@@ -16,12 +18,12 @@ public class UnionArtifactEffectDTO implements dev.spiralmoon.maplestory.api.com
     /**
      * Name of the artifact effect
      */
-    @SerializedName("name")
+    @JsonProperty("name")
     private String name;
 
     /**
      * Level of the artifact effect
      */
-    @SerializedName("level")
+    @JsonProperty("level")
     private int level;
 }

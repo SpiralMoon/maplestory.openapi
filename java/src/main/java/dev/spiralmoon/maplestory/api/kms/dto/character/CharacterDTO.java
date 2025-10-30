@@ -1,14 +1,16 @@
 package dev.spiralmoon.maplestory.api.kms.dto.character;
 
-import com.google.gson.annotations.SerializedName;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 /**
  * 캐릭터 정보
  */
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
 @ToString
 public class CharacterDTO implements dev.spiralmoon.maplestory.api.common.dto.character.CharacterDTO {
@@ -16,6 +18,6 @@ public class CharacterDTO implements dev.spiralmoon.maplestory.api.common.dto.ch
     /**
      * 캐릭터 식별자
      */
-    @SerializedName("ocid")
+    @JsonProperty("ocid")
     private String ocid;
 }

@@ -1,14 +1,16 @@
 package dev.spiralmoon.maplestory.api.msea.dto.character;
 
-import com.google.gson.annotations.SerializedName;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 /**
  * Skill information
  */
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
 @ToString
 public class CharacterSkillInfoDTO implements dev.spiralmoon.maplestory.api.common.dto.character.CharacterSkillInfoDTO {
@@ -16,36 +18,36 @@ public class CharacterSkillInfoDTO implements dev.spiralmoon.maplestory.api.comm
     /**
      * Skill name
      */
-    @SerializedName("skill_name")
+    @JsonProperty("skill_name")
     private String skillName;
 
     /**
      * Skill description
      */
-    @SerializedName("skill_description")
+    @JsonProperty("skill_description")
     private String skillDescription;
 
     /**
      * Skill level
      */
-    @SerializedName("skill_level")
+    @JsonProperty("skill_level")
     private Long skillLevel;
 
     /**
      * Effect description by skill level
      */
-    @SerializedName("skill_effect")
+    @JsonProperty("skill_effect")
     private String skillEffect;
 
     /**
      * Effect description for the next skill level
      */
-    @SerializedName("skill_effect_next")
+    @JsonProperty("skill_effect_next")
     private String skillEffectNext;
 
     /**
      * Skill icon
      */
-    @SerializedName("skill_icon")
+    @JsonProperty("skill_icon")
     private String skillIcon;
 }

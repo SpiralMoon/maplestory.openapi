@@ -5,6 +5,7 @@ import dev.spiralmoon.maplestory.api.common.enums.CharacterImageEmotion;
 import dev.spiralmoon.maplestory.api.common.enums.CharacterImageWeaponMotion;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.time.ZonedDateTime;
@@ -13,6 +14,7 @@ import java.time.ZonedDateTime;
  * 캐릭터 외형 이미지 정보
  */
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
 @ToString
 public class CharacterImageDTO implements dev.spiralmoon.maplestory.api.common.dto.character.CharacterImageDTO {
