@@ -77,7 +77,8 @@ namespace MapleStory.OpenAPI.TMS.DTO
         /// 機器人的已裝備現金道具資訊
         /// </summary>
         [JsonProperty("android_cash_item_equipment")]
-        public override List<CharacterAndroidCashItemEquipmentDTO> AndroidCashItemEquipment { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<CharacterAndroidCashItemEquipmentDTO> AndroidCashItemEquipment { get; set; } = new();
 
         /// <summary>
         /// 機器人耳飾感應器
@@ -395,7 +396,8 @@ namespace MapleStory.OpenAPI.TMS.DTO
         /// 機器人現金道具選項
         /// </summary>
         [JsonProperty("cash_item_option")]
-        public override List<CharacterAndroidCashItemEquipmentOptionDTO> CashItemOption { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<CharacterAndroidCashItemEquipmentOptionDTO> CashItemOption { get; set; } = new();
 
         /// <summary>
         /// 機器人現金道具有效期間 (TST)

@@ -102,25 +102,29 @@ namespace MapleStory.OpenAPI.KMS.DTO
         /// 사용 전 잠재능력 옵션
         /// </summary>
         [JsonProperty("before_potential_option")]
-        public List<PotentialResultOptionDTO> BeforePotentialOption { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public List<PotentialResultOptionDTO> BeforePotentialOption { get; set; } = new();
 
         /// <summary>
         /// 사용 전 에디셔널 잠재능력 옵션
         /// </summary>
         [JsonProperty("before_additional_potential_option")]
-        public List<PotentialResultOptionDTO> BeforeAdditionalPotentialOption { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public List<PotentialResultOptionDTO> BeforeAdditionalPotentialOption { get; set; } = new();
 
         /// <summary>
         /// 사용 후 잠재능력 옵션
         /// </summary>
         [JsonProperty("after_potential_option")]
-        public List<PotentialResultOptionDTO> AfterPotentialOption { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public List<PotentialResultOptionDTO> AfterPotentialOption { get; set; } = new();
 
         /// <summary>
         /// 사용 후 에디셔널 잠재능력 옵션
         /// </summary>
         [JsonProperty("after_additional_potential_option")]
-        public List<PotentialResultOptionDTO> AfterAdditionalPotentialOption { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public List<PotentialResultOptionDTO> AfterAdditionalPotentialOption { get; set; } = new();
 
         /// <summary>
         /// 아이템 업그레이드 여부
@@ -208,7 +212,8 @@ namespace MapleStory.OpenAPI.KMS.DTO
         /// 잠재능력 재설정 히스토리
         /// </summary>
         [JsonProperty("potential_history")]
-        public List<PotentialHistoryDTO> PotentialHistory;
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public List<PotentialHistoryDTO> PotentialHistory { get; set; } = new();
 
         /// <summary>
         /// 페이징 처리를 위한 cursor

@@ -30,7 +30,8 @@ namespace MapleStory.OpenAPI.KMS.DTO
         /// 세트 효과 정보 목록
         /// </summary>
         [JsonProperty("set_effect")]
-        public override List<CharacterSetEffectSetDTO> SetEffect { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<CharacterSetEffectSetDTO> SetEffect { get; set; } = new();
     }
 
     /// <summary>
@@ -90,12 +91,14 @@ namespace MapleStory.OpenAPI.KMS.DTO
         /// 적용 중인 세트 효과 정보
         /// </summary>
         [JsonProperty("set_effect_info")]
-        public override List<CharacterSetEffectInfoDTO> SetEffectInfo { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<CharacterSetEffectInfoDTO> SetEffectInfo { get; set; } = new();
 
         /// <summary>
         /// 모든 세트 효과 정보
         /// </summary>
         [JsonProperty("set_option_full")]
-        public override List<CharacterSetEffectOptionFullDTO> SetOptionFull { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<CharacterSetEffectOptionFullDTO> SetOptionFull { get; set; } = new();
     }
 }

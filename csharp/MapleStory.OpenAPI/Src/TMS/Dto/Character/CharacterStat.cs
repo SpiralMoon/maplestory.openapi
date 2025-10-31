@@ -36,7 +36,8 @@ namespace MapleStory.OpenAPI.TMS.DTO
         /// 當前能力值資訊
         /// </summary>
         [JsonProperty("final_stat")]
-        public override List<CharacterFinalStatDTO> FinalStat { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<CharacterFinalStatDTO> FinalStat { get; set; } = new();
 
         /// <summary>
         /// 剩餘 AP

@@ -29,7 +29,8 @@ namespace MapleStory.OpenAPI.KMS.DTO
         /// 능력치에 영향을 주는 요소 및 스탯 정보
         /// </summary>
         [JsonProperty("other_stat")]
-        public List<CharacterOtherStatDetailDTO> OtherStat { get; set; } = new List<CharacterOtherStatDetailDTO>();
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public List<CharacterOtherStatDetailDTO> OtherStat { get; set; } = new();
     }
 
     /// <summary>
@@ -47,7 +48,8 @@ namespace MapleStory.OpenAPI.KMS.DTO
         /// 스탯 정보
         /// </summary>
         [JsonProperty("stat_info")]
-        public List<CharacterOtherStatInfoDTO> StatInfo { get; set; } = new List<CharacterOtherStatInfoDTO>();
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public List<CharacterOtherStatInfoDTO> StatInfo { get; set; } = new();
     }
 
     /// <summary>

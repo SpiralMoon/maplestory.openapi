@@ -36,7 +36,8 @@ namespace MapleStory.OpenAPI.TMS.DTO
         /// 連結技能資訊
         /// </summary>
         [JsonProperty("character_link_skill")]
-        public override List<CharacterLinkSkillInfoDTO> CharacterLinkSkill { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<CharacterLinkSkillInfoDTO> CharacterLinkSkill { get; set; } = new();
 
         /// <summary>
         /// 連結技能 1 預設資訊
@@ -48,13 +49,15 @@ namespace MapleStory.OpenAPI.TMS.DTO
         /// 連結技能 2 預設資訊
         /// </summary>
         [JsonProperty("character_link_skill_preset_2")]
-        public override List<CharacterLinkSkillInfoDTO> CharacterLinkSkillPreset2 { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<CharacterLinkSkillInfoDTO> CharacterLinkSkillPreset2 { get; set; } = new();
 
         /// <summary>
         /// 連結技能 3 預設資訊
         /// </summary>
         [JsonProperty("character_link_skill_preset_3")]
-        public override List<CharacterLinkSkillInfoDTO> CharacterLinkSkillPreset3 { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<CharacterLinkSkillInfoDTO> CharacterLinkSkillPreset3 { get; set; } = new();
 
         /// <summary>
         /// 我的連結技能資訊

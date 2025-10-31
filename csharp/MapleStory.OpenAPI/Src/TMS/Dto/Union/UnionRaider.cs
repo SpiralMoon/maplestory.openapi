@@ -30,25 +30,29 @@ namespace MapleStory.OpenAPI.TMS.DTO
         /// 戰地攻擊隊員效果
         /// </summary>
         [JsonProperty("union_raider_stat")]
-        public override List<string> UnionRaiderStat { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<string> UnionRaiderStat { get; set; } = new();
 
         /// <summary>
         /// 戰地攻擊隊佔領效果
         /// </summary>
         [JsonProperty("union_occupied_stat")]
-        public override List<string> UnionOccupiedStat { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<string> UnionOccupiedStat { get; set; } = new();
 
         /// <summary>
         /// 戰地攻擊隊部署
         /// </summary>
         [JsonProperty("union_inner_stat")]
-        public override List<UnionRaiderInnerStatDTO> UnionInnerStat { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<UnionRaiderInnerStatDTO> UnionInnerStat { get; set; } = new();
 
         /// <summary>
         /// 聯盟方塊資訊
         /// </summary>
         [JsonProperty("union_block")]
-        public override List<UnionRaiderBlockDTO> UnionBlock { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<UnionRaiderBlockDTO> UnionBlock { get; set; } = new();
 
         /// <summary>
         /// 目前套用的預設編號
@@ -186,24 +190,28 @@ namespace MapleStory.OpenAPI.TMS.DTO
         /// 戰地攻擊隊員效果
         /// </summary>
         [JsonProperty("union_raider_stat")]
-        public override List<string> UnionRaiderStat { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<string> UnionRaiderStat { get; set; } = new();
 
         /// <summary>
         /// 戰地攻擊隊佔領效果
         /// </summary>
         [JsonProperty("union_occupied_stat")]
-        public override List<string> UnionOccupiedStat { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<string> UnionOccupiedStat { get; set; } = new();
 
         /// <summary>
         /// 戰地攻擊隊部署
         /// </summary>
         [JsonProperty("union_inner_stat")]
-        public override List<UnionRaiderInnerStatDTO> UnionInnerStat { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<UnionRaiderInnerStatDTO> UnionInnerStat { get; set; } = new();
 
         /// <summary>
         /// 聯盟方塊資訊
         /// </summary>
         [JsonProperty("union_block")]
-        public override List<UnionRaiderBlockDTO> UnionBlock { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<UnionRaiderBlockDTO> UnionBlock { get; set; } = new();
     }
 }

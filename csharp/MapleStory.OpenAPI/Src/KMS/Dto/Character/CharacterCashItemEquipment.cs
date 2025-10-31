@@ -54,49 +54,57 @@ namespace MapleStory.OpenAPI.KMS.DTO
         /// 장착 중인 캐시 장비
         /// </summary>
         [JsonProperty("cash_item_equipment_base")]
-        public override List<CharacterCashItemEquipmentPresetDTO> CashItemEquipmentBase { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<CharacterCashItemEquipmentPresetDTO> CashItemEquipmentBase { get; set; } = new();
 
         /// <summary>
         /// 1번 코디 프리셋
         /// </summary>
         [JsonProperty("cash_item_equipment_preset_1")]
-        public override List<CharacterCashItemEquipmentPresetDTO> CashItemEquipmentPreset1 { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<CharacterCashItemEquipmentPresetDTO> CashItemEquipmentPreset1 { get; set; } = new();
 
         /// <summary>
         /// 2번 코디 프리셋
         /// </summary>
         [JsonProperty("cash_item_equipment_preset_2")]
-        public override List<CharacterCashItemEquipmentPresetDTO> CashItemEquipmentPreset2 { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<CharacterCashItemEquipmentPresetDTO> CashItemEquipmentPreset2 { get; set; } = new();
 
         /// <summary>
         /// 3번 코디 프리셋
         /// </summary>
         [JsonProperty("cash_item_equipment_preset_3")]
-        public override List<CharacterCashItemEquipmentPresetDTO> CashItemEquipmentPreset3 { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<CharacterCashItemEquipmentPresetDTO> CashItemEquipmentPreset3 { get; set; } = new();
 
         /// <summary>
         /// 제로인 경우 베타, 엔젤릭버스터인 경우 드레스 업 모드에서 장착 중인 캐시 장비
         /// </summary>
         [JsonProperty("additional_cash_item_equipment_base")]
-        public override List<CharacterCashItemEquipmentPresetDTO> AdditionalCashItemEquipmentBase { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<CharacterCashItemEquipmentPresetDTO> AdditionalCashItemEquipmentBase { get; set; } = new();
 
         /// <summary>
         /// 제로인 경우 베타, 엔젤릭버스터인 경우 드레스 업 모드의 1번 코디 프리셋
         /// </summary>
         [JsonProperty("additional_cash_item_equipment_preset_1")]
-        public override List<CharacterCashItemEquipmentPresetDTO> AdditionalCashItemEquipmentPreset1 { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<CharacterCashItemEquipmentPresetDTO> AdditionalCashItemEquipmentPreset1 { get; set; } = new();
 
         /// <summary>
         /// 제로인 경우 베타, 엔젤릭버스터인 경우 드레스 업 모드의 2번 코디 프리셋
         /// </summary>
         [JsonProperty("additional_cash_item_equipment_preset_2")]
-        public override List<CharacterCashItemEquipmentPresetDTO> AdditionalCashItemEquipmentPreset2 { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<CharacterCashItemEquipmentPresetDTO> AdditionalCashItemEquipmentPreset2 { get; set; } = new();
 
         /// <summary>
         /// 제로인 경우 베타, 엔젤릭버스터인 경우 드레스 업 모드의 3번 코디 프리셋
         /// </summary>
         [JsonProperty("additional_cash_item_equipment_preset_3")]
-        public override List<CharacterCashItemEquipmentPresetDTO> AdditionalCashItemEquipmentPreset3 { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<CharacterCashItemEquipmentPresetDTO> AdditionalCashItemEquipmentPreset3 { get; set; } = new();
     }
 
     /// <summary>
@@ -186,7 +194,8 @@ namespace MapleStory.OpenAPI.KMS.DTO
         /// 캐시 장비 옵션 목록
         /// </summary>
         [JsonProperty("cash_item_option")]
-        public override List<CharacterCashItemEquipmentOptionDTO> CashItemOption { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<CharacterCashItemEquipmentOptionDTO> CashItemOption { get; set; } = new();
 
         /// <summary>
         /// 캐시 장비 유효 기간 (KST)
@@ -280,7 +289,8 @@ namespace MapleStory.OpenAPI.KMS.DTO
         /// 스킬명
         /// </summary>
         [JsonProperty("skills")]
-        public List<string> Skills { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public List<string> Skills { get; set; } = new();
 
         /// <summary>
         /// 프리스타일 쿠폰 적용 여부 (0:미적용, 1:적용)

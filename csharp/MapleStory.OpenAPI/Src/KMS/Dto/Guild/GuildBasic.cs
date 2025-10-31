@@ -72,19 +72,22 @@ namespace MapleStory.OpenAPI.KMS.DTO
         /// 길드원 목록
         /// </summary>
         [JsonProperty("guild_member")]
-        public override List<string> GuildMember { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<string> GuildMember { get; set; } = new();
 
         /// <summary>
         /// 길드 스킬 목록
         /// </summary>
         [JsonProperty("guild_skill")]
-        public override List<GuildSkillDTO> GuildSkill { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<GuildSkillDTO> GuildSkill { get; set; } = new();
 
         /// <summary>
         /// 노블레스 스킬 목록
         /// </summary>
         [JsonProperty("guild_noblesse_skill")]
-        public override List<GuildSkillDTO> GuildNoblesseSkill { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<GuildSkillDTO> GuildNoblesseSkill { get; set; } = new();
     }
 
     /// <summary>

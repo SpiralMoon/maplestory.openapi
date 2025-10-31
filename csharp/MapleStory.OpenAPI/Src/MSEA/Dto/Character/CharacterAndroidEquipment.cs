@@ -77,7 +77,8 @@ namespace MapleStory.OpenAPI.MSEA.DTO
         /// Android cash item equipment information
         /// </summary>
         [JsonProperty("android_cash_item_equipment")]
-        public override List<CharacterAndroidCashItemEquipmentDTO> AndroidCashItemEquipment { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<CharacterAndroidCashItemEquipmentDTO> AndroidCashItemEquipment { get; set; } = new();
 
         /// <summary>
         /// Whether the Android has an ear sensor clip applied
@@ -395,7 +396,8 @@ namespace MapleStory.OpenAPI.MSEA.DTO
         /// Android cash item options
         /// </summary>
         [JsonProperty("cash_item_option")]
-        public override List<CharacterAndroidCashItemEquipmentOptionDTO> CashItemOption { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<CharacterAndroidCashItemEquipmentOptionDTO> CashItemOption { get; set; } = new();
 
         /// <summary>
         /// Android cash item validity period (SGT)

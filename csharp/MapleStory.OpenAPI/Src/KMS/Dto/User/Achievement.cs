@@ -11,7 +11,8 @@ namespace MapleStory.OpenAPI.KMS.DTO
         /// 메이플스토리 계정
         /// </summary>
         [JsonProperty("account_list")]
-        public List<AchievementAccountListDTO> AccountList { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public List<AchievementAccountListDTO> AccountList { get; set; } = new();
     }
 
     public class AchievementAccountListDTO
@@ -26,7 +27,8 @@ namespace MapleStory.OpenAPI.KMS.DTO
         /// 달성 업적 정보
         /// </summary>
         [JsonProperty("achievement_achieve")]
-        public List<AchievementAchieveDTO> AchievementAchieve { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public List<AchievementAchieveDTO> AchievementAchieve { get; set; } = new();
     }
 
     public class AchievementAchieveDTO

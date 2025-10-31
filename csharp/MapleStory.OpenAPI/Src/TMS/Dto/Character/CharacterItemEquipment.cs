@@ -52,13 +52,15 @@ namespace MapleStory.OpenAPI.TMS.DTO
         /// 道具資訊
         /// </summary>
         [JsonProperty("item_equipment")]
-        public override List<CharacterItemEquipmentInfoDTO> ItemEquipment { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<CharacterItemEquipmentInfoDTO> ItemEquipment { get; set; } = new();
 
         /// <summary>
         /// 預設 1 的道具資訊
         /// </summary>
         [JsonProperty("item_equipment_preset_1")]
-        public override List<CharacterItemEquipmentInfoDTO>? ItemEquipmentPreset1 { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<CharacterItemEquipmentInfoDTO> ItemEquipmentPreset1 { get; set; } = new();
 
         /// <summary>
         /// 預設 2 的道具資訊
@@ -70,7 +72,8 @@ namespace MapleStory.OpenAPI.TMS.DTO
         /// 預設 3 的道具資訊
         /// </summary>
         [JsonProperty("item_equipment_preset_3")]
-        public override List<CharacterItemEquipmentInfoDTO>? ItemEquipmentPreset3 { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<CharacterItemEquipmentInfoDTO> ItemEquipmentPreset3 { get; set; } = new();
 
         /// <summary>
         /// 稱號資訊
@@ -82,13 +85,15 @@ namespace MapleStory.OpenAPI.TMS.DTO
         /// 龍魔導士的龍道具資訊 (僅在龍魔導士時回應)
         /// </summary>
         [JsonProperty("dragon_equipment")]
-        public override List<CharacterItemEquipmentDragonInfoDTO> DragonEquipment { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<CharacterItemEquipmentDragonInfoDTO> DragonEquipment { get; set; } = new();
 
         /// <summary>
         /// 機甲戰神道具資訊 (僅在機甲戰神時回應)
         /// </summary>
         [JsonProperty("mechanic_equipment")]
-        public override List<CharacterItemEquipmentMechanicInfoDTO> MechanicEquipment { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<CharacterItemEquipmentMechanicInfoDTO> MechanicEquipment { get; set; } = new();
     }
 
     /// <summary>

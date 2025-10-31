@@ -11,7 +11,8 @@ namespace MapleStory.OpenAPI.KMS.DTO
         /// 공지 목록
         /// </summary>
         [JsonProperty("cashshop_notice")]
-        public List<CashshopNoticeListItemDTO> CashshopNotice { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public List<CashshopNoticeListItemDTO> CashshopNotice { get; set; } = new();
     }
 
     /// <summary>

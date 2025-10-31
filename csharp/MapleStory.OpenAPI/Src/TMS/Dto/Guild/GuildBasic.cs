@@ -72,19 +72,22 @@ namespace MapleStory.OpenAPI.TMS.DTO
         /// 公會成員清單
         /// </summary>
         [JsonProperty("guild_member")]
-        public override List<string> GuildMember { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<string> GuildMember { get; set; } = new();
 
         /// <summary>
         /// 公會技能清單
         /// </summary>
         [JsonProperty("guild_skill")]
-        public override List<GuildSkillDTO> GuildSkill { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<GuildSkillDTO> GuildSkill { get; set; } = new();
 
         /// <summary>
         /// 貴族技能清單
         /// </summary>
         [JsonProperty("guild_noblesse_skill")]
-        public override List<GuildSkillDTO> GuildNoblesseSkill { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<GuildSkillDTO> GuildNoblesseSkill { get; set; } = new();
     }
 
     /// <summary>

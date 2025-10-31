@@ -36,25 +36,29 @@ namespace MapleStory.OpenAPI.MSEA.DTO
         /// Link Skill information
         /// </summary>
         [JsonProperty("character_link_skill")]
-        public override List<CharacterLinkSkillInfoDTO> CharacterLinkSkill { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<CharacterLinkSkillInfoDTO> CharacterLinkSkill { get; set; } = new();
 
         /// <summary>
         /// Link Skill information for preset 1
         /// </summary>
         [JsonProperty("character_link_skill_preset_1")]
-        public override List<CharacterLinkSkillInfoDTO> CharacterLinkSkillPreset1 { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<CharacterLinkSkillInfoDTO> CharacterLinkSkillPreset1 { get; set; } = new();
 
         /// <summary>
         /// Link Skill information for preset 2
         /// </summary>
         [JsonProperty("character_link_skill_preset_2")]
-        public override List<CharacterLinkSkillInfoDTO> CharacterLinkSkillPreset2 { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<CharacterLinkSkillInfoDTO> CharacterLinkSkillPreset2 { get; set; } = new();
 
         /// <summary>
         /// Link Skill information for preset 3
         /// </summary>
         [JsonProperty("character_link_skill_preset_3")]
-        public override List<CharacterLinkSkillInfoDTO> CharacterLinkSkillPreset3 { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<CharacterLinkSkillInfoDTO> CharacterLinkSkillPreset3 { get; set; } = new();
 
         /// <summary>
         /// My Link Skill information

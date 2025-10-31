@@ -31,13 +31,15 @@ namespace MapleStory.OpenAPI.MSEA.DTO
         /// Artifact effect information
         /// </summary>
         [JsonProperty("union_artifact_effect")]
-        public List<UnionArtifactEffectDTO> UnionArtifactEffect { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public List<UnionArtifactEffectDTO> UnionArtifactEffect { get; set; } = new();
 
         /// <summary>
         /// Artifact crystal information
         /// </summary>
         [JsonProperty("union_artifact_crystal")]
-        public List<UnionArtifactCrystalDTO> UnionArtifactCrystal { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public List<UnionArtifactCrystalDTO> UnionArtifactCrystal { get; set; } = new();
 
         /// <summary>
         /// Remaining artifact AP

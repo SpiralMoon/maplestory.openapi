@@ -11,7 +11,8 @@ namespace MapleStory.OpenAPI.KMS.DTO
         /// 공지 목록
         /// </summary>
         [JsonProperty("update_notice")]
-        public List<UpdateNoticeListItemDTO> UpdateNotice { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public List<UpdateNoticeListItemDTO> UpdateNotice { get; set; } = new();
     }
 
     /// <summary>

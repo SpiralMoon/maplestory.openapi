@@ -31,13 +31,15 @@ namespace MapleStory.OpenAPI.TMS.DTO
         /// 神器效果資訊
         /// </summary>
         [JsonProperty("union_artifact_effect")]
-        public List<UnionArtifactEffectDTO> UnionArtifactEffect { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public List<UnionArtifactEffectDTO> UnionArtifactEffect { get; set; } = new();
 
         /// <summary>
         /// 神器水晶資訊
         /// </summary>
         [JsonProperty("union_artifact_crystal")]
-        public List<UnionArtifactCrystalDTO> UnionArtifactCrystal { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public List<UnionArtifactCrystalDTO> UnionArtifactCrystal { get; set; } = new();
 
         /// <summary>
         /// 剩餘神器 AP

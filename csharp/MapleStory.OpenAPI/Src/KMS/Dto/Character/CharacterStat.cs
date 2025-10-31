@@ -36,7 +36,8 @@ namespace MapleStory.OpenAPI.KMS.DTO
         /// 현재 스탯 정보
         /// </summary>
         [JsonProperty("final_stat")]
-        public override List<CharacterFinalStatDTO> FinalStat { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<CharacterFinalStatDTO> FinalStat { get; set; } = new();
 
         /// <summary>
         /// 잔여 AP

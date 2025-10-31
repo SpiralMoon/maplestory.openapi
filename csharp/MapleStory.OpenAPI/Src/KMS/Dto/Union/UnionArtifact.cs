@@ -31,13 +31,15 @@ namespace MapleStory.OpenAPI.KMS.DTO
         /// 아티팩트 효과 정보
         /// </summary>
         [JsonProperty("union_artifact_effect")]
-        public List<UnionArtifactEffectDTO> UnionArtifactEffect { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public List<UnionArtifactEffectDTO> UnionArtifactEffect { get; set; } = new();
 
         /// <summary>
         /// 아티팩트 크리스탈 정보
         /// </summary>
         [JsonProperty("union_artifact_crystal")]
-        public List<UnionArtifactCrystalDTO> UnionArtifactCrystal { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public List<UnionArtifactCrystalDTO> UnionArtifactCrystal { get; set; } = new();
 
         /// <summary>
         /// 잔여 아티팩트 AP

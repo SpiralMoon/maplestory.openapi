@@ -48,7 +48,8 @@ namespace MapleStory.OpenAPI.TMS.DTO
         /// 預設 1 的極限屬性資訊
         /// </summary>
         [JsonProperty("hyper_stat_preset_1")]
-        public override List<CharacterHyperStatPresetDTO> HyperStatPreset1 { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<CharacterHyperStatPresetDTO> HyperStatPreset1 { get; set; } = new();
 
         /// <summary>
         /// 預設 1 剩餘的極限屬性點數
@@ -60,7 +61,8 @@ namespace MapleStory.OpenAPI.TMS.DTO
         /// 預設 2 的極限屬性資訊
         /// </summary>
         [JsonProperty("hyper_stat_preset_2")]
-        public override List<CharacterHyperStatPresetDTO> HyperStatPreset2 { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<CharacterHyperStatPresetDTO> HyperStatPreset2 { get; set; } = new();
 
         /// <summary>
         /// 預設 2 剩餘的極限屬性點數
@@ -72,7 +74,8 @@ namespace MapleStory.OpenAPI.TMS.DTO
         /// 預設 3 的極限屬性資訊
         /// </summary>
         [JsonProperty("hyper_stat_preset_3")]
-        public override List<CharacterHyperStatPresetDTO> HyperStatPreset3 { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<CharacterHyperStatPresetDTO> HyperStatPreset3 { get; set; } = new();
 
         /// <summary>
         /// 預設 3 剩餘的極限屬性點數

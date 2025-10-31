@@ -11,7 +11,8 @@ namespace MapleStory.OpenAPI.KMS.DTO
         /// 메이플스토리 계정 목록
         /// </summary>
         [JsonProperty("account_list")]
-        public List<CharacterListAccountDTO> AccountList { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public List<CharacterListAccountDTO> AccountList { get; set; } = new();
     }
 
     /// <summary>
@@ -65,6 +66,7 @@ namespace MapleStory.OpenAPI.KMS.DTO
         /// 캐릭터 목록
         /// </summary>
         [JsonProperty("character_list")]
-        public List<CharacterListAccountCharacterDTO> CharacterList { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public List<CharacterListAccountCharacterDTO> CharacterList { get; set; } = new();
     }
 }

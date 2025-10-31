@@ -30,7 +30,8 @@ namespace MapleStory.OpenAPI.MSEA.DTO
         /// HEXA Node information
         /// </summary>
         [JsonProperty("character_hexa_core_equipment")]
-        public override List<CharacterHexaMatrixEquipmentDTO>? CharacterHexaCoreEquipment { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<CharacterHexaMatrixEquipmentDTO> CharacterHexaCoreEquipment { get; set; } = new();
     }
 
     /// <summary>
@@ -72,6 +73,7 @@ namespace MapleStory.OpenAPI.MSEA.DTO
         /// Linked skill
         /// </summary>
         [JsonProperty("linked_skill")]
-        public override List<CharacterHexaMatrixEquipmentLinkedSkillDTO> LinkedSkill { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<CharacterHexaMatrixEquipmentLinkedSkillDTO> LinkedSkill { get; set; } = new();
     }
 }

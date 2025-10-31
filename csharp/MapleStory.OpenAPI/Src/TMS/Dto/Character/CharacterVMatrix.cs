@@ -30,7 +30,8 @@ namespace MapleStory.OpenAPI.TMS.DTO
         /// V 核心資訊
         /// </summary>
         [JsonProperty("character_v_core_equipment")]
-        public override List<CharacterVMatrixCoreEquipmentDTO> CharacterVCoreEquipment { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<CharacterVMatrixCoreEquipmentDTO> CharacterVCoreEquipment { get; set; } = new();
 
         /// <summary>
         /// 角色剩餘的矩陣強化點數

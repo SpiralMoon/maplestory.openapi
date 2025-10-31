@@ -36,37 +36,43 @@ namespace MapleStory.OpenAPI.MSEA.DTO
         /// Information for HEXA Stat Node I
         /// </summary>
         [JsonProperty("character_hexa_stat_core")]
-        public override List<CharacterHexaMatrixStatCoreDTO> CharacterHexaStatCore { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<CharacterHexaMatrixStatCoreDTO> CharacterHexaStatCore { get; set; } = new();
 
         /// <summary>
         /// Information for HEXA Stat Node II
         /// </summary>
         [JsonProperty("character_hexa_stat_core_2")]
-        public override List<CharacterHexaMatrixStatCoreDTO> CharacterHexaStatCore2 { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<CharacterHexaMatrixStatCoreDTO> CharacterHexaStatCore2 { get; set; } = new();
 
         /// <summary>
         /// Information for HEXA Stat Node III
         /// </summary>
         [JsonProperty("character_hexa_stat_core_3")]
-        public override List<CharacterHexaMatrixStatCoreDTO> CharacterHexaStatCore3 { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<CharacterHexaMatrixStatCoreDTO> CharacterHexaStatCore3 { get; set; } = new();
 
         /// <summary>
         /// Preset HEXA Stat Node I information
         /// </summary>
         [JsonProperty("preset_hexa_stat_core")]
-        public override List<CharacterHexaMatrixStatCoreDTO> PresetHexaStatCore { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<CharacterHexaMatrixStatCoreDTO> PresetHexaStatCore { get; set; } = new();
 
         /// <summary>
         /// Preset HEXA Stat Node II information
         /// </summary>
         [JsonProperty("preset_hexa_stat_core_2")]
-        public override List<CharacterHexaMatrixStatCoreDTO> PresetHexaStatCore2 { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<CharacterHexaMatrixStatCoreDTO> PresetHexaStatCore2 { get; set; } = new();
 
         /// <summary>
         /// Preset HEXA Stat Node III information
         /// </summary>
         [JsonProperty("preset_hexa_stat_core_3")]
-        public override List<CharacterHexaMatrixStatCoreDTO> PresetHexaStatCore3 { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<CharacterHexaMatrixStatCoreDTO> PresetHexaStatCore3 { get; set; } = new();
     }
 
     /// <summary>

@@ -102,25 +102,29 @@ namespace MapleStory.OpenAPI.KMS.DTO
         /// 사용 전 잠재능력 옵션
         /// </summary>
         [JsonProperty("before_potential_option")]
-        public List<CubeResultOptionDTO> BeforePotentialOption { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public List<CubeResultOptionDTO> BeforePotentialOption { get; set; } = new();
 
         /// <summary>
         /// 사용 전 에디셔널 잠재능력 옵션
         /// </summary>
         [JsonProperty("before_additional_potential_option")]
-        public List<CubeResultOptionDTO> BeforeAdditionalPotentialOption { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public List<CubeResultOptionDTO> BeforeAdditionalPotentialOption { get; set; } = new();
 
         /// <summary>
         /// 사용 후 잠재능력 옵션
         /// </summary>
         [JsonProperty("after_potential_option")]
-        public List<CubeResultOptionDTO> AfterPotentialOption { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public List<CubeResultOptionDTO> AfterPotentialOption { get; set; } = new();
 
         /// <summary>
         /// 사용 후 에디셔널 잠재능력 옵션
         /// </summary>
         [JsonProperty("after_additional_potential_option")]
-        public List<CubeResultOptionDTO> AfterAdditionalPotentialOption { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public List<CubeResultOptionDTO> AfterAdditionalPotentialOption { get; set; } = new();
 
         /// <summary>
         /// 아이템 업그레이드 여부
@@ -208,7 +212,8 @@ namespace MapleStory.OpenAPI.KMS.DTO
         /// 큐브 히스토리
         /// </summary>
         [JsonProperty("cube_history")]
-        public List<CubeHistoryDTO> CubeHistory;
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public List<CubeHistoryDTO> CubeHistory = new();
 
         /// <summary>
         /// 페이징 처리를 위한 cursor

@@ -30,25 +30,29 @@ namespace MapleStory.OpenAPI.MSEA.DTO
         /// Union raid member effects
         /// </summary>
         [JsonProperty("union_raider_stat")]
-        public override List<string> UnionRaiderStat { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<string> UnionRaiderStat { get; set; } = new();
 
         /// <summary>
         /// Union raid capture effects
         /// </summary>
         [JsonProperty("union_occupied_stat")]
-        public override List<string> UnionOccupiedStat { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<string> UnionOccupiedStat { get; set; } = new();
 
         /// <summary>
         /// Union raider deployment
         /// </summary>
         [JsonProperty("union_inner_stat")]
-        public override List<UnionRaiderInnerStatDTO> UnionInnerStat { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<UnionRaiderInnerStatDTO> UnionInnerStat { get; set; } = new();
 
         /// <summary>
         /// Union Legion Block
         /// </summary>
         [JsonProperty("union_block")]
-        public override List<UnionRaiderBlockDTO> UnionBlock { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<UnionRaiderBlockDTO> UnionBlock { get; set; } = new();
 
         /// <summary>
         /// Number of the preset currently in use
@@ -156,7 +160,8 @@ namespace MapleStory.OpenAPI.MSEA.DTO
         /// Coordinates of the area occupied by the block (null if not placed)
         /// </summary>
         [JsonProperty("block_position")]
-        public override List<UnionRaiderBlockPositionDTO> BlockPosition { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<UnionRaiderBlockPositionDTO> BlockPosition { get; set; } = new();
     }
 
     /// <summary>
@@ -186,24 +191,28 @@ namespace MapleStory.OpenAPI.MSEA.DTO
         /// Union raid member effects
         /// </summary>
         [JsonProperty("union_raider_stat")]
-        public override List<string> UnionRaiderStat { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<string> UnionRaiderStat { get; set; } = new();
 
         /// <summary>
         /// Union raid capture effects
         /// </summary>
         [JsonProperty("union_occupied_stat")]
-        public override List<string> UnionOccupiedStat { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<string> UnionOccupiedStat { get; set; } = new();
 
         /// <summary>
         /// Union raider deployment
         /// </summary>
         [JsonProperty("union_inner_stat")]
-        public override List<UnionRaiderInnerStatDTO> UnionInnerStat { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<UnionRaiderInnerStatDTO> UnionInnerStat { get; set; } = new();
 
         /// <summary>
         /// Information about Legion Blocks
         /// </summary>
         [JsonProperty("union_block")]
-        public override List<UnionRaiderBlockDTO> UnionBlock { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<UnionRaiderBlockDTO> UnionBlock { get; set; } = new();
     }
 }

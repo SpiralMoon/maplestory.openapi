@@ -30,7 +30,8 @@ namespace MapleStory.OpenAPI.TMS.DTO
         /// 套裝效果資訊
         /// </summary>
         [JsonProperty("set_effect")]
-        public override List<CharacterSetEffectSetDTO> SetEffect { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<CharacterSetEffectSetDTO> SetEffect { get; set; } = new();
     }
 
     /// <summary>
@@ -90,12 +91,14 @@ namespace MapleStory.OpenAPI.TMS.DTO
         /// 目前已裝備的套裝效果資訊
         /// </summary>
         [JsonProperty("set_effect_info")]
-        public override List<CharacterSetEffectInfoDTO> SetEffectInfo { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<CharacterSetEffectInfoDTO> SetEffectInfo { get; set; } = new();
 
         /// <summary>
         /// 全部套裝效果資訊
         /// </summary>
         [JsonProperty("set_option_full")]
-        public override List<CharacterSetEffectOptionFullDTO> SetOptionFull { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<CharacterSetEffectOptionFullDTO> SetOptionFull { get; set; } = new();
     }
 }

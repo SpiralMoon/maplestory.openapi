@@ -36,7 +36,8 @@ namespace MapleStory.OpenAPI.KMS.DTO
         /// V코어 정보
         /// </summary>
         [JsonProperty("character_v_core_equipment")]
-        public override List<CharacterVMatrixCoreEquipmentDTO> CharacterVCoreEquipment { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<CharacterVMatrixCoreEquipmentDTO> CharacterVCoreEquipment { get; set; } = new();
 
         /// <summary>
         /// 캐릭터 잔여 매트릭스 강화 포인트

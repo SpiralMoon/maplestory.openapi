@@ -30,7 +30,8 @@ namespace MapleStory.OpenAPI.MSEA.DTO
         /// Set Item effect information
         /// </summary>
         [JsonProperty("set_effect")]
-        public override List<CharacterSetEffectSetDTO> SetEffect { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<CharacterSetEffectSetDTO> SetEffect { get; set; } = new();
     }
 
     /// <summary>
@@ -90,12 +91,14 @@ namespace MapleStory.OpenAPI.MSEA.DTO
         /// Active Set Item effect information
         /// </summary>
         [JsonProperty("set_effect_info")]
-        public override List<CharacterSetEffectInfoDTO> SetEffectInfo { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<CharacterSetEffectInfoDTO> SetEffectInfo { get; set; } = new();
 
         /// <summary>
         /// All Set Item effect information
         /// </summary>
         [JsonProperty("set_option_full")]
-        public override List<CharacterSetEffectOptionFullDTO> SetOptionFull { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<CharacterSetEffectOptionFullDTO> SetOptionFull { get; set; } = new();
     }
 }

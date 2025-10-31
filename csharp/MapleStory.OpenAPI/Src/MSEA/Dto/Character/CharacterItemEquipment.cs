@@ -52,25 +52,29 @@ namespace MapleStory.OpenAPI.MSEA.DTO
         /// Equipment information
         /// </summary>
         [JsonProperty("item_equipment")]
-        public override List<CharacterItemEquipmentInfoDTO> ItemEquipment { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<CharacterItemEquipmentInfoDTO> ItemEquipment { get; set; } = new();
 
         /// <summary>
         /// Equipment information for Preset 1
         /// </summary>
         [JsonProperty("item_equipment_preset_1")]
-        public override List<CharacterItemEquipmentInfoDTO>? ItemEquipmentPreset1 { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<CharacterItemEquipmentInfoDTO> ItemEquipmentPreset1 { get; set; } = new();
 
         /// <summary>
         /// Equipment information for Preset 2
         /// </summary>
         [JsonProperty("item_equipment_preset_2")]
-        public override List<CharacterItemEquipmentInfoDTO>? ItemEquipmentPreset2 { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<CharacterItemEquipmentInfoDTO> ItemEquipmentPreset2 { get; set; } = new();
 
         /// <summary>
         /// Equipment information for Preset 3
         /// </summary>
         [JsonProperty("item_equipment_preset_3")]
-        public override List<CharacterItemEquipmentInfoDTO>? ItemEquipmentPreset3 { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<CharacterItemEquipmentInfoDTO> ItemEquipmentPreset3 { get; set; } = new();
 
         /// <summary>
         /// Title information
@@ -82,13 +86,15 @@ namespace MapleStory.OpenAPI.MSEA.DTO
         /// Evan Dragon equipment information (response provided if the character is Evan)
         /// </summary>
         [JsonProperty("dragon_equipment")]
-        public override List<CharacterItemEquipmentDragonInfoDTO> DragonEquipment { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<CharacterItemEquipmentDragonInfoDTO> DragonEquipment { get; set; } = new();
 
         /// <summary>
         /// Mechanic equipment information (response provided if the character is a Mechanic)
         /// </summary>
         [JsonProperty("mechanic_equipment")]
-        public override List<CharacterItemEquipmentMechanicInfoDTO> MechanicEquipment { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<CharacterItemEquipmentMechanicInfoDTO> MechanicEquipment { get; set; } = new();
     }
 
     /// <summary>

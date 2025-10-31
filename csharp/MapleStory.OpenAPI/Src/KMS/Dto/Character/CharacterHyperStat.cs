@@ -48,7 +48,8 @@ namespace MapleStory.OpenAPI.KMS.DTO
         /// 프리셋 1번 하이퍼 스탯 정보
         /// </summary>
         [JsonProperty("hyper_stat_preset_1")]
-        public override List<CharacterHyperStatPresetDTO> HyperStatPreset1 { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<CharacterHyperStatPresetDTO> HyperStatPreset1 { get; set; } = new();
 
         /// <summary>
         /// 프리셋 1번 하이퍼 스탯 잔여 포인트
@@ -60,7 +61,8 @@ namespace MapleStory.OpenAPI.KMS.DTO
         /// 프리셋 2번 하이퍼 스탯 정보
         /// </summary>
         [JsonProperty("hyper_stat_preset_2")]
-        public override List<CharacterHyperStatPresetDTO> HyperStatPreset2 { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<CharacterHyperStatPresetDTO> HyperStatPreset2 { get; set; } = new();
 
         /// <summary>
         /// 프리셋 2번 하이퍼 스탯 잔여 포인트
@@ -72,7 +74,8 @@ namespace MapleStory.OpenAPI.KMS.DTO
         /// 프리셋 3번 하이퍼 스탯 정보
         /// </summary>
         [JsonProperty("hyper_stat_preset_3")]
-        public override List<CharacterHyperStatPresetDTO> HyperStatPreset3 { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<CharacterHyperStatPresetDTO> HyperStatPreset3 { get; set; } = new();
 
         /// <summary>
         /// 프리셋 3번 하이퍼 스탯 잔여 포인트

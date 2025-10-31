@@ -30,25 +30,29 @@ namespace MapleStory.OpenAPI.KMS.DTO
         /// 유니온 공격대원 효과
         /// </summary>
         [JsonProperty("union_raider_stat")]
-        public override List<string> UnionRaiderStat { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<string> UnionRaiderStat { get; set; } = new();
 
         /// <summary>
         /// 유니온 공격대 점령 효과
         /// </summary>
         [JsonProperty("union_occupied_stat")]
-        public override List<string> UnionOccupiedStat { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<string> UnionOccupiedStat { get; set; } = new();
 
         /// <summary>
         /// 유니온 공격대 배치
         /// </summary>
         [JsonProperty("union_inner_stat")]
-        public override List<UnionRaiderInnerStatDTO> UnionInnerStat { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<UnionRaiderInnerStatDTO> UnionInnerStat { get; set; } = new();
 
         /// <summary>
         /// 유니온 블록 정보
         /// </summary>
         [JsonProperty("union_block")]
-        public override List<UnionRaiderBlockDTO> UnionBlock { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<UnionRaiderBlockDTO> UnionBlock { get; set; } = new();
 
         /// <summary>
         /// 적용 중인 프리셋 번호
@@ -156,7 +160,8 @@ namespace MapleStory.OpenAPI.KMS.DTO
         /// 블록이 차지하고 있는 영역 좌표들 (null:미 배치 시)
         /// </summary>
         [JsonProperty("block_position")]
-        public override List<UnionRaiderBlockPositionDTO> BlockPosition { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<UnionRaiderBlockPositionDTO> BlockPosition { get; set; } = new();
     }
 
     /// <summary>
@@ -186,24 +191,28 @@ namespace MapleStory.OpenAPI.KMS.DTO
         /// 유니온 공격대원 효과
         /// </summary>
         [JsonProperty("union_raider_stat")]
-        public override List<string> UnionRaiderStat { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<string> UnionRaiderStat { get; set; } = new();
 
         /// <summary>
         /// 유니온 공격대 점령 효과
         /// </summary>
         [JsonProperty("union_occupied_stat")]
-        public override List<string> UnionOccupiedStat { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<string> UnionOccupiedStat { get; set; } = new();
 
         /// <summary>
         /// 유니온 공격대 배치
         /// </summary>
         [JsonProperty("union_inner_stat")]
-        public override List<UnionRaiderInnerStatDTO> UnionInnerStat { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<UnionRaiderInnerStatDTO> UnionInnerStat { get; set; } = new();
 
         /// <summary>
         /// 유니온 블록 정보
         /// </summary>
         [JsonProperty("union_block")]
-        public override List<UnionRaiderBlockDTO> UnionBlock { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<UnionRaiderBlockDTO> UnionBlock { get; set; } = new();
     }
 }

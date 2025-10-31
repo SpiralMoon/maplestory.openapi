@@ -77,7 +77,8 @@ namespace MapleStory.OpenAPI.KMS.DTO
         /// 안드로이드 캐시 아이템 장착 정보
         /// </summary>
         [JsonProperty("android_cash_item_equipment")]
-        public override List<CharacterAndroidCashItemEquipmentDTO> AndroidCashItemEquipment { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<CharacterAndroidCashItemEquipmentDTO> AndroidCashItemEquipment { get; set; } = new();
 
         /// <summary>
         /// 안드로이드 이어센서 클립 적용 여부
@@ -423,7 +424,8 @@ namespace MapleStory.OpenAPI.KMS.DTO
         /// 안드로이드 캐시 아이템 옵션
         /// </summary>
         [JsonProperty("cash_item_option")]
-        public override List<CharacterAndroidCashItemEquipmentOptionDTO> CashItemOption { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<CharacterAndroidCashItemEquipmentOptionDTO> CashItemOption { get; set; } = new();
 
         /// <summary>
         /// 안드로이드 캐시 아이템 유효 기간 (KST)

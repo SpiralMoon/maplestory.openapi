@@ -42,7 +42,8 @@ namespace MapleStory.OpenAPI.TMS.DTO
         /// 技能資訊
         /// </summary>
         [JsonProperty("character_skill")]
-        public override List<CharacterSkillInfoDTO> CharacterSkill { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<CharacterSkillInfoDTO> CharacterSkill { get; set; } = new();
     }
 
     /// <summary>

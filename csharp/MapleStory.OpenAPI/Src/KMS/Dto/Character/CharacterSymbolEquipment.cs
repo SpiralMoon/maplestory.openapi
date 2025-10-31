@@ -36,7 +36,8 @@ namespace MapleStory.OpenAPI.KMS.DTO
         /// 심볼 정보 목록
         /// </summary>
         [JsonProperty("symbol")]
-        public override List<CharacterSymbolEquipmentInfoDTO> Symbol { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<CharacterSymbolEquipmentInfoDTO> Symbol { get; set; } = new();
     }
 
     /// <summary>

@@ -54,49 +54,57 @@ namespace MapleStory.OpenAPI.MSEA.DTO
         /// Currently equipped cash items
         /// </summary>
         [JsonProperty("cash_item_equipment_base")]
-        public override List<CharacterCashItemEquipmentPresetDTO> CashItemEquipmentBase { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<CharacterCashItemEquipmentPresetDTO> CashItemEquipmentBase { get; set; } = new();
 
         /// <summary>
         /// Cash item preset 1
         /// </summary>
         [JsonProperty("cash_item_equipment_preset_1")]
-        public override List<CharacterCashItemEquipmentPresetDTO> CashItemEquipmentPreset1 { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<CharacterCashItemEquipmentPresetDTO> CashItemEquipmentPreset1 { get; set; } = new();
 
         /// <summary>
         /// Cash item preset 2
         /// </summary>
         [JsonProperty("cash_item_equipment_preset_2")]
-        public override List<CharacterCashItemEquipmentPresetDTO> CashItemEquipmentPreset2 { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<CharacterCashItemEquipmentPresetDTO> CashItemEquipmentPreset2 { get; set; } = new();
 
         /// <summary>
         /// Cash item preset 3
         /// </summary>
         [JsonProperty("cash_item_equipment_preset_3")]
-        public override List<CharacterCashItemEquipmentPresetDTO> CashItemEquipmentPreset3 { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<CharacterCashItemEquipmentPresetDTO> CashItemEquipmentPreset3 { get; set; } = new();
 
         /// <summary>
         /// Currently equipped cash items in Beta (Zero) or Dress-Up (Angelic Buster) mode
         /// </summary>
         [JsonProperty("additional_cash_item_equipment_base")]
-        public override List<CharacterCashItemEquipmentPresetDTO> AdditionalCashItemEquipmentBase { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<CharacterCashItemEquipmentPresetDTO> AdditionalCashItemEquipmentBase { get; set; } = new();
 
         /// <summary>
         /// Cash item preset 1 for Beta (Zero) or Dress-Up (Angelic Buster) mode
         /// </summary>
         [JsonProperty("additional_cash_item_equipment_preset_1")]
-        public override List<CharacterCashItemEquipmentPresetDTO> AdditionalCashItemEquipmentPreset1 { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<CharacterCashItemEquipmentPresetDTO> AdditionalCashItemEquipmentPreset1 { get; set; } = new();
 
         /// <summary>
         /// Cash item preset 2 for Beta (Zero) or Dress-Up (Angelic Buster) mode
         /// </summary>
         [JsonProperty("additional_cash_item_equipment_preset_2")]
-        public override List<CharacterCashItemEquipmentPresetDTO> AdditionalCashItemEquipmentPreset2 { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<CharacterCashItemEquipmentPresetDTO> AdditionalCashItemEquipmentPreset2 { get; set; } = new();
 
         /// <summary>
         /// Cash item preset 3 for Beta (Zero) or Dress-Up (Angelic Buster) mode
         /// </summary>
         [JsonProperty("additional_cash_item_equipment_preset_3")]
-        public override List<CharacterCashItemEquipmentPresetDTO> AdditionalCashItemEquipmentPreset3 { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<CharacterCashItemEquipmentPresetDTO> AdditionalCashItemEquipmentPreset3 { get; set; } = new();
     }
 
     /// <summary>
@@ -186,7 +194,8 @@ namespace MapleStory.OpenAPI.MSEA.DTO
         /// Cash equipment option
         /// </summary>
         [JsonProperty("cash_item_option")]
-        public override List<CharacterCashItemEquipmentOptionDTO> CashItemOption { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<CharacterCashItemEquipmentOptionDTO> CashItemOption { get; set; } = new();
 
         /// <summary>
         /// Cash equipment validity period (SGT)

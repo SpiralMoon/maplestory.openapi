@@ -52,25 +52,29 @@ namespace MapleStory.OpenAPI.KMS.DTO
         /// 장비 정보
         /// </summary>
         [JsonProperty("item_equipment")]
-        public override List<CharacterItemEquipmentInfoDTO> ItemEquipment { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<CharacterItemEquipmentInfoDTO> ItemEquipment { get; set; } = new();
 
         /// <summary>
         /// 1번 프리셋 장비 정보
         /// </summary>
         [JsonProperty("item_equipment_preset_1")]
-        public override List<CharacterItemEquipmentInfoDTO>? ItemEquipmentPreset1 { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<CharacterItemEquipmentInfoDTO> ItemEquipmentPreset1 { get; set; } = new();
 
         /// <summary>
         /// 2번 프리셋 장비 정보
         /// </summary>
         [JsonProperty("item_equipment_preset_2")]
-        public override List<CharacterItemEquipmentInfoDTO>? ItemEquipmentPreset2 { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<CharacterItemEquipmentInfoDTO> ItemEquipmentPreset2 { get; set; } = new();
 
         /// <summary>
         /// 3번 프리셋 장비 정보
         /// </summary>
         [JsonProperty("item_equipment_preset_3")]
-        public override List<CharacterItemEquipmentInfoDTO>? ItemEquipmentPreset3 { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<CharacterItemEquipmentInfoDTO> ItemEquipmentPreset3 { get; set; } = new();
 
         /// <summary>
         /// 칭호 정보
@@ -88,13 +92,15 @@ namespace MapleStory.OpenAPI.KMS.DTO
         /// 에반 드래곤 장비 정보 (에반인 경우 응답)
         /// </summary>
         [JsonProperty("dragon_equipment")]
-        public override List<CharacterItemEquipmentDragonInfoDTO> DragonEquipment { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<CharacterItemEquipmentDragonInfoDTO> DragonEquipment { get; set; } = new();
 
         /// <summary>
         /// 메카닉 장비 정보 (메카닉인 경우 응답)
         /// </summary>
         [JsonProperty("mechanic_equipment")]
-        public override List<CharacterItemEquipmentMechanicInfoDTO> MechanicEquipment { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<CharacterItemEquipmentMechanicInfoDTO> MechanicEquipment { get; set; } = new();
     }
 
     /// <summary>

@@ -48,7 +48,8 @@ namespace MapleStory.OpenAPI.MSEA.DTO
         /// Hyper Stat information for preset 1
         /// </summary>
         [JsonProperty("hyper_stat_preset_1")]
-        public override List<CharacterHyperStatPresetDTO> HyperStatPreset1 { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<CharacterHyperStatPresetDTO> HyperStatPreset1 { get; set; } = new();
 
         /// <summary>
         /// Remaining Hyper Stat points for preset 1
@@ -60,7 +61,8 @@ namespace MapleStory.OpenAPI.MSEA.DTO
         /// Hyper Stat information for preset 2
         /// </summary>
         [JsonProperty("hyper_stat_preset_2")]
-        public override List<CharacterHyperStatPresetDTO> HyperStatPreset2 { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<CharacterHyperStatPresetDTO> HyperStatPreset2 { get; set; } = new();
 
         /// <summary>
         /// Remaining Hyper Stat points for preset 2
@@ -72,7 +74,8 @@ namespace MapleStory.OpenAPI.MSEA.DTO
         /// Hyper Stat information for preset 3
         /// </summary>
         [JsonProperty("hyper_stat_preset_3")]
-        public override List<CharacterHyperStatPresetDTO> HyperStatPreset3 { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<CharacterHyperStatPresetDTO> HyperStatPreset3 { get; set; } = new();
 
         /// <summary>
         /// Remaining Hyper Stat points for preset 3

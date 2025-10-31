@@ -36,7 +36,8 @@ namespace MapleStory.OpenAPI.MSEA.DTO
         /// Current stat information
         /// </summary>
         [JsonProperty("final_stat")]
-        public override List<CharacterFinalStatDTO> FinalStat { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<CharacterFinalStatDTO> FinalStat { get; set; } = new();
 
         /// <summary>
         /// Remaining AP

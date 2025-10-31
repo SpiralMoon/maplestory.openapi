@@ -72,19 +72,22 @@ namespace MapleStory.OpenAPI.MSEA.DTO
         /// List of guild members
         /// </summary>
         [JsonProperty("guild_member")]
-        public override List<string> GuildMember { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<string> GuildMember { get; set; } = new();
 
         /// <summary>
         /// List of guild skills
         /// </summary>
         [JsonProperty("guild_skill")]
-        public override List<GuildSkillDTO> GuildSkill { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<GuildSkillDTO> GuildSkill { get; set; } = new();
 
         /// <summary>
         /// List of Noblesse Guild Skills
         /// </summary>
         [JsonProperty("guild_noblesse_skill")]
-        public override List<GuildSkillDTO> GuildNoblesseSkill { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<GuildSkillDTO> GuildNoblesseSkill { get; set; } = new();
     }
 
     /// <summary>

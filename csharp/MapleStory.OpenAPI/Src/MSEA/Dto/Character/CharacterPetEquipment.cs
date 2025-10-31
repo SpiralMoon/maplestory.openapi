@@ -72,7 +72,8 @@ namespace MapleStory.OpenAPI.MSEA.DTO
         /// Skills possessed by pet 2
         /// </summary>
         [JsonProperty("pet_1_skill")]
-        public override List<string> Pet1Skill { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<string> Pet1Skill { get; set; } = new();
 
         /// <summary>
         /// Magic time for pet 1 (SGT, data with minutes set to 0)
@@ -262,7 +263,8 @@ namespace MapleStory.OpenAPI.MSEA.DTO
         /// Skills possessed by pet 3
         /// </summary>
         [JsonProperty("pet_3_skill")]
-        public override List<string> Pet3Skill { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<string> Pet3Skill { get; set; } = new();
 
         /// <summary>
         /// Magic time for pet 3 (SGT, data with minutes set to 0)
@@ -389,7 +391,8 @@ namespace MapleStory.OpenAPI.MSEA.DTO
         /// Displayed item options
         /// </summary>
         [JsonProperty("item_option")]
-        public override List<CharacterPetEquipmentItemOptionDTO> ItemOption { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<CharacterPetEquipmentItemOptionDTO> ItemOption { get; set; } = new();
 
         /// <summary>
         /// Number of upgrades

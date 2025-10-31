@@ -1,7 +1,10 @@
-﻿namespace MapleStory.OpenAPI.KMS.DTO
+﻿using Newtonsoft.Json;
+
+namespace MapleStory.OpenAPI.KMS.DTO
 {
     public class RankingResponseDTO<RankingDTO>
     {
-        public List<RankingDTO> Ranking { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public List<RankingDTO> Ranking { get; set; } = new();
     }
 }

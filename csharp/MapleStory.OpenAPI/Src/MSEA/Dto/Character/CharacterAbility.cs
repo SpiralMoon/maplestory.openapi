@@ -36,7 +36,8 @@ namespace MapleStory.OpenAPI.MSEA.DTO
         /// Ability information
         /// </summary>
         [JsonProperty("ability_info")]
-        public override List<CharacterAbilityInfoDTO> AbilityInfo { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<CharacterAbilityInfoDTO> AbilityInfo { get; set; } = new();
 
         /// <summary>
         /// Owned Honor EXP
@@ -108,6 +109,7 @@ namespace MapleStory.OpenAPI.MSEA.DTO
         /// Information for Ability Preset
         /// </summary>
         [JsonProperty("ability_info")]
-        public override List<CharacterAbilityInfoDTO> AbilityInfo { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<CharacterAbilityInfoDTO> AbilityInfo { get; set; } = new();
     }
 }

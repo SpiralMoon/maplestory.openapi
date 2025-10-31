@@ -54,7 +54,8 @@ namespace MapleStory.OpenAPI.TMS.DTO
         /// 目前已裝備的現金道具
         /// </summary>
         [JsonProperty("cash_item_equipment_base")]
-        public override List<CharacterCashItemEquipmentPresetDTO> CashItemEquipmentBase { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<CharacterCashItemEquipmentPresetDTO> CashItemEquipmentBase { get; set; } = new();
 
         /// <summary>
         /// 外型預設 1
@@ -186,7 +187,8 @@ namespace MapleStory.OpenAPI.TMS.DTO
         /// 現金道具選項
         /// </summary>
         [JsonProperty("cash_item_option")]
-        public override List<CharacterCashItemEquipmentOptionDTO> CashItemOption { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<CharacterCashItemEquipmentOptionDTO> CashItemOption { get; set; } = new();
 
         /// <summary>
         /// 現金道具有效期間 (TST)
@@ -280,7 +282,8 @@ namespace MapleStory.OpenAPI.TMS.DTO
         /// 技能名稱
         /// </summary>
         [JsonProperty("skills")]
-        public List<string> Skills { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public List<string> Skills { get; set; } = new();
     }
 
 }

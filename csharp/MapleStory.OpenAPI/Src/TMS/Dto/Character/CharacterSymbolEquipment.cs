@@ -30,7 +30,8 @@ namespace MapleStory.OpenAPI.TMS.DTO
         /// 符文資訊
         /// </summary>
         [JsonProperty("symbol")]
-        public override List<CharacterSymbolEquipmentInfoDTO> Symbol { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<CharacterSymbolEquipmentInfoDTO> Symbol { get; set; } = new();
     }
 
     /// <summary>

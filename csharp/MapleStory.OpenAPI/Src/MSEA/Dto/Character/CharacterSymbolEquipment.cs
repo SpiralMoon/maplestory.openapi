@@ -30,7 +30,8 @@ namespace MapleStory.OpenAPI.MSEA.DTO
         /// Symbol information
         /// </summary>
         [JsonProperty("symbol")]
-        public override List<CharacterSymbolEquipmentInfoDTO> Symbol { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<CharacterSymbolEquipmentInfoDTO> Symbol { get; set; } = new();
     }
 
     /// <summary>

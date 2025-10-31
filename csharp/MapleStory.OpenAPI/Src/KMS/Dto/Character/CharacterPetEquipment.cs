@@ -72,7 +72,8 @@ namespace MapleStory.OpenAPI.KMS.DTO
         /// 펫1 펫 보유 스킬
         /// </summary>
         [JsonProperty("pet_1_skill")]
-        public override List<string> Pet1Skill { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<string> Pet1Skill { get; set; } = new();
 
         /// <summary>
         /// 펫1 마법의 시간 (KST, 시간 단위 데이터로 분은 일괄 0으로 표기)
@@ -167,7 +168,8 @@ namespace MapleStory.OpenAPI.KMS.DTO
         /// 펫2 펫 보유 스킬
         /// </summary>
         [JsonProperty("pet_2_skill")]
-        public override List<string> Pet2Skill { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<string> Pet2Skill { get; set; } = new();
 
         /// <summary>
         /// 펫2 마법의 시간 (KST, 시간 단위 데이터로 분은 일괄 0으로 표기)
@@ -262,7 +264,8 @@ namespace MapleStory.OpenAPI.KMS.DTO
         /// 펫3 펫 보유 스킬
         /// </summary>
         [JsonProperty("pet_3_skill")]
-        public override List<string> Pet3Skill { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<string> Pet3Skill { get; set; } = new();
 
         /// <summary>
         /// 펫3 마법의 시간 (KST, 시간 단위 데이터로 분은 일괄 0으로 표기)
@@ -387,7 +390,8 @@ namespace MapleStory.OpenAPI.KMS.DTO
         /// 아이템 표기상 옵션
         /// </summary>
         [JsonProperty("item_option")]
-        public override List<CharacterPetEquipmentItemOptionDTO> ItemOption { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<CharacterPetEquipmentItemOptionDTO> ItemOption { get; set; } = new();
 
         /// <summary>
         /// 업그레이드 횟수

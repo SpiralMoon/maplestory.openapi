@@ -36,7 +36,8 @@ namespace MapleStory.OpenAPI.KMS.DTO
         /// 어빌리티 정보 리스트
         /// </summary>
         [JsonProperty("ability_info")]
-        public override List<CharacterAbilityInfoDTO> AbilityInfo { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<CharacterAbilityInfoDTO> AbilityInfo { get; set; } = new();
 
         /// <summary>
         /// 보유 명성치
@@ -108,6 +109,7 @@ namespace MapleStory.OpenAPI.KMS.DTO
         /// 프리셋의 어빌리티 정보
         /// </summary>
         [JsonProperty("ability_info")]
-        public override List<CharacterAbilityInfoDTO> AbilityInfo { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<CharacterAbilityInfoDTO> AbilityInfo { get; set; } = new();
     }
 }

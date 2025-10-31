@@ -36,7 +36,8 @@ namespace MapleStory.OpenAPI.TMS.DTO
         /// 能力資訊
         /// </summary>
         [JsonProperty("ability_info")]
-        public override List<CharacterAbilityInfoDTO> AbilityInfo { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<CharacterAbilityInfoDTO> AbilityInfo { get; set; } = new();
 
         /// <summary>
         /// 名聲值
@@ -108,6 +109,7 @@ namespace MapleStory.OpenAPI.TMS.DTO
         /// 能力預設資訊
         /// </summary>
         [JsonProperty("ability_info")]
-        public override List<CharacterAbilityInfoDTO> AbilityInfo { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<CharacterAbilityInfoDTO> AbilityInfo { get; set; } = new();
     }
 }

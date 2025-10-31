@@ -30,13 +30,15 @@ namespace MapleStory.OpenAPI.KMS.DTO
         /// 유니온 챔피언 정보
         /// </summary>
         [JsonProperty("union_champion")]
-        public List<UnionChampionInfoDTO> UnionChampion { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public List<UnionChampionInfoDTO> UnionChampion { get; set; } = new();
 
         /// <summary>
         /// 유니온 챔피언 휘장 정보
         /// </summary>
         [JsonProperty("champion_badge_total_info")]
-        public List<UnionChampionBadgeInfoDTO> ChampionBadgeTotalInfo { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public List<UnionChampionBadgeInfoDTO> ChampionBadgeTotalInfo { get; set; } = new();
     }
 
     /// <summary>
@@ -85,6 +87,7 @@ namespace MapleStory.OpenAPI.KMS.DTO
         /// 챔피언 휘장 효과
         /// </summary>
         [JsonProperty("champion_badge_info")]
-        public List<UnionChampionBadgeInfoDTO> ChampionBadgeInfo { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public List<UnionChampionBadgeInfoDTO> ChampionBadgeInfo { get; set; } = new();
     }
 }

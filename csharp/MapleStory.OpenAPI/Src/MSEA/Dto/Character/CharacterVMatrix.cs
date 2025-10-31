@@ -30,7 +30,8 @@ namespace MapleStory.OpenAPI.MSEA.DTO
         /// V Matrix Node information
         /// </summary>
         [JsonProperty("character_v_core_equipment")]
-        public override List<CharacterVMatrixCoreEquipmentDTO> CharacterVCoreEquipment { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<CharacterVMatrixCoreEquipmentDTO> CharacterVCoreEquipment { get; set; } = new();
 
         /// <summary>
         /// Remaining Matrix enhancement points for the character

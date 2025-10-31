@@ -119,7 +119,8 @@ namespace MapleStory.OpenAPI.KMS.DTO
         /// 진행 중인 스타포스 강화 이벤트 정보
         /// </summary>
         [JsonProperty("starforce_event_list")]
-        public List<StarforceEventDTO>? StarforceEventList { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public List<StarforceEventDTO> StarforceEventList { get; set; } = new();
     }
 
     /// <summary>
@@ -173,7 +174,8 @@ namespace MapleStory.OpenAPI.KMS.DTO
         /// 스타포스 히스토리
         /// </summary>
         [JsonProperty("starforce_history")]
-        public List<StarforceHistoryDTO> StarforceHistory { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public List<StarforceHistoryDTO> StarforceHistory { get; set; } = new();
 
         /// <summary>
         /// 페이징 처리를 위한 cursor

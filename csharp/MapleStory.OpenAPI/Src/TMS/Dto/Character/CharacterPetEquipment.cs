@@ -72,7 +72,8 @@ namespace MapleStory.OpenAPI.TMS.DTO
         /// 寵物 1 技能
         /// </summary>
         [JsonProperty("pet_1_skill")]
-        public override List<string> Pet1Skill { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<string> Pet1Skill { get; set; } = new();
 
         /// <summary>
         /// 寵物 1 魔法時間 (TST，時間單位資料中的分鐘顯示為 0)
@@ -389,7 +390,8 @@ namespace MapleStory.OpenAPI.TMS.DTO
         /// 道具顯示選項
         /// </summary>
         [JsonProperty("item_option")]
-        public override List<CharacterPetEquipmentItemOptionDTO> ItemOption { get; set; }
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<CharacterPetEquipmentItemOptionDTO> ItemOption { get; set; } = new();
 
         /// <summary>
         /// 強化次數
