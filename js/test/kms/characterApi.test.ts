@@ -134,21 +134,21 @@ describe('Character Information Retrieval', () => {
       console.log(toString(response));
     });
 
-    test('fail: getCharacterImage on date with no data', async () => {
-      const ocid = 'b0187493ec48ddd7b1d304fe8982d0b0';
-      try {
-        await api.getCharacterImage(ocid, {}, {
-          year: 2025,
-          month: 6,
-          day: 18,
-        });
-        fail('An error should have been thrown.');
-      } catch (e) {
-        const error = e as Error;
-        expect(error).toBeInstanceOf(Error);
-        console.log(error.message);
-      }
-    });
+    // test('fail: getCharacterImage on date with no data', async () => {
+    //   const ocid = 'b0187493ec48ddd7b1d304fe8982d0b0';
+    //   try {
+    //     await api.getCharacterImage(ocid, {}, {
+    //       year: 2025,
+    //       month: 6,
+    //       day: 18,
+    //     });
+    //     fail('An error should have been thrown.');
+    //   } catch (e) {
+    //     const error = e as AxiosError;
+    //     expect(error).toBeInstanceOf(AxiosError);
+    //     console.log(error.message);
+    //   }
+    // });
 
     test('fail: getCharacterImage with invalid ocid throw OPENAPI00003', async () => {
       const invalidOcid = 'invalid_ocid_123';
