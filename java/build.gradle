@@ -21,15 +21,22 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-scalars:3.0.0'
     implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.20.0'
 
-    testImplementation platform('org.junit:junit-bom:5.9.1')
-    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testImplementation platform('org.junit:junit-bom:5.10.1')
+    testImplementation 'org.junit.jupiter:junit-jupiter-api'
+    testImplementation 'org.assertj:assertj-core:3.24.2'
+
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
 
     annotationProcessor 'org.projectlombok:lombok:1.18.38'
 }
 
 task unitTest(type: Test) {
-    def apiKey = project.findProperty('apiKey')
-    systemProperty('API_KEY', apiKey)
+    def apiKeyKms = project.findProperty('API_KEY_KMS')
+    def apiKeyMsea = project.findProperty('API_KEY_MSEA')
+    def apiKeyTms = project.findProperty('API_KEY_TMS')
+    systemProperty('API_KEY_KMS', apiKeyKms)
+    systemProperty('API_KEY_MSEA', apiKeyMsea)
+    systemProperty('API_KEY_TMS', apiKeyTms)
 
     useJUnitPlatform()
 }
