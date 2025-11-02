@@ -13,4 +13,4 @@ class CharacterPopularity(BaseModel, BaseCharacterPopularity):
         popularity (int): 角色名聲
     """
     date: datetime | None
-    popularity: int
+    popularity: int | None
