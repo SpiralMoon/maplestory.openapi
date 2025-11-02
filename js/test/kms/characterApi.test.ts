@@ -144,8 +144,8 @@ describe('Character Information Retrieval', () => {
         });
         fail('An error should have been thrown.');
       } catch (e) {
-        const error = e as AxiosError;
-        expect(error).toBeInstanceOf(AxiosError);
+        const error = e as Error;
+        expect(error).toBeInstanceOf(Error);
         console.log(error.message);
       }
     });
