@@ -1,5 +1,5 @@
 from datetime import datetime
-from pydantic import BaseModel, field_validator
+from pydantic import BaseModel, field_validator, model_validator
 
 from maplestory_openapi.api.common.dto.character.character_pet_equipment import CharacterPetEquipmentAutoSkill as BaseCharacterPetEquipmentAutoSkill
 from maplestory_openapi.api.common.dto.character.character_pet_equipment import CharacterPetEquipmentItemOption as BaseCharacterPetEquipmentItemOption
@@ -119,7 +119,7 @@ class CharacterPetEquipment(BaseModel, BaseCharacterPetEquipment):
     pet_1_pet_type: str | None
     pet_1_skill: list[str]
     pet_1_date_expire: datetime | None
-    pet_1_expired: bool = False
+    pet_1_expired: bool | None = None
     pet_1_appearance: str | None
     pet_1_appearance_icon: str | None
     pet_2_name: str | None
@@ -131,7 +131,7 @@ class CharacterPetEquipment(BaseModel, BaseCharacterPetEquipment):
     pet_2_pet_type: str | None
     pet_2_skill: list[str]
     pet_2_date_expire: datetime | None
-    pet_2_expired: bool = False
+    pet_2_expired: bool | None = None
     pet_2_appearance: str | None
     pet_2_appearance_icon: str | None
     pet_3_name: str | None
@@ -143,9 +143,33 @@ class CharacterPetEquipment(BaseModel, BaseCharacterPetEquipment):
     pet_3_pet_type: str | None
     pet_3_skill: list[str]
     pet_3_date_expire: datetime | None
-    pet_3_expired: bool = False
+    pet_3_expired: bool | None = None
     pet_3_appearance: str | None
     pet_3_appearance_icon: str | None
+
+    @model_validator(mode="before")
+    @classmethod
+    def set_default_pet_1_date_expire(cls, values):
+        if values.get("pet_1_date_expire") == 'expired':
+            values["pet_1_expired"] = True
+            values["pet_1_date_expire"] = None
+        return values
+
+    @model_validator(mode="before")
+    @classmethod
+    def set_default_pet_2_date_expire(cls, values):
+        if values.get("pet_2_date_expire") == 'expired':
+            values["pet_2_expired"] = True
+            values["pet_2_date_expire"] = None
+        return values
+
+    @model_validator(mode="before")
+    @classmethod
+    def set_default_pet_3_date_expire(cls, values):
+        if values.get("pet_3_date_expire") == 'expired':
+            values["pet_3_expired"] = True
+            values["pet_3_date_expire"] = None
+        return values
 
     @field_validator("pet_1_skill", "pet_2_skill", "pet_3_skill", mode="before")
     @classmethod

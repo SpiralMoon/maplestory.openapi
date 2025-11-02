@@ -36,7 +36,7 @@ class CharacterPetEquipment:
     pet_1_pet_type: str | None
     pet_1_skill: list[str]
     pet_1_date_expire: datetime | None
-    pet_1_expired: bool = False
+    pet_1_expired: bool | None
     pet_1_appearance: str | None
     pet_1_appearance_icon: str | None
     pet_2_name: str | None
@@ -48,7 +48,7 @@ class CharacterPetEquipment:
     pet_2_pet_type: str | None
     pet_2_skill: list[str]
     pet_2_date_expire: datetime | None
-    pet_2_expired: bool = False
+    pet_2_expired: bool | None
     pet_2_appearance: str | None
     pet_2_appearance_icon: str | None
     pet_3_name: str | None
@@ -60,20 +60,6 @@ class CharacterPetEquipment:
     pet_3_pet_type: str | None
     pet_3_skill: list[str]
     pet_3_date_expire: datetime | None
-    pet_3_expired: bool = False
+    pet_3_expired: bool | None
     pet_3_appearance: str | None
     pet_3_appearance_icon: str | None
-
-    @model_validator(mode="before")
-    @classmethod
-    def set_default(cls, values):
-        if values.get("pet_1_date_expire") == 'expired':
-            values["pet_1_expired"] = True
-            values["pet_1_date_expire"] = None
-        if values.get("pet_2_date_expire") == 'expired':
-            values["pet_2_expired"] = True
-            values["pet_2_date_expire"] = None
-        if values.get("pet_3_date_expire") == 'expired':
-            values["pet_3_expired"] = True
-            values["pet_3_date_expire"] = None
-        return values
