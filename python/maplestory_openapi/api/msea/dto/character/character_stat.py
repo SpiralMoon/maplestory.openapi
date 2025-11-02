@@ -1,5 +1,5 @@
 from datetime import datetime
-from pydantic import BaseModel
+from pydantic import BaseModel, field_validator
 
 from maplestory_openapi.api.common.dto.character.character_stat import CharacterStatInfo as BaseCharacterStatInfo
 from maplestory_openapi.api.common.dto.character.character_stat import CharacterStat as BaseCharacterStat
@@ -31,3 +31,10 @@ class CharacterStat(BaseModel, BaseCharacterStat):
     character_class: str | None
     final_stat: list[CharacterStatInfo]
     remain_ap: int | None
+
+    @field_validator("final_stat", mode="before")
+    @classmethod
+    def null_as_empty(cls, v):
+        if v is None:
+            return []
+        return v

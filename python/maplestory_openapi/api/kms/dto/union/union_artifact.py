@@ -1,5 +1,5 @@
 from datetime import datetime
-from pydantic import BaseModel, model_validator
+from pydantic import BaseModel, field_validator, model_validator
 
 from maplestory_openapi.api.common.dto.union.union_artifact import UnionArtifactEffect as BaseUnionArtifactEffect
 from maplestory_openapi.api.common.dto.union.union_artifact import UnionArtifactCrystal as BaseUnionArtifactCrystal
@@ -56,3 +56,10 @@ class UnionArtifact(BaseModel, BaseUnionArtifact):
     union_artifact_effect: list[UnionArtifactEffect]
     union_artifact_crystal: list[UnionArtifactCrystal]
     union_artifact_remain_ap: int | None
+
+    @field_validator("union_artifact_effect", "union_artifact_crystal", mode="before")
+    @classmethod
+    def null_as_empty(cls, v):
+        if v is None:
+            return []
+        return v

@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, field_validator
 
 
 class CharacterListAccountCharacter(BaseModel):
@@ -30,6 +30,13 @@ class CharacterListAccount(BaseModel):
     account_id: str
     character_list: list[CharacterListAccountCharacter]
 
+    @field_validator("character_list", mode="before")
+    @classmethod
+    def null_as_empty(cls, v):
+        if v is None:
+            return []
+        return v
+
 
 class CharacterList(BaseModel):
     """
@@ -39,3 +46,10 @@ class CharacterList(BaseModel):
         account_list (list[CharacterListAccount]): 메이플스토리 계정 목록
     """
     account_list: list[CharacterListAccount]
+
+    @field_validator("account_list", mode="before")
+    @classmethod
+    def null_as_empty(cls, v):
+        if v is None:
+            return []
+        return v

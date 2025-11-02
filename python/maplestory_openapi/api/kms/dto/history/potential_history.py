@@ -1,5 +1,5 @@
 from datetime import datetime
-from pydantic import BaseModel
+from pydantic import BaseModel, field_validator
 
 
 class PotentialOption(BaseModel):
@@ -55,6 +55,19 @@ class PotentialHistoryInfo(BaseModel):
     after_potential_option: list[PotentialOption]
     after_additional_potential_option: list[PotentialOption]
 
+    @field_validator(
+        "before_potential_option",
+        "before_additional_potential_option",
+        "after_potential_option",
+        "after_additional_potential_option",
+        mode="before"
+    )
+    @classmethod
+    def null_as_empty(cls, v):
+        if v is None:
+            return []
+        return v
+
 
 class PotentialHistory(BaseModel):
     """
@@ -68,3 +81,10 @@ class PotentialHistory(BaseModel):
     count: int
     next_cursor: str | None
     potential_history: list[PotentialHistoryInfo]
+
+    @field_validator("potential_history", mode="before")
+    @classmethod
+    def null_as_empty(cls, v):
+        if v is None:
+            return []
+        return v

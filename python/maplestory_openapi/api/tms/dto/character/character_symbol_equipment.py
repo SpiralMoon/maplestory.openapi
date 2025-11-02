@@ -1,5 +1,5 @@
 from datetime import datetime
-from pydantic import BaseModel
+from pydantic import BaseModel, field_validator
 
 from maplestory_openapi.api.common.dto.character.character_symbol_equipment import CharacterSymbolEquipmentInfo as BaseCharacterSymbolEquipmentInfo
 from maplestory_openapi.api.common.dto.character.character_symbol_equipment import CharacterSymbolEquipment as BaseCharacterSymbolEquipment
@@ -55,3 +55,10 @@ class CharacterSymbolEquipment(BaseModel, BaseCharacterSymbolEquipment):
     date: datetime | None
     character_class: str | None
     symbol: list[CharacterSymbolEquipmentInfo]
+
+    @field_validator("symbol", mode="before")
+    @classmethod
+    def null_as_empty(cls, v):
+        if v is None:
+            return []
+        return v

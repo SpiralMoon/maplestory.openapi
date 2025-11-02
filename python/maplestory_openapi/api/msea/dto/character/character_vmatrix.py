@@ -1,5 +1,5 @@
 from datetime import datetime
-from pydantic import BaseModel
+from pydantic import BaseModel, field_validator
 
 from maplestory_openapi.api.common.dto.character.character_vmatrix import CharacterVMatrixCoreEquipment as BaseCharacterVMatrixCoreEquipment
 from maplestory_openapi.api.common.dto.character.character_vmatrix import CharacterVMatrix as BaseCharacterVMatrix
@@ -43,3 +43,10 @@ class CharacterVMatrix(BaseModel, BaseCharacterVMatrix):
     character_class: str | None
     character_v_core_equipment: list[CharacterVMatrixCoreEquipment]
     character_v_matrix_remain_slot_upgrade_point: int | None
+
+    @field_validator("character_v_core_equipment", mode="before")
+    @classmethod
+    def null_as_empty(cls, v):
+        if v is None:
+            return []
+        return v

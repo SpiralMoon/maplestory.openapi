@@ -1,5 +1,5 @@
 from datetime import datetime
-from pydantic import BaseModel
+from pydantic import BaseModel, field_validator
 
 from maplestory_openapi.api.common.dto.union.union_raider import UnionRaiderBlockPosition as BaseUnionRaiderBlockPosition
 from maplestory_openapi.api.common.dto.union.union_raider import UnionRaiderBlockControlPoint as BaseUnionRaiderBlockControlPoint
@@ -53,7 +53,14 @@ class UnionRaiderBlock(BaseModel, BaseUnionRaiderBlock):
     block_class: str
     block_level: str
     block_control_point: UnionRaiderBlockControlPoint
-    block_position: list[UnionRaiderBlockPosition] | None
+    block_position: list[UnionRaiderBlockPosition]
+
+    @field_validator("block_position", mode="before")
+    @classmethod
+    def null_as_empty(cls, v):
+        if v is None:
+            return []
+        return v
 
 
 class UnionRaiderInnerStat(BaseModel, BaseUnionRaiderInnerStat):
@@ -82,6 +89,19 @@ class UnionRaiderPreset(BaseModel, BaseUnionRaiderPreset):
     union_occupied_stat: list[str]
     union_inner_stat: list[UnionRaiderInnerStat]
     union_block: list[UnionRaiderBlock]
+
+    @field_validator(
+        "union_raider_stat",
+        "union_occupied_stat",
+        "union_inner_stat",
+        "union_block",
+        mode="before"
+    )
+    @classmethod
+    def null_as_empty(cls, v):
+        if v is None:
+            return []
+        return v
 
 
 class UnionRaider(BaseModel, BaseUnionRaider):
@@ -112,3 +132,16 @@ class UnionRaider(BaseModel, BaseUnionRaider):
     union_raider_preset_3: UnionRaiderPreset | None
     union_raider_preset_4: UnionRaiderPreset | None
     union_raider_preset_5: UnionRaiderPreset | None
+
+    @field_validator(
+        "union_raider_stat",
+        "union_occupied_stat",
+        "union_inner_stat",
+        "union_block",
+        mode="before"
+    )
+    @classmethod
+    def null_as_empty(cls, v):
+        if v is None:
+            return []
+        return v

@@ -1,5 +1,5 @@
 from datetime import datetime
-from pydantic import BaseModel
+from pydantic import BaseModel, field_validator
 
 from maplestory_openapi.api.common.dto.character.character_ability import CharacterAbilityInfo as BaseCharacterAbilityInfo
 from maplestory_openapi.api.common.dto.character.character_ability import CharacterAbilityPreset as BaseCharacterAbilityPreset
@@ -31,6 +31,13 @@ class CharacterAbilityPreset(BaseModel, BaseCharacterAbilityPreset):
     ability_preset_grade: str
     ability_info: list[CharacterAbilityInfo]
 
+    @field_validator("ability_info", mode="before")
+    @classmethod
+    def null_as_empty(cls, v):
+        if v is None:
+            return []
+        return v
+
 
 class CharacterAbility(BaseModel, BaseCharacterAbility):
     """
@@ -46,7 +53,7 @@ class CharacterAbility(BaseModel, BaseCharacterAbility):
         ability_preset_2 (CharacterAbilityPreset or None): Complete information for Ability Preset 2
         ability_preset_3 (CharacterAbilityPreset or None): Complete information for Ability Preset 3
     """
-    date: datetime | None | None
+    date: datetime | None
     ability_grade: str | None
     ability_info: list[CharacterAbilityInfo]
     remain_fame: int | None
@@ -54,3 +61,10 @@ class CharacterAbility(BaseModel, BaseCharacterAbility):
     ability_preset_1: CharacterAbilityPreset | None
     ability_preset_2: CharacterAbilityPreset | None
     ability_preset_3: CharacterAbilityPreset | None
+
+    @field_validator("ability_info", mode="before")
+    @classmethod
+    def null_as_empty(cls, v):
+        if v is None:
+            return []
+        return v

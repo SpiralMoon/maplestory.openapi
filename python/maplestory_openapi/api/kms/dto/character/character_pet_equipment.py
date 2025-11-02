@@ -1,5 +1,5 @@
 from datetime import datetime
-from pydantic import BaseModel, model_validator
+from pydantic import BaseModel, field_validator, model_validator
 
 from maplestory_openapi.api.common.dto.character.character_pet_equipment import CharacterPetEquipmentAutoSkill as BaseCharacterPetEquipmentAutoSkill
 from maplestory_openapi.api.common.dto.character.character_pet_equipment import CharacterPetEquipmentItemOption as BaseCharacterPetEquipmentItemOption
@@ -57,6 +57,13 @@ class CharacterPetEquipmentItem(BaseModel, BaseCharacterPetEquipmentItem):
     scroll_upgradable: int
     item_shape: str | None
     item_shape_icon: str | None
+
+    @field_validator("item_option", mode="before")
+    @classmethod
+    def null_as_empty(cls, v):
+        if v is None:
+            return []
+        return v
 
 
 class CharacterPetEquipment(BaseModel, BaseCharacterPetEquipment):
@@ -163,3 +170,10 @@ class CharacterPetEquipment(BaseModel, BaseCharacterPetEquipment):
             values["pet_3_expired"] = True
             values["pet_3_date_expire"] = None
         return values
+
+    @field_validator("pet_1_skill", "pet_2_skill", "pet_3_skill", mode="before")
+    @classmethod
+    def null_as_empty(cls, v):
+        if v is None:
+            return []
+        return v

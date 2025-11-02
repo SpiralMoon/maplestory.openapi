@@ -1,5 +1,5 @@
 from datetime import datetime
-from pydantic import BaseModel, model_validator
+from pydantic import BaseModel, field_validator
 
 from maplestory_openapi.api.common.dto.character.character_android_equipment import CharacterAndroidEquipmentHair as BaseCharacterAndroidEquipmentHair
 from maplestory_openapi.api.common.dto.character.character_android_equipment import CharacterAndroidEquipmentFace as BaseCharacterAndroidEquipmentFace
@@ -174,6 +174,13 @@ class CharacterAndroidCashItemEquipment(BaseModel, BaseCharacterAndroidCashItemE
     android_item_gender: str | None
     freestyle_flag: str | None
 
+    @field_validator("cash_item_option", mode="before")
+    @classmethod
+    def null_as_empty(cls, v):
+        if v is None:
+            return []
+        return v
+
     @property
     def is_freestyle_flag(self) -> bool:
         """
@@ -223,3 +230,10 @@ class CharacterAndroidEquipment(BaseModel, BaseCharacterAndroidEquipment):
     android_preset_1: CharacterAndroidEquipmentPreset | None
     android_preset_2: CharacterAndroidEquipmentPreset | None
     android_preset_3: CharacterAndroidEquipmentPreset | None
+
+    @field_validator("android_cash_item_equipment", mode="before")
+    @classmethod
+    def null_as_empty(cls, v):
+        if v is None:
+            return []
+        return v

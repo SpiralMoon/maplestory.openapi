@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, field_validator
 
 
 class UnionRankingInfo(BaseModel):
@@ -29,3 +29,10 @@ class UnionRanking(BaseModel):
     ranking(list[UnionRankingInfo]): 유니온 랭킹 정보
     """
     ranking: list[UnionRankingInfo]
+
+    @field_validator("ranking", mode="before")
+    @classmethod
+    def null_as_empty(cls, v):
+        if v is None:
+            return []
+        return v

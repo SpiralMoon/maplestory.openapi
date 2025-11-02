@@ -1,5 +1,5 @@
 from datetime import datetime
-from pydantic import BaseModel
+from pydantic import BaseModel, field_validator
 
 from maplestory_openapi.api.common.dto.guild.guild_basic import GuildBasic as BaseGuildBasic
 from maplestory_openapi.api.common.dto.guild.guild_basic import GuildSkill as BaseGuildSkill
@@ -51,3 +51,10 @@ class GuildBasic(BaseModel, BaseGuildBasic):
     guild_member: list[str]
     guild_skill: list[GuildSkill]
     guild_noblesse_skill: list[GuildSkill]
+
+    @field_validator("guild_member", "guild_skill", "guild_noblesse_skill", mode="before")
+    @classmethod
+    def null_as_empty(cls, v):
+        if v is None:
+            return []
+        return v

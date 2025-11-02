@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, field_validator
 
 
 class AchievementAchieve(BaseModel):
@@ -24,6 +24,13 @@ class AchievementAccountList(BaseModel):
     account_id: str
     achievement_achieve: list[AchievementAchieve]
 
+    @field_validator("achievement_achieve", mode="before")
+    @classmethod
+    def null_as_empty(cls, v):
+        if v is None:
+            return []
+        return v
+
 class Achievement(BaseModel):
     """
     계정의 업적 목록
@@ -32,3 +39,10 @@ class Achievement(BaseModel):
         account_list (list[AchievementAccountList]): 메이플스토리 계정
     """
     account_list: list[AchievementAccountList]
+
+    @field_validator("account_list", mode="before")
+    @classmethod
+    def null_as_empty(cls, v):
+        if v is None:
+            return []
+        return v

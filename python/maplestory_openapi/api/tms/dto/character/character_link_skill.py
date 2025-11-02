@@ -1,5 +1,5 @@
 from datetime import datetime
-from pydantic import BaseModel
+from pydantic import BaseModel, field_validator
 
 from maplestory_openapi.api.common.dto.character.character_link_skill import CharacterLinkSkillInfo as BaseCharacterLinkSkillInfo
 from maplestory_openapi.api.common.dto.character.character_link_skill import CharacterLinkSkill as BaseCharacterLinkSkill
@@ -51,3 +51,16 @@ class CharacterLinkSkill(BaseModel, BaseCharacterLinkSkill):
     character_owned_link_skill_preset_1: CharacterLinkSkillInfo | None
     character_owned_link_skill_preset_2: CharacterLinkSkillInfo | None
     character_owned_link_skill_preset_3: CharacterLinkSkillInfo | None
+
+    @field_validator(
+        "character_link_skill",
+        "character_link_skill_preset_1",
+        "character_link_skill_preset_2",
+        "character_link_skill_preset_3",
+        mode="before"
+    )
+    @classmethod
+    def null_as_empty(cls, v):
+        if v is None:
+            return []
+        return v

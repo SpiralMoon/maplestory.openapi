@@ -1,5 +1,5 @@
 from datetime import datetime
-from pydantic import BaseModel
+from pydantic import BaseModel, field_validator
 
 
 class StarforceHistoryEvent(BaseModel):
@@ -59,7 +59,14 @@ class StarforceHistoryInfo(BaseModel):
     world_name: str
     target_item: str
     date_create: datetime
-    starforce_event_list: list[StarforceHistoryEvent] | None
+    starforce_event_list: list[StarforceHistoryEvent]
+
+    @field_validator("starforce_event_list", mode="before")
+    @classmethod
+    def null_as_empty(cls, v):
+        if v is None:
+            return []
+        return v
 
 
 class StarforceHistory(BaseModel):
@@ -74,3 +81,10 @@ class StarforceHistory(BaseModel):
     count: int
     next_cursor: str | None
     starforce_history: list[StarforceHistoryInfo]
+
+    @field_validator("starforce_history", mode="before")
+    @classmethod
+    def null_as_empty(cls, v):
+        if v is None:
+            return []
+        return v

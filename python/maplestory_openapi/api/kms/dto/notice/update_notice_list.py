@@ -1,5 +1,5 @@
 from datetime import datetime
-from pydantic import BaseModel
+from pydantic import BaseModel, field_validator
 
 
 class UpdateNoticeListItem(BaseModel):
@@ -26,3 +26,10 @@ class UpdateNoticeList(BaseModel):
         update_notice (list[UpdateNoticeListItem]): 공지 목록
     """
     update_notice: list[UpdateNoticeListItem]
+
+    @field_validator("update_notice", mode="before")
+    @classmethod
+    def null_as_empty(cls, v):
+        if v is None:
+            return []
+        return v

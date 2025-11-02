@@ -1,5 +1,5 @@
 from datetime import datetime
-from pydantic import BaseModel
+from pydantic import BaseModel, field_validator
 
 from maplestory_openapi.api.common.dto.character.character_hyper_stat import CharacterHyperStatPreset as BaseCharacterHyperStatPreset
 from maplestory_openapi.api.common.dto.character.character_hyper_stat import CharacterHyperStat as BaseCharacterHyperStat
@@ -47,3 +47,15 @@ class CharacterHyperStat(BaseModel, BaseCharacterHyperStat):
     hyper_stat_preset_2_remain_point: int | None
     hyper_stat_preset_3: list[CharacterHyperStatPreset]
     hyper_stat_preset_3_remain_point: int | None
+
+    @field_validator(
+        "hyper_stat_preset_1",
+        "hyper_stat_preset_2",
+        "hyper_stat_preset_3",
+        mode="before"
+    )
+    @classmethod
+    def null_as_empty(cls, v):
+        if v is None:
+            return []
+        return v

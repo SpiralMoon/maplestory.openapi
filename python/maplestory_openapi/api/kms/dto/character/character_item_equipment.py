@@ -1,5 +1,5 @@
 from datetime import datetime
-from pydantic import BaseModel
+from pydantic import BaseModel, field_validator
 
 from maplestory_openapi.api.common.dto.character.character_item_equipment import CharacterItemEquipmentAddOption as BaseCharacterItemEquipmentAddOption
 from maplestory_openapi.api.common.dto.character.character_item_equipment import CharacterItemEquipmentBaseOption as BaseCharacterItemEquipmentBaseOption
@@ -539,10 +539,25 @@ class CharacterItemEquipment(BaseModel, BaseCharacterItemEquipment):
     character_class: str | None
     preset_no: int | None
     item_equipment: list[CharacterItemEquipmentInfo]
-    item_equipment_preset_1: list[CharacterItemEquipmentInfo] | None
-    item_equipment_preset_2: list[CharacterItemEquipmentInfo] | None
-    item_equipment_preset_3: list[CharacterItemEquipmentInfo] | None
+    item_equipment_preset_1: list[CharacterItemEquipmentInfo]
+    item_equipment_preset_2: list[CharacterItemEquipmentInfo]
+    item_equipment_preset_3: list[CharacterItemEquipmentInfo]
     title: CharacterItemEquipmentTitle | None
     medal_shape: CharacterItemEquipmentMedalShape | None
     dragon_equipment: list[CharacterItemEquipmentDragonInfo]
     mechanic_equipment: list[CharacterItemEquipmentMechanicInfo]
+
+    @field_validator(
+        "item_equipment",
+        "item_equipment_preset_1",
+        "item_equipment_preset_2",
+        "item_equipment_preset_3",
+        "dragon_equipment",
+        "mechanic_equipment",
+        mode="before"
+    )
+    @classmethod
+    def null_as_empty(cls, v):
+        if v is None:
+            return []
+        return v

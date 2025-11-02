@@ -1,5 +1,5 @@
 from datetime import datetime
-from pydantic import BaseModel
+from pydantic import BaseModel, field_validator
 
 
 class UnionChampionBadgeInfo(BaseModel):
@@ -29,6 +29,13 @@ class UnionChampionInfo(BaseModel):
     champion_class: str
     champion_badge_info: list[UnionChampionBadgeInfo]
 
+    @field_validator("champion_badge_info", mode="before")
+    @classmethod
+    def null_as_empty(cls, v):
+        if v is None:
+            return []
+        return v
+
 
 class UnionChampion(BaseModel):
     """
@@ -42,3 +49,10 @@ class UnionChampion(BaseModel):
     date: datetime | None
     union_champion: list[UnionChampionInfo]
     champion_badge_total_info: list[UnionChampionBadgeInfo]
+
+    @field_validator("union_champion", "champion_badge_total_info", mode="before")
+    @classmethod
+    def null_as_empty(cls, v):
+        if v is None:
+            return []
+        return v

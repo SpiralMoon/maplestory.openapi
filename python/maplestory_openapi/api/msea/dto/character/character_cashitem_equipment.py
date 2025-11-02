@@ -1,5 +1,5 @@
 from datetime import datetime
-from pydantic import BaseModel
+from pydantic import BaseModel, field_validator
 
 from maplestory_openapi.api.common.dto.character.character_cashitem_equipment import CharacterCashitemEquipmentColoringPrism as BaseCharacterCashitemEquipmentColoringPrism
 from maplestory_openapi.api.common.dto.character.character_cashitem_equipment import CharacterCashitemEquipmentOption as BaseCharacterCashitemEquipmentOption
@@ -68,6 +68,13 @@ class CharacterCashitemEquipmentPreset(BaseModel, BaseCharacterCashitemEquipment
     cash_item_coloring_prism: CharacterCashitemEquipmentColoringPrism | None
     item_gender: str | None
 
+    @field_validator("cash_item_option", mode="before")
+    @classmethod
+    def null_as_empty(cls, v):
+        if v is None:
+            return []
+        return v
+
 
 class CharacterCashitemEquipment(BaseModel, BaseCharacterCashitemEquipment):
     """
@@ -101,3 +108,20 @@ class CharacterCashitemEquipment(BaseModel, BaseCharacterCashitemEquipment):
     additional_cash_item_equipment_preset_1: list[CharacterCashitemEquipmentPreset]
     additional_cash_item_equipment_preset_2: list[CharacterCashitemEquipmentPreset]
     additional_cash_item_equipment_preset_3: list[CharacterCashitemEquipmentPreset]
+
+    @field_validator(
+        "cash_item_equipment_base",
+        "cash_item_equipment_preset_1",
+        "cash_item_equipment_preset_2",
+        "cash_item_equipment_preset_3",
+        "additional_cash_item_equipment_base",
+        "additional_cash_item_equipment_preset_1",
+        "additional_cash_item_equipment_preset_2",
+        "additional_cash_item_equipment_preset_3",
+        mode="before"
+    )
+    @classmethod
+    def null_as_empty(cls, v):
+        if v is None:
+            return []
+        return v

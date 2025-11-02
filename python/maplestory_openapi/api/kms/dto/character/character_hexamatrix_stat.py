@@ -1,5 +1,5 @@
 from datetime import datetime
-from pydantic import BaseModel, model_validator
+from pydantic import BaseModel, field_validator
 
 from maplestory_openapi.api.common.dto.character.character_hexamatrix_stat import CharacterHexaMatrixStatCore as BaseCharacterHexaMatrixStatCore
 from maplestory_openapi.api.common.dto.character.character_hexamatrix_stat import CharacterHexaMatrixStat as BaseCharacterHexaMatrixStat
@@ -51,3 +51,18 @@ class CharacterHexaMatrixStat(BaseModel, BaseCharacterHexaMatrixStat):
     preset_hexa_stat_core: list[CharacterHexaMatrixStatCore]
     preset_hexa_stat_core_2: list[CharacterHexaMatrixStatCore]
     preset_hexa_stat_core_3: list[CharacterHexaMatrixStatCore]
+
+    @field_validator(
+        "character_hexa_stat_core",
+        "character_hexa_stat_core_2",
+        "character_hexa_stat_core_3",
+        "preset_hexa_stat_core",
+        "preset_hexa_stat_core_2",
+        "preset_hexa_stat_core_3",
+        mode="before"
+    )
+    @classmethod
+    def null_as_empty(cls, v):
+        if v is None:
+            return []
+        return v

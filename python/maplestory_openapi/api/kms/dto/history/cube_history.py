@@ -1,5 +1,5 @@
 from datetime import datetime
-from pydantic import BaseModel
+from pydantic import BaseModel, field_validator
 
 
 class CubePotentialOption(BaseModel):
@@ -55,6 +55,19 @@ class CubeHistoryInfo(BaseModel):
     after_potential_option: list[CubePotentialOption]
     after_additional_potential_option: list[CubePotentialOption]
 
+    @field_validator(
+        "before_potential_option",
+        "before_additional_potential_option",
+        "after_potential_option",
+        "after_additional_potential_option",
+        mode="before"
+    )
+    @classmethod
+    def null_as_empty(cls, v):
+        if v is None:
+            return []
+        return v
+
 
 class CubeHistory(BaseModel):
     """
@@ -68,3 +81,10 @@ class CubeHistory(BaseModel):
     count: int
     next_cursor: str | None
     cube_history: list[CubeHistoryInfo]
+
+    @field_validator("cube_history", mode="before")
+    @classmethod
+    def null_as_empty(cls, v):
+        if v is None:
+            return []
+        return v

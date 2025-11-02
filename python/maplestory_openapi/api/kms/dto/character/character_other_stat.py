@@ -1,5 +1,5 @@
 from datetime import datetime
-from pydantic import BaseModel, model_validator
+from pydantic import BaseModel, field_validator
 
 
 class CharacterOtherStatInfo(BaseModel):
@@ -25,6 +25,13 @@ class CharacterOtherStatDetail(BaseModel):
     other_stat_type: str
     stat_info: list[CharacterOtherStatInfo]
 
+    @field_validator("stat_info", mode="before")
+    @classmethod
+    def null_as_empty(cls, v):
+        if v is None:
+            return []
+        return v
+
 
 class CharacterOtherStat(BaseModel):
     """
@@ -37,9 +44,9 @@ class CharacterOtherStat(BaseModel):
     date: datetime | None
     other_stat: list[CharacterOtherStatDetail]
 
-    @model_validator(mode="before")
+    @field_validator("other_stat", mode="before")
     @classmethod
-    def set_default(cls, values):
-        if values.get("other_stat") is None:
-            values["other_stat"] = []
-        return values
+    def null_as_empty(cls, v):
+        if v is None:
+            return []
+        return v

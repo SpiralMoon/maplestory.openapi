@@ -1,5 +1,5 @@
 from datetime import datetime
-from pydantic import BaseModel
+from pydantic import BaseModel, field_validator
 
 from maplestory_openapi.api.common.dto.character.character_set_effect import CharacterSetEffectInfo as BaseCharacterSetEffectInfo
 from maplestory_openapi.api.common.dto.character.character_set_effect import CharacterSetEffectOptionFull as BaseCharacterSetEffectOptionFull
@@ -46,6 +46,13 @@ class CharacterSetEffectSet(BaseModel, BaseCharacterSetEffectSet):
     set_effect_info: list[CharacterSetEffectInfo]
     set_option_full: list[CharacterSetEffectOptionFull]
 
+    @field_validator("set_effect_info", "set_option_full", mode="before")
+    @classmethod
+    def null_as_empty(cls, v):
+        if v is None:
+            return []
+        return v
+
 
 class CharacterSetEffect(BaseModel, BaseCharacterSetEffect):
     """
@@ -57,3 +64,10 @@ class CharacterSetEffect(BaseModel, BaseCharacterSetEffect):
     """
     date: datetime | None
     set_effect: list[CharacterSetEffectSet]
+
+    @field_validator("set_effect", mode="before")
+    @classmethod
+    def null_as_empty(cls, v):
+        if v is None:
+            return []
+        return v

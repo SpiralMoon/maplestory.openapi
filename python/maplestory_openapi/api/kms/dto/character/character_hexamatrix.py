@@ -1,5 +1,5 @@
 from datetime import datetime
-from pydantic import BaseModel, model_validator
+from pydantic import BaseModel, field_validator
 
 from maplestory_openapi.api.common.dto.character.character_hexamatrix import CharacterHexaMatrixEquipmentLinkedSkill as BaseCharacterHexaMatrixEquipmentLinkedSkill
 from maplestory_openapi.api.common.dto.character.character_hexamatrix import CharacterHexaMatrixCoreEquipment as BaseCharacterHexaMatrixCoreEquipment
@@ -31,6 +31,13 @@ class CharacterHexaMatrixCoreEquipment(BaseModel, BaseCharacterHexaMatrixCoreEqu
     hexa_core_type: str
     linked_skill: list[CharacterHexaMatrixEquipmentLinkedSkill]
 
+    @field_validator("linked_skill", mode="before")
+    @classmethod
+    def null_as_empty(cls, v):
+        if v is None:
+            return []
+        return v
+
 
 class CharacterHexaMatrix(BaseModel, BaseCharacterHexaMatrix):
     """
@@ -43,3 +50,9 @@ class CharacterHexaMatrix(BaseModel, BaseCharacterHexaMatrix):
     date: datetime | None
     character_hexa_core_equipment: list[CharacterHexaMatrixCoreEquipment]
 
+    @field_validator("character_hexa_core_equipment", mode="before")
+    @classmethod
+    def null_as_empty(cls, v):
+        if v is None:
+            return []
+        return v
