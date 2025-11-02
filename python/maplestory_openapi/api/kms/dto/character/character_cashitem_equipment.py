@@ -1,5 +1,5 @@
 from datetime import datetime
-from pydantic import BaseModel, field_validator
+from pydantic import BaseModel, field_validator, model_validator
 
 from maplestory_openapi.api.common.dto.character.character_cashitem_equipment import CharacterCashitemEquipmentColoringPrism as BaseCharacterCashitemEquipmentColoringPrism
 from maplestory_openapi.api.common.dto.character.character_cashitem_equipment import CharacterCashitemEquipmentOption as BaseCharacterCashitemEquipmentOption
@@ -63,21 +63,14 @@ class CharacterCashitemEquipmentPreset(BaseModel, BaseCharacterCashitemEquipment
     cash_item_description: str | None
     cash_item_option: list[CharacterCashitemEquipmentOption]
     date_expire: datetime | None
-    is_expired: bool = False
+    is_expired: bool | None
     date_option_expire: datetime | None
-    is_option_expired: bool = False
+    is_option_expired: bool | None
     cash_item_label: str | None
     cash_item_coloring_prism: CharacterCashitemEquipmentColoringPrism | None
     item_gender: str | None
     skills: list[str]
     freestyle_flag: str | None
-
-    @field_validator("cash_item_option", "skills", mode="before")
-    @classmethod
-    def null_as_empty(cls, v):
-        if v is None:
-            return []
-        return v
 
     @property
     def is_freestyle_flag(self) -> bool:
@@ -85,6 +78,24 @@ class CharacterCashitemEquipmentPreset(BaseModel, BaseCharacterCashitemEquipment
         프리스타일 쿠폰 적용 여부
         """
         return self.freestyle_flag == '1'
+
+    @model_validator(mode="before")
+    @classmethod
+    def set_default(cls, values):
+        if values.get("date_expire") == 'expired':
+            values["is_expired"] = True
+            values["date_expire"] = None
+        if values.get("date_option_expire") == 'expired':
+            values["is_option_expired"] = True
+            values["date_option_expire"] = None
+        return values
+
+    @field_validator("cash_item_option", "skills", mode="before")
+    @classmethod
+    def null_as_empty(cls, v):
+        if v is None:
+            return []
+        return v
 
 class CharacterCashitemEquipment(BaseModel, BaseCharacterCashitemEquipment):
     """

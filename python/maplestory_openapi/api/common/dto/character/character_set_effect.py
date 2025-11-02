@@ -14,10 +14,10 @@ class CharacterSetEffectOptionFull:
 class CharacterSetEffectSet:
     set_name: str
     total_set_count: int
-    set_effect_info: list[CharacterSetEffectInfo]
-    set_option_full: list[CharacterSetEffectOptionFull]
+    set_effect_info: list[CharacterSetEffectInfo] = []
+    set_option_full: list[CharacterSetEffectOptionFull] = []
 
 
 class CharacterSetEffect:
     date: datetime | None
-    set_effect: list[CharacterSetEffectSet]
+    set_effect: list[CharacterSetEffectSet] = []

@@ -1,5 +1,5 @@
 from datetime import datetime
-from pydantic import BaseModel, field_validator
+from pydantic import BaseModel, field_validator, model_validator
 
 from maplestory_openapi.api.common.dto.character.character_item_equipment import CharacterItemEquipmentAddOption as BaseCharacterItemEquipmentAddOption
 from maplestory_openapi.api.common.dto.character.character_item_equipment import CharacterItemEquipmentBaseOption as BaseCharacterItemEquipmentBaseOption
@@ -147,6 +147,13 @@ class CharacterItemEquipmentExceptionalOption(BaseModel, BaseCharacterItemEquipm
     attack_power: str
     magic_power: str
     exceptional_upgrade: int
+
+    @model_validator(mode="before")
+    @classmethod
+    def set_default(cls, values):
+        if values.get("exceptional_upgrade") is None:
+            values["exceptional_upgrade"] = 0
+        return values
 
 
 class CharacterItemEquipmentTotalOption(BaseModel, BaseCharacterItemEquipmentTotalOption):
@@ -307,8 +314,16 @@ class CharacterItemEquipmentInfo(BaseModel, BaseCharacterItemEquipmentInfo):
     item_starforce_option: CharacterItemEquipmentStarforceOption
     special_ring_level: int
     date_expire: datetime | None
-    is_expired: bool = False
+    is_expired: bool | None
     freestyle_flag: str | None
+
+    @model_validator(mode="before")
+    @classmethod
+    def set_default(cls, values):
+        if values.get("date_expire") == 'expired':
+            values["is_expired"] = True
+            values["date_expire"] = None
+        return values
 
     @property
     def is_freestyle_flag(self) -> bool:
@@ -382,8 +397,16 @@ class CharacterItemEquipmentDragonInfo(BaseModel, BaseCharacterItemEquipmentDrag
     item_starforce_option: CharacterItemEquipmentStarforceOption
     special_ring_level: int
     date_expire: datetime | None
-    is_expired: bool = False
+    is_expired: bool | None
     freestyle_flag: str | None
+
+    @model_validator(mode="before")
+    @classmethod
+    def set_default(cls, values):
+        if values.get("date_expire") == 'expired':
+            values["is_expired"] = True
+            values["date_expire"] = None
+        return values
 
     @property
     def is_freestyle_flag(self) -> bool:
@@ -457,8 +480,16 @@ class CharacterItemEquipmentMechanicInfo(BaseModel, BaseCharacterItemEquipmentMe
     item_starforce_option: CharacterItemEquipmentStarforceOption
     special_ring_level: int
     date_expire: datetime | None
-    is_expired: bool = False
+    is_expired: bool | None
     freestyle_flag: str | None
+
+    @model_validator(mode="before")
+    @classmethod
+    def set_default(cls, values):
+        if values.get("date_expire") == 'expired':
+            values["is_expired"] = True
+            values["date_expire"] = None
+        return values
 
     @property
     def is_freestyle_flag(self) -> bool:
@@ -488,12 +519,23 @@ class CharacterItemEquipmentTitle(BaseModel, BaseCharacterItemEquipmentTitle):
     title_icon: str | None
     title_description: str | None
     date_expire: datetime | None
-    is_expired: bool = False
+    is_expired: bool | None
     date_option_expire: datetime | None
-    is_option_expired: bool = False
+    is_option_expired: bool | None
     title_shape_name: str | None
     title_shape_icon: str | None
     title_shape_description: str | None
+
+    @model_validator(mode="before")
+    @classmethod
+    def set_default(cls, values):
+        if values.get("date_expire") == 'expired':
+            values["is_expired"] = True
+            values["date_expire"] = None
+        if values.get("date_option_expire") == 'expired':
+            values["is_option_expired"] = True
+            values["date_option_expire"] = None
+        return values
 
 
 class CharacterItemEquipmentMedalShape(BaseModel):

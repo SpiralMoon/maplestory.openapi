@@ -1,5 +1,4 @@
 from datetime import datetime
-from pydantic import model_validator
 
 
 class CharacterAndroidEquipmentHair:
@@ -57,25 +56,14 @@ class CharacterAndroidCashItemEquipment:
     cash_item_name: str
     cash_item_icon: str
     cash_item_description: str | None
-    cash_item_option: list[CharacterAndroidCashItemEquipmentOption]
+    cash_item_option: list[CharacterAndroidCashItemEquipmentOption] = []
     date_expire: datetime | None
-    is_expired: bool = False
+    is_expired: bool | None = None
     date_option_expire: datetime | None
-    is_option_expired: bool = False
+    is_option_expired: bool | None = None
     cash_item_label: str | None
     cash_item_coloring_prism: CharacterAndroidCashItemEquipmentColoringPrism | None
     android_item_gender: str | None
-
-    @model_validator(mode="before")
-    @classmethod
-    def set_default(cls, values):
-        if values.get("date_expire") == 'expired':
-            values["is_expired"] = True
-            values["date_expire"] = None
-        if values.get("date_option_expire") == 'expired':
-            values["is_option_expired"] = True
-            values["date_option_expire"] = None
-        return values
 
 
 class CharacterAndroidEquipment:
@@ -87,7 +75,7 @@ class CharacterAndroidEquipment:
     android_hair: CharacterAndroidEquipmentHair | None
     android_face: CharacterAndroidEquipmentFace | None
     android_skin: CharacterAndroidEquipmentSkin | None
-    android_cash_item_equipment: list[CharacterAndroidCashItemEquipment]
+    android_cash_item_equipment: list[CharacterAndroidCashItemEquipment] = []
     android_ear_sensor_clip_flag: str | None
     android_gender: str | None
     android_grade: str | None

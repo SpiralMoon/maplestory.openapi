@@ -16,7 +16,7 @@ class UnionRaiderBlock:
     block_class: str
     block_level: str
     block_control_point: UnionRaiderBlockControlPoint
-    block_position: list[UnionRaiderBlockPosition] | None
+    block_position: list[UnionRaiderBlockPosition] = []
 
 
 class UnionRaiderInnerStat:
@@ -25,18 +25,18 @@ class UnionRaiderInnerStat:
 
 
 class UnionRaiderPreset:
-    union_raider_stat: list[str]
-    union_occupied_stat: list[str]
-    union_inner_stat: list[UnionRaiderInnerStat]
-    union_block: list[UnionRaiderBlock]
+    union_raider_stat: list[str] = []
+    union_occupied_stat: list[str] = []
+    union_inner_stat: list[UnionRaiderInnerStat] = []
+    union_block: list[UnionRaiderBlock] = []
 
 
 class UnionRaider:
     date: datetime | None
-    union_raider_stat: list[str]
-    union_occupied_stat: list[str]
-    union_inner_stat: list[UnionRaiderInnerStat]
-    union_block: list[UnionRaiderBlock]
+    union_raider_stat: list[str] = []
+    union_occupied_stat: list[str] = []
+    union_inner_stat: list[UnionRaiderInnerStat] = []
+    union_block: list[UnionRaiderBlock] = []
     use_preset_no: int
     union_raider_preset_1: UnionRaiderPreset | None
     union_raider_preset_2: UnionRaiderPreset | None

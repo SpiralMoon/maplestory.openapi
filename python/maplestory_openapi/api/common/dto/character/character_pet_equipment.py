@@ -18,7 +18,7 @@ class CharacterPetEquipmentItem:
     item_name: str | None
     item_icon: str | None
     item_description: str | None
-    item_option: list[CharacterPetEquipmentItemOption]
+    item_option: list[CharacterPetEquipmentItemOption] = []
     scroll_upgrade: int
     scroll_upgradable: int
     item_shape: str | None
@@ -34,9 +34,9 @@ class CharacterPetEquipment:
     pet_1_equipment: CharacterPetEquipmentItem | None
     pet_1_auto_skill: CharacterPetEquipmentAutoSkill | None
     pet_1_pet_type: str | None
-    pet_1_skill: list[str]
+    pet_1_skill: list[str] = []
     pet_1_date_expire: datetime | None
-    pet_1_expired: bool | None
+    pet_1_expired: bool | None = None
     pet_1_appearance: str | None
     pet_1_appearance_icon: str | None
     pet_2_name: str | None
@@ -46,9 +46,9 @@ class CharacterPetEquipment:
     pet_2_equipment: CharacterPetEquipmentItem | None
     pet_2_auto_skill: CharacterPetEquipmentAutoSkill | None
     pet_2_pet_type: str | None
-    pet_2_skill: list[str]
+    pet_2_skill: list[str] = []
     pet_2_date_expire: datetime | None
-    pet_2_expired: bool | None
+    pet_2_expired: bool | None = None
     pet_2_appearance: str | None
     pet_2_appearance_icon: str | None
     pet_3_name: str | None
@@ -58,8 +58,8 @@ class CharacterPetEquipment:
     pet_3_equipment: CharacterPetEquipmentItem | None
     pet_3_auto_skill: CharacterPetEquipmentAutoSkill | None
     pet_3_pet_type: str | None
-    pet_3_skill: list[str]
+    pet_3_skill: list[str] = []
     pet_3_date_expire: datetime | None
-    pet_3_expired: bool | None
+    pet_3_expired: bool | None = None
     pet_3_appearance: str | None
     pet_3_appearance_icon: str | None

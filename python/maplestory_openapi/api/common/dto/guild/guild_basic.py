@@ -18,6 +18,6 @@ class GuildBasic:
     guild_point: int
     guild_master_name: str
     guild_member_count: int
-    guild_member: list[str]
-    guild_skill: list[GuildSkill]
-    guild_noblesse_skill: list[GuildSkill]
+    guild_member: list[str] = []
+    guild_skill: list[GuildSkill] = []
+    guild_noblesse_skill: list[GuildSkill] = []

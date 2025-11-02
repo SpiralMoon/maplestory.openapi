@@ -1,5 +1,4 @@
 from datetime import datetime
-from pydantic import model_validator
 
 
 class CharacterItemEquipmentAddOption:
@@ -64,13 +63,6 @@ class CharacterItemEquipmentExceptionalOption:
     attack_power: str
     magic_power: str
     exceptional_upgrade: int
-
-    @model_validator(mode="before")
-    @classmethod
-    def set_default(cls, values):
-        if values.get("exceptional_upgrade") is None:
-            values["exceptional_upgrade"] = 0
-        return values
 
 
 class CharacterItemEquipmentTotalOption:
@@ -147,15 +139,7 @@ class CharacterItemEquipmentInfo:
     item_starforce_option: CharacterItemEquipmentStarforceOption
     special_ring_level: int
     date_expire: datetime | None
-    is_expired: bool = False
-
-    @model_validator(mode="before")
-    @classmethod
-    def set_default(cls, values):
-        if values.get("date_expire") == 'expired':
-            values["is_expired"] = True
-            values["date_expire"] = None
-        return values
+    is_expired: bool | None = None
 
 
 class CharacterItemEquipmentDragonInfo:
@@ -187,15 +171,7 @@ class CharacterItemEquipmentDragonInfo:
     item_starforce_option: CharacterItemEquipmentStarforceOption
     special_ring_level: int
     date_expire: datetime | None
-    is_expired: bool = False
-
-    @model_validator(mode="before")
-    @classmethod
-    def set_default(cls, values):
-        if values.get("date_expire") == 'expired':
-            values["is_expired"] = True
-            values["date_expire"] = None
-        return values
+    is_expired: bool | None = None
 
 
 class CharacterItemEquipmentMechanicInfo:
@@ -227,15 +203,7 @@ class CharacterItemEquipmentMechanicInfo:
     item_starforce_option: CharacterItemEquipmentStarforceOption
     special_ring_level: int
     date_expire: datetime | None
-    is_expired: bool = False
-
-    @model_validator(mode="before")
-    @classmethod
-    def set_default(cls, values):
-        if values.get("date_expire") == 'expired':
-            values["is_expired"] = True
-            values["date_expire"] = None
-        return values
+    is_expired: bool | None = None
 
 
 class CharacterItemEquipmentTitle:
@@ -243,23 +211,12 @@ class CharacterItemEquipmentTitle:
     title_icon: str | None
     title_description: str | None
     date_expire: datetime | None
-    is_expired: bool = False
+    is_expired: bool | None = None
     date_option_expire: datetime | None
-    is_option_expired: bool = False
+    is_option_expired: bool | None = None
     title_shape_name: str | None
     title_shape_icon: str | None
     title_shape_description: str | None
-
-    @model_validator(mode="before")
-    @classmethod
-    def set_default(cls, values):
-        if values.get("date_expire") == 'expired':
-            values["is_expired"] = True
-            values["date_expire"] = None
-        if values.get("date_option_expire") == 'expired':
-            values["is_option_expired"] = True
-            values["date_option_expire"] = None
-        return values
 
 
 class CharacterItemEquipment:
@@ -267,10 +224,10 @@ class CharacterItemEquipment:
     character_gender: str | None
     character_class: str | None
     preset_no: int | None
-    item_equipment: list[CharacterItemEquipmentInfo]
-    item_equipment_preset_1: list[CharacterItemEquipmentInfo] | None
-    item_equipment_preset_2: list[CharacterItemEquipmentInfo] | None
-    item_equipment_preset_3: list[CharacterItemEquipmentInfo] | None
+    item_equipment: list[CharacterItemEquipmentInfo] = []
+    item_equipment_preset_1: list[CharacterItemEquipmentInfo] = []
+    item_equipment_preset_2: list[CharacterItemEquipmentInfo] = []
+    item_equipment_preset_3: list[CharacterItemEquipmentInfo] = []
     title: CharacterItemEquipmentTitle | None
-    dragon_equipment: list[CharacterItemEquipmentDragonInfo]
-    mechanic_equipment: list[CharacterItemEquipmentMechanicInfo]
+    dragon_equipment: list[CharacterItemEquipmentDragonInfo] = []
+    mechanic_equipment: list[CharacterItemEquipmentMechanicInfo] = []

@@ -9,5 +9,5 @@ class CharacterStatInfo:
 class CharacterStat:
     date: datetime | None
     character_class: str | None
-    final_stat: list[CharacterStatInfo]
+    final_stat: list[CharacterStatInfo] = []
     remain_ap: int | None

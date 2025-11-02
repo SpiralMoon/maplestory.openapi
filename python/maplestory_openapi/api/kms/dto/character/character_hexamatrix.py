@@ -1,5 +1,5 @@
 from datetime import datetime
-from pydantic import BaseModel, field_validator
+from pydantic import BaseModel, field_validator, model_validator
 
 from maplestory_openapi.api.common.dto.character.character_hexamatrix import CharacterHexaMatrixEquipmentLinkedSkill as BaseCharacterHexaMatrixEquipmentLinkedSkill
 from maplestory_openapi.api.common.dto.character.character_hexamatrix import CharacterHexaMatrixCoreEquipment as BaseCharacterHexaMatrixCoreEquipment

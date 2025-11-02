@@ -13,9 +13,9 @@ class CharacterHyperStat:
     character_class: str | None
     use_preset_no: str | None
     use_available_hyper_stat: int | None
-    hyper_stat_preset_1: list[CharacterHyperStatPreset]
+    hyper_stat_preset_1: list[CharacterHyperStatPreset] = []
     hyper_stat_preset_1_remain_point: int | None
-    hyper_stat_preset_2: list[CharacterHyperStatPreset]
+    hyper_stat_preset_2: list[CharacterHyperStatPreset] = []
     hyper_stat_preset_2_remain_point: int | None
-    hyper_stat_preset_3: list[CharacterHyperStatPreset]
+    hyper_stat_preset_3: list[CharacterHyperStatPreset] = []
     hyper_stat_preset_3_remain_point: int | None
