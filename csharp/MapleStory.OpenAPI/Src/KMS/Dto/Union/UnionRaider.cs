@@ -142,7 +142,7 @@ namespace MapleStory.OpenAPI.KMS.DTO
         /// 블록 해당 캐릭터 직업
         /// </summary>
         [JsonProperty("block_class")]
-        public override string BlockClass { get; set; }
+        public override string? BlockClass { get; set; }
 
         /// <summary>
         /// 블록 해당 캐릭터 레벨

@@ -201,7 +201,7 @@ export class UnionRaiderBlockDto extends base.UnionRaiderBlockDto {
   /**
    * 方塊角色職業
    */
-  public override blockClass: string;
+  public override blockClass: string | null;
 
   /**
    * 方塊角色等級

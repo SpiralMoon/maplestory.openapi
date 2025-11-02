@@ -50,7 +50,7 @@ class UnionRaiderBlock(BaseModel, BaseUnionRaiderBlock):
         block_position (list[UnionRaiderBlockPosition] or None): 方塊佔領區域的座標 (null：未部署時)
     """
     block_type: str
-    block_class: str
+    block_class: str | None
     block_level: str
     block_control_point: UnionRaiderBlockControlPoint
     block_position: list[UnionRaiderBlockPosition]

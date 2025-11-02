@@ -142,7 +142,7 @@ namespace MapleStory.OpenAPI.MSEA.DTO
         /// Character class corresponding to the block
         /// </summary>
         [JsonProperty("block_class")]
-        public override string BlockClass { get; set; }
+        public override string? BlockClass { get; set; }
 
         /// <summary>
         /// Character level corresponding to the block

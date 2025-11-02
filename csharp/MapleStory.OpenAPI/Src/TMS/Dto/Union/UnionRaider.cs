@@ -142,7 +142,7 @@ namespace MapleStory.OpenAPI.TMS.DTO
         /// 方塊角色職業
         /// </summary>
         [JsonProperty("block_class")]
-        public override string BlockClass { get; set; }
+        public override string? BlockClass { get; set; }
 
         /// <summary>
         /// 方塊角色等級

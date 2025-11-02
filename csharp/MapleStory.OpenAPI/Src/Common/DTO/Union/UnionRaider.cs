@@ -35,7 +35,7 @@
     public abstract class UnionRaiderBlockDTO<TUnionRaiderBlockControlPoint, TUnionRaiderBlockPosition>
     {
         public abstract string BlockType { get; set; }
-        public abstract string BlockClass { get; set; }
+        public abstract string? BlockClass { get; set; }
         public abstract string BlockLevel { get; set; }
         public abstract TUnionRaiderBlockControlPoint BlockControlPoint { get; set; }
         public abstract List<TUnionRaiderBlockPosition> BlockPosition { get; set; }

@@ -13,7 +13,7 @@ class UnionRaiderBlockControlPoint:
 
 class UnionRaiderBlock:
     block_type: str
-    block_class: str
+    block_class: str | None
     block_level: str
     block_control_point: UnionRaiderBlockControlPoint
     block_position: list[UnionRaiderBlockPosition] = []

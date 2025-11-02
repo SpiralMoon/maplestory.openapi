@@ -50,7 +50,7 @@ class UnionRaiderBlock(BaseModel, BaseUnionRaiderBlock):
         block_position (list[UnionRaiderBlockPosition] or None): 차지하고 있는 영역 좌표들
     """
     block_type: str
-    block_class: str
+    block_class: str | None
     block_level: str
     block_control_point: UnionRaiderBlockControlPoint
     block_position: list[UnionRaiderBlockPosition]

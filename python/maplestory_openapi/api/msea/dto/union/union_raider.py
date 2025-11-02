@@ -55,7 +55,7 @@ class UnionRaiderBlock(BaseModel, BaseUnionRaiderBlock):
         block_position (list[UnionRaiderBlockPosition] or None): Coordinates of the area occupied by the block (null if not placed)
     """
     block_type: str
-    block_class: str
+    block_class: str | None
     block_level: str
     block_control_point: UnionRaiderBlockControlPoint
     block_position: list[UnionRaiderBlockPosition]

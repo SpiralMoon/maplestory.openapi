@@ -29,7 +29,7 @@ export abstract class UnionRaiderBlockControlPointDto {
 
 export abstract class UnionRaiderBlockDto {
   public abstract blockType: string;
-  public abstract blockClass: string;
+  public abstract blockClass: string | null;
   public abstract blockLevel: string;
   public abstract blockControlPoint: UnionRaiderBlockControlPointDto;
   public abstract blockPosition: UnionRaiderBlockPositionDto[] | null;

@@ -19,7 +19,7 @@ export type UnionRaiderInnerStatBody = {
 
 export type UnionRaiderBlockBody = {
   block_type: string;
-  block_class: string;
+  block_class: string | null;
   block_level: string;
   block_control_point: UnionRaiderBlockControlPointBody;
   block_position: UnionRaiderBlockPositionBody[];

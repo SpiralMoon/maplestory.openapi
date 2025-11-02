@@ -201,7 +201,7 @@ export class UnionRaiderBlockDto extends base.UnionRaiderBlockDto {
   /**
    * Character class corresponding to the block
    */
-  public override blockClass: string;
+  public override blockClass: string | null;
 
   /**
    * Character level corresponding to the block
