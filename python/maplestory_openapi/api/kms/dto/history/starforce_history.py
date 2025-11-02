@@ -7,16 +7,16 @@ class StarforceHistoryEvent(BaseModel):
     스타포스 강화 이벤트 정보
 
     Attributes:
-        success_rate (str): 이벤트 성공 확률
+        success_rate (str or None): 이벤트 성공 확률
         destroy_decrease_rate (str or None): 이벤트 파괴 확률 감소율
-        cost_discount_rate (str): 이벤트 비용 할인율
-        plus_value (str): 이벤트 강화 수치 가중값
+        cost_discount_rate (str or None): 이벤트 비용 할인율
+        plus_value (str or None): 이벤트 강화 수치 가중값
         starforce_event_range (str): 이벤트 적용 강화 시도 가능한 n성 범위
     """
-    success_rate: str
+    success_rate: str | None
     destroy_decrease_rate: str | None
-    cost_discount_rate: str
-    plus_value: str
+    cost_discount_rate: str | None
+    plus_value: str | None
     starforce_event_range: str
 
 

@@ -132,7 +132,7 @@ namespace MapleStory.OpenAPI.KMS.DTO
         /// 이벤트 성공 확률
         /// </summary>
         [JsonProperty("success_rate")]
-        public string SuccessRate { get; set; }
+        public string? SuccessRate { get; set; }
 
         /// <summary>
         /// 이벤트 파괴 확률 감소율
@@ -144,13 +144,13 @@ namespace MapleStory.OpenAPI.KMS.DTO
         /// 이벤트 비용 할인율
         /// </summary>
         [JsonProperty("cost_discount_rate")]
-        public string CostDiscountRate { get; set; }
+        public string? CostDiscountRate { get; set; }
 
         /// <summary>
         /// 이벤트 강화 수치 가중값
         /// </summary>
         [JsonProperty("plus_value")]
-        public string PlusValue { get; set; }
+        public string? PlusValue { get; set; }
 
         /// <summary>
         /// 이벤트 적용 강화 시도 가능한 n성 범위

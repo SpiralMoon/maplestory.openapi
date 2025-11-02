@@ -91,7 +91,7 @@ export class StarforceHistoryDto {
   /**
    * 진행 중인 스타포스 강화 이벤트 정보
    */
-  starforceEventList: StarforceEventDto[] | null;
+  starforceEventList: StarforceEventDto[];
 
   constructor(obj: StarforceHistoryBody) {
     const {
@@ -132,7 +132,7 @@ export class StarforceHistoryDto {
     this.dateCreate = new Date(date_create);
     this.starforceEventList =
       starforce_event_list?.map((event) => new StarforceEventDto(event)) ??
-      null;
+      [];
   }
 }
 
@@ -143,7 +143,7 @@ export class StarforceEventDto {
   /**
    * 이벤트 성공 확률
    */
-  successRate: string;
+  successRate: string | null;
 
   /**
    * 이벤트 파괴 확률 감소율
@@ -153,12 +153,12 @@ export class StarforceEventDto {
   /**
    * 이벤트 비용 할인율
    */
-  costDiscountRate: string;
+  costDiscountRate: string | null;
 
   /**
    * 이벤트 강화 수치 가중값
    */
-  plusValue: string;
+  plusValue: string | null;
 
   /**
    * 이벤트 적용 강화 시도 가능한 n성 범위
