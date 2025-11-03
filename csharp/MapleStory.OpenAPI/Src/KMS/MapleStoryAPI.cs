@@ -1066,7 +1066,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <summary>
         /// 유니온 아티팩트 정보를 조회합니다.
         /// <para>- 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.</para>
-        /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
+        /// <para>- 2024년 1월 18일 데이터부터 조회할 수 있습니다.</para>
         /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
         /// <para>- 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.</para>
@@ -1080,7 +1080,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <summary>
         /// 유니온 아티팩트 정보를 조회합니다.
         /// <para>- 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.</para>
-        /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
+        /// <para>- 2024년 1월 18일 데이터부터 조회할 수 있습니다.</para>
         /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
         /// <para>- 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.</para>
@@ -1091,7 +1091,7 @@ namespace MapleStory.OpenAPI.KMS
         {
             var path = $"{subUrl}/v1/user/union-artifact";
             var date = dateTimeOffset != null
-                ? ToDateString((DateTimeOffset) dateTimeOffset, MinDate(2023, 12, 21))
+                ? ToDateString((DateTimeOffset) dateTimeOffset, MinDate(2024, 1, 18))
                 : null;
             var query = new Dictionary<string, string?>()
             {
@@ -1106,7 +1106,7 @@ namespace MapleStory.OpenAPI.KMS
         /// 유니온 챔피언 정보를 조회합니다.
         /// 유니온 챔피언 정보는 2025년 2월 20일 메이플스토리 점검 이후 데이터부터 조회 가능합니다.
         /// <para>- 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.</para>
-        /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
+        /// <para>- 2025년 2월 20일 데이터부터 조회할 수 있습니다.</para>
         /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
         /// <para>- 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.</para>
@@ -1121,7 +1121,7 @@ namespace MapleStory.OpenAPI.KMS
         /// 유니온 챔피언 정보를 조회합니다.
         /// 유니온 챔피언 정보는 2025년 2월 20일 메이플스토리 점검 이후 데이터부터 조회 가능합니다.
         /// <para>- 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.</para>
-        /// <para>- 2023년 12월 21일 데이터부터 조회할 수 있습니다.</para>
+        /// <para>- 2025년 2월 20일 데이터부터 조회할 수 있습니다.</para>
         /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (12월 22일 데이터 조회 시, 22일 00시부터 23일 00시 사이 데이터가 조회 됩니다.)</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
         /// <para>- 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.</para>
@@ -1132,7 +1132,7 @@ namespace MapleStory.OpenAPI.KMS
         {
             var path = $"{subUrl}/v1/user/union-champion";
             var date = dateTimeOffset != null
-                ? ToDateString((DateTimeOffset) dateTimeOffset, MinDate(2023, 12, 21))
+                ? ToDateString((DateTimeOffset) dateTimeOffset, MinDate(2025, 2, 20))
                 : null;
             var query = new Dictionary<string, string?>()
             {
