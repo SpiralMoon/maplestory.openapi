@@ -70,7 +70,7 @@ class MapleStoryApi(BaseMapleStoryApi):
         r = await self.fetch(path, query)
         return Character(**r)
 
-    async def get_character_basic(self, ocid: str, date: datetime | None = None) -> CharacterBasic:
+    async def get_character_basic(self, ocid: str, date: datetime | None = None) -> CharacterBasic | None:
         """
         Retrieves basic character information.
 
@@ -90,10 +90,10 @@ class MapleStoryApi(BaseMapleStoryApi):
             'date': self._to_date_string(date, datetime(2025, 4, 20)) if date is not None else None
         }
         r = await self.fetch(path, query)
-
+        if self._is_empty_response(r): return None
         return CharacterBasic(**r)
 
-    async def get_character_image(self, ocid: str, option: CharacterImageOption | None = None, date: datetime | None = None) -> CharacterBasic:
+    async def get_character_image(self, ocid: str, option: CharacterImageOption | None = None, date: datetime | None = None) -> CharacterBasic | None:
         """
         Retrieves character image information.
 
@@ -110,6 +110,7 @@ class MapleStoryApi(BaseMapleStoryApi):
         """
 
         basic = await self.get_character_basic(ocid, date)
+        if basic is None: return None
         path = basic.character_image.replace(self.BASE_URL, '')
         image_option = option if option is not None else CharacterImageOption()
 
@@ -167,7 +168,7 @@ class MapleStoryApi(BaseMapleStoryApi):
             y=y,
         )
 
-    async def get_character_popularity(self, ocid: str, date: datetime | None = None) -> CharacterPopularity:
+    async def get_character_popularity(self, ocid: str, date: datetime | None = None) -> CharacterPopularity | None:
         """
         Retrieves popularity information of a character.
 
@@ -187,10 +188,10 @@ class MapleStoryApi(BaseMapleStoryApi):
             'date': self._to_date_string(date, datetime(2025, 4, 20)) if date is not None else None
         }
         r = await self.fetch(path, query)
-
+        if self._is_empty_response(r): return None
         return CharacterPopularity(**r)
 
-    async def get_character_stat(self, ocid: str, date: datetime | None = None) -> CharacterStat:
+    async def get_character_stat(self, ocid: str, date: datetime | None = None) -> CharacterStat | None:
         """
         Retrieves comprehensive character stats information.
 
@@ -210,10 +211,10 @@ class MapleStoryApi(BaseMapleStoryApi):
             'date': self._to_date_string(date, datetime(2025, 4, 20)) if date is not None else None
         }
         r = await self.fetch(path, query)
-
+        if self._is_empty_response(r): return None
         return CharacterStat(**r)
 
-    async def get_character_hyper_stat(self, ocid: str, date: datetime | None = None) -> CharacterHyperStat:
+    async def get_character_hyper_stat(self, ocid: str, date: datetime | None = None) -> CharacterHyperStat | None:
         """
         Retrieves Hyper Stat information.
 
@@ -233,10 +234,10 @@ class MapleStoryApi(BaseMapleStoryApi):
             'date': self._to_date_string(date, datetime(2025, 4, 20)) if date is not None else None
         }
         r = await self.fetch(path, query)
-
+        if self._is_empty_response(r): return None
         return CharacterHyperStat(**r)
 
-    async def get_character_propensity(self, ocid: str, date: datetime | None = None) -> CharacterPropensity:
+    async def get_character_propensity(self, ocid: str, date: datetime | None = None) -> CharacterPropensity | None:
         """
         Retrieves traits information.
 
@@ -256,10 +257,10 @@ class MapleStoryApi(BaseMapleStoryApi):
             'date': self._to_date_string(date, datetime(2025, 4, 20)) if date is not None else None
         }
         r = await self.fetch(path, query)
-
+        if self._is_empty_response(r): return None
         return CharacterPropensity(**r)
 
-    async def get_character_ability(self, ocid: str, date: datetime | None = None) -> CharacterAbility:
+    async def get_character_ability(self, ocid: str, date: datetime | None = None) -> CharacterAbility | None:
         """
         Retrieves Ability information.
 
@@ -279,10 +280,10 @@ class MapleStoryApi(BaseMapleStoryApi):
             'date': self._to_date_string(date, datetime(2025, 4, 20)) if date is not None else None
         }
         r = await self.fetch(path, query)
-
+        if self._is_empty_response(r): return None
         return CharacterAbility(**r)
 
-    async def get_character_item_equipment(self, ocid: str, date: datetime | None = None) -> CharacterItemEquipment:
+    async def get_character_item_equipment(self, ocid: str, date: datetime | None = None) -> CharacterItemEquipment | None:
         """
         Retrieves information about equipped equipment, excluding cash items.
 
@@ -302,10 +303,10 @@ class MapleStoryApi(BaseMapleStoryApi):
             'date': self._to_date_string(date, datetime(2025, 4, 20)) if date is not None else None
         }
         r = await self.fetch(path, query)
-
+        if self._is_empty_response(r): return None
         return CharacterItemEquipment(**r)
 
-    async def get_character_cashitem_equipment(self, ocid: str, date: datetime | None = None) -> CharacterCashitemEquipment:
+    async def get_character_cashitem_equipment(self, ocid: str, date: datetime | None = None) -> CharacterCashitemEquipment | None:
         """
         Retrieves equipped cash item information.
 
@@ -325,10 +326,10 @@ class MapleStoryApi(BaseMapleStoryApi):
             'date': self._to_date_string(date, datetime(2025, 4, 20)) if date is not None else None
         }
         r = await self.fetch(path, query)
-
+        if self._is_empty_response(r): return None
         return CharacterCashitemEquipment(**r)
 
-    async def get_character_symbol_equipment(self, ocid: str, date: datetime | None = None) -> CharacterSymbolEquipment:
+    async def get_character_symbol_equipment(self, ocid: str, date: datetime | None = None) -> CharacterSymbolEquipment | None:
         """
         Retrieves information about equipped symbols.
 
@@ -348,9 +349,10 @@ class MapleStoryApi(BaseMapleStoryApi):
             'date': self._to_date_string(date, datetime(2025, 4, 20)) if date is not None else None
         }
         r = await self.fetch(path, query)
+        if self._is_empty_response(r): return None
         return CharacterSymbolEquipment(**r)
 
-    async def get_character_set_effect(self, ocid: str, date: datetime | None = None) -> CharacterSetEffect:
+    async def get_character_set_effect(self, ocid: str, date: datetime | None = None) -> CharacterSetEffect | None:
         """
         Retrieves information about equipped set item effects.
 
@@ -370,9 +372,10 @@ class MapleStoryApi(BaseMapleStoryApi):
             'date': self._to_date_string(date, datetime(2025, 4, 20)) if date is not None else None
         }
         r = await self.fetch(path, query)
+        if self._is_empty_response(r): return None
         return CharacterSetEffect(**r)
 
-    async def get_character_beauty_equipment(self, ocid: str, date: datetime | None = None) -> CharacterBeautyEquipment:
+    async def get_character_beauty_equipment(self, ocid: str, date: datetime | None = None) -> CharacterBeautyEquipment | None:
         """
         Retrieves information about equipped hair, face, and skin.
 
@@ -392,9 +395,10 @@ class MapleStoryApi(BaseMapleStoryApi):
             'date': self._to_date_string(date, datetime(2025, 4, 20)) if date is not None else None
         }
         r = await self.fetch(path, query)
+        if self._is_empty_response(r): return None
         return CharacterBeautyEquipment(**r)
 
-    async def get_character_android_equipment(self, ocid: str, date: datetime | None = None) -> CharacterAndroidEquipment:
+    async def get_character_android_equipment(self, ocid: str, date: datetime | None = None) -> CharacterAndroidEquipment | None:
         """
         Retrieves equipped android information.
 
@@ -414,9 +418,10 @@ class MapleStoryApi(BaseMapleStoryApi):
             'date': self._to_date_string(date, datetime(2025, 4, 20)) if date is not None else None,
         }
         r = await self.fetch(path, query)
+        if self._is_empty_response(r): return None
         return CharacterAndroidEquipment(**r)
 
-    async def get_character_pet_equipment(self, ocid: str, date: datetime | None = None) -> CharacterPetEquipment:
+    async def get_character_pet_equipment(self, ocid: str, date: datetime | None = None) -> CharacterPetEquipment | None:
         """
         Retrieves information about equipped pets, including pet skills and equipment.
 
@@ -436,9 +441,10 @@ class MapleStoryApi(BaseMapleStoryApi):
             'date': self._to_date_string(date, datetime(2025, 4, 20)) if date is not None else None,
         }
         r = await self.fetch(path, query)
+        if self._is_empty_response(r): return None
         return CharacterPetEquipment(**r)
 
-    async def get_character_skill(self, ocid: str, character_skill_grade: str, date: datetime | None = None) -> CharacterSkill:
+    async def get_character_skill(self, ocid: str, character_skill_grade: str, date: datetime | None = None) -> CharacterSkill | None:
         """
         Retrieves information about character skills and Hyper Skills.
 
@@ -460,9 +466,10 @@ class MapleStoryApi(BaseMapleStoryApi):
             'character_skill_grade': character_skill_grade,
         }
         r = await self.fetch(path, query)
+        if self._is_empty_response(r): return None
         return CharacterSkill(**r)
 
-    async def get_character_link_skill(self, ocid: str, date: datetime | None = None) -> CharacterLinkSkill:
+    async def get_character_link_skill(self, ocid: str, date: datetime | None = None) -> CharacterLinkSkill | None:
         """
         Retrieves information about equipped Link Skills.
 
@@ -482,9 +489,10 @@ class MapleStoryApi(BaseMapleStoryApi):
             'date': self._to_date_string(date, datetime(2025, 4, 20)) if date is not None else None,
         }
         r = await self.fetch(path, query)
+        if self._is_empty_response(r): return None
         return CharacterLinkSkill(**r)
 
-    async def get_character_vmatrix(self, ocid: str, date: datetime | None = None) -> CharacterVMatrix:
+    async def get_character_vmatrix(self, ocid: str, date: datetime | None = None) -> CharacterVMatrix | None:
         """
         Retrieves V Matrix slot and equipped Node information.
 
@@ -504,9 +512,10 @@ class MapleStoryApi(BaseMapleStoryApi):
             'date': self._to_date_string(date, datetime(2025, 4, 20)) if date is not None else None,
         }
         r = await self.fetch(path, query)
+        if self._is_empty_response(r): return None
         return CharacterVMatrix(**r)
 
-    async def get_character_hexamatrix(self, ocid: str, date: datetime | None = None) -> CharacterHexaMatrix:
+    async def get_character_hexamatrix(self, ocid: str, date: datetime | None = None) -> CharacterHexaMatrix | None:
         """
         Retrieves information about HEXA Nodes equipped in the HEXA Matrix.
 
@@ -526,9 +535,10 @@ class MapleStoryApi(BaseMapleStoryApi):
             'date': self._to_date_string(date, datetime(2025, 4, 20)) if date is not None else None,
         }
         r = await self.fetch(path, query)
+        if self._is_empty_response(r): return None
         return CharacterHexaMatrix(**r)
 
-    async def get_character_hexamatrix_stat(self, ocid: str, date: datetime | None = None) -> CharacterHexaMatrixStat:
+    async def get_character_hexamatrix_stat(self, ocid: str, date: datetime | None = None) -> CharacterHexaMatrixStat | None:
         """
         Retrieves information about HEXA stats configured in the HEXA Matrix.
 
@@ -548,9 +558,10 @@ class MapleStoryApi(BaseMapleStoryApi):
             'date': self._to_date_string(date, datetime(2025, 4, 20)) if date is not None else None,
         }
         r = await self.fetch(path, query)
+        if self._is_empty_response(r): return None
         return CharacterHexaMatrixStat(**r)
 
-    async def get_character_dojang(self, ocid: str, date: datetime | None = None) -> CharacterDojang:
+    async def get_character_dojang(self, ocid: str, date: datetime | None = None) -> CharacterDojang | None:
         """
         Retrieves the character's highest record information in Mu Lung Garden.
 
@@ -570,13 +581,14 @@ class MapleStoryApi(BaseMapleStoryApi):
             'date': self._to_date_string(date, datetime(2025, 4, 20)) if date is not None else None,
         }
         r = await self.fetch(path, query)
+        if self._is_empty_response(r): return None
         return CharacterDojang(**r)
 
     #endregion
 
     #region Union Information Retrieval
 
-    async def get_union(self, ocid: str, date: datetime | None = None) -> Union:
+    async def get_union(self, ocid: str, date: datetime | None = None) -> Union | None:
         """
         Retrieves Union level and Union rank information.
 
@@ -596,9 +608,10 @@ class MapleStoryApi(BaseMapleStoryApi):
             'date': self._to_date_string(date, datetime(2025, 4, 20)) if date is not None else None,
         }
         r = await self.fetch(path, query)
+        if self._is_empty_response(r): return None
         return Union(**r)
 
-    async def get_union_raider(self, ocid: str, date: datetime | None = None) -> UnionRaider:
+    async def get_union_raider(self, ocid: str, date: datetime | None = None) -> UnionRaider | None:
         """
         Retrieves detailed information about raid member effects and capture effects deployed in the Union.
 
@@ -618,9 +631,10 @@ class MapleStoryApi(BaseMapleStoryApi):
             'date': self._to_date_string(date, datetime(2025, 4, 20)) if date is not None else None,
         }
         r = await self.fetch(path, query)
+        if self._is_empty_response(r): return None
         return UnionRaider(**r)
 
-    async def get_union_artifact(self, ocid: str, date: datetime | None = None) -> UnionArtifact:
+    async def get_union_artifact(self, ocid: str, date: datetime | None = None) -> UnionArtifact | None:
         """
         Retrieves Union Artifact information.
 
@@ -640,13 +654,14 @@ class MapleStoryApi(BaseMapleStoryApi):
             'date': self._to_date_string(date, datetime(2025, 4, 20)) if date is not None else None,
         }
         r = await self.fetch(path, query)
+        if self._is_empty_response(r): return None
         return UnionArtifact(**r)
 
     #endregion
 
     #region Guild Information Retrieval
 
-    async def get_guild_id(self, guild_name: str, world_name: str) -> Guild:
+    async def get_guild_id(self, guild_name: str, world_name: str) -> Guild | None:
         """
         Retrieves information for the guild identifier (oguild_id).
 
@@ -666,9 +681,10 @@ class MapleStoryApi(BaseMapleStoryApi):
             'world_name': world_name,
         }
         r = await self.fetch(path, query)
+        if self._is_empty_response(r): return None
         return Guild(**r)
 
-    async def get_guild_basic(self, oguid_id: str, date: datetime | None = None) -> GuildBasic:
+    async def get_guild_basic(self, oguid_id: str, date: datetime | None = None) -> GuildBasic | None:
         """
         Retrieves guild basic information.
 
@@ -688,6 +704,7 @@ class MapleStoryApi(BaseMapleStoryApi):
             'date': self._to_date_string(date, datetime(2025, 4, 20)) if date is not None else None,
         }
         r = await self.fetch(path, query)
+        if self._is_empty_response(r): return None
         return GuildBasic(**r)
 
     #endregion

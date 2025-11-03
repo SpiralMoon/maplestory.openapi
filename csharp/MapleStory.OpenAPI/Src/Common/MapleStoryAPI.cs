@@ -1,5 +1,6 @@
 ﻿using MapleStory.OpenAPI.Common.Param;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using RestSharp;
 
 namespace MapleStory.OpenAPI.Common
@@ -61,11 +62,11 @@ namespace MapleStory.OpenAPI.Common
         #region Character Information Retrieval
 
         public abstract Task<TCharacter> GetCharacter(string characterName);
-        public abstract Task<TCharacterBasic> GetCharacterBasic(string ocid);
-        public abstract Task<TCharacterBasic> GetCharacterBasic(string ocid, DateTimeOffset? dateTimeOffset);
-        public abstract Task<TCharacterImage> GetCharacterImage(string ocid);
-        public abstract Task<TCharacterImage> GetCharacterImage(string ocid, PCharacterImageOption imageOption);
-        public abstract Task<TCharacterImage> GetCharacterImage(string ocid, PCharacterImageOption imageOption, DateTimeOffset? dateTimeOffset);
+        public abstract Task<TCharacterBasic?> GetCharacterBasic(string ocid);
+        public abstract Task<TCharacterBasic?> GetCharacterBasic(string ocid, DateTimeOffset? dateTimeOffset);
+        public abstract Task<TCharacterImage?> GetCharacterImage(string ocid);
+        public abstract Task<TCharacterImage?> GetCharacterImage(string ocid, PCharacterImageOption imageOption);
+        public abstract Task<TCharacterImage?> GetCharacterImage(string ocid, PCharacterImageOption imageOption, DateTimeOffset? dateTimeOffset);
         protected async Task<string> urlImageToBase64(string path, Dictionary<string, string?>? query)
         {
             var response = await Get(path, query);
@@ -76,61 +77,61 @@ namespace MapleStory.OpenAPI.Common
             return $"data:{mimeType};base64,{base64}";
         }
 
-        public abstract Task<TCharacterPopularity> GetCharacterPopularity(string ocid);
-        public abstract Task<TCharacterPopularity> GetCharacterPopularity(string ocid, DateTimeOffset? dateTimeOffset);
-        public abstract Task<TCharacterStat> GetCharacterStat(string ocid);
-        public abstract Task<TCharacterStat> GetCharacterStat(string ocid, DateTimeOffset? dateTimeOffset);
-        public abstract Task<TCharacterHyperStat> GetCharacterHyperStat(string ocid);
-        public abstract Task<TCharacterHyperStat> GetCharacterHyperStat(string ocid, DateTimeOffset? dateTimeOffset);
-        public abstract Task<TCharacterPropensity> GetCharacterPropensity(string ocid);
-        public abstract Task<TCharacterPropensity> GetCharacterPropensity(string ocid, DateTimeOffset? dateTimeOffset);
-        public abstract Task<TCharacterAbility> GetCharacterAbility(string ocid);
-        public abstract Task<TCharacterAbility> GetCharacterAbility(string ocid, DateTimeOffset? dateTimeOffset);
-        public abstract Task<TCharacterItemEquipment> GetCharacterItemEquipment(string ocid);
-        public abstract Task<TCharacterItemEquipment> GetCharacterItemEquipment(string ocid, DateTimeOffset? dateTimeOffset);
-        public abstract Task<TCharacterCashItemEquipment> GetCharacterCashItemEquipment(string ocid);
-        public abstract Task<TCharacterCashItemEquipment> GetCharacterCashItemEquipment(string ocid, DateTimeOffset? dateTimeOffset);
-        public abstract Task<TCharacterSymbolEquipment> GetCharacterSymbolEquipment(string ocid);
-        public abstract Task<TCharacterSymbolEquipment> GetCharacterSymbolEquipment(string ocid, DateTimeOffset? dateTimeOffset);
-        public abstract Task<TCharacterSetEffect> GetCharacterSetEffect(string ocid);
-        public abstract Task<TCharacterSetEffect> GetCharacterSetEffect(string ocid, DateTimeOffset? dateTimeOffset);
-        public abstract Task<TCharacterBeautyEquipment> GetCharacterBeautyEquipment(string ocid);
-        public abstract Task<TCharacterBeautyEquipment> GetCharacterBeautyEquipment(string ocid, DateTimeOffset? dateTimeOffset);
-        public abstract Task<TCharacterAndroidEquipment> GetCharacterAndroidEquipment(string ocid);
-        public abstract Task<TCharacterAndroidEquipment> GetCharacterAndroidEquipment(string ocid, DateTimeOffset? dateTimeOffset);
-        public abstract Task<TCharacterPetEquipment> GetCharacterPetEquipment(string ocid);
-        public abstract Task<TCharacterPetEquipment> GetCharacterPetEquipment(string ocid, DateTimeOffset? dateTimeOffset);
-        public abstract Task<TCharacterSkill> GetCharacterSkill(string ocid, string characterSkillGrade);
-        public abstract Task<TCharacterSkill> GetCharacterSkill(string ocid, string characterSkillGrade, DateTimeOffset? dateTimeOffset);
-        public abstract Task<TCharacterLinkSkill> GetCharacterLinkSkill(string ocid);
-        public abstract Task<TCharacterLinkSkill> GetCharacterLinkSkill(string ocid, DateTimeOffset? dateTimeOffset);
-        public abstract Task<TCharacterVMatrix> GetCharacterVMatrix(string ocid);
-        public abstract Task<TCharacterVMatrix> GetCharacterVMatrix(string ocid, DateTimeOffset? dateTimeOffset);
-        public abstract Task<TCharacterHexaMatrix> GetCharacterHexaMatrix(string ocid);
-        public abstract Task<TCharacterHexaMatrix> GetCharacterHexaMatrix(string ocid, DateTimeOffset? dateTimeOffset);
-        public abstract Task<TCharacterHexaMatrixStat> GetCharacterHexaMatrixStat(string ocid);
-        public abstract Task<TCharacterHexaMatrixStat> GetCharacterHexaMatrixStat(string ocid, DateTimeOffset? dateTimeOffset);
-        public abstract Task<TCharacterDojang> GetCharacterDojang(string ocid);
-        public abstract Task<TCharacterDojang> GetCharacterDojang(string ocid, DateTimeOffset? dateTimeOffset);
+        public abstract Task<TCharacterPopularity?> GetCharacterPopularity(string ocid);
+        public abstract Task<TCharacterPopularity?> GetCharacterPopularity(string ocid, DateTimeOffset? dateTimeOffset);
+        public abstract Task<TCharacterStat?> GetCharacterStat(string ocid);
+        public abstract Task<TCharacterStat?> GetCharacterStat(string ocid, DateTimeOffset? dateTimeOffset);
+        public abstract Task<TCharacterHyperStat?> GetCharacterHyperStat(string ocid);
+        public abstract Task<TCharacterHyperStat?> GetCharacterHyperStat(string ocid, DateTimeOffset? dateTimeOffset);
+        public abstract Task<TCharacterPropensity?> GetCharacterPropensity(string ocid);
+        public abstract Task<TCharacterPropensity?> GetCharacterPropensity(string ocid, DateTimeOffset? dateTimeOffset);
+        public abstract Task<TCharacterAbility?> GetCharacterAbility(string ocid);
+        public abstract Task<TCharacterAbility?> GetCharacterAbility(string ocid, DateTimeOffset? dateTimeOffset);
+        public abstract Task<TCharacterItemEquipment?> GetCharacterItemEquipment(string ocid);
+        public abstract Task<TCharacterItemEquipment?> GetCharacterItemEquipment(string ocid, DateTimeOffset? dateTimeOffset);
+        public abstract Task<TCharacterCashItemEquipment?> GetCharacterCashItemEquipment(string ocid);
+        public abstract Task<TCharacterCashItemEquipment?> GetCharacterCashItemEquipment(string ocid, DateTimeOffset? dateTimeOffset);
+        public abstract Task<TCharacterSymbolEquipment?> GetCharacterSymbolEquipment(string ocid);
+        public abstract Task<TCharacterSymbolEquipment?> GetCharacterSymbolEquipment(string ocid, DateTimeOffset? dateTimeOffset);
+        public abstract Task<TCharacterSetEffect?> GetCharacterSetEffect(string ocid);
+        public abstract Task<TCharacterSetEffect?> GetCharacterSetEffect(string ocid, DateTimeOffset? dateTimeOffset);
+        public abstract Task<TCharacterBeautyEquipment?> GetCharacterBeautyEquipment(string ocid);
+        public abstract Task<TCharacterBeautyEquipment?> GetCharacterBeautyEquipment(string ocid, DateTimeOffset? dateTimeOffset);
+        public abstract Task<TCharacterAndroidEquipment?> GetCharacterAndroidEquipment(string ocid);
+        public abstract Task<TCharacterAndroidEquipment?> GetCharacterAndroidEquipment(string ocid, DateTimeOffset? dateTimeOffset);
+        public abstract Task<TCharacterPetEquipment?> GetCharacterPetEquipment(string ocid);
+        public abstract Task<TCharacterPetEquipment?> GetCharacterPetEquipment(string ocid, DateTimeOffset? dateTimeOffset);
+        public abstract Task<TCharacterSkill?> GetCharacterSkill(string ocid, string characterSkillGrade);
+        public abstract Task<TCharacterSkill?> GetCharacterSkill(string ocid, string characterSkillGrade, DateTimeOffset? dateTimeOffset);
+        public abstract Task<TCharacterLinkSkill?> GetCharacterLinkSkill(string ocid);
+        public abstract Task<TCharacterLinkSkill?> GetCharacterLinkSkill(string ocid, DateTimeOffset? dateTimeOffset);
+        public abstract Task<TCharacterVMatrix?> GetCharacterVMatrix(string ocid);
+        public abstract Task<TCharacterVMatrix?> GetCharacterVMatrix(string ocid, DateTimeOffset? dateTimeOffset);
+        public abstract Task<TCharacterHexaMatrix?> GetCharacterHexaMatrix(string ocid);
+        public abstract Task<TCharacterHexaMatrix?> GetCharacterHexaMatrix(string ocid, DateTimeOffset? dateTimeOffset);
+        public abstract Task<TCharacterHexaMatrixStat?> GetCharacterHexaMatrixStat(string ocid);
+        public abstract Task<TCharacterHexaMatrixStat?> GetCharacterHexaMatrixStat(string ocid, DateTimeOffset? dateTimeOffset);
+        public abstract Task<TCharacterDojang?> GetCharacterDojang(string ocid);
+        public abstract Task<TCharacterDojang?> GetCharacterDojang(string ocid, DateTimeOffset? dateTimeOffset);
 
         #endregion
 
         #region Union Information Retrieval
 
-        public abstract Task<TUnion> GetUnion(string ocid);
-        public abstract Task<TUnion> GetUnion(string ocid, DateTimeOffset? dateTimeOffset);
-        public abstract Task<TUnionRaider> GetUnionRaider(string ocid);
-        public abstract Task<TUnionRaider> GetUnionRaider(string ocid, DateTimeOffset? dateTimeOffset);
-        public abstract Task<TUnionArtifact> GetUnionArtifact(string ocid);
-        public abstract Task<TUnionArtifact> GetUnionArtifact(string ocid, DateTimeOffset? dateTimeOffset);
+        public abstract Task<TUnion?> GetUnion(string ocid);
+        public abstract Task<TUnion?> GetUnion(string ocid, DateTimeOffset? dateTimeOffset);
+        public abstract Task<TUnionRaider?> GetUnionRaider(string ocid);
+        public abstract Task<TUnionRaider?> GetUnionRaider(string ocid, DateTimeOffset? dateTimeOffset);
+        public abstract Task<TUnionArtifact?> GetUnionArtifact(string ocid);
+        public abstract Task<TUnionArtifact?> GetUnionArtifact(string ocid, DateTimeOffset? dateTimeOffset);
 
         #endregion
 
         #region Guild Information Retrieval
 
-        public abstract Task<TGuild> GetGuild(string guildName, string wolrdName);
-        public abstract Task<TGuildBasic> GetGuildBasic(string oGuildId);
-        public abstract Task<TGuildBasic> GetGuildBasic(string oGuildId, DateTimeOffset? dateTimeOffset);
+        public abstract Task<TGuild?> GetGuild(string guildName, string wolrdName);
+        public abstract Task<TGuildBasic?> GetGuildBasic(string oGuildId);
+        public abstract Task<TGuildBasic?> GetGuildBasic(string oGuildId, DateTimeOffset? dateTimeOffset);
 
         #endregion
 
@@ -140,7 +141,7 @@ namespace MapleStory.OpenAPI.Common
             client.DefaultRequestHeaders.Add("x-nxopen-api-key", this.apiKey);
         }
 
-        protected async Task<ResponseBody> Get<ResponseBody>(string path, Dictionary<string, string?>? query = null)
+        protected async Task<ResponseBody?> Get<ResponseBody>(string path, Dictionary<string, string?>? query = null, bool checkEmpty = false) where ResponseBody : class
         {
             var request = new RestRequest(path);
 
@@ -162,7 +163,14 @@ namespace MapleStory.OpenAPI.Common
 
             if (response.IsSuccessStatusCode)
             {
-                return JsonConvert.DeserializeObject<ResponseBody>(response.Content!);
+                var jObject = JObject.Parse(response.Content!);
+
+                if (checkEmpty && IsEmptyResponse(jObject))
+                {
+                    return null;
+                }
+
+                return jObject.ToObject<ResponseBody>();
             }
             else
             {
@@ -231,6 +239,40 @@ namespace MapleStory.OpenAPI.Common
             }
 
             return adjustedDateTimeOffset.AddDays(-dateOffset ?? 0);
+        }
+
+        /// <summary>
+        /// API 응답 데이터가 비어있는지 확인 합니다.
+        /// <para>API 요청 시 날짜에 해당하는 데이터가 없을 경우 date 필드만 값이 존재하는 상황을 검증할 때 사용 합니다.</para>
+        /// <para>일반적으로 API 지원 시작일과 캐릭터 생성일 사이의 날짜를 조회할 때 발생 합니다.</para>
+        /// </summary>
+        protected static bool IsEmptyResponse(JObject jObject)
+        {
+            foreach (var property in jObject.Properties())
+            {
+                var name = property.Name;
+                var value = property.Value;
+
+                if (name == "date")
+                {
+                    continue;
+                }
+                if (property.Value.Type == JTokenType.Null)
+                {
+                    continue;
+                }
+                if (property.Value.Type == JTokenType.Array)
+                {
+                    if (((JArray) property.Value).Count == 0)
+                    {
+                        continue;
+                    }
+                }
+
+                return false;
+            }
+
+            return true;
         }
 
         /// <summary>

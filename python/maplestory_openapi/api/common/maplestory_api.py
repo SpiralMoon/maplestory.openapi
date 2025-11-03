@@ -61,83 +61,83 @@ class MapleStoryApi(ABC, BaseModel):
         pass
 
     @abstractmethod
-    async def get_character_basic(self, ocid: str, date: datetime | None = None) -> CharacterBasic:
+    async def get_character_basic(self, ocid: str, date: datetime | None = None) -> CharacterBasic | None:
         pass
 
     @abstractmethod
-    async def get_character_image(self, ocid: str, option: CharacterImageOption | None = None, date: datetime | None = None) -> CharacterImage:
+    async def get_character_image(self, ocid: str, option: CharacterImageOption | None = None, date: datetime | None = None) -> CharacterImage | None:
         pass
 
     @abstractmethod
-    async def get_character_popularity(self, ocid: str, date: datetime | None = None) -> CharacterPopularity:
+    async def get_character_popularity(self, ocid: str, date: datetime | None = None) -> CharacterPopularity | None:
         pass
 
     @abstractmethod
-    async def get_character_stat(self, ocid: str, date: datetime | None = None) -> CharacterStat:
+    async def get_character_stat(self, ocid: str, date: datetime | None = None) -> CharacterStat | None:
         pass
 
     @abstractmethod
-    async def get_character_hyper_stat(self, ocid: str, date: datetime | None = None) -> CharacterHyperStat:
+    async def get_character_hyper_stat(self, ocid: str, date: datetime | None = None) -> CharacterHyperStat | None:
         pass
 
     @abstractmethod
-    async def get_character_propensity(self, ocid: str, date: datetime | None = None) -> CharacterPropensity:
+    async def get_character_propensity(self, ocid: str, date: datetime | None = None) -> CharacterPropensity | None:
         pass
 
     @abstractmethod
-    async def get_character_ability(self, ocid: str, date: datetime | None = None) -> CharacterAbility:
+    async def get_character_ability(self, ocid: str, date: datetime | None = None) -> CharacterAbility | None:
         pass
 
     @abstractmethod
-    async def get_character_item_equipment(self, ocid: str, date: datetime | None = None) -> CharacterItemEquipment:
+    async def get_character_item_equipment(self, ocid: str, date: datetime | None = None) -> CharacterItemEquipment | None:
         pass
 
     @abstractmethod
-    async def get_character_cashitem_equipment(self, ocid: str, date: datetime | None = None) -> CharacterCashitemEquipment:
+    async def get_character_cashitem_equipment(self, ocid: str, date: datetime | None = None) -> CharacterCashitemEquipment | None:
         pass
 
     @abstractmethod
-    async def get_character_symbol_equipment(self, ocid: str, date: datetime | None = None) -> CharacterSymbolEquipment:
+    async def get_character_symbol_equipment(self, ocid: str, date: datetime | None = None) -> CharacterSymbolEquipment | None:
         pass
 
     @abstractmethod
-    async def get_character_set_effect(self, ocid: str, date: datetime | None = None) -> CharacterSetEffect:
+    async def get_character_set_effect(self, ocid: str, date: datetime | None = None) -> CharacterSetEffect | None:
         pass
 
     @abstractmethod
-    async def get_character_beauty_equipment(self, ocid: str, date: datetime | None = None) -> CharacterBeautyEquipment:
+    async def get_character_beauty_equipment(self, ocid: str, date: datetime | None = None) -> CharacterBeautyEquipment | None:
         pass
 
     @abstractmethod
-    async def get_character_android_equipment(self, ocid: str, date: datetime | None = None) -> CharacterAndroidEquipment:
+    async def get_character_android_equipment(self, ocid: str, date: datetime | None = None) -> CharacterAndroidEquipment | None:
         pass
 
     @abstractmethod
-    async def get_character_pet_equipment(self, ocid: str, date: datetime | None = None) -> CharacterPetEquipment:
+    async def get_character_pet_equipment(self, ocid: str, date: datetime | None = None) -> CharacterPetEquipment | None:
         pass
 
     @abstractmethod
-    async def get_character_skill(self, ocid: str, character_skill_grade: str, date: datetime | None = None) -> CharacterSkill:
+    async def get_character_skill(self, ocid: str, character_skill_grade: str, date: datetime | None = None) -> CharacterSkill | None:
         pass
 
     @abstractmethod
-    async def get_character_link_skill(self, ocid: str, date: datetime | None = None) -> CharacterLinkSkill:
+    async def get_character_link_skill(self, ocid: str, date: datetime | None = None) -> CharacterLinkSkill | None:
         pass
 
     @abstractmethod
-    async def get_character_vmatrix(self, ocid: str, date: datetime | None = None) -> CharacterVMatrix:
+    async def get_character_vmatrix(self, ocid: str, date: datetime | None = None) -> CharacterVMatrix | None:
         pass
 
     @abstractmethod
-    async def get_character_hexamatrix(self, ocid: str, date: datetime | None = None) -> CharacterHexaMatrix:
+    async def get_character_hexamatrix(self, ocid: str, date: datetime | None = None) -> CharacterHexaMatrix | None:
         pass
 
     @abstractmethod
-    async def get_character_hexamatrix_stat(self, ocid: str, date: datetime | None = None) -> CharacterHexaMatrixStat:
+    async def get_character_hexamatrix_stat(self, ocid: str, date: datetime | None = None) -> CharacterHexaMatrixStat | None:
         pass
 
     @abstractmethod
-    async def get_character_dojang(self, ocid: str, date: datetime | None = None) -> CharacterDojang:
+    async def get_character_dojang(self, ocid: str, date: datetime | None = None) -> CharacterDojang | None:
         pass
 
     #endregion
@@ -145,15 +145,15 @@ class MapleStoryApi(ABC, BaseModel):
     #region Union Information Retrieval
 
     @abstractmethod
-    async def get_union(self, ocid: str, date: datetime | None = None) -> Union:
+    async def get_union(self, ocid: str, date: datetime | None = None) -> Union | None:
         pass
 
     @abstractmethod
-    async def get_union_raider(self, ocid: str, date: datetime | None = None) -> UnionRaider:
+    async def get_union_raider(self, ocid: str, date: datetime | None = None) -> UnionRaider | None:
         pass
 
     @abstractmethod
-    async def get_union_artifact(self, ocid: str, date: datetime | None = None) -> UnionArtifact:
+    async def get_union_artifact(self, ocid: str, date: datetime | None = None) -> UnionArtifact | None:
         pass
 
     #endregion
@@ -161,11 +161,11 @@ class MapleStoryApi(ABC, BaseModel):
     #region Guild Information Retrieval
 
     @abstractmethod
-    async def get_guild_id(self, guild_name: str, world_name: str) -> Guild:
+    async def get_guild_id(self, guild_name: str, world_name: str) -> Guild | None:
         pass
 
     @abstractmethod
-    async def get_guild_basic(self, oguid_id: str, date: datetime | None = None) -> GuildBasic:
+    async def get_guild_basic(self, oguid_id: str, date: datetime | None = None) -> GuildBasic | None:
         pass
 
     #endregion
@@ -189,6 +189,22 @@ class MapleStoryApi(ABC, BaseModel):
             raise MapleStoryApiException(MapleStoryApiError(**r.get('error')))
 
         return r
+
+    def _is_empty_response(self, response: dict) -> bool:
+        """
+        API 응답 데이터가 비어있는지 확인 합니다.
+        API 요청 시 날짜에 해당하는 데이터가 없을 경우 date 필드만 값이 존재하는 상황을 검증할 때 사용 합니다.
+        일반적으로 API 지원 시작일과 캐릭터 생성일 사이의 날짜를 조회할 때 발생 합니다.
+        """
+        for key, value in response.items():
+            if key == 'date':
+                continue
+            if value is None:
+                continue
+            if isinstance(value, list) and len(value) == 0:
+                continue
+            return False
+        return True
 
     def _to_date_string(self, date: datetime, min: datetime | None = None) -> str:
         """

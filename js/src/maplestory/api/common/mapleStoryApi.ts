@@ -87,41 +87,41 @@ export abstract class MapleStoryApi {
   //#region Character Information Retrieval
 
   public abstract getCharacter(characterName: string): Promise<CharacterDto>;
-  public abstract getCharacterBasic(ocid: string, dateOptions?: DateOptions): Promise<CharacterBasicDto>;
-  public abstract getCharacterImage(ocid: string, imageOptions?: CharacterImageOptions, dateOptions?: DateOptions): Promise<CharacterImageDto>;
-  public abstract getCharacterPopularity(ocid: string, dateOptions?: DateOptions): Promise<CharacterPopularityDto>;
-  public abstract getCharacterStat(ocid: string, dateOptions?: DateOptions): Promise<CharacterStatDto>;
-  public abstract getCharacterHyperStat(ocid: string, dateOptions?: DateOptions): Promise<CharacterHyperStatDto>;
-  public abstract getCharacterPropensity(ocid: string, dateOptions?: DateOptions): Promise<CharacterPropensityDto>;
-  public abstract getCharacterAbility(ocid: string, dateOptions?: DateOptions): Promise<CharacterAbilityDto>;
-  public abstract getCharacterItemEquipment(ocid: string, dateOptions?: DateOptions): Promise<CharacterItemEquipmentDto>;
-  public abstract getCharacterCashItemEquipment(ocid: string, dateOptions?: DateOptions): Promise<CharacterCashItemEquipmentDto>;
-  public abstract getCharacterSymbolEquipment(ocid: string, dateOptions?: DateOptions): Promise<CharacterSymbolEquipmentDto>;
-  public abstract getCharacterSetEffect(ocid: string, dateOptions?: DateOptions): Promise<CharacterSetEffectDto>;
-  public abstract getCharacterBeautyEquipment(ocid: string, dateOptions?: DateOptions): Promise<CharacterBeautyEquipmentDto>;
-  public abstract getCharacterAndroidEquipment(ocid: string, dateOptions?: DateOptions): Promise<CharacterAndroidEquipmentDto>;
-  public abstract getCharacterPetEquipment(ocid: string, dateOptions?: DateOptions): Promise<CharacterPetEquipmentDto>;
-  public abstract getCharacterSkill(ocid: string, characterSkillGrade: string, dateOptions?: DateOptions): Promise<CharacterSkillDto>;
-  public abstract getCharacterLinkSkill(ocid: string, dateOptions?: DateOptions): Promise<CharacterLinkSkillDto>;
-  public abstract getCharacterVMatrix(ocid: string, dateOptions?: DateOptions): Promise<CharacterVMatrixDto>;
-  public abstract getCharacterHexaMatrix(ocid: string, dateOptions?: DateOptions): Promise<CharacterHexaMatrixDto>;
-  public abstract getCharacterHexaMatrixStat(ocid: string, dateOptions?: DateOptions): Promise<CharacterHexaMatrixStatDto>;
-  public abstract getCharacterDojang(ocid: string, dateOptions?: DateOptions): Promise<CharacterDojangDto>;
+  public abstract getCharacterBasic(ocid: string, dateOptions?: DateOptions): Promise<CharacterBasicDto | null>;
+  public abstract getCharacterImage(ocid: string, imageOptions?: CharacterImageOptions, dateOptions?: DateOptions): Promise<CharacterImageDto | null>;
+  public abstract getCharacterPopularity(ocid: string, dateOptions?: DateOptions): Promise<CharacterPopularityDto | null>;
+  public abstract getCharacterStat(ocid: string, dateOptions?: DateOptions): Promise<CharacterStatDto | null>;
+  public abstract getCharacterHyperStat(ocid: string, dateOptions?: DateOptions): Promise<CharacterHyperStatDto | null>;
+  public abstract getCharacterPropensity(ocid: string, dateOptions?: DateOptions): Promise<CharacterPropensityDto | null>;
+  public abstract getCharacterAbility(ocid: string, dateOptions?: DateOptions): Promise<CharacterAbilityDto | null>;
+  public abstract getCharacterItemEquipment(ocid: string, dateOptions?: DateOptions): Promise<CharacterItemEquipmentDto | null>;
+  public abstract getCharacterCashItemEquipment(ocid: string, dateOptions?: DateOptions): Promise<CharacterCashItemEquipmentDto | null>;
+  public abstract getCharacterSymbolEquipment(ocid: string, dateOptions?: DateOptions): Promise<CharacterSymbolEquipmentDto | null>;
+  public abstract getCharacterSetEffect(ocid: string, dateOptions?: DateOptions): Promise<CharacterSetEffectDto | null>;
+  public abstract getCharacterBeautyEquipment(ocid: string, dateOptions?: DateOptions): Promise<CharacterBeautyEquipmentDto | null>;
+  public abstract getCharacterAndroidEquipment(ocid: string, dateOptions?: DateOptions): Promise<CharacterAndroidEquipmentDto | null>;
+  public abstract getCharacterPetEquipment(ocid: string, dateOptions?: DateOptions): Promise<CharacterPetEquipmentDto | null>;
+  public abstract getCharacterSkill(ocid: string, characterSkillGrade: string, dateOptions?: DateOptions): Promise<CharacterSkillDto | null>;
+  public abstract getCharacterLinkSkill(ocid: string, dateOptions?: DateOptions): Promise<CharacterLinkSkillDto | null>;
+  public abstract getCharacterVMatrix(ocid: string, dateOptions?: DateOptions): Promise<CharacterVMatrixDto | null>;
+  public abstract getCharacterHexaMatrix(ocid: string, dateOptions?: DateOptions): Promise<CharacterHexaMatrixDto | null>;
+  public abstract getCharacterHexaMatrixStat(ocid: string, dateOptions?: DateOptions): Promise<CharacterHexaMatrixStatDto | null>;
+  public abstract getCharacterDojang(ocid: string, dateOptions?: DateOptions): Promise<CharacterDojangDto | null>;
 
   //#endregion
 
   //#region Union Information Retrieval
 
-  public abstract getUnion(ocid: string, dateOptions?: DateOptions): Promise<UnionDto>;
-  public abstract getUnionRaider(ocid: string, dateOptions?: DateOptions): Promise<UnionRaiderDto>;
-  public abstract getUnionArtifact(ocid: string, dateOptions?: DateOptions): Promise<UnionArtifactDto>;
+  public abstract getUnion(ocid: string, dateOptions?: DateOptions): Promise<UnionDto | null>;
+  public abstract getUnionRaider(ocid: string, dateOptions?: DateOptions): Promise<UnionRaiderDto | null>;
+  public abstract getUnionArtifact(ocid: string, dateOptions?: DateOptions): Promise<UnionArtifactDto | null>;
 
   //#endregion
 
   //#region Guild Information Retrieval
 
-  public abstract getGuild(guildName: string, worldName: string): Promise<GuildDto>;
-  public abstract getGuildBasic(guildId: string, dateOptions?: DateOptions): Promise<GuildBasicDto>;
+  public abstract getGuild(guildName: string, worldName: string): Promise<GuildDto | null>;
+  public abstract getGuildBasic(guildId: string, dateOptions?: DateOptions): Promise<GuildBasicDto | null>;
 
   //#endregion
 
@@ -216,6 +216,36 @@ export abstract class MapleStoryApi {
 
     return str;
   };
+
+  /**
+   * API 응답 데이터가 비어있는지 확인 합니다.<br/>
+   * API 요청 시 날짜에 해당하는 데이터가 없을 경우 date 필드만 값이 존재하는 상황을 검증할 때 사용 합니다.<br/>
+   * 일반적으로 API 지원 시작일과 캐릭터 생성일 사이의 날짜를 조회할 때 발생 합니다.
+   * @example
+   * ```
+   * isEmptyResponse({ date: '2024-01-01', popularity: null }) // true
+   * isEmptyResponse({ date: '2024-01-01', popularity: 10 }) // false
+   * ```
+   */
+  protected isEmptyResponse(body: Record<string, any>): boolean {
+    for (const [key, value] of Object.entries(body)) {
+      if (key === 'date') {
+        continue;
+      }
+
+      if (value === null || value === undefined) {
+        continue;
+      }
+
+      if (Array.isArray(value) && value.length === 0) {
+        continue;
+      }
+
+      return false;
+    }
+
+    return true;
+  }
 }
 
 /**
