@@ -127,7 +127,7 @@ class MapleStoryApi(BaseMapleStoryApi):
         r = await self.fetch(path, query)
         return Character(**r)
 
-    async def get_character_basic(self, ocid: str, date: datetime | None = None) -> CharacterBasic:
+    async def get_character_basic(self, ocid: str, date: datetime | None = None) -> CharacterBasic | None:
         """
         기본 정보를 조회합니다.
 
@@ -146,10 +146,10 @@ class MapleStoryApi(BaseMapleStoryApi):
             'date': self._to_date_string(date, datetime(2023, 12, 21)) if date is not None else None
         }
         r = await self.fetch(path, query)
-
+        if self._is_empty_response(r): return None
         return CharacterBasic(**r)
 
-    async def get_character_image(self, ocid: str, option: CharacterImageOption | None = None, date: datetime | None = None) -> CharacterBasic:
+    async def get_character_image(self, ocid: str, option: CharacterImageOption | None = None, date: datetime | None = None) -> CharacterBasic | None:
         """
         캐릭터 외형 이미지 정보를 조회합니다.
 
@@ -165,6 +165,7 @@ class MapleStoryApi(BaseMapleStoryApi):
         """
 
         basic = await self.get_character_basic(ocid, date)
+        if basic is None: return None
         path = basic.character_image.replace(self.BASE_URL, '')
         image_option = option if option is not None else CharacterImageOption()
 
@@ -214,7 +215,7 @@ class MapleStoryApi(BaseMapleStoryApi):
             y=200,
         )
 
-    async def get_character_popularity(self, ocid: str, date: datetime | None = None) -> CharacterPopularity:
+    async def get_character_popularity(self, ocid: str, date: datetime | None = None) -> CharacterPopularity | None:
         """
         인기도 정보를 조회합니다.
 
@@ -233,10 +234,10 @@ class MapleStoryApi(BaseMapleStoryApi):
             'date': self._to_date_string(date, datetime(2023, 12, 21)) if date is not None else None
         }
         r = await self.fetch(path, query)
-
+        if self._is_empty_response(r): return None
         return CharacterPopularity(**r)
 
-    async def get_character_stat(self, ocid: str, date: datetime | None = None) -> CharacterStat:
+    async def get_character_stat(self, ocid: str, date: datetime | None = None) -> CharacterStat | None:
         """
         종합능력치 정보를 조회합니다.
 
@@ -255,10 +256,10 @@ class MapleStoryApi(BaseMapleStoryApi):
             'date': self._to_date_string(date, datetime(2023, 12, 21)) if date is not None else None
         }
         r = await self.fetch(path, query)
-
+        if self._is_empty_response(r): return None
         return CharacterStat(**r)
 
-    async def get_character_hyper_stat(self, ocid: str, date: datetime | None = None) -> CharacterHyperStat:
+    async def get_character_hyper_stat(self, ocid: str, date: datetime | None = None) -> CharacterHyperStat | None:
         """
         하이퍼스탯 정보를 조회합니다.
 
@@ -277,10 +278,10 @@ class MapleStoryApi(BaseMapleStoryApi):
             'date': self._to_date_string(date, datetime(2023, 12, 21)) if date is not None else None
         }
         r = await self.fetch(path, query)
-
+        if self._is_empty_response(r): return None
         return CharacterHyperStat(**r)
 
-    async def get_character_propensity(self, ocid: str, date: datetime | None = None) -> CharacterPropensity:
+    async def get_character_propensity(self, ocid: str, date: datetime | None = None) -> CharacterPropensity | None:
         """
         성향 정보를 조회합니다.
 
@@ -299,10 +300,10 @@ class MapleStoryApi(BaseMapleStoryApi):
             'date': self._to_date_string(date, datetime(2023, 12, 21)) if date is not None else None
         }
         r = await self.fetch(path, query)
-
+        if self._is_empty_response(r): return None
         return CharacterPropensity(**r)
 
-    async def get_character_ability(self, ocid: str, date: datetime | None = None) -> CharacterAbility:
+    async def get_character_ability(self, ocid: str, date: datetime | None = None) -> CharacterAbility | None:
         """
         어빌리티 정보를 조회합니다.
 
@@ -321,10 +322,10 @@ class MapleStoryApi(BaseMapleStoryApi):
             'date': self._to_date_string(date, datetime(2023, 12, 21)) if date is not None else None
         }
         r = await self.fetch(path, query)
-
+        if self._is_empty_response(r): return None
         return CharacterAbility(**r)
 
-    async def get_character_item_equipment(self, ocid: str, date: datetime | None = None) -> CharacterItemEquipment:
+    async def get_character_item_equipment(self, ocid: str, date: datetime | None = None) -> CharacterItemEquipment | None:
         """
         장착한 장비 중 캐시 장비를 제외한 나머지 장비 정보를 조회합니다.
 
@@ -343,10 +344,10 @@ class MapleStoryApi(BaseMapleStoryApi):
             'date': self._to_date_string(date, datetime(2023, 12, 21)) if date is not None else None
         }
         r = await self.fetch(path, query)
-
+        if self._is_empty_response(r): return None
         return CharacterItemEquipment(**r)
 
-    async def get_character_cashitem_equipment(self, ocid: str, date: datetime | None = None) -> CharacterCashitemEquipment:
+    async def get_character_cashitem_equipment(self, ocid: str, date: datetime | None = None) -> CharacterCashitemEquipment | None:
         """
         장착한 캐시 장비 정보를 조회합니다.
 
@@ -365,10 +366,10 @@ class MapleStoryApi(BaseMapleStoryApi):
             'date': self._to_date_string(date, datetime(2023, 12, 21)) if date is not None else None
         }
         r = await self.fetch(path, query)
-
+        if self._is_empty_response(r): return None
         return CharacterCashitemEquipment(**r)
 
-    async def get_character_symbol_equipment(self, ocid: str, date: datetime | None = None) -> CharacterSymbolEquipment:
+    async def get_character_symbol_equipment(self, ocid: str, date: datetime | None = None) -> CharacterSymbolEquipment | None:
         """
         장착한 심볼 정보를 조회합니다.
 
@@ -387,9 +388,10 @@ class MapleStoryApi(BaseMapleStoryApi):
             'date': self._to_date_string(date, datetime(2023, 12, 21)) if date is not None else None
         }
         r = await self.fetch(path, query)
+        if self._is_empty_response(r): return None
         return CharacterSymbolEquipment(**r)
 
-    async def get_character_set_effect(self, ocid: str, date: datetime | None = None) -> CharacterSetEffect:
+    async def get_character_set_effect(self, ocid: str, date: datetime | None = None) -> CharacterSetEffect | None:
         """
         적용받고 있는 세트 효과 정보를 조회합니다
 
@@ -408,9 +410,10 @@ class MapleStoryApi(BaseMapleStoryApi):
             'date': self._to_date_string(date, datetime(2023, 12, 21)) if date is not None else None
         }
         r = await self.fetch(path, query)
+        if self._is_empty_response(r): return None
         return CharacterSetEffect(**r)
 
-    async def get_character_beauty_equipment(self, ocid: str, date: datetime | None = None) -> CharacterBeautyEquipment:
+    async def get_character_beauty_equipment(self, ocid: str, date: datetime | None = None) -> CharacterBeautyEquipment | None:
         """
         캐릭터 헤어, 성형, 피부 정보를 조회합니다.
 
@@ -429,9 +432,10 @@ class MapleStoryApi(BaseMapleStoryApi):
             'date': self._to_date_string(date, datetime(2023, 12, 21)) if date is not None else None
         }
         r = await self.fetch(path, query)
+        if self._is_empty_response(r): return None
         return CharacterBeautyEquipment(**r)
 
-    async def get_character_android_equipment(self, ocid: str, date: datetime | None = None) -> CharacterAndroidEquipment:
+    async def get_character_android_equipment(self, ocid: str, date: datetime | None = None) -> CharacterAndroidEquipment | None:
         """
         장착한 안드로이드 정보를 조회합니다.
 
@@ -450,9 +454,10 @@ class MapleStoryApi(BaseMapleStoryApi):
             'date': self._to_date_string(date, datetime(2023, 12, 21)) if date is not None else None,
         }
         r = await self.fetch(path, query)
+        if self._is_empty_response(r): return None
         return CharacterAndroidEquipment(**r)
 
-    async def get_character_pet_equipment(self, ocid: str, date: datetime | None = None) -> CharacterPetEquipment:
+    async def get_character_pet_equipment(self, ocid: str, date: datetime | None = None) -> CharacterPetEquipment | None:
         """
         장착한 펫 및 펫 스킬, 장비 정보를 조회합니다.
 
@@ -471,9 +476,10 @@ class MapleStoryApi(BaseMapleStoryApi):
             'date': self._to_date_string(date, datetime(2023, 12, 21)) if date is not None else None,
         }
         r = await self.fetch(path, query)
+        if self._is_empty_response(r): return None
         return CharacterPetEquipment(**r)
 
-    async def get_character_skill(self, ocid: str, character_skill_grade: str, date: datetime | None = None) -> CharacterSkill:
+    async def get_character_skill(self, ocid: str, character_skill_grade: str, date: datetime | None = None) -> CharacterSkill | None:
         """
         캐릭터 스킬과 하이퍼 스킬 정보를 조회합니다.
 
@@ -494,9 +500,10 @@ class MapleStoryApi(BaseMapleStoryApi):
             'character_skill_grade': character_skill_grade,
         }
         r = await self.fetch(path, query)
+        if self._is_empty_response(r): return None
         return CharacterSkill(**r)
 
-    async def get_character_link_skill(self, ocid: str, date: datetime | None = None) -> CharacterLinkSkill:
+    async def get_character_link_skill(self, ocid: str, date: datetime | None = None) -> CharacterLinkSkill | None:
         """
         장착 링크 스킬 정보를 조회합니다.
 
@@ -515,9 +522,10 @@ class MapleStoryApi(BaseMapleStoryApi):
             'date': self._to_date_string(date, datetime(2023, 12, 21)) if date is not None else None,
         }
         r = await self.fetch(path, query)
+        if self._is_empty_response(r): return None
         return CharacterLinkSkill(**r)
 
-    async def get_character_vmatrix(self, ocid: str, date: datetime | None = None) -> CharacterVMatrix:
+    async def get_character_vmatrix(self, ocid: str, date: datetime | None = None) -> CharacterVMatrix | None:
         """
         V매트릭스 슬롯 정보와 장착한 V코어 정보를 조회합니다.
 
@@ -536,9 +544,10 @@ class MapleStoryApi(BaseMapleStoryApi):
             'date': self._to_date_string(date, datetime(2023, 12, 21)) if date is not None else None,
         }
         r = await self.fetch(path, query)
+        if self._is_empty_response(r): return None
         return CharacterVMatrix(**r)
 
-    async def get_character_hexamatrix(self, ocid: str, date: datetime | None = None) -> CharacterHexaMatrix:
+    async def get_character_hexamatrix(self, ocid: str, date: datetime | None = None) -> CharacterHexaMatrix | None:
         """
         HEXA 매트릭스에 장착한 HEXA 코어 정보를 조회합니다.
 
@@ -557,9 +566,10 @@ class MapleStoryApi(BaseMapleStoryApi):
             'date': self._to_date_string(date, datetime(2023, 12, 21)) if date is not None else None,
         }
         r = await self.fetch(path, query)
+        if self._is_empty_response(r): return None
         return CharacterHexaMatrix(**r)
 
-    async def get_character_hexamatrix_stat(self, ocid: str, date: datetime | None = None) -> CharacterHexaMatrixStat:
+    async def get_character_hexamatrix_stat(self, ocid: str, date: datetime | None = None) -> CharacterHexaMatrixStat | None:
         """
         HEXA 매트릭스에 설정한 HEXA 스탯 정보를 조회합니다.
 
@@ -578,9 +588,10 @@ class MapleStoryApi(BaseMapleStoryApi):
             'date': self._to_date_string(date, datetime(2023, 12, 21)) if date is not None else None,
         }
         r = await self.fetch(path, query)
+        if self._is_empty_response(r): return None
         return CharacterHexaMatrixStat(**r)
 
-    async def get_character_dojang(self, ocid: str, date: datetime | None = None) -> CharacterDojang:
+    async def get_character_dojang(self, ocid: str, date: datetime | None = None) -> CharacterDojang | None:
         """
         캐릭터 무릉도장 최고 기록 정보를 조회합니다.
 
@@ -599,9 +610,10 @@ class MapleStoryApi(BaseMapleStoryApi):
             'date': self._to_date_string(date, datetime(2023, 12, 21)) if date is not None else None,
         }
         r = await self.fetch(path, query)
+        if self._is_empty_response(r): return None
         return CharacterDojang(**r)
 
-    async def get_character_other_stat(self, ocid: str, date: datetime | None = None) -> CharacterOtherStat:
+    async def get_character_other_stat(self, ocid: str, date: datetime | None = None) -> CharacterOtherStat | None:
         """
         기타 능력치에 영향을 주는 요소 정보를 조회합니다.
 
@@ -620,10 +632,11 @@ class MapleStoryApi(BaseMapleStoryApi):
             'date': self._to_date_string(date, datetime(2025, 8, 21)) if date is not None else None
         }
         r = await self.fetch(path, query)
+        if self._is_empty_response(r): return None
 
         return CharacterOtherStat(**r)
 
-    async def get_character_ring_exchange_skill_equipment(self, ocid: str, date: datetime | None = None) -> CharacterRingExchangeSkillEquipment:
+    async def get_character_ring_exchange_skill_equipment(self, ocid: str, date: datetime | None = None) -> CharacterRingExchangeSkillEquipment | None:
         """
         링 익스체인지 스킬 등록 장비를 조회합니다.
         - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.
@@ -640,13 +653,14 @@ class MapleStoryApi(BaseMapleStoryApi):
             'date': self._to_date_string(date, datetime(2025, 8, 21)) if date is not None else None
         }
         r = await self.fetch(path, query)
+        if self._is_empty_response(r): return None
         return CharacterRingExchangeSkillEquipment(**r)
 
     #endregion
 
     #region 유니온 정보 조회
 
-    async def get_union(self, ocid: str, date: datetime | None = None) -> Union:
+    async def get_union(self, ocid: str, date: datetime | None = None) -> Union | None:
         """
         유니온 레벨 및 유니온 등급 정보를 조회합니다.
 
@@ -665,9 +679,10 @@ class MapleStoryApi(BaseMapleStoryApi):
             'date': self._to_date_string(date, datetime(2023, 12, 21)) if date is not None else None,
         }
         r = await self.fetch(path, query)
+        if self._is_empty_response(r): return None
         return Union(**r)
 
-    async def get_union_raider(self, ocid: str, date: datetime | None = None) -> UnionRaider:
+    async def get_union_raider(self, ocid: str, date: datetime | None = None) -> UnionRaider | None:
         """
         유니온에 배치된 공격대원 효과 및 공격대 점령 효과 등 상세 정보를 조회합니다.
 
@@ -686,9 +701,10 @@ class MapleStoryApi(BaseMapleStoryApi):
             'date': self._to_date_string(date, datetime(2023, 12, 21)) if date is not None else None,
         }
         r = await self.fetch(path, query)
+        if self._is_empty_response(r): return None
         return UnionRaider(**r)
 
-    async def get_union_artifact(self, ocid: str, date: datetime | None = None) -> UnionArtifact:
+    async def get_union_artifact(self, ocid: str, date: datetime | None = None) -> UnionArtifact | None:
         """
         유니온 아티팩트 정보를 조회합니다.
 
@@ -707,9 +723,10 @@ class MapleStoryApi(BaseMapleStoryApi):
             'date': self._to_date_string(date, datetime(2023, 12, 21)) if date is not None else None,
         }
         r = await self.fetch(path, query)
+        if self._is_empty_response(r): return None
         return UnionArtifact(**r)
 
-    async def get_union_champion(self, ocid: str, date: datetime | None = None) -> UnionChampion:
+    async def get_union_champion(self, ocid: str, date: datetime | None = None) -> UnionChampion | None:
         """
         유니온 챔피언 정보를 조회합니다.
 
@@ -730,13 +747,14 @@ class MapleStoryApi(BaseMapleStoryApi):
             'date': self._to_date_string(date, datetime(2023, 12, 21)) if date is not None else None,
         }
         r = await self.fetch(path, query)
+        if self._is_empty_response(r): return None
         return UnionChampion(**r)
 
     #endregion
 
     #region 길드 정보 조회
 
-    async def get_guild_id(self, guild_name: str, world_name: str) -> Guild:
+    async def get_guild_id(self, guild_name: str, world_name: str) -> Guild | None:
         """
         길드 식별자(gcid) 정보를 조회합니다.
 
@@ -755,9 +773,10 @@ class MapleStoryApi(BaseMapleStoryApi):
             'world_name': world_name,
         }
         r = await self.fetch(path, query)
+        if self._is_empty_response(r): return None
         return Guild(**r)
 
-    async def get_guild_basic(self, oguid_id: str, date: datetime | None = None) -> GuildBasic:
+    async def get_guild_basic(self, oguid_id: str, date: datetime | None = None) -> GuildBasic | None:
         """
         길드 기본 정보를 조회합니다.
 
@@ -775,6 +794,7 @@ class MapleStoryApi(BaseMapleStoryApi):
             'date': self._to_date_string(date, datetime(2023, 12, 21)) if date is not None else None,
         }
         r = await self.fetch(path, query)
+        if self._is_empty_response(r): return None
         return GuildBasic(**r)
 
     #endregion

@@ -21,10 +21,13 @@ import retrofit2.Retrofit;
 import retrofit2.converter.jackson.JacksonConverterFactory;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
+import java.lang.reflect.Field;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Base64;
+import java.util.Collection;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
@@ -177,12 +180,21 @@ public abstract class MapleStoryApi {
     }
 
     protected <DTO> Callback<DTO> createCallback(CompletableFuture<DTO> task) {
+        return createCallback(task, false);
+    }
+
+    protected <DTO> Callback<DTO> createCallback(CompletableFuture<DTO> task, boolean checkEmpty) {
         return new Callback<DTO>() {
             @SneakyThrows
             @Override
             public void onResponse(Call<DTO> call, Response<DTO> response) {
                 if (response.isSuccessful()) {
-                    task.complete(response.body());
+                    DTO dto = response.body();
+                    if (checkEmpty && isEmptyResponse(dto)) {
+                        task.complete(null);
+                    } else {
+                        task.complete(dto);
+                    }
                 } else {
                     task.completeExceptionally(parseError(response));
                 }
@@ -193,6 +205,50 @@ public abstract class MapleStoryApi {
                 task.completeExceptionally(t);
             }
         };
+    }
+
+    /**
+     * API 응답 데이터가 비어있는지 확인 합니다.<br/>
+     * API 요청 시 날짜에 해당하는 데이터가 없을 경우 date 필드만 값이 존재하는 상황을 검증할 때 사용 합니다.<br/>
+     * 일반적으로 API 지원 시작일과 캐릭터 생성일 사이의 날짜를 조회할 때 발생 합니다.
+     */
+    private <DTO> boolean isEmptyResponse(DTO dto) {
+        try {
+            for (Field field : dto.getClass().getDeclaredFields()) {
+                final String name = field.getName();
+
+                if (name.equals("date")) {
+                    continue;
+                }
+
+                field.setAccessible(true);
+                Object value = field.get(dto);
+
+                if (value == null) {
+                    continue;
+                }
+
+                if (value instanceof Collection) {
+                    if (((Collection<?>) value).isEmpty()) {
+                        continue;
+                    }
+                } else if (value.getClass().isArray()) {
+                    if (Array.getLength(value) == 0) {
+                        continue;
+                    }
+                } else if (value instanceof Number) {
+                    if (((Number) value).longValue() == 0) {
+                        continue;
+                    }
+                }
+
+                return false;
+            }
+
+            return true;
+        } catch (IllegalAccessException e) {
+            return false;
+        }
     }
 
     protected static MapleStoryApiException parseError(Response<?> response) throws IOException {

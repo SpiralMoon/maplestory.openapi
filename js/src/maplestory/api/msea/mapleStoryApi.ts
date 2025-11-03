@@ -109,7 +109,7 @@ export class MapleStoryApi extends base.MapleStoryApi {
   public override async getCharacterBasic(
     ocid: string,
     dateOptions?: DateOptions,
-  ): Promise<CharacterBasicDto> {
+  ): Promise<CharacterBasicDto | null> {
     const path = `${this.subUrl}/v1/character/basic`;
     const date = dateOptions
       ? this.toDateString(dateOptions, {
@@ -125,6 +125,10 @@ export class MapleStoryApi extends base.MapleStoryApi {
     const { data } = await this.client.get<CharacterBasicBody>(path, {
       params: query,
     });
+
+    if (this.isEmptyResponse(data)) {
+      return null;
+    }
 
     return new CharacterBasicDto(data);
   }
@@ -144,11 +148,14 @@ export class MapleStoryApi extends base.MapleStoryApi {
     ocid: string,
     imageOptions?: CharacterImageOptions,
     dateOptions?: DateOptions,
-  ): Promise<CharacterImageDto> {
-    const { date, characterImage: path } = await this.getCharacterBasic(
-      ocid,
-      dateOptions,
-    );
+  ): Promise<CharacterImageDto | null> {
+    const basic = await this.getCharacterBasic(ocid, dateOptions);
+
+    if (!basic) {
+      return null;
+    }
+
+    const { date, characterImage: path } = basic;
     const action = imageOptions?.action ?? CharacterImageAction.Stand1;
     const emotion = imageOptions?.emotion ?? CharacterImageEmotion.Default;
     const wmotion = imageOptions?.wmotion ?? CharacterImageWeaponMotion.Default;
@@ -218,7 +225,7 @@ export class MapleStoryApi extends base.MapleStoryApi {
   public override async getCharacterPopularity(
     ocid: string,
     dateOptions?: DateOptions,
-  ): Promise<CharacterPopularityDto> {
+  ): Promise<CharacterPopularityDto | null> {
     const path = `${this.subUrl}/v1/character/popularity`;
     const date = dateOptions
       ? this.toDateString(dateOptions, {
@@ -234,6 +241,10 @@ export class MapleStoryApi extends base.MapleStoryApi {
     const { data } = await this.client.get<CharacterPopularityBody>(path, {
       params: query,
     });
+
+    if (this.isEmptyResponse(data)) {
+      return null;
+    }
 
     return new CharacterPopularityDto(data);
   }
@@ -251,7 +262,7 @@ export class MapleStoryApi extends base.MapleStoryApi {
   public override async getCharacterStat(
     ocid: string,
     dateOptions?: DateOptions,
-  ): Promise<CharacterStatDto> {
+  ): Promise<CharacterStatDto | null> {
     const path = `${this.subUrl}/v1/character/stat`;
     const date = dateOptions
       ? this.toDateString(dateOptions, {
@@ -267,6 +278,10 @@ export class MapleStoryApi extends base.MapleStoryApi {
     const { data } = await this.client.get<CharacterStatBody>(path, {
       params: query,
     });
+
+    if (this.isEmptyResponse(data)) {
+      return null;
+    }
 
     return new CharacterStatDto(data);
   }
@@ -284,7 +299,7 @@ export class MapleStoryApi extends base.MapleStoryApi {
   public override async getCharacterHyperStat(
     ocid: string,
     dateOptions?: DateOptions,
-  ): Promise<CharacterHyperStatDto> {
+  ): Promise<CharacterHyperStatDto | null> {
     const path = `${this.subUrl}/v1/character/hyper-stat`;
     const date = dateOptions
       ? this.toDateString(dateOptions, {
@@ -300,6 +315,10 @@ export class MapleStoryApi extends base.MapleStoryApi {
     const { data } = await this.client.get<CharacterHyperStatBody>(path, {
       params: query,
     });
+
+    if (this.isEmptyResponse(data)) {
+      return null;
+    }
 
     return new CharacterHyperStatDto(data);
   }
@@ -317,7 +336,7 @@ export class MapleStoryApi extends base.MapleStoryApi {
   public override async getCharacterPropensity(
     ocid: string,
     dateOptions?: DateOptions,
-  ): Promise<CharacterPropensityDto> {
+  ): Promise<CharacterPropensityDto | null> {
     const path = `${this.subUrl}/v1/character/propensity`;
     const date = dateOptions
       ? this.toDateString(dateOptions, {
@@ -333,6 +352,10 @@ export class MapleStoryApi extends base.MapleStoryApi {
     const { data } = await this.client.get<CharacterPropensityBody>(path, {
       params: query,
     });
+
+    if (this.isEmptyResponse(data)) {
+      return null;
+    }
 
     return new CharacterPropensityDto(data);
   }
@@ -350,7 +373,7 @@ export class MapleStoryApi extends base.MapleStoryApi {
   public override async getCharacterAbility(
     ocid: string,
     dateOptions?: DateOptions,
-  ): Promise<CharacterAbilityDto> {
+  ): Promise<CharacterAbilityDto | null> {
     const path = `${this.subUrl}/v1/character/ability`;
     const date = dateOptions
       ? this.toDateString(dateOptions, {
@@ -366,6 +389,10 @@ export class MapleStoryApi extends base.MapleStoryApi {
     const { data } = await this.client.get<CharacterAbilityBody>(path, {
       params: query,
     });
+
+    if (this.isEmptyResponse(data)) {
+      return null;
+    }
 
     return new CharacterAbilityDto(data);
   }
@@ -383,7 +410,7 @@ export class MapleStoryApi extends base.MapleStoryApi {
   public override async getCharacterItemEquipment(
     ocid: string,
     dateOptions?: DateOptions,
-  ): Promise<CharacterItemEquipmentDto> {
+  ): Promise<CharacterItemEquipmentDto | null> {
     const path = `${this.subUrl}/v1/character/item-equipment`;
     const date = dateOptions
       ? this.toDateString(dateOptions, {
@@ -399,6 +426,10 @@ export class MapleStoryApi extends base.MapleStoryApi {
     const { data } = await this.client.get<CharacterItemEquipmentBody>(path, {
       params: query,
     });
+
+    if (this.isEmptyResponse(data)) {
+      return null;
+    }
 
     return new CharacterItemEquipmentDto(data);
   }
@@ -416,7 +447,7 @@ export class MapleStoryApi extends base.MapleStoryApi {
   public override async getCharacterCashItemEquipment(
     ocid: string,
     dateOptions?: DateOptions,
-  ): Promise<CharacterCashItemEquipmentDto> {
+  ): Promise<CharacterCashItemEquipmentDto | null> {
     const path = `${this.subUrl}/v1/character/cashitem-equipment`;
     const date = dateOptions
       ? this.toDateString(dateOptions, {
@@ -436,6 +467,10 @@ export class MapleStoryApi extends base.MapleStoryApi {
       },
     );
 
+    if (this.isEmptyResponse(data)) {
+      return null;
+    }
+
     return new CharacterCashItemEquipmentDto(data);
   }
 
@@ -452,7 +487,7 @@ export class MapleStoryApi extends base.MapleStoryApi {
   public override async getCharacterSymbolEquipment(
     ocid: string,
     dateOptions?: DateOptions,
-  ): Promise<CharacterSymbolEquipmentDto> {
+  ): Promise<CharacterSymbolEquipmentDto | null> {
     const path = `${this.subUrl}/v1/character/symbol-equipment`;
     const date = dateOptions
       ? this.toDateString(dateOptions, {
@@ -468,6 +503,10 @@ export class MapleStoryApi extends base.MapleStoryApi {
     const { data } = await this.client.get<CharacterSymbolEquipmentBody>(path, {
       params: query,
     });
+
+    if (this.isEmptyResponse(data)) {
+      return null;
+    }
 
     return new CharacterSymbolEquipmentDto(data);
   }
@@ -485,7 +524,7 @@ export class MapleStoryApi extends base.MapleStoryApi {
   public override async getCharacterSetEffect(
     ocid: string,
     dateOptions?: DateOptions,
-  ): Promise<CharacterSetEffectDto> {
+  ): Promise<CharacterSetEffectDto | null> {
     const path = `${this.subUrl}/v1/character/set-effect`;
     const date = dateOptions
       ? this.toDateString(dateOptions, {
@@ -501,6 +540,10 @@ export class MapleStoryApi extends base.MapleStoryApi {
     const { data } = await this.client.get<CharacterSetEffectBody>(path, {
       params: query,
     });
+
+    if (this.isEmptyResponse(data)) {
+      return null;
+    }
 
     return new CharacterSetEffectDto(data);
   }
@@ -518,7 +561,7 @@ export class MapleStoryApi extends base.MapleStoryApi {
   public override async getCharacterBeautyEquipment(
     ocid: string,
     dateOptions?: DateOptions,
-  ): Promise<CharacterBeautyEquipmentDto> {
+  ): Promise<CharacterBeautyEquipmentDto | null> {
     const path = `${this.subUrl}/v1/character/beauty-equipment`;
     const date = dateOptions
       ? this.toDateString(dateOptions, {
@@ -534,6 +577,10 @@ export class MapleStoryApi extends base.MapleStoryApi {
     const { data } = await this.client.get<CharacterBeautyEquipmentBody>(path, {
       params: query,
     });
+
+    if (this.isEmptyResponse(data)) {
+      return null;
+    }
 
     return new CharacterBeautyEquipmentDto(data);
   }
@@ -551,7 +598,7 @@ export class MapleStoryApi extends base.MapleStoryApi {
   public override async getCharacterAndroidEquipment(
     ocid: string,
     dateOptions?: DateOptions,
-  ): Promise<CharacterAndroidEquipmentDto> {
+  ): Promise<CharacterAndroidEquipmentDto | null> {
     const path = `${this.subUrl}/v1/character/android-equipment`;
     const date = dateOptions
       ? this.toDateString(dateOptions, {
@@ -571,6 +618,10 @@ export class MapleStoryApi extends base.MapleStoryApi {
       },
     );
 
+    if (this.isEmptyResponse(data)) {
+      return null;
+    }
+
     return new CharacterAndroidEquipmentDto(data);
   }
 
@@ -587,7 +638,7 @@ export class MapleStoryApi extends base.MapleStoryApi {
   public override async getCharacterPetEquipment(
     ocid: string,
     dateOptions?: DateOptions,
-  ): Promise<CharacterPetEquipmentDto> {
+  ): Promise<CharacterPetEquipmentDto | null> {
     const path = `${this.subUrl}/v1/character/pet-equipment`;
     const date = dateOptions
       ? this.toDateString(dateOptions, {
@@ -603,6 +654,10 @@ export class MapleStoryApi extends base.MapleStoryApi {
     const { data } = await this.client.get<CharacterPetEquipmentBody>(path, {
       params: query,
     });
+
+    if (this.isEmptyResponse(data)) {
+      return null;
+    }
 
     return new CharacterPetEquipmentDto(data);
   }
@@ -622,7 +677,7 @@ export class MapleStoryApi extends base.MapleStoryApi {
     ocid: string,
     characterSkillGrade: string,
     dateOptions?: DateOptions,
-  ): Promise<CharacterSkillDto> {
+  ): Promise<CharacterSkillDto | null> {
     const path = `${this.subUrl}/v1/character/skill`;
     const date = dateOptions
       ? this.toDateString(dateOptions, {
@@ -640,6 +695,10 @@ export class MapleStoryApi extends base.MapleStoryApi {
       params: query,
     });
 
+    if (this.isEmptyResponse(data)) {
+      return null;
+    }
+
     return new CharacterSkillDto(data);
   }
 
@@ -656,7 +715,7 @@ export class MapleStoryApi extends base.MapleStoryApi {
   public override async getCharacterLinkSkill(
     ocid: string,
     dateOptions?: DateOptions,
-  ): Promise<CharacterLinkSkillDto> {
+  ): Promise<CharacterLinkSkillDto | null> {
     const path = `${this.subUrl}/v1/character/link-skill`;
     const date = dateOptions
       ? this.toDateString(dateOptions, {
@@ -672,6 +731,10 @@ export class MapleStoryApi extends base.MapleStoryApi {
     const { data } = await this.client.get<CharacterLinkSkillBody>(path, {
       params: query,
     });
+
+    if (this.isEmptyResponse(data)) {
+      return null;
+    }
 
     return new CharacterLinkSkillDto(data);
   }
@@ -689,7 +752,7 @@ export class MapleStoryApi extends base.MapleStoryApi {
   public override async getCharacterVMatrix(
     ocid: string,
     dateOptions?: DateOptions,
-  ): Promise<CharacterVMatrixDto> {
+  ): Promise<CharacterVMatrixDto | null> {
     const path = `${this.subUrl}/v1/character/vmatrix`;
     const date = dateOptions
       ? this.toDateString(dateOptions, {
@@ -705,6 +768,10 @@ export class MapleStoryApi extends base.MapleStoryApi {
     const { data } = await this.client.get<CharacterVMatrixBody>(path, {
       params: query,
     });
+
+    if (this.isEmptyResponse(data)) {
+      return null;
+    }
 
     return new CharacterVMatrixDto(data);
   }
@@ -722,7 +789,7 @@ export class MapleStoryApi extends base.MapleStoryApi {
   public override async getCharacterHexaMatrix(
     ocid: string,
     dateOptions?: DateOptions,
-  ): Promise<CharacterHexaMatrixDto> {
+  ): Promise<CharacterHexaMatrixDto | null> {
     const path = `${this.subUrl}/v1/character/hexamatrix`;
     const date = dateOptions
       ? this.toDateString(dateOptions, {
@@ -738,6 +805,10 @@ export class MapleStoryApi extends base.MapleStoryApi {
     const { data } = await this.client.get<CharacterHexaMatrixBody>(path, {
       params: query,
     });
+
+    if (this.isEmptyResponse(data)) {
+      return null;
+    }
 
     return new CharacterHexaMatrixDto(data);
   }
@@ -755,7 +826,7 @@ export class MapleStoryApi extends base.MapleStoryApi {
   public override async getCharacterHexaMatrixStat(
     ocid: string,
     dateOptions?: DateOptions,
-  ): Promise<CharacterHexaMatrixStatDto> {
+  ): Promise<CharacterHexaMatrixStatDto | null> {
     const path = `${this.subUrl}/v1/character/hexamatrix-stat`;
     const date = dateOptions
       ? this.toDateString(dateOptions, {
@@ -771,6 +842,10 @@ export class MapleStoryApi extends base.MapleStoryApi {
     const { data } = await this.client.get<CharacterHexaMatrixStatBody>(path, {
       params: query,
     });
+
+    if (this.isEmptyResponse(data)) {
+      return null;
+    }
 
     return new CharacterHexaMatrixStatDto(data);
   }
@@ -788,7 +863,7 @@ export class MapleStoryApi extends base.MapleStoryApi {
   public override async getCharacterDojang(
     ocid: string,
     dateOptions?: DateOptions,
-  ): Promise<CharacterDojangDto> {
+  ): Promise<CharacterDojangDto | null> {
     const path = `${this.subUrl}/v1/character/dojang`;
     const date = dateOptions
       ? this.toDateString(dateOptions, {
@@ -804,6 +879,10 @@ export class MapleStoryApi extends base.MapleStoryApi {
     const { data } = await this.client.get<CharacterDojangBody>(path, {
       params: query,
     });
+
+    if (this.isEmptyResponse(data)) {
+      return null;
+    }
 
     return new CharacterDojangDto(data);
   }
@@ -825,7 +904,7 @@ export class MapleStoryApi extends base.MapleStoryApi {
   public override async getUnion(
     ocid: string,
     dateOptions?: DateOptions,
-  ): Promise<UnionDto> {
+  ): Promise<UnionDto | null> {
     const path = `${this.subUrl}/v1/user/union`;
     const date = dateOptions
       ? this.toDateString(dateOptions, {
@@ -841,6 +920,10 @@ export class MapleStoryApi extends base.MapleStoryApi {
     const { data } = await this.client.get<UnionBody>(path, {
       params: query,
     });
+
+    if (this.isEmptyResponse(data)) {
+      return null;
+    }
 
     return new UnionDto(data);
   }
@@ -858,7 +941,7 @@ export class MapleStoryApi extends base.MapleStoryApi {
   public override async getUnionRaider(
     ocid: string,
     dateOptions?: DateOptions,
-  ): Promise<UnionRaiderDto> {
+  ): Promise<UnionRaiderDto | null> {
     const path = `${this.subUrl}/v1/user/union-raider`;
     const date = dateOptions
       ? this.toDateString(dateOptions, {
@@ -874,6 +957,10 @@ export class MapleStoryApi extends base.MapleStoryApi {
     const { data } = await this.client.get<UnionRaiderBody>(path, {
       params: query,
     });
+
+    if (this.isEmptyResponse(data)) {
+      return null;
+    }
 
     return new UnionRaiderDto(data);
   }
@@ -891,7 +978,7 @@ export class MapleStoryApi extends base.MapleStoryApi {
   public override async getUnionArtifact(
     ocid: string,
     dateOptions?: DateOptions,
-  ): Promise<UnionArtifactDto> {
+  ): Promise<UnionArtifactDto | null> {
     const path = `${this.subUrl}/v1/user/union-artifact`;
     const date = dateOptions
       ? this.toDateString(dateOptions, {
@@ -907,6 +994,10 @@ export class MapleStoryApi extends base.MapleStoryApi {
     const { data } = await this.client.get<UnionArtifactBody>(path, {
       params: query,
     });
+
+    if (this.isEmptyResponse(data)) {
+      return null;
+    }
 
     return new UnionArtifactDto(data);
   }
@@ -928,7 +1019,7 @@ export class MapleStoryApi extends base.MapleStoryApi {
   public override async getGuild(
     guildName: string,
     worldName: string,
-  ): Promise<GuildDto> {
+  ): Promise<GuildDto | null> {
     const path = `${this.subUrl}/v1/guild/id`;
     const { data } = await this.client.get<GuildBody>(path, {
       params: {
@@ -936,6 +1027,10 @@ export class MapleStoryApi extends base.MapleStoryApi {
         world_name: worldName,
       },
     });
+
+    if (this.isEmptyResponse(data)) {
+      return null;
+    }
 
     return new GuildDto(data);
   }
@@ -953,7 +1048,7 @@ export class MapleStoryApi extends base.MapleStoryApi {
   public override async getGuildBasic(
     guildId: string,
     dateOptions?: DateOptions,
-  ): Promise<GuildBasicDto> {
+  ): Promise<GuildBasicDto | null> {
     const path = `${this.subUrl}/v1/guild/basic`;
     const date = dateOptions
       ? this.toDateString(dateOptions, {
@@ -969,6 +1064,10 @@ export class MapleStoryApi extends base.MapleStoryApi {
     const { data } = await this.client.get<GuildBasicBody>(path, {
       params: query,
     });
+
+    if (this.isEmptyResponse(data)) {
+      return null;
+    }
 
     return new GuildBasicDto(data);
   }

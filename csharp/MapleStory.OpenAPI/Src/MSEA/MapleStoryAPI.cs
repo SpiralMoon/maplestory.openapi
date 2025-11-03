@@ -34,7 +34,7 @@ namespace MapleStory.OpenAPI.MSEA
                 { "character_name", characterName }
             };
 
-            return await Get<CharacterDTO>(path, query);
+            return await Get<CharacterDTO>(path, query, checkEmpty: true);
         }
 
         /// <summary>
@@ -46,7 +46,7 @@ namespace MapleStory.OpenAPI.MSEA
         /// <para>- This API provides data for MapleStory SEA.</para>
         /// </summary>
         /// <param name="ocid">Character identifier</param>
-        public override Task<CharacterBasicDTO> GetCharacterBasic(string ocid)
+        public override Task<CharacterBasicDTO?> GetCharacterBasic(string ocid)
         {
             return GetCharacterBasic(ocid, null);
         }
@@ -61,7 +61,7 @@ namespace MapleStory.OpenAPI.MSEA
         /// </summary>
         /// <param name="ocid">Character identifier</param>
         /// <param name="dateTimeOffset">Reference date for query (SGT)</param>
-        public override async Task<CharacterBasicDTO> GetCharacterBasic(string ocid, DateTimeOffset? dateTimeOffset)
+        public override async Task<CharacterBasicDTO?> GetCharacterBasic(string ocid, DateTimeOffset? dateTimeOffset)
         {
             var path = $"{subUrl}/v1/character/basic";
             var date = dateTimeOffset != null
@@ -74,7 +74,7 @@ namespace MapleStory.OpenAPI.MSEA
                 { "date", date }
             };
 
-            return await Get<CharacterBasicDTO>(path, query);
+            return await Get<CharacterBasicDTO>(path, query, checkEmpty: true);
         }
 
         /// <summary>
@@ -86,7 +86,7 @@ namespace MapleStory.OpenAPI.MSEA
         /// <para>- This API provides data for MapleStory SEA.</para>
         /// </summary>
         /// <param name="ocid">Character identifier</param>
-        public override Task<CharacterImageDTO> GetCharacterImage(string ocid)
+        public override Task<CharacterImageDTO?> GetCharacterImage(string ocid)
         {
             return GetCharacterImage(ocid, new CharacterImageOption(), null);
         }
@@ -101,7 +101,7 @@ namespace MapleStory.OpenAPI.MSEA
         /// </summary>
         /// <param name="ocid">Character identifier</param>
         /// <param name="imageOption">Image options</param>
-        public override Task<CharacterImageDTO> GetCharacterImage(string ocid, CharacterImageOption imageOption)
+        public override Task<CharacterImageDTO?> GetCharacterImage(string ocid, CharacterImageOption imageOption)
         {
             return GetCharacterImage(ocid, imageOption, null);
         }
@@ -117,9 +117,14 @@ namespace MapleStory.OpenAPI.MSEA
         /// <param name="ocid">Character identifier</param>
         /// <param name="imageOption">Image options</param>
         /// <param name="dateTimeOffset">Reference date for query (SGT)</param>
-        public override async Task<CharacterImageDTO> GetCharacterImage(string ocid, CharacterImageOption imageOption, DateTimeOffset? dateTimeOffset)
+        public override async Task<CharacterImageDTO?> GetCharacterImage(string ocid, CharacterImageOption imageOption, DateTimeOffset? dateTimeOffset)
         {
             var basic = await GetCharacterBasic(ocid, dateTimeOffset);
+
+            if (basic == null)
+            {
+                return null;
+            }
 
             var action = imageOption.Action;
             var emotion = imageOption.Emotion;
@@ -177,7 +182,7 @@ namespace MapleStory.OpenAPI.MSEA
         /// <para>- This API provides data for MapleStory SEA.</para>
         /// </summary>
         /// <param name="ocid">Character identifier</param>
-        public override Task<CharacterPopularityDTO> GetCharacterPopularity(string ocid)
+        public override Task<CharacterPopularityDTO?> GetCharacterPopularity(string ocid)
         {
             return GetCharacterPopularity(ocid, null);
         }
@@ -192,7 +197,7 @@ namespace MapleStory.OpenAPI.MSEA
         /// </summary>
         /// <param name="ocid">Character identifier</param>
         /// <param name="dateTimeOffset">Reference date for query (SGT)</param>
-        public override async Task<CharacterPopularityDTO> GetCharacterPopularity(string ocid, DateTimeOffset? dateTimeOffset)
+        public override async Task<CharacterPopularityDTO?> GetCharacterPopularity(string ocid, DateTimeOffset? dateTimeOffset)
         {
             var path = $"{subUrl}/v1/character/popularity";
             var date = dateTimeOffset != null
@@ -204,7 +209,7 @@ namespace MapleStory.OpenAPI.MSEA
                 { "date", date }
             };
 
-            return await Get<CharacterPopularityDTO>(path, query);
+            return await Get<CharacterPopularityDTO>(path, query, checkEmpty: true);
         }
 
         /// <summary>
@@ -215,7 +220,7 @@ namespace MapleStory.OpenAPI.MSEA
         /// <para>- Due to game content changes, the ocid may be updated. Please pay attention to this when updating services based on ocid.</para>
         /// <para>- This API provides data for MapleStory SEA.</para>
         /// </summary>
-        public override Task<CharacterStatDTO> GetCharacterStat(string ocid)
+        public override Task<CharacterStatDTO?> GetCharacterStat(string ocid)
         {
             return GetCharacterStat(ocid, null);
         }
@@ -230,7 +235,7 @@ namespace MapleStory.OpenAPI.MSEA
         /// </summary>
         /// <param name="ocid">Character identifier</param>
         /// <param name="dateTimeOffset">Reference date for query (SGT)</param>
-        public override async Task<CharacterStatDTO> GetCharacterStat(string ocid, DateTimeOffset? dateTimeOffset)
+        public override async Task<CharacterStatDTO?> GetCharacterStat(string ocid, DateTimeOffset? dateTimeOffset)
         {
             var path = $"{subUrl}/v1/character/stat";
             var date = dateTimeOffset != null
@@ -242,7 +247,7 @@ namespace MapleStory.OpenAPI.MSEA
                 { "date", date }
             };
 
-            return await Get<CharacterStatDTO>(path, query);
+            return await Get<CharacterStatDTO>(path, query, checkEmpty: true);
         }
 
         /// <summary>
@@ -254,7 +259,7 @@ namespace MapleStory.OpenAPI.MSEA
         /// <para>- This API provides data for MapleStory SEA.</para>
         /// </summary>
         /// <param name="ocid">Character identifier</param>
-        public override Task<CharacterHyperStatDTO> GetCharacterHyperStat(string ocid)
+        public override Task<CharacterHyperStatDTO?> GetCharacterHyperStat(string ocid)
         {
             return GetCharacterHyperStat(ocid, null);
         }
@@ -269,7 +274,7 @@ namespace MapleStory.OpenAPI.MSEA
         /// </summary>
         /// <param name="ocid">Character identifier</param>
         /// <param name="dateTimeOffset">Reference date for query (SGT)</param>
-        public override async Task<CharacterHyperStatDTO> GetCharacterHyperStat(string ocid, DateTimeOffset? dateTimeOffset)
+        public override async Task<CharacterHyperStatDTO?> GetCharacterHyperStat(string ocid, DateTimeOffset? dateTimeOffset)
         {
             var path = $"{subUrl}/v1/character/hyper-stat";
             var date = dateTimeOffset != null
@@ -281,7 +286,7 @@ namespace MapleStory.OpenAPI.MSEA
                 { "date", date }
             };
 
-            return await Get<CharacterHyperStatDTO>(path, query);
+            return await Get<CharacterHyperStatDTO>(path, query, checkEmpty: true);
         }
 
         /// <summary>
@@ -293,7 +298,7 @@ namespace MapleStory.OpenAPI.MSEA
         /// <para>- This API provides data for MapleStory SEA.</para>
         /// </summary>
         /// <param name="ocid">Character identifier</param>
-        public override Task<CharacterPropensityDTO> GetCharacterPropensity(string ocid)
+        public override Task<CharacterPropensityDTO?> GetCharacterPropensity(string ocid)
         {
             return GetCharacterPropensity(ocid, null);
         }
@@ -308,7 +313,7 @@ namespace MapleStory.OpenAPI.MSEA
         /// </summary>
         /// <param name="ocid">Character identifier</param>
         /// <param name="dateTimeOffset">Reference date for query (SGT)</param>
-        public override async Task<CharacterPropensityDTO> GetCharacterPropensity(string ocid, DateTimeOffset? dateTimeOffset)
+        public override async Task<CharacterPropensityDTO?> GetCharacterPropensity(string ocid, DateTimeOffset? dateTimeOffset)
         {
             var path = $"{subUrl}/v1/character/propensity";
             var date = dateTimeOffset != null
@@ -320,7 +325,7 @@ namespace MapleStory.OpenAPI.MSEA
                 { "date", date }
             };
 
-            return await Get<CharacterPropensityDTO>(path, query);
+            return await Get<CharacterPropensityDTO>(path, query, checkEmpty: true);
         }
 
         /// <summary>
@@ -332,7 +337,7 @@ namespace MapleStory.OpenAPI.MSEA
         /// <para>- This API provides data for MapleStory SEA.</para>
         /// </summary>
         /// <param name="ocid">Character identifier</param>
-        public override Task<CharacterAbilityDTO> GetCharacterAbility(string ocid)
+        public override Task<CharacterAbilityDTO?> GetCharacterAbility(string ocid)
         {
             return GetCharacterAbility(ocid, null);
         }
@@ -347,7 +352,7 @@ namespace MapleStory.OpenAPI.MSEA
         /// </summary>
         /// <param name="ocid">Character identifier</param>
         /// <param name="dateTimeOffset">Reference date for query (SGT)</param>
-        public override async Task<CharacterAbilityDTO> GetCharacterAbility(string ocid, DateTimeOffset? dateTimeOffset)
+        public override async Task<CharacterAbilityDTO?> GetCharacterAbility(string ocid, DateTimeOffset? dateTimeOffset)
         {
             var path = $"{subUrl}/v1/character/ability";
             var date = dateTimeOffset != null
@@ -359,7 +364,7 @@ namespace MapleStory.OpenAPI.MSEA
                 { "date", date }
             };
 
-            return await Get<CharacterAbilityDTO>(path, query);
+            return await Get<CharacterAbilityDTO>(path, query, checkEmpty: true);
         }
 
         /// <summary>
@@ -371,7 +376,7 @@ namespace MapleStory.OpenAPI.MSEA
         /// <para>- This API provides data for MapleStory SEA.</para>
         /// </summary>
         /// <param name="ocid">Character identifier</param>
-        public override Task<CharacterItemEquipmentDTO> GetCharacterItemEquipment(string ocid)
+        public override Task<CharacterItemEquipmentDTO?> GetCharacterItemEquipment(string ocid)
         {
             return GetCharacterItemEquipment(ocid, null);
         }
@@ -386,7 +391,7 @@ namespace MapleStory.OpenAPI.MSEA
         /// </summary>
         /// <param name="ocid">Character identifier</param>
         /// <param name="dateTimeOffset">Reference date for query (SGT)</param>
-        public override async Task<CharacterItemEquipmentDTO> GetCharacterItemEquipment(string ocid, DateTimeOffset? dateTimeOffset)
+        public override async Task<CharacterItemEquipmentDTO?> GetCharacterItemEquipment(string ocid, DateTimeOffset? dateTimeOffset)
         {
             var path = $"{subUrl}/v1/character/item-equipment";
             var date = dateTimeOffset != null
@@ -398,7 +403,7 @@ namespace MapleStory.OpenAPI.MSEA
                 { "date", date }
             };
 
-            return await Get<CharacterItemEquipmentDTO>(path, query);
+            return await Get<CharacterItemEquipmentDTO>(path, query, checkEmpty: true);
         }
 
         /// <summary>
@@ -410,7 +415,7 @@ namespace MapleStory.OpenAPI.MSEA
         /// <para>- This API provides data for MapleStory SEA.</para>
         /// </summary>
         /// <param name="ocid">Character identifier</param>
-        public override Task<CharacterCashItemEquipmentDTO> GetCharacterCashItemEquipment(string ocid)
+        public override Task<CharacterCashItemEquipmentDTO?> GetCharacterCashItemEquipment(string ocid)
         {
             return GetCharacterCashItemEquipment(ocid, null);
         }
@@ -425,7 +430,7 @@ namespace MapleStory.OpenAPI.MSEA
         /// </summary>
         /// <param name="ocid">Character identifier</param>
         /// <param name="dateTimeOffset">Reference date for query (SGT)</param>
-        public override async Task<CharacterCashItemEquipmentDTO> GetCharacterCashItemEquipment(string ocid, DateTimeOffset? dateTimeOffset)
+        public override async Task<CharacterCashItemEquipmentDTO?> GetCharacterCashItemEquipment(string ocid, DateTimeOffset? dateTimeOffset)
         {
             var path = $"{subUrl}/v1/character/cashitem-equipment";
             var date = dateTimeOffset != null
@@ -437,7 +442,7 @@ namespace MapleStory.OpenAPI.MSEA
                 { "date", date }
             };
 
-            return await Get<CharacterCashItemEquipmentDTO>(path, query);
+            return await Get<CharacterCashItemEquipmentDTO>(path, query, checkEmpty: true);
         }
 
         /// <summary>
@@ -449,7 +454,7 @@ namespace MapleStory.OpenAPI.MSEA
         /// <para>- This API provides data for MapleStory SEA.</para>
         /// </summary>
         /// <param name="ocid">Character identifier</param>
-        public override Task<CharacterSymbolEquipmentDTO> GetCharacterSymbolEquipment(string ocid)
+        public override Task<CharacterSymbolEquipmentDTO?> GetCharacterSymbolEquipment(string ocid)
         {
             return GetCharacterSymbolEquipment(ocid, null);
         }
@@ -464,7 +469,7 @@ namespace MapleStory.OpenAPI.MSEA
         /// </summary>
         /// <param name="ocid">Character identifier</param>
         /// <param name="dateTimeOffset">Reference date for query (SGT)</param>
-        public override async Task<CharacterSymbolEquipmentDTO> GetCharacterSymbolEquipment(string ocid, DateTimeOffset? dateTimeOffset)
+        public override async Task<CharacterSymbolEquipmentDTO?> GetCharacterSymbolEquipment(string ocid, DateTimeOffset? dateTimeOffset)
         {
             var path = $"{subUrl}/v1/character/symbol-equipment";
             var date = dateTimeOffset != null
@@ -476,7 +481,7 @@ namespace MapleStory.OpenAPI.MSEA
                 { "date", date }
             };
 
-            return await Get<CharacterSymbolEquipmentDTO>(path, query);
+            return await Get<CharacterSymbolEquipmentDTO>(path, query, checkEmpty: true);
         }
 
         /// <summary>
@@ -488,7 +493,7 @@ namespace MapleStory.OpenAPI.MSEA
         /// <para>- This API provides data for MapleStory SEA.</para>
         /// </summary>
         /// <param name="ocid">Character identifier</param>
-        public override Task<CharacterSetEffectDTO> GetCharacterSetEffect(string ocid)
+        public override Task<CharacterSetEffectDTO?> GetCharacterSetEffect(string ocid)
         {
             return GetCharacterSetEffect(ocid, null);
         }
@@ -503,7 +508,7 @@ namespace MapleStory.OpenAPI.MSEA
         /// </summary>
         /// <param name="ocid">Character identifier</param>
         /// <param name="dateTimeOffset">Reference date for query (SGT)</param>
-        public override async Task<CharacterSetEffectDTO> GetCharacterSetEffect(string ocid, DateTimeOffset? dateTimeOffset)
+        public override async Task<CharacterSetEffectDTO?> GetCharacterSetEffect(string ocid, DateTimeOffset? dateTimeOffset)
         {
             var path = $"{subUrl}/v1/character/set-effect";
             var date = dateTimeOffset != null
@@ -515,7 +520,7 @@ namespace MapleStory.OpenAPI.MSEA
                 { "date", date }
             };
 
-            return await Get<CharacterSetEffectDTO>(path, query);
+            return await Get<CharacterSetEffectDTO>(path, query, checkEmpty: true);
         }
 
         /// <summary>
@@ -527,7 +532,7 @@ namespace MapleStory.OpenAPI.MSEA
         /// <para>- This API provides data for MapleStory SEA.</para>
         /// </summary>
         /// <param name="ocid">Character identifier</param>
-        public override Task<CharacterBeautyEquipmentDTO> GetCharacterBeautyEquipment(string ocid)
+        public override Task<CharacterBeautyEquipmentDTO?> GetCharacterBeautyEquipment(string ocid)
         {
             return GetCharacterBeautyEquipment(ocid, null);
         }
@@ -542,7 +547,7 @@ namespace MapleStory.OpenAPI.MSEA
         /// </summary>
         /// <param name="ocid">Character identifier</param>
         /// <param name="dateTimeOffset">Reference date for query (SGT)</param>
-        public override async Task<CharacterBeautyEquipmentDTO> GetCharacterBeautyEquipment(string ocid, DateTimeOffset? dateTimeOffset)
+        public override async Task<CharacterBeautyEquipmentDTO?> GetCharacterBeautyEquipment(string ocid, DateTimeOffset? dateTimeOffset)
         {
             var path = $"{subUrl}/v1/character/beauty-equipment";
             var date = dateTimeOffset != null
@@ -554,7 +559,7 @@ namespace MapleStory.OpenAPI.MSEA
                 { "date", date }
             };
 
-            return await Get<CharacterBeautyEquipmentDTO>(path, query);
+            return await Get<CharacterBeautyEquipmentDTO>(path, query, checkEmpty: true);
         }
 
         /// <summary>
@@ -566,7 +571,7 @@ namespace MapleStory.OpenAPI.MSEA
         /// <para>- This API provides data for MapleStory SEA.</para>
         /// </summary>
         /// <param name="ocid">Character identifier</param>
-        public override Task<CharacterAndroidEquipmentDTO> GetCharacterAndroidEquipment(string ocid)
+        public override Task<CharacterAndroidEquipmentDTO?> GetCharacterAndroidEquipment(string ocid)
         {
             return GetCharacterAndroidEquipment(ocid, null);
         }
@@ -581,7 +586,7 @@ namespace MapleStory.OpenAPI.MSEA
         /// </summary>
         /// <param name="ocid">Character identifier</param>
         /// <param name="dateTimeOffset">Reference date for query (SGT)</param>
-        public override async Task<CharacterAndroidEquipmentDTO> GetCharacterAndroidEquipment(string ocid, DateTimeOffset? dateTimeOffset)
+        public override async Task<CharacterAndroidEquipmentDTO?> GetCharacterAndroidEquipment(string ocid, DateTimeOffset? dateTimeOffset)
         {
             var path = $"{subUrl}/v1/character/android-equipment";
             var date = dateTimeOffset != null
@@ -593,7 +598,7 @@ namespace MapleStory.OpenAPI.MSEA
                 { "date", date }
             };
 
-            return await Get<CharacterAndroidEquipmentDTO>(path, query);
+            return await Get<CharacterAndroidEquipmentDTO>(path, query, checkEmpty: true);
         }
 
         /// <summary>
@@ -605,7 +610,7 @@ namespace MapleStory.OpenAPI.MSEA
         /// <para>- This API provides data for MapleStory SEA.</para>
         /// </summary>
         /// <param name="ocid">Character identifier</param>
-        public override Task<CharacterPetEquipmentDTO> GetCharacterPetEquipment(string ocid)
+        public override Task<CharacterPetEquipmentDTO?> GetCharacterPetEquipment(string ocid)
         {
             return GetCharacterPetEquipment(ocid, null);
         }
@@ -620,7 +625,7 @@ namespace MapleStory.OpenAPI.MSEA
         /// </summary>
         /// <param name="ocid">Character identifier</param>
         /// <param name="dateTimeOffset">Reference date for query (SGT)</param>
-        public override async Task<CharacterPetEquipmentDTO> GetCharacterPetEquipment(string ocid, DateTimeOffset? dateTimeOffset)
+        public override async Task<CharacterPetEquipmentDTO?> GetCharacterPetEquipment(string ocid, DateTimeOffset? dateTimeOffset)
         {
             var path = $"{subUrl}/v1/character/pet-equipment";
             var date = dateTimeOffset != null
@@ -632,7 +637,7 @@ namespace MapleStory.OpenAPI.MSEA
                 { "date", date }
             };
 
-            return await Get<CharacterPetEquipmentDTO>(path, query);
+            return await Get<CharacterPetEquipmentDTO>(path, query, checkEmpty: true);
         }
 
         /// <summary>
@@ -645,7 +650,7 @@ namespace MapleStory.OpenAPI.MSEA
         /// </summary>
         /// <param name="ocid">Character identifier</param>
         /// <param name="characterSkillGrade">Job advancement tier to query <a href="https://openapi.nexon.com/game/maplestorysea/?id=45">Available values</a></param>
-        public override Task<CharacterSkillDTO> GetCharacterSkill(string ocid, string characterSkillGrade)
+        public override Task<CharacterSkillDTO?> GetCharacterSkill(string ocid, string characterSkillGrade)
         {
             return GetCharacterSkill(ocid, characterSkillGrade, null);
         }
@@ -662,7 +667,7 @@ namespace MapleStory.OpenAPI.MSEA
         /// <param name="characterSkillGrade">Job advancement tier to query <a href="https://openapi.nexon.com/game/maplestorysea/?id=45">Available values</a></param>
         /// <param name="dateTimeOffset">Reference date for query (SGT)</param>
 
-        public override async Task<CharacterSkillDTO> GetCharacterSkill(string ocid, string characterSkillGrade, DateTimeOffset? dateTimeOffset)
+        public override async Task<CharacterSkillDTO?> GetCharacterSkill(string ocid, string characterSkillGrade, DateTimeOffset? dateTimeOffset)
         {
             var path = $"{subUrl}/v1/character/skill";
             var date = dateTimeOffset != null
@@ -675,7 +680,7 @@ namespace MapleStory.OpenAPI.MSEA
                 { "character_skill_grade", characterSkillGrade }
             };
 
-            return await Get<CharacterSkillDTO>(path, query);
+            return await Get<CharacterSkillDTO>(path, query, checkEmpty: true);
         }
 
         /// <summary>
@@ -687,7 +692,7 @@ namespace MapleStory.OpenAPI.MSEA
         /// <para>- This API provides data for MapleStory SEA.</para>
         /// </summary>
         /// <param name="ocid">Character identifier</param>
-        public override Task<CharacterLinkSkillDTO> GetCharacterLinkSkill(string ocid)
+        public override Task<CharacterLinkSkillDTO?> GetCharacterLinkSkill(string ocid)
         {
             return GetCharacterLinkSkill(ocid, null);
         }
@@ -702,7 +707,7 @@ namespace MapleStory.OpenAPI.MSEA
         /// </summary>
         /// <param name="ocid">Character identifier</param>
         /// <param name="dateTimeOffset">Reference date for query (SGT)</param>
-        public override async Task<CharacterLinkSkillDTO> GetCharacterLinkSkill(string ocid, DateTimeOffset? dateTimeOffset)
+        public override async Task<CharacterLinkSkillDTO?> GetCharacterLinkSkill(string ocid, DateTimeOffset? dateTimeOffset)
         {
             var path = $"{subUrl}/v1/character/link-skill";
             var date = dateTimeOffset != null
@@ -714,7 +719,7 @@ namespace MapleStory.OpenAPI.MSEA
                 { "date", date }
             };
 
-            return await Get<CharacterLinkSkillDTO>(path, query);
+            return await Get<CharacterLinkSkillDTO>(path, query, checkEmpty: true);
         }
 
         /// <summary>
@@ -726,7 +731,7 @@ namespace MapleStory.OpenAPI.MSEA
         /// <para>- This API provides data for MapleStory SEA.</para>
         /// </summary>
         /// <param name="ocid">Character identifier</param>
-        public override Task<CharacterVMatrixDTO> GetCharacterVMatrix(string ocid)
+        public override Task<CharacterVMatrixDTO?> GetCharacterVMatrix(string ocid)
         {
             return GetCharacterVMatrix(ocid, null);
         }
@@ -741,7 +746,7 @@ namespace MapleStory.OpenAPI.MSEA
         /// </summary>
         /// <param name="ocid">Character identifier</param>
         /// <param name="dateTimeOffset">Reference date for query (SGT)</param>
-        public override async Task<CharacterVMatrixDTO> GetCharacterVMatrix(string ocid, DateTimeOffset? dateTimeOffset)
+        public override async Task<CharacterVMatrixDTO?> GetCharacterVMatrix(string ocid, DateTimeOffset? dateTimeOffset)
         {
             var path = $"{subUrl}/v1/character/vmatrix";
             var date = dateTimeOffset != null
@@ -753,7 +758,7 @@ namespace MapleStory.OpenAPI.MSEA
                 { "date", date }
             };
 
-            return await Get<CharacterVMatrixDTO>(path, query);
+            return await Get<CharacterVMatrixDTO>(path, query, checkEmpty: true);
         }
 
         /// <summary>
@@ -765,7 +770,7 @@ namespace MapleStory.OpenAPI.MSEA
         /// <para>- This API provides data for MapleStory SEA.</para>
         /// </summary>
         /// <param name="ocid">Character identifier</param>
-        public override Task<CharacterHexaMatrixDTO> GetCharacterHexaMatrix(string ocid)
+        public override Task<CharacterHexaMatrixDTO?> GetCharacterHexaMatrix(string ocid)
         {
             return GetCharacterHexaMatrix(ocid, null);
         }
@@ -780,7 +785,7 @@ namespace MapleStory.OpenAPI.MSEA
         /// </summary>
         /// <param name="ocid">Character identifier</param>
         /// <param name="dateTimeOffset">Reference date for query (SGT)</param>
-        public override async Task<CharacterHexaMatrixDTO> GetCharacterHexaMatrix(string ocid, DateTimeOffset? dateTimeOffset)
+        public override async Task<CharacterHexaMatrixDTO?> GetCharacterHexaMatrix(string ocid, DateTimeOffset? dateTimeOffset)
         {
             var path = $"{subUrl}/v1/character/hexamatrix";
             var date = dateTimeOffset != null
@@ -792,7 +797,7 @@ namespace MapleStory.OpenAPI.MSEA
                 { "date", date }
             };
 
-            return await Get<CharacterHexaMatrixDTO>(path, query);
+            return await Get<CharacterHexaMatrixDTO>(path, query, checkEmpty: true);
         }
 
         /// <summary>
@@ -804,7 +809,7 @@ namespace MapleStory.OpenAPI.MSEA
         /// <para>- This API provides data for MapleStory SEA.</para>
         /// </summary>
         /// <param name="ocid">Character identifier</param>
-        public override Task<CharacterHexaMatrixStatDTO> GetCharacterHexaMatrixStat(string ocid)
+        public override Task<CharacterHexaMatrixStatDTO?> GetCharacterHexaMatrixStat(string ocid)
         {
             return GetCharacterHexaMatrixStat(ocid, null);
         }
@@ -819,7 +824,7 @@ namespace MapleStory.OpenAPI.MSEA
         /// </summary>
         /// <param name="ocid">Character identifier</param>
         /// <param name="dateTimeOffset">Reference date for query (SGT)</param>
-        public override async Task<CharacterHexaMatrixStatDTO> GetCharacterHexaMatrixStat(string ocid, DateTimeOffset? dateTimeOffset)
+        public override async Task<CharacterHexaMatrixStatDTO?> GetCharacterHexaMatrixStat(string ocid, DateTimeOffset? dateTimeOffset)
         {
             var path = $"{subUrl}/v1/character/hexamatrix-stat";
             var date = dateTimeOffset != null
@@ -831,7 +836,7 @@ namespace MapleStory.OpenAPI.MSEA
                 { "date", date }
             };
 
-            return await Get<CharacterHexaMatrixStatDTO>(path, query);
+            return await Get<CharacterHexaMatrixStatDTO>(path, query, checkEmpty: true);
         }
 
         /// <summary>
@@ -843,7 +848,7 @@ namespace MapleStory.OpenAPI.MSEA
         /// <para>- This API provides data for MapleStory SEA.</para>
         /// </summary>
         /// <param name="ocid">Character identifier</param>
-        public override Task<CharacterDojangDTO> GetCharacterDojang(string ocid)
+        public override Task<CharacterDojangDTO?> GetCharacterDojang(string ocid)
         {
             return GetCharacterDojang(ocid, null);
         }
@@ -858,7 +863,7 @@ namespace MapleStory.OpenAPI.MSEA
         /// </summary>
         /// <param name="ocid">Character identifier</param>
         /// <param name="dateTimeOffset">Reference date for query (SGT)</param>
-        public override async Task<CharacterDojangDTO> GetCharacterDojang(string ocid, DateTimeOffset? dateTimeOffset)
+        public override async Task<CharacterDojangDTO?> GetCharacterDojang(string ocid, DateTimeOffset? dateTimeOffset)
         {
             var path = $"{subUrl}/v1/character/dojang";
             var date = dateTimeOffset != null
@@ -870,7 +875,7 @@ namespace MapleStory.OpenAPI.MSEA
                 { "date", date }
             };
 
-            return await Get<CharacterDojangDTO>(path, query);
+            return await Get<CharacterDojangDTO>(path, query, checkEmpty: true);
         }
 
         #endregion
@@ -885,7 +890,7 @@ namespace MapleStory.OpenAPI.MSEA
         /// <para>- Due to game content changes, the ocid may be updated. Please pay attention to this when updating services based on ocid.</para>
         /// </summary>
         /// <param name="ocid">Character identifier</param>
-        public override Task<UnionDTO> GetUnion(string ocid)
+        public override Task<UnionDTO?> GetUnion(string ocid)
         {
             return GetUnion(ocid, null);
         }
@@ -899,7 +904,7 @@ namespace MapleStory.OpenAPI.MSEA
         /// </summary>
         /// <param name="ocid">Character identifier</param>
         /// <param name="dateTimeOffset">Reference date for query (SGT)</param>
-        public override async Task<UnionDTO> GetUnion(string ocid, DateTimeOffset? dateTimeOffset)
+        public override async Task<UnionDTO?> GetUnion(string ocid, DateTimeOffset? dateTimeOffset)
         {
             var path = $"{subUrl}/v1/user/union";
             var date = dateTimeOffset != null
@@ -911,7 +916,7 @@ namespace MapleStory.OpenAPI.MSEA
                 { "date", date }
             };
 
-            return await Get<UnionDTO>(path, query);
+            return await Get<UnionDTO>(path, query, checkEmpty: true);
         }
 
         /// <summary>
@@ -922,7 +927,7 @@ namespace MapleStory.OpenAPI.MSEA
         /// <para>- Due to game content changes, the ocid may be updated. Please pay attention to this when updating services based on ocid.</para>
         /// </summary>
         /// <param name="ocid">Character identifier</param>
-        public override Task<UnionRaiderDTO> GetUnionRaider(string ocid)
+        public override Task<UnionRaiderDTO?> GetUnionRaider(string ocid)
         {
             return GetUnionRaider(ocid, null);
         }
@@ -936,7 +941,7 @@ namespace MapleStory.OpenAPI.MSEA
         /// </summary>
         /// <param name="ocid">Character identifier</param>
         /// <param name="dateTimeOffset">Reference date for query (SGT)</param>
-        public override async Task<UnionRaiderDTO> GetUnionRaider(string ocid, DateTimeOffset? dateTimeOffset)
+        public override async Task<UnionRaiderDTO?> GetUnionRaider(string ocid, DateTimeOffset? dateTimeOffset)
         {
             var path = $"{subUrl}/v1/user/union-raider";
             var date = dateTimeOffset != null
@@ -948,7 +953,7 @@ namespace MapleStory.OpenAPI.MSEA
                 { "date", date }
             };
 
-            return await Get<UnionRaiderDTO>(path, query);
+            return await Get<UnionRaiderDTO>(path, query, checkEmpty: true);
         }
 
         /// <summary>
@@ -959,7 +964,7 @@ namespace MapleStory.OpenAPI.MSEA
         /// <para>- Due to game content changes, the ocid may be updated. Please pay attention to this when updating services based on ocid.</para>
         /// </summary>
         /// <param name="ocid">Character identifier</param>
-        public override Task<UnionArtifactDTO> GetUnionArtifact(string ocid)
+        public override Task<UnionArtifactDTO?> GetUnionArtifact(string ocid)
         {
             return GetUnionArtifact(ocid, null);
         }
@@ -973,7 +978,7 @@ namespace MapleStory.OpenAPI.MSEA
         /// </summary>
         /// <param name="ocid">Character identifier</param>
         /// <param name="dateTimeOffset">Reference date for query (SGT)</param>
-        public override async Task<UnionArtifactDTO> GetUnionArtifact(string ocid, DateTimeOffset? dateTimeOffset)
+        public override async Task<UnionArtifactDTO?> GetUnionArtifact(string ocid, DateTimeOffset? dateTimeOffset)
         {
             var path = $"{subUrl}/v1/user/union-artifact";
             var date = dateTimeOffset != null
@@ -985,7 +990,7 @@ namespace MapleStory.OpenAPI.MSEA
                 { "date", date }
             };
 
-            return await Get<UnionArtifactDTO>(path, query);
+            return await Get<UnionArtifactDTO>(path, query, checkEmpty: true);
         }
 
         #endregion
@@ -1002,7 +1007,7 @@ namespace MapleStory.OpenAPI.MSEA
         /// </summary>
         /// <param name="guildName">Guild name</param>
         /// <param name="wolrdName">World name <a href="https://openapi.nexon.com/game/maplestorysea/?id=47">Available values</a></param>
-        public override async Task<GuildDTO> GetGuild(string guildName, string wolrdName)
+        public override async Task<GuildDTO?> GetGuild(string guildName, string wolrdName)
         {
             var path = $"{subUrl}/v1/guild/id";
             var query = new Dictionary<string, string?>()
@@ -1011,7 +1016,7 @@ namespace MapleStory.OpenAPI.MSEA
                 { "world_name", wolrdName }
             };
 
-            return await Get<GuildDTO>(path, query);
+            return await Get<GuildDTO>(path, query, checkEmpty: true);
         }
 
         /// <summary>
@@ -1023,7 +1028,7 @@ namespace MapleStory.OpenAPI.MSEA
         /// <para>- This API provides data for MapleStory SEA.</para>
         /// </summary>
         /// <param name="oGuildId">Guild identifier</param>
-        public override Task<GuildBasicDTO> GetGuildBasic(string oGuildId)
+        public override Task<GuildBasicDTO?> GetGuildBasic(string oGuildId)
         {
             return GetGuildBasic(oGuildId, null);
         }
@@ -1038,7 +1043,7 @@ namespace MapleStory.OpenAPI.MSEA
         /// </summary>
         /// <param name="oGuildId">Guild identifier</param>
         /// <param name="dateTimeOffset">Reference date for query (SGT)</param>
-        public override async Task<GuildBasicDTO> GetGuildBasic(string oGuildId, DateTimeOffset? dateTimeOffset)
+        public override async Task<GuildBasicDTO?> GetGuildBasic(string oGuildId, DateTimeOffset? dateTimeOffset)
         {
             var path = $"{subUrl}/v1/guild/basic";
             var date = dateTimeOffset != null
@@ -1050,7 +1055,7 @@ namespace MapleStory.OpenAPI.MSEA
                 { "date", date }
             };
 
-            return await Get<GuildBasicDTO>(path, query);
+            return await Get<GuildBasicDTO>(path, query, checkEmpty: true);
         }
 
         #endregion
