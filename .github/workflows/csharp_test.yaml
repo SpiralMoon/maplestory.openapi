@@ -14,7 +14,9 @@ jobs:
         working-directory: './csharp'
 
     env:
-      API_KEY: ${{ secrets.API_KEY }}
+      API_KEY_KMS: ${{ secrets.API_KEY_KMS }}
+      API_KEY_MSEA: ${{ secrets.API_KEY_MSEA }}
+      API_KEY_TMS: ${{ secrets.API_KEY_TMS }}
       PROJECT_NAME: MapleStory.Test
 
     steps:

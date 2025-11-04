@@ -22,3 +22,6 @@ obj/
 
 # Visual Studio files
 .vs/
+
+# Configuration
+**/appsettings.Local.json
