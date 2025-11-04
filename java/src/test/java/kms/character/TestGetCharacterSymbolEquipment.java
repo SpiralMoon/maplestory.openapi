@@ -22,6 +22,7 @@ public class TestGetCharacterSymbolEquipment {
     @DisplayName("success: getCharacterSymbolEquipment")
     void getCharacterSymbolEquipment() {
         CharacterSymbolEquipmentDTO response = api.getCharacterSymbolEquipment(ocid).join();
+        assertThat(response).isNotNull();
         System.out.println(response.toString());
     }
 
@@ -29,6 +30,7 @@ public class TestGetCharacterSymbolEquipment {
     @DisplayName("success: async getCharacterSymbolEquipment")
     void getCharacterSymbolEquipment_async() {
         api.getCharacterSymbolEquipment(ocid).thenAcceptAsync(response -> {
+            assertThat(response).isNotNull();
             System.out.println(response.toString());
         }).join();
     }
@@ -38,19 +40,17 @@ public class TestGetCharacterSymbolEquipment {
     void getCharacterSymbolEquipment_with_date() {
         LocalDateTime date = LocalDateTime.of(2023, 12, 22, 0, 0);
         CharacterSymbolEquipmentDTO response = api.getCharacterSymbolEquipment(ocid, date).join();
+        assertThat(response).isNotNull();
         System.out.println(response.toString());
     }
 
     @Test
     @DisplayName("success: getCharacterSymbolEquipment on date with no data")
     void getCharacterSymbolEquipment_on_date_with_no_data() {
-        String noDataOcid = "b0187493ec48ddd7b1d304fe8982d0b0";
+        String ocid = "b0187493ec48ddd7b1d304fe8982d0b0";
         LocalDateTime date = LocalDateTime.of(2025, 6, 18, 0, 0);
-        CharacterSymbolEquipmentDTO response = api.getCharacterSymbolEquipment(noDataOcid, date).join();
-        assertThat(response.getDate()).isNotNull();
-        assertThat(response.getCharacterClass()).isNull();
-        assertThat(response.getSymbol()).isEmpty();
-        System.out.println(response.toString());
+        CharacterSymbolEquipmentDTO response = api.getCharacterSymbolEquipment(ocid, date).join();
+        assertThat(response).isNull();
     }
 
     @Test

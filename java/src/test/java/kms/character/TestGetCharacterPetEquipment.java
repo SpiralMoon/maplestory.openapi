@@ -22,6 +22,7 @@ public class TestGetCharacterPetEquipment {
     @DisplayName("success: getCharacterPetEquipment")
     void getCharacterPetEquipment() {
         CharacterPetEquipmentDTO response = api.getCharacterPetEquipment(ocid).join();
+        // nothing to assert because some characters may not have pets
         System.out.println(response.toString());
     }
 
@@ -29,6 +30,7 @@ public class TestGetCharacterPetEquipment {
     @DisplayName("success: async getCharacterPetEquipment")
     void getCharacterPetEquipment_async() {
         api.getCharacterPetEquipment(ocid).thenAcceptAsync(response -> {
+            // nothing to assert because some characters may not have pets
             System.out.println(response.toString());
         }).join();
     }
@@ -38,53 +40,17 @@ public class TestGetCharacterPetEquipment {
     void getCharacterPetEquipment_with_date() {
         LocalDateTime date = LocalDateTime.of(2023, 12, 22, 0, 0);
         CharacterPetEquipmentDTO response = api.getCharacterPetEquipment(ocid, date).join();
+        assertThat(response).isNotNull();
         System.out.println(response.toString());
     }
 
     @Test
     @DisplayName("success: getCharacterPetEquipment on date with no data")
     void getCharacterPetEquipment_on_date_with_no_data() {
-        String noDataOcid = "b0187493ec48ddd7b1d304fe8982d0b0";
+        String ocid = "b0187493ec48ddd7b1d304fe8982d0b0";
         LocalDateTime date = LocalDateTime.of(2025, 6, 18, 0, 0);
-        CharacterPetEquipmentDTO response = api.getCharacterPetEquipment(noDataOcid, date).join();
-        assertThat(response.getDate()).isNotNull();
-        assertThat(response.getPet1Name()).isNull();
-        assertThat(response.getPet1Nickname()).isNull();
-        assertThat(response.getPet1Icon()).isNull();
-        assertThat(response.getPet1Description()).isNull();
-        assertThat(response.getPet1Equipment()).isNull();
-        assertThat(response.getPet1AutoSkill()).isNull();
-        assertThat(response.getPet1PetType()).isNull();
-        assertThat(response.getPet1Skill()).isEmpty();
-        assertThat(response.getPet1DateExpire()).isNull();
-        assertThat(response.isPet1Expired()).isNull();
-        assertThat(response.getPet1Appearance()).isNull();
-        assertThat(response.getPet1AppearanceIcon()).isNull();
-        assertThat(response.getPet2Name()).isNull();
-        assertThat(response.getPet2Nickname()).isNull();
-        assertThat(response.getPet2Icon()).isNull();
-        assertThat(response.getPet2Description()).isNull();
-        assertThat(response.getPet2Equipment()).isNull();
-        assertThat(response.getPet2AutoSkill()).isNull();
-        assertThat(response.getPet2PetType()).isNull();
-        assertThat(response.getPet2Skill()).isEmpty();
-        assertThat(response.getPet2DateExpire()).isNull();
-        assertThat(response.isPet2Expired()).isNull();
-        assertThat(response.getPet2Appearance()).isNull();
-        assertThat(response.getPet2AppearanceIcon()).isNull();
-        assertThat(response.getPet3Name()).isNull();
-        assertThat(response.getPet3Nickname()).isNull();
-        assertThat(response.getPet3Icon()).isNull();
-        assertThat(response.getPet3Description()).isNull();
-        assertThat(response.getPet3Equipment()).isNull();
-        assertThat(response.getPet3AutoSkill()).isNull();
-        assertThat(response.getPet3PetType()).isNull();
-        assertThat(response.getPet3Skill()).isEmpty();
-        assertThat(response.getPet3DateExpire()).isNull();
-        assertThat(response.isPet3Expired()).isNull();
-        assertThat(response.getPet3Appearance()).isNull();
-        assertThat(response.getPet3AppearanceIcon()).isNull();
-        System.out.println(response.toString());
+        CharacterPetEquipmentDTO response = api.getCharacterPetEquipment(ocid, date).join();
+        assertThat(response).isNull();
     }
 
     @Test

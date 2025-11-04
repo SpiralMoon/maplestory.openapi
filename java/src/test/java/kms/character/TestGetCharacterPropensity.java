@@ -23,6 +23,7 @@ public class TestGetCharacterPropensity {
     @DisplayName("success: getCharacterPropensity")
     void getCharacterPropensity() {
         CharacterPropensityDTO response = api.getCharacterPropensity(ocid).join();
+        assertThat(response).isNotNull();
         System.out.println(response.toString());
     }
 
@@ -30,6 +31,7 @@ public class TestGetCharacterPropensity {
     @DisplayName("success: async getCharacterPropensity")
     void getCharacterPropensity_async() {
         api.getCharacterPropensity(ocid).thenAcceptAsync(response -> {
+            assertThat(response).isNotNull();
             System.out.println(response.toString());
         }).join();
     }
@@ -39,6 +41,7 @@ public class TestGetCharacterPropensity {
     void getCharacterPropensity_with_date() {
         LocalDateTime date = LocalDateTime.of(2023, 12, 22, 0, 0);
         CharacterPropensityDTO response = api.getCharacterPropensity(ocid, date).join();
+        assertThat(response).isNotNull();
         System.out.println(response.toString());
     }
 
@@ -48,14 +51,7 @@ public class TestGetCharacterPropensity {
         String ocid = "b0187493ec48ddd7b1d304fe8982d0b0";
         LocalDateTime date = LocalDateTime.of(2025, 6, 18, 0, 0);
         CharacterPropensityDTO response = api.getCharacterPropensity(ocid, date).join();
-        assertThat(response.getDate()).isNotNull();
-        assertThat(response.getCharismaLevel()).isNull();
-        assertThat(response.getSensibilityLevel()).isNull();
-        assertThat(response.getInsightLevel()).isNull();
-        assertThat(response.getWillingnessLevel()).isNull();
-        assertThat(response.getHandicraftLevel()).isNull();
-        assertThat(response.getCharmLevel()).isNull();
-        System.out.println(response.toString());
+        assertThat(response).isNull();
     }
 
     @Test

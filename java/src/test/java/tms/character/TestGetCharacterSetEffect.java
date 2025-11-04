@@ -22,6 +22,7 @@ public class TestGetCharacterSetEffect {
     @DisplayName("success: getCharacterSetEffect")
     void getCharacterSetEffect() {
         CharacterSetEffectDTO response = api.getCharacterSetEffect(ocid).join();
+        assertThat(response).isNotNull();
         System.out.println(response.toString());
     }
 
@@ -29,6 +30,7 @@ public class TestGetCharacterSetEffect {
     @DisplayName("success: async getCharacterSetEffect")
     void getCharacterSetEffect_async() {
         api.getCharacterSetEffect(ocid).thenAcceptAsync(response -> {
+            assertThat(response).isNotNull();
             System.out.println(response.toString());
         }).join();
     }
@@ -38,6 +40,7 @@ public class TestGetCharacterSetEffect {
     void getCharacterSetEffect_with_date() {
         LocalDateTime date = LocalDateTime.of(2025, 10, 15, 0, 0);
         CharacterSetEffectDTO response = api.getCharacterSetEffect(ocid, date).join();
+        assertThat(response).isNotNull();
         System.out.println(response.toString());
     }
 

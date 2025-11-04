@@ -22,6 +22,7 @@ public class TestGetCharacterSetEffect {
     @DisplayName("success: getCharacterSetEffect")
     void getCharacterSetEffect() {
         CharacterSetEffectDTO response = api.getCharacterSetEffect(ocid).join();
+        // nothing to assert because some characters may not have set effects
         System.out.println(response.toString());
     }
 
@@ -29,6 +30,7 @@ public class TestGetCharacterSetEffect {
     @DisplayName("success: async getCharacterSetEffect")
     void getCharacterSetEffect_async() {
         api.getCharacterSetEffect(ocid).thenAcceptAsync(response -> {
+            // nothing to assert because some characters may not have set effects
             System.out.println(response.toString());
         }).join();
     }
@@ -38,18 +40,17 @@ public class TestGetCharacterSetEffect {
     void getCharacterSetEffect_with_date() {
         LocalDateTime date = LocalDateTime.of(2023, 12, 22, 0, 0);
         CharacterSetEffectDTO response = api.getCharacterSetEffect(ocid, date).join();
+        assertThat(response).isNotNull();
         System.out.println(response.toString());
     }
 
     @Test
     @DisplayName("success: getCharacterSetEffect on date with no data")
     void getCharacterSetEffect_on_date_with_no_data() {
-        String noDataOcid = "b0187493ec48ddd7b1d304fe8982d0b0";
+        String ocid = "b0187493ec48ddd7b1d304fe8982d0b0";
         LocalDateTime date = LocalDateTime.of(2025, 6, 18, 0, 0);
-        CharacterSetEffectDTO response = api.getCharacterSetEffect(noDataOcid, date).join();
-        assertThat(response.getDate()).isNotNull();
-        assertThat(response.getSetEffect()).isEmpty();
-        System.out.println(response.toString());
+        CharacterSetEffectDTO response = api.getCharacterSetEffect(ocid, date).join();
+        assertThat(response).isNull();
     }
 
     @Test

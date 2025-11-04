@@ -21,26 +21,28 @@ public class TestGetUnionChampion {
     @DisplayName("success: getUnionChampion")
     void getUnionChampion() {
         UnionChampionDTO response = api.getUnionChampion(ocid).join();
+        // nothing to assert because some characters may not have union champion
         System.out.println(response.toString());
     }
 
     @Test
     @DisplayName("success: getUnionChampion with date")
     void getUnionChampion_with_date() {
-        LocalDateTime date = LocalDateTime.of(2023, 12, 22, 0, 0);
+        LocalDateTime date = LocalDateTime.of(2025, 2, 20, 0, 0);
         UnionChampionDTO response = api.getUnionChampion(ocid, date).join();
+        assertThat(response).isNotNull();
         System.out.println(response.toString());
     }
 
     @Test
     @DisplayName("fail: getUnionChampion with invalid date")
     void getUnionChampion_with_invalid_date() {
-        LocalDateTime invalidDate = LocalDateTime.of(2023, 12, 20, 0, 0);
+        LocalDateTime invalidDate = LocalDateTime.of(2025, 2, 19, 0, 0);
         assertThatThrownBy(() -> api.getUnionChampion(ocid, invalidDate).join())
                 .hasCauseInstanceOf(IllegalArgumentException.class)
                 .satisfies(e -> {
                     Throwable error = e.getCause();
-                    assertThat(error.getMessage()).contains("You can only retrieve data after 2023-12-21.");
+                    assertThat(error.getMessage()).contains("You can only retrieve data after 2025-02-20.");
                     System.out.println(error.getMessage());
                 });
     }

@@ -22,6 +22,7 @@ public class TestGetCharacterHexaMatrix {
     @DisplayName("success: getCharacterHexaMatrix")
     void getCharacterHexaMatrix() {
         CharacterHexaMatrixDTO response = api.getCharacterHexaMatrix(ocid).join();
+        // nothing to assert because some characters may not have hexa matrix
         System.out.println(response.toString());
     }
 
@@ -29,6 +30,7 @@ public class TestGetCharacterHexaMatrix {
     @DisplayName("success: async getCharacterHexaMatrix")
     void getCharacterHexaMatrix_async() {
         api.getCharacterHexaMatrix(ocid).thenAcceptAsync(response -> {
+            // nothing to assert because some characters may not have hexa matrix
             System.out.println(response.toString());
         }).join();
     }
@@ -38,18 +40,17 @@ public class TestGetCharacterHexaMatrix {
     void getCharacterHexaMatrix_with_date() {
         LocalDateTime date = LocalDateTime.of(2023, 12, 22, 0, 0);
         CharacterHexaMatrixDTO response = api.getCharacterHexaMatrix(ocid, date).join();
+        assertThat(response).isNotNull();
         System.out.println(response.toString());
     }
 
     @Test
     @DisplayName("success: getCharacterHexaMatrix on date with no data")
     void getCharacterHexaMatrix_on_date_with_no_data() {
-        String noDataOcid = "b0187493ec48ddd7b1d304fe8982d0b0";
+        String ocid = "b0187493ec48ddd7b1d304fe8982d0b0";
         LocalDateTime date = LocalDateTime.of(2025, 6, 18, 0, 0);
-        CharacterHexaMatrixDTO response = api.getCharacterHexaMatrix(noDataOcid, date).join();
-        assertThat(response.getDate()).isNotNull();
-        assertThat(response.getCharacterHexaCoreEquipment()).isEmpty();
-        System.out.println(response.toString());
+        CharacterHexaMatrixDTO response = api.getCharacterHexaMatrix(ocid, date).join();
+        assertThat(response).isNull();
     }
 
     @Test

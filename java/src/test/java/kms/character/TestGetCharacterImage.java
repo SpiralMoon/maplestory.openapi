@@ -26,6 +26,7 @@ public class TestGetCharacterImage {
     @DisplayName("success: getCharacterImage")
     void getCharacterImage() {
         CharacterImageDTO response = api.getCharacterImage(ocid).join();
+        assertThat(response).isNotNull();
         System.out.println(response.toString());
     }
 
@@ -33,6 +34,7 @@ public class TestGetCharacterImage {
     @DisplayName("success: async getCharacterImage")
     void getCharacterImage_async() {
         api.getCharacterImage(ocid).thenAcceptAsync(response -> {
+            assertThat(response).isNotNull();
             System.out.println(response.toString());
         }).join();
     }
@@ -47,6 +49,7 @@ public class TestGetCharacterImage {
         options.setEmotionFrame(0);
         options.setWmotion(CharacterImageWeaponMotion.Nothing);
         CharacterImageDTO response = api.getCharacterImage(ocid, options).join();
+        assertThat(response).isNotNull();
         System.out.println(response.toString());
     }
 
@@ -55,20 +58,17 @@ public class TestGetCharacterImage {
     void getCharacterImage_with_date() {
         LocalDateTime date = LocalDateTime.of(2023, 12, 22, 0, 0);
         CharacterImageDTO response = api.getCharacterImage(ocid, new CharacterImageOption(), date).join();
+        assertThat(response).isNotNull();
         System.out.println(response.toString());
     }
 
     @Test
-    @DisplayName("fail: getCharacterImage on date with no data")
+    @DisplayName("success: getCharacterImage on date with no data")
     void getCharacterImage_on_date_with_no_data() {
         String ocid = "b0187493ec48ddd7b1d304fe8982d0b0";
         LocalDateTime date = LocalDateTime.of(2025, 6, 18, 0, 0);
-        assertThatThrownBy(() -> api.getCharacterImage(ocid, new CharacterImageOption(), date).join())
-                .hasCauseInstanceOf(NullPointerException.class)
-                .satisfies(e -> {
-                    Throwable error = e.getCause();
-                    System.out.println(error.getMessage());
-                });
+        CharacterImageDTO response = api.getCharacterImage(ocid, new CharacterImageOption(), date).join();
+        assertThat(response).isNull();
     }
 
     @Test

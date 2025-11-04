@@ -22,6 +22,7 @@ public class TestGetCharacterPropensity {
     @DisplayName("success: getCharacterPropensity")
     void getCharacterPropensity() {
         CharacterPropensityDTO response = api.getCharacterPropensity(ocid).join();
+        assertThat(response).isNotNull();
         System.out.println(response.toString());
     }
 
@@ -29,6 +30,7 @@ public class TestGetCharacterPropensity {
     @DisplayName("success: async getCharacterPropensity")
     void getCharacterPropensity_async() {
         api.getCharacterPropensity(ocid).thenAcceptAsync(response -> {
+            assertThat(response).isNotNull();
             System.out.println(response.toString());
         }).join();
     }
@@ -38,6 +40,7 @@ public class TestGetCharacterPropensity {
     void getCharacterPropensity_with_date() {
         LocalDateTime date = LocalDateTime.of(2025, 10, 15, 0, 0);
         CharacterPropensityDTO response = api.getCharacterPropensity(ocid, date).join();
+        assertThat(response).isNotNull();
         System.out.println(response.toString());
     }
 

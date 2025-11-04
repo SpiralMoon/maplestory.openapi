@@ -21,6 +21,7 @@ public class TestGetUnion {
     @DisplayName("success: getUnion")
     void getUnion() {
         UnionDTO response = api.getUnion(ocid).join();
+        // nothing to assert because some characters may not have union
         System.out.println(response.toString());
     }
 
@@ -29,6 +30,7 @@ public class TestGetUnion {
     void getUnion_with_date() {
         LocalDateTime date = LocalDateTime.of(2023, 12, 22, 0, 0);
         UnionDTO response = api.getUnion(ocid, date).join();
+        assertThat(response).isNotNull();
         System.out.println(response.toString());
     }
 

@@ -21,26 +21,28 @@ public class TestGetUnionArtifact {
     @DisplayName("success: getUnionArtifact")
     void getUnionArtifact() {
         UnionArtifactDTO response = api.getUnionArtifact(ocid).join();
+        // nothing to assert because some characters may not have union artifact
         System.out.println(response.toString());
     }
 
     @Test
     @DisplayName("success: getUnionArtifact with date")
     void getUnionArtifact_with_date() {
-        LocalDateTime date = LocalDateTime.of(2023, 12, 22, 0, 0);
+        LocalDateTime date = LocalDateTime.of(2024, 1, 18, 0, 0);
         UnionArtifactDTO response = api.getUnionArtifact(ocid, date).join();
+        assertThat(response).isNotNull();
         System.out.println(response.toString());
     }
 
     @Test
     @DisplayName("fail: getUnionArtifact with invalid date")
     void getUnionArtifact_with_invalid_date() {
-        LocalDateTime invalidDate = LocalDateTime.of(2023, 12, 20, 0, 0);
+        LocalDateTime invalidDate = LocalDateTime.of(2024, 1, 17, 0, 0);
         assertThatThrownBy(() -> api.getUnionArtifact(ocid, invalidDate).join())
                 .hasCauseInstanceOf(IllegalArgumentException.class)
                 .satisfies(e -> {
                     Throwable error = e.getCause();
-                    assertThat(error.getMessage()).contains("You can only retrieve data after 2023-12-21.");
+                    assertThat(error.getMessage()).contains("You can only retrieve data after 2024-01-18.");
                     System.out.println(error.getMessage());
                 });
     }

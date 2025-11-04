@@ -22,6 +22,7 @@ public class TestGetCharacterHyperStat {
     @DisplayName("success: getCharacterHyperStat")
     void getCharacterHyperStat() {
         CharacterHyperStatDTO response = api.getCharacterHyperStat(ocid).join();
+        assertThat(response).isNotNull();
         System.out.println(response.toString());
     }
 
@@ -29,6 +30,7 @@ public class TestGetCharacterHyperStat {
     @DisplayName("success: async getCharacterHyperStat")
     void getCharacterHyperStat_async() {
         api.getCharacterHyperStat(ocid).thenAcceptAsync(response -> {
+            assertThat(response).isNotNull();
             System.out.println(response.toString());
         }).join();
     }
@@ -38,6 +40,7 @@ public class TestGetCharacterHyperStat {
     void getCharacterHyperStat_with_date() {
         LocalDateTime date = LocalDateTime.of(2023, 12, 22, 0, 0);
         CharacterHyperStatDTO response = api.getCharacterHyperStat(ocid, date).join();
+        assertThat(response).isNotNull();
         System.out.println(response.toString());
     }
 
@@ -47,17 +50,7 @@ public class TestGetCharacterHyperStat {
         String ocid = "b0187493ec48ddd7b1d304fe8982d0b0";
         LocalDateTime date = LocalDateTime.of(2025, 6, 18, 0, 0);
         CharacterHyperStatDTO response = api.getCharacterHyperStat(ocid, date).join();
-        assertThat(response.getDate()).isNotNull();
-        assertThat(response.getCharacterClass()).isNull();
-        assertThat(response.getUsePresetNo()).isNull();
-        assertThat(response.getUseAvailableHyperStat()).isNull();
-        assertThat(response.getHyperStatPreset1()).isEmpty();
-        assertThat(response.getHyperStatPreset1RemainPoint()).isNull();
-        assertThat(response.getHyperStatPreset2()).isEmpty();
-        assertThat(response.getHyperStatPreset2RemainPoint()).isNull();
-        assertThat(response.getHyperStatPreset3()).isEmpty();
-        assertThat(response.getHyperStatPreset3RemainPoint()).isNull();
-        System.out.println(response.toString());
+        assertThat(response).isNull();
     }
 
     @Test

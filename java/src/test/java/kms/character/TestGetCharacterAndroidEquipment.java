@@ -22,6 +22,7 @@ public class TestGetCharacterAndroidEquipment {
     @DisplayName("success: getCharacterAndroidEquipment")
     void getCharacterAndroidEquipment() {
         CharacterAndroidEquipmentDTO response = api.getCharacterAndroidEquipment(ocid).join();
+        assertThat(response).isNotNull();
         System.out.println(response.toString());
     }
 
@@ -29,6 +30,7 @@ public class TestGetCharacterAndroidEquipment {
     @DisplayName("success: async getCharacterAndroidEquipment")
     void getCharacterAndroidEquipment_async() {
         api.getCharacterAndroidEquipment(ocid).thenAcceptAsync(response -> {
+            assertThat(response).isNotNull();
             System.out.println(response.toString());
         }).join();
     }
@@ -38,34 +40,17 @@ public class TestGetCharacterAndroidEquipment {
     void getCharacterAndroidEquipment_with_date() {
         LocalDateTime date = LocalDateTime.of(2023, 12, 22, 0, 0);
         CharacterAndroidEquipmentDTO response = api.getCharacterAndroidEquipment(ocid, date).join();
+        assertThat(response).isNotNull();
         System.out.println(response.toString());
     }
 
     @Test
     @DisplayName("success: getCharacterAndroidEquipment on date with no data")
     void getCharacterAndroidEquipment_on_date_with_no_data() {
-        String noDataOcid = "b0187493ec48ddd7b1d304fe8982d0b0";
+        String ocid = "b0187493ec48ddd7b1d304fe8982d0b0";
         LocalDateTime date = LocalDateTime.of(2025, 6, 18, 0, 0);
-        CharacterAndroidEquipmentDTO response = api.getCharacterAndroidEquipment(noDataOcid, date).join();
-        assertThat(response.getDate()).isNotNull();
-        assertThat(response.getAndroidName()).isNull();
-        assertThat(response.getAndroidNickname()).isNull();
-        assertThat(response.getAndroidIcon()).isNull();
-        assertThat(response.getAndroidDescription()).isNull();
-        assertThat(response.getAndroidHair()).isNull();
-        assertThat(response.getAndroidFace()).isNull();
-        assertThat(response.getAndroidSkin()).isNull();
-        assertThat(response.getAndroidCashItemEquipment()).isEmpty();
-        assertThat(response.getAndroidEarSensorClipFlag()).isNull();
-        assertThat(response.getAndroidGender()).isNull();
-        assertThat(response.getAndroidGrade()).isNull();
-        assertThat(response.getAndroidNonHumanoidFlag()).isNull();
-        assertThat(response.getAndroidShopUsableFlag()).isNull();
-        assertThat(response.getPresetNo()).isNull();
-        assertThat(response.getAndroidPreset1()).isNull();
-        assertThat(response.getAndroidPreset2()).isNull();
-        assertThat(response.getAndroidPreset3()).isNull();
-        System.out.println(response.toString());
+        CharacterAndroidEquipmentDTO response = api.getCharacterAndroidEquipment(ocid, date).join();
+        assertThat(response).isNull();
     }
 
     @Test

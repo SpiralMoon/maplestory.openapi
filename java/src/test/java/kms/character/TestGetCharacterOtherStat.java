@@ -22,34 +22,40 @@ public class TestGetCharacterOtherStat {
     @DisplayName("success: getCharacterOtherStat")
     void getCharacterOtherStat() {
         CharacterOtherStatDTO response = api.getCharacterOtherStat(ocid).join();
-        System.out.println(response.toString());
+        // nothing to assert because some characters may not have other stats
+        if (response != null) {
+            System.out.println(response.toString());
+        }
     }
 
     @Test
     @DisplayName("success: async getCharacterOtherStat")
     void getCharacterOtherStat_async() {
         api.getCharacterOtherStat(ocid).thenAcceptAsync(response -> {
-            System.out.println(response.toString());
+            // nothing to assert because some characters may not have other stats
+            if (response != null) {
+                System.out.println(response.toString());
+            }
         }).join();
     }
 
     @Test
     @DisplayName("success: getCharacterOtherStat with date")
     void getCharacterOtherStat_with_date() {
+        String ocid = "2e4c361fa884731a4c7984eb88127015";
         LocalDateTime date = LocalDateTime.of(2025, 8, 21, 0, 0);
         CharacterOtherStatDTO response = api.getCharacterOtherStat(ocid, date).join();
+        assertThat(response).isNotNull();
         System.out.println(response.toString());
     }
 
     @Test
     @DisplayName("success: getCharacterOtherStat on date with no data")
     void getCharacterOtherStat_on_date_with_no_data() {
-        String noDataOcid = "b0187493ec48ddd7b1d304fe8982d0b0";
+        String ocid = "b0187493ec48ddd7b1d304fe8982d0b0";
         LocalDateTime date = LocalDateTime.of(2025, 8, 21, 0, 0);
-        CharacterOtherStatDTO response = api.getCharacterOtherStat(noDataOcid, date).join();
-        assertThat(response.getDate()).isNotNull();
-        assertThat(response.getOtherStat()).isEmpty();
-        System.out.println(response.toString());
+        CharacterOtherStatDTO response = api.getCharacterOtherStat(ocid, date).join();
+        assertThat(response).isNull();
     }
 
     @Test

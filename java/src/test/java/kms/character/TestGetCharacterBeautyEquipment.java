@@ -22,6 +22,7 @@ public class TestGetCharacterBeautyEquipment {
     @DisplayName("success: getCharacterBeautyEquipment")
     void getCharacterBeautyEquipment() {
         CharacterBeautyEquipmentDTO response = api.getCharacterBeautyEquipment(ocid).join();
+        assertThat(response).isNotNull();
         System.out.println(response.toString());
     }
 
@@ -29,6 +30,7 @@ public class TestGetCharacterBeautyEquipment {
     @DisplayName("success: async getCharacterBeautyEquipment")
     void getCharacterBeautyEquipment_async() {
         api.getCharacterBeautyEquipment(ocid).thenAcceptAsync(response -> {
+            assertThat(response).isNotNull();
             System.out.println(response.toString());
         }).join();
     }
@@ -38,25 +40,17 @@ public class TestGetCharacterBeautyEquipment {
     void getCharacterBeautyEquipment_with_date() {
         LocalDateTime date = LocalDateTime.of(2023, 12, 22, 0, 0);
         CharacterBeautyEquipmentDTO response = api.getCharacterBeautyEquipment(ocid, date).join();
+        assertThat(response).isNotNull();
         System.out.println(response.toString());
     }
 
     @Test
     @DisplayName("success: getCharacterBeautyEquipment on date with no data")
     void getCharacterBeautyEquipment_on_date_with_no_data() {
-        String noDataOcid = "b0187493ec48ddd7b1d304fe8982d0b0";
+        String ocid = "b0187493ec48ddd7b1d304fe8982d0b0";
         LocalDateTime date = LocalDateTime.of(2025, 6, 18, 0, 0);
-        CharacterBeautyEquipmentDTO response = api.getCharacterBeautyEquipment(noDataOcid, date).join();
-        assertThat(response.getDate()).isNotNull();
-        assertThat(response.getCharacterGender()).isNull();
-        assertThat(response.getCharacterClass()).isNull();
-        assertThat(response.getCharacterHair()).isNull();
-        assertThat(response.getCharacterFace()).isNull();
-        assertThat(response.getCharacterSkin()).isNull();
-        assertThat(response.getAdditionalCharacterHair()).isNull();
-        assertThat(response.getAdditionalCharacterFace()).isNull();
-        assertThat(response.getAdditionalCharacterSkin()).isNull();
-        System.out.println(response.toString());
+        CharacterBeautyEquipmentDTO response = api.getCharacterBeautyEquipment(ocid, date).join();
+        assertThat(response).isNull();
     }
 
     @Test

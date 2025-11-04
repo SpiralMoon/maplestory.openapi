@@ -22,6 +22,7 @@ public class TestGetCharacterHexaMatrix {
     @DisplayName("success: getCharacterHexaMatrix")
     void getCharacterHexaMatrix() {
         CharacterHexaMatrixDTO response = api.getCharacterHexaMatrix(ocid).join();
+        assertThat(response).isNotNull();
         System.out.println(response.toString());
     }
 
@@ -29,6 +30,7 @@ public class TestGetCharacterHexaMatrix {
     @DisplayName("success: async getCharacterHexaMatrix")
     void getCharacterHexaMatrix_async() {
         api.getCharacterHexaMatrix(ocid).thenAcceptAsync(response -> {
+            assertThat(response).isNotNull();
             System.out.println(response.toString());
         }).join();
     }
@@ -38,6 +40,7 @@ public class TestGetCharacterHexaMatrix {
     void getCharacterHexaMatrix_with_date() {
         LocalDateTime date = LocalDateTime.of(2025, 4, 20, 0, 0);
         CharacterHexaMatrixDTO response = api.getCharacterHexaMatrix(ocid, date).join();
+        assertThat(response).isNotNull();
         System.out.println(response.toString());
     }
 

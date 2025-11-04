@@ -26,6 +26,7 @@ public class TestGetCharacterImage {
     @DisplayName("success: getCharacterImage")
     void getCharacterImage() {
         CharacterImageDTO response = api.getCharacterImage(ocid).join();
+        assertThat(response).isNotNull();
         System.out.println(response.toString());
     }
 
@@ -33,6 +34,7 @@ public class TestGetCharacterImage {
     @DisplayName("success: async getCharacterImage")
     void getCharacterImage_async() {
         api.getCharacterImage(ocid).thenAcceptAsync(response -> {
+            assertThat(response).isNotNull();
             System.out.println(response.toString());
         }).join();
     }
@@ -47,6 +49,7 @@ public class TestGetCharacterImage {
         options.setEmotionFrame(0);
         options.setWmotion(CharacterImageWeaponMotion.Nothing);
         CharacterImageDTO response = api.getCharacterImage(ocid, options).join();
+        assertThat(response).isNotNull();
         System.out.println(response.toString());
     }
 
@@ -55,6 +58,7 @@ public class TestGetCharacterImage {
     void getCharacterImage_with_date() {
         LocalDateTime date = LocalDateTime.of(2025, 10, 15, 0, 0);
         CharacterImageDTO response = api.getCharacterImage(ocid, new CharacterImageOption(), date).join();
+        assertThat(response).isNotNull();
         System.out.println(response.toString());
     }
 

@@ -22,6 +22,7 @@ public class TestGetCharacterVMatrix {
     @DisplayName("success: getCharacterVMatrix")
     void getCharacterVMatrix() {
         CharacterVMatrixDTO response = api.getCharacterVMatrix(ocid).join();
+        assertThat(response).isNotNull();
         System.out.println(response.toString());
     }
 
@@ -29,6 +30,7 @@ public class TestGetCharacterVMatrix {
     @DisplayName("success: async getCharacterVMatrix")
     void getCharacterVMatrix_async() {
         api.getCharacterVMatrix(ocid).thenAcceptAsync(response -> {
+            assertThat(response).isNotNull();
             System.out.println(response.toString());
         }).join();
     }
@@ -38,6 +40,7 @@ public class TestGetCharacterVMatrix {
     void getCharacterVMatrix_with_date() {
         LocalDateTime date = LocalDateTime.of(2025, 10, 15, 0, 0);
         CharacterVMatrixDTO response = api.getCharacterVMatrix(ocid, date).join();
+        assertThat(response).isNotNull();
         System.out.println(response.toString());
     }
 

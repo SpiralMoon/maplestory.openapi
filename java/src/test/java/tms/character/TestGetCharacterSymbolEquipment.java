@@ -22,6 +22,7 @@ public class TestGetCharacterSymbolEquipment {
     @DisplayName("success: getCharacterSymbolEquipment")
     void getCharacterSymbolEquipment() {
         CharacterSymbolEquipmentDTO response = api.getCharacterSymbolEquipment(ocid).join();
+        assertThat(response).isNotNull();
         System.out.println(response.toString());
     }
 
@@ -29,6 +30,7 @@ public class TestGetCharacterSymbolEquipment {
     @DisplayName("success: async getCharacterSymbolEquipment")
     void getCharacterSymbolEquipment_async() {
         api.getCharacterSymbolEquipment(ocid).thenAcceptAsync(response -> {
+            assertThat(response).isNotNull();
             System.out.println(response.toString());
         }).join();
     }
@@ -38,6 +40,7 @@ public class TestGetCharacterSymbolEquipment {
     void getCharacterSymbolEquipment_with_date() {
         LocalDateTime date = LocalDateTime.of(2025, 10, 15, 0, 0);
         CharacterSymbolEquipmentDTO response = api.getCharacterSymbolEquipment(ocid, date).join();
+        assertThat(response).isNotNull();
         System.out.println(response.toString());
     }
 

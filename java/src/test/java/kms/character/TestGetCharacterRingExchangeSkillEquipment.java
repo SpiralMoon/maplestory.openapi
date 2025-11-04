@@ -22,6 +22,7 @@ public class TestGetCharacterRingExchangeSkillEquipment {
     @DisplayName("success: getCharacterRingExchangeSkillEquipment")
     void getCharacterRingExchangeSkillEquipment() {
         CharacterRingExchangeSkillEquipmentDTO response = api.getCharacterRingExchangeSkillEquipment(ocid).join();
+        assertThat(response).isNotNull();
         System.out.println(response.toString());
     }
 
@@ -29,6 +30,7 @@ public class TestGetCharacterRingExchangeSkillEquipment {
     @DisplayName("success: async getCharacterRingExchangeSkillEquipment")
     void getCharacterRingExchangeSkillEquipment_async() {
         api.getCharacterRingExchangeSkillEquipment(ocid).thenAcceptAsync(response -> {
+            assertThat(response).isNotNull();
             System.out.println(response.toString());
         }).join();
     }
@@ -38,22 +40,17 @@ public class TestGetCharacterRingExchangeSkillEquipment {
     void getCharacterRingExchangeSkillEquipment_with_date() {
         LocalDateTime date = LocalDateTime.of(2025, 8, 21, 0, 0);
         CharacterRingExchangeSkillEquipmentDTO response = api.getCharacterRingExchangeSkillEquipment(ocid, date).join();
+        assertThat(response).isNotNull();
         System.out.println(response.toString());
     }
 
     @Test
     @DisplayName("success: getCharacterRingExchangeSkillEquipment on date with no data")
     void getCharacterRingExchangeSkillEquipment_on_date_with_no_data() {
-        String noDataOcid = "b0187493ec48ddd7b1d304fe8982d0b0";
+        String ocid = "b0187493ec48ddd7b1d304fe8982d0b0";
         LocalDateTime date = LocalDateTime.of(2025, 8, 21, 0, 0);
-        CharacterRingExchangeSkillEquipmentDTO response = api.getCharacterRingExchangeSkillEquipment(noDataOcid, date).join();
-        assertThat(response.getDate()).isNotNull();
-        assertThat(response.getCharacterClass()).isNull();
-        assertThat(response.getSpecialRingExchangeName()).isNull();
-        assertThat(response.getSpecialRingExchangeLevel()).isNull();
-        assertThat(response.getSpecialRingExchangeIcon()).isNull();
-        assertThat(response.getSpecialRingExchangeDescription()).isNull();
-        System.out.println(response.toString());
+        CharacterRingExchangeSkillEquipmentDTO response = api.getCharacterRingExchangeSkillEquipment(ocid, date).join();
+        assertThat(response).isNull();
     }
 
     @Test

@@ -22,6 +22,7 @@ public class TestGetUnionArtifact {
     @DisplayName("success: getUnionArtifact")
     void getUnionArtifact() {
         UnionArtifactDTO response = api.getUnionArtifact(ocid).join();
+        // nothing to assert because some characters may not have union artifact
         System.out.println(response.toString());
     }
 
@@ -30,6 +31,7 @@ public class TestGetUnionArtifact {
     void getUnionArtifact_with_date() {
         LocalDateTime date = LocalDateTime.of(2025, 4, 20, 0, 0);
         UnionArtifactDTO response = api.getUnionArtifact(ocid, date).join();
+        assertThat(response).isNotNull();
         System.out.println(response.toString());
     }
 

@@ -22,6 +22,7 @@ public class TestGetCharacterHexaMatrixStat {
     @DisplayName("success: getCharacterHexaMatrixStat")
     void getCharacterHexaMatrixStat() {
         CharacterHexaMatrixStatDTO response = api.getCharacterHexaMatrixStat(ocid).join();
+        // nothing to assert because some characters may not have Hexa Matrix Stat
         System.out.println(response.toString());
     }
 
@@ -29,6 +30,7 @@ public class TestGetCharacterHexaMatrixStat {
     @DisplayName("success: async getCharacterHexaMatrixStat")
     void getCharacterHexaMatrixStat_async() {
         api.getCharacterHexaMatrixStat(ocid).thenAcceptAsync(response -> {
+            // nothing to assert because some characters may not have Hexa Matrix Stat
             System.out.println(response.toString());
         }).join();
     }
@@ -38,24 +40,17 @@ public class TestGetCharacterHexaMatrixStat {
     void getCharacterHexaMatrixStat_with_date() {
         LocalDateTime date = LocalDateTime.of(2023, 12, 22, 0, 0);
         CharacterHexaMatrixStatDTO response = api.getCharacterHexaMatrixStat(ocid, date).join();
+        assertThat(response).isNotNull();
         System.out.println(response.toString());
     }
 
     @Test
     @DisplayName("success: getCharacterHexaMatrixStat on date with no data")
     void getCharacterHexaMatrixStat_on_date_with_no_data() {
-        String noDataOcid = "b0187493ec48ddd7b1d304fe8982d0b0";
+        String ocid = "b0187493ec48ddd7b1d304fe8982d0b0";
         LocalDateTime date = LocalDateTime.of(2025, 6, 18, 0, 0);
-        CharacterHexaMatrixStatDTO response = api.getCharacterHexaMatrixStat(noDataOcid, date).join();
-        assertThat(response.getDate()).isNotNull();
-        assertThat(response.getCharacterClass()).isNull();
-        assertThat(response.getCharacterHexaStatCore()).isEmpty();
-        assertThat(response.getCharacterHexaStatCore2()).isEmpty();
-        assertThat(response.getCharacterHexaStatCore3()).isEmpty();
-        assertThat(response.getPresetHexaStatCore()).isEmpty();
-        assertThat(response.getPresetHexaStatCore2()).isEmpty();
-        assertThat(response.getPresetHexaStatCore3()).isEmpty();
-        System.out.println(response.toString());
+        CharacterHexaMatrixStatDTO response = api.getCharacterHexaMatrixStat(ocid, date).join();
+        assertThat(response).isNull();
     }
 
     @Test

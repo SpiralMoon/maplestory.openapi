@@ -22,6 +22,7 @@ public class TestGetCharacterBasic {
     @DisplayName("success: getCharacterBasic")
     void getCharacterBasic() {
         CharacterBasicDTO response = api.getCharacterBasic(ocid).join();
+        assertThat(response).isNotNull();
         System.out.println(response.toString());
     }
 
@@ -29,6 +30,7 @@ public class TestGetCharacterBasic {
     @DisplayName("success: async getCharacterBasic")
     void getCharacterBasic_async() {
         api.getCharacterBasic(ocid).thenAcceptAsync(response -> {
+            assertThat(response).isNotNull();
             System.out.println(response.toString());
         }).join();
     }
@@ -38,6 +40,7 @@ public class TestGetCharacterBasic {
     void getCharacterBasic_with_date() {
         LocalDateTime date = LocalDateTime.of(2025, 4, 20, 0, 0);
         CharacterBasicDTO response = api.getCharacterBasic(ocid, date).join();
+        assertThat(response).isNotNull();
         System.out.println(response.toString());
     }
 

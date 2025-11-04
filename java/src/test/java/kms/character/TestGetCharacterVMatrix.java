@@ -22,6 +22,7 @@ public class TestGetCharacterVMatrix {
     @DisplayName("success: getCharacterVMatrix")
     void getCharacterVMatrix() {
         CharacterVMatrixDTO response = api.getCharacterVMatrix(ocid).join();
+        // nothing to assert because some characters may not have v matrix
         System.out.println(response.toString());
     }
 
@@ -29,6 +30,7 @@ public class TestGetCharacterVMatrix {
     @DisplayName("success: async getCharacterVMatrix")
     void getCharacterVMatrix_async() {
         api.getCharacterVMatrix(ocid).thenAcceptAsync(response -> {
+            // nothing to assert because some characters may not have v matrix
             System.out.println(response.toString());
         }).join();
     }
@@ -38,20 +40,17 @@ public class TestGetCharacterVMatrix {
     void getCharacterVMatrix_with_date() {
         LocalDateTime date = LocalDateTime.of(2023, 12, 22, 0, 0);
         CharacterVMatrixDTO response = api.getCharacterVMatrix(ocid, date).join();
+        assertThat(response).isNotNull();
         System.out.println(response.toString());
     }
 
     @Test
     @DisplayName("success: getCharacterVMatrix on date with no data")
     void getCharacterVMatrix_on_date_with_no_data() {
-        String noDataOcid = "b0187493ec48ddd7b1d304fe8982d0b0";
+        String ocid = "b0187493ec48ddd7b1d304fe8982d0b0";
         LocalDateTime date = LocalDateTime.of(2025, 6, 18, 0, 0);
-        CharacterVMatrixDTO response = api.getCharacterVMatrix(noDataOcid, date).join();
-        assertThat(response.getDate()).isNotNull();
-        assertThat(response.getCharacterClass()).isNull();
-        assertThat(response.getCharacterVCoreEquipment()).isEmpty();
-        assertThat(response.getCharacterVMatrixRemainSlotUpgradePoint()).isNull();
-        System.out.println(response.toString());
+        CharacterVMatrixDTO response = api.getCharacterVMatrix(ocid, date).join();
+        assertThat(response).isNull();
     }
 
     @Test

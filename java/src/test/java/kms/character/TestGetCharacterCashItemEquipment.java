@@ -22,6 +22,7 @@ public class TestGetCharacterCashItemEquipment {
     @DisplayName("success: getCharacterCashItemEquipment")
     void getCharacterCashItemEquipment() {
         CharacterCashItemEquipmentDTO response = api.getCharacterCashItemEquipment(ocid).join();
+        assertThat(response).isNotNull();
         System.out.println(response.toString());
     }
 
@@ -29,6 +30,7 @@ public class TestGetCharacterCashItemEquipment {
     @DisplayName("success: async getCharacterCashItemEquipment")
     void getCharacterCashItemEquipment_async() {
         api.getCharacterCashItemEquipment(ocid).thenAcceptAsync(response -> {
+            assertThat(response).isNotNull();
             System.out.println(response.toString());
         }).join();
     }
@@ -38,29 +40,17 @@ public class TestGetCharacterCashItemEquipment {
     void getCharacterCashItemEquipment_with_date() {
         LocalDateTime date = LocalDateTime.of(2023, 12, 22, 0, 0);
         CharacterCashItemEquipmentDTO response = api.getCharacterCashItemEquipment(ocid, date).join();
+        assertThat(response).isNotNull();
         System.out.println(response.toString());
     }
 
     @Test
     @DisplayName("success: getCharacterCashItemEquipment on date with no data")
     void getCharacterCashItemEquipment_on_date_with_no_data() {
-        String noDataOcid = "b0187493ec48ddd7b1d304fe8982d0b0";
+        String ocid = "b0187493ec48ddd7b1d304fe8982d0b0";
         LocalDateTime date = LocalDateTime.of(2025, 6, 18, 0, 0);
-        CharacterCashItemEquipmentDTO response = api.getCharacterCashItemEquipment(noDataOcid, date).join();
-        assertThat(response.getDate()).isNotNull();
-        assertThat(response.getCharacterGender()).isNull();
-        assertThat(response.getCharacterClass()).isNull();
-        assertThat(response.getCharacterLookMode()).isNull();
-        assertThat(response.getPresetNo()).isNull();
-        assertThat(response.getCashItemEquipmentBase()).isEmpty();
-        assertThat(response.getCashItemEquipmentPreset1()).isEmpty();
-        assertThat(response.getCashItemEquipmentPreset2()).isEmpty();
-        assertThat(response.getCashItemEquipmentPreset3()).isEmpty();
-        assertThat(response.getAdditionalCashItemEquipmentBase()).isEmpty();
-        assertThat(response.getAdditionalCashItemEquipmentPreset1()).isEmpty();
-        assertThat(response.getAdditionalCashItemEquipmentPreset2()).isEmpty();
-        assertThat(response.getAdditionalCashItemEquipmentPreset3()).isEmpty();
-        System.out.println(response.toString());
+        CharacterCashItemEquipmentDTO response = api.getCharacterCashItemEquipment(ocid, date).join();
+        assertThat(response).isNull();
     }
 
     @Test

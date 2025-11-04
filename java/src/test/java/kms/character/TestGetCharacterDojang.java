@@ -22,6 +22,7 @@ public class TestGetCharacterDojang {
     @DisplayName("success: getCharacterDojang")
     void getCharacterDojang() {
         CharacterDojangDTO response = api.getCharacterDojang(ocid).join();
+        assertThat(response).isNotNull();
         System.out.println(response.toString());
     }
 
@@ -29,6 +30,7 @@ public class TestGetCharacterDojang {
     @DisplayName("success: async getCharacterDojang")
     void getCharacterDojang_async() {
         api.getCharacterDojang(ocid).thenAcceptAsync(response -> {
+            assertThat(response).isNotNull();
             System.out.println(response.toString());
         }).join();
     }
@@ -38,22 +40,17 @@ public class TestGetCharacterDojang {
     void getCharacterDojang_with_date() {
         LocalDateTime date = LocalDateTime.of(2023, 12, 22, 0, 0);
         CharacterDojangDTO response = api.getCharacterDojang(ocid, date).join();
+        assertThat(response).isNotNull();
         System.out.println(response.toString());
     }
 
     @Test
     @DisplayName("success: getCharacterDojang on date with no data")
     void getCharacterDojang_on_date_with_no_data() {
-        String noDataOcid = "b0187493ec48ddd7b1d304fe8982d0b0";
+        String ocid = "b0187493ec48ddd7b1d304fe8982d0b0";
         LocalDateTime date = LocalDateTime.of(2025, 6, 18, 0, 0);
-        CharacterDojangDTO response = api.getCharacterDojang(noDataOcid, date).join();
-        assertThat(response.getDate()).isNotNull();
-        assertThat(response.getCharacterClass()).isNull();
-        assertThat(response.getWorldName()).isNull();
-        assertThat(response.getDojangBestFloor()).isNull();
-        assertThat(response.getDateDojangRecord()).isNull();
-        assertThat(response.getDojangBestTime()).isNull();
-        System.out.println(response.toString());
+        CharacterDojangDTO response = api.getCharacterDojang(ocid, date).join();
+        assertThat(response).isNull();
     }
 
     @Test

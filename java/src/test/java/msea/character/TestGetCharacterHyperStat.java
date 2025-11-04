@@ -22,6 +22,7 @@ public class TestGetCharacterHyperStat {
     @DisplayName("success: getCharacterHyperStat")
     void getCharacterHyperStat() {
         CharacterHyperStatDTO response = api.getCharacterHyperStat(ocid).join();
+        assertThat(response).isNotNull();
         System.out.println(response.toString());
     }
 
@@ -29,6 +30,7 @@ public class TestGetCharacterHyperStat {
     @DisplayName("success: async getCharacterHyperStat")
     void getCharacterHyperStat_async() {
         api.getCharacterHyperStat(ocid).thenAcceptAsync(response -> {
+            assertThat(response).isNotNull();
             System.out.println(response.toString());
         }).join();
     }
@@ -38,6 +40,7 @@ public class TestGetCharacterHyperStat {
     void getCharacterHyperStat_with_date() {
         LocalDateTime date = LocalDateTime.of(2025, 4, 20, 0, 0);
         CharacterHyperStatDTO response = api.getCharacterHyperStat(ocid, date).join();
+        assertThat(response).isNotNull();
         System.out.println(response.toString());
     }
 

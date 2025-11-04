@@ -22,6 +22,7 @@ public class TestGetCharacterDojang {
     @DisplayName("success: getCharacterDojang")
     void getCharacterDojang() {
         CharacterDojangDTO response = api.getCharacterDojang(ocid).join();
+        assertThat(response).isNotNull();
         System.out.println(response.toString());
     }
 
@@ -29,6 +30,7 @@ public class TestGetCharacterDojang {
     @DisplayName("success: async getCharacterDojang")
     void getCharacterDojang_async() {
         api.getCharacterDojang(ocid).thenAcceptAsync(response -> {
+            assertThat(response).isNotNull();
             System.out.println(response.toString());
         }).join();
     }
@@ -38,6 +40,7 @@ public class TestGetCharacterDojang {
     void getCharacterDojang_with_date() {
         LocalDateTime date = LocalDateTime.of(2025, 10, 15, 0, 0);
         CharacterDojangDTO response = api.getCharacterDojang(ocid, date).join();
+        assertThat(response).isNotNull();
         System.out.println(response.toString());
     }
 

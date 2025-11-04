@@ -23,6 +23,7 @@ public class TestGetCharacterSkill {
     void getCharacterSkill() {
         String skillGrade = "6";
         CharacterSkillDTO response = api.getCharacterSkill(ocid, skillGrade).join();
+        assertThat(response).isNotNull();
         System.out.println(response.toString());
     }
 
@@ -31,6 +32,7 @@ public class TestGetCharacterSkill {
     void getCharacterSkill_async() {
         String skillGrade = "6";
         api.getCharacterSkill(ocid, skillGrade).thenAcceptAsync(response -> {
+            assertThat(response).isNotNull();
             System.out.println(response.toString());
         }).join();
     }
@@ -41,21 +43,30 @@ public class TestGetCharacterSkill {
         String skillGrade = "6";
         LocalDateTime date = LocalDateTime.of(2023, 12, 22, 0, 0);
         CharacterSkillDTO response = api.getCharacterSkill(ocid, skillGrade, date).join();
+        assertThat(response).isNotNull();
+        System.out.println(response.toString());
+    }
+
+    @Test
+    @DisplayName("success: getCharacterSkill with has no skill grade")
+    void getCharacterSkill_with_has_no_skill_grade() {
+        String ocid = "c0ee173596c89da990c6fae8106e62f0"; // This character is 2nd job
+        String skillGrade = "hyperactive";
+        CharacterSkillDTO response = api.getCharacterSkill(ocid, skillGrade).join();
+        assertThat(response).isNotNull();
+        assertThat(response.getCharacterSkillGrade()).isNull();
+        assertThat(response.getCharacterSkill().size()).isEqualTo(0);
         System.out.println(response.toString());
     }
 
     @Test
     @DisplayName("success: getCharacterSkill on date with no data")
     void getCharacterSkill_on_date_with_no_data() {
-        String noDataOcid = "b0187493ec48ddd7b1d304fe8982d0b0";
+        String ocid = "b0187493ec48ddd7b1d304fe8982d0b0";
         String skillGrade = "6";
         LocalDateTime date = LocalDateTime.of(2025, 6, 18, 0, 0);
-        CharacterSkillDTO response = api.getCharacterSkill(noDataOcid, skillGrade, date).join();
-        assertThat(response.getDate()).isNotNull();
-        assertThat(response.getCharacterClass()).isNull();
-        assertThat(response.getCharacterSkillGrade()).isNull();
-        assertThat(response.getCharacterSkill()).isEmpty();
-        System.out.println(response.toString());
+        CharacterSkillDTO response = api.getCharacterSkill(ocid, skillGrade, date).join();
+        assertThat(response).isNull();
     }
 
     @Test

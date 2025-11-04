@@ -22,6 +22,7 @@ public class TestGetCharacterAndroidEquipment {
     @DisplayName("success: getCharacterAndroidEquipment")
     void getCharacterAndroidEquipment() {
         CharacterAndroidEquipmentDTO response = api.getCharacterAndroidEquipment(ocid).join();
+        assertThat(response).isNotNull();
         System.out.println(response.toString());
     }
 
@@ -29,6 +30,7 @@ public class TestGetCharacterAndroidEquipment {
     @DisplayName("success: async getCharacterAndroidEquipment")
     void getCharacterAndroidEquipment_async() {
         api.getCharacterAndroidEquipment(ocid).thenAcceptAsync(response -> {
+            assertThat(response).isNotNull();
             System.out.println(response.toString());
         }).join();
     }
@@ -38,6 +40,7 @@ public class TestGetCharacterAndroidEquipment {
     void getCharacterAndroidEquipment_with_date() {
         LocalDateTime date = LocalDateTime.of(2025, 10, 15, 0, 0);
         CharacterAndroidEquipmentDTO response = api.getCharacterAndroidEquipment(ocid, date).join();
+        assertThat(response).isNotNull();
         System.out.println(response.toString());
     }
 

@@ -22,6 +22,7 @@ public class TestGetCharacterAbility {
     @DisplayName("success: getCharacterAbility")
     void getCharacterAbility() {
         CharacterAbilityDTO response = api.getCharacterAbility(ocid).join();
+        assertThat(response).isNotNull();
         System.out.println(response.toString());
     }
 
@@ -29,6 +30,7 @@ public class TestGetCharacterAbility {
     @DisplayName("success: async getCharacterAbility")
     void getCharacterAbility_async() {
         api.getCharacterAbility(ocid).thenAcceptAsync(response -> {
+            assertThat(response).isNotNull();
             System.out.println(response.toString());
         }).join();
     }
@@ -38,6 +40,7 @@ public class TestGetCharacterAbility {
     void getCharacterAbility_with_date() {
         LocalDateTime date = LocalDateTime.of(2025, 4, 20, 0, 0);
         CharacterAbilityDTO response = api.getCharacterAbility(ocid, date).join();
+        assertThat(response).isNotNull();
         System.out.println(response.toString());
     }
 

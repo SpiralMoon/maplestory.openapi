@@ -22,6 +22,7 @@ public class TestGetCharacterLinkSkill {
     @DisplayName("success: getCharacterLinkSkill")
     void getCharacterLinkSkill() {
         CharacterLinkSkillDTO response = api.getCharacterLinkSkill(ocid).join();
+        assertThat(response).isNotNull();
         System.out.println(response.toString());
     }
 
@@ -29,6 +30,7 @@ public class TestGetCharacterLinkSkill {
     @DisplayName("success: async getCharacterLinkSkill")
     void getCharacterLinkSkill_async() {
         api.getCharacterLinkSkill(ocid).thenAcceptAsync(response -> {
+            assertThat(response).isNotNull();
             System.out.println(response.toString());
         }).join();
     }
@@ -38,26 +40,17 @@ public class TestGetCharacterLinkSkill {
     void getCharacterLinkSkill_with_date() {
         LocalDateTime date = LocalDateTime.of(2023, 12, 22, 0, 0);
         CharacterLinkSkillDTO response = api.getCharacterLinkSkill(ocid, date).join();
+        assertThat(response).isNotNull();
         System.out.println(response.toString());
     }
 
     @Test
     @DisplayName("success: getCharacterLinkSkill on date with no data")
     void getCharacterLinkSkill_on_date_with_no_data() {
-        String noDataOcid = "b0187493ec48ddd7b1d304fe8982d0b0";
+        String ocid = "b0187493ec48ddd7b1d304fe8982d0b0";
         LocalDateTime date = LocalDateTime.of(2025, 6, 18, 0, 0);
-        CharacterLinkSkillDTO response = api.getCharacterLinkSkill(noDataOcid, date).join();
-        assertThat(response.getDate()).isNotNull();
-        assertThat(response.getCharacterClass()).isNull();
-        assertThat(response.getCharacterLinkSkill()).isEmpty();
-        assertThat(response.getCharacterLinkSkillPreset1()).isEmpty();
-        assertThat(response.getCharacterLinkSkillPreset2()).isEmpty();
-        assertThat(response.getCharacterLinkSkillPreset3()).isEmpty();
-        assertThat(response.getCharacterOwnedLinkSkill()).isNull();
-        assertThat(response.getCharacterOwnedLinkSkillPreset1()).isNull();
-        assertThat(response.getCharacterOwnedLinkSkillPreset2()).isNull();
-        assertThat(response.getCharacterOwnedLinkSkillPreset3()).isNull();
-        System.out.println(response.toString());
+        CharacterLinkSkillDTO response = api.getCharacterLinkSkill(ocid, date).join();
+        assertThat(response).isNull();
     }
 
     @Test

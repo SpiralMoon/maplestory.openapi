@@ -22,6 +22,7 @@ public class TestGetCharacterPetEquipment {
     @DisplayName("success: getCharacterPetEquipment")
     void getCharacterPetEquipment() {
         CharacterPetEquipmentDTO response = api.getCharacterPetEquipment(ocid).join();
+        assertThat(response).isNotNull();
         System.out.println(response.toString());
     }
 
@@ -29,6 +30,7 @@ public class TestGetCharacterPetEquipment {
     @DisplayName("success: async getCharacterPetEquipment")
     void getCharacterPetEquipment_async() {
         api.getCharacterPetEquipment(ocid).thenAcceptAsync(response -> {
+            assertThat(response).isNotNull();
             System.out.println(response.toString());
         }).join();
     }
@@ -38,6 +40,7 @@ public class TestGetCharacterPetEquipment {
     void getCharacterPetEquipment_with_date() {
         LocalDateTime date = LocalDateTime.of(2025, 4, 20, 0, 0);
         CharacterPetEquipmentDTO response = api.getCharacterPetEquipment(ocid, date).join();
+        assertThat(response).isNotNull();
         System.out.println(response.toString());
     }
 

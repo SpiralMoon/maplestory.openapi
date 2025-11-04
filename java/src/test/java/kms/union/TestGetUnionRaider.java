@@ -21,6 +21,7 @@ public class TestGetUnionRaider {
     @DisplayName("success: getUnionRaider")
     void getUnionRaider() {
         UnionRaiderDTO response = api.getUnionRaider(ocid).join();
+        // nothing to assert because some characters may not have union raider
         System.out.println(response.toString());
     }
 
@@ -29,6 +30,7 @@ public class TestGetUnionRaider {
     void getUnionRaider_with_date() {
         LocalDateTime date = LocalDateTime.of(2023, 12, 22, 0, 0);
         UnionRaiderDTO response = api.getUnionRaider(ocid, date).join();
+        assertThat(response).isNotNull();
         System.out.println(response.toString());
     }
 

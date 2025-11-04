@@ -22,6 +22,7 @@ public class TestGetGuild {
         String guildName = "春樹慕雲";
         String worldName = "艾麗亞";
         GuildDTO response = api.getGuild(guildName, worldName).join();
+        assertThat(response).isNotNull();
         assertThat(response.getOGuildId()).isEqualTo(ogid);
         System.out.println(response.toString());
     }
@@ -32,6 +33,7 @@ public class TestGetGuild {
         String guildName = "春樹慕雲";
         String worldName = "艾麗亞";
         api.getGuild(guildName, worldName).thenAcceptAsync(response -> {
+            assertThat(response).isNotNull();
             assertThat(response.getOGuildId()).isEqualTo(ogid);
             System.out.println(response.toString());
         }).join();
@@ -43,8 +45,7 @@ public class TestGetGuild {
         String guildName = "_InvalidGuild";
         String worldName = "艾麗亞";
         GuildDTO response = api.getGuild(guildName, worldName).join();
-        assertThat(response.getOGuildId()).isNull();
-        System.out.println(response.toString());
+        assertThat(response).isNull();
     }
 
     @Test

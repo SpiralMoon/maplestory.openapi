@@ -22,6 +22,7 @@ public class TestGetCharacterLinkSkill {
     @DisplayName("success: getCharacterLinkSkill")
     void getCharacterLinkSkill() {
         CharacterLinkSkillDTO response = api.getCharacterLinkSkill(ocid).join();
+        assertThat(response).isNotNull();
         System.out.println(response.toString());
     }
 
@@ -29,6 +30,7 @@ public class TestGetCharacterLinkSkill {
     @DisplayName("success: async getCharacterLinkSkill")
     void getCharacterLinkSkill_async() {
         api.getCharacterLinkSkill(ocid).thenAcceptAsync(response -> {
+            assertThat(response).isNotNull();
             System.out.println(response.toString());
         }).join();
     }
@@ -38,6 +40,7 @@ public class TestGetCharacterLinkSkill {
     void getCharacterLinkSkill_with_date() {
         LocalDateTime date = LocalDateTime.of(2025, 10, 15, 0, 0);
         CharacterLinkSkillDTO response = api.getCharacterLinkSkill(ocid, date).join();
+        assertThat(response).isNotNull();
         System.out.println(response.toString());
     }
 

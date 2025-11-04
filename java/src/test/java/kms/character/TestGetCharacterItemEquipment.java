@@ -22,6 +22,7 @@ public class TestGetCharacterItemEquipment {
     @DisplayName("success: getCharacterItemEquipment")
     void getCharacterItemEquipment() {
         CharacterItemEquipmentDTO response = api.getCharacterItemEquipment(ocid).join();
+        assertThat(response).isNotNull();
         System.out.println(response.toString());
     }
 
@@ -29,6 +30,7 @@ public class TestGetCharacterItemEquipment {
     @DisplayName("success: async getCharacterItemEquipment")
     void getCharacterItemEquipment_async() {
         api.getCharacterItemEquipment(ocid).thenAcceptAsync(response -> {
+            assertThat(response).isNotNull();
             System.out.println(response.toString());
         }).join();
     }
@@ -38,28 +40,17 @@ public class TestGetCharacterItemEquipment {
     void getCharacterItemEquipment_with_date() {
         LocalDateTime date = LocalDateTime.of(2023, 12, 22, 0, 0);
         CharacterItemEquipmentDTO response = api.getCharacterItemEquipment(ocid, date).join();
+        assertThat(response).isNotNull();
         System.out.println(response.toString());
     }
 
     @Test
     @DisplayName("success: getCharacterItemEquipment on date with no data")
     void getCharacterItemEquipment_on_date_with_no_data() {
-        String noDataOcid = "b0187493ec48ddd7b1d304fe8982d0b0";
+        String ocid = "b0187493ec48ddd7b1d304fe8982d0b0";
         LocalDateTime date = LocalDateTime.of(2025, 6, 18, 0, 0);
-        CharacterItemEquipmentDTO response = api.getCharacterItemEquipment(noDataOcid, date).join();
-        assertThat(response.getDate()).isNotNull();
-        assertThat(response.getCharacterGender()).isNull();
-        assertThat(response.getCharacterClass()).isNull();
-        assertThat(response.getPresetNo()).isNull();
-        assertThat(response.getItemEquipment()).isEmpty();
-        assertThat(response.getItemEquipmentPreset1()).isEmpty();
-        assertThat(response.getItemEquipmentPreset2()).isEmpty();
-        assertThat(response.getItemEquipmentPreset3()).isEmpty();
-        assertThat(response.getTitle()).isNull();
-        assertThat(response.getMedalShape()).isNull();
-        assertThat(response.getDragonEquipment()).isEmpty();
-        assertThat(response.getMechanicEquipment()).isEmpty();
-        System.out.println(response.toString());
+        CharacterItemEquipmentDTO response = api.getCharacterItemEquipment(ocid, date).join();
+        assertThat(response).isNull();
     }
 
     @Test

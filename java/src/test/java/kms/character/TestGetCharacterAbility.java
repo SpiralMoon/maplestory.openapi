@@ -22,6 +22,7 @@ public class TestGetCharacterAbility {
     @DisplayName("success: getCharacterAbility")
     void getCharacterAbility() {
         CharacterAbilityDTO response = api.getCharacterAbility(ocid).join();
+        assertThat(response).isNotNull();
         System.out.println(response.toString());
     }
 
@@ -29,6 +30,7 @@ public class TestGetCharacterAbility {
     @DisplayName("success: async getCharacterAbility")
     void getCharacterAbility_async() {
         api.getCharacterAbility(ocid).thenAcceptAsync(response -> {
+            assertThat(response).isNotNull();
             System.out.println(response.toString());
         }).join();
     }
@@ -38,24 +40,17 @@ public class TestGetCharacterAbility {
     void getCharacterAbility_with_date() {
         LocalDateTime date = LocalDateTime.of(2023, 12, 22, 0, 0);
         CharacterAbilityDTO response = api.getCharacterAbility(ocid, date).join();
+        assertThat(response).isNotNull();
         System.out.println(response.toString());
     }
 
     @Test
     @DisplayName("success: getCharacterAbility on date with no data")
     void getCharacterAbility_on_date_with_no_data() {
-        String noDataOcid = "b0187493ec48ddd7b1d304fe8982d0b0";
+        String ocid = "b0187493ec48ddd7b1d304fe8982d0b0";
         LocalDateTime date = LocalDateTime.of(2025, 6, 18, 0, 0);
-        CharacterAbilityDTO response = api.getCharacterAbility(noDataOcid, date).join();
-        assertThat(response.getDate()).isNotNull();
-        assertThat(response.getAbilityGrade()).isNull();
-        assertThat(response.getAbilityInfo()).isEmpty();
-        assertThat(response.getRemainFame()).isNull();
-        assertThat(response.getPresetNo()).isNull();
-        assertThat(response.getAbilityPreset1()).isNull();
-        assertThat(response.getAbilityPreset2()).isNull();
-        assertThat(response.getAbilityPreset3()).isNull();
-        System.out.println(response.toString());
+        CharacterAbilityDTO response = api.getCharacterAbility(ocid, date).join();
+        assertThat(response).isNull();
     }
 
     @Test

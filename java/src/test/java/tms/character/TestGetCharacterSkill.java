@@ -23,6 +23,7 @@ public class TestGetCharacterSkill {
     void getCharacterSkill() {
         String skillGrade = "6";
         CharacterSkillDTO response = api.getCharacterSkill(ocid, skillGrade).join();
+        assertThat(response).isNotNull();
         System.out.println(response.toString());
     }
 
@@ -31,6 +32,7 @@ public class TestGetCharacterSkill {
     void getCharacterSkill_async() {
         String skillGrade = "6";
         api.getCharacterSkill(ocid, skillGrade).thenAcceptAsync(response -> {
+            assertThat(response).isNotNull();
             System.out.println(response.toString());
         }).join();
     }
@@ -41,6 +43,7 @@ public class TestGetCharacterSkill {
         String skillGrade = "6";
         LocalDateTime date = LocalDateTime.of(2025, 10, 15, 0, 0);
         CharacterSkillDTO response = api.getCharacterSkill(ocid, skillGrade, date).join();
+        assertThat(response).isNotNull();
         System.out.println(response.toString());
     }
 

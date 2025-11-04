@@ -22,6 +22,7 @@ public class TestGetCharacterBeautyEquipment {
     @DisplayName("success: getCharacterBeautyEquipment")
     void getCharacterBeautyEquipment() {
         CharacterBeautyEquipmentDTO response = api.getCharacterBeautyEquipment(ocid).join();
+        assertThat(response).isNotNull();
         System.out.println(response.toString());
     }
 
@@ -29,6 +30,7 @@ public class TestGetCharacterBeautyEquipment {
     @DisplayName("success: async getCharacterBeautyEquipment")
     void getCharacterBeautyEquipment_async() {
         api.getCharacterBeautyEquipment(ocid).thenAcceptAsync(response -> {
+            assertThat(response).isNotNull();
             System.out.println(response.toString());
         }).join();
     }
@@ -38,6 +40,7 @@ public class TestGetCharacterBeautyEquipment {
     void getCharacterBeautyEquipment_with_date() {
         LocalDateTime date = LocalDateTime.of(2025, 10, 15, 0, 0);
         CharacterBeautyEquipmentDTO response = api.getCharacterBeautyEquipment(ocid, date).join();
+        assertThat(response).isNotNull();
         System.out.println(response.toString());
     }
 

@@ -22,6 +22,7 @@ public class TestGetCharacterBasic {
     @DisplayName("success: getCharacterBasic")
     void getCharacterBasic() {
         CharacterBasicDTO response = api.getCharacterBasic(ocid).join();
+        assertThat(response).isNotNull();
         System.out.println(response.toString());
     }
 
@@ -29,6 +30,7 @@ public class TestGetCharacterBasic {
     @DisplayName("success: async getCharacterBasic")
     void getCharacterBasic_async() {
         api.getCharacterBasic(ocid).thenAcceptAsync(response -> {
+            assertThat(response).isNotNull();
             System.out.println(response.toString());
         }).join();
     }
@@ -38,6 +40,7 @@ public class TestGetCharacterBasic {
     void getCharacterBasic_with_date() {
         LocalDateTime date = LocalDateTime.of(2023, 12, 22, 0, 0);
         CharacterBasicDTO response = api.getCharacterBasic(ocid, date).join();
+        assertThat(response).isNotNull();
         System.out.println(response.toString());
     }
 
@@ -47,21 +50,7 @@ public class TestGetCharacterBasic {
         String ocid = "b0187493ec48ddd7b1d304fe8982d0b0";
         LocalDateTime date = LocalDateTime.of(2025, 6, 18, 0, 0);
         CharacterBasicDTO response = api.getCharacterBasic(ocid, date).join();
-        assertThat(response.getDate()).isNotNull();
-        assertThat(response.getCharacterName()).isNull();
-        assertThat(response.getWorldName()).isNull();
-        assertThat(response.getCharacterGender()).isNull();
-        assertThat(response.getCharacterClass()).isNull();
-        assertThat(response.getCharacterClassLevel()).isNull();
-        assertThat(response.getCharacterLevel()).isEqualTo(0);
-        assertThat(response.getCharacterExp()).isEqualTo(0);
-        assertThat(response.getCharacterExpRate()).isNull();
-        assertThat(response.getCharacterGuildName()).isNull();
-        assertThat(response.getCharacterImage()).isNull();
-        assertThat(response.getCharacterDateCreate()).isNull();
-        assertThat(response.getAccessFlag()).isNull();
-        assertThat(response.getLiberationQuestClear()).isNull();
-        System.out.println(response.toString());
+        assertThat(response).isNull();
     }
 
     @Test

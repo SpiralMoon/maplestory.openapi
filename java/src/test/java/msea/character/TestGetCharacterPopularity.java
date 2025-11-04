@@ -22,6 +22,7 @@ public class TestGetCharacterPopularity {
     @DisplayName("success: getCharacterPopularity")
     void getCharacterPopularity() {
         CharacterPopularityDTO response = api.getCharacterPopularity(ocid).join();
+        assertThat(response).isNotNull();
         System.out.println(response.toString());
     }
 
@@ -29,6 +30,7 @@ public class TestGetCharacterPopularity {
     @DisplayName("success: async getCharacterPopularity")
     void getCharacterPopularity_async() {
         api.getCharacterPopularity(ocid).thenAcceptAsync(response -> {
+            assertThat(response).isNotNull();
             System.out.println(response.toString());
         }).join();
     }
@@ -38,6 +40,7 @@ public class TestGetCharacterPopularity {
     void getCharacterPopularity_with_date() {
         LocalDateTime date = LocalDateTime.of(2025, 4, 20, 0, 0);
         CharacterPopularityDTO response = api.getCharacterPopularity(ocid, date).join();
+        assertThat(response).isNotNull();
         System.out.println(response.toString());
     }
 

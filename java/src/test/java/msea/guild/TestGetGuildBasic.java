@@ -22,6 +22,7 @@ public class TestGetGuildBasic {
     @DisplayName("success: getGuildBasic")
     void getGuildBasic() {
         GuildBasicDTO response = api.getGuildBasic(ogid).join();
+        assertThat(response).isNotNull();
         System.out.println(response.toString());
     }
 
@@ -29,6 +30,7 @@ public class TestGetGuildBasic {
     @DisplayName("success: async getGuildBasic")
     void getGuildBasic_async() {
         api.getGuildBasic(ogid).thenAcceptAsync(response -> {
+            assertThat(response).isNotNull();
             System.out.println(response.toString());
         }).join();
     }
@@ -38,6 +40,7 @@ public class TestGetGuildBasic {
     void getGuildBasic_with_date() {
         LocalDateTime date = LocalDateTime.of(2025, 4, 20, 0, 0);
         GuildBasicDTO response = api.getGuildBasic(ogid, date).join();
+        assertThat(response).isNotNull();
         System.out.println(response.toString());
     }
 

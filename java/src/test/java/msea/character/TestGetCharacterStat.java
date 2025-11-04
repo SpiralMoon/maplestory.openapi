@@ -22,6 +22,7 @@ public class TestGetCharacterStat {
     @DisplayName("success: getCharacterStat")
     void getCharacterStat() {
         CharacterStatDTO response = api.getCharacterStat(ocid).join();
+        assertThat(response).isNotNull();
         System.out.println(response.toString());
     }
 
@@ -29,6 +30,7 @@ public class TestGetCharacterStat {
     @DisplayName("success: async getCharacterStat")
     void getCharacterStat_async() {
         api.getCharacterStat(ocid).thenAcceptAsync(response -> {
+            assertThat(response).isNotNull();
             System.out.println(response.toString());
         }).join();
     }
@@ -38,6 +40,7 @@ public class TestGetCharacterStat {
     void getCharacterStat_with_date() {
         LocalDateTime date = LocalDateTime.of(2025, 4, 20, 0, 0);
         CharacterStatDTO response = api.getCharacterStat(ocid, date).join();
+        assertThat(response).isNotNull();
         System.out.println(response.toString());
     }
 
