@@ -1,6 +1,6 @@
 package dev.spiralmoon.maplestory.api.kms.template;
 
-import dev.spiralmoon.maplestory.api.kms.dto.character.*;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
@@ -9,68 +9,68 @@ import retrofit2.http.Query;
 public interface CharacterApi {
 
     @GET("maplestory/v1/id")
-    Call<CharacterDTO> getCharacter(@Header("x-nxopen-api-key") String apiKey, @Query("character_name") String characterName);
+    Call<ResponseBody> getCharacter(@Header("x-nxopen-api-key") String apiKey, @Query("character_name") String characterName);
 
     @GET("maplestory/v1/character/basic")
-    Call<CharacterBasicDTO> getCharacterBasic(@Header("x-nxopen-api-key") String apiKey, @Query("ocid") String ocid, @Query("date") String date);
+    Call<ResponseBody> getCharacterBasic(@Header("x-nxopen-api-key") String apiKey, @Query("ocid") String ocid, @Query("date") String date);
 
     @GET("maplestory/v1/character/popularity")
-    Call<CharacterPopularityDTO> getCharacterPopularity(@Header("x-nxopen-api-key") String apiKey, @Query("ocid") String ocid, @Query("date") String date);
+    Call<ResponseBody> getCharacterPopularity(@Header("x-nxopen-api-key") String apiKey, @Query("ocid") String ocid, @Query("date") String date);
 
     @GET("maplestory/v1/character/stat")
-    Call<CharacterStatDTO> getCharacterStat(@Header("x-nxopen-api-key") String apiKey, @Query("ocid") String ocid, @Query("date") String date);
+    Call<ResponseBody> getCharacterStat(@Header("x-nxopen-api-key") String apiKey, @Query("ocid") String ocid, @Query("date") String date);
 
     @GET("maplestory/v1/character/hyper-stat")
-    Call<CharacterHyperStatDTO> getCharacterHyperStat(@Header("x-nxopen-api-key") String apiKey, @Query("ocid") String ocid, @Query("date") String date);
+    Call<ResponseBody> getCharacterHyperStat(@Header("x-nxopen-api-key") String apiKey, @Query("ocid") String ocid, @Query("date") String date);
 
     @GET("maplestory/v1/character/propensity")
-    Call<CharacterPropensityDTO> getCharacterPropensity(@Header("x-nxopen-api-key") String apiKey, @Query("ocid") String ocid, @Query("date") String date);
+    Call<ResponseBody> getCharacterPropensity(@Header("x-nxopen-api-key") String apiKey, @Query("ocid") String ocid, @Query("date") String date);
 
     @GET("maplestory/v1/character/ability")
-    Call<CharacterAbilityDTO> getCharacterAbility(@Header("x-nxopen-api-key") String apiKey, @Query("ocid") String ocid, @Query("date") String date);
+    Call<ResponseBody> getCharacterAbility(@Header("x-nxopen-api-key") String apiKey, @Query("ocid") String ocid, @Query("date") String date);
 
     @GET("maplestory/v1/character/item-equipment")
-    Call<CharacterItemEquipmentDTO> getCharacterItemEquipment(@Header("x-nxopen-api-key") String apiKey, @Query("ocid") String ocid, @Query("date") String date);
+    Call<ResponseBody> getCharacterItemEquipment(@Header("x-nxopen-api-key") String apiKey, @Query("ocid") String ocid, @Query("date") String date);
 
     @GET("maplestory/v1/character/cashitem-equipment")
-    Call<CharacterCashItemEquipmentDTO> getCharacterCashItemEquipment(@Header("x-nxopen-api-key") String apiKey, @Query("ocid") String ocid, @Query("date") String date);
+    Call<ResponseBody> getCharacterCashItemEquipment(@Header("x-nxopen-api-key") String apiKey, @Query("ocid") String ocid, @Query("date") String date);
 
     @GET("maplestory/v1/character/symbol-equipment")
-    Call<CharacterSymbolEquipmentDTO> getCharacterSymbolEquipment(@Header("x-nxopen-api-key") String apiKey, @Query("ocid") String ocid, @Query("date") String date);
+    Call<ResponseBody> getCharacterSymbolEquipment(@Header("x-nxopen-api-key") String apiKey, @Query("ocid") String ocid, @Query("date") String date);
 
     @GET("maplestory/v1/character/set-effect")
-    Call<CharacterSetEffectDTO> getCharacterSetEffect(@Header("x-nxopen-api-key") String apiKey, @Query("ocid") String ocid, @Query("date") String date);
+    Call<ResponseBody> getCharacterSetEffect(@Header("x-nxopen-api-key") String apiKey, @Query("ocid") String ocid, @Query("date") String date);
 
     @GET("maplestory/v1/character/beauty-equipment")
-    Call<CharacterBeautyEquipmentDTO> getCharacterBeautyEquipment(@Header("x-nxopen-api-key") String apiKey, @Query("ocid") String ocid, @Query("date") String date);
+    Call<ResponseBody> getCharacterBeautyEquipment(@Header("x-nxopen-api-key") String apiKey, @Query("ocid") String ocid, @Query("date") String date);
 
     @GET("maplestory/v1/character/android-equipment")
-    Call<CharacterAndroidEquipmentDTO> getCharacterAndroidEquipment(@Header("x-nxopen-api-key") String apiKey, @Query("ocid") String ocid, @Query("date") String date);
+    Call<ResponseBody> getCharacterAndroidEquipment(@Header("x-nxopen-api-key") String apiKey, @Query("ocid") String ocid, @Query("date") String date);
 
     @GET("maplestory/v1/character/pet-equipment")
-    Call<CharacterPetEquipmentDTO> getCharacterPetEquipment(@Header("x-nxopen-api-key") String apiKey, @Query("ocid") String ocid, @Query("date") String date);
+    Call<ResponseBody> getCharacterPetEquipment(@Header("x-nxopen-api-key") String apiKey, @Query("ocid") String ocid, @Query("date") String date);
 
     @GET("maplestory/v1/character/skill")
-    Call<CharacterSkillDTO> getCharacterSkill(@Header("x-nxopen-api-key") String apiKey, @Query("ocid") String ocid, @Query("date") String date, @Query("character_skill_grade") String characterSkillGrade);
+    Call<ResponseBody> getCharacterSkill(@Header("x-nxopen-api-key") String apiKey, @Query("ocid") String ocid, @Query("date") String date, @Query("character_skill_grade") String characterSkillGrade);
 
     @GET("maplestory/v1/character/link-skill")
-    Call<CharacterLinkSkillDTO> getCharacterLinkSkill(@Header("x-nxopen-api-key") String apiKey, @Query("ocid") String ocid, @Query("date") String date);
+    Call<ResponseBody> getCharacterLinkSkill(@Header("x-nxopen-api-key") String apiKey, @Query("ocid") String ocid, @Query("date") String date);
 
     @GET("maplestory/v1/character/vmatrix")
-    Call<CharacterVMatrixDTO> getCharacterVMatrix(@Header("x-nxopen-api-key") String apiKey, @Query("ocid") String ocid, @Query("date") String date);
+    Call<ResponseBody> getCharacterVMatrix(@Header("x-nxopen-api-key") String apiKey, @Query("ocid") String ocid, @Query("date") String date);
 
     @GET("maplestory/v1/character/hexamatrix")
-    Call<CharacterHexaMatrixDTO> getCharacterHexaMatrix(@Header("x-nxopen-api-key") String apiKey, @Query("ocid") String ocid, @Query("date") String date);
+    Call<ResponseBody> getCharacterHexaMatrix(@Header("x-nxopen-api-key") String apiKey, @Query("ocid") String ocid, @Query("date") String date);
 
     @GET("maplestory/v1/character/hexamatrix-stat")
-    Call<CharacterHexaMatrixStatDTO> getCharacterHexaMatrixStat(@Header("x-nxopen-api-key") String apiKey, @Query("ocid") String ocid, @Query("date") String date);
+    Call<ResponseBody> getCharacterHexaMatrixStat(@Header("x-nxopen-api-key") String apiKey, @Query("ocid") String ocid, @Query("date") String date);
 
     @GET("maplestory/v1/character/dojang")
-    Call<CharacterDojangDTO> getCharacterDojang(@Header("x-nxopen-api-key") String apiKey, @Query("ocid") String ocid, @Query("date") String date);
+    Call<ResponseBody> getCharacterDojang(@Header("x-nxopen-api-key") String apiKey, @Query("ocid") String ocid, @Query("date") String date);
 
     @GET("maplestory/v1/character/other-stat")
-    Call<CharacterOtherStatDTO> getCharacterOtherStat(@Header("x-nxopen-api-key") String apiKey, @Query("ocid") String ocid, @Query("date") String date);
+    Call<ResponseBody> getCharacterOtherStat(@Header("x-nxopen-api-key") String apiKey, @Query("ocid") String ocid, @Query("date") String date);
 
     @GET("maplestory/v1/character/ring-exchange-skill-equipment")
-    Call<CharacterRingExchangeSkillEquipmentDTO> getCharacterRingExchangeSkillEquipment(@Header("x-nxopen-api-key") String apiKey, @Query("ocid") String ocid, @Query("date") String date);
+    Call<ResponseBody> getCharacterRingExchangeSkillEquipment(@Header("x-nxopen-api-key") String apiKey, @Query("ocid") String ocid, @Query("date") String date);
 }

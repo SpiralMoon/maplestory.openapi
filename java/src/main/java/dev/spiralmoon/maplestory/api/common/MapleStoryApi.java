@@ -1,6 +1,7 @@
 package dev.spiralmoon.maplestory.api.common;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import dev.spiralmoon.maplestory.api.common.param.LatestApiUpdateTimeOption;
@@ -28,6 +29,7 @@ import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Base64;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
@@ -179,29 +181,36 @@ public abstract class MapleStoryApi {
                 .build();
     }
 
-    protected <DTO> Callback<DTO> createCallback(CompletableFuture<DTO> task) {
-        return createCallback(task, false);
+    protected <DTO> Callback<ResponseBody> createCallback(CompletableFuture<DTO> task, Class<DTO> dtoClass) {
+        return createCallback(task, dtoClass, false);
     }
 
-    protected <DTO> Callback<DTO> createCallback(CompletableFuture<DTO> task, boolean checkEmpty) {
-        return new Callback<DTO>() {
+    protected <DTO> Callback<ResponseBody> createCallback(CompletableFuture<DTO> task, Class<DTO> dtoClass, boolean checkEmpty) {
+        return new Callback<ResponseBody>() {
             @SneakyThrows
             @Override
-            public void onResponse(Call<DTO> call, Response<DTO> response) {
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if (response.isSuccessful()) {
-                    DTO dto = response.body();
-                    if (checkEmpty && isEmptyResponse(dto)) {
-                        task.complete(null);
-                    } else {
-                        task.complete(dto);
+                    final String rawJson = response.body().string();
+
+                    if (checkEmpty) {
+                        final JsonNode jsonNode = objectMapper.readTree(rawJson);
+
+                        if (isEmptyResponse(jsonNode)) {
+                            task.complete(null);
+                            return;
+                        }
                     }
+
+                    final DTO dto = objectMapper.readValue(rawJson, dtoClass);
+                    task.complete(dto);
                 } else {
                     task.completeExceptionally(parseError(response));
                 }
             }
 
             @Override
-            public void onFailure(Call<DTO> call, Throwable t) {
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
                 task.completeExceptionally(t);
             }
         };
@@ -211,44 +220,37 @@ public abstract class MapleStoryApi {
      * API 응답 데이터가 비어있는지 확인 합니다.<br/>
      * API 요청 시 날짜에 해당하는 데이터가 없을 경우 date 필드만 값이 존재하는 상황을 검증할 때 사용 합니다.<br/>
      * 일반적으로 API 지원 시작일과 캐릭터 생성일 사이의 날짜를 조회할 때 발생 합니다.
+     *
+     * @param jsonNode JSON 응답을 파싱한 JsonNode
+     * @return date 필드를 제외한 모든 필드가 null 또는 빈 배열인 경우 true
      */
-    private <DTO> boolean isEmptyResponse(DTO dto) {
-        try {
-            for (Field field : dto.getClass().getDeclaredFields()) {
-                final String name = field.getName();
-
-                if (name.equals("date")) {
-                    continue;
-                }
-
-                field.setAccessible(true);
-                Object value = field.get(dto);
-
-                if (value == null) {
-                    continue;
-                }
-
-                if (value instanceof Collection) {
-                    if (((Collection<?>) value).isEmpty()) {
-                        continue;
-                    }
-                } else if (value.getClass().isArray()) {
-                    if (Array.getLength(value) == 0) {
-                        continue;
-                    }
-                } else if (value instanceof Number) {
-                    if (((Number) value).longValue() == 0) {
-                        continue;
-                    }
-                }
-
-                return false;
-            }
-
-            return true;
-        } catch (IllegalAccessException e) {
+    private boolean isEmptyResponse(JsonNode jsonNode) {
+        if (!jsonNode.isObject()) {
             return false;
         }
+
+        Iterator<Map.Entry<String, JsonNode>> fields = jsonNode.fields();
+
+        while (fields.hasNext()) {
+            Map.Entry<String, JsonNode> field = fields.next();
+
+            if ("date".equals(field.getKey())) {
+                continue;
+            }
+
+            JsonNode value = field.getValue();
+
+            if (value.isNull()) {
+                continue;
+            }
+            if (value.isArray() && value.isEmpty()) {
+                continue;
+            }
+
+            return false;
+        }
+
+        return true; // 모든 필드(date 제외)가 null 또는 빈 배열
     }
 
     protected static MapleStoryApiException parseError(Response<?> response) throws IOException {

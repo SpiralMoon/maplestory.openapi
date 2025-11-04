@@ -63,7 +63,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
         buildRetrofit()
                 .create(UserApi.class)
                 .getCharacterList(this.apiKey)
-                .enqueue(createCallback(future));
+                .enqueue(createCallback(future, CharacterListDTO.class));
 
         return future;
     }
@@ -81,7 +81,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
         buildRetrofit()
                 .create(UserApi.class)
                 .getAchievement(this.apiKey)
-                .enqueue(createCallback(future));
+                .enqueue(createCallback(future, AchievementDTO.class));
 
         return future;
     }
@@ -106,7 +106,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
         buildRetrofit()
                 .create(CharacterApi.class)
                 .getCharacter(this.apiKey, characterName)
-                .enqueue(createCallback(future));
+                .enqueue(createCallback(future, CharacterDTO.class));
 
         return future;
     }
@@ -147,7 +147,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
             buildRetrofit()
                     .create(CharacterApi.class)
                     .getCharacterBasic(this.apiKey, ocid, date)
-                    .enqueue(createCallback(future, true));
+                    .enqueue(createCallback(future, CharacterBasicDTO.class, true));
         } catch (Exception e) {
             future.completeExceptionally(e);
         }
@@ -284,7 +284,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
             buildRetrofit()
                     .create(CharacterApi.class)
                     .getCharacterPopularity(this.apiKey, ocid, date)
-                    .enqueue(createCallback(future, true));
+                    .enqueue(createCallback(future, CharacterPopularityDTO.class, true));
         } catch (Exception e) {
             future.completeExceptionally(e);
         }
@@ -328,7 +328,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
             buildRetrofit()
                     .create(CharacterApi.class)
                     .getCharacterStat(this.apiKey, ocid, date)
-                    .enqueue(createCallback(future, true));
+                    .enqueue(createCallback(future, CharacterStatDTO.class, true));
 
         } catch (Exception e) {
             future.completeExceptionally(e);
@@ -373,7 +373,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
             buildRetrofit()
                     .create(CharacterApi.class)
                     .getCharacterHyperStat(this.apiKey, ocid, date)
-                    .enqueue(createCallback(future, true));
+                    .enqueue(createCallback(future, CharacterHyperStatDTO.class, true));
         } catch (Exception e) {
             future.completeExceptionally(e);
         }
@@ -417,7 +417,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
             buildRetrofit()
                     .create(CharacterApi.class)
                     .getCharacterPropensity(this.apiKey, ocid, date)
-                    .enqueue(createCallback(future, true));
+                    .enqueue(createCallback(future, CharacterPropensityDTO.class, true));
         } catch (Exception e) {
             future.completeExceptionally(e);
         }
@@ -460,7 +460,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
             buildRetrofit()
                     .create(CharacterApi.class)
                     .getCharacterAbility(this.apiKey, ocid, date)
-                    .enqueue(createCallback(future, true));
+                    .enqueue(createCallback(future, CharacterAbilityDTO.class, true));
         } catch (Exception e) {
             future.completeExceptionally(e);
         }
@@ -504,7 +504,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
             buildRetrofit()
                     .create(CharacterApi.class)
                     .getCharacterItemEquipment(this.apiKey, ocid, date)
-                    .enqueue(createCallback(future, true));
+                    .enqueue(createCallback(future, CharacterItemEquipmentDTO.class, true));
         } catch (Exception e) {
             future.completeExceptionally(e);
         }
@@ -548,7 +548,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
             buildRetrofit()
                     .create(CharacterApi.class)
                     .getCharacterCashItemEquipment(this.apiKey, ocid, date)
-                    .enqueue(createCallback(future, true));
+                    .enqueue(createCallback(future, CharacterCashItemEquipmentDTO.class, true));
         } catch (Exception e) {
             future.completeExceptionally(e);
         }
@@ -592,7 +592,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
             buildRetrofit()
                     .create(CharacterApi.class)
                     .getCharacterSymbolEquipment(this.apiKey, ocid, date)
-                    .enqueue(createCallback(future, true));
+                    .enqueue(createCallback(future, CharacterSymbolEquipmentDTO.class, true));
         } catch (Exception e) {
             future.completeExceptionally(e);
         }
@@ -635,7 +635,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
             buildRetrofit()
                     .create(CharacterApi.class)
                     .getCharacterSetEffect(this.apiKey, ocid, date)
-                    .enqueue(createCallback(future, true));
+                    .enqueue(createCallback(future, CharacterSetEffectDTO.class, true));
         } catch (Exception e) {
             future.completeExceptionally(e);
         }
@@ -679,7 +679,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
             buildRetrofit()
                     .create(CharacterApi.class)
                     .getCharacterBeautyEquipment(this.apiKey, ocid, date)
-                    .enqueue(createCallback(future, true));
+                    .enqueue(createCallback(future, CharacterBeautyEquipmentDTO.class, true));
         } catch (Exception e) {
             future.completeExceptionally(e);
         }
@@ -723,7 +723,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
             buildRetrofit()
                     .create(CharacterApi.class)
                     .getCharacterAndroidEquipment(this.apiKey, ocid, date)
-                    .enqueue(createCallback(future, true));
+                    .enqueue(createCallback(future, CharacterAndroidEquipmentDTO.class, true));
         } catch (Exception e) {
             future.completeExceptionally(e);
         }
@@ -767,7 +767,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
             buildRetrofit()
                     .create(CharacterApi.class)
                     .getCharacterPetEquipment(this.apiKey, ocid, date)
-                    .enqueue(createCallback(future, true));
+                    .enqueue(createCallback(future, CharacterPetEquipmentDTO.class, true));
         } catch (Exception e) {
             future.completeExceptionally(e);
         }
@@ -824,7 +824,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
             buildRetrofit()
                     .create(CharacterApi.class)
                     .getCharacterSkill(this.apiKey, ocid, date, characterSkillGrade)
-                    .enqueue(createCallback(future, true));
+                    .enqueue(createCallback(future, CharacterSkillDTO.class, true));
         } catch (Exception e) {
             future.completeExceptionally(e);
         }
@@ -868,7 +868,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
             buildRetrofit()
                     .create(CharacterApi.class)
                     .getCharacterLinkSkill(this.apiKey, ocid, date)
-                    .enqueue(createCallback(future, true));
+                    .enqueue(createCallback(future, CharacterLinkSkillDTO.class, true));
         } catch (Exception e) {
             future.completeExceptionally(e);
         }
@@ -912,7 +912,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
             buildRetrofit()
                     .create(CharacterApi.class)
                     .getCharacterVMatrix(this.apiKey, ocid, date)
-                    .enqueue(createCallback(future, true));
+                    .enqueue(createCallback(future, CharacterVMatrixDTO.class, true));
         } catch (Exception e) {
             future.completeExceptionally(e);
         }
@@ -956,7 +956,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
             buildRetrofit()
                     .create(CharacterApi.class)
                     .getCharacterHexaMatrix(this.apiKey, ocid, date)
-                    .enqueue(createCallback(future, true));
+                    .enqueue(createCallback(future, CharacterHexaMatrixDTO.class, true));
         } catch (Exception e) {
             future.completeExceptionally(e);
         }
@@ -1000,7 +1000,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
             buildRetrofit()
                     .create(CharacterApi.class)
                     .getCharacterHexaMatrixStat(this.apiKey, ocid, date)
-                    .enqueue(createCallback(future, true));
+                    .enqueue(createCallback(future, CharacterHexaMatrixStatDTO.class, true));
         } catch (Exception e) {
             future.completeExceptionally(e);
         }
@@ -1044,7 +1044,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
             buildRetrofit()
                     .create(CharacterApi.class)
                     .getCharacterDojang(this.apiKey, ocid, date)
-                    .enqueue(createCallback(future, true));
+                    .enqueue(createCallback(future, CharacterDojangDTO.class, true));
         } catch (Exception e) {
             future.completeExceptionally(e);
         }
@@ -1088,7 +1088,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
             buildRetrofit()
                     .create(CharacterApi.class)
                     .getCharacterOtherStat(this.apiKey, ocid, date)
-                    .enqueue(createCallback(future, true));
+                    .enqueue(createCallback(future, CharacterOtherStatDTO.class, true));
 
         } catch (Exception e) {
             future.completeExceptionally(e);
@@ -1133,7 +1133,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
             buildRetrofit()
                     .create(CharacterApi.class)
                     .getCharacterRingExchangeSkillEquipment(this.apiKey, ocid, date)
-                    .enqueue(createCallback(future, true));
+                    .enqueue(createCallback(future, CharacterRingExchangeSkillEquipmentDTO.class, true));
 
         } catch (Exception e) {
             future.completeExceptionally(e);
@@ -1182,7 +1182,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
             buildRetrofit()
                     .create(UnionApi.class)
                     .getUnion(this.apiKey, ocid, date)
-                    .enqueue(createCallback(future, true));
+                    .enqueue(createCallback(future, UnionDTO.class, true));
         } catch (Exception e) {
             future.completeExceptionally(e);
         }
@@ -1226,7 +1226,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
             buildRetrofit()
                     .create(UnionApi.class)
                     .getUnionRaider(this.apiKey, ocid, date)
-                    .enqueue(createCallback(future, true));
+                    .enqueue(createCallback(future, UnionRaiderDTO.class, true));
         } catch (Exception e) {
             future.completeExceptionally(e);
         }
@@ -1270,7 +1270,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
             buildRetrofit()
                     .create(UnionApi.class)
                     .getUnionArtifact(this.apiKey, ocid, date)
-                    .enqueue(createCallback(future, true));
+                    .enqueue(createCallback(future, UnionArtifactDTO.class, true));
         } catch (Exception e) {
             future.completeExceptionally(e);
         }
@@ -1316,7 +1316,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
             buildRetrofit()
                     .create(UnionApi.class)
                     .getUnionChampion(this.apiKey, ocid, date)
-                    .enqueue(createCallback(future, true));
+                    .enqueue(createCallback(future, UnionChampionDTO.class, true));
         } catch (Exception e) {
             future.completeExceptionally(e);
         }
@@ -1345,7 +1345,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
         buildRetrofit()
                 .create(GuildApi.class)
                 .getGuild(this.apiKey, guildName, worldName)
-                .enqueue(createCallback(future, true));
+                .enqueue(createCallback(future, GuildDTO.class, true));
 
         return future;
     }
@@ -1386,7 +1386,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
             buildRetrofit()
                     .create(GuildApi.class)
                     .getGuildBasic(this.apiKey, oguildId, date)
-                    .enqueue(createCallback(future, true));
+                    .enqueue(createCallback(future, GuildBasicDTO.class, true));
         } catch (Exception e) {
             future.completeExceptionally(e);
         }
@@ -1426,7 +1426,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
             buildRetrofit()
                     .create(StarforceApi.class)
                     .getStarforceHistoryByDate(this.apiKey, count, date)
-                    .enqueue(createCallback(future));
+                    .enqueue(createCallback(future, StarforceHistoryResponseDTO.class));
         } catch (Exception e) {
             future.completeExceptionally(e);
         }
@@ -1448,7 +1448,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
         buildRetrofit()
                 .create(StarforceApi.class)
                 .getStarforceHistoryByCursor(this.apiKey, count, cursor)
-                .enqueue(createCallback(future));
+                .enqueue(createCallback(future, StarforceHistoryResponseDTO.class));
 
         return future;
     }
@@ -1481,7 +1481,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
             buildRetrofit()
                     .create(CubeApi.class)
                     .getCubeHistoryByDate(this.apiKey, count, date)
-                    .enqueue(createCallback(future));
+                    .enqueue(createCallback(future, CubeHistoryResponseDTO.class));
         } catch (Exception e) {
             future.completeExceptionally(e);
         }
@@ -1503,7 +1503,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
         buildRetrofit()
                 .create(CubeApi.class)
                 .getCubeHistoryByCursor(this.apiKey, count, cursor)
-                .enqueue(createCallback(future));
+                .enqueue(createCallback(future, CubeHistoryResponseDTO.class));
 
         return future;
     }
@@ -1536,7 +1536,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
             buildRetrofit()
                     .create(PotentialApi.class)
                     .getPotentialHistoryByDate(this.apiKey, count, date)
-                    .enqueue(createCallback(future));
+                    .enqueue(createCallback(future, PotentialHistoryResponseDTO.class));
         } catch (Exception e) {
             future.completeExceptionally(e);
         }
@@ -1558,7 +1558,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
         buildRetrofit()
                 .create(PotentialApi.class)
                 .getPotentialHistoryByCursor(this.apiKey, count, cursor)
-                .enqueue(createCallback(future));
+                .enqueue(createCallback(future, PotentialHistoryResponseDTO.class));
 
         return future;
     }
@@ -1605,7 +1605,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
             buildRetrofit()
                     .create(RankingApi.class)
                     .getOverallRanking(this.apiKey, date, worldName, worldType, characterClass, ocid, page)
-                    .enqueue(createCallback(future));
+                    .enqueue(createCallback(future, OverallRankingResponseDTO.class));
         } catch (Exception e) {
             future.completeExceptionally(e);
         }
@@ -1647,7 +1647,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
             buildRetrofit()
                     .create(RankingApi.class)
                     .getUnionRanking(this.apiKey, date, worldName, ocid, page)
-                    .enqueue(createCallback(future));
+                    .enqueue(createCallback(future, UnionRankingResponseDTO.class));
         } catch (Exception e) {
             future.completeExceptionally(e);
         }
@@ -1691,7 +1691,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
             buildRetrofit()
                     .create(RankingApi.class)
                     .getGuildRanking(this.apiKey, date, worldName, rankingType, guildName, page)
-                    .enqueue(createCallback(future));
+                    .enqueue(createCallback(future, GuildRankingResponseDTO.class));
         } catch (Exception e) {
             future.completeExceptionally(e);
         }
@@ -1737,7 +1737,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
             buildRetrofit()
                     .create(RankingApi.class)
                     .getDojangRanking(this.apiKey, date, worldName, difficulty, characterClass, ocid, page)
-                    .enqueue(createCallback(future));
+                    .enqueue(createCallback(future, DojangRankingResponseDTO.class));
         } catch (Exception e) {
             future.completeExceptionally(e);
         }
@@ -1779,7 +1779,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
             buildRetrofit()
                     .create(RankingApi.class)
                     .getTheSeedRanking(this.apiKey, date, worldName, ocid, page)
-                    .enqueue(createCallback(future));
+                    .enqueue(createCallback(future, TheSeedRankingResponseDTO.class));
         } catch (Exception e) {
             future.completeExceptionally(e);
         }
@@ -1819,7 +1819,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
             buildRetrofit()
                     .create(RankingApi.class)
                     .getAchievementRanking(this.apiKey, date, ocid, page)
-                    .enqueue(createCallback(future));
+                    .enqueue(createCallback(future, AchievementRankingResponseDTO.class));
         } catch (Exception e) {
             future.completeExceptionally(e);
         }
@@ -1842,7 +1842,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
         buildRetrofit()
                 .create(NoticeApi.class)
                 .getNoticeList(this.apiKey)
-                .enqueue(createCallback(future));
+                .enqueue(createCallback(future, NoticeListDTO.class));
 
         return future;
     }
@@ -1860,7 +1860,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
         buildRetrofit()
                 .create(NoticeApi.class)
                 .getNoticeDetail(this.apiKey, noticeId)
-                .enqueue(createCallback(future));
+                .enqueue(createCallback(future, NoticeDetailDTO.class));
 
         return future;
     }
@@ -1876,7 +1876,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
         buildRetrofit()
                 .create(NoticeApi.class)
                 .getUpdateNoticeList(this.apiKey)
-                .enqueue(createCallback(future));
+                .enqueue(createCallback(future, UpdateNoticeListDTO.class));
 
         return future;
     }
@@ -1894,7 +1894,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
         buildRetrofit()
                 .create(NoticeApi.class)
                 .getUpdateNoticeDetail(this.apiKey, noticeId)
-                .enqueue(createCallback(future));
+                .enqueue(createCallback(future, UpdateNoticeDetailDTO.class));
 
         return future;
     }
@@ -1910,7 +1910,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
         buildRetrofit()
                 .create(NoticeApi.class)
                 .getEventNoticeList(this.apiKey)
-                .enqueue(createCallback(future));
+                .enqueue(createCallback(future, EventNoticeListDTO.class));
 
         return future;
     }
@@ -1928,7 +1928,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
         buildRetrofit()
                 .create(NoticeApi.class)
                 .getEventNoticeDetail(this.apiKey, noticeId)
-                .enqueue(createCallback(future));
+                .enqueue(createCallback(future, EventNoticeDetailDTO.class));
 
         return future;
     }
@@ -1944,7 +1944,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
         buildRetrofit()
                 .create(NoticeApi.class)
                 .getCashshopNoticeList(this.apiKey)
-                .enqueue(createCallback(future));
+                .enqueue(createCallback(future, CashshopNoticeListDTO.class));
 
         return future;
     }
@@ -1962,7 +1962,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
         buildRetrofit()
                 .create(NoticeApi.class)
                 .getCashshopNoticeDetail(this.apiKey, noticeId)
-                .enqueue(createCallback(future));
+                .enqueue(createCallback(future, CashshopNoticeDetailDTO.class));
 
         return future;
     }
