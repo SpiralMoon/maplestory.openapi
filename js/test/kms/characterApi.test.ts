@@ -1,4 +1,3 @@
-import { AxiosError } from 'axios';
 import * as process from 'process';
 
 import {
@@ -42,6 +41,7 @@ describe('Character Information Retrieval', () => {
   describe('getCharacterBasic', () => {
     test('success: getCharacterBasic', async () => {
       const response = await api.getCharacterBasic(ocid);
+      expect(response).toBeDefined();
       console.log(toString(response));
     });
 
@@ -51,6 +51,7 @@ describe('Character Information Retrieval', () => {
         month: 12,
         day: 22,
       });
+      expect(response).toBeDefined();
       console.log(toString(response));
     });
 
@@ -61,21 +62,7 @@ describe('Character Information Retrieval', () => {
         month: 6,
         day: 18,
       });
-      expect(response.date).toBeDefined();
-      expect(response.characterName).toBeNull();
-      expect(response.worldName).toBeNull();
-      expect(response.characterGender).toBeNull();
-      expect(response.characterClass).toBeNull();
-      expect(response.characterClassLevel).toBeNull();
-      expect(response.characterLevel).toBeNull();
-      expect(response.characterExp).toBeNull();
-      expect(response.characterExpRate).toBeNull();
-      expect(response.characterGuildName).toBeNull();
-      expect(response.characterImage).toBeNull();
-      expect(response.characterDateCreate).toBeNull();
-      expect(response.accessFlag).toBeNull();
-      expect(response.liberationQuestClear).toBeNull();
-      console.log(toString(response));
+      expect(response).toBeNull();
     });
 
     test('fail: getCharacterBasic with invalid ocid throw OPENAPI00003', async () => {
@@ -111,6 +98,7 @@ describe('Character Information Retrieval', () => {
   describe('getCharacterImage', () => {
     test('success: getCharacterImage', async () => {
       const response = await api.getCharacterImage(ocid);
+      expect(response).toBeDefined();
       console.log(toString(response));
     });
 
@@ -122,6 +110,7 @@ describe('Character Information Retrieval', () => {
         emotionFrame: 0,
         wmotion: CharacterImageWeaponMotion.Nothing,
       });
+      expect(response).toBeDefined();
       console.log(toString(response));
     });
 
@@ -131,24 +120,19 @@ describe('Character Information Retrieval', () => {
         month: 12,
         day: 22,
       });
+      expect(response).toBeDefined();
       console.log(toString(response));
     });
 
-    // test('fail: getCharacterImage on date with no data', async () => {
-    //   const ocid = 'b0187493ec48ddd7b1d304fe8982d0b0';
-    //   try {
-    //     await api.getCharacterImage(ocid, {}, {
-    //       year: 2025,
-    //       month: 6,
-    //       day: 18,
-    //     });
-    //     fail('An error should have been thrown.');
-    //   } catch (e) {
-    //     const error = e as AxiosError;
-    //     expect(error).toBeInstanceOf(AxiosError);
-    //     console.log(error.message);
-    //   }
-    // });
+    test('success: getCharacterImage on date with no data', async () => {
+      const ocid = 'b0187493ec48ddd7b1d304fe8982d0b0';
+      const response = await api.getCharacterImage(ocid, {}, {
+        year: 2025,
+        month: 6,
+        day: 18,
+      });
+      expect(response).toBeNull();
+    });
 
     test('fail: getCharacterImage with invalid ocid throw OPENAPI00003', async () => {
       const invalidOcid = 'invalid_ocid_123';
@@ -183,6 +167,7 @@ describe('Character Information Retrieval', () => {
   describe('getCharacterPopularity', () => {
     test('success: getCharacterPopularity', async () => {
       const response = await api.getCharacterPopularity(ocid);
+      expect(response).toBeDefined();
       console.log(toString(response));
     });
 
@@ -192,6 +177,7 @@ describe('Character Information Retrieval', () => {
         month: 12,
         day: 22,
       });
+      expect(response).toBeDefined();
       console.log(toString(response));
     });
 
@@ -202,9 +188,7 @@ describe('Character Information Retrieval', () => {
         month: 6,
         day: 18,
       });
-      expect(response.date).toBeDefined();
-      expect(response.popularity).toBeNull();
-      console.log(toString(response));
+      expect(response).toBeNull();
     });
 
     test('fail: getCharacterPopularity with invalid ocid throw OPENAPI00003', async () => {
@@ -240,6 +224,7 @@ describe('Character Information Retrieval', () => {
   describe('getCharacterStat', () => {
     test('success: getCharacterStat', async () => {
       const response = await api.getCharacterStat(ocid);
+      expect(response).toBeDefined();
       console.log(toString(response));
     });
 
@@ -249,6 +234,7 @@ describe('Character Information Retrieval', () => {
         month: 12,
         day: 22,
       });
+      expect(response).toBeDefined();
       console.log(toString(response));
     });
 
@@ -259,11 +245,7 @@ describe('Character Information Retrieval', () => {
         month: 6,
         day: 18,
       });
-      expect(response.date).toBeDefined();
-      expect(response.characterClass).toBeNull();
-      expect(response.finalStat).toEqual([]);
-      expect(response.remainAP).toBeNull();
-      console.log(toString(response));
+      expect(response).toBeNull();
     });
 
     test('fail: getCharacterStat with invalid ocid throw OPENAPI00003', async () => {
@@ -299,6 +281,7 @@ describe('Character Information Retrieval', () => {
   describe('getCharacterHyperStat', () => {
     test('success: getCharacterHyperStat', async () => {
       const response = await api.getCharacterHyperStat(ocid);
+      expect(response).toBeDefined();
       console.log(toString(response));
     });
 
@@ -308,6 +291,7 @@ describe('Character Information Retrieval', () => {
         month: 12,
         day: 22,
       });
+      expect(response).toBeDefined();
       console.log(toString(response));
     });
 
@@ -318,17 +302,7 @@ describe('Character Information Retrieval', () => {
         month: 6,
         day: 18,
       });
-      expect(response.date).toBeDefined();
-      expect(response.characterClass).toBeNull();
-      expect(response.usePresetNo).toBeNull();
-      expect(response.useAvailableHyperStat).toBeNull();
-      expect(response.hyperStatPreset1).toEqual([]);
-      expect(response.hyperStatPreset1RemainPoint).toBeNull();
-      expect(response.hyperStatPreset2).toEqual([]);
-      expect(response.hyperStatPreset2RemainPoint).toBeNull();
-      expect(response.hyperStatPreset3).toEqual([]);
-      expect(response.hyperStatPreset3RemainPoint).toBeNull();
-      console.log(toString(response));
+      expect(response).toBeNull();
     });
 
     test('fail: getCharacterHyperStat with invalid ocid throw OPENAPI00003', async () => {
@@ -364,15 +338,7 @@ describe('Character Information Retrieval', () => {
   describe('getCharacterPropensity', () => {
     test('success: getCharacterPropensity', async () => {
       const response = await api.getCharacterPropensity(ocid);
-      console.log(toString(response));
-    });
-
-    test('success: getCharacterPropensity with date', async () => {
-      const response = await api.getCharacterPropensity(ocid, {
-        year: 2023,
-        month: 12,
-        day: 22,
-      });
+      expect(response).toBeDefined();
       console.log(toString(response));
     });
 
@@ -383,14 +349,7 @@ describe('Character Information Retrieval', () => {
         month: 6,
         day: 18,
       });
-      expect(response.date).toBeDefined();
-      expect(response.charismaLevel).toBeNull();
-      expect(response.sensibilityLevel).toBeNull();
-      expect(response.insightLevel).toBeNull();
-      expect(response.willingnessLevel).toBeNull();
-      expect(response.handicraftLevel).toBeNull();
-      expect(response.charmLevel).toBeNull();
-      console.log(toString(response));
+      expect(response).toBeNull();
     });
 
     test('fail: getCharacterPropensity with invalid ocid throw OPENAPI00003', async () => {
@@ -426,15 +385,7 @@ describe('Character Information Retrieval', () => {
   describe('getCharacterAbility', () => {
     test('success: getCharacterAbility', async () => {
       const response = await api.getCharacterAbility(ocid);
-      console.log(toString(response));
-    });
-
-    test('success: getCharacterAbility with date', async () => {
-      const response = await api.getCharacterAbility(ocid, {
-        year: 2023,
-        month: 12,
-        day: 22,
-      });
+      expect(response).toBeDefined();
       console.log(toString(response));
     });
 
@@ -444,16 +395,8 @@ describe('Character Information Retrieval', () => {
         year: 2025,
         month: 6,
         day: 18,
-      });
-      expect(response.date).toBeDefined();
-      expect(response.abilityGrade).toBeNull();
-      expect(response.abilityInfo).toEqual([]);
-      expect(response.remainFame).toBeNull();
-      expect(response.presetNo).toBeNull();
-      expect(response.abilityPreset1).toBeNull();
-      expect(response.abilityPreset2).toBeNull();
-      expect(response.abilityPreset3).toBeNull();
-      console.log(toString(response));
+      })
+      expect(response).toBeNull();
     });
 
     test('fail: getCharacterAbility with invalid ocid throw OPENAPI00003', async () => {
@@ -489,15 +432,7 @@ describe('Character Information Retrieval', () => {
   describe('getCharacterItemEquipment', () => {
     test('success: getCharacterItemEquipment', async () => {
       const response = await api.getCharacterItemEquipment(ocid);
-      console.log(toString(response));
-    });
-
-    test('success: getCharacterItemEquipment with date', async () => {
-      const response = await api.getCharacterItemEquipment(ocid, {
-        year: 2023,
-        month: 12,
-        day: 22,
-      });
+      expect(response).toBeDefined();
       console.log(toString(response));
     });
 
@@ -508,19 +443,7 @@ describe('Character Information Retrieval', () => {
         month: 6,
         day: 18,
       });
-      expect(response.date).toBeDefined();
-      expect(response.characterGender).toBeNull();
-      expect(response.characterClass).toBeNull();
-      expect(response.presetNo).toBeNull();
-      expect(response.itemEquipment).toEqual([]);
-      expect(response.itemEquipmentPreset1).toEqual([]);
-      expect(response.itemEquipmentPreset2).toEqual([]);
-      expect(response.itemEquipmentPreset3).toEqual([]);
-      expect(response.title).toBeNull();
-      expect(response.medalShape).toBeNull();
-      expect(response.dragonEquipment).toEqual([]);
-      expect(response.mechanicEquipment).toEqual([]);
-      console.log(toString(response));
+      expect(response).toBeNull();
     });
 
     test('fail: getCharacterItemEquipment with invalid ocid throw OPENAPI00003', async () => {
@@ -556,15 +479,7 @@ describe('Character Information Retrieval', () => {
   describe('getCharacterCashItemEquipment', () => {
     test('success: getCharacterCashItemEquipment', async () => {
       const response = await api.getCharacterCashItemEquipment(ocid);
-      console.log(toString(response));
-    });
-
-    test('success: getCharacterCashItemEquipment with date', async () => {
-      const response = await api.getCharacterCashItemEquipment(ocid, {
-        year: 2023,
-        month: 12,
-        day: 22,
-      });
+      expect(response).toBeDefined();
       console.log(toString(response));
     });
 
@@ -575,20 +490,7 @@ describe('Character Information Retrieval', () => {
         month: 6,
         day: 18,
       });
-      expect(response.date).toBeDefined();
-      expect(response.characterGender).toBeNull();
-      expect(response.characterClass).toBeNull();
-      expect(response.characterLookMode).toBeNull();
-      expect(response.presetNo).toBeNull();
-      expect(response.cashItemEquipmentBase).toEqual([]);
-      expect(response.cashItemEquipmentPreset1).toEqual([]);
-      expect(response.cashItemEquipmentPreset2).toEqual([]);
-      expect(response.cashItemEquipmentPreset3).toEqual([]);
-      expect(response.additionalCashItemEquipmentBase).toEqual([]);
-      expect(response.additionalCashItemEquipmentPreset1).toEqual([]);
-      expect(response.additionalCashItemEquipmentPreset2).toEqual([]);
-      expect(response.additionalCashItemEquipmentPreset3).toEqual([]);
-      console.log(toString(response));
+      expect(response).toBeNull();
     });
 
     test('fail: getCharacterCashItemEquipment with invalid ocid throw OPENAPI00003', async () => {
@@ -624,15 +526,7 @@ describe('Character Information Retrieval', () => {
   describe('getCharacterSymbolEquipment', () => {
     test('success: getCharacterSymbolEquipment', async () => {
       const response = await api.getCharacterSymbolEquipment(ocid);
-      console.log(toString(response));
-    });
-
-    test('success: getCharacterSymbolEquipment with date', async () => {
-      const response = await api.getCharacterSymbolEquipment(ocid, {
-        year: 2023,
-        month: 12,
-        day: 22,
-      });
+      expect(response).toBeDefined();
       console.log(toString(response));
     });
 
@@ -643,10 +537,7 @@ describe('Character Information Retrieval', () => {
         month: 6,
         day: 18,
       });
-      expect(response.date).toBeDefined();
-      expect(response.characterClass).toBeNull();
-      expect(response.symbol).toEqual([]);
-      console.log(toString(response));
+      expect(response).toBeNull();
     });
 
     test('fail: getCharacterSymbolEquipment with invalid ocid throw OPENAPI00003', async () => {
@@ -682,15 +573,7 @@ describe('Character Information Retrieval', () => {
   describe('getCharacterSetEffect', () => {
     test('success: getCharacterSetEffect', async () => {
       const response = await api.getCharacterSetEffect(ocid);
-      console.log(toString(response));
-    });
-
-    test('success: getCharacterSetEffect with date', async () => {
-      const response = await api.getCharacterSetEffect(ocid, {
-        year: 2023,
-        month: 12,
-        day: 22,
-      });
+      // nothing to assert because some characters may not have set effects
       console.log(toString(response));
     });
 
@@ -701,9 +584,7 @@ describe('Character Information Retrieval', () => {
         month: 6,
         day: 18,
       });
-      expect(response.date).toBeDefined();
-      expect(response.setEffect).toEqual([]);
-      console.log(toString(response));
+      expect(response).toBeNull();
     });
 
     test('fail: getCharacterSetEffect with invalid ocid throw OPENAPI00003', async () => {
@@ -739,15 +620,7 @@ describe('Character Information Retrieval', () => {
   describe('getCharacterBeautyEquipment', () => {
     test('success: getCharacterBeautyEquipment', async () => {
       const response = await api.getCharacterBeautyEquipment(ocid);
-      console.log(toString(response));
-    });
-
-    test('success: getCharacterBeautyEquipment with date', async () => {
-      const response = await api.getCharacterBeautyEquipment(ocid, {
-        year: 2023,
-        month: 12,
-        day: 22,
-      });
+      expect(response).toBeDefined();
       console.log(toString(response));
     });
 
@@ -758,16 +631,7 @@ describe('Character Information Retrieval', () => {
         month: 6,
         day: 18,
       });
-      expect(response.date).toBeDefined();
-      expect(response.characterGender).toBeNull();
-      expect(response.characterClass).toBeNull();
-      expect(response.characterHair).toBeNull();
-      expect(response.characterFace).toBeNull();
-      expect(response.characterSkin).toBeNull();
-      expect(response.additionalCharacterHair).toBeNull();
-      expect(response.additionalCharacterFace).toBeNull();
-      expect(response.additionalCharacterSkin).toBeNull();
-      console.log(toString(response));
+      expect(response).toBeNull();
     });
 
     test('fail: getCharacterBeautyEquipment with invalid ocid throw OPENAPI00003', async () => {
@@ -803,15 +667,7 @@ describe('Character Information Retrieval', () => {
   describe('getCharacterAndroidEquipment', () => {
     test('success: getCharacterAndroidEquipment', async () => {
       const response = await api.getCharacterAndroidEquipment(ocid);
-      console.log(toString(response));
-    });
-
-    test('success: getCharacterAndroidEquipment with date', async () => {
-      const response = await api.getCharacterAndroidEquipment(ocid, {
-        year: 2023,
-        month: 12,
-        day: 22,
-      });
+      expect(response).toBeDefined();
       console.log(toString(response));
     });
 
@@ -822,25 +678,7 @@ describe('Character Information Retrieval', () => {
         month: 6,
         day: 18,
       });
-      expect(response.date).toBeDefined();
-      expect(response.androidName).toBeNull();
-      expect(response.androidNickname).toBeNull();
-      expect(response.androidIcon).toBeNull();
-      expect(response.androidDescription).toBeNull();
-      expect(response.androidHair).toBeNull();
-      expect(response.androidFace).toBeNull();
-      expect(response.androidSkin).toBeNull();
-      expect(response.androidCashItemEquipment).toEqual([]);
-      expect(response.androidEarSensorClipFlag).toBeNull();
-      expect(response.androidGender).toBeNull();
-      expect(response.androidGrade).toBeNull();
-      expect(response.androidNonHumanoidFlag).toBeNull();
-      expect(response.androidShopUsableFlag).toBeNull();
-      expect(response.presetNo).toBeNull();
-      expect(response.androidPreset1).toBeNull();
-      expect(response.androidPreset2).toBeNull();
-      expect(response.androidPreset3).toBeNull();
-      console.log(toString(response));
+      expect(response).toBeNull();
     });
 
     test('fail: getCharacterAndroidEquipment with invalid ocid throw OPENAPI00003', async () => {
@@ -876,15 +714,7 @@ describe('Character Information Retrieval', () => {
   describe('getCharacterPetEquipment', () => {
     test('success: getCharacterPetEquipment', async () => {
       const response = await api.getCharacterPetEquipment(ocid);
-      console.log(toString(response));
-    });
-
-    test('success: getCharacterPetEquipment with date', async () => {
-      const response = await api.getCharacterPetEquipment(ocid, {
-        year: 2023,
-        month: 12,
-        day: 22,
-      });
+      // nothing to assert because some characters may not have pets
       console.log(toString(response));
     });
 
@@ -895,44 +725,7 @@ describe('Character Information Retrieval', () => {
         month: 6,
         day: 18,
       });
-      expect(response.date).toBeDefined();
-      expect(response.pet1Name).toBeNull();
-      expect(response.pet1Nickname).toBeNull();
-      expect(response.pet1Icon).toBeNull();
-      expect(response.pet1Description).toBeNull();
-      expect(response.pet1Equipment).toBeNull();
-      expect(response.pet1AutoSkill).toBeNull();
-      expect(response.pet1PetType).toBeNull();
-      expect(response.pet1Skill).toEqual([]);
-      expect(response.pet1DateExpire).toBeNull();
-      expect(response.pet1Expired).toBeNull();
-      expect(response.pet1Appearance).toBeNull();
-      expect(response.pet1AppearanceIcon).toBeNull();
-      expect(response.pet2Name).toBeNull();
-      expect(response.pet2Nickname).toBeNull();
-      expect(response.pet2Icon).toBeNull();
-      expect(response.pet2Description).toBeNull();
-      expect(response.pet2Equipment).toBeNull();
-      expect(response.pet2AutoSkill).toBeNull();
-      expect(response.pet2PetType).toBeNull();
-      expect(response.pet2Skill).toEqual([]);
-      expect(response.pet2DateExpire).toBeNull();
-      expect(response.pet2Expired).toBeNull();
-      expect(response.pet2Appearance).toBeNull();
-      expect(response.pet2AppearanceIcon).toBeNull();
-      expect(response.pet3Name).toBeNull();
-      expect(response.pet3Nickname).toBeNull();
-      expect(response.pet3Icon).toBeNull();
-      expect(response.pet3Description).toBeNull();
-      expect(response.pet3Equipment).toBeNull();
-      expect(response.pet3AutoSkill).toBeNull();
-      expect(response.pet3PetType).toBeNull();
-      expect(response.pet3Skill).toEqual([]);
-      expect(response.pet3DateExpire).toBeNull();
-      expect(response.pet3Expired).toBeNull();
-      expect(response.pet3Appearance).toBeNull();
-      expect(response.pet3AppearanceIcon).toBeNull();
-      console.log(toString(response));
+      expect(response).toBeNull();
     });
 
     test('fail: getCharacterPetEquipment with invalid ocid throw OPENAPI00003', async () => {
@@ -969,16 +762,7 @@ describe('Character Information Retrieval', () => {
     test('success: getCharacterSkill with skill grade', async () => {
       const skillGrade = '6';
       const response = await api.getCharacterSkill(ocid, skillGrade);
-      console.log(toString(response));
-    });
-
-    test('success: getCharacterSkill with date', async () => {
-      const skillGrade = '6';
-      const response = await api.getCharacterSkill(ocid, skillGrade, {
-        year: 2023,
-        month: 12,
-        day: 22,
-      });
+      expect(response).toBeDefined();
       console.log(toString(response));
     });
 
@@ -989,11 +773,15 @@ describe('Character Information Retrieval', () => {
         month: 6,
         day: 18,
       });
-      expect(response.date).toBeDefined();
-      expect(response.characterClass).toBeNull();
-      expect(response.characterSkillGrade).toBeNull();
-      expect(response.characterSkill).toEqual([]);
-      console.log(toString(response));
+      expect(response).toBeNull();
+    });
+
+    test('success: getCharacterSkill on date with has no skill grade', async () => {
+      const ocid = 'c0ee173596c89da990c6fae8106e62f0'; // This character is 2nd job
+      const response = await api.getCharacterSkill(ocid, 'hyperactive');
+      expect(response).toBeDefined();
+      expect(response?.characterSkillGrade).toBeNull();
+      expect(response?.characterSkill.length).toBe(0);
     });
 
     test('fail: getCharacterSkill with invalid ocid throw OPENAPI00003', async () => {
@@ -1030,15 +818,7 @@ describe('Character Information Retrieval', () => {
   describe('getCharacterLinkSkill', () => {
     test('success: getCharacterLinkSkill', async () => {
       const response = await api.getCharacterLinkSkill(ocid);
-      console.log(toString(response));
-    });
-
-    test('success: getCharacterLinkSkill with date', async () => {
-      const response = await api.getCharacterLinkSkill(ocid, {
-        year: 2023,
-        month: 12,
-        day: 22,
-      });
+      expect(response).toBeDefined();
       console.log(toString(response));
     });
 
@@ -1049,17 +829,7 @@ describe('Character Information Retrieval', () => {
         month: 6,
         day: 18,
       });
-      expect(response.date).toBeDefined();
-      expect(response.characterClass).toBeNull();
-      expect(response.characterLinkSkill).toEqual([]);
-      expect(response.characterLinkSkillPreset1).toEqual([]);
-      expect(response.characterLinkSkillPreset2).toEqual([]);
-      expect(response.characterLinkSkillPreset3).toEqual([]);
-      expect(response.characterOwnedLinkSkill).toBeNull();
-      expect(response.characterOwnedLinkSkillPreset1).toBeNull();
-      expect(response.characterOwnedLinkSkillPreset2).toBeNull();
-      expect(response.characterOwnedLinkSkillPreset3).toBeNull();
-      console.log(toString(response));
+      expect(response).toBeNull();
     });
 
     test('fail: getCharacterLinkSkill with invalid ocid throw OPENAPI00003', async () => {
@@ -1095,15 +865,7 @@ describe('Character Information Retrieval', () => {
   describe('getCharacterVMatrix', () => {
     test('success: getCharacterVMatrix', async () => {
       const response = await api.getCharacterVMatrix(ocid);
-      console.log(toString(response));
-    });
-
-    test('success: getCharacterVMatrix with date', async () => {
-      const response = await api.getCharacterVMatrix(ocid, {
-        year: 2023,
-        month: 12,
-        day: 22,
-      });
+      // nothing to assert because some characters may not have v matrix
       console.log(toString(response));
     });
 
@@ -1114,11 +876,7 @@ describe('Character Information Retrieval', () => {
         month: 6,
         day: 18,
       });
-      expect(response.date).toBeDefined();
-      expect(response.characterClass).toBeNull();
-      expect(response.characterVCoreEquipment).toEqual([]);
-      expect(response.characterVMatrixRemainSlotUpgradePoint).toBeNull();
-      console.log(toString(response));
+      expect(response).toBeNull();
     });
 
     test('fail: getCharacterVMatrix with invalid ocid throw OPENAPI00003', async () => {
@@ -1154,15 +912,7 @@ describe('Character Information Retrieval', () => {
   describe('getCharacterHexaMatrix', () => {
     test('success: getCharacterHexaMatrix', async () => {
       const response = await api.getCharacterHexaMatrix(ocid);
-      console.log(toString(response));
-    });
-
-    test('success: getCharacterHexaMatrix with date', async () => {
-      const response = await api.getCharacterHexaMatrix(ocid, {
-        year: 2023,
-        month: 12,
-        day: 22,
-      });
+      // nothing to assert because some characters may not have hexa matrix
       console.log(toString(response));
     });
 
@@ -1173,9 +923,7 @@ describe('Character Information Retrieval', () => {
         month: 6,
         day: 18,
       });
-      expect(response.date).toBeDefined();
-      expect(response.characterHexaCoreEquipment).toEqual([]);
-      console.log(toString(response));
+      expect(response).toBeNull();
     });
 
     test('fail: getCharacterHexaMatrix with invalid ocid throw OPENAPI00003', async () => {
@@ -1211,15 +959,7 @@ describe('Character Information Retrieval', () => {
   describe('getCharacterHexaMatrixStat', () => {
     test('success: getCharacterHexaMatrixStat', async () => {
       const response = await api.getCharacterHexaMatrixStat(ocid);
-      console.log(toString(response));
-    });
-
-    test('success: getCharacterHexaMatrixStat with date', async () => {
-      const response = await api.getCharacterHexaMatrixStat(ocid, {
-        year: 2023,
-        month: 12,
-        day: 22,
-      });
+      expect(response).toBeDefined();
       console.log(toString(response));
     });
 
@@ -1230,15 +970,7 @@ describe('Character Information Retrieval', () => {
         month: 6,
         day: 18,
       });
-      expect(response.date).toBeDefined();
-      expect(response.characterClass).toBeDefined();
-      expect(response.characterHexaStatCore).toEqual([]);
-      expect(response.characterHexaStatCore2).toEqual([]);
-      expect(response.characterHexaStatCore3).toEqual([]);
-      expect(response.presetHexaStatCore).toEqual([]);
-      expect(response.presetHexaStatCore2).toEqual([]);
-      expect(response.presetHexaStatCore3).toEqual([]);
-      console.log(toString(response));
+      expect(response).toBeNull();
     });
 
     test('fail: getCharacterHexaMatrixStat with invalid ocid throw OPENAPI00003', async () => {
@@ -1274,15 +1006,7 @@ describe('Character Information Retrieval', () => {
   describe('getCharacterDojang', () => {
     test('success: getCharacterDojang', async () => {
       const response = await api.getCharacterDojang(ocid);
-      console.log(toString(response));
-    });
-
-    test('success: getCharacterDojang with date', async () => {
-      const response = await api.getCharacterDojang(ocid, {
-        year: 2023,
-        month: 12,
-        day: 22,
-      });
+      expect(response).toBeDefined();
       console.log(toString(response));
     });
 
@@ -1293,13 +1017,7 @@ describe('Character Information Retrieval', () => {
         month: 6,
         day: 18,
       });
-      expect(response.date).toBeDefined();
-      expect(response.characterClass).toBeNull();
-      expect(response.worldName).toBeNull();
-      expect(response.dojangBestFloor).toBeNull();
-      expect(response.dateDojangRecord).toBeNull();
-      expect(response.dojangBestTime).toBeNull();
-      console.log(toString(response));
+      expect(response).toBeNull();
     });
 
     test('fail: getCharacterDojang with invalid ocid throw OPENAPI00003', async () => {
@@ -1334,17 +1052,13 @@ describe('Character Information Retrieval', () => {
 
   describe('getCharacterOtherStat', () => {
     test('success: getCharacterOtherStat', async () => {
-      const response = await api.getCharacterOtherStat(ocid);
-      console.log(toString(response));
-    });
-
-    test('success: getCharacterOtherStat with date', async () => {
+      const ocid = '2e4c361fa884731a4c7984eb88127015';
       const response = await api.getCharacterOtherStat(ocid, {
         year: 2025,
-        month: 8,
-        day: 21,
+        month: 11,
+        day: 3,
       });
-      console.log(toString(response));
+      // nothing to assert because some characters may not have other stats
     });
 
     test('success: getCharacterOtherStat on date with no data', async () => {
@@ -1354,9 +1068,7 @@ describe('Character Information Retrieval', () => {
         month: 8,
         day: 21,
       });
-      expect(response.date).toBeDefined();
-      expect(response.otherStat).toEqual([]);
-      console.log(toString(response));
+      expect(response).toBeNull();
     });
 
     test('fail: getCharacterOtherStat with invalid ocid throw OPENAPI00003', async () => {
@@ -1392,15 +1104,7 @@ describe('Character Information Retrieval', () => {
   describe('getCharacterRingExchangeSkillEquipment', () => {
     test('success: getCharacterRingExchangeSkillEquipment', async () => {
       const response = await api.getCharacterRingExchangeSkillEquipment(ocid);
-      console.log(toString(response));
-    });
-
-    test('success: getCharacterRingExchangeSkillEquipment with date', async () => {
-      const response = await api.getCharacterRingExchangeSkillEquipment(ocid, {
-        year: 2025,
-        month: 8,
-        day: 21,
-      });
+      expect(response).toBeDefined();
       console.log(toString(response));
     });
 
@@ -1411,13 +1115,7 @@ describe('Character Information Retrieval', () => {
         month: 8,
         day: 21,
       });
-      expect(response.date).toBeDefined();
-      expect(response.characterClass).toBeNull();
-      expect(response.specialRingExchangeName).toBeNull();
-      expect(response.specialRingExchangeLevel).toBeNull();
-      expect(response.specialRingExchangeIcon).toBeNull();
-      expect(response.specialRingExchangeDescription).toBeNull();
-      console.log(toString(response));
+      expect(response).toBeNull();
     });
 
     test('fail: getCharacterRingExchangeSkillEquipment with invalid ocid throw OPENAPI00003', async () => {

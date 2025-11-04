@@ -9,11 +9,13 @@ const api = new MapleStoryApi(apiKey);
 describe('User Information Retrieval', () => {
   test('success: getCharacterList', async () => {
     const response = await api.getCharacterList();
+    expect(response).toBeDefined();
     console.log(toString(response));
   });
 
   test('success: getAchievement', async () => {
     const response = await api.getAchievement();
+    expect(response).toBeDefined();
     console.log(toString(response));
   });
 });

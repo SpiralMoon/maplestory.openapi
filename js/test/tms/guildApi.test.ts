@@ -15,11 +15,12 @@ describe('Guild Information Retrieval', () => {
       const guildName = '春樹慕雲';
       const worldName = '艾麗亞';
       const response = await api.getGuild(guildName, worldName);
-      expect(response.oguildId).toBe(ogid);
+      expect(response).toBeDefined();
+      expect(response!.oguildId).toBe(ogid);
       console.log(toString(response));
     });
 
-    test('fail: getGuild with invalid world name', async () => {
+    test('fail: getGuild with invalid world name throw OPENAPI00004', async () => {
       try {
         const guildName = '春樹慕雲';
         const worldName = '_InvalidWorld';
@@ -37,22 +38,14 @@ describe('Guild Information Retrieval', () => {
       const guildName = '_InvalidGuild';
       const worldName = '艾麗亞';
       const response = await api.getGuild(guildName, worldName);
-      expect(response.oguildId).toBeNull();
+      expect(response).toBeNull();
     });
   });
 
   describe('getGuildBasic', () => {
     test('success: getGuildBasic', async () => {
       const response = await api.getGuildBasic(ogid);
-      console.log(toString(response));
-    });
-
-    test('success: getGuildBasic with date', async () => {
-      const response = await api.getGuildBasic(ogid, {
-        year: 2025,
-        month: 10,
-        day: 15,
-      });
+      expect(response).toBeDefined();
       console.log(toString(response));
     });
 

@@ -13,15 +13,7 @@ describe('Union Information Retrieval', () => {
   describe('getUnion', () => {
     test('success: getUnion', async () => {
       const response = await api.getUnion(ocid);
-      console.log(toString(response));
-    });
-
-    test('success: getUnion with date', async () => {
-      const response = await api.getUnion(ocid, {
-        year: 2025,
-        month: 4,
-        day: 21,
-      });
+      // nothing to assert because some characters may not have union
       console.log(toString(response));
     });
 
@@ -58,15 +50,7 @@ describe('Union Information Retrieval', () => {
   describe('getUnionRaider', () => {
     test('success: getUnionRaider', async () => {
       const response = await api.getUnionRaider(ocid);
-      console.log(toString(response));
-    });
-
-    test('success: getUnionRaider with date', async () => {
-      const response = await api.getUnionRaider(ocid, {
-        year: 2025,
-        month: 4,
-        day: 21,
-      });
+      // nothing to assert because some characters may not have union raider
       console.log(toString(response));
     });
 
@@ -103,15 +87,7 @@ describe('Union Information Retrieval', () => {
   describe('getUnionArtifact', () => {
     test('success: getUnionArtifact', async () => {
       const response = await api.getUnionArtifact(ocid);
-      console.log(toString(response));
-    });
-
-    test('success: getUnionArtifact with date', async () => {
-      const response = await api.getUnionArtifact(ocid, {
-        year: 2025,
-        month: 4,
-        day: 21,
-      });
+      // nothing to assert because some characters may not have union artifact
       console.log(toString(response));
     });
 

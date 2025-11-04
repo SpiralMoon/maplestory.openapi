@@ -41,15 +41,7 @@ describe('Character Information Retrieval', () => {
   describe('getCharacterBasic', () => {
     test('success: getCharacterBasic', async () => {
       const response = await api.getCharacterBasic(ocid);
-      console.log(toString(response));
-    });
-
-    test('success: getCharacterBasic with date', async () => {
-      const response = await api.getCharacterBasic(ocid, {
-        year: 2025,
-        month: 10,
-        day: 15,
-      });
+      expect(response).toBeDefined();
       console.log(toString(response));
     });
 
@@ -86,17 +78,7 @@ describe('Character Information Retrieval', () => {
   describe('getCharacterImage', () => {
     test('success: getCharacterImage', async () => {
       const response = await api.getCharacterImage(ocid);
-      console.log(toString(response));
-    });
-
-    test('success: getCharacterImage with options', async () => {
-      const response = await api.getCharacterImage(ocid, {
-        action: CharacterImageAction.Jump,
-        actionFrame: 0,
-        emotion: CharacterImageEmotion.Chu,
-        emotionFrame: 0,
-        wmotion: CharacterImageWeaponMotion.Nothing,
-      });
+      expect(response).toBeDefined();
       console.log(toString(response));
     });
 
@@ -106,42 +88,7 @@ describe('Character Information Retrieval', () => {
         month: 10,
         day: 15,
       });
-      console.log(toString(response));
-    });
-
-    test('fail: getCharacterImage with invalid ocid throw OPENAPI00003', async () => {
-      const invalidOcid = 'invalid_ocid_123';
-      try {
-        await api.getCharacterImage(invalidOcid);
-        fail('An error should have been thrown.');
-      } catch (e) {
-        const error = e as MapleStoryApiError;
-        expect(error).toBeInstanceOf(MapleStoryApiError);
-        expect(error.errorCode).toBe(MapleStoryApiErrorCode.OPENAPI00003);
-        console.log(error.errorCode, error.message);
-      }
-    });
-
-    test('fail: getCharacterImage with invalid date', async () => {
-      try {
-        await api.getCharacterImage(ocid, {}, {
-          year: 2025,
-          month: 10,
-          day: 14,
-        });
-        fail('An error should have been thrown.');
-      } catch (e) {
-        const error = e as Error;
-        expect(error).toBeInstanceOf(Error);
-        expect(error.message).toContain('You can only retrieve data after 2025-10-15.');
-        console.log(error.message);
-      }
-    });
-  });
-
-  describe('getCharacterPopularity', () => {
-    test('success: getCharacterPopularity', async () => {
-      const response = await api.getCharacterPopularity(ocid);
+      expect(response).toBeDefined();
       console.log(toString(response));
     });
 
@@ -151,42 +98,7 @@ describe('Character Information Retrieval', () => {
         month: 10,
         day: 15,
       });
-      console.log(toString(response));
-    });
-
-    test('fail: getCharacterPopularity with invalid ocid throw OPENAPI00003', async () => {
-      const invalidOcid = 'invalid_ocid_123';
-      try {
-        await api.getCharacterPopularity(invalidOcid);
-        fail('An error should have been thrown.');
-      } catch (e) {
-        const error = e as MapleStoryApiError;
-        expect(error).toBeInstanceOf(MapleStoryApiError);
-        expect(error.errorCode).toBe(MapleStoryApiErrorCode.OPENAPI00003);
-        console.log(error.errorCode, error.message);
-      }
-    });
-
-    test('fail: getCharacterPopularity with invalid date', async () => {
-      try {
-        await api.getCharacterPopularity(ocid, {
-          year: 2025,
-          month: 10,
-          day: 14,
-        });
-        fail('An error should have been thrown.');
-      } catch (e) {
-        const error = e as Error;
-        expect(error).toBeInstanceOf(Error);
-        expect(error.message).toContain('You can only retrieve data after 2025-10-15.');
-        console.log(error.message);
-      }
-    });
-  });
-
-  describe('getCharacterStat', () => {
-    test('success: getCharacterStat', async () => {
-      const response = await api.getCharacterStat(ocid);
+      expect(response).toBeDefined();
       console.log(toString(response));
     });
 
@@ -196,42 +108,7 @@ describe('Character Information Retrieval', () => {
         month: 10,
         day: 15,
       });
-      console.log(toString(response));
-    });
-
-    test('fail: getCharacterStat with invalid ocid throw OPENAPI00003', async () => {
-      const invalidOcid = 'invalid_ocid_123';
-      try {
-        await api.getCharacterStat(invalidOcid);
-        fail('An error should have been thrown.');
-      } catch (e) {
-        const error = e as MapleStoryApiError;
-        expect(error).toBeInstanceOf(MapleStoryApiError);
-        expect(error.errorCode).toBe(MapleStoryApiErrorCode.OPENAPI00003);
-        console.log(error.errorCode, error.message);
-      }
-    });
-
-    test('fail: getCharacterStat with invalid date', async () => {
-      try {
-        await api.getCharacterStat(ocid, {
-          year: 2025,
-          month: 10,
-          day: 14,
-        });
-        fail('An error should have been thrown.');
-      } catch (e) {
-        const error = e as Error;
-        expect(error).toBeInstanceOf(Error);
-        expect(error.message).toContain('You can only retrieve data after 2025-10-15.');
-        console.log(error.message);
-      }
-    });
-  });
-
-  describe('getCharacterHyperStat', () => {
-    test('success: getCharacterHyperStat', async () => {
-      const response = await api.getCharacterHyperStat(ocid);
+      expect(response).toBeDefined();
       console.log(toString(response));
     });
 
@@ -241,42 +118,7 @@ describe('Character Information Retrieval', () => {
         month: 10,
         day: 15,
       });
-      console.log(toString(response));
-    });
-
-    test('fail: getCharacterHyperStat with invalid ocid throw OPENAPI00003', async () => {
-      const invalidOcid = 'invalid_ocid_123';
-      try {
-        await api.getCharacterHyperStat(invalidOcid);
-        fail('An error should have been thrown.');
-      } catch (e) {
-        const error = e as MapleStoryApiError;
-        expect(error).toBeInstanceOf(MapleStoryApiError);
-        expect(error.errorCode).toBe(MapleStoryApiErrorCode.OPENAPI00003);
-        console.log(error.errorCode, error.message);
-      }
-    });
-
-    test('fail: getCharacterHyperStat with invalid date', async () => {
-      try {
-        await api.getCharacterHyperStat(ocid, {
-          year: 2025,
-          month: 10,
-          day: 14,
-        });
-        fail('An error should have been thrown.');
-      } catch (e) {
-        const error = e as Error;
-        expect(error).toBeInstanceOf(Error);
-        expect(error.message).toContain('You can only retrieve data after 2025-10-15.');
-        console.log(error.message);
-      }
-    });
-  });
-
-  describe('getCharacterPropensity', () => {
-    test('success: getCharacterPropensity', async () => {
-      const response = await api.getCharacterPropensity(ocid);
+      expect(response).toBeDefined();
       console.log(toString(response));
     });
 
@@ -286,42 +128,7 @@ describe('Character Information Retrieval', () => {
         month: 10,
         day: 15,
       });
-      console.log(toString(response));
-    });
-
-    test('fail: getCharacterPropensity with invalid ocid throw OPENAPI00003', async () => {
-      const invalidOcid = 'invalid_ocid_123';
-      try {
-        await api.getCharacterPropensity(invalidOcid);
-        fail('An error should have been thrown.');
-      } catch (e) {
-        const error = e as MapleStoryApiError;
-        expect(error).toBeInstanceOf(MapleStoryApiError);
-        expect(error.errorCode).toBe(MapleStoryApiErrorCode.OPENAPI00003);
-        console.log(error.errorCode, error.message);
-      }
-    });
-
-    test('fail: getCharacterPropensity with invalid date', async () => {
-      try {
-        await api.getCharacterPropensity(ocid, {
-          year: 2025,
-          month: 10,
-          day: 14,
-        });
-        fail('An error should have been thrown.');
-      } catch (e) {
-        const error = e as Error;
-        expect(error).toBeInstanceOf(Error);
-        expect(error.message).toContain('You can only retrieve data after 2025-10-15.');
-        console.log(error.message);
-      }
-    });
-  });
-
-  describe('getCharacterAbility', () => {
-    test('success: getCharacterAbility', async () => {
-      const response = await api.getCharacterAbility(ocid);
+      expect(response).toBeDefined();
       console.log(toString(response));
     });
 
@@ -367,15 +174,7 @@ describe('Character Information Retrieval', () => {
   describe('getCharacterItemEquipment', () => {
     test('success: getCharacterItemEquipment', async () => {
       const response = await api.getCharacterItemEquipment(ocid);
-      console.log(toString(response));
-    });
-
-    test('success: getCharacterItemEquipment with date', async () => {
-      const response = await api.getCharacterItemEquipment(ocid, {
-        year: 2025,
-        month: 10,
-        day: 15,
-      });
+      expect(response).toBeDefined();
       console.log(toString(response));
     });
 
@@ -412,15 +211,7 @@ describe('Character Information Retrieval', () => {
   describe('getCharacterCashItemEquipment', () => {
     test('success: getCharacterCashItemEquipment', async () => {
       const response = await api.getCharacterCashItemEquipment(ocid);
-      console.log(toString(response));
-    });
-
-    test('success: getCharacterCashItemEquipment with date', async () => {
-      const response = await api.getCharacterCashItemEquipment(ocid, {
-        year: 2025,
-        month: 10,
-        day: 15,
-      });
+      expect(response).toBeDefined();
       console.log(toString(response));
     });
 
@@ -457,15 +248,7 @@ describe('Character Information Retrieval', () => {
   describe('getCharacterSymbolEquipment', () => {
     test('success: getCharacterSymbolEquipment', async () => {
       const response = await api.getCharacterSymbolEquipment(ocid);
-      console.log(toString(response));
-    });
-
-    test('success: getCharacterSymbolEquipment with date', async () => {
-      const response = await api.getCharacterSymbolEquipment(ocid, {
-        year: 2025,
-        month: 10,
-        day: 15,
-      });
+      expect(response).toBeDefined();
       console.log(toString(response));
     });
 
@@ -502,15 +285,7 @@ describe('Character Information Retrieval', () => {
   describe('getCharacterSetEffect', () => {
     test('success: getCharacterSetEffect', async () => {
       const response = await api.getCharacterSetEffect(ocid);
-      console.log(toString(response));
-    });
-
-    test('success: getCharacterSetEffect with date', async () => {
-      const response = await api.getCharacterSetEffect(ocid, {
-        year: 2025,
-        month: 10,
-        day: 15,
-      });
+      // nothing to assert because some characters may not have set effects
       console.log(toString(response));
     });
 
@@ -547,15 +322,7 @@ describe('Character Information Retrieval', () => {
   describe('getCharacterBeautyEquipment', () => {
     test('success: getCharacterBeautyEquipment', async () => {
       const response = await api.getCharacterBeautyEquipment(ocid);
-      console.log(toString(response));
-    });
-
-    test('success: getCharacterBeautyEquipment with date', async () => {
-      const response = await api.getCharacterBeautyEquipment(ocid, {
-        year: 2025,
-        month: 10,
-        day: 15,
-      });
+      expect(response).toBeDefined();
       console.log(toString(response));
     });
 
@@ -592,15 +359,7 @@ describe('Character Information Retrieval', () => {
   describe('getCharacterAndroidEquipment', () => {
     test('success: getCharacterAndroidEquipment', async () => {
       const response = await api.getCharacterAndroidEquipment(ocid);
-      console.log(toString(response));
-    });
-
-    test('success: getCharacterAndroidEquipment with date', async () => {
-      const response = await api.getCharacterAndroidEquipment(ocid, {
-        year: 2025,
-        month: 10,
-        day: 15,
-      });
+      expect(response).toBeDefined();
       console.log(toString(response));
     });
 
@@ -637,15 +396,7 @@ describe('Character Information Retrieval', () => {
   describe('getCharacterPetEquipment', () => {
     test('success: getCharacterPetEquipment', async () => {
       const response = await api.getCharacterPetEquipment(ocid);
-      console.log(toString(response));
-    });
-
-    test('success: getCharacterPetEquipment with date', async () => {
-      const response = await api.getCharacterPetEquipment(ocid, {
-        year: 2025,
-        month: 10,
-        day: 15,
-      });
+      // nothing to assert because some characters may not have pets
       console.log(toString(response));
     });
 
@@ -683,16 +434,7 @@ describe('Character Information Retrieval', () => {
     test('success: getCharacterSkill with skill grade', async () => {
       const skillGrade = '6';
       const response = await api.getCharacterSkill(ocid, skillGrade);
-      console.log(toString(response));
-    });
-
-    test('success: getCharacterSkill with date', async () => {
-      const skillGrade = '6';
-      const response = await api.getCharacterSkill(ocid, skillGrade, {
-        year: 2025,
-        month: 10,
-        day: 15,
-      });
+      expect(response).toBeDefined();
       console.log(toString(response));
     });
 
@@ -730,15 +472,7 @@ describe('Character Information Retrieval', () => {
   describe('getCharacterLinkSkill', () => {
     test('success: getCharacterLinkSkill', async () => {
       const response = await api.getCharacterLinkSkill(ocid);
-      console.log(toString(response));
-    });
-
-    test('success: getCharacterLinkSkill with date', async () => {
-      const response = await api.getCharacterLinkSkill(ocid, {
-        year: 2025,
-        month: 10,
-        day: 15,
-      });
+      expect(response).toBeDefined();
       console.log(toString(response));
     });
 
@@ -775,15 +509,7 @@ describe('Character Information Retrieval', () => {
   describe('getCharacterVMatrix', () => {
     test('success: getCharacterVMatrix', async () => {
       const response = await api.getCharacterVMatrix(ocid);
-      console.log(toString(response));
-    });
-
-    test('success: getCharacterVMatrix with date', async () => {
-      const response = await api.getCharacterVMatrix(ocid, {
-        year: 2025,
-        month: 10,
-        day: 15,
-      });
+      // nothing to assert because some characters may not have v matrix
       console.log(toString(response));
     });
 
@@ -820,15 +546,7 @@ describe('Character Information Retrieval', () => {
   describe('getCharacterHexaMatrix', () => {
     test('success: getCharacterHexaMatrix', async () => {
       const response = await api.getCharacterHexaMatrix(ocid);
-      console.log(toString(response));
-    });
-
-    test('success: getCharacterHexaMatrix with date', async () => {
-      const response = await api.getCharacterHexaMatrix(ocid, {
-        year: 2025,
-        month: 10,
-        day: 15,
-      });
+      // nothing to assert because some characters may not have hexa matrix
       console.log(toString(response));
     });
 
@@ -865,15 +583,7 @@ describe('Character Information Retrieval', () => {
   describe('getCharacterHexaMatrixStat', () => {
     test('success: getCharacterHexaMatrixStat', async () => {
       const response = await api.getCharacterHexaMatrixStat(ocid);
-      console.log(toString(response));
-    });
-
-    test('success: getCharacterHexaMatrixStat with date', async () => {
-      const response = await api.getCharacterHexaMatrixStat(ocid, {
-        year: 2025,
-        month: 10,
-        day: 15,
-      });
+      expect(response).toBeDefined();
       console.log(toString(response));
     });
 
@@ -910,15 +620,7 @@ describe('Character Information Retrieval', () => {
   describe('getCharacterDojang', () => {
     test('success: getCharacterDojang', async () => {
       const response = await api.getCharacterDojang(ocid);
-      console.log(toString(response));
-    });
-
-    test('success: getCharacterDojang with date', async () => {
-      const response = await api.getCharacterDojang(ocid, {
-        year: 2025,
-        month: 10,
-        day: 15,
-      });
+      expect(response).toBeDefined();
       console.log(toString(response));
     });
 

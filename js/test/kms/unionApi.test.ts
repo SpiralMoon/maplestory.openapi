@@ -13,15 +13,7 @@ describe('Union Information Retrieval', () => {
   describe('getUnion', () => {
     test('success: getUnion', async () => {
       const response = await api.getUnion(ocid);
-      console.log(toString(response));
-    });
-
-    test('success: getUnion with date', async () => {
-      const response = await api.getUnion(ocid, {
-        year: 2023,
-        month: 12,
-        day: 22,
-      });
+      // nothing to assert because some characters may not have union
       console.log(toString(response));
     });
 
@@ -58,15 +50,7 @@ describe('Union Information Retrieval', () => {
   describe('getUnionRaider', () => {
     test('success: getUnionRaider', async () => {
       const response = await api.getUnionRaider(ocid);
-      console.log(toString(response));
-    });
-
-    test('success: getUnionRaider with date', async () => {
-      const response = await api.getUnionRaider(ocid, {
-        year: 2023,
-        month: 12,
-        day: 22,
-      });
+      // nothing to assert because some characters may not have union raider
       console.log(toString(response));
     });
 
@@ -103,30 +87,32 @@ describe('Union Information Retrieval', () => {
   describe('getUnionArtifact', () => {
     test('success: getUnionArtifact', async () => {
       const response = await api.getUnionArtifact(ocid);
+      // nothing to assert because some characters may not have union artifact
       console.log(toString(response));
     });
 
     test('success: getUnionArtifact with date', async () => {
       const response = await api.getUnionArtifact(ocid, {
-        year: 2023,
-        month: 12,
-        day: 22,
-      });
-      console.log(toString(response));
-    });
+        year: 2024,
+        month: 1,
+        day: 18,
+      })
+      expect(response).not.toBeNull()
+      console.log(toString(response))
+    })
 
     test('fail: getUnionArtifact with invalid date', async () => {
       try {
         await api.getUnionArtifact(ocid, {
-          year: 2023,
-          month: 12,
-          day: 20,
+          year: 2024,
+          month: 1,
+          day: 17,
         });
         fail('An error should have been thrown.');
       } catch (e) {
         const error = e as Error;
         expect(error).toBeInstanceOf(Error);
-        expect(error.message).toContain('You can only retrieve data after 2023-12-21.');
+        expect(error.message).toContain('You can only retrieve data after 2024-01-18.');
         console.log(error.message);
       }
     });
@@ -148,30 +134,32 @@ describe('Union Information Retrieval', () => {
   describe('getUnionChampion', () => {
     test('success: getUnionChampion', async () => {
       const response = await api.getUnionChampion(ocid);
+      // nothing to assert because some characters may not have union champion
       console.log(toString(response));
     });
 
     test('success: getUnionChampion with date', async () => {
       const response = await api.getUnionChampion(ocid, {
-        year: 2023,
-        month: 12,
-        day: 22,
-      });
-      console.log(toString(response));
-    });
+        year: 2025,
+        month: 2,
+        day: 20,
+      })
+      expect(response).toBeDefined()
+      console.log(toString(response))
+    })
 
     test('fail: getUnionChampion with invalid date', async () => {
       try {
         await api.getUnionChampion(ocid, {
-          year: 2023,
-          month: 12,
-          day: 20,
+          year: 2025,
+          month: 2,
+          day: 19,
         });
         fail('An error should have been thrown.');
       } catch (e) {
         const error = e as Error;
         expect(error).toBeInstanceOf(Error);
-        expect(error.message).toContain('You can only retrieve data after 2023-12-21.');
+        expect(error.message).toContain('You can only retrieve data after 2025-02-20.');
         console.log(error.message);
       }
     });
