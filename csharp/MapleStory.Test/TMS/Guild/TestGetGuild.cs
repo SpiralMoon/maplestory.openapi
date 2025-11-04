@@ -14,8 +14,8 @@ namespace MapleStory.Test.TMS.Guild
         [Test, Description("success: GetGuild")]
         public async Task GetGuild()
         {
-            var guildName = "õðâ§Ù·ê£";
-            var worldName = "äõÕòä¬";
+            var guildName = "æ˜¥æ¨¹æ…•é›²";
+            var worldName = "è‰¾éº—äºž";
             var response = await api.GetGuild(guildName, worldName);
             Assert.IsNotNull(response);
             Assert.That(response.OGuildId, Is.EqualTo(ogid));
@@ -26,7 +26,7 @@ namespace MapleStory.Test.TMS.Guild
         public async Task GetGuild_With_Invalid_Guild_Name()
         {
             var guildName = "_InvalidGuild";
-            var worldName = "äõÕòä¬";
+            var worldName = "è‰¾éº—äºž";
             var response = await api.GetGuild(guildName, worldName);
             Assert.IsNull(response);
         }
@@ -34,7 +34,7 @@ namespace MapleStory.Test.TMS.Guild
         [Test, Description("fail: GetGuild with invalid world name throws OPENAPI00004")]
         public void GetGuild_With_Invalid_World_Name_Throws_OPENAPI00004()
         {
-            var guildName = "õðâ§Ù·ê£";
+            var guildName = "æ˜¥æ¨¹æ…•é›²";
             var worldName = "_InvalidWorld";
             var e = Assert.ThrowsAsync<MapleStoryAPIException>(async () => await api.GetGuild(guildName, worldName));
             Assert.That(e.ErrorCode, Is.EqualTo(MapleStoryAPIErrorCode.OPENAPI00004));

@@ -14,14 +14,14 @@ namespace MapleStory.Test.TMS.Character
         [Test, Description("success: GetCharacter")]
         public async Task GetCharacter()
         {
-            var nickname = "ÁÔ‘º‚≥x";
+            var nickname = "Âê≥Áç®ÁßÄx";
             var response = await api.GetCharacter(nickname);
             Assert.That(response.OCID, Is.EqualTo(ocid));
             Console.WriteLine(response.ToJson());
         }
 
-        [Test, Description("fail: GetCharacter with invalid name throw OPENAPI00004")]
-        public void GetCharacter_With_Invalid_Name_Throw_OPENAPI00004()
+        [Test, Description("fail: GetCharacter with invalid name throws OPENAPI00004")]
+        public void GetCharacter_With_Invalid_Name_Throws_OPENAPI00004()
         {
             var invalidNickname = "invalid_nickname_123_";
             var e = Assert.ThrowsAsync<MapleStoryAPIException>(async () => await api.GetCharacter(invalidNickname));
