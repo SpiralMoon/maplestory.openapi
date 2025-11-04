@@ -37,7 +37,7 @@ namespace MapleStory.Test.KMS.Ranking
         [Test, Description("success: GetTheSeedRanking with world name")]
         public async Task GetTheSeedRanking_With_World_Name()
         {
-            var response = await api.GetTheSeedRanking(worldName: "½ºÄ«´Ï¾Æ", ocid: null, page: null);
+            var response = await api.GetTheSeedRanking(worldName: "ìŠ¤ì¹´ë‹ˆì•„", ocid: null, page: null);
             Console.WriteLine(response.ToJson());
         }
 

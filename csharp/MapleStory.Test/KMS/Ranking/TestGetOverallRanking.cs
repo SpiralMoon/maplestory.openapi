@@ -36,21 +36,21 @@ namespace MapleStory.Test.KMS.Ranking
         [Test, Description("success: GetOverallRanking with specific job")]
         public async Task GetOverallRanking_With_Specific_Job()
         {
-            var response = await api.GetOverallRanking(worldName: null, worldType: null, characterClass: "Àü»ç-È÷¾î·Î", ocid, page: null);
+            var response = await api.GetOverallRanking(worldName: null, worldType: null, characterClass: "ì „ì‚¬-íˆì–´ë¡œ", ocid, page: null);
             Console.WriteLine(response.ToJson());
         }
 
         [Test, Description("success: GetOverallRanking with job group")]
         public async Task GetOverallRanking_With_Job_Group()
         {
-            var response = await api.GetOverallRanking(worldName: null, worldType: null, characterClass: "Àü»ç-ÀüÃ¼ ÀüÁ÷", ocid, page: null);
+            var response = await api.GetOverallRanking(worldName: null, worldType: null, characterClass: "ì „ì‚¬-ì „ì²´ ì „ì§", ocid, page: null);
             Console.WriteLine(response.ToJson());
         }
 
         [Test, Description("success: GetOverallRanking with world name")]
         public async Task GetOverallRanking_With_World_Name()
         {
-            var response = await api.GetOverallRanking(worldName: "½ºÄ«´Ï¾Æ", worldType: null, characterClass: null, ocid: null, page: null);
+            var response = await api.GetOverallRanking(worldName: "ìŠ¤ì¹´ë‹ˆì•„", worldType: null, characterClass: null, ocid: null, page: null);
             Console.WriteLine(response.ToJson());
         }
 
@@ -64,7 +64,7 @@ namespace MapleStory.Test.KMS.Ranking
         [Test, Description("success: GetOverallRanking with world and job")]
         public async Task GetOverallRanking_With_World_And_Job()
         {
-            var response = await api.GetOverallRanking(worldName: "½ºÄ«´Ï¾Æ", worldType: null, characterClass: "¾Æµ¨-ÀüÃ¼ ÀüÁ÷", ocid: null, page: null);
+            var response = await api.GetOverallRanking(worldName: "ìŠ¤ì¹´ë‹ˆì•„", worldType: null, characterClass: "ì•„ë¸-ì „ì²´ ì „ì§", ocid: null, page: null);
             Console.WriteLine(response.ToJson());
         }
 

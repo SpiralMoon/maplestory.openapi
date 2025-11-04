@@ -36,7 +36,7 @@ namespace MapleStory.Test.KMS.Ranking
         [Test, Description("success: GetUnionRanking with world name")]
         public async Task GetUnionRanking_With_World_Name()
         {
-            var response = await api.GetUnionRanking(worldName: "½ºÄ«´Ï¾Æ", ocid, page: null);
+            var response = await api.GetUnionRanking(worldName: "ìŠ¤ì¹´ë‹ˆì•„", ocid, page: null);
             Console.WriteLine(response.ToJson());
         }
 

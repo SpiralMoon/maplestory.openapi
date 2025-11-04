@@ -28,7 +28,7 @@ namespace MapleStory.Test.KMS.Ranking
         [Test, Description("success: GetGuildRanking with guild name")]
         public async Task GetGuildRanking_With_Guild_Name()
         {
-            var response = await api.GetGuildRanking(worldName: null, rankingType: 0, guildName: "¸®´õ", page: null);
+            var response = await api.GetGuildRanking(worldName: null, rankingType: 0, guildName: "ë¶•ë¶•", page: null);
             Assert.That(response.Ranking.Count, Is.GreaterThan(0));
             Console.WriteLine(response.ToJson());
         }
@@ -36,7 +36,7 @@ namespace MapleStory.Test.KMS.Ranking
         [Test, Description("success: GetGuildRanking with world name")]
         public async Task GetGuildRanking_With_World_Name()
         {
-            var response = await api.GetGuildRanking(worldName: "½ºÄ«´Ï¾Æ", rankingType: 0, guildName: null, page: null);
+            var response = await api.GetGuildRanking(worldName: "ìŠ¤ì¹´ë‹ˆì•„", rankingType: 0, guildName: null, page: null);
             Assert.That(response.Ranking.Count, Is.GreaterThan(0));
             Console.WriteLine(response.ToJson());
         }
@@ -44,7 +44,7 @@ namespace MapleStory.Test.KMS.Ranking
         [Test, Description("success: GetGuildRanking with world and guild name")]
         public async Task GetGuildRanking_With_World_And_Guild_Name()
         {
-            var response = await api.GetGuildRanking(worldName: "½ºÄ«´Ï¾Æ", rankingType: 0, guildName: "¸®´õ", page: null);
+            var response = await api.GetGuildRanking(worldName: "ìŠ¤ì¹´ë‹ˆì•„", rankingType: 0, guildName: "ë¶•ë¶•", page: null);
             Assert.That(response.Ranking.Count, Is.LessThanOrEqualTo(1));
             Console.WriteLine(response.ToJson());
         }

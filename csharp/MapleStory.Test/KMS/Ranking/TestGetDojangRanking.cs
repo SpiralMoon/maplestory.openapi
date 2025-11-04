@@ -36,7 +36,7 @@ namespace MapleStory.Test.KMS.Ranking
         [Test, Description("success: GetDojangRanking with world name")]
         public async Task GetDojangRanking_With_World_Name()
         {
-            var response = await api.GetDojangRanking(worldName: "½ºÄ«´Ï¾Æ", difficulty: 1, characterClass: null, ocid: null, page: null);
+            var response = await api.GetDojangRanking(worldName: "ìŠ¤ì¹´ë‹ˆì•„", difficulty: 1, characterClass: null, ocid: null, page: null);
             Assert.That(response.Ranking.Count, Is.GreaterThanOrEqualTo(0));
             Console.WriteLine(response.ToJson());
         }
@@ -44,7 +44,7 @@ namespace MapleStory.Test.KMS.Ranking
         [Test, Description("success: GetDojangRanking with specific job")]
         public async Task GetDojangRanking_With_Specific_Job()
         {
-            var response = await api.GetDojangRanking(worldName: null, difficulty: 1, characterClass: "Àü»ç-È÷¾î·Î", ocid: null, page: null);
+            var response = await api.GetDojangRanking(worldName: null, difficulty: 1, characterClass: "ì „ì‚¬-ížˆì–´ë¡œ", ocid: null, page: null);
             Assert.That(response.Ranking.Count, Is.GreaterThanOrEqualTo(0));
             Console.WriteLine(response.ToJson());
         }
