@@ -10,11 +10,13 @@
 [English](./README.md) | 한국어
 
 ## Notice
->🌏 알림1: 3.4.0 버전부터 TMS 서비스 지역에 대한 지원이 추가 되었습니다. 현재 [KMS](https://maplestory.nexon.com/), [TMS](https://maplestory.beanfun.com/), [MSEA](http://www.maplesea.com/index/)의 데이터를 조회 가능합니다.
+>💡 알림1: Version 3.5.0로의 업데이트 과정에서 마이그레이션이 필요합니다. [Migration](https://github.com/SpiralMoon/maplestory.openapi/tree/master/csharp/docs/migration-ko.md) 항목을 참고 해주세요.
+> 
+>🌏 알림2: 3.4.0 버전부터 TMS 서비스 지역에 대한 지원이 추가 되었습니다. 현재 [KMS](https://maplestory.nexon.com/), [TMS](https://maplestory.beanfun.com/), [MSEA](http://www.maplesea.com/index/)의 데이터를 조회 가능합니다.
 >
->🌏 알림2: 3.0.0 버전부터 MSEA 서비스 지역에 대한 지원이 추가 되었습니다.
+>🌏 알림3: 3.0.0 버전부터 MSEA 서비스 지역에 대한 지원이 추가 되었습니다.
 >
->💡 알림3: Version 2.x.x → 3.0.0 업데이트 과정에서 마이그레이션이 필요합니다. [Migration](https://github.com/SpiralMoon/maplestory.openapi/tree/master/csharp/docs/migration-ko.md) 항목을 참고 해주세요.
+>💡 알림4: Version 2.x.x → 3.0.0 업데이트 과정에서 마이그레이션이 필요합니다. [Migration](https://github.com/SpiralMoon/maplestory.openapi/tree/master/csharp/docs/migration-ko.md) 항목을 참고 해주세요.
 
 ## Installation
 
@@ -75,12 +77,12 @@ catch (HttpRequestException e)
 
 더 많은 예시는 아래 링크의 테스트 케이스에서 확인할 수 있습니다.
 
-- [캐릭터 정보 조회](https://github.com/SpiralMoon/maplestory.openapi/blob/master/csharp/MapleStory.Test/CharacterAPI.cs)
-- [유니온 정보 조회](https://github.com/SpiralMoon/maplestory.openapi/blob/master/csharp/MapleStory.Test/UnionAPI.cs)
-- [길드 정보 조회](https://github.com/SpiralMoon/maplestory.openapi/blob/master/csharp/MapleStory.Test/GuildAPI.cs)
-- [확률 정보 조회](https://github.com/SpiralMoon/maplestory.openapi/blob/master/csharp/MapleStory.Test/HistoryAPI.cs)
-- [랭킹 정보 조회](https://github.com/SpiralMoon/maplestory.openapi/blob/master/csharp/MapleStory.Test/RankingAPI.cs)
-- [공지 정보 조회](https://github.com/SpiralMoon/maplestory.openapi/blob/master/csharp/MapleStory.Test/NoticeAPI.cs)
+- [캐릭터 정보 조회](https://github.com/SpiralMoon/maplestory.openapi/blob/master/csharp/MapleStory.Test/KMS/Character)
+- [유니온 정보 조회](https://github.com/SpiralMoon/maplestory.openapi/blob/master/csharp/MapleStory.Test/KMS/Union)
+- [길드 정보 조회](https://github.com/SpiralMoon/maplestory.openapi/blob/master/csharp/MapleStory.Test/KMS/Guild)
+- [확률 정보 조회](https://github.com/SpiralMoon/maplestory.openapi/blob/master/csharp/MapleStory.Test/KMS/History)
+- [랭킹 정보 조회](https://github.com/SpiralMoon/maplestory.openapi/blob/master/csharp/MapleStory.Test/KMS/Ranking)
+- [공지 정보 조회](https://github.com/SpiralMoon/maplestory.openapi/blob/master/csharp/MapleStory.Test/KMS/Notice)
 
 ### Features
 

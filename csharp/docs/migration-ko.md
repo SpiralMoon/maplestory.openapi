@@ -2,6 +2,49 @@
 
 > 💡 버전업에 따른 간단한 몇가지 변경사항이 있습니다. 이전 버전 사용자들은 아래 안내를 따라 마이그레이션 진행을 권장합니다.
 
+## to 3.5.0
+
+### API 결과 객체가 `null`이 될 수 있음
+
+버전 3.5.0부터는 `Character`, `Guild`, `Union` API의 결과 객체가 `null`이 될 수 있습니다.
+
+```csharp
+async Task<CharacterBasicDTO?> GetCharacterBasic(string ocid, DateTime? date = null);
+```
+
+`null`이 반환되는 상황은 다음과 같습니다.
+
+- 조회 시점에 존재하지 않은 데이터에 조회를 시도할 경우
+- API 응답에서 `date` 필드를 제외한 모든 필드가 `null`이거나 `[]`인 경우
+
+```csharp
+string ocid = "Your Character OCID";
+DateTime date = new DateTime(2024, 12, 31, 0, 0, 0); // 캐릭터 생성일 이전 날짜
+
+// 생성 이전의 데이터는 존재하지 않으므로 null
+CharacterBasicDTO? character = await api.GetCharacterBasic(ocid, date);
+```
+
+이와 더불어, 일부 응답 객체의 필드가 not-null 타입으로 변경되었습니다.
+
+이러한 변경 사항은 API 사용자가 데이터의 존재 여부를 명확히 인지하고 처리할 수 있도록 돕고, 응답 객체 필드의 불필요한 null 검사를 줄이기 위함입니다.
+
+그러나 `api.GetCharacter()`은 항상 not-null 객체를 반환합니다. 존재하지 않는 캐릭터에 대한 조회 시도는 `MapleStoryAPIException` 예외가 발생합니다.
+
+```csharp
+string nickname = "Your Character Nickname";
+CharacterDTO character = await api.GetCharacter(nickname); // 실제 존재하는 캐릭터는 항상 not-null
+
+string nickname = "Not Exist Character Nickname";
+CharacterDTO character = await api.GetCharacter(nickname); // 실제 존재하지 않은 캐릭터는 항상 MapleStoryAPIException 예외 발생
+```
+
+### 안전한 `List<T>` 필드 처리
+
+Nexon Open API의 일부 응답 결과에서는 `List<T>` 타입 필드가 존재하지 않을 때 `null`로 반환되는 경우가 있어 데이터의 안전한 처리가 어려웠습니다.
+
+API 결과 객체의 필드 중 타입이 `List<T>`인 경우, 해당 필드에 값이 없을 때 이제 항상 빈 리스트(`[]`)를 반환하여 null 검사를 줄일 수 있도록 개선하였습니다.
+
 ## 2.x.x to 3.0.0
 
 ### namespace 변경

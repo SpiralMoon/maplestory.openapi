@@ -10,12 +10,13 @@ Packages written in other languages can be found [HERE](https://github.com/Spira
 English | [한국어](./README-ko.md)
 
 ## Notice
-
->🌏 Notice 1: Starting from version 3.4.0, support for tms region has been added. You can now retrieve data from [KMS](https://maplestory.nexon.com/), [TMS](https://maplestory.beanfun.com/), [MSEA](http://www.maplesea.com/index/).
+>💡 Notice 1: Migration is required when updating to version 3.5.0. Please refer to the documentation for [Migration](https://github.com/SpiralMoon/maplestory.openapi/tree/master/java/docs/migration-en.md).
 >
->🌏 Notice 2: Starting from version 3.0.0, support for msea region has been added.
+>🌏 Notice 2: Starting from version 3.4.0, support for tms region has been added. You can now retrieve data from [KMS](https://maplestory.nexon.com/), [TMS](https://maplestory.beanfun.com/), [MSEA](http://www.maplesea.com/index/).
 >
->💡 Notice 3: Migration is required when updating from version 2.x.x to 3.0.0. Please refer to the documentation for [Migration](https://github.com/SpiralMoon/maplestory.openapi/tree/master/java/docs/migration-en.md).
+>🌏 Notice 3: Starting from version 3.0.0, support for msea region has been added.
+>
+>💡 Notice 4: Migration is required when updating from version 2.x.x to 3.0.0. Please refer to the documentation for [Migration](https://github.com/SpiralMoon/maplestory.openapi/tree/master/java/docs/migration-en.md).
 
 ## Installation
 
@@ -87,12 +88,12 @@ class Sample {
 
 You can find more examples in the test cases at the following link.
 
-- [Character Information Retrieval](https://github.com/SpiralMoon/maplestory.openapi/blob/master/java/src/test/java/CharacterApi.java)
-- [Union Information Retrieval](https://github.com/SpiralMoon/maplestory.openapi/blob/master/java/src/test/java/UnionApi.java)
-- [Guild Information Retrieval](https://github.com/SpiralMoon/maplestory.openapi/blob/master/java/src/test/java/GuildApi.java)
-- [History Information Retrieval](https://github.com/SpiralMoon/maplestory.openapi/blob/master/java/src/test/java/HistoryApi.java)
-- [Ranking Information Retrieval](https://github.com/SpiralMoon/maplestory.openapi/blob/master/java/src/test/java/RankingApi.java)
-- [Notice Information Retrieval](https://github.com/SpiralMoon/maplestory.openapi/blob/master/java/src/test/java/NoticeApi.java)
+- [Character Information Retrieval](https://github.com/SpiralMoon/maplestory.openapi/blob/master/java/src/test/java/kms/character)
+- [Union Information Retrieval](https://github.com/SpiralMoon/maplestory.openapi/blob/master/java/src/test/java/kms/union)
+- [Guild Information Retrieval](https://github.com/SpiralMoon/maplestory.openapi/blob/master/java/src/test/java/kms/guild)
+- [History Information Retrieval](https://github.com/SpiralMoon/maplestory.openapi/blob/master/java/src/test/java/kms/history)
+- [Ranking Information Retrieval](https://github.com/SpiralMoon/maplestory.openapi/blob/master/java/src/test/java/kms/ranking)
+- [Notice Information Retrieval](https://github.com/SpiralMoon/maplestory.openapi/blob/master/java/src/test/java/kms/notice)
 
 ### Features
 This library supports all apis published in the MapleStory OpenAPI official docs.

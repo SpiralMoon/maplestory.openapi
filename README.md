@@ -24,11 +24,13 @@
 
 >💻 This library is maintained in sync with Nexon OpenAPI patches. It is recommended to always use the latest version.
 >
->🌏 Notice 1: Starting from version 3.4.0, support for tms region has been added. You can now retrieve data from [KMS](https://maplestory.nexon.com/), [TMS](https://maplestory.beanfun.com/), [MSEA](http://www.maplesea.com/index/).
+>💡 Notice 1: Migration is required when updating to version 3.5.0. Please refer to the documentation for details.
 >
->🌏 Notice 2: Starting from version 3.0.0, support for msea region has been added.
-> 
-> 💡 Notice 2: Migration is required when updating from version 2.x.x to 3.0.0. Please refer to the documentation for details.
+>🌏 Notice 2: Starting from version 3.4.0, support for tms region has been added. You can now retrieve data from [KMS](https://maplestory.nexon.com/), [TMS](https://maplestory.beanfun.com/), [MSEA](http://www.maplesea.com/index/).
+>
+>🌏 Notice 3: Starting from version 3.0.0, support for msea region has been added.
+>
+> 💡 Notice 4: Migration is required when updating from version 2.x.x to 3.0.0. Please refer to the documentation for details.
 
 ## Supported
 ### Languages

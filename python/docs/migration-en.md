@@ -2,6 +2,49 @@
 
 > 💡 There are a few simple changes introduced in this version upgrade. If you're using a previous version, we recommend following the guide below to migrate smoothly.
 
+## to 3.5.0
+
+### API Result Objects Can Now Be `None`
+
+Starting from version 3.5.0, result objects from `Character`, `Guild`, and `Union` APIs can return `None`.
+
+```python
+async def get_character_basic(self, ocid: str, date: datetime | None = None) -> CharacterBasic | None
+```
+
+`None` is returned in the following situations:
+
+- When attempting to query data that did not exist at the specified point in time
+- When all fields in the API response are `None` or `[]` except for the `date` field
+
+```python
+ocid = 'Your Character OCID'
+date = datetime(2024, 12, 31)  # Date before character creation
+
+# Returns None as data before character creation does not exist
+character = await api.get_character_basic(ocid, date)
+```
+
+Additionally, some fields in response objects have been changed to not-null types.
+
+These changes help API users clearly recognize and handle the existence of data, while reducing unnecessary null checks for response object fields.
+
+However, `api.get_character_id()` always returns a not-null object. Attempting to query a non-existent character will throw a `MapleStoryApiException`.
+
+```python
+nickname = 'Your Character Nickname'
+character = await api.get_character_id(nickname)  # Always returns not-null for existing characters
+
+nickname = 'Not Exist Character Nickname'
+character = await api.get_character_id(nickname)  # Always throws MapleStoryApiException for non-existent characters
+```
+
+### Safe `list` Field Handling
+
+In some Nexon Open API responses, `list` type fields were returned as `None` when no data existed, making it difficult to handle data safely.
+
+For response object fields with `list` type, when there is no value, the API now always returns an empty list (`[]`) instead of `None`, reducing the need for null checks.
+
 ## 2.x.x to 3.0.0
 
 ### Changed import paths

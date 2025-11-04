@@ -10,12 +10,13 @@ Packages written in other languages can be found [HERE](https://github.com/Spira
 English | [한국어](./README-ko.md)
 
 ## Notice
-
->🌏 Notice 1: Starting from version 3.4.0, support for tms region has been added. You can now retrieve data from [KMS](https://maplestory.nexon.com/), [TMS](https://maplestory.beanfun.com/), [MSEA](http://www.maplesea.com/index/).
-> 
->🌏 Notice 2: Starting from version 3.0.0, support for msea region has been added.
+>💡 Notice 1: Migration is required when updating to version 3.5.0. Please refer to the documentation for [Migration](https://github.com/SpiralMoon/maplestory.openapi/tree/master/python/docs/migration-en.md).
 >
->💡 Notice 3: Migration is required when updating from version 2.x.x to 3.0.0. Please refer to the documentation for [Migration](https://github.com/SpiralMoon/maplestory.openapi/tree/master/python/docs/migration-en.md).
+>🌏 Notice 2: Starting from version 3.4.0, support for tms region has been added. You can now retrieve data from [KMS](https://maplestory.nexon.com/), [TMS](https://maplestory.beanfun.com/), [MSEA](http://www.maplesea.com/index/).
+>
+>🌏 Notice 3: Starting from version 3.0.0, support for msea region has been added.
+>
+>💡 Notice 4: Migration is required when updating from version 2.x.x to 3.0.0. Please refer to the documentation for [Migration](https://github.com/SpiralMoon/maplestory.openapi/tree/master/python/docs/migration-en.md).
 
 ## Installation
 
@@ -69,12 +70,12 @@ except MapleStoryApiException as e:
 
 You can find more examples in the test cases at the following link.
 
-- [Character Information Retrieval](https://github.com/SpiralMoon/maplestory.openapi/blob/master/python/test/character_api_test.py)
-- [Union Information Retrieval](https://github.com/SpiralMoon/maplestory.openapi/blob/master/python/test/union_api_test.py)
-- [Guild Information Retrieval](https://github.com/SpiralMoon/maplestory.openapi/blob/master/python/test/guild_api_test.py)
-- [History Information Retrieval](https://github.com/SpiralMoon/maplestory.openapi/blob/master/python/test/history_api_test.py)
-- [Ranking Information Retrieval](https://github.com/SpiralMoon/maplestory.openapi/blob/master/python/test/ranking_api_test.py)
-- [Notice Information Retrieval](https://github.com/SpiralMoon/maplestory.openapi/blob/master/python/test/notice_api_test.py)
+- [Character Information Retrieval](https://github.com/SpiralMoon/maplestory.openapi/blob/master/python/test/kms/character_api_test.py)
+- [Union Information Retrieval](https://github.com/SpiralMoon/maplestory.openapi/blob/master/python/test/kms/union_api_test.py)
+- [Guild Information Retrieval](https://github.com/SpiralMoon/maplestory.openapi/blob/master/python/test/kms/guild_api_test.py)
+- [History Information Retrieval](https://github.com/SpiralMoon/maplestory.openapi/blob/master/python/test/kms/history_api_test.py)
+- [Ranking Information Retrieval](https://github.com/SpiralMoon/maplestory.openapi/blob/master/python/test/kms/ranking_api_test.py)
+- [Notice Information Retrieval](https://github.com/SpiralMoon/maplestory.openapi/blob/master/python/test/kms/notice_api_test.py)
 
 ### Features
 This library supports all apis published in the MapleStory OpenAPI official docs.

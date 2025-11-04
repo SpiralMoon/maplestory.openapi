@@ -23,12 +23,14 @@
 <p align="center">넥슨의 MapleStory OpenAPI를 사용할 수 있게 해주는 라이브러리입니다.</p>
 
 > 💻 넥슨 OpenAPI 패치를 따라가며 관리되고 있습니다. 항상 최신 버전 사용을 권장합니다.
->
->🌏 알림1: 3.4.0 버전부터 TMS 서비스 지역에 대한 지원이 추가 되었습니다. 현재 [KMS](https://maplestory.nexon.com/), [TMS](https://maplestory.beanfun.com/), [MSEA](http://www.maplesea.com/index/)의 데이터를 조회 가능합니다.
->
->🌏 알림2: 3.0.0 버전부터 MSEA 서비스 지역에 대한 지원이 추가 되었습니다.
 > 
->💡 알림3: Version 2.x.x → 3.0.0 업데이트 과정에서 마이그레이션이 필요합니다. 문서를 참고 해주세요.
+>💡 알림1: Version 3.5.0로의 업데이트 과정에서 마이그레이션이 필요합니다. 문서를 참고 해주세요.
+> 
+>🌏 알림2: 3.4.0 버전부터 TMS 서비스 지역에 대한 지원이 추가 되었습니다. 현재 [KMS](https://maplestory.nexon.com/), [TMS](https://maplestory.beanfun.com/), [MSEA](http://www.maplesea.com/index/)의 데이터를 조회 가능합니다.
+>
+>🌏 알림3: 3.0.0 버전부터 MSEA 서비스 지역에 대한 지원이 추가 되었습니다.
+> 
+>💡 알림4: Version 2.x.x → 3.0.0 업데이트 과정에서 마이그레이션이 필요합니다. 문서를 참고 해주세요.
 
 
 ## Supported

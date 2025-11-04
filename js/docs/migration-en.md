@@ -2,6 +2,49 @@
 
 > 💡 There are a few simple changes introduced in this version upgrade. If you're using a previous version, we recommend following the guide below to migrate smoothly.
 
+## to 3.5.0
+
+### API Result Objects Can Now Be `null`
+
+Starting from version 3.5.0, result objects from `Character`, `Guild`, and `Union` APIs can return `null`.
+
+```typescript
+getCharacterBasic(ocid: string, dateOptions?: DateOptions): Promise<CharacterBasicDto | null>;
+```
+
+`null` is returned in the following situations:
+
+- When attempting to query data that did not exist at the specified point in time
+- When all fields in the API response are `null` or `[]` except for the `date` field
+
+```typescript
+const ocid = 'Your Character OCID';
+const date = new Date(2024, 12, 31); // Date before character creation
+
+// Returns null as data before character creation does not exist
+const character = await api.getCharacterBasic(ocid, date);
+```
+
+Additionally, some fields in response objects have been changed to not-null types.
+
+These changes help API users clearly recognize and handle the existence of data, while reducing unnecessary null checks for response object fields.
+
+However, `api.getCharacter()` always returns a not-null object. Attempting to query a non-existent character will throw a `MapleStoryApiError`.
+
+```typescript
+const nickname = 'Your Character Nickname';
+const character = await api.getCharacterBasic(ocid); // Always returns not-null for existing characters
+
+const nickname = 'Not Exist Character Nickname';
+const character = await api.getCharacterBasic(ocid); // Always throws MapleStoryApiError for non-existent characters
+```
+
+### Safe Array Field Handling
+
+In some Nexon Open API responses, array type fields were returned as `null` when no data existed, making it difficult to handle data safely.
+
+For response object fields with array type, when there is no value, the API now always returns an empty array (`[]`) instead of `null`, reducing the need for null checks.
+
 ## 2.x.x to 3.0.0
 
 ### Changed import paths
