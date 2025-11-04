@@ -7,11 +7,11 @@ public interface CharacterHyperStatDTO<CharacterHyperStatPreset extends Characte
     ZonedDateTime getDate();
     String getCharacterClass();
     String getUsePresetNo();
-    Integer getUseAvailableHyperStat();
+    int getUseAvailableHyperStat();
     List<CharacterHyperStatPreset> getHyperStatPreset1();
-    Integer getHyperStatPreset1RemainPoint();
+    int getHyperStatPreset1RemainPoint();
     List<CharacterHyperStatPreset> getHyperStatPreset2();
-    Integer getHyperStatPreset2RemainPoint();
+    int getHyperStatPreset2RemainPoint();
     List<CharacterHyperStatPreset> getHyperStatPreset3();
-    Integer getHyperStatPreset3RemainPoint();
+    int getHyperStatPreset3RemainPoint();
 }

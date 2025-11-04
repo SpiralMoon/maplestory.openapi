@@ -18,12 +18,12 @@ export class CharacterCashItemEquipmentDto extends base.CharacterCashItemEquipme
   /**
    * 캐릭터 성별
    */
-  public override characterGender: string | null;
+  public override characterGender: string;
 
   /**
    * 캐릭터 직업
    */
-  public override characterClass: string | null;
+  public override characterClass: string;
 
   /**
    * 캐릭터 외형 모드(0:일반 모드, 1:제로인 경우 베타, 엔젤릭버스터인 경우 드레스 업 모드)
@@ -33,7 +33,7 @@ export class CharacterCashItemEquipmentDto extends base.CharacterCashItemEquipme
   /**
    * 적용 중인 캐시 장비 프리셋 번호
    */
-  public override presetNo: number | null;
+  public override presetNo: number;
 
   /**
    * 장착 중인 캐시 장비
@@ -95,10 +95,10 @@ export class CharacterCashItemEquipmentDto extends base.CharacterCashItemEquipme
     } = obj;
 
     this.date = date ? new Date(date) : null;
-    this.characterGender = character_gender;
-    this.characterClass = character_class;
+    this.characterGender = character_gender!;
+    this.characterClass = character_class!;
     this.characterLookMode = character_look_mode;
-    this.presetNo = preset_no;
+    this.presetNo = preset_no!;
     this.cashItemEquipmentBase = cash_item_equipment_base.map(
       (preset) => new CharacterCashItemEquipmentPresetDto(preset),
     );

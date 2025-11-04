@@ -30,7 +30,7 @@ namespace MapleStory.OpenAPI.MSEA.DTO
         /// Character job
         /// </summary>
         [JsonProperty("character_class")]
-        public override string? CharacterClass { get; set; }
+        public override string CharacterClass { get; set; }
 
         /// <summary>
         /// Current stat information
@@ -43,7 +43,7 @@ namespace MapleStory.OpenAPI.MSEA.DTO
         /// Remaining AP
         /// </summary>
         [JsonProperty("remain_ap")]
-        public override int? RemainAp { get; set; }
+        public override int RemainAp { get; set; }
     }
 
     /// <summary>

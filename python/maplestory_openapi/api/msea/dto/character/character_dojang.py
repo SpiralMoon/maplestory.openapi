@@ -10,15 +10,15 @@ class CharacterDojang(BaseModel, BaseCharacterDojang):
 
     Attributes:
         date (datetime or None): Reference date for query (SGT, daily data with hours and minutes set to 0)
-        character_class (str or None): Character job
-        world_name (str or None): World name
-        dojang_best_floor (int or None): Highest floor record in Mu Lung Garden
+        character_class (str): Character job
+        world_name (str): World name
+        dojang_best_floor (int): Highest floor record in Mu Lung Garden
         date_dojang_record (datetime or None): Achievement date of the highest Mu Lung Garden record (SGT, daily data with hours and minutes set to 0)
-        dojang_best_time (int or None): Time taken to clear the highest floor in Mu Lung Garden (in seconds)
+        dojang_best_time (int): Time taken to clear the highest floor in Mu Lung Garden (in seconds)
     """
     date: datetime | None
-    character_class: str | None
-    world_name: str | None
-    dojang_best_floor: int | None
+    character_class: str
+    world_name: str
+    dojang_best_floor: int
     date_dojang_record: datetime | None
-    dojang_best_time: int | None
+    dojang_best_time: int

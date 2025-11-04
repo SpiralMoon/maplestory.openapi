@@ -30,7 +30,7 @@ namespace MapleStory.OpenAPI.TMS.DTO
         /// 能力階級
         /// </summary>
         [JsonProperty("ability_grade")]
-        public override string? AbilityGrade { get; set; }
+        public override string AbilityGrade { get; set; }
 
         /// <summary>
         /// 能力資訊
@@ -43,7 +43,7 @@ namespace MapleStory.OpenAPI.TMS.DTO
         /// 名聲值
         /// </summary>
         [JsonProperty("remain_fame")]
-        public override long? RemainFame { get; set; }
+        public override long RemainFame { get; set; }
 
         /// <summary>
         /// 目前套用的能力預設編號

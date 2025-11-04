@@ -46,7 +46,7 @@ public class CharacterAbilityDTO implements dev.spiralmoon.maplestory.api.common
      * 名聲值
      */
     @JsonProperty("remain_fame")
-    private Long remainFame;
+    private long remainFame;
 
     /**
      * 目前套用的能力預設編號

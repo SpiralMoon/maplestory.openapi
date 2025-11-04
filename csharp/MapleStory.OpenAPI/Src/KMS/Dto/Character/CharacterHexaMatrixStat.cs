@@ -30,7 +30,7 @@ namespace MapleStory.OpenAPI.KMS.DTO
         /// 캐릭터 직업
         /// </summary>
         [JsonProperty("character_class")]
-        public override string? CharacterClass { get; set; }
+        public override string CharacterClass { get; set; }
 
         /// <summary>
         /// HEXA 스탯 I 코어 정보

@@ -49,11 +49,11 @@ class CharacterSymbolEquipment(BaseModel, BaseCharacterSymbolEquipment):
 
     Attributes:
         date (datetime or None): 조회 기준일 (KST, 일 단위 데이터로 시, 분은 일괄 0으로 표기)
-        character_class (str or None): 직업
+        character_class (str): 직업
         symbol (list[CharacterSymbolEquipmentInfo]): 심볼 장비 정보
     """
     date: datetime | None
-    character_class: str | None
+    character_class: str
     symbol: list[CharacterSymbolEquipmentInfo]
 
     @field_validator("symbol", mode="before")

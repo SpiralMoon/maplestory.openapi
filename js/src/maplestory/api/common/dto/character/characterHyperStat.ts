@@ -1,14 +1,14 @@
 export abstract class CharacterHyperStatDto {
   public abstract date: Date | null;
-  public abstract characterClass: string | null;
-  public abstract usePresetNo: string | null;
-  public abstract useAvailableHyperStat: number | null;
+  public abstract characterClass: string;
+  public abstract usePresetNo: string;
+  public abstract useAvailableHyperStat: number;
   public abstract hyperStatPreset1: CharacterHyperStatPresetDto[];
-  public abstract hyperStatPreset1RemainPoint: number | null;
+  public abstract hyperStatPreset1RemainPoint: number;
   public abstract hyperStatPreset2: CharacterHyperStatPresetDto[];
-  public abstract hyperStatPreset2RemainPoint: number | null;
+  public abstract hyperStatPreset2RemainPoint: number;
   public abstract hyperStatPreset3: CharacterHyperStatPresetDto[];
-  public abstract hyperStatPreset3RemainPoint: number | null;
+  public abstract hyperStatPreset3RemainPoint: number;
 }
 
 export abstract class CharacterHyperStatPresetDto {

@@ -23,14 +23,14 @@ class CharacterStat(BaseModel, BaseCharacterStat):
 
     Attributes:
         date (datetime or None): Reference date for query (SGT, daily data with hours and minutes set to 0)
-        character_class (str or None): Character class
+        character_class (str): Character class
         final_stat (list[CharacterStatInfo]): Current stat information
-        remain_ap (int or None): Remaining AP
+        remain_ap (int): Remaining AP
     """
     date: datetime | None
-    character_class: str | None
+    character_class: str
     final_stat: list[CharacterStatInfo]
-    remain_ap: int | None
+    remain_ap: int
 
     @field_validator("final_stat", mode="before")
     @classmethod

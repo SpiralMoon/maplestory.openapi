@@ -24,7 +24,7 @@ namespace MapleStory.OpenAPI.TMS.DTO
         /// 角色職業
         /// </summary>
         [JsonProperty("character_class")]
-        public override string? CharacterClass { get; set; }
+        public override string CharacterClass { get; set; }
 
         /// <summary>
         /// V 核心資訊
@@ -37,7 +37,7 @@ namespace MapleStory.OpenAPI.TMS.DTO
         /// 角色剩餘的矩陣強化點數
         /// </summary>
         [JsonProperty("character_v_matrix_remain_slot_upgrade_point")]
-        public override int? CharacterVMatrixRemainSlotUpgradePoint { get; set; }
+        public override int CharacterVMatrixRemainSlotUpgradePoint { get; set; }
     }
 
     /// <summary>

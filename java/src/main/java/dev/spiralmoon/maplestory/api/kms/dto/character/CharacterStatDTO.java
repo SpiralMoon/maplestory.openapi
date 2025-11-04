@@ -44,7 +44,7 @@ public class CharacterStatDTO implements dev.spiralmoon.maplestory.api.common.dt
      * 잔여 AP
      */
     @JsonProperty("remain_ap")
-    private Integer remainAp;
+    private int remainAp;
 
     /**
      * 조회 기준일 (KST, 일 단위 데이터로 시, 분은 일괄 0으로 표기)

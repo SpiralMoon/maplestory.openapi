@@ -16,17 +16,17 @@ export class CharacterHyperStatDto extends base.CharacterHyperStatDto {
   /**
    * 캐릭터 직업
    */
-  public override characterClass: string | null;
+  public override characterClass: string;
 
   /**
    * 적용 중인 프리셋 번호
    */
-  public override usePresetNo: string | null;
+  public override usePresetNo: string;
 
   /**
    * 사용 가능한 최대 하이퍼스탯 포인트
    */
-  public override useAvailableHyperStat: number | null;
+  public override useAvailableHyperStat: number;
 
   /**
    * 프리셋 1번 하이퍼 스탯 정보
@@ -36,7 +36,7 @@ export class CharacterHyperStatDto extends base.CharacterHyperStatDto {
   /**
    * 프리셋 1번 하이퍼 스탯 잔여 포인트
    */
-  public override hyperStatPreset1RemainPoint: number | null;
+  public override hyperStatPreset1RemainPoint: number;
 
   /**
    * 프리셋 2번 하이퍼 스탯 정보
@@ -46,7 +46,7 @@ export class CharacterHyperStatDto extends base.CharacterHyperStatDto {
   /**
    * 프리셋 2번 하이퍼 스탯 잔여 포인트
    */
-  public override hyperStatPreset2RemainPoint: number | null;
+  public override hyperStatPreset2RemainPoint: number;
 
   /**
    * 프리셋 3번 하이퍼 스탯 정보
@@ -56,7 +56,7 @@ export class CharacterHyperStatDto extends base.CharacterHyperStatDto {
   /**
    * 프리셋 3번 하이퍼 스탯 잔여 포인트
    */
-  public override hyperStatPreset3RemainPoint: number | null;
+  public override hyperStatPreset3RemainPoint: number;
 
   constructor(obj: CharacterHyperStatBody) {
     super();
@@ -75,21 +75,21 @@ export class CharacterHyperStatDto extends base.CharacterHyperStatDto {
     } = obj;
 
     this.date = date ? new Date(date) : null;
-    this.characterClass = character_class;
-    this.usePresetNo = use_preset_no;
-    this.useAvailableHyperStat = use_available_hyper_stat;
+    this.characterClass = character_class!;
+    this.usePresetNo = use_preset_no!;
+    this.useAvailableHyperStat = use_available_hyper_stat!;
     this.hyperStatPreset1 = hyper_stat_preset_1.map(
       (preset) => new CharacterHyperStatPresetDto(preset),
     );
-    this.hyperStatPreset1RemainPoint = hyper_stat_preset_1_remain_point;
+    this.hyperStatPreset1RemainPoint = hyper_stat_preset_1_remain_point!;
     this.hyperStatPreset2 = hyper_stat_preset_2.map(
       (preset) => new CharacterHyperStatPresetDto(preset),
     );
-    this.hyperStatPreset2RemainPoint = hyper_stat_preset_2_remain_point;
+    this.hyperStatPreset2RemainPoint = hyper_stat_preset_2_remain_point!;
     this.hyperStatPreset3 = hyper_stat_preset_3.map(
       (preset) => new CharacterHyperStatPresetDto(preset),
     );
-    this.hyperStatPreset3RemainPoint = hyper_stat_preset_3_remain_point;
+    this.hyperStatPreset3RemainPoint = hyper_stat_preset_3_remain_point!;
   }
 }
 

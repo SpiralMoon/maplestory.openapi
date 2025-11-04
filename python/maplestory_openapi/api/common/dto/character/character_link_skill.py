@@ -12,7 +12,7 @@ class CharacterLinkSkillInfo:
 
 class CharacterLinkSkill:
     date: datetime | None
-    character_class: str | None
+    character_class: str
     character_link_skill: list[CharacterLinkSkillInfo] = []
     character_link_skill_preset_1: list[CharacterLinkSkillInfo] = []
     character_link_skill_preset_2: list[CharacterLinkSkillInfo] = []

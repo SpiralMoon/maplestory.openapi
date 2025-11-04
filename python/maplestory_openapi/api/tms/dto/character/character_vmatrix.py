@@ -35,14 +35,14 @@ class CharacterVMatrix(BaseModel, BaseCharacterVMatrix):
 
     Attributes:
         date (datetime or None): 要搜尋的日期 (TST，每日資料中的小時與分鐘將顯示為 0)
-        character_class (str or None): 角色職業
+        character_class (str): 角色職業
         character_v_core_equipment (list[CharacterVMatrixCoreEquipment]): V 核心資訊
-        character_v_matrix_remain_slot_upgrade_point (int or None): 角色剩餘的矩陣強化點數
+        character_v_matrix_remain_slot_upgrade_point (int): 角色剩餘的矩陣強化點數
     """
     date: datetime | None
-    character_class: str | None
+    character_class: str
     character_v_core_equipment: list[CharacterVMatrixCoreEquipment]
-    character_v_matrix_remain_slot_upgrade_point: int | None
+    character_v_matrix_remain_slot_upgrade_point: int
 
     @field_validator("character_v_core_equipment", mode="before")
     @classmethod

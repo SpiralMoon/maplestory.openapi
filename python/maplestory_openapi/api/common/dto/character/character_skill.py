@@ -12,6 +12,6 @@ class CharacterSkillInfo:
 
 class CharacterSkill:
     date: datetime | None
-    character_class: str | None
+    character_class: str
     character_skill_grade: str | None
     character_skill: list[CharacterSkillInfo] = []

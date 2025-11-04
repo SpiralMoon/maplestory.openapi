@@ -48,7 +48,7 @@ namespace MapleStory.OpenAPI.KMS.DTO
         /// 적용 중인 캐시 장비 프리셋 번호
         /// </summary>
         [JsonProperty("preset_no")]
-        public override int? PresetNo { get; set; }
+        public override int PresetNo { get; set; }
 
         /// <summary>
         /// 장착 중인 캐시 장비

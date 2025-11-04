@@ -109,10 +109,10 @@ class CharacterCashitemEquipment(BaseModel, BaseCharacterCashitemEquipment):
         additional_cash_item_equipment_preset_3 (list[CharacterCashitemEquipmentPreset]): 神之子為 Beta 及天使破壞者為變裝模式時的外型預設 3
     """
     date: datetime | None
-    character_gender: str | None
-    character_class: str | None
+    character_gender: str
+    character_class: str
     character_look_mode: str | None
-    preset_no: int | None
+    preset_no: int
     cash_item_equipment_base: list[CharacterCashitemEquipmentPreset]
     cash_item_equipment_preset_1: list[CharacterCashitemEquipmentPreset]
     cash_item_equipment_preset_2: list[CharacterCashitemEquipmentPreset]

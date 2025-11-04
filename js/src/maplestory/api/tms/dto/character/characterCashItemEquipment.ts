@@ -18,12 +18,12 @@ export class CharacterCashItemEquipmentDto extends base.CharacterCashItemEquipme
   /**
    * 角色性別
    */
-  public override characterGender: string | null;
+  public override characterGender: string;
 
   /**
    * 角色職業
    */
-  public override characterClass: string | null;
+  public override characterClass: string;
 
   /**
    * 角色外型模式 (0：一般模式，1：神之子為 Beta、天使破壞者為變裝模式時)
@@ -33,7 +33,7 @@ export class CharacterCashItemEquipmentDto extends base.CharacterCashItemEquipme
   /**
    * 目前套用的現金道具預設編號
    */
-  public override presetNo: number | null;
+  public override presetNo: number;
 
   /**
    * 目前已裝備的現金道具
@@ -95,10 +95,10 @@ export class CharacterCashItemEquipmentDto extends base.CharacterCashItemEquipme
     } = obj;
 
     this.date = date ? new Date(date) : null;
-    this.characterGender = character_gender;
-    this.characterClass = character_class;
+    this.characterGender = character_gender!;
+    this.characterClass = character_class!;
     this.characterLookMode = character_look_mode;
-    this.presetNo = preset_no;
+    this.presetNo = preset_no!;
     this.cashItemEquipmentBase = cash_item_equipment_base.map(
       (preset) => new CharacterCashItemEquipmentPresetDto(preset),
     );

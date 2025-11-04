@@ -1,4 +1,4 @@
 export type CharacterPopularityBody = {
   date: string | null;
-  popularity: number;
+  popularity: number | null;
 };

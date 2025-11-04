@@ -4,10 +4,10 @@ import java.time.ZonedDateTime;
 
 public interface CharacterPropensityDTO {
     ZonedDateTime getDate();
-    Integer getCharismaLevel();
-    Integer getSensibilityLevel();
-    Integer getInsightLevel();
-    Integer getWillingnessLevel();
-    Integer getHandicraftLevel();
-    Integer getCharmLevel();
+    int getCharismaLevel();
+    int getSensibilityLevel();
+    int getInsightLevel();
+    int getWillingnessLevel();
+    int getHandicraftLevel();
+    int getCharmLevel();
 }

@@ -8,6 +8,6 @@ class CharacterStatInfo:
 
 class CharacterStat:
     date: datetime | None
-    character_class: str | None
+    character_class: str
     final_stat: list[CharacterStatInfo] = []
-    remain_ap: int | None
+    remain_ap: int

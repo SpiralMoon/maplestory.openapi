@@ -16,7 +16,7 @@ export class CharacterLinkSkillDto extends base.CharacterLinkSkillDto {
   /**
    * 角色職業
    */
-  public override characterClass: string | null;
+  public override characterClass: string;
 
   /**
    * 連結技能資訊
@@ -75,7 +75,7 @@ export class CharacterLinkSkillDto extends base.CharacterLinkSkillDto {
     } = obj;
 
     this.date = date ? new Date(date) : null;
-    this.characterClass = character_class;
+    this.characterClass = character_class!;
     this.characterLinkSkill = character_link_skill.map(
       (skill) => new CharacterLinkSkillInfoDto(skill),
     );

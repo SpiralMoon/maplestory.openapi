@@ -26,12 +26,12 @@ export class CharacterItemEquipmentDto extends base.CharacterItemEquipmentDto {
   /**
    * 캐릭터 성별
    */
-  public override characterGender: string | null;
+  public override characterGender: string;
 
   /**
    * 캐릭터 직업
    */
-  public override characterClass: string | null;
+  public override characterClass: string;
 
   /**
    * 적용 중인 장비 프리셋 번호
@@ -97,8 +97,8 @@ export class CharacterItemEquipmentDto extends base.CharacterItemEquipmentDto {
     } = obj;
 
     this.date = date ? new Date(date) : null;
-    this.characterGender = character_gender;
-    this.characterClass = character_class;
+    this.characterGender = character_gender!;
+    this.characterClass = character_class!;
     this.presetNo = preset_no;
     this.itemEquipment = item_equipment.map(
       (equipment) => new CharacterItemEquipmentInfoDto(equipment),

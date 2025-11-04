@@ -31,7 +31,7 @@ class CharacterLinkSkill(BaseModel, BaseCharacterLinkSkill):
 
     Attributes:
         date (datetime or None): 要搜尋的日期 (TST，每日資料中的小時與分鐘將顯示為 0)
-        character_class (str or None): 角色職業
+        character_class (str): 角色職業
         character_link_skill (list[CharacterLinkSkillInfo]): 連結技能資訊
         character_link_skill_preset_1 (list[CharacterLinkSkillInfo]): 連結技能 1 預設資訊
         character_link_skill_preset_2 (list[CharacterLinkSkillInfo]): 連結技能 2 預設資訊
@@ -42,7 +42,7 @@ class CharacterLinkSkill(BaseModel, BaseCharacterLinkSkill):
         character_owned_link_skill_preset_3 (CharacterLinkSkillInfo or None): 我的連結技能 3 預設資訊
     """
     date: datetime | None
-    character_class: str | None
+    character_class: str
     character_link_skill: list[CharacterLinkSkillInfo]
     character_link_skill_preset_1: list[CharacterLinkSkillInfo]
     character_link_skill_preset_2: list[CharacterLinkSkillInfo]

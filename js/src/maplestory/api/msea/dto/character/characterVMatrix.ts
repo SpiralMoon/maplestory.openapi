@@ -16,7 +16,7 @@ export class CharacterVMatrixDto extends base.CharacterVMatrixDto {
   /**
    * Character job
    */
-  public override characterClass: string | null;
+  public override characterClass: string;
 
   /**
    * V Matrix Node information
@@ -26,7 +26,7 @@ export class CharacterVMatrixDto extends base.CharacterVMatrixDto {
   /**
    * Remaining Matrix enhancement points for the character
    */
-  public override characterVMatrixRemainSlotUpgradePoint: number | null;
+  public override characterVMatrixRemainSlotUpgradePoint: number;
 
   constructor(obj: CharacterVMatrixBody) {
     super();
@@ -39,12 +39,12 @@ export class CharacterVMatrixDto extends base.CharacterVMatrixDto {
     } = obj;
 
     this.date = date ? new Date(date) : null;
-    this.characterClass = character_class;
+    this.characterClass = character_class!;
     this.characterVCoreEquipment = character_v_core_equipment.map(
       (equipment) => new CharacterVMatrixCodeEquipmentDto(equipment),
     );
     this.characterVMatrixRemainSlotUpgradePoint =
-      character_v_matrix_remain_slot_upgrade_point;
+      character_v_matrix_remain_slot_upgrade_point!;
   }
 }
 

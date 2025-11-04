@@ -517,8 +517,8 @@ class CharacterItemEquipment(BaseModel, BaseCharacterItemEquipment):
 
     Attributes:
         date (datetime or None): 要搜尋的日期 (TST，每日資料中的小時與分鐘將顯示為 0)
-        character_gender (str or None): 角色性別
-        character_class (str or None): 角色職業
+        character_gender (str): 角色性別
+        character_class (str): 角色職業
         preset_no (int or None): 目前套用的道具預設編號
         item_equipment (list[CharacterItemEquipmentInfo]): 道具資訊
         item_equipment_preset_1 (list[CharacterItemEquipmentInfo] or None): 預設 1 的道具資訊
@@ -529,8 +529,8 @@ class CharacterItemEquipment(BaseModel, BaseCharacterItemEquipment):
         mechanic_equipment (list[CharacterItemEquipmentMechanicInfo]): 機甲戰神道具資訊 (僅在機甲戰神時回應)
     """
     date: datetime | None
-    character_gender: str | None
-    character_class: str | None
+    character_gender: str
+    character_class: str
     preset_no: int | None
     item_equipment: list[CharacterItemEquipmentInfo]
     item_equipment_preset_1: list[CharacterItemEquipmentInfo]

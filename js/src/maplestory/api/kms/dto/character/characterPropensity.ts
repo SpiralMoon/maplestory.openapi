@@ -13,32 +13,32 @@ export class CharacterPropensityDto extends base.CharacterPropensityDto {
   /**
    * 카리스마 레벨
    */
-  public override charismaLevel: number | null;
+  public override charismaLevel: number;
 
   /**
    * 감성 레벨
    */
-  public override sensibilityLevel: number | null;
+  public override sensibilityLevel: number;
 
   /**
    * 통찰력 레벨
    */
-  public override insightLevel: number | null;
+  public override insightLevel: number;
 
   /**
    *  의지 레벨
    */
-  public override willingnessLevel: number | null;
+  public override willingnessLevel: number;
 
   /**
    * 손재주 레벨
    */
-  public override handicraftLevel: number | null;
+  public override handicraftLevel: number;
 
   /**
    * 매력 레벨
    */
-  public override charmLevel: number | null;
+  public override charmLevel: number;
 
   constructor(obj: CharacterPropensityBody) {
     super();
@@ -54,11 +54,11 @@ export class CharacterPropensityDto extends base.CharacterPropensityDto {
     } = obj;
 
     this.date = date ? new Date(date) : null;
-    this.charismaLevel = charisma_level;
-    this.sensibilityLevel = sensibility_level;
-    this.insightLevel = insight_level;
-    this.willingnessLevel = willingness_level;
-    this.handicraftLevel = handicraft_level;
-    this.charmLevel = charm_level;
+    this.charismaLevel = charisma_level!;
+    this.sensibilityLevel = sensibility_level!;
+    this.insightLevel = insight_level!;
+    this.willingnessLevel = willingness_level!;
+    this.handicraftLevel = handicraft_level!;
+    this.charmLevel = charm_level!;
   }
 }

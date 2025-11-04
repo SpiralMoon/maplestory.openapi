@@ -28,37 +28,37 @@ public class CharacterPropensityDTO implements dev.spiralmoon.maplestory.api.com
      * 카리스마 레벨
      */
     @JsonProperty("charisma_level")
-    private Integer charismaLevel;
+    private int charismaLevel;
 
     /**
      * 감성 레벨
      */
     @JsonProperty("sensibility_level")
-    private Integer sensibilityLevel;
+    private int sensibilityLevel;
 
     /**
      * 통찰력 레벨
      */
     @JsonProperty("insight_level")
-    private Integer insightLevel;
+    private int insightLevel;
 
     /**
      * 의지 레벨
      */
     @JsonProperty("willingness_level")
-    private Integer willingnessLevel;
+    private int willingnessLevel;
 
     /**
      * 손재주 레벨
      */
     @JsonProperty("handicraft_level")
-    private Integer handicraftLevel;
+    private int handicraftLevel;
 
     /**
      * 매력 레벨
      */
     @JsonProperty("charm_level")
-    private Integer charmLevel;
+    private int charmLevel;
 
     /**
      * 조회 기준일 (KST, 일 단위 데이터로 시, 분은 일괄 0으로 표기)

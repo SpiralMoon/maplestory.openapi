@@ -30,19 +30,19 @@ namespace MapleStory.OpenAPI.KMS.DTO
         /// 캐릭터 직업
         /// </summary>
         [JsonProperty("character_class")]
-        public override string? CharacterClass { get; set; }
+        public override string CharacterClass { get; set; }
 
         /// <summary>
         /// 적용 중인 프리셋 번호
         /// </summary>
         [JsonProperty("use_preset_no")]
-        public override string? UsePresetNo { get; set; }
+        public override string UsePresetNo { get; set; }
 
         /// <summary>
         /// 사용 가능한 최대 하이퍼 스탯 포인트
         /// </summary>
         [JsonProperty("use_available_hyper_stat")]
-        public override int? UseAvailableHyperStat { get; set; }
+        public override int UseAvailableHyperStat { get; set; }
 
         /// <summary>
         /// 프리셋 1번 하이퍼 스탯 정보
@@ -55,7 +55,7 @@ namespace MapleStory.OpenAPI.KMS.DTO
         /// 프리셋 1번 하이퍼 스탯 잔여 포인트
         /// </summary>
         [JsonProperty("hyper_stat_preset_1_remain_point")]
-        public override int? HyperStatPreset1RemainPoint { get; set; }
+        public override int HyperStatPreset1RemainPoint { get; set; }
 
         /// <summary>
         /// 프리셋 2번 하이퍼 스탯 정보
@@ -68,7 +68,7 @@ namespace MapleStory.OpenAPI.KMS.DTO
         /// 프리셋 2번 하이퍼 스탯 잔여 포인트
         /// </summary>
         [JsonProperty("hyper_stat_preset_2_remain_point")]
-        public override int? HyperStatPreset2RemainPoint { get; set; }
+        public override int HyperStatPreset2RemainPoint { get; set; }
 
         /// <summary>
         /// 프리셋 3번 하이퍼 스탯 정보
@@ -81,7 +81,7 @@ namespace MapleStory.OpenAPI.KMS.DTO
         /// 프리셋 3번 하이퍼 스탯 잔여 포인트
         /// </summary>
         [JsonProperty("hyper_stat_preset_3_remain_point")]
-        public override int? HyperStatPreset3RemainPoint { get; set; }
+        public override int HyperStatPreset3RemainPoint { get; set; }
     }
 
     /// <summary>

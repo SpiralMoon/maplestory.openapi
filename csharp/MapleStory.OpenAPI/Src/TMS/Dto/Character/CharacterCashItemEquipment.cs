@@ -30,13 +30,13 @@ namespace MapleStory.OpenAPI.TMS.DTO
         /// 角色性別
         /// </summary>
         [JsonProperty("character_gender")]
-        public override string? CharacterGender { get; set; }
+        public override string CharacterGender { get; set; }
 
         /// <summary>
         /// 角色職業
         /// </summary>
         [JsonProperty("character_class")]
-        public override string? CharacterClass { get; set; }
+        public override string CharacterClass { get; set; }
 
         /// <summary>
         /// 角色外型模式 (0：一般模式，1：神之子為 Beta、天使破壞者為變裝模式時)
@@ -48,7 +48,7 @@ namespace MapleStory.OpenAPI.TMS.DTO
         /// 目前套用的現金道具預設編號
         /// </summary>
         [JsonProperty("preset_no")]
-        public override int? PresetNo { get; set; }
+        public override int PresetNo { get; set; }
 
         /// <summary>
         /// 目前已裝備的現金道具

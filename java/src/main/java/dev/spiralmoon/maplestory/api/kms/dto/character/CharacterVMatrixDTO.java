@@ -44,7 +44,7 @@ public class CharacterVMatrixDTO implements dev.spiralmoon.maplestory.api.common
      * 캐릭터 잔여 매트릭스 강화 포인트
      */
     @JsonProperty("character_v_matrix_remain_slot_upgrade_point")
-    private Long characterVMatrixRemainSlotUpgradePoint;
+    private long characterVMatrixRemainSlotUpgradePoint;
 
     /**
      * 조회 기준일 (KST, 일 단위 데이터로 시, 분은 일괄 0으로 표기)

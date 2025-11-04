@@ -1,9 +1,9 @@
 export abstract class CharacterCashItemEquipmentDto {
   public abstract date: Date | null;
-  public abstract characterGender: string | null;
-  public abstract characterClass: string | null;
+  public abstract characterGender: string;
+  public abstract characterClass: string;
   public abstract characterLookMode: string | null;
-  public abstract presetNo: number | null;
+  public abstract presetNo: number;
   public abstract cashItemEquipmentBase: CharacterCashItemEquipmentPresetDto[];
   public abstract cashItemEquipmentPreset1: CharacterCashItemEquipmentPresetDto[];
   public abstract cashItemEquipmentPreset2: CharacterCashItemEquipmentPresetDto[];

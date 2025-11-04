@@ -23,14 +23,14 @@ class CharacterStat(BaseModel, BaseCharacterStat):
 
     Attributes:
         date (datetime or None): 조회 기준일 (KST, 일 단위 데이터로 시, 분은 일괄 0으로 표기)
-        character_class (str or None): 직업
+        character_class (str): 직업
         final_stat (list[CharacterStatInfo]): 현재 스탯 정보
-        remain_ap (int or None): 잔여 AP
+        remain_ap (int): 잔여 AP
     """
     date: datetime | None
-    character_class: str | None
+    character_class: str
     final_stat: list[CharacterStatInfo]
-    remain_ap: int | None
+    remain_ap: int
 
     @field_validator("final_stat", mode="before")
     @classmethod

@@ -24,7 +24,7 @@ namespace MapleStory.OpenAPI.TMS.DTO
         /// 角色職業
         /// </summary>
         [JsonProperty("character_class")]
-        public override string? CharacterClass { get; set; }
+        public override string CharacterClass { get; set; }
 
         /// <summary>
         /// 符文資訊

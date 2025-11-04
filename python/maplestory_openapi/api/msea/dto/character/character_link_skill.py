@@ -31,7 +31,7 @@ class CharacterLinkSkill(BaseModel, BaseCharacterLinkSkill):
 
     Attributes:
         date (datetime or None): Reference date for query (SGT, daily data with hours and minutes set to 0)
-        character_class (str or None): Character job
+        character_class (str): Character job
         character_link_skill (list[CharacterLinkSkillInfo]): Link Skill information
         character_link_skill_preset_1 (list[CharacterLinkSkillInfo]): Link Skill information for preset 1
         character_link_skill_preset_2 (list[CharacterLinkSkillInfo]): Link Skill information for preset 2
@@ -42,7 +42,7 @@ class CharacterLinkSkill(BaseModel, BaseCharacterLinkSkill):
         character_owned_link_skill_preset_3 (CharacterLinkSkillInfo or None): My Link Skill information for preset 3
     """
     date: datetime | None
-    character_class: str | None
+    character_class: str
     character_link_skill: list[CharacterLinkSkillInfo]
     character_link_skill_preset_1: list[CharacterLinkSkillInfo]
     character_link_skill_preset_2: list[CharacterLinkSkillInfo]

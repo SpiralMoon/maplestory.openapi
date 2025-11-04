@@ -21,6 +21,6 @@ export class CharacterPopularityDto extends base.CharacterPopularityDto {
     const { date, popularity } = obj;
 
     this.date = date ? new Date(date) : null;
-    this.popularity = popularity;
+    this.popularity = popularity!;
   }
 }

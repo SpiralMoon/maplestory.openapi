@@ -46,7 +46,7 @@ public class CharacterAbilityDTO implements dev.spiralmoon.maplestory.api.common
      * Owned Honor EXP
      */
     @JsonProperty("remain_fame")
-    private Long remainFame;
+    private long remainFame;
 
     /**
      * Active ability preset number

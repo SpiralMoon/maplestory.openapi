@@ -3,9 +3,9 @@
     public abstract class CharacterVMatrixDTO<TCharacterVMatrixCoreEquipment>
     {
         public abstract DateTimeOffset? Date { get; set; }
-        public abstract string? CharacterClass { get; set; }
+        public abstract string CharacterClass { get; set; }
         public abstract List<TCharacterVMatrixCoreEquipment> CharacterVCoreEquipment { get; set; }
-        public abstract int? CharacterVMatrixRemainSlotUpgradePoint { get; set; }
+        public abstract int CharacterVMatrixRemainSlotUpgradePoint { get; set; }
     }
 
     public abstract class CharacterVMatrixDTO : CharacterVMatrixDTO<CharacterVMatrixCoreEquipmentDTO>

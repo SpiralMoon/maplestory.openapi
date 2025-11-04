@@ -1,7 +1,7 @@
 export abstract class CharacterItemEquipmentDto {
   public abstract date: Date | null;
-  public abstract characterGender: string | null;
-  public abstract characterClass: string | null;
+  public abstract characterGender: string;
+  public abstract characterClass: string;
   public abstract presetNo: number | null;
   public abstract itemEquipment: CharacterItemEquipmentInfoDto[];
   public abstract itemEquipmentPreset1: CharacterItemEquipmentInfoDto[];

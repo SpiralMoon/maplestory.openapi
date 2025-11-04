@@ -44,7 +44,7 @@ public class CharacterStatDTO implements dev.spiralmoon.maplestory.api.common.dt
      * Remaining AP
      */
     @JsonProperty("remain_ap")
-    private Integer remainAp;
+    private int remainAp;
 
     /**
      * Reference date for query (SGT, daily data with hours and minutes set to 0)

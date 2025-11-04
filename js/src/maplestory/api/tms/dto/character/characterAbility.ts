@@ -17,7 +17,7 @@ export class CharacterAbilityDto extends base.CharacterAbilityDto {
   /**
    * 能力階級
    */
-  public override abilityGrade: string | null;
+  public override abilityGrade: string;
 
   /**
    * 能力資訊
@@ -27,7 +27,7 @@ export class CharacterAbilityDto extends base.CharacterAbilityDto {
   /**
    * 名聲值
    */
-  public override remainFame: number | null;
+  public override remainFame: number;
 
   /**
    * 目前套用的能力預設編號
@@ -64,11 +64,11 @@ export class CharacterAbilityDto extends base.CharacterAbilityDto {
     } = obj;
 
     this.date = date ? new Date(date) : null;
-    this.abilityGrade = ability_grade;
+    this.abilityGrade = ability_grade!;
     this.abilityInfo = ability_info.map(
       (info) => new CharacterAbilityInfoDto(info),
     );
-    this.remainFame = remain_fame;
+    this.remainFame = remain_fame!;
     this.presetNo = preset_no;
     this.abilityPreset1 = ability_preset_1
       ? new CharacterAbilityPresetDto(ability_preset_1)

@@ -21,5 +21,5 @@ class CharacterSymbolEquipmentInfo:
 
 class CharacterSymbolEquipment:
     date: datetime | None
-    character_class: str | None
+    character_class: str
     symbol: list[CharacterSymbolEquipmentInfo] = []

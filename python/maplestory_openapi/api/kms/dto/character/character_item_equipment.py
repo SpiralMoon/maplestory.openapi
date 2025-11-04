@@ -564,8 +564,8 @@ class CharacterItemEquipment(BaseModel, BaseCharacterItemEquipment):
 
     Attributes:
         date(datetime or None): 조회 기준일 (KST, 일 단위 데이터로 시, 분은 일괄 0으로 표기)
-        character_gender(str or None): 캐릭터 성별
-        character_class(str or None): 캐릭터 직업
+        character_gender(str): 캐릭터 성별
+        character_class(str): 캐릭터 직업
         preset_no(int or None): 적용 중인 장비 프리셋 번호
         item_equipment(list[CharacterItemEquipmentInfo]): 장비 정보
         item_equipment_preset_1(list[CharacterItemEquipmentInfo] or None): 1번 프리셋 장비 정보
@@ -577,8 +577,8 @@ class CharacterItemEquipment(BaseModel, BaseCharacterItemEquipment):
         mechanic_equipment(list[CharacterItemEquipmentInfo]): 메카닉 장비 정보 (메카닉인 경우 응답)
     """
     date: datetime | None
-    character_gender: str | None
-    character_class: str | None
+    character_gender: str
+    character_class: str
     preset_no: int | None
     item_equipment: list[CharacterItemEquipmentInfo]
     item_equipment_preset_1: list[CharacterItemEquipmentInfo]

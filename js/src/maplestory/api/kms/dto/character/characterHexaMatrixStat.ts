@@ -16,7 +16,7 @@ export class CharacterHexaMatrixStatDto extends base.CharacterHexaMatrixStatDto 
   /**
    * 캐릭터 직업
    */
-  public override characterClass: string | null;
+  public override characterClass: string;
 
   /**
    * HEXA 스탯 I 코어 정보
@@ -63,7 +63,7 @@ export class CharacterHexaMatrixStatDto extends base.CharacterHexaMatrixStatDto 
     } = obj;
 
     this.date = date ? new Date(date) : null;
-    this.characterClass = character_class;
+    this.characterClass = character_class!;
     this.characterHexaStatCore =
       character_hexa_stat_core?.map(
         (core) => new CharacterHexaMatrixStatCoreDto(core),

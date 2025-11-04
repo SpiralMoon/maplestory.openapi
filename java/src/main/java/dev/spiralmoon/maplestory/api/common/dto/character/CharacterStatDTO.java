@@ -7,5 +7,5 @@ public interface CharacterStatDTO<CharacterFinalStat extends CharacterFinalStatD
     ZonedDateTime getDate();
     String getCharacterClass();
     List<CharacterFinalStat> getFinalStat();
-    Integer getRemainAp();
+    int getRemainAp();
 }

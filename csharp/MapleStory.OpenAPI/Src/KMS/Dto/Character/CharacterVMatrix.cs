@@ -30,7 +30,7 @@ namespace MapleStory.OpenAPI.KMS.DTO
         /// 캐릭터 직업
         /// </summary>
         [JsonProperty("character_class")]
-        public override string? CharacterClass { get; set; }
+        public override string CharacterClass { get; set; }
 
         /// <summary>
         /// V코어 정보
@@ -43,7 +43,7 @@ namespace MapleStory.OpenAPI.KMS.DTO
         /// 캐릭터 잔여 매트릭스 강화 포인트
         /// </summary>
         [JsonProperty("character_v_matrix_remain_slot_upgrade_point")]
-        public override int? CharacterVMatrixRemainSlotUpgradePoint { get; set; }
+        public override int CharacterVMatrixRemainSlotUpgradePoint { get; set; }
     }
 
     /// <summary>

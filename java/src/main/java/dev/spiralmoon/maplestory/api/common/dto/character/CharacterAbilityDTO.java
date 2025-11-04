@@ -7,7 +7,7 @@ public interface CharacterAbilityDTO<CharacterAbilityInfo extends CharacterAbili
     ZonedDateTime getDate();
     String getAbilityGrade();
     List<CharacterAbilityInfo> getAbilityInfo();
-    Long getRemainFame();
+    long getRemainFame();
     Integer getPresetNo();
     CharacterAbilityPreset getAbilityPreset1();
     CharacterAbilityPreset getAbilityPreset2();

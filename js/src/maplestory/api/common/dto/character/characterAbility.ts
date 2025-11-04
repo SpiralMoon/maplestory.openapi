@@ -1,8 +1,8 @@
 export abstract class CharacterAbilityDto {
   public abstract date: Date | null;
-  public abstract abilityGrade: string | null;
+  public abstract abilityGrade: string;
   public abstract abilityInfo: CharacterAbilityInfoDto[];
-  public abstract remainFame: number | null;
+  public abstract remainFame: number;
   public abstract presetNo: number | null;
   public abstract abilityPreset1: CharacterAbilityPresetDto | null;
   public abstract abilityPreset2: CharacterAbilityPresetDto | null;

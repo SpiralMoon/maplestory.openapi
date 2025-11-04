@@ -43,7 +43,7 @@ namespace MapleStory.OpenAPI.KMS.DTO
         /// 보유 명성치
         /// </summary>
         [JsonProperty("remain_fame")]
-        public override long? RemainFame { get; set; }
+        public override long RemainFame { get; set; }
 
         /// <summary>
         /// 적용 중인 어빌리티 프리셋 번호

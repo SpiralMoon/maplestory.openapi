@@ -14,7 +14,7 @@ class CharacterHexaMatrixStatCore:
 
 class CharacterHexaMatrixStat:
     date: datetime | None
-    character_class: str | None
+    character_class: str
     character_hexa_stat_core: list[CharacterHexaMatrixStatCore] = []
     character_hexa_stat_core_2: list[CharacterHexaMatrixStatCore] = []
     character_hexa_stat_core_3: list[CharacterHexaMatrixStatCore] = []

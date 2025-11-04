@@ -7,5 +7,5 @@ public interface CharacterVMatrixDTO<CharacterVMatrixCoreEquipment extends Chara
     ZonedDateTime getDate();
     String getCharacterClass();
     List<CharacterVMatrixCoreEquipment> getCharacterVCoreEquipment();
-    Long getCharacterVMatrixRemainSlotUpgradePoint();
+    long getCharacterVMatrixRemainSlotUpgradePoint();
 }

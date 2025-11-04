@@ -43,7 +43,7 @@ public class CharacterHyperStatDTO implements dev.spiralmoon.maplestory.api.comm
      * 可用的極限屬性點數上限
      */
     @JsonProperty("use_available_hyper_stat")
-    private Integer useAvailableHyperStat;
+    private int useAvailableHyperStat;
 
     /**
      * 預設 1 的極限屬性資訊
@@ -56,7 +56,7 @@ public class CharacterHyperStatDTO implements dev.spiralmoon.maplestory.api.comm
      * 預設 1 剩餘的極限屬性點數
      */
     @JsonProperty("hyper_stat_preset_1_remain_point")
-    private Integer hyperStatPreset1RemainPoint;
+    private int hyperStatPreset1RemainPoint;
 
     /**
      * 預設 2 的極限屬性資訊
@@ -69,7 +69,7 @@ public class CharacterHyperStatDTO implements dev.spiralmoon.maplestory.api.comm
      * 預設 2 剩餘的極限屬性點數
      */
     @JsonProperty("hyper_stat_preset_2_remain_point")
-    private Integer hyperStatPreset2RemainPoint;
+    private int hyperStatPreset2RemainPoint;
 
     /**
      * 預設 3 的極限屬性資訊
@@ -82,7 +82,7 @@ public class CharacterHyperStatDTO implements dev.spiralmoon.maplestory.api.comm
      * 預設 3 剩餘的極限屬性點數
      */
     @JsonProperty("hyper_stat_preset_3_remain_point")
-    private Integer hyperStatPreset3RemainPoint;
+    private int hyperStatPreset3RemainPoint;
 
     /**
      * 要搜尋的日期 (TST，每日資料中的小時與分鐘將顯示為 0)

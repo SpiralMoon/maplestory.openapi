@@ -50,7 +50,7 @@ public class CharacterCashItemEquipmentDTO implements dev.spiralmoon.maplestory.
      * 적용 중인 캐시 장비 프리셋 번호
      */
     @JsonProperty("preset_no")
-    private Integer presetNo;
+    private int presetNo;
 
     /**
      * 장착 중인 캐시 장비

@@ -34,14 +34,14 @@ class CharacterVMatrix(BaseModel, BaseCharacterVMatrix):
 
     Attributes:
         date (datetime or None): 조회 기준일 (KST, 일 단위 데이터로 시, 분은 일괄 0으로 표기)
-        character_class (str or None): 캐릭터 직업
+        character_class (str): 캐릭터 직업
         character_v_core_equipment (list[CharacterVMatrixCoreEquipment]): V코어 정보
-        character_v_matrix_remain_slot_upgrade_point (int or None): 캐릭터 잔여 매트릭스 강화 포인트
+        character_v_matrix_remain_slot_upgrade_point (int): 캐릭터 잔여 매트릭스 강화 포인트
     """
     date: datetime | None
-    character_class: str | None
+    character_class: str
     character_v_core_equipment: list[CharacterVMatrixCoreEquipment]
-    character_v_matrix_remain_slot_upgrade_point: int | None
+    character_v_matrix_remain_slot_upgrade_point: int
 
     @field_validator("character_v_core_equipment", mode="before")
     @classmethod

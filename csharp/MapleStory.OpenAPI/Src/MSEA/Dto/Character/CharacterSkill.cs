@@ -30,7 +30,7 @@ namespace MapleStory.OpenAPI.MSEA.DTO
         /// Character job
         /// </summary>
         [JsonProperty("character_class")]
-        public override string? CharacterClass { get; set; }
+        public override string CharacterClass { get; set; }
 
         /// <summary>
         /// Job advancement tier required to acquire the skill

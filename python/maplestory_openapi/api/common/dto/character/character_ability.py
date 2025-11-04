@@ -13,10 +13,10 @@ class CharacterAbilityPreset:
 
 
 class CharacterAbility:
-    date: datetime | None | None
-    ability_grade: str | None
+    date: datetime | None
+    ability_grade: str
     ability_info: list[CharacterAbilityInfo] = []
-    remain_fame: int | None
+    remain_fame: int
     preset_no: int | None
     ability_preset_1: CharacterAbilityPreset | None
     ability_preset_2: CharacterAbilityPreset | None

@@ -30,36 +30,36 @@ namespace MapleStory.OpenAPI.MSEA.DTO
         /// Ambition level
         /// </summary>
         [JsonProperty("charisma_level")]
-        public override int? CharismaLevel { get; set; }
+        public override int CharismaLevel { get; set; }
 
         /// <summary>
         /// Empathy level
         /// </summary>
         [JsonProperty("sensibility_level")]
-        public override int? SensibilityLevel { get; set; }
+        public override int SensibilityLevel { get; set; }
 
         /// <summary>
         /// Insight level
         /// </summary>
         [JsonProperty("insight_level")]
-        public override int? InsightLevel { get; set; }
+        public override int InsightLevel { get; set; }
 
         /// <summary>
         /// Willpower level
         /// </summary>
         [JsonProperty("willingness_level")]
-        public override int? WillingnessLevel { get; set; }
+        public override int WillingnessLevel { get; set; }
 
         /// <summary>
         /// Diligence level
         /// </summary>
         [JsonProperty("handicraft_level")]
-        public override int? HandicraftLevel { get; set; }
+        public override int HandicraftLevel { get; set; }
 
         /// <summary>
         /// Charm level
         /// </summary>
         [JsonProperty("charm_level")]
-        public override int? CharmLevel { get; set; }
+        public override int CharmLevel { get; set; }
     }
 }

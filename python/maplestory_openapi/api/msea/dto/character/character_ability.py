@@ -45,18 +45,18 @@ class CharacterAbility(BaseModel, BaseCharacterAbility):
 
     Attributes:
         date (datetime or None): Reference date for query (SGT, daily data with hours and minutes set to 0)
-        ability_grade (str or None): Ability grade
+        ability_grade (str): Ability grade
         ability_info (list[CharacterAbilityInfo]): Ability information
-        remain_fame (int or None): Owned Honor EXP
+        remain_fame (int): Owned Honor EXP
         preset_no (int or None): Active ability preset number
         ability_preset_1 (CharacterAbilityPreset or None): Complete information for Ability Preset 1
         ability_preset_2 (CharacterAbilityPreset or None): Complete information for Ability Preset 2
         ability_preset_3 (CharacterAbilityPreset or None): Complete information for Ability Preset 3
     """
     date: datetime | None
-    ability_grade: str | None
+    ability_grade: str
     ability_info: list[CharacterAbilityInfo]
-    remain_fame: int | None
+    remain_fame: int
     preset_no: int | None
     ability_preset_1: CharacterAbilityPreset | None
     ability_preset_2: CharacterAbilityPreset | None

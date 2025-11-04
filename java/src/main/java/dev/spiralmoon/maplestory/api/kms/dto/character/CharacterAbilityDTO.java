@@ -46,7 +46,7 @@ public class CharacterAbilityDTO implements dev.spiralmoon.maplestory.api.common
      * 보유 명성치
      */
     @JsonProperty("remain_fame")
-    private Long remainFame;
+    private long remainFame;
 
     /**
      * 적용 중인 어빌리티 프리셋 번호

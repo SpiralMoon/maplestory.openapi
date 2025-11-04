@@ -14,6 +14,6 @@ class CharacterVMatrixCoreEquipment:
 
 class CharacterVMatrix:
     date: datetime | None
-    character_class: str | None
+    character_class: str
     character_v_core_equipment: list[CharacterVMatrixCoreEquipment] = []
-    character_v_matrix_remain_slot_upgrade_point: int | None
+    character_v_matrix_remain_slot_upgrade_point: int

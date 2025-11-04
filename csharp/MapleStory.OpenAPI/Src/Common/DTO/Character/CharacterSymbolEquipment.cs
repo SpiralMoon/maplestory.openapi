@@ -3,7 +3,7 @@
     public abstract class CharacterSymbolEquipmentDTO<TCharacterSymbolEquipmentInfo>
     {
         public abstract DateTimeOffset? Date { get; set; }
-        public abstract string? CharacterClass { get; set; }
+        public abstract string CharacterClass { get; set; }
         public abstract List<TCharacterSymbolEquipmentInfo> Symbol { get; set; }
     }
 

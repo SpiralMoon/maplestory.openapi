@@ -49,11 +49,11 @@ class CharacterSymbolEquipment(BaseModel, BaseCharacterSymbolEquipment):
 
     Attributes:
         date (datetime or None): Reference date for query (SGT, daily data with hours and minutes set to 0)
-        character_class (str or None): Character job
+        character_class (str): Character job
         symbol (list[CharacterSymbolEquipmentInfo]): Symbol information
     """
     date: datetime | None
-    character_class: str | None
+    character_class: str
     symbol: list[CharacterSymbolEquipmentInfo]
 
     @field_validator("symbol", mode="before")

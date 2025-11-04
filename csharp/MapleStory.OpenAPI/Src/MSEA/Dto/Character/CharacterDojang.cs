@@ -30,19 +30,19 @@ namespace MapleStory.OpenAPI.MSEA.DTO
         /// Character job
         /// </summary>
         [JsonProperty("character_class")]
-        public override string? CharacterClass { get; set; }
+        public override string CharacterClass { get; set; }
 
         /// <summary>
         /// World name
         /// </summary>
         [JsonProperty("world_name")]
-        public override string? WorldName { get; set; }
+        public override string WorldName { get; set; }
 
         /// <summary>
         /// Highest floor record in Mu Lung Garden
         /// </summary>
         [JsonProperty("dojang_best_floor")]
-        public override int? DojangBestFloor { get; set; }
+        public override int DojangBestFloor { get; set; }
 
         /// <summary>
         /// Achievement date of the highest Mu Lung Garden record (SGT, daily data with hours and minutes set to 0)
@@ -66,6 +66,6 @@ namespace MapleStory.OpenAPI.MSEA.DTO
         /// Time taken to clear the highest floor in Mu Lung Garden (in seconds)
         /// </summary>
         [JsonProperty("dojang_best_time")]
-        public override int? DojangBestTime { get; set; }
+        public override int DojangBestTime { get; set; }
     }
 }

@@ -3,10 +3,10 @@
     public abstract class CharacterCashItemEquipmentDTO<TCharacterCashItemEquipmentPreset>
     {
         public abstract DateTimeOffset? Date { get; set; }
-        public abstract string? CharacterGender { get; set; }
-        public abstract string? CharacterClass { get; set; }
+        public abstract string CharacterGender { get; set; }
+        public abstract string CharacterClass { get; set; }
         public abstract string? CharacterLookMode { get; set; }
-        public abstract int? PresetNo { get; set; }
+        public abstract int PresetNo { get; set; }
         public abstract List<TCharacterCashItemEquipmentPreset> CashItemEquipmentBase { get; set; }
         public abstract List<TCharacterCashItemEquipmentPreset> CashItemEquipmentPreset1 { get; set; }
         public abstract List<TCharacterCashItemEquipmentPreset> CashItemEquipmentPreset2 { get; set; }

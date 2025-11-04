@@ -25,7 +25,7 @@ public class CharacterHyperStatPresetDTO implements dev.spiralmoon.maplestory.ap
      * 投入於能力值的點數
      */
     @JsonProperty("stat_point")
-    private long statPoint;
+    private Long statPoint;
 
     /**
      * 能力值等級

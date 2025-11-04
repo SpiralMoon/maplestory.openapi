@@ -40,7 +40,7 @@ public class CharacterDojangDTO implements dev.spiralmoon.maplestory.api.common.
      * 武陵道場最高紀錄層數
      */
     @JsonProperty("dojang_best_floor")
-    private Integer dojangBestFloor;
+    private int dojangBestFloor;
 
     /**
      * 達成武陵道場最高紀錄的日期 (TST，每日資料的小時與分鐘顯示為 0)
@@ -52,7 +52,7 @@ public class CharacterDojangDTO implements dev.spiralmoon.maplestory.api.common.
      * 通關武陵道場最高樓層所花費的時間 (秒)
      */
     @JsonProperty("dojang_best_time")
-    private Integer dojangBestTime;
+    private int dojangBestTime;
 
     /**
      * 要搜尋的日期 (TST，每日資料中的小時與分鐘將顯示為 0)

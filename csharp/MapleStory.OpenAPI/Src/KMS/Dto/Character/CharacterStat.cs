@@ -30,7 +30,7 @@ namespace MapleStory.OpenAPI.KMS.DTO
         /// 캐릭터 직업
         /// </summary>
         [JsonProperty("character_class")]
-        public override string? CharacterClass { get; set; }
+        public override string CharacterClass { get; set; }
 
         /// <summary>
         /// 현재 스탯 정보
@@ -43,7 +43,7 @@ namespace MapleStory.OpenAPI.KMS.DTO
         /// 잔여 AP
         /// </summary>
         [JsonProperty("remain_ap")]
-        public override int? RemainAp { get; set; }
+        public override int RemainAp { get; set; }
     }
 
     /// <summary>

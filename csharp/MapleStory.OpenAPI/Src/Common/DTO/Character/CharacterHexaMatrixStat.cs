@@ -3,7 +3,7 @@
     public abstract class CharacterHexaMatrixStatDTO<TCharacterHexaMatrixStatCore>
     {
         public abstract DateTimeOffset? Date { get; set; }
-        public abstract string? CharacterClass { get; set; }
+        public abstract string CharacterClass { get; set; }
         public abstract List<TCharacterHexaMatrixStatCore> CharacterHexaStatCore { get; set; }
         public abstract List<TCharacterHexaMatrixStatCore> CharacterHexaStatCore2 { get; set; }
         public abstract List<TCharacterHexaMatrixStatCore> CharacterHexaStatCore3 { get; set; }

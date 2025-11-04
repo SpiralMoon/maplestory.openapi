@@ -1528,7 +1528,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <param name="characterClass">직업 및 전직 <a href="https://openapi.nexon.com/ko/game/maplestory/?id=18">Available values</a></param>
         /// <param name="ocid">캐릭터 식별자</param>
         /// <param name="page">페이지 번호</param>
-        public Task<DojangRankingResponseDTO> GetDojangRanking(string? worldName, int difficulty, string? characterClass, string ocid, int? page)
+        public Task<DojangRankingResponseDTO> GetDojangRanking(string? worldName, int difficulty, string? characterClass, string? ocid, int? page)
         {
             return GetDojangRanking(worldName, difficulty, characterClass, ocid, page, GetProperDefaultDateTimeOffset(new Base.Param.LatestApiUpdateTimeOption
             {

@@ -24,7 +24,7 @@ namespace MapleStory.OpenAPI.MSEA.DTO
         /// Character job
         /// </summary>
         [JsonProperty("character_class")]
-        public override string? CharacterClass { get; set; }
+        public override string CharacterClass { get; set; }
 
         /// <summary>
         /// V Matrix Node information
@@ -37,7 +37,7 @@ namespace MapleStory.OpenAPI.MSEA.DTO
         /// Remaining Matrix enhancement points for the character
         /// </summary>
         [JsonProperty("character_v_matrix_remain_slot_upgrade_point")]
-        public override int? CharacterVMatrixRemainSlotUpgradePoint { get; set; }
+        public override int CharacterVMatrixRemainSlotUpgradePoint { get; set; }
     }
 
     /// <summary>

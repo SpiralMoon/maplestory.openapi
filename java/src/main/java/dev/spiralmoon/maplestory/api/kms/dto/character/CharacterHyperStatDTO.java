@@ -44,7 +44,7 @@ public class CharacterHyperStatDTO implements dev.spiralmoon.maplestory.api.comm
      * 사용 가능한 최대 하이퍼 스탯 포인트
      */
     @JsonProperty("use_available_hyper_stat")
-    private Integer useAvailableHyperStat;
+    private int useAvailableHyperStat;
 
     /**
      * 프리셋 1번 하이퍼 스탯 정보
@@ -57,7 +57,7 @@ public class CharacterHyperStatDTO implements dev.spiralmoon.maplestory.api.comm
      * 프리셋 1번 하이퍼 스탯 잔여 포인트
      */
     @JsonProperty("hyper_stat_preset_1_remain_point")
-    private Integer hyperStatPreset1RemainPoint;
+    private int hyperStatPreset1RemainPoint;
 
     /**
      * 프리셋 2번 하이퍼 스탯 정보
@@ -70,7 +70,7 @@ public class CharacterHyperStatDTO implements dev.spiralmoon.maplestory.api.comm
      * 프리셋 2번 하이퍼 스탯 잔여 포인트
      */
     @JsonProperty("hyper_stat_preset_2_remain_point")
-    private Integer hyperStatPreset2RemainPoint;
+    private int hyperStatPreset2RemainPoint;
 
     /**
      * 프리셋 3번 하이퍼 스탯 정보
@@ -83,7 +83,7 @@ public class CharacterHyperStatDTO implements dev.spiralmoon.maplestory.api.comm
      * 프리셋 3번 하이퍼 스탯 잔여 포인트
      */
     @JsonProperty("hyper_stat_preset_3_remain_point")
-    private Integer hyperStatPreset3RemainPoint;
+    private int hyperStatPreset3RemainPoint;
 
     /**
      * 조회 기준일 (KST, 일 단위 데이터로 시, 분은 일괄 0으로 표기)

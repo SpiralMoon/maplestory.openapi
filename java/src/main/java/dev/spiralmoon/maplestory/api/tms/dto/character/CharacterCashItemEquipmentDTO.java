@@ -49,7 +49,7 @@ public class CharacterCashItemEquipmentDTO implements dev.spiralmoon.maplestory.
      * 目前套用的現金道具預設編號
      */
     @JsonProperty("preset_no")
-    private Integer presetNo;
+    private int presetNo;
 
     /**
      * 目前已裝備的現金道具

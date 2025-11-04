@@ -30,36 +30,36 @@ namespace MapleStory.OpenAPI.KMS.DTO
         /// 카리스마 레벨
         /// </summary>
         [JsonProperty("charisma_level")]
-        public override int? CharismaLevel { get; set; }
+        public override int CharismaLevel { get; set; }
 
         /// <summary>
         /// 감성 레벨
         /// </summary>
         [JsonProperty("sensibility_level")]
-        public override int? SensibilityLevel { get; set; }
+        public override int SensibilityLevel { get; set; }
 
         /// <summary>
         /// 통찰력 레벨
         /// </summary>
         [JsonProperty("insight_level")]
-        public override int? InsightLevel { get; set; }
+        public override int InsightLevel { get; set; }
 
         /// <summary>
         /// 의지 레벨
         /// </summary>
         [JsonProperty("willingness_level")]
-        public override int? WillingnessLevel { get; set; }
+        public override int WillingnessLevel { get; set; }
 
         /// <summary>
         /// 손재주 레벨
         /// </summary>
         [JsonProperty("handicraft_level")]
-        public override int? HandicraftLevel { get; set; }
+        public override int HandicraftLevel { get; set; }
 
         /// <summary>
         /// 매력 레벨
         /// </summary>
         [JsonProperty("charm_level")]
-        public override int? CharmLevel { get; set; }
+        public override int CharmLevel { get; set; }
     }
 }

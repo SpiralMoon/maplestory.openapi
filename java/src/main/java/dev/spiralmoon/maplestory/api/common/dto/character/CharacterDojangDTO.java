@@ -6,7 +6,7 @@ public interface CharacterDojangDTO {
     ZonedDateTime getDate();
     String getCharacterClass();
     String getWorldName();
-    Integer getDojangBestFloor();
+    int getDojangBestFloor();
     ZonedDateTime getDateDojangRecord();
-    Integer getDojangBestTime();
+    int getDojangBestTime();
 }

@@ -1,6 +1,6 @@
 export abstract class CharacterLinkSkillDto {
   public abstract date: Date | null;
-  public abstract characterClass: string | null;
+  public abstract characterClass: string;
   public abstract characterLinkSkill: CharacterLinkSkillInfoDto[];
   public abstract characterLinkSkillPreset1: CharacterLinkSkillInfoDto[];
   public abstract characterLinkSkillPreset2: CharacterLinkSkillInfoDto[];

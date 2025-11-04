@@ -35,7 +35,7 @@ class CharacterHexaMatrixStat(BaseModel, BaseCharacterHexaMatrixStat):
 
     Attributes:
         date (datetime or None): 要搜尋的日期 (TST，每日資料中的小時與分鐘將顯示為 0)
-        character_class (str or None): 角色職業
+        character_class (str): 角色職業
         character_hexa_stat_core (list[CharacterHexaMatrixStatCore]): HEXA 屬性 I 核心資訊
         character_hexa_stat_core_2 (list[CharacterHexaMatrixStatCore]): HEXA 屬性 II 核心資訊
         character_hexa_stat_core_3 (list[CharacterHexaMatrixStatCore]): HEXA 屬性 III 核心資訊
@@ -44,7 +44,7 @@ class CharacterHexaMatrixStat(BaseModel, BaseCharacterHexaMatrixStat):
         preset_hexa_stat_core_3 (list[CharacterHexaMatrixStatCore]): 預設的 HEXA 屬性 III 核心資訊
     """
     date: datetime | None
-    character_class: str | None
+    character_class: str
     character_hexa_stat_core: list[CharacterHexaMatrixStatCore]
     character_hexa_stat_core_2: list[CharacterHexaMatrixStatCore]
     character_hexa_stat_core_3: list[CharacterHexaMatrixStatCore]

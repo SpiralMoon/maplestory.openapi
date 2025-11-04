@@ -28,37 +28,37 @@ public class CharacterPropensityDTO implements dev.spiralmoon.maplestory.api.com
      * 領導力等級
      */
     @JsonProperty("charisma_level")
-    private Integer charismaLevel;
+    private int charismaLevel;
 
     /**
      * 感性等級
      */
     @JsonProperty("sensibility_level")
-    private Integer sensibilityLevel;
+    private int sensibilityLevel;
 
     /**
      * 洞察力等級
      */
     @JsonProperty("insight_level")
-    private Integer insightLevel;
+    private int insightLevel;
 
     /**
      * 意志等級
      */
     @JsonProperty("willingness_level")
-    private Integer willingnessLevel;
+    private int willingnessLevel;
 
     /**
      * 手藝等級
      */
     @JsonProperty("handicraft_level")
-    private Integer handicraftLevel;
+    private int handicraftLevel;
 
     /**
      * 魅力等級
      */
     @JsonProperty("charm_level")
-    private Integer charmLevel;
+    private int charmLevel;
 
     /**
      * 要搜尋的日期 (TST，每日資料中的小時與分鐘將顯示為 0)

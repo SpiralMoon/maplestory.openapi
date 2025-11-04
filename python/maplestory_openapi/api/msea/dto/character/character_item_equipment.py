@@ -517,8 +517,8 @@ class CharacterItemEquipment(BaseModel, BaseCharacterItemEquipment):
 
     Attributes:
         date (datetime or None): Reference date for query (SGT, daily data with hours and minutes set to 0)
-        character_gender (str or None): Character gender
-        character_class (str or None): Character job
+        character_gender (str): Character gender
+        character_class (str): Character job
         preset_no (int or None): Active equipment preset number
         item_equipment (list[CharacterItemEquipmentInfo]): Equipment information
         item_equipment_preset_1 (list[CharacterItemEquipmentInfo] or None): Equipment information for Preset 1
@@ -529,8 +529,8 @@ class CharacterItemEquipment(BaseModel, BaseCharacterItemEquipment):
         mechanic_equipment (list[CharacterItemEquipmentMechanicInfo]): Mechanic equipment information (response provided if the character is a Mechanic)
     """
     date: datetime | None
-    character_gender: str | None
-    character_class: str | None
+    character_gender: str
+    character_class: str
     preset_no: int | None
     item_equipment: list[CharacterItemEquipmentInfo]
     item_equipment_preset_1: list[CharacterItemEquipmentInfo]

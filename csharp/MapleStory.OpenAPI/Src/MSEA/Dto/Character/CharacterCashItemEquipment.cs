@@ -30,13 +30,13 @@ namespace MapleStory.OpenAPI.MSEA.DTO
         /// Character gender
         /// </summary>
         [JsonProperty("character_gender")]
-        public override string? CharacterGender { get; set; }
+        public override string CharacterGender { get; set; }
 
         /// <summary>
         /// Character job
         /// </summary>
         [JsonProperty("character_class")]
-        public override string? CharacterClass { get; set; }
+        public override string CharacterClass { get; set; }
 
         /// <summary>
         /// Character look mode (0: Normal mode, 1: Beta for Zero or Dress-Up mode for Angelic Buster)
@@ -48,7 +48,7 @@ namespace MapleStory.OpenAPI.MSEA.DTO
         /// Active cash equipment preset number
         /// </summary>
         [JsonProperty("preset_no")]
-        public override int? PresetNo { get; set; }
+        public override int PresetNo { get; set; }
 
         /// <summary>
         /// Currently equipped cash items

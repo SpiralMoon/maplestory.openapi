@@ -93,10 +93,10 @@ class CharacterCashitemEquipment(BaseModel, BaseCharacterCashitemEquipment):
 
     Attributes:
         date (datetime or None): Reference date for query (SGT, daily data with hours and minutes set to 0)
-        character_gender (str or None): Character gender
-        character_class (str or None): Character job
+        character_gender (str): Character gender
+        character_class (str): Character job
         character_look_mode (str or None): Character appearance mode (0:Normal mode, 1:Beta for Zero, Dress-up mode for Angelic Buster)
-        preset_no (int or None): Preset number for equipped cash item
+        preset_no (int): Preset number for equipped cash item
         cash_item_equipment_base (list[CharacterCashitemEquipmentPreset]): Equipped cash item
         cash_item_equipment_preset_1 (list[CharacterCashitemEquipmentPreset]): Cosmetic item preset 1
         cash_item_equipment_preset_2 (list[CharacterCashitemEquipmentPreset]): Cosmetic item preset 2
@@ -107,10 +107,10 @@ class CharacterCashitemEquipment(BaseModel, BaseCharacterCashitemEquipment):
         additional_cash_item_equipment_preset_3 (list[CharacterCashitemEquipmentPreset]): Cosmetic item preset 3 for Beta mode (if Zero) or Dress-up mode (if Angelic Buster)
     """
     date: datetime | None
-    character_gender: str | None
-    character_class: str | None
+    character_gender: str
+    character_class: str
     character_look_mode: str | None
-    preset_no: int | None
+    preset_no: int
     cash_item_equipment_base: list[CharacterCashitemEquipmentPreset]
     cash_item_equipment_preset_1: list[CharacterCashitemEquipmentPreset]
     cash_item_equipment_preset_2: list[CharacterCashitemEquipmentPreset]

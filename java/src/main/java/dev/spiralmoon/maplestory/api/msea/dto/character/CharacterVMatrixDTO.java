@@ -44,7 +44,7 @@ public class CharacterVMatrixDTO implements dev.spiralmoon.maplestory.api.common
      * Remaining Matrix enhancement points for the character
      */
     @JsonProperty("character_v_matrix_remain_slot_upgrade_point")
-    private Long characterVMatrixRemainSlotUpgradePoint;
+    private long characterVMatrixRemainSlotUpgradePoint;
 
     /**
      * Reference date for query (SGT, daily data with hours and minutes set to 0)

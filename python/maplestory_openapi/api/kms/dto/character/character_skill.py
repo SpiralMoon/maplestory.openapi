@@ -32,11 +32,11 @@ class CharacterSkill(BaseModel, BaseCharacterSkill):
     Attributes:
         date (datetime or None): 조회 기준일 (KST, 일 단위 데이터로 시, 분은 일괄 0으로 표기)
         character_class (str or None): 캐릭터 직업
-        character_skill_grade (str or None): 스킬 전직 차수
+        character_skill_grade (str): 스킬 전직 차수
         character_skill (list[CharacterSkillInfo]): 스킬 정보
     """
     date: datetime | None
-    character_class: str | None
+    character_class: str
     character_skill_grade: str | None
     character_skill: list[CharacterSkillInfo]
 

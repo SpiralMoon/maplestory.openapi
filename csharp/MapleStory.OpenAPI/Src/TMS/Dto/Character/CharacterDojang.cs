@@ -30,19 +30,19 @@ namespace MapleStory.OpenAPI.TMS.DTO
         /// 角色職業
         /// </summary>
         [JsonProperty("character_class")]
-        public override string? CharacterClass { get; set; }
+        public override string CharacterClass { get; set; }
 
         /// <summary>
         /// 世界名稱
         /// </summary>
         [JsonProperty("world_name")]
-        public override string? WorldName { get; set; }
+        public override string WorldName { get; set; }
 
         /// <summary>
         /// 武陵道場最高紀錄層數
         /// </summary>
         [JsonProperty("dojang_best_floor")]
-        public override int? DojangBestFloor { get; set; }
+        public override int DojangBestFloor { get; set; }
 
         /// <summary>
         /// 達成武陵道場最高紀錄的日期 (TST，每日資料的小時與分鐘顯示為 0)
@@ -66,6 +66,6 @@ namespace MapleStory.OpenAPI.TMS.DTO
         /// 通關武陵道場最高樓層所花費的時間 (秒)
         /// </summary>
         [JsonProperty("dojang_best_time")]
-        public override int? DojangBestTime { get; set; }
+        public override int DojangBestTime { get; set; }
     }
 }

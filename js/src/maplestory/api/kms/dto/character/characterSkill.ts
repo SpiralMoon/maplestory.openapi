@@ -16,7 +16,7 @@ export class CharacterSkillDto extends base.CharacterSkillDto {
   /**
    * 캐릭터 직업
    */
-  public override characterClass: string | null;
+  public override characterClass: string;
 
   /**
    * 스킬 전직 차수
@@ -35,7 +35,7 @@ export class CharacterSkillDto extends base.CharacterSkillDto {
       obj;
 
     this.date = date ? new Date(date) : null;
-    this.characterClass = character_class;
+    this.characterClass = character_class!;
     this.characterSkillGrade = character_skill_grade;
     this.characterSkill = character_skill.map(
       (skill) => new CharacterSkillInfoDto(skill),

@@ -50,7 +50,7 @@ public class CharacterCashItemEquipmentDTO implements dev.spiralmoon.maplestory.
      * Preset number for equipped cash item
      */
     @JsonProperty("preset_no")
-    private Integer presetNo;
+    private int presetNo;
 
     /**
      * Equipped cash item

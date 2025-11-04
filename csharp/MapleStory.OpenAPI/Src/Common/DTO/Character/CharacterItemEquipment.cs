@@ -3,8 +3,8 @@
     public abstract class CharacterItemEquipmentDTO<TCharacterItemEquipmentInfo, TCharacterItemEquipmentTitle, TCharacterItemEquipmentDragonInfo, TCharacterItemEquipmentMechanicInfo>
     {
         public abstract DateTimeOffset? Date { get; set; }
-        public abstract string? CharacterGender { get; set; }
-        public abstract string? CharacterClass { get; set; }
+        public abstract string CharacterGender { get; set; }
+        public abstract string CharacterClass { get; set; }
         public abstract int? PresetNo { get; set; }
         public abstract List<TCharacterItemEquipmentInfo> ItemEquipment { get; set; }
         public abstract List<TCharacterItemEquipmentInfo>? ItemEquipmentPreset1 { get; set; }

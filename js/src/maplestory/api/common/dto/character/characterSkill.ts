@@ -1,6 +1,6 @@
 export abstract class CharacterSkillDto {
   public abstract date: Date | null;
-  public abstract characterClass: string | null;
+  public abstract characterClass: string;
   public abstract characterSkillGrade: string | null;
   public abstract characterSkill: CharacterSkillInfoDto[];
 }

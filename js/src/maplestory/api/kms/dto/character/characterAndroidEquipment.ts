@@ -62,7 +62,7 @@ export class CharacterAndroidEquipmentDto extends base.CharacterAndroidEquipment
   /**
    * 안드로이드 이어센서 클립 적용 여부
    */
-  public override androidEarSensorClipFlag: string | null;
+  public override androidEarSensorClipFlag: string;
 
   /**
    * 안드로이드 성별
@@ -145,7 +145,7 @@ export class CharacterAndroidEquipmentDto extends base.CharacterAndroidEquipment
     this.androidCashItemEquipment = android_cash_item_equipment.map(
       (equipment) => new CharacterAndroidCashItemEquipmentDto(equipment),
     );
-    this.androidEarSensorClipFlag = android_ear_sensor_clip_flag ?? null;
+    this.androidEarSensorClipFlag = android_ear_sensor_clip_flag;
     this.androidGender = android_gender;
     this.androidGrade = android_grade;
     this.androidNonHumanoidFlag = android_non_humanoid_flag;

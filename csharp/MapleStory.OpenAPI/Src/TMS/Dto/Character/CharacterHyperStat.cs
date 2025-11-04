@@ -30,19 +30,19 @@ namespace MapleStory.OpenAPI.TMS.DTO
         /// 角色職業
         /// </summary>
         [JsonProperty("character_class")]
-        public override string? CharacterClass { get; set; }
+        public override string CharacterClass { get; set; }
 
         /// <summary>
         /// 目前套用的預設編號
         /// </summary>
         [JsonProperty("use_preset_no")]
-        public override string? UsePresetNo { get; set; }
+        public override string UsePresetNo { get; set; }
 
         /// <summary>
         /// 可用的極限屬性點數上限
         /// </summary>
         [JsonProperty("use_available_hyper_stat")]
-        public override int? UseAvailableHyperStat { get; set; }
+        public override int UseAvailableHyperStat { get; set; }
 
         /// <summary>
         /// 預設 1 的極限屬性資訊
@@ -55,7 +55,7 @@ namespace MapleStory.OpenAPI.TMS.DTO
         /// 預設 1 剩餘的極限屬性點數
         /// </summary>
         [JsonProperty("hyper_stat_preset_1_remain_point")]
-        public override int? HyperStatPreset1RemainPoint { get; set; }
+        public override int HyperStatPreset1RemainPoint { get; set; }
 
         /// <summary>
         /// 預設 2 的極限屬性資訊
@@ -68,7 +68,7 @@ namespace MapleStory.OpenAPI.TMS.DTO
         /// 預設 2 剩餘的極限屬性點數
         /// </summary>
         [JsonProperty("hyper_stat_preset_2_remain_point")]
-        public override int? HyperStatPreset2RemainPoint { get; set; }
+        public override int HyperStatPreset2RemainPoint { get; set; }
 
         /// <summary>
         /// 預設 3 的極限屬性資訊
@@ -81,7 +81,7 @@ namespace MapleStory.OpenAPI.TMS.DTO
         /// 預設 3 剩餘的極限屬性點數
         /// </summary>
         [JsonProperty("hyper_stat_preset_3_remain_point")]
-        public override int? HyperStatPreset3RemainPoint { get; set; }
+        public override int HyperStatPreset3RemainPoint { get; set; }
     }
 
     /// <summary>

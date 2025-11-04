@@ -1,6 +1,6 @@
 export abstract class CharacterSymbolEquipmentDto {
   public abstract date: Date | null;
-  public abstract characterClass: string | null;
+  public abstract characterClass: string;
   public abstract symbol: CharacterSymbolEquipmentInfoDto[];
 }
 

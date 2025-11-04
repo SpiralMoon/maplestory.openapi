@@ -35,14 +35,14 @@ class CharacterVMatrix(BaseModel, BaseCharacterVMatrix):
 
     Attributes:
         date (datetime or None): Reference date for query (SGT, daily data with hours and minutes set to 0)
-        character_class (str or None): Character job
+        character_class (str): Character job
         character_v_core_equipment (list[CharacterVMatrixCoreEquipment]): V Matrix Node information
-        character_v_matrix_remain_slot_upgrade_point (int or None): Remaining Matrix enhancement points for the character
+        character_v_matrix_remain_slot_upgrade_point (int): Remaining Matrix enhancement points for the character
     """
     date: datetime | None
-    character_class: str | None
+    character_class: str
     character_v_core_equipment: list[CharacterVMatrixCoreEquipment]
-    character_v_matrix_remain_slot_upgrade_point: int | None
+    character_v_matrix_remain_slot_upgrade_point: int
 
     @field_validator("character_v_core_equipment", mode="before")
     @classmethod

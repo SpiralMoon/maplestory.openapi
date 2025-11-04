@@ -44,7 +44,7 @@ public class CharacterHyperStatDTO implements dev.spiralmoon.maplestory.api.comm
      * Maximum available Hyper Stat points
      */
     @JsonProperty("use_available_hyper_stat")
-    private Integer useAvailableHyperStat;
+    private int useAvailableHyperStat;
 
     /**
      * Hyper Stat information for preset 1
@@ -57,7 +57,7 @@ public class CharacterHyperStatDTO implements dev.spiralmoon.maplestory.api.comm
      * Remaining Hyper Stat points for preset 1
      */
     @JsonProperty("hyper_stat_preset_1_remain_point")
-    private Integer hyperStatPreset1RemainPoint;
+    private int hyperStatPreset1RemainPoint;
 
     /**
      * Hyper Stat information for preset 2
@@ -70,7 +70,7 @@ public class CharacterHyperStatDTO implements dev.spiralmoon.maplestory.api.comm
      * Remaining Hyper Stat points for preset 2
      */
     @JsonProperty("hyper_stat_preset_2_remain_point")
-    private Integer hyperStatPreset2RemainPoint;
+    private int hyperStatPreset2RemainPoint;
 
     /**
      * Hyper Stat information for preset 3
@@ -83,7 +83,7 @@ public class CharacterHyperStatDTO implements dev.spiralmoon.maplestory.api.comm
      * Remaining Hyper Stat points for preset 3
      */
     @JsonProperty("hyper_stat_preset_3_remain_point")
-    private Integer hyperStatPreset3RemainPoint;
+    private int hyperStatPreset3RemainPoint;
 
     /**
      * Reference date for query (SGT, daily data with hours and minutes set to 0)

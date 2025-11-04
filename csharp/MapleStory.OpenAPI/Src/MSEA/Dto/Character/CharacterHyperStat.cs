@@ -30,19 +30,19 @@ namespace MapleStory.OpenAPI.MSEA.DTO
         /// Character job
         /// </summary>
         [JsonProperty("character_class")]
-        public override string? CharacterClass { get; set; }
+        public override string CharacterClass { get; set; }
 
         /// <summary>
         /// Active preset number
         /// </summary>
         [JsonProperty("use_preset_no")]
-        public override string? UsePresetNo { get; set; }
+        public override string UsePresetNo { get; set; }
 
         /// <summary>
         /// Maximum available Hyper Stat points
         /// </summary>
         [JsonProperty("use_available_hyper_stat")]
-        public override int? UseAvailableHyperStat { get; set; }
+        public override int UseAvailableHyperStat { get; set; }
 
         /// <summary>
         /// Hyper Stat information for preset 1
@@ -55,7 +55,7 @@ namespace MapleStory.OpenAPI.MSEA.DTO
         /// Remaining Hyper Stat points for preset 1
         /// </summary>
         [JsonProperty("hyper_stat_preset_1_remain_point")]
-        public override int? HyperStatPreset1RemainPoint { get; set; }
+        public override int HyperStatPreset1RemainPoint { get; set; }
 
         /// <summary>
         /// Hyper Stat information for preset 2
@@ -68,7 +68,7 @@ namespace MapleStory.OpenAPI.MSEA.DTO
         /// Remaining Hyper Stat points for preset 2
         /// </summary>
         [JsonProperty("hyper_stat_preset_2_remain_point")]
-        public override int? HyperStatPreset2RemainPoint { get; set; }
+        public override int HyperStatPreset2RemainPoint { get; set; }
 
         /// <summary>
         /// Hyper Stat information for preset 3
@@ -81,7 +81,7 @@ namespace MapleStory.OpenAPI.MSEA.DTO
         /// Remaining Hyper Stat points for preset 3
         /// </summary>
         [JsonProperty("hyper_stat_preset_3_remain_point")]
-        public override int? HyperStatPreset3RemainPoint { get; set; }
+        public override int HyperStatPreset3RemainPoint { get; set; }
     }
 
     /// <summary>

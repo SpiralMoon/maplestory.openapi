@@ -49,11 +49,11 @@ class CharacterSymbolEquipment(BaseModel, BaseCharacterSymbolEquipment):
 
     Attributes:
         date (datetime or None): 要搜尋的日期 (TST，每日資料中的小時與分鐘將顯示為 0)
-        character_class (str or None): 角色職業
+        character_class (str): 角色職業
         symbol (list[CharacterSymbolEquipmentInfo]): 符文資訊
     """
     date: datetime | None
-    character_class: str | None
+    character_class: str
     symbol: list[CharacterSymbolEquipmentInfo]
 
     @field_validator("symbol", mode="before")

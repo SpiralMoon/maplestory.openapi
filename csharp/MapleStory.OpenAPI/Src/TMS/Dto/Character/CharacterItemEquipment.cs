@@ -34,13 +34,13 @@ namespace MapleStory.OpenAPI.TMS.DTO
         /// 角色性別
         /// </summary>
         [JsonProperty("character_gender")]
-        public override string? CharacterGender { get; set; }
+        public override string CharacterGender { get; set; }
 
         /// <summary>
         /// 角色職業
         /// </summary>
         [JsonProperty("character_class")]
-        public override string? CharacterClass { get; set; }
+        public override string CharacterClass { get; set; }
 
         /// <summary>
         /// 目前套用的道具預設編號
@@ -541,7 +541,8 @@ namespace MapleStory.OpenAPI.TMS.DTO
         /// 已套用的卓越強化次數
         /// </summary>
         [JsonProperty("exceptional_upgrade")]
-        public override int ExceptionalUpgrade { get; set; }
+        [JsonConverter(typeof(DefaultValueConverter<int>), 0)]
+        public override int ExceptionalUpgrade { get; set; } = 0;
     }
 
     /// <summary>

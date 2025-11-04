@@ -221,8 +221,8 @@ class CharacterItemEquipmentTitle:
 
 class CharacterItemEquipment:
     date: datetime | None
-    character_gender: str | None
-    character_class: str | None
+    character_gender: str
+    character_class: str
     preset_no: int | None
     item_equipment: list[CharacterItemEquipmentInfo] = []
     item_equipment_preset_1: list[CharacterItemEquipmentInfo] = []

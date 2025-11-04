@@ -35,7 +35,7 @@ class CharacterHexaMatrixStat(BaseModel, BaseCharacterHexaMatrixStat):
 
     Attributes:
         date (datetime or None): Reference date for query (SGT, daily data with hours and minutes set to 0)
-        character_class (str or None): Character job
+        character_class (str): Character job
         character_hexa_stat_core (list[CharacterHexaMatrixStatCore]): Information for HEXA Stat Node I
         character_hexa_stat_core_2 (list[CharacterHexaMatrixStatCore]): Information for HEXA Stat Node II
         character_hexa_stat_core_3 (list[CharacterHexaMatrixStatCore]): Information for HEXA Stat Node III
@@ -44,7 +44,7 @@ class CharacterHexaMatrixStat(BaseModel, BaseCharacterHexaMatrixStat):
         preset_hexa_stat_core_3 (list[CharacterHexaMatrixStatCore]): Preset HEXA Stat Node III information
     """
     date: datetime | None
-    character_class: str | None
+    character_class: str
     character_hexa_stat_core: list[CharacterHexaMatrixStatCore]
     character_hexa_stat_core_2: list[CharacterHexaMatrixStatCore]
     character_hexa_stat_core_3: list[CharacterHexaMatrixStatCore]

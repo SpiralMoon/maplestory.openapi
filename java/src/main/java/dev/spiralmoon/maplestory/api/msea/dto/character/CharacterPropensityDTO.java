@@ -28,37 +28,37 @@ public class CharacterPropensityDTO implements dev.spiralmoon.maplestory.api.com
      * Ambition level
      */
     @JsonProperty("charisma_level")
-    private Integer charismaLevel;
+    private int charismaLevel;
 
     /**
      * Empathy level
      */
     @JsonProperty("sensibility_level")
-    private Integer sensibilityLevel;
+    private int sensibilityLevel;
 
     /**
      * Insight level
      */
     @JsonProperty("insight_level")
-    private Integer insightLevel;
+    private int insightLevel;
 
     /**
      * Willpower level
      */
     @JsonProperty("willingness_level")
-    private Integer willingnessLevel;
+    private int willingnessLevel;
 
     /**
      * Diligence level
      */
     @JsonProperty("handicraft_level")
-    private Integer handicraftLevel;
+    private int handicraftLevel;
 
     /**
      * Charm level
      */
     @JsonProperty("charm_level")
-    private Integer charmLevel;
+    private int charmLevel;
 
     /**
      * Reference date for query (SGT, daily data with hours and minutes set to 0)

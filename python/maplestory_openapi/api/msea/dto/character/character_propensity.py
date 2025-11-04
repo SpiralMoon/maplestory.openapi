@@ -10,17 +10,17 @@ class CharacterPropensity(BaseModel, BaseCharacterPropensity):
 
     Attributes:
         date (datetime or None): Reference date for query (SGT, daily data with hours and minutes set to 0)
-        charisma_level (int or None): Ambition level
-        sensibility_level (int or None): Empathy level
-        insight_level (int or None): Insight level
-        willingness_level (int or None): Willpower level
-        handicraft_level (int or None): Diligence level
-        charm_level (int or None): Charm level
+        charisma_level (int): Ambition level
+        sensibility_level (int): Empathy level
+        insight_level (int): Insight level
+        willingness_level (int): Willpower level
+        handicraft_level (int): Diligence level
+        charm_level (int): Charm level
     """
     date: datetime | None
-    charisma_level: int | None
-    sensibility_level: int | None
-    insight_level: int | None
-    willingness_level: int | None
-    handicraft_level: int | None
-    charm_level: int | None
+    charisma_level: int
+    sensibility_level: int
+    insight_level: int
+    willingness_level: int
+    handicraft_level: int
+    charm_level: int

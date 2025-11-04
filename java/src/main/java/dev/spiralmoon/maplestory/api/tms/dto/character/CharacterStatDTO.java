@@ -44,7 +44,7 @@ public class CharacterStatDTO implements dev.spiralmoon.maplestory.api.common.dt
      * 剩餘 AP
      */
     @JsonProperty("remain_ap")
-    private Integer remainAp;
+    private int remainAp;
 
     /**
      * 要搜尋的日期 (TST，每日資料中的小時與分鐘將顯示為 0)

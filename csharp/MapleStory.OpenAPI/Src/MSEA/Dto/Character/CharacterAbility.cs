@@ -30,7 +30,7 @@ namespace MapleStory.OpenAPI.MSEA.DTO
         /// Ability grade
         /// </summary>
         [JsonProperty("ability_grade")]
-        public override string? AbilityGrade { get; set; }
+        public override string AbilityGrade { get; set; }
 
         /// <summary>
         /// Ability information
@@ -43,7 +43,7 @@ namespace MapleStory.OpenAPI.MSEA.DTO
         /// Owned Honor EXP
         /// </summary>
         [JsonProperty("remain_fame")]
-        public override long? RemainFame { get; set; }
+        public override long RemainFame { get; set; }
 
         /// <summary>
         /// Active ability preset number

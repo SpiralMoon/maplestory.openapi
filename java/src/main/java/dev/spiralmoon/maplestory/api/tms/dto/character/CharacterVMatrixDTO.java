@@ -44,7 +44,7 @@ public class CharacterVMatrixDTO implements dev.spiralmoon.maplestory.api.common
      * 角色剩餘的矩陣強化點數
      */
     @JsonProperty("character_v_matrix_remain_slot_upgrade_point")
-    private Long characterVMatrixRemainSlotUpgradePoint;
+    private long characterVMatrixRemainSlotUpgradePoint;
 
     /**
      * 要搜尋的日期 (TST，每日資料中的小時與分鐘將顯示為 0)

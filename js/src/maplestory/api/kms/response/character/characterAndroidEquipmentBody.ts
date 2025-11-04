@@ -8,7 +8,7 @@ export type CharacterAndroidEquipmentBody = {
   android_face: CharacterAndroidEquipmentFaceBody | null;
   android_skin: CharacterAndroidEquipmentSkinBody | null;
   android_cash_item_equipment: CharacterAndroidCashItemEquipmentBody[];
-  android_ear_sensor_clip_flag: string | null;
+  android_ear_sensor_clip_flag: string;
   android_gender: string | null;
   android_grade: string | null;
   android_non_humanoid_flag: string | null;

@@ -10,15 +10,15 @@ class CharacterDojang(BaseModel, BaseCharacterDojang):
 
     Attributes:
         date (datetime or None): 要搜尋的日期 (TST，每日資料中的小時與分鐘將顯示為 0)
-        character_class (str or None): 角色職業
-        world_name (str or None): 世界名稱
-        dojang_best_floor (int or None): 武陵道場最高紀錄層數
+        character_class (str): 角色職業
+        world_name (str): 世界名稱
+        dojang_best_floor (int): 武陵道場最高紀錄層數
         date_dojang_record (datetime or None): 達成武陵道場最高紀錄的日期 (TST，每日資料的小時與分鐘顯示為 0)
-        dojang_best_time (int or None): 通關武陵道場最高樓層所花費的時間 (秒)
+        dojang_best_time (int): 通關武陵道場最高樓層所花費的時間 (秒)
     """
     date: datetime | None
-    character_class: str | None
-    world_name: str | None
-    dojang_best_floor: int | None
+    character_class: str
+    world_name: str
+    dojang_best_floor: int
     date_dojang_record: datetime | None
-    dojang_best_time: int | None
+    dojang_best_time: int

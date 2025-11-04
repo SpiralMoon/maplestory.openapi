@@ -1,8 +1,8 @@
 export abstract class CharacterVMatrixDto {
   public abstract date: Date | null;
-  public abstract characterClass: string | null;
+  public abstract characterClass: string;
   public abstract characterVCoreEquipment: CharacterVMatrixCodeEquipmentDto[];
-  public abstract characterVMatrixRemainSlotUpgradePoint: number | null;
+  public abstract characterVMatrixRemainSlotUpgradePoint: number;
 }
 
 export abstract class CharacterVMatrixCodeEquipmentDto {

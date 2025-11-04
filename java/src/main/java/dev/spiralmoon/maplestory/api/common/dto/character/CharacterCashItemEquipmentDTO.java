@@ -8,7 +8,7 @@ public interface CharacterCashItemEquipmentDTO<CharacterCashItemEquipmentPreset 
     String getCharacterGender();
     String getCharacterClass();
     String getCharacterLookMode();
-    Integer getPresetNo();
+    int getPresetNo();
     List<CharacterCashItemEquipmentPreset> getCashItemEquipmentBase();
     List<CharacterCashItemEquipmentPreset> getCashItemEquipmentPreset1();
     List<CharacterCashItemEquipmentPreset> getCashItemEquipmentPreset2();

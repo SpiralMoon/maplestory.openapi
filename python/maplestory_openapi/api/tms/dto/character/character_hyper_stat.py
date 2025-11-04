@@ -17,7 +17,7 @@ class CharacterHyperStatPreset(BaseModel, BaseCharacterHyperStatPreset):
     """
     stat_type: str
     stat_point: int | None
-    stat_level: int | None
+    stat_level: int
     stat_increase: str | None
 
 
@@ -27,26 +27,26 @@ class CharacterHyperStat(BaseModel, BaseCharacterHyperStat):
 
     Attributes:
         date (datetime or None): 要搜尋的日期 (TST，每日資料中的小時與分鐘將顯示為 0)
-        character_class (str or None): 角色職業
-        use_preset_no (str or None): 目前套用的預設編號
-        use_available_hyper_stat (int or None): 可用的極限屬性點數上限
+        character_class (str): 角色職業
+        use_preset_no (str): 目前套用的預設編號
+        use_available_hyper_stat (int): 可用的極限屬性點數上限
         hyper_stat_preset_1 (list[CharacterHyperStatPreset]): 預設 1 的極限屬性資訊
-        hyper_stat_preset_1_remain_point (int or None): 預設 1 剩餘的極限屬性點數
+        hyper_stat_preset_1_remain_point (int): 預設 1 剩餘的極限屬性點數
         hyper_stat_preset_2 (list[CharacterHyperStatPreset]): 預設 2 的極限屬性資訊
-        hyper_stat_preset_2_remain_point (int or None): 預設 2 剩餘的極限屬性點數
+        hyper_stat_preset_2_remain_point (int): 預設 2 剩餘的極限屬性點數
         hyper_stat_preset_3 (list[CharacterHyperStatPreset]): 預設 3 的極限屬性資訊
-        hyper_stat_preset_3_remain_point (int or None): 預設 3 剩餘的極限屬性點數
+        hyper_stat_preset_3_remain_point (int): 預設 3 剩餘的極限屬性點數
     """
     date: datetime | None
-    character_class: str | None
-    use_preset_no: str | None
-    use_available_hyper_stat: int | None
+    character_class: str
+    use_preset_no: str
+    use_available_hyper_stat: int
     hyper_stat_preset_1: list[CharacterHyperStatPreset]
-    hyper_stat_preset_1_remain_point: int | None
+    hyper_stat_preset_1_remain_point: int
     hyper_stat_preset_2: list[CharacterHyperStatPreset]
-    hyper_stat_preset_2_remain_point: int | None
+    hyper_stat_preset_2_remain_point: int
     hyper_stat_preset_3: list[CharacterHyperStatPreset]
-    hyper_stat_preset_3_remain_point: int | None
+    hyper_stat_preset_3_remain_point: int
 
     @field_validator(
         "hyper_stat_preset_1",

@@ -16,7 +16,7 @@ export class CharacterSymbolEquipmentDto extends base.CharacterSymbolEquipmentDt
   /**
    * Character job
    */
-  public override characterClass: string | null;
+  public override characterClass: string;
 
   /**
    * Symbol information
@@ -29,7 +29,7 @@ export class CharacterSymbolEquipmentDto extends base.CharacterSymbolEquipmentDt
     const { date, character_class, symbol } = obj;
 
     this.date = date ? new Date(date) : null;
-    this.characterClass = character_class;
+    this.characterClass = character_class!;
     this.symbol = symbol.map((s) => new CharacterSymbolEquipmentInfoDto(s));
   }
 }

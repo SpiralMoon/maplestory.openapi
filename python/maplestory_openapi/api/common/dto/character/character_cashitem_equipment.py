@@ -31,10 +31,10 @@ class CharacterCashitemEquipmentPreset:
 
 class CharacterCashitemEquipment:
     date: datetime | None
-    character_gender: str | None
-    character_class: str | None
+    character_gender: str
+    character_class: str
     character_look_mode: str | None
-    preset_no: int | None
+    preset_no: int
     cash_item_equipment_base: list[CharacterCashitemEquipmentPreset] = []
     cash_item_equipment_preset_1: list[CharacterCashitemEquipmentPreset] = []
     cash_item_equipment_preset_2: list[CharacterCashitemEquipmentPreset] = []

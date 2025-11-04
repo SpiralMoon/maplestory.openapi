@@ -3,7 +3,7 @@
     public abstract class CharacterSkillDTO<TCharacterSkillInfo>
     {
         public abstract DateTimeOffset? Date { get; set; }
-        public abstract string? CharacterClass { get; set; }
+        public abstract string CharacterClass { get; set; }
         public abstract string? CharacterSkillGrade { get; set; }
         public abstract List<TCharacterSkillInfo> CharacterSkill { get; set; }
     }

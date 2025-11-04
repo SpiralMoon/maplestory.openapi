@@ -25,12 +25,12 @@ export class CharacterItemEquipmentDto extends base.CharacterItemEquipmentDto {
   /**
    * Character gender
    */
-  public override characterGender: string | null;
+  public override characterGender: string;
 
   /**
    * Character job
    */
-  public override characterClass: string | null;
+  public override characterClass: string;
 
   /**
    * Active equipment preset number
@@ -90,8 +90,8 @@ export class CharacterItemEquipmentDto extends base.CharacterItemEquipmentDto {
     } = obj;
 
     this.date = date ? new Date(date) : null;
-    this.characterGender = character_gender;
-    this.characterClass = character_class;
+    this.characterGender = character_gender!;
+    this.characterClass = character_class!;
     this.presetNo = preset_no;
     this.itemEquipment = item_equipment.map(
       (equipment) => new CharacterItemEquipmentInfoDto(equipment),

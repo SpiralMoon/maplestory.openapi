@@ -16,7 +16,7 @@ export class CharacterStatDto extends base.CharacterStatDto {
   /**
    * 캐릭터 직업
    */
-  public override characterClass: string | null;
+  public override characterClass: string;
 
   /**
    * 현재 스탯 정보
@@ -26,7 +26,7 @@ export class CharacterStatDto extends base.CharacterStatDto {
   /**
    * 잔여 AP
    */
-  public override remainAP: number | null;
+  public override remainAP: number;
 
   constructor(obj: CharacterStatBody) {
     super();
@@ -34,9 +34,9 @@ export class CharacterStatDto extends base.CharacterStatDto {
     const { date, character_class, final_stat, remain_ap } = obj;
 
     this.date = date ? new Date(date) : null;
-    this.characterClass = character_class;
+    this.characterClass = character_class!;
     this.finalStat = final_stat.map((stat) => new CharacterFinalStatDto(stat));
-    this.remainAP = remain_ap;
+    this.remainAP = remain_ap!;
   }
 }
 

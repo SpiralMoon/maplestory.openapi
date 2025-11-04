@@ -16,7 +16,7 @@ export class CharacterStatDto extends base.CharacterStatDto {
   /**
    * Character job
    */
-  public override characterClass: string | null;
+  public override characterClass: string;
 
   /**
    * Current stat information
@@ -26,7 +26,7 @@ export class CharacterStatDto extends base.CharacterStatDto {
   /**
    * Remaining AP
    */
-  public override remainAP: number | null;
+  public override remainAP: number;
 
   constructor(obj: CharacterStatBody) {
     super();
@@ -34,9 +34,9 @@ export class CharacterStatDto extends base.CharacterStatDto {
     const { date, character_class, final_stat, remain_ap } = obj;
 
     this.date = date ? new Date(date) : null;
-    this.characterClass = character_class;
+    this.characterClass = character_class!;
     this.finalStat = final_stat.map((stat) => new CharacterFinalStatDto(stat));
-    this.remainAP = remain_ap;
+    this.remainAP = remain_ap!;
   }
 }
 

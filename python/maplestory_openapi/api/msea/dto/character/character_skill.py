@@ -31,12 +31,12 @@ class CharacterSkill(BaseModel, BaseCharacterSkill):
 
     Attributes:
         date (datetime or None): Reference date for query (SGT, daily data with hours and minutes set to 0)
-        character_class (str or None): Character job
+        character_class (str): Character job
         character_skill_grade (str or None): Job advancement tier required to acquire the skill
         character_skill (list[CharacterSkillInfo]): Skill information
     """
     date: datetime | None
-    character_class: str | None
+    character_class: str
     character_skill_grade: str | None
     character_skill: list[CharacterSkillInfo]
 

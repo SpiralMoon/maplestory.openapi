@@ -1,6 +1,6 @@
 export abstract class CharacterHexaMatrixStatDto {
   public abstract date: Date | null;
-  public abstract characterClass: string | null;
+  public abstract characterClass: string;
   public abstract characterHexaStatCore: CharacterHexaMatrixStatCoreDto[];
   public abstract characterHexaStatCore2: CharacterHexaMatrixStatCoreDto[];
   public abstract characterHexaStatCore3: CharacterHexaMatrixStatCoreDto[];

@@ -34,13 +34,13 @@ namespace MapleStory.OpenAPI.MSEA.DTO
         /// Character gender
         /// </summary>
         [JsonProperty("character_gender")]
-        public override string? CharacterGender { get; set; }
+        public override string CharacterGender { get; set; }
 
         /// <summary>
         /// Character job
         /// </summary>
         [JsonProperty("character_class")]
-        public override string? CharacterClass { get; set; }
+        public override string CharacterClass { get; set; }
 
         /// <summary>
         /// Active equipment preset number
@@ -524,6 +524,7 @@ namespace MapleStory.OpenAPI.MSEA.DTO
         /// Number of exceptional boost applications
         /// </summary>
         [JsonProperty("exceptional_upgrade")]
+        [JsonConverter(typeof(DefaultValueConverter<int>), 0)]
         public override int ExceptionalUpgrade { get; set; }
     }
 

@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System.ComponentModel;
 using Base = MapleStory.OpenAPI.Common.DTO;
 
 namespace MapleStory.OpenAPI.KMS.DTO
@@ -34,13 +35,13 @@ namespace MapleStory.OpenAPI.KMS.DTO
         /// 캐릭터 성별
         /// </summary>
         [JsonProperty("character_gender")]
-        public override string? CharacterGender { get; set; }
+        public override string CharacterGender { get; set; }
 
         /// <summary>
         /// 캐릭터 직업
         /// </summary>
         [JsonProperty("character_class")]
-        public override string? CharacterClass { get; set; }
+        public override string CharacterClass { get; set; }
 
         /// <summary>
         /// 적용 중인 장비 프리셋 번호
@@ -589,6 +590,7 @@ namespace MapleStory.OpenAPI.KMS.DTO
         /// 익셉셔널 강화 적용 횟수
         /// </summary>
         [JsonProperty("exceptional_upgrade")]
+        [JsonConverter(typeof(DefaultValueConverter<int>), 0)]
         public override int ExceptionalUpgrade { get; set; }
     }
 

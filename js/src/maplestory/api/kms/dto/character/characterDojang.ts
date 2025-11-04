@@ -13,17 +13,17 @@ export class CharacterDojangDto extends base.CharacterDojangDto {
   /**
    * 캐릭터 직업
    */
-  public override characterClass: string | null;
+  public override characterClass: string;
 
   /**
    * 월드 명
    */
-  public override worldName: string | null;
+  public override worldName: string;
 
   /**
    * 무릉도장 최고 기록 층수
    */
-  public override dojangBestFloor: number | null;
+  public override dojangBestFloor: number;
 
   /**
    * 무릉도장 최고 기록 달성 일 (KST, 일 단위 데이터로 시, 분은 일괄 0으로 표기)
@@ -33,7 +33,7 @@ export class CharacterDojangDto extends base.CharacterDojangDto {
   /**
    * 무릉도장 최고 층수 클리어에 걸린 시간 (초)
    */
-  public override dojangBestTime: number | null;
+  public override dojangBestTime: number;
 
   constructor(obj: CharacterDojangBody) {
     super();
@@ -48,12 +48,12 @@ export class CharacterDojangDto extends base.CharacterDojangDto {
     } = obj;
 
     this.date = date ? new Date(date) : null;
-    this.characterClass = character_class;
-    this.worldName = world_name;
-    this.dojangBestFloor = dojang_best_floor;
+    this.characterClass = character_class!;
+    this.worldName = world_name!;
+    this.dojangBestFloor = dojang_best_floor!;
     this.dateDojangRecord = date_dojang_record
       ? new Date(date_dojang_record)
       : null;
-    this.dojangBestTime = dojang_best_time;
+    this.dojangBestTime = dojang_best_time!;
   }
 }

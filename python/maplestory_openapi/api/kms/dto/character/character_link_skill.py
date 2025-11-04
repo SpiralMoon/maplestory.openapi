@@ -31,7 +31,7 @@ class CharacterLinkSkill(BaseModel, BaseCharacterLinkSkill):
 
     Attributes:
         date (datetime or None): 조회 기준일 (KST, 일 단위 데이터로 시, 분은 일괄 0으로 표기)
-        character_class (str or None): 캐릭터 직업
+        character_class (str): 캐릭터 직업
         character_link_skill (list[CharacterLinkSkillInfo]): 링크 스킬 정보
         character_link_skill_preset_1 (list[CharacterLinkSkillInfo]): 링크 스킬 1번 프리셋 정보
         character_link_skill_preset_2 (list[CharacterLinkSkillInfo]): 링크 스킬 2번 프리셋 정보
@@ -42,7 +42,7 @@ class CharacterLinkSkill(BaseModel, BaseCharacterLinkSkill):
         character_owned_link_skill_preset_3 (CharacterLinkSkillInfo or None): 내 링크 스킬 3번 프리셋 정보
     """
     date: datetime | None
-    character_class: str | None
+    character_class: str
     character_link_skill: list[CharacterLinkSkillInfo]
     character_link_skill_preset_1: list[CharacterLinkSkillInfo]
     character_link_skill_preset_2: list[CharacterLinkSkillInfo]

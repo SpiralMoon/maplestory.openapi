@@ -40,7 +40,7 @@ public class CharacterDojangDTO implements dev.spiralmoon.maplestory.api.common.
      * 무릉도장 최고 기록 층수
      */
     @JsonProperty("dojang_best_floor")
-    private Integer dojangBestFloor;
+    private int dojangBestFloor;
 
     /**
      * 무릉도장 최고 기록 달성 일 (KST)
@@ -52,7 +52,7 @@ public class CharacterDojangDTO implements dev.spiralmoon.maplestory.api.common.
      * 무릉도장 최고 층수 클리어에 걸린 시간 (초)
      */
     @JsonProperty("dojang_best_time")
-    private Integer dojangBestTime;
+    private int dojangBestTime;
 
     /**
      * 조회 기준일 (KST, 일 단위 데이터로 시, 분은 일괄 0으로 표기)
