@@ -25,6 +25,7 @@ class TestGetGuild(unittest.IsolatedAsyncioTestCase):
         guild_name = 'xEternity'
         world_name = 'Aquila'
         response = await api.get_guild_id(guild_name, world_name)
+        assert response is not None
         assert response.oguild_id == ogid
         print(response)
 
@@ -39,17 +40,19 @@ class TestGetGuild(unittest.IsolatedAsyncioTestCase):
     async def test_success_get_guild_with_invalid_guild_name(self):
         guild_name = '_InvalidGuild'
         world_name = 'Aquila'
-        with pytest.raises(Exception) as e:
-            await api.get_guild_id(guild_name, world_name)
+        response = await api.get_guild_id(guild_name, world_name)
+        assert response is None
 
 
 class TestGetGuildBasic(unittest.IsolatedAsyncioTestCase):
     async def test_success_get_guild_basic(self):
         response = await api.get_guild_basic(ogid)
+        assert response is not None
         print(response)
 
     async def test_success_get_guild_basic_with_date(self):
         response = await api.get_guild_basic(ogid, date=datetime(2025, 4, 20))
+        assert response is not None
         print(response)
 
     async def test_fail_get_guild_basic_with_invalid_date(self):

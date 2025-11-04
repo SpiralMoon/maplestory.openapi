@@ -16,6 +16,7 @@ load_dotenv()
 api_key = os.environ['API_KEY_KMS'] # Your API Key
 api = MapleStoryApi(api_key)
 
+# History Information Retrieval
 
 class TestGetStarforceHistory(unittest.IsolatedAsyncioTestCase):
     async def test_success_get_starforce_history(self):

@@ -18,6 +18,7 @@ api = MapleStoryApi(api_key)
 
 ocid = 'e0a4f439e53c369866b55297d2f5f4eb'
 
+# Ranking Information Retrieval
 
 class TestGetOverallRanking(unittest.IsolatedAsyncioTestCase):
     async def test_success_get_overall_ranking(self):

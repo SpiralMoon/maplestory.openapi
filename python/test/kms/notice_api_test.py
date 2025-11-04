@@ -15,6 +15,7 @@ load_dotenv()
 api_key = os.environ['API_KEY_KMS'] # Your API Key
 api = MapleStoryApi(api_key)
 
+# Notice Information Retrieval
 
 class TestGetNoticeList(unittest.IsolatedAsyncioTestCase):
     async def test_success_get_notice_list(self):

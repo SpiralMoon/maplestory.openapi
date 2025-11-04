@@ -18,12 +18,14 @@ api = MapleStoryApi(api_key)
 
 ogid = 'f5992063d46d6f8718e514fca5428960'
 
+# Guild Information Retrieval
 
 class TestGetGuild(unittest.IsolatedAsyncioTestCase):
     async def test_success_get_guild(self):
         guild_name = '붕붕'
         world_name = '크로아'
         response = await api.get_guild_id(guild_name, world_name)
+        assert response is not None
         assert response.oguild_id == ogid
         print(response)
 
@@ -38,17 +40,19 @@ class TestGetGuild(unittest.IsolatedAsyncioTestCase):
     async def test_success_get_guild_with_invalid_guild_name(self):
         guild_name = '_InvalidGuild'
         world_name = '크로아'
-        with pytest.raises(Exception) as e:
-            await api.get_guild_id(guild_name, world_name)
+        response = await api.get_guild_id(guild_name, world_name)
+        assert response is None
 
 
 class TestGetGuildBasic(unittest.IsolatedAsyncioTestCase):
     async def test_success_get_guild_basic(self):
         response = await api.get_guild_basic(ogid)
+        assert response is not None
         print(response)
 
     async def test_success_get_guild_basic_with_date(self):
         response = await api.get_guild_basic(ogid, date=datetime(2023, 12, 22))
+        assert response is not None
         print(response)
 
     async def test_fail_get_guild_basic_with_invalid_date(self):

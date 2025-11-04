@@ -39,10 +39,12 @@ class TestGetCharacter(unittest.IsolatedAsyncioTestCase):
 class TestGetCharacterBasic(unittest.IsolatedAsyncioTestCase):
     async def test_success_get_character_basic(self):
         response = await api.get_character_basic(ocid)
+        assert response is not None
         print(response)
 
     async def test_success_get_character_basic_with_date(self):
         response = await api.get_character_basic(ocid, date=datetime(2025, 10, 15))
+        assert response is not None
         print(response)
 
     async def test_fail_get_character_basic_with_invalid_ocid_throw_OPENAPI00003(self):
@@ -62,6 +64,7 @@ class TestGetCharacterBasic(unittest.IsolatedAsyncioTestCase):
 class TestGetCharacterImage(unittest.IsolatedAsyncioTestCase):
     async def test_success_get_character_image(self):
         response = await api.get_character_image(ocid)
+        assert response is not None
         print(response)
 
     async def test_success_get_character_image_with_options(self):
@@ -75,10 +78,12 @@ class TestGetCharacterImage(unittest.IsolatedAsyncioTestCase):
                 wmotion=CharacterImageWeaponMotion.Nothing
             )
         )
+        assert response is not None
         print(response)
 
     async def test_success_get_character_image_with_date(self):
         response = await api.get_character_image(ocid, date=datetime(2025, 10, 15))
+        assert response is not None
         print(response)
 
     async def test_fail_get_character_image_with_invalid_ocid_throw_OPENAPI00003(self):
@@ -98,10 +103,12 @@ class TestGetCharacterImage(unittest.IsolatedAsyncioTestCase):
 class TestGetCharacterPopularity(unittest.IsolatedAsyncioTestCase):
     async def test_success_get_character_popularity(self):
         response = await api.get_character_popularity(ocid)
+        assert response is not None
         print(response)
 
     async def test_success_get_character_popularity_with_date(self):
         response = await api.get_character_popularity(ocid, date=datetime(2025, 10, 15))
+        assert response is not None
         print(response)
 
     async def test_fail_get_character_popularity_with_invalid_ocid_throw_OPENAPI00003(self):
@@ -121,10 +128,12 @@ class TestGetCharacterPopularity(unittest.IsolatedAsyncioTestCase):
 class TestGetCharacterStat(unittest.IsolatedAsyncioTestCase):
     async def test_success_get_character_stat(self):
         response = await api.get_character_stat(ocid)
+        assert response is not None
         print(response)
 
     async def test_success_get_character_stat_with_date(self):
         response = await api.get_character_stat(ocid, date=datetime(2025, 10, 15))
+        assert response is not None
         print(response)
 
     async def test_fail_get_character_stat_with_invalid_ocid_throw_OPENAPI00003(self):
@@ -144,10 +153,12 @@ class TestGetCharacterStat(unittest.IsolatedAsyncioTestCase):
 class TestGetCharacterHyperStat(unittest.IsolatedAsyncioTestCase):
     async def test_success_get_character_hyper_stat(self):
         response = await api.get_character_hyper_stat(ocid)
+        assert response is not None
         print(response)
 
     async def test_success_get_character_hyper_stat_with_date(self):
         response = await api.get_character_hyper_stat(ocid, date=datetime(2025, 10, 15))
+        assert response is not None
         print(response)
 
     async def test_fail_get_character_hyper_stat_with_invalid_ocid_throw_OPENAPI00003(self):
@@ -167,10 +178,12 @@ class TestGetCharacterHyperStat(unittest.IsolatedAsyncioTestCase):
 class TestGetCharacterPropensity(unittest.IsolatedAsyncioTestCase):
     async def test_success_get_character_propensity(self):
         response = await api.get_character_propensity(ocid)
+        assert response is not None
         print(response)
 
     async def test_success_get_character_propensity_with_date(self):
         response = await api.get_character_propensity(ocid, date=datetime(2025, 10, 15))
+        assert response is not None
         print(response)
 
     async def test_fail_get_character_propensity_with_invalid_ocid_throw_OPENAPI00003(self):
@@ -190,10 +203,12 @@ class TestGetCharacterPropensity(unittest.IsolatedAsyncioTestCase):
 class TestGetCharacterAbility(unittest.IsolatedAsyncioTestCase):
     async def test_success_get_character_ability(self):
         response = await api.get_character_ability(ocid)
+        assert response is not None
         print(response)
 
     async def test_success_get_character_ability_with_date(self):
         response = await api.get_character_ability(ocid, date=datetime(2025, 10, 15))
+        assert response is not None
         print(response)
 
     async def test_fail_get_character_ability_with_invalid_ocid_throw_OPENAPI00003(self):
@@ -213,10 +228,12 @@ class TestGetCharacterAbility(unittest.IsolatedAsyncioTestCase):
 class TestGetCharacterItemEquipment(unittest.IsolatedAsyncioTestCase):
     async def test_success_get_character_item_equipment(self):
         response = await api.get_character_item_equipment(ocid)
+        assert response is not None
         print(response)
 
     async def test_success_get_character_item_equipment_with_date(self):
         response = await api.get_character_item_equipment(ocid, date=datetime(2025, 10, 15))
+        assert response is not None
         print(response)
 
     async def test_fail_get_character_item_equipment_with_invalid_ocid_throw_OPENAPI00003(self):
@@ -236,10 +253,12 @@ class TestGetCharacterItemEquipment(unittest.IsolatedAsyncioTestCase):
 class TestGetCharacterCashItemEquipment(unittest.IsolatedAsyncioTestCase):
     async def test_success_get_character_cashitem_equipment(self):
         response = await api.get_character_cashitem_equipment(ocid)
+        assert response is not None
         print(response)
 
     async def test_success_get_character_cashitem_equipment_with_date(self):
         response = await api.get_character_cashitem_equipment(ocid, date=datetime(2025, 10, 15))
+        assert response is not None
         print(response)
 
     async def test_fail_get_character_cashitem_equipment_with_invalid_ocid_throw_OPENAPI00003(self):
@@ -259,10 +278,12 @@ class TestGetCharacterCashItemEquipment(unittest.IsolatedAsyncioTestCase):
 class TestGetCharacterSymbolEquipment(unittest.IsolatedAsyncioTestCase):
     async def test_success_get_character_symbol_equipment(self):
         response = await api.get_character_symbol_equipment(ocid)
+        assert response is not None
         print(response)
 
     async def test_success_get_character_symbol_equipment_with_date(self):
         response = await api.get_character_symbol_equipment(ocid, date=datetime(2025, 10, 15))
+        assert response is not None
         print(response)
 
     async def test_fail_get_character_symbol_equipment_with_invalid_ocid_throw_OPENAPI00003(self):
@@ -282,10 +303,12 @@ class TestGetCharacterSymbolEquipment(unittest.IsolatedAsyncioTestCase):
 class TestGetCharacterSetEffect(unittest.IsolatedAsyncioTestCase):
     async def test_success_get_character_set_effect(self):
         response = await api.get_character_set_effect(ocid)
+        # nothing to assert because some characters may not have set effects
         print(response)
 
     async def test_success_get_character_set_effect_with_date(self):
         response = await api.get_character_set_effect(ocid, date=datetime(2025, 10, 15))
+        assert response is not None
         print(response)
 
     async def test_fail_get_character_set_effect_with_invalid_ocid_throw_OPENAPI00003(self):
@@ -305,10 +328,12 @@ class TestGetCharacterSetEffect(unittest.IsolatedAsyncioTestCase):
 class TestGetCharacterBeautyEquipment(unittest.IsolatedAsyncioTestCase):
     async def test_success_get_character_beauty_equipment(self):
         response = await api.get_character_beauty_equipment(ocid)
+        assert response is not None
         print(response)
 
     async def test_success_get_character_beauty_equipment_with_date(self):
         response = await api.get_character_beauty_equipment(ocid, date=datetime(2025, 10, 15))
+        assert response is not None
         print(response)
 
     async def test_fail_get_character_beauty_equipment_with_invalid_ocid_throw_OPENAPI00003(self):
@@ -328,10 +353,12 @@ class TestGetCharacterBeautyEquipment(unittest.IsolatedAsyncioTestCase):
 class TestGetCharacterAndroidEquipment(unittest.IsolatedAsyncioTestCase):
     async def test_success_get_character_android_equipment(self):
         response = await api.get_character_android_equipment(ocid)
+        assert response is not None
         print(response)
 
     async def test_success_get_character_android_equipment_with_date(self):
         response = await api.get_character_android_equipment(ocid, date=datetime(2025, 10, 15))
+        assert response is not None
         print(response)
 
     async def test_fail_get_character_android_equipment_with_invalid_ocid_throw_OPENAPI00003(self):
@@ -351,10 +378,12 @@ class TestGetCharacterAndroidEquipment(unittest.IsolatedAsyncioTestCase):
 class TestGetCharacterPetEquipment(unittest.IsolatedAsyncioTestCase):
     async def test_success_get_character_pet_equipment(self):
         response = await api.get_character_pet_equipment(ocid)
+        # nothing to assert because some characters may not have pets
         print(response)
 
     async def test_success_get_character_pet_equipment_with_date(self):
         response = await api.get_character_pet_equipment(ocid, date=datetime(2025, 10, 15))
+        assert response is not None
         print(response)
 
     async def test_fail_get_character_pet_equipment_with_invalid_ocid_throw_OPENAPI00003(self):
@@ -375,11 +404,13 @@ class TestGetCharacterSkill(unittest.IsolatedAsyncioTestCase):
     async def test_success_get_character_skill_with_skill_grade(self):
         skill_grade = '6'
         response = await api.get_character_skill(ocid, skill_grade)
+        assert response is not None
         print(response)
 
     async def test_success_get_character_skill_with_date(self):
         skill_grade = '6'
         response = await api.get_character_skill(ocid, skill_grade, date=datetime(2025, 10, 15))
+        assert response is not None
         print(response)
 
     async def test_fail_get_character_skill_with_invalid_ocid_throw_OPENAPI00003(self):
@@ -400,10 +431,12 @@ class TestGetCharacterSkill(unittest.IsolatedAsyncioTestCase):
 class TestGetCharacterLinkSkill(unittest.IsolatedAsyncioTestCase):
     async def test_success_get_character_link_skill(self):
         response = await api.get_character_link_skill(ocid)
+        assert response is not None
         print(response)
 
     async def test_success_get_character_link_skill_with_date(self):
         response = await api.get_character_link_skill(ocid, date=datetime(2025, 10, 15))
+        assert response is not None
         print(response)
 
     async def test_fail_get_character_link_skill_with_invalid_ocid_throw_OPENAPI00003(self):
@@ -423,10 +456,12 @@ class TestGetCharacterLinkSkill(unittest.IsolatedAsyncioTestCase):
 class TestGetCharacterVMatrix(unittest.IsolatedAsyncioTestCase):
     async def test_success_get_character_vmatrix(self):
         response = await api.get_character_vmatrix(ocid)
+        # nothing to assert because some characters may not have v matrix
         print(response)
 
     async def test_success_get_character_vmatrix_with_date(self):
         response = await api.get_character_vmatrix(ocid, date=datetime(2025, 10, 15))
+        assert response is not None
         print(response)
 
     async def test_fail_get_character_vmatrix_with_invalid_ocid_throw_OPENAPI00003(self):
@@ -446,10 +481,12 @@ class TestGetCharacterVMatrix(unittest.IsolatedAsyncioTestCase):
 class TestGetCharacterHexaMatrix(unittest.IsolatedAsyncioTestCase):
     async def test_success_get_character_hexamatrix(self):
         response = await api.get_character_hexamatrix(ocid)
+        # nothing to assert because some characters may not have hexa matrix
         print(response)
 
     async def test_success_get_character_hexamatrix_with_date(self):
         response = await api.get_character_hexamatrix(ocid, date=datetime(2025, 10, 15))
+        assert response is not None
         print(response)
 
     async def test_fail_get_character_hexamatrix_with_invalid_ocid_throw_OPENAPI00003(self):
@@ -469,10 +506,12 @@ class TestGetCharacterHexaMatrix(unittest.IsolatedAsyncioTestCase):
 class TestGetCharacterHexaMatrixStat(unittest.IsolatedAsyncioTestCase):
     async def test_success_get_character_hexamatrix_stat(self):
         response = await api.get_character_hexamatrix_stat(ocid)
+        assert response is not None
         print(response)
 
     async def test_success_get_character_hexamatrix_stat_with_date(self):
         response = await api.get_character_hexamatrix_stat(ocid, date=datetime(2025, 10, 15))
+        assert response is not None
         print(response)
 
     async def test_fail_get_character_hexamatrix_stat_with_invalid_ocid_throw_OPENAPI00003(self):
@@ -492,10 +531,12 @@ class TestGetCharacterHexaMatrixStat(unittest.IsolatedAsyncioTestCase):
 class TestGetCharacterDojang(unittest.IsolatedAsyncioTestCase):
     async def test_success_get_character_dojang(self):
         response = await api.get_character_dojang(ocid)
+        assert response is not None
         print(response)
 
     async def test_success_get_character_dojang_with_date(self):
         response = await api.get_character_dojang(ocid, date=datetime(2025, 10, 15))
+        assert response is not None
         print(response)
 
     async def test_fail_get_character_dojang_with_invalid_ocid_throw_OPENAPI00003(self):

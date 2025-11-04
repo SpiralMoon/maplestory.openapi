@@ -23,10 +23,12 @@ ocid = 'ab918948538b1b79046df133fff52092'
 class TestGetUnion(unittest.IsolatedAsyncioTestCase):
     async def test_success_get_union(self):
         response = await api.get_union(ocid)
+        # nothing to assert because some characters may not have union
         print(response)
 
     async def test_success_get_union_with_date(self):
         response = await api.get_union(ocid, date=datetime(2025, 10, 15))
+        assert response is not None
         print(response)
 
     async def test_fail_get_union_with_invalid_date(self):
@@ -46,10 +48,12 @@ class TestGetUnion(unittest.IsolatedAsyncioTestCase):
 class TestGetUnionRaider(unittest.IsolatedAsyncioTestCase):
     async def test_success_get_union_raider(self):
         response = await api.get_union_raider(ocid)
+        # nothing to assert because some characters may not have union raider
         print(response)
 
     async def test_success_get_union_raider_with_date(self):
         response = await api.get_union_raider(ocid, date=datetime(2025, 10, 15))
+        assert response is not None
         print(response)
 
     async def test_fail_get_union_raider_with_invalid_date(self):
@@ -69,10 +73,12 @@ class TestGetUnionRaider(unittest.IsolatedAsyncioTestCase):
 class TestGetUnionArtifact(unittest.IsolatedAsyncioTestCase):
     async def test_success_get_union_artifact(self):
         response = await api.get_union_artifact(ocid)
+        # nothing to assert because some characters may not have union artifact
         print(response)
 
     async def test_success_get_union_artifact_with_date(self):
         response = await api.get_union_artifact(ocid, date=datetime(2025, 10, 15))
+        assert response is not None
         print(response)
 
     async def test_fail_get_union_artifact_with_invalid_date(self):
