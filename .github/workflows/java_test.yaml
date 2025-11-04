@@ -14,7 +14,9 @@ jobs:
         working-directory: './java'
 
     env:
-      API_KEY: ${{ secrets.API_KEY }}
+      API_KEY_KMS: ${{ secrets.API_KEY_KMS }}
+      API_KEY_MSEA: ${{ secrets.API_KEY_MSEA }}
+      API_KEY_TMS: ${{ secrets.API_KEY_TMS }}
 
     steps:
       - name: Checkout repository
@@ -28,7 +30,9 @@ jobs:
 
       - name: Test
         run: |
-          echo "apiKey=${API_KEY}" >> gradle.properties
+          echo "API_KEY_KMS=${API_KEY_KMS}" >> gradle.properties
+          echo "API_KEY_MSEA=${API_KEY_MSEA}" >> gradle.properties
+          echo "API_KEY_TMS=${API_KEY_TMS}" >> gradle.properties
           echo "Testing"
           chmod +x ./gradlew
           ./gradlew unitTest

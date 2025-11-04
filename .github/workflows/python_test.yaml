@@ -14,7 +14,9 @@ jobs:
         working-directory: './python'
 
     env:
-      API_KEY: ${{ secrets.API_KEY }}
+      API_KEY_KMS: ${{ secrets.API_KEY_KMS }}
+      API_KEY_MSEA: ${{ secrets.API_KEY_MSEA }}
+      API_KEY_TMS: ${{ secrets.API_KEY_TMS }}
 
     steps:
       - name: Checkout repository
@@ -38,6 +40,8 @@ jobs:
 
       - name: Test
         run: |
-          echo "API_KEY=${API_KEY}" >> $GITHUB_ENV
+          echo "API_KEY_KMS=${API_KEY_KMS}" >> $GITHUB_ENV
+          echo "API_KEY_MSEA=${API_KEY_MSEA}" >> $GITHUB_ENV
+          echo "API_KEY_TMS=${API_KEY_TMS}" >> $GITHUB_ENV
           echo "Testing"
           pytest

@@ -1,0 +1,44 @@
+using NUnit.Framework;
+using MapleStory.OpenAPI.TMS;
+using MapleStory.OpenAPI.Common;
+
+namespace MapleStory.Test.TMS.Guild
+{
+    [TestFixture]
+    public class TestGetGuild
+    {
+        private static readonly string apiKey = EnvConfig.Get("API_KEY_TMS"); // Your API Key
+        private static readonly MapleStoryAPI api = new MapleStoryAPI(apiKey);
+        private static readonly string ogid = "e046b388ffd7d4f807f1dd09215381ca";
+
+        [Test, Description("success: GetGuild")]
+        public async Task GetGuild()
+        {
+            var guildName = "春樹慕雲";
+            var worldName = "艾麗亞";
+            var response = await api.GetGuild(guildName, worldName);
+            Assert.IsNotNull(response);
+            Assert.That(response.OGuildId, Is.EqualTo(ogid));
+            Console.WriteLine(response.ToJson());
+        }
+
+        [Test, Description("success: GetGuild with invalid guild name")]
+        public async Task GetGuild_With_Invalid_Guild_Name()
+        {
+            var guildName = "_InvalidGuild";
+            var worldName = "艾麗亞";
+            var response = await api.GetGuild(guildName, worldName);
+            Assert.IsNull(response);
+        }
+
+        [Test, Description("fail: GetGuild with invalid world name throws OPENAPI00004")]
+        public void GetGuild_With_Invalid_World_Name_Throws_OPENAPI00004()
+        {
+            var guildName = "春樹慕雲";
+            var worldName = "_InvalidWorld";
+            var e = Assert.ThrowsAsync<MapleStoryAPIException>(async () => await api.GetGuild(guildName, worldName));
+            Assert.That(e.ErrorCode, Is.EqualTo(MapleStoryAPIErrorCode.OPENAPI00004));
+            Console.WriteLine($"{e.ErrorCode} {e.Message}");
+        }
+    }
+}

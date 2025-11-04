@@ -14,7 +14,9 @@ jobs:
         working-directory: './js'
 
     env:
-      API_KEY: ${{ secrets.API_KEY }}
+      API_KEY_KMS: ${{ secrets.API_KEY_KMS }}
+      API_KEY_MSEA: ${{ secrets.API_KEY_MSEA }}
+      API_KEY_TMS: ${{ secrets.API_KEY_TMS }}
 
     steps:
       - name: Checkout repository
@@ -33,4 +35,4 @@ jobs:
       - name: Test
         run: |
           echo "Testing"
-          API_KEY=${API_KEY} npm test
+          API_KEY_KMS=${API_KEY_KMS} API_KEY_MSEA=${API_KEY_MSEA} API_KEY_TMS=${API_KEY_TMS} npm test
