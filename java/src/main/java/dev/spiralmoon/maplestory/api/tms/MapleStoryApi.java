@@ -151,7 +151,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
             return getCharacterBasic(ocid, localDateTime)
                     .thenCompose(basic -> {
                         if (basic == null) {
-                            return null;
+                            return CompletableFuture.completedFuture(null);
                         }
 
                         final String path = basic.getCharacterImage().replace(MapleStoryApi.BASE_URL, "");
