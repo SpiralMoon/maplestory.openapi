@@ -29,10 +29,10 @@ CharacterBasicDTO character = api.getCharacterBasic(ocid, date).join();
 
 ```java
 String nickname = "Your Character Nickname";
-CharacterBasicDTO character = api.getCharacterBasic(ocid).join(); // 실제 존재하는 캐릭터는 항상 not-null
+CharacterBasicDTO character = api.getCharacter(ocid).join(); // 실제 존재하는 캐릭터는 항상 not-null
 
 String nickname = "Not Exist Character Nickname";
-CharacterBasicDTO character = api.getCharacterBasic(ocid).join(); // 실제 존재하지 않은 캐릭터는 항상 MapleStoryApiException 예외 발생
+CharacterBasicDTO character = api.getCharacter(ocid).join(); // 실제 존재하지 않은 캐릭터는 항상 MapleStoryApiException 예외 발생
 ```
 
 ### 안전한 `List<T>` 필드 처리

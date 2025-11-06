@@ -29,10 +29,10 @@ However, `api.getCharacter()` always returns a not-null object. Attempting to qu
 
 ```java
 String nickname = "Your Character Nickname";
-CharacterBasicDTO character = api.getCharacterBasic(ocid).join(); // Always returns not-null for existing characters
+CharacterBasicDTO character = api.getCharacter(ocid).join(); // Always returns not-null for existing characters
 
 String nickname = "Not Exist Character Nickname";
-CharacterBasicDTO character = api.getCharacterBasic(ocid).join(); // Always throws MapleStoryApiException for non-existent characters
+CharacterBasicDTO character = api.getCharacter(ocid).join(); // Always throws MapleStoryApiException for non-existent characters
 ```
 
 ### Safe `List<T>` Field Handling

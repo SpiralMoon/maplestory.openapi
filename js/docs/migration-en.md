@@ -33,10 +33,10 @@ However, `api.getCharacter()` always returns a not-null object. Attempting to qu
 
 ```typescript
 const nickname = 'Your Character Nickname';
-const character = await api.getCharacterBasic(ocid); // Always returns not-null for existing characters
+const character = await api.getCharacter(ocid); // Always returns not-null for existing characters
 
 const nickname = 'Not Exist Character Nickname';
-const character = await api.getCharacterBasic(ocid); // Always throws MapleStoryApiError for non-existent characters
+const character = await api.getCharacter(ocid); // Always throws MapleStoryApiError for non-existent characters
 ```
 
 ### Safe Array Field Handling

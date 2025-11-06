@@ -33,10 +33,10 @@ const character = await api.getCharacterBasic(ocid, date);
 
 ```typescript
 const nickname = 'Your Character Nickname';
-const character = await api.getCharacterBasic(ocid); // 실제 존재하는 캐릭터는 항상 not-null
+const character = await api.getCharacter(ocid); // 실제 존재하는 캐릭터는 항상 not-null
 
 const nickname = 'Not Exist Character Nickname';
-const character = await api.getCharacterBasic(ocid); // 실제 존재하지 않은 캐릭터는 항상 MapleStoryApiError 예외 발생
+const character = await api.getCharacter(ocid); // 실제 존재하지 않은 캐릭터는 항상 MapleStoryApiError 예외 발생
 ```
 
 ### 안전한 배열 필드 처리
