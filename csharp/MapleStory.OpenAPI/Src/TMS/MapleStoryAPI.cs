@@ -136,7 +136,10 @@ namespace MapleStory.OpenAPI.TMS
             var x = imageOption.X;
             var y = imageOption.Y;
 
-            var path = basic.CharacterImage.Replace(BASE_URL, "");
+            string path;
+            path = basic.CharacterImage.Replace(BASE_URL, "");
+            path = Utils.RemoveQuery(path);
+
             var query = new Dictionary<string, string?>()
             {
                 { "action", $"{action.GetValue()}.{actionFrame}" },

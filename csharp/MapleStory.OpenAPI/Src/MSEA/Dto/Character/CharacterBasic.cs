@@ -84,7 +84,19 @@ namespace MapleStory.OpenAPI.MSEA.DTO
         /// Character appearance image
         /// </summary>
         [JsonProperty("character_image")]
-        public override string CharacterImage { get; set; }
+        public override string CharacterImage
+        {
+            get
+            {
+                return _characterImage;
+            }
+            set
+            {
+                _characterImage = Utils.RemoveQuery(value);
+            }
+        }
+
+        private string _characterImage;
 
         /// <summary>
         /// Character creation date (SGT, daily data with hours and minutes set to 0)

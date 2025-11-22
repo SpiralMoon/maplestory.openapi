@@ -148,5 +148,16 @@ namespace MapleStory.OpenAPI
                 throw new ArgumentException("No enum constant for string: " + source.ToString());
             }
         }
+
+        public static string RemoveQuery(string url)
+        {
+            if (string.IsNullOrEmpty(url))
+            {
+                return url;
+            }
+
+            int queryIndex = url.IndexOf('?');
+            return queryIndex >= 0 ? url.Substring(0, queryIndex) : url;
+        }
     }
 }
