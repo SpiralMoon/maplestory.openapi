@@ -1,5 +1,6 @@
 package dev.spiralmoon.maplestory.api.kms;
 
+import dev.spiralmoon.maplestory.api.Utils;
 import dev.spiralmoon.maplestory.api.common.MapleStoryApiErrorCode;
 import dev.spiralmoon.maplestory.api.common.MapleStoryApiException;
 import dev.spiralmoon.maplestory.api.common.param.LatestApiUpdateTimeOption;
@@ -208,7 +209,10 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
                             return CompletableFuture.completedFuture(null);
                         }
 
-                        final String path = basic.getCharacterImage().replace(MapleStoryApi.BASE_URL, "");
+                        String path;
+                        path = basic.getCharacterImage().replace(MapleStoryApi.BASE_URL, "");
+                        path = Utils.removeQuery(path);
+
                         final Map<String, String> queryMap = new HashMap<>();
                         queryMap.put("action", imageOption.getAction().getValue());
                         queryMap.put("emotion", imageOption.getEmotion().getValue());

@@ -84,6 +84,10 @@ public class CharacterBasicDTO implements dev.spiralmoon.maplestory.api.common.d
     @JsonProperty("character_image")
     private String characterImage;
 
+    public void setCharacterImage(String characterImage) {
+        this.characterImage = Utils.removeQuery(characterImage);
+    }
+
     /**
      * 角色建立日期 (TST，每日資料中的小時與分鐘將顯示為 0)
      */
