@@ -42,8 +42,8 @@ public class TestGetCharacterOtherStat {
     @Test
     @DisplayName("success: getCharacterOtherStat with date")
     void getCharacterOtherStat_with_date() {
-        String ocid = "2e4c361fa884731a4c7984eb88127015";
-        LocalDateTime date = LocalDateTime.of(2025, 8, 21, 0, 0);
+        String ocid = "17886f88aca85174fe898b739b7fd0d9";
+        LocalDateTime date = LocalDateTime.of(2025, 11, 20, 0, 0);
         CharacterOtherStatDTO response = api.getCharacterOtherStat(ocid, date).join();
         assertThat(response).isNotNull();
         System.out.println(response.toString());

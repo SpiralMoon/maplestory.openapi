@@ -1052,13 +1052,20 @@ describe('Character Information Retrieval', () => {
 
   describe('getCharacterOtherStat', () => {
     test('success: getCharacterOtherStat', async () => {
-      const ocid = '2e4c361fa884731a4c7984eb88127015';
+      const response = await api.getCharacterOtherStat(ocid);
+      // nothing to assert because some characters may not have other stats
+      console.log(toString(response));
+    });
+
+    test('success: getCharacterOtherStat with date', async () => {
+      const ocid = '17886f88aca85174fe898b739b7fd0d9';
       const response = await api.getCharacterOtherStat(ocid, {
         year: 2025,
         month: 11,
-        day: 3,
+        day: 20,
       });
-      // nothing to assert because some characters may not have other stats
+      expect(response).toBeDefined();
+      console.log(toString(response));
     });
 
     test('success: getCharacterOtherStat on date with no data', async () => {

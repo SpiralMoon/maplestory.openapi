@@ -669,8 +669,8 @@ class TestGetCharacterOtherStat(unittest.IsolatedAsyncioTestCase):
         print(response)
 
     async def test_success_get_character_other_stat_with_date(self):
-        ocid = '2e4c361fa884731a4c7984eb88127015'
-        response = await api.get_character_other_stat(ocid, date=datetime(2025, 11, 3))
+        ocid = '17886f88aca85174fe898b739b7fd0d9'
+        response = await api.get_character_other_stat(ocid, date=datetime(2025, 11, 20))
         assert response is not None
         print(response)
 

@@ -22,8 +22,8 @@ namespace MapleStory.Test.KMS.Character
         [Test, Description("success: GetCharacterOtherStat with date")]
         public async Task GetCharacterOtherStat_With_Date()
         {
-            var ocid = "2e4c361fa884731a4c7984eb88127015";
-            var date = new DateTime(2025, 8, 21, 0, 0, 0);
+            var ocid = "17886f88aca85174fe898b739b7fd0d9";
+            var date = new DateTime(2025, 11, 20, 0, 0, 0);
             var response = await api.GetCharacterOtherStat(ocid, date);
             Assert.IsNotNull(response);
             Console.WriteLine(response.ToJson());
