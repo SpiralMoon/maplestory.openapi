@@ -36,6 +36,8 @@ from maplestory_openapi.api.msea.param.character_image_option import CharacterIm
 
 from maplestory_openapi.api.common.maplestory_api import MapleStoryApi as BaseMapleStoryApi
 
+from maplestory_openapi.api.utils import remove_query
+
 
 class MapleStoryApi(BaseMapleStoryApi):
 
@@ -112,6 +114,7 @@ class MapleStoryApi(BaseMapleStoryApi):
         basic = await self.get_character_basic(ocid, date)
         if basic is None: return None
         path = basic.character_image.replace(self.BASE_URL, '')
+        path = remove_query(path)
         image_option = option if option is not None else CharacterImageOption()
 
         action = image_option.action

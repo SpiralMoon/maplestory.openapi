@@ -1,7 +1,9 @@
 from datetime import datetime
-from pydantic import BaseModel
+from pydantic import BaseModel, model_validator
 
 from maplestory_openapi.api.common.dto.character.character_basic import CharacterBasic as BaseCharacterBasic
+
+from maplestory_openapi.api.utils import remove_query
 
 
 class CharacterBasic(BaseModel, BaseCharacterBasic):
@@ -46,3 +48,9 @@ class CharacterBasic(BaseModel, BaseCharacterBasic):
         過去 7 天的登入狀態 (true：已登入，false：未登入)
         """
         return self.access_flag == 'true'
+
+    @model_validator(mode="before")
+    @classmethod
+    def set_default(cls, values):
+        values['character_image'] = remove_query(values.get('character_image'))
+        return values
