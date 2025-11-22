@@ -1,5 +1,6 @@
 import * as base from '../../../common/dto/character/characterBasic';
 import { CharacterBasicBody } from '../../response/character/characterBasicBody';
+import { removeQuery } from '../../../common/lib'
 
 /**
  * 角色基本資訊
@@ -105,7 +106,7 @@ export class CharacterBasicDto extends base.CharacterBasicDto {
     this.characterExp = character_exp;
     this.characterExpRate = character_exp_rate;
     this.characterGuildName = character_guild_name;
-    this.characterImage = character_image;
+    this.characterImage = removeQuery(character_image);
     this.characterDateCreate = character_date_create ? new Date(character_date_create) : null;
     this.accessFlag = access_flag;
     this.liberationQuestClear = liberation_quest_clear;
