@@ -1,7 +1,9 @@
 from datetime import datetime
-from pydantic import BaseModel
+from pydantic import BaseModel, model_validator
 
 from maplestory_openapi.api.common.dto.character.character_basic import CharacterBasic as BaseCharacterBasic
+
+from maplestory_openapi.api.utils import remove_query
 
 
 class CharacterBasic(BaseModel, BaseCharacterBasic):
@@ -53,3 +55,9 @@ class CharacterBasic(BaseModel, BaseCharacterBasic):
         Liberation quest completion status
         """
         return self.liberation_quest_clear_flag == 'true'
+
+    @model_validator(mode="before")
+    @classmethod
+    def set_default(cls, values):
+        values['character_image'] = remove_query(values.get('character_image'))
+        return values

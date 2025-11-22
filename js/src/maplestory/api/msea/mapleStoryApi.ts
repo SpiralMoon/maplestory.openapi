@@ -59,6 +59,7 @@ import {
 } from '../common/enum/characterImage';
 import { DateOptions } from '../common/mapleStoryApi';
 import * as base from '../common/mapleStoryApi';
+import { removeQuery } from '../common/lib'
 
 /**
  * MapleStory OpenAPI client for MSEA.<br>
@@ -155,7 +156,7 @@ export class MapleStoryApi extends base.MapleStoryApi {
       return null;
     }
 
-    const { date, characterImage: path } = basic;
+    const { date, characterImage } = basic;
     const action = imageOptions?.action ?? CharacterImageAction.Stand1;
     const emotion = imageOptions?.emotion ?? CharacterImageEmotion.Default;
     const wmotion = imageOptions?.wmotion ?? CharacterImageWeaponMotion.Default;
@@ -166,6 +167,7 @@ export class MapleStoryApi extends base.MapleStoryApi {
     const x = imageOptions?.x ?? null;
     const y = imageOptions?.y ?? null;
 
+    const path = removeQuery(characterImage);
     const query = {
       action: `${action}.${actionFrame}`,
       emotion: `${emotion}.${emotionFrame}`,

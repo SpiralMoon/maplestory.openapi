@@ -36,4 +36,13 @@ public class Utils {
 
         return dateTime;
     }
+
+    public static String removeQuery(String url) {
+        if (url == null || url.isEmpty()) {
+            return url;
+        }
+
+        int queryIndex = url.indexOf('?');
+        return queryIndex >= 0 ? url.substring(0, queryIndex) : url;
+    }
 }

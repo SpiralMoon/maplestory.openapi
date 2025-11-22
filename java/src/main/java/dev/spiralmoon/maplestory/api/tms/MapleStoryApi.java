@@ -1,5 +1,6 @@
 package dev.spiralmoon.maplestory.api.tms;
 
+import dev.spiralmoon.maplestory.api.Utils;
 import dev.spiralmoon.maplestory.api.tms.dto.character.*;
 import dev.spiralmoon.maplestory.api.tms.dto.guild.GuildBasicDTO;
 import dev.spiralmoon.maplestory.api.tms.dto.guild.GuildDTO;
@@ -154,7 +155,10 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
                             return CompletableFuture.completedFuture(null);
                         }
 
-                        final String path = basic.getCharacterImage().replace(MapleStoryApi.BASE_URL, "");
+                        String path;
+                        path = basic.getCharacterImage().replace(MapleStoryApi.BASE_URL, "");
+                        path = Utils.removeQuery(path);
+
                         final Map<String, String> queryMap = new HashMap<>();
                         queryMap.put("action", imageOption.getAction().getValue());
                         queryMap.put("emotion", imageOption.getEmotion().getValue());

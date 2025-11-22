@@ -84,7 +84,19 @@ namespace MapleStory.OpenAPI.TMS.DTO
         /// 角色外型圖片
         /// </summary>
         [JsonProperty("character_image")]
-        public override string CharacterImage { get; set; }
+        public override string CharacterImage
+        {
+            get
+            {
+                return _characterImage;
+            }
+            set
+            {
+                _characterImage = Utils.RemoveQuery(value);
+            }
+        }
+
+        private string _characterImage;
 
         /// <summary>
         /// 角色建立日期 (TST，每日資料中的小時與分鐘將顯示為 0)

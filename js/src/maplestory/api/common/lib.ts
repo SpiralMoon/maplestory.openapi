@@ -27,3 +27,20 @@ export const potentialOptionGradeFromString = (
 
   return grade;
 };
+
+/**
+ * URL에서 Query를 제거합니다.
+ * @param url URL
+ * @example
+ * ```
+ * removeQuery('https://example.com/path?query=123&test=abc') // returns 'https://example.com/path'
+ * ```
+ */
+export const removeQuery = (url: string) : string => {
+  if (!url) {
+    return url;
+  }
+
+  const queryIndex = url.indexOf('?');
+  return queryIndex >= 0 ? url.substring(0, queryIndex) : url;
+}
