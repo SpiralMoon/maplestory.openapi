@@ -1,4 +1,5 @@
 export * from './mapleStoryApi';
+export * from './mapleStoryFriendsApi';
 
 export * from './dto/character/character';
 export * from './dto/character/characterAbility';
