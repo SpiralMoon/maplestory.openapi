@@ -164,6 +164,12 @@ This library project is concurrently provided in various languages, including Ja
 
 This library can only retrieve data from the service regions supported by the Nexon Open API. If Nexon releases an API for a new region, this project plans to support it as well.
 
+### Friends API (for Nexon Friends Developers)
+
+This library additionally supports the Friends API, which is only available for Nexon Friends developer-approved services.
+
+For application for the Friends program, please refer to [Program Info & Contact](https://openapi.nexon.com/en/friends/introduction/).
+
 ## Documentation
 Before getting started, please read the document in the README list below that matches your development environment.
 
@@ -185,6 +191,7 @@ This library supports all apis published in the MapleStory OpenAPI official docs
 Some features are supported only in specific regions. Please refer to the official documentation for each region for details.
 
 - KMS: [https://openapi.nexon.com/game/maplestory](https://openapi.nexon.com/game/maplestory)
+- KMS(for Nexon Friends Exclusive APIs): [https://openapi.nexon.com/ko/friends/maplestory](https://openapi.nexon.com/ko/friends/maplestory)
 - TMS: [https://openapi.nexon.com/game/maplestorytw](https://openapi.nexon.com/game/maplestorytw)
 - MSEA: [https://openapi.nexon.com/game/maplestorysea](https://openapi.nexon.com/game/maplestorysea)
 

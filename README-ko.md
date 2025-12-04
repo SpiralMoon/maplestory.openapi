@@ -19,8 +19,8 @@
 <div align="center">
     <img src="./logo.png" width="120" height="120"/>
 </div>
-<h1 align="center">🍁 MapleStory OpenAPI Library 🍁</h1>
-<p align="center">넥슨의 MapleStory OpenAPI를 사용할 수 있게 해주는 라이브러리입니다.</p>
+<h1 align="center">🍁 메이플스토리 OpenAPI Library 🍁</h1>
+<p align="center">넥슨의 메이플스토리 OpenAPI를 사용할 수 있게 해주는 라이브러리입니다.</p>
 
 > 💻 넥슨 OpenAPI 패치를 따라가며 관리되고 있습니다. 항상 최신 버전 사용을 권장합니다.
 > 
@@ -165,6 +165,12 @@
 
 이 라이브러리는 Nexon Open API에서 지원하는 서비스 지역의 데이터만 조회할 수 있습니다. 넥슨이 새로운 지역에 대한 API를 공개할 경우 이 프로젝트에서도 지원할 계획입니다.
 
+### Friends API (넥슨 프렌즈 개발자 전용 API)
+
+이 라이브러리는 넥슨 프렌즈 개발자 승인을 받은 서비스에서만 사용할 수 있는 Friends API를 추가로 지원합니다.
+
+프렌즈 프로그램 신청은 [프로그램 소개 및 문의](https://openapi.nexon.com/ko/friends/introduction/)를 참고하세요.
+
 ## Documentation
 시작하기 전에, 아래의 README 목록에서 자신의 개발 환경과 일치하는 문서를 읽어보세요.
 
@@ -187,6 +193,7 @@
 일부 기능은 특정 지역에서만 지원되므로 자세한 내용은 각 리전의 공식 문서를 참고하세요.
 
 - KMS: [https://openapi.nexon.com/game/maplestory](https://openapi.nexon.com/game/maplestory)
+- KMS(넥슨 프렌즈 전용 API): [https://openapi.nexon.com/ko/friends/maplestory](https://openapi.nexon.com/ko/friends/maplestory)
 - TMS: [https://openapi.nexon.com/game/maplestorytw](https://openapi.nexon.com/game/maplestorytw)
 - MSEA: [https://openapi.nexon.com/game/maplestorysea](https://openapi.nexon.com/game/maplestorysea)
 

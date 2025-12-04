@@ -83,6 +83,7 @@ This library supports all apis published in the MapleStory OpenAPI official docs
 Some features are supported only in specific regions. Please refer to the official documentation for each region for details.
 
 - KMS: [https://openapi.nexon.com/game/maplestory](https://openapi.nexon.com/game/maplestory)
+- KMS(for Nexon Friends Exclusive APIs): [https://openapi.nexon.com/ko/friends/maplestory](https://openapi.nexon.com/ko/friends/maplestory)
 - TMS: [https://openapi.nexon.com/game/maplestorytw](https://openapi.nexon.com/game/maplestorytw)
 - MSEA: [https://openapi.nexon.com/game/maplestorysea](https://openapi.nexon.com/game/maplestorysea)
 
