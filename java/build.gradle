@@ -34,9 +34,11 @@ task unitTest(type: Test) {
     def apiKeyKms = project.findProperty('API_KEY_KMS')
     def apiKeyMsea = project.findProperty('API_KEY_MSEA')
     def apiKeyTms = project.findProperty('API_KEY_TMS')
+    def accessToken = project.findProperty('ACCESS_TOKEN')
     systemProperty('API_KEY_KMS', apiKeyKms)
     systemProperty('API_KEY_MSEA', apiKeyMsea)
     systemProperty('API_KEY_TMS', apiKeyTms)
+    systemProperty('ACCESS_TOKEN', accessToken)
 
     useJUnitPlatform()
 }
