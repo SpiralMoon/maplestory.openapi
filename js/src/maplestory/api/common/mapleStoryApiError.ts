@@ -36,6 +36,7 @@ export enum MapleStoryApiErrorCode {
   OPENAPI00009,
   OPENAPI00010,
   OPENAPI00011,
+  OPENAPI00012,
 }
 
 const ERROR_MAP: {
@@ -51,4 +52,5 @@ const ERROR_MAP: {
   ['OPENAPI00009']: MapleStoryApiErrorCode.OPENAPI00009,
   ['OPENAPI00010']: MapleStoryApiErrorCode.OPENAPI00010,
   ['OPENAPI00011']: MapleStoryApiErrorCode.OPENAPI00011,
+  ['OPENAPI00012']: MapleStoryApiErrorCode.OPENAPI00012,
 };
