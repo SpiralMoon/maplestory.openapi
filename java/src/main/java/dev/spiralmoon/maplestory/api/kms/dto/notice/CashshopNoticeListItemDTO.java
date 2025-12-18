@@ -21,7 +21,7 @@ public class CashshopNoticeListItemDTO {
     /**
      * 공지 제목
      */
-    @JsonProperty("id")
+    @JsonProperty("title")
     private String title;
 
     /**
