@@ -85,6 +85,12 @@ public class CharacterCashItemEquipmentPresetDTO implements dev.spiralmoon.maple
     private CharacterCashItemEquipmentColoringPrismDTO cashItemColoringPrism;
 
     /**
+     * 캐시 장비(무기) 이펙트 프리즘 정보
+     */
+    @JsonProperty("cash_item_effect_prism")
+    private CharacterCashItemEquipmentEffectPrismDTO cashItemEffectPrism;
+
+    /**
      * 아이템 장착 가능 성별
      */
     @JsonProperty("item_gender")

@@ -138,6 +138,36 @@ namespace MapleStory.OpenAPI.KMS.DTO
     }
 
     /// <summary>
+    /// 캐릭터 캐시 장비(무기) 이펙트 프리즘
+    /// </summary>
+    public class CharacterCashItemEquipmentEffectPrismDTO
+    {
+        /// <summary>
+        /// 이펙트 프리즘 색상 범위
+        /// </summary>
+        [JsonProperty("color_range")]
+        public string ColorRange { get; set; }
+
+        /// <summary>
+        /// 이펙트 프리즘 색조
+        /// </summary>
+        [JsonProperty("hue")]
+        public long Hue { get; set; }
+
+        /// <summary>
+        /// 이펙트 프리즘 채도
+        /// </summary>
+        [JsonProperty("saturation")]
+        public long Saturation { get; set; }
+
+        /// <summary>
+        /// 이펙트 프리즘 명도
+        /// </summary>
+        [JsonProperty("value")]
+        public long Value { get; set; }
+    }
+
+    /// <summary>
     /// 캐릭터 캐시 장비 옵션
     /// </summary>
     public class CharacterCashItemEquipmentOptionDTO : Base.CharacterCashItemEquipmentOptionDTO
@@ -278,6 +308,12 @@ namespace MapleStory.OpenAPI.KMS.DTO
         /// </summary>
         [JsonProperty("cash_item_coloring_prism")]
         public override CharacterCashItemEquipmentColoringPrismDTO? CashItemColoringPrism { get; set; }
+
+        /// <summary>
+        /// 캐시 장비(무기) 이펙트 프리즘 정보
+        /// </summary>
+        [JsonProperty("cash_item_effect_prism")]
+        public CharacterCashItemEquipmentEffectPrismDTO? CashItemEffectPrism { get; set; }
 
         /// <summary>
         /// 아이템 장착 가능 성별

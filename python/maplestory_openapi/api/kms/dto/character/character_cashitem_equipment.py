@@ -23,6 +23,22 @@ class CharacterCashitemEquipmentColoringPrism(BaseModel, BaseCharacterCashitemEq
     value: int
 
 
+class CharacterCashitemEquipmentEffectPrism(BaseModel):
+    """
+    캐릭터 캐시 장비(무기) 이펙트 프리즘
+
+    Attributes:
+        color_range (str): 이펙트 프리즘 색상 범위
+        hue (int): 이펙트 프리즘 색상
+        saturation (int): 이펙트 프리즘 채도
+        value (int): 이펙트 프리즘 명도
+    """
+    color_range: str
+    hue: int
+    saturation: int
+    value: int
+
+
 class CharacterCashitemEquipmentOption(BaseModel, BaseCharacterCashitemEquipmentOption):
     """
     캐릭터 캐시 장비 옵션
@@ -52,6 +68,7 @@ class CharacterCashitemEquipmentPreset(BaseModel, BaseCharacterCashitemEquipment
         is_option_expired (bool): 캐시 장비 옵션 유효 기간 만료 여부
         cash_item_label (str or None): 캐시 장비 라벨 정보
         cash_item_coloring_prism (CharacterCashitemEquipmentColoringPrism or None): 캐시 장비 컬러링프리즘 정보
+        cash_item_effect_prism (CharacterCashitemEquipmentEffectPrism or None): 캐시 장비(무기) 이펙트 프리즘 정보
         item_gender (str or None): 아이템 장착 가능 성별
         skills (list[str]): 스킬명
         freestyle_flag (str or None): 프리스타일 쿠폰 적용 여부 (0:미적용, 1:적용)
@@ -68,6 +85,7 @@ class CharacterCashitemEquipmentPreset(BaseModel, BaseCharacterCashitemEquipment
     is_option_expired: bool | None
     cash_item_label: str | None
     cash_item_coloring_prism: CharacterCashitemEquipmentColoringPrism | None
+    cash_item_effect_prism: CharacterCashitemEquipmentEffectPrism | None
     item_gender: str | None
     skills: list[str]
     freestyle_flag: str | None

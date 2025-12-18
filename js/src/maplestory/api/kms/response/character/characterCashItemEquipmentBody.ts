@@ -25,6 +25,7 @@ export type CharacterCashItemEquipmentPresetBody = {
   date_option_expire: string | null;
   cash_item_label: string | null;
   cash_item_coloring_prism: CharacterCashItemEquipmentColoringPrismBody | null;
+  cash_item_effect_prism: CharacterCashItemEquipmentEffectPrismBody | null;
   item_gender: string | null;
   skills: string[];
   freestyle_flag: string | null;
@@ -36,6 +37,13 @@ export type CharacterCashItemEquipmentOptionBody = {
 };
 
 export type CharacterCashItemEquipmentColoringPrismBody = {
+  color_range: string;
+  hue: number;
+  saturation: number;
+  value: number;
+};
+
+export type CharacterCashItemEquipmentEffectPrismBody = {
   color_range: string;
   hue: number;
   saturation: number;

@@ -2,6 +2,7 @@ import * as base from '../../../common/dto/character/characterCashItemEquipment'
 import {
   CharacterCashItemEquipmentBody,
   CharacterCashItemEquipmentColoringPrismBody,
+  CharacterCashItemEquipmentEffectPrismBody,
   CharacterCashItemEquipmentOptionBody,
   CharacterCashItemEquipmentPresetBody,
 } from '../../response/character/characterCashItemEquipmentBody';
@@ -167,6 +168,40 @@ export class CharacterCashItemEquipmentColoringPrismDto extends base.CharacterCa
 }
 
 /**
+ * 캐릭터 캐시 장비(무기) 이펙트 프리즘
+ */
+export class CharacterCashItemEquipmentEffectPrismDto {
+  /**
+   * 이펙트 프리즘 색상 범위
+   */
+  public colorRange: string;
+
+  /**
+   * 이펙트 프리즘 색조
+   */
+  public hue: number;
+
+  /**
+   * 이펙트 프리즘 채도
+   */
+  public saturation: number;
+
+  /**
+   * 이펙트 프리즘 명도
+   */
+  public value: number;
+
+  constructor(obj: CharacterCashItemEquipmentEffectPrismBody) {
+    const { color_range, hue, saturation, value } = obj;
+
+    this.colorRange = color_range;
+    this.hue = hue;
+    this.saturation = saturation;
+    this.value = value;
+  }
+}
+
+/**
  * 캐릭터 캐시 장비 옵션
  */
 export class CharacterCashItemEquipmentOptionDto extends base.CharacterCashItemEquipmentOptionDto {
@@ -255,6 +290,11 @@ export class CharacterCashItemEquipmentPresetDto extends base.CharacterCashItemE
   public override cashItemColoringPrism: CharacterCashItemEquipmentColoringPrismDto | null;
 
   /**
+   * 캐시 장비(무기) 이펙트 프리즘 정보
+   */
+  public cashItemEffectPrism: CharacterCashItemEquipmentEffectPrismDto | null;
+
+  /**
    * 아이템 장착 가능 성별
    */
   public override itemGender: string | null;
@@ -283,6 +323,7 @@ export class CharacterCashItemEquipmentPresetDto extends base.CharacterCashItemE
       date_option_expire,
       cash_item_label,
       cash_item_coloring_prism,
+      cash_item_effect_prism,
       item_gender,
       skills,
       freestyle_flag,
@@ -299,6 +340,9 @@ export class CharacterCashItemEquipmentPresetDto extends base.CharacterCashItemE
     this.cashItemLabel = cash_item_label;
     this.cashItemColoringPrism = cash_item_coloring_prism
       ? new CharacterCashItemEquipmentColoringPrismDto(cash_item_coloring_prism)
+      : null;
+    this.cashItemEffectPrism = cash_item_effect_prism
+      ? new CharacterCashItemEquipmentEffectPrismDto(cash_item_effect_prism)
       : null;
     this.itemGender = item_gender;
     this.skills = skills;
