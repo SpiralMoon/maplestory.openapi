@@ -11,7 +11,7 @@ export abstract class CharacterVMatrixCodeEquipmentDto {
   public abstract vCoreName: string | null;
   public abstract vCoreType: string | null;
   public abstract vCoreLevel: number;
-  public abstract vCoreSkill1: string;
+  public abstract vCoreSkill1: string | null;
   public abstract vCoreSkill2: string | null;
   public abstract vCoreSkill3: string | null;
 }

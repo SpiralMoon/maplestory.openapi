@@ -1,5 +1,5 @@
 from datetime import datetime
-from pydantic import BaseModel, field_validator
+from pydantic import BaseModel, field_validator, Field
 
 from maplestory_openapi.api.common.dto.character.character_vmatrix import CharacterVMatrixCoreEquipment as BaseCharacterVMatrixCoreEquipment
 from maplestory_openapi.api.common.dto.character.character_vmatrix import CharacterVMatrix as BaseCharacterVMatrix
@@ -19,13 +19,14 @@ class CharacterVMatrixCoreEquipment(BaseModel, BaseCharacterVMatrixCoreEquipment
         v_core_skill_3 (str or None): (강화 코어인 경우) 코어에 해당하는 세 번째 스킬 명
     """
     slot_id: str
-    slot_level: int
+    slot_level: int = Field(deprecated="2025년 12월 18일 점검 이후부터 사용하지 않는 항목입니다.")
     v_core_name: str | None
     v_core_type: str | None
     v_core_level: int
-    v_core_skill_1: str | None
-    v_core_skill_2: str | None
-    v_core_skill_3: str | None
+    v_core_skill_1: str | None = Field(deprecated="2025년 12월 18일 점검 이후부터 사용하지 않는 항목입니다.")
+    v_core_skill_2: str | None = Field(deprecated="2025년 12월 18일 점검 이후부터 사용하지 않는 항목입니다.")
+    v_core_skill_3: str | None = Field(deprecated="2025년 12월 18일 점검 이후부터 사용하지 않는 항목입니다.")
+
 
 
 class CharacterVMatrix(BaseModel, BaseCharacterVMatrix):

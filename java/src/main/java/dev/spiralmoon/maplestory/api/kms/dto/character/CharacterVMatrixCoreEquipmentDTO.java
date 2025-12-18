@@ -23,8 +23,10 @@ public class CharacterVMatrixCoreEquipmentDTO implements dev.spiralmoon.maplesto
 
     /**
      * 슬롯 레벨
+     * @deprecated 2025년 12월 18일 점검 이후부터 사용하지 않는 항목입니다.
      */
     @JsonProperty("slot_level")
+    @Deprecated
     private long slotLevel;
 
     /**
@@ -47,19 +49,25 @@ public class CharacterVMatrixCoreEquipmentDTO implements dev.spiralmoon.maplesto
 
     /**
      * 코어에 해당하는 스킬 명
+     * @deprecated 2025년 12월 18일 점검 이후부터 사용하지 않는 항목입니다.
      */
     @JsonProperty("v_core_skill_1")
+    @Deprecated
     private String vCoreSkill1;
 
     /**
      * 강화 코어인 경우 코어에 해당하는 두 번째 스킬 명
+     * @deprecated 2025년 12월 18일 점검 이후부터 사용하지 않는 항목입니다.
      */
     @JsonProperty("v_core_skill_2")
+    @Deprecated
     private String vCoreSkill2;
 
     /**
      * 강화 코어인 경우 코어에 해당하는 세 번째 스킬 명
+     * @deprecated 2025년 12월 18일 점검 이후부터 사용하지 않는 항목입니다.
      */
     @JsonProperty("v_core_skill_3")
+    @Deprecated
     private String vCoreSkill3;
 }

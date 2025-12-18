@@ -20,7 +20,7 @@
         public abstract string? VCoreName { get; set; }
         public abstract string? VCoreType { get; set; }
         public abstract long VCoreLevel { get; set; }
-        public abstract string VCoreSkill1 { get; set; }
+        public abstract string? VCoreSkill1 { get; set; }
         public abstract string? VCoreSkill2 { get; set; }
         public abstract string? VCoreSkill3 { get; set; }
     }

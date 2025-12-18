@@ -59,6 +59,7 @@ export class CharacterVMatrixCodeEquipmentDto extends base.CharacterVMatrixCodeE
 
   /**
    * 슬롯 레벨
+   * @deprecated 2025년 12월 18일 점검 이후부터 사용하지 않는 항목입니다.
    */
   public override slotLevel: number;
 
@@ -79,16 +80,19 @@ export class CharacterVMatrixCodeEquipmentDto extends base.CharacterVMatrixCodeE
 
   /**
    * 코어에 해당하는 스킬 명
+   * @deprecated 2025년 12월 18일 점검 이후부터 사용하지 않는 항목입니다.
    */
-  public override vCoreSkill1: string;
+  public override vCoreSkill1: string | null;
 
   /**
    * (강화 코어인 경우) 코어에 해당하는 두 번째 스킬 명
+   * @deprecated 2025년 12월 18일 점검 이후부터 사용하지 않는 항목입니다.
    */
   public override vCoreSkill2: string | null;
 
   /**
    * (강화 코어인 경우) 코어에 해당하는 세 번째 스킬 명
+   * @deprecated 2025년 12월 18일 점검 이후부터 사용하지 않는 항목입니다.
    */
   public override vCoreSkill3: string | null;
 

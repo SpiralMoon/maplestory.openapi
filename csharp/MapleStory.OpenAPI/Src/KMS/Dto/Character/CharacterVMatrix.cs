@@ -61,6 +61,7 @@ namespace MapleStory.OpenAPI.KMS.DTO
         /// 슬롯 레벨
         /// </summary>
         [JsonProperty("slot_level")]
+        [Obsolete("2025년 12월 18일 점검 이후부터 사용하지 않는 항목입니다.")]
         public override long SlotLevel { get; set; }
 
         /// <summary>
@@ -85,18 +86,21 @@ namespace MapleStory.OpenAPI.KMS.DTO
         /// 코어에 해당하는 스킬 명
         /// </summary>
         [JsonProperty("v_core_skill_1")]
-        public override string VCoreSkill1 { get; set; }
+        [Obsolete("2025년 12월 18일 점검 이후부터 사용하지 않는 항목입니다.")]
+        public override string? VCoreSkill1 { get; set; }
 
         /// <summary>
         /// 강화 코어인 경우 코어에 해당하는 두 번째 스킬 명
         /// </summary>
         [JsonProperty("v_core_skill_2")]
+        [Obsolete("2025년 12월 18일 점검 이후부터 사용하지 않는 항목입니다.")]
         public override string? VCoreSkill2 { get; set; }
 
         /// <summary>
         /// 강화 코어인 경우 코어에 해당하는 세 번째 스킬 명
         /// </summary>
         [JsonProperty("v_core_skill_3")]
+        [Obsolete("2025년 12월 18일 점검 이후부터 사용하지 않는 항목입니다.")]
         public override string? VCoreSkill3 { get; set; }
     }
 }
