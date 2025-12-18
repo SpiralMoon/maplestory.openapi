@@ -64,6 +64,12 @@ namespace MapleStory.OpenAPI.KMS.DTO
         public override string SymbolDescription { get; set; }
 
         /// <summary>
+        /// 심볼 부가 효과 설명
+        /// </summary>
+        [JsonProperty("symbol_other_effect_description")]
+        public string? SymbolOtherEffectDescription { get; set; }
+
+        /// <summary>
         /// 심볼로 인한 증가 수치
         /// </summary>
         [JsonProperty("symbol_force")]

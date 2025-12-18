@@ -54,6 +54,11 @@ export class CharacterSymbolEquipmentInfoDto extends base.CharacterSymbolEquipme
   public override symbolDescription: string;
 
   /**
+   * 심볼 부가 효과 설명
+   */
+  public symbolOtherEffectDescription: string | null;
+
+  /**
    * 심볼로 인한 증가 수치
    */
   public override symbolForce: string;
@@ -120,6 +125,7 @@ export class CharacterSymbolEquipmentInfoDto extends base.CharacterSymbolEquipme
       symbol_name,
       symbol_icon,
       symbol_description,
+      symbol_other_effect_description,
       symbol_force,
       symbol_level,
       symbol_str,
@@ -137,6 +143,7 @@ export class CharacterSymbolEquipmentInfoDto extends base.CharacterSymbolEquipme
     this.symbolName = symbol_name;
     this.symbolIcon = symbol_icon;
     this.symbolDescription = symbol_description;
+    this.symbolOtherEffectDescription = symbol_other_effect_description;
     this.symbolForce = symbol_force;
     this.symbolLevel = symbol_level;
     this.symbolStr = symbol_str;

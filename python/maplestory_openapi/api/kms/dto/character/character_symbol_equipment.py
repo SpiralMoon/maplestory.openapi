@@ -13,6 +13,7 @@ class CharacterSymbolEquipmentInfo(BaseModel, BaseCharacterSymbolEquipmentInfo):
         symbol_name (str): 심볼 이름
         symbol_icon (str): 심볼 아이콘
         symbol_description (str): 심볼 설명
+        symbol_other_effect_description (str or None): 심볼 부가 효과 설명
         symbol_force (str): 심볼 포스 증가 수치
         symbol_level (int): 심볼 레벨
         symbol_str (str): 심볼 STR
@@ -29,6 +30,7 @@ class CharacterSymbolEquipmentInfo(BaseModel, BaseCharacterSymbolEquipmentInfo):
     symbol_name: str
     symbol_icon: str
     symbol_description: str
+    symbol_other_effect_description: str | None
     symbol_force: str
     symbol_level: int
     symbol_str: str

@@ -8,6 +8,7 @@ export type CharacterSymbolEquipmentInfoBody = {
   symbol_name: string;
   symbol_icon: string;
   symbol_description: string;
+  symbol_other_effect_description: string | null;
   symbol_force: string;
   symbol_level: number;
   symbol_str: string;

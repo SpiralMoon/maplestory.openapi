@@ -34,6 +34,12 @@ public class CharacterSymbolEquipmentInfoDTO implements dev.spiralmoon.maplestor
     private String symbolDescription;
 
     /**
+     * 심볼 부가 효과 설명
+     */
+    @JsonProperty("symbol_other_effect_description")
+    private String symbolOtherEffectDescription;
+
+    /**
      * 심볼로 인한 증가 수치
      */
     @JsonProperty("symbol_force")
