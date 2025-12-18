@@ -5,6 +5,7 @@ export type CashshopNoticeListBody = {
 export type CashshopNoticeListItemBody = {
   title: string;
   url: string;
+  thumbnail_url: string;
   notice_id: number;
   date: string;
   date_sale_start: string | null;

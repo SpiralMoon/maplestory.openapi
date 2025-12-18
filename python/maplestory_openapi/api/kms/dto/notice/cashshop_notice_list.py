@@ -9,6 +9,7 @@ class CashshopNoticeListItem(BaseModel):
     Attributes:
         title (str): 공지 제목
         url (str): 공지 링크
+        thumbnail_url (str): 썸네일 링크
         notice_id (int): 공지 식별자
         date (datetime): 공지 등록일
         date_sale_start (datetime or None): 판매 시작일
@@ -17,6 +18,7 @@ class CashshopNoticeListItem(BaseModel):
     """
     title: str
     url: str
+    thumbnail_url: str
     notice_id: int
     date: datetime
     date_sale_start: datetime | None

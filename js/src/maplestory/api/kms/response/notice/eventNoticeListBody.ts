@@ -5,6 +5,7 @@ export type EventNoticeListBody = {
 export type EventNoticeListItemBody = {
   title: string;
   url: string;
+  thumbnail_url: string;
   notice_id: number;
   date: string;
   date_event_start: string;

@@ -36,6 +36,11 @@ export class EventNoticeListItemDto {
   url: string;
 
   /**
+   * 썸네일 링크
+   */
+  thumbnailUrl: string;
+
+  /**
    * 공지 식별자
    */
   noticeId: number;
@@ -56,11 +61,19 @@ export class EventNoticeListItemDto {
   dateEventEnd: Date;
 
   constructor(obj: EventNoticeListItemBody) {
-    const { title, url, notice_id, date, date_event_start, date_event_end } =
-      obj;
+    const {
+      title,
+      url,
+      thumbnail_url,
+      notice_id,
+      date,
+      date_event_start,
+      date_event_end
+    } = obj;
 
     this.title = title;
     this.url = url;
+    this.thumbnailUrl = thumbnail_url;
     this.noticeId = notice_id;
     this.date = new Date(date);
     this.dateEventStart = new Date(date_event_start);

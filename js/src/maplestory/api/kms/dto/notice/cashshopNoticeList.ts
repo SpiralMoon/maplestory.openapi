@@ -36,6 +36,11 @@ export class CashshopNoticeListItemDto {
   url: string;
 
   /**
+   * 썸네일 링크
+   */
+  thumbnailUrl: string;
+
+  /**
    * 공지 식별자
    */
   noticeId: number;
@@ -64,6 +69,7 @@ export class CashshopNoticeListItemDto {
     const {
       title,
       url,
+      thumbnail_url,
       notice_id,
       date,
       date_sale_start,
@@ -73,6 +79,7 @@ export class CashshopNoticeListItemDto {
 
     this.title = title;
     this.url = url;
+    this.thumbnailUrl = thumbnail_url;
     this.noticeId = notice_id;
     this.date = new Date(date);
     this.dateSaleStart = date_sale_start ? new Date(date_sale_start) : null;

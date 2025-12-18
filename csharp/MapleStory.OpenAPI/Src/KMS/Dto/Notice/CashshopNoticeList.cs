@@ -33,6 +33,12 @@ namespace MapleStory.OpenAPI.KMS.DTO
         public string Url { get; set; }
 
         /// <summary>
+        /// 썸네일 링크
+        /// </summary>
+        [JsonProperty("thumbnail_url")]
+        public string ThumbnailUrl { get; set; }
+
+        /// <summary>
         /// 공지 식별자
         /// </summary>
         [JsonProperty("notice_id")]

@@ -31,6 +31,12 @@ public class CashshopNoticeListItemDTO {
     private String url;
 
     /**
+     * 썸네일 링크
+     */
+    @JsonProperty("thumbnail_url")
+    private String thumbnailUrl;
+
+    /**
      * 공지 식별자
      */
     @JsonProperty("notice_id")
