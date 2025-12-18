@@ -29,6 +29,7 @@ export type CharacterCashItemEquipmentPresetBody = {
   item_gender: string | null;
   skills: string[];
   freestyle_flag: string | null;
+  emotion_name: string | null;
 };
 
 export type CharacterCashItemEquipmentOptionBody = {

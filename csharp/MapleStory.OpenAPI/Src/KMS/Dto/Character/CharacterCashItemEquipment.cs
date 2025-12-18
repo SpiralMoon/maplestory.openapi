@@ -335,6 +335,12 @@ namespace MapleStory.OpenAPI.KMS.DTO
         public string? FreestyleFlag { get; set; }
 
         /// <summary>
+        /// 표정 합성 정보
+        /// </summary>
+        [JsonProperty("emotion_name")]
+        public string? EmotionName { get; set; }
+
+        /// <summary>
         /// 프리스타일 쿠폰 적용 여부
         /// </summary>
         public bool IsFreestyleFlag

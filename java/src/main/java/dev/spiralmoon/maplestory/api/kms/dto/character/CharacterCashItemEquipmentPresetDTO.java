@@ -110,6 +110,12 @@ public class CharacterCashItemEquipmentPresetDTO implements dev.spiralmoon.maple
     private String freestyleFlag;
 
     /**
+     * 표정 합성 정보
+     */
+    @JsonProperty("emotion_name")
+    private String emotionName;
+
+    /**
      * 캐시 장비 유효 기간 (KST)
      */
     public ZonedDateTime getDateExpire() {

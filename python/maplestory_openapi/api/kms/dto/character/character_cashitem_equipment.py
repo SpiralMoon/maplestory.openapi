@@ -72,6 +72,7 @@ class CharacterCashitemEquipmentPreset(BaseModel, BaseCharacterCashitemEquipment
         item_gender (str or None): 아이템 장착 가능 성별
         skills (list[str]): 스킬명
         freestyle_flag (str or None): 프리스타일 쿠폰 적용 여부 (0:미적용, 1:적용)
+        emotion_name (str or None): 표정 합성 정보
     """
     cash_item_equipment_part: str
     cash_item_equipment_slot: str
@@ -89,6 +90,7 @@ class CharacterCashitemEquipmentPreset(BaseModel, BaseCharacterCashitemEquipment
     item_gender: str | None
     skills: list[str]
     freestyle_flag: str | None
+    emotion_name: str | None
 
     @property
     def is_freestyle_flag(self) -> bool:

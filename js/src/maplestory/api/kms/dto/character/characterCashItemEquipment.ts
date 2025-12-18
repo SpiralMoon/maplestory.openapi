@@ -309,6 +309,11 @@ export class CharacterCashItemEquipmentPresetDto extends base.CharacterCashItemE
    */
   public freestyleFlag: string | null;
 
+  /**
+   * 표정 합성 정보
+   */
+  public emotion_name: string | null;
+
   constructor(obj: CharacterCashItemEquipmentPresetBody) {
     super();
 
@@ -327,6 +332,7 @@ export class CharacterCashItemEquipmentPresetDto extends base.CharacterCashItemE
       item_gender,
       skills,
       freestyle_flag,
+      emotion_name,
     } = obj;
 
     this.cashItemEquipmentPart = cash_item_equipment_part;
@@ -347,6 +353,7 @@ export class CharacterCashItemEquipmentPresetDto extends base.CharacterCashItemE
     this.itemGender = item_gender;
     this.skills = skills;
     this.freestyleFlag = freestyle_flag;
+    this.emotion_name = emotion_name;
 
     if (date_expire === 'expired') {
       this.isExpired = true;
