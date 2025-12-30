@@ -284,6 +284,20 @@ namespace MapleStory.OpenAPI.MSEA.DTO
         /// </summary>
         [JsonProperty("item_gender")]
         public override string? ItemGender { get; set; }
+
+        /// <summary>
+        /// Freestyle Coupon application status (0:not applied, 1:applied)
+        /// </summary>
+        [JsonProperty("freestyle_flag")]
+        public override string? FreestyleFlag { get; set; }
+
+        /// <summary>
+        /// Freestyle Coupon application status
+        /// </summary>
+        public bool IsFreestyleFlag
+        {
+            get => this.FreestyleFlag == "1";
+        }
     }
 
 }

@@ -53,6 +53,7 @@ class CharacterCashitemEquipmentPreset(BaseModel, BaseCharacterCashitemEquipment
         cash_item_label (str or None): Cash equipment label information
         cash_item_coloring_prism (CharacterCashitemEquipmentColoringPrism or None): Cash equipment coloring prism information
         item_gender (str or None): Gender compatibility for item equipment
+        freestyle_flag (str or None): Freestyle Coupon application status (0:not applied, 1:applied)
     """
     cash_item_equipment_part: str
     cash_item_equipment_slot: str
@@ -67,6 +68,14 @@ class CharacterCashitemEquipmentPreset(BaseModel, BaseCharacterCashitemEquipment
     cash_item_label: str | None
     cash_item_coloring_prism: CharacterCashitemEquipmentColoringPrism | None
     item_gender: str | None
+    freestyle_flag: str | None
+
+    @property
+    def is_freestyle_flag(self) -> bool:
+        """
+        Freestyle Coupon application status
+        """
+        return self.freestyle_flag == '1'
 
     @model_validator(mode="before")
     @classmethod

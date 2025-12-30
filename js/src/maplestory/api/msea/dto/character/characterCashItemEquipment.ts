@@ -259,6 +259,11 @@ export class CharacterCashItemEquipmentPresetDto extends base.CharacterCashItemE
    */
   public override itemGender: string | null;
 
+  /**
+   * Freestyle Coupon application status (0:not applied, 1:applied)
+   */
+  public override freestyleFlag: string | null;
+
   constructor(obj: CharacterCashItemEquipmentPresetBody) {
     super();
 
@@ -274,6 +279,7 @@ export class CharacterCashItemEquipmentPresetDto extends base.CharacterCashItemE
       cash_item_label,
       cash_item_coloring_prism,
       item_gender,
+      freestyle_flag,
     } = obj;
 
     this.cashItemEquipmentPart = cash_item_equipment_part;
@@ -289,6 +295,7 @@ export class CharacterCashItemEquipmentPresetDto extends base.CharacterCashItemE
       ? new CharacterCashItemEquipmentColoringPrismDto(cash_item_coloring_prism)
       : null;
     this.itemGender = item_gender;
+    this.freestyleFlag = freestyle_flag;
 
     if (date_expire === 'expired') {
       this.isExpired = true;
@@ -303,5 +310,12 @@ export class CharacterCashItemEquipmentPresetDto extends base.CharacterCashItemE
         ? new Date(date_option_expire)
         : null;
     }
+  }
+
+  /**
+   * Freestyle Coupon application status
+   */
+  public get isFreestyleFlag() {
+    return this.freestyleFlag === '1';
   }
 }

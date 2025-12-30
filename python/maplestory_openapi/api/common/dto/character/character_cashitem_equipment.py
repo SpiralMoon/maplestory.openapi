@@ -27,6 +27,7 @@ class CharacterCashitemEquipmentPreset:
     cash_item_label: str | None
     cash_item_coloring_prism: CharacterCashitemEquipmentColoringPrism | None
     item_gender: str | None
+    freestyle_flag: str | None
 
 
 class CharacterCashitemEquipment:

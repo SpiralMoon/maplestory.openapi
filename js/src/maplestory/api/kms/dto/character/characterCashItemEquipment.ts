@@ -307,7 +307,7 @@ export class CharacterCashItemEquipmentPresetDto extends base.CharacterCashItemE
   /**
    * 프리스타일 쿠폰 적용 여부 (0:미적용, 1:적용)
    */
-  public freestyleFlag: string | null;
+  public override freestyleFlag: string | null;
 
   /**
    * 표정 합성 정보

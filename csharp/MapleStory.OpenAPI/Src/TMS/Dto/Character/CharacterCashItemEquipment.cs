@@ -286,4 +286,18 @@ namespace MapleStory.OpenAPI.TMS.DTO
         public List<string> Skills { get; set; } = new();
     }
 
+        /// <summary>
+        /// 自由造型券 使用狀態（0：未使用，1：已使用）
+        /// </summary>
+        [JsonProperty("freestyle_flag")]
+        public override string? FreestyleFlag { get; set; }
+
+        /// <summary>
+        ///自由造型券 使用狀態
+        /// </summary>
+        public bool IsFreestyleFlag
+        {
+            get => this.FreestyleFlag == "1";
+        }
+    }
 }

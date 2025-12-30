@@ -51,6 +51,7 @@
         public abstract string? CashItemLabel { get; set; }
         public abstract TCharacterCashItemEquipmentColoringPrism? CashItemColoringPrism { get; set; }
         public abstract string? ItemGender { get; set; }
+        public abstract string? FreestyleFlag { get; set; }
     }
 
     public abstract class CharacterCashItemEquipmentPresetDTO : CharacterCashItemEquipmentPresetDTO<CharacterCashItemEquipmentOptionDTO, CharacterCashItemEquipmentColoringPrismDTO>

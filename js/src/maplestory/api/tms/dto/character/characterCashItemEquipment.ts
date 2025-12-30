@@ -264,6 +264,11 @@ export class CharacterCashItemEquipmentPresetDto extends base.CharacterCashItemE
    */
   public skills: string[];
 
+  /**
+   * 自由造型券 使用狀態（0：未使用，1：已使用）
+   */
+  public override freestyleFlag: string | null;
+
   constructor(obj: CharacterCashItemEquipmentPresetBody) {
     super();
 
@@ -280,6 +285,7 @@ export class CharacterCashItemEquipmentPresetDto extends base.CharacterCashItemE
       cash_item_coloring_prism,
       item_gender,
       skills,
+      freestyle_flag,
     } = obj;
 
     this.cashItemEquipmentPart = cash_item_equipment_part;
@@ -296,6 +302,7 @@ export class CharacterCashItemEquipmentPresetDto extends base.CharacterCashItemE
       : null;
     this.itemGender = item_gender;
     this.skills = skills;
+    this.freestyleFlag = freestyle_flag;
 
     if (date_expire === 'expired') {
       this.isExpired = true;
@@ -310,5 +317,12 @@ export class CharacterCashItemEquipmentPresetDto extends base.CharacterCashItemE
         ? new Date(date_option_expire)
         : null;
     }
+  }
+
+  /**
+   * 自由造型券 使用狀態
+   */
+  public get isFreestyleFlag() {
+    return this.freestyleFlag === '1';
   }
 }

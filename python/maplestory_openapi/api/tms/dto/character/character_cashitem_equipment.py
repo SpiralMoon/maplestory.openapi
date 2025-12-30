@@ -54,6 +54,7 @@ class CharacterCashitemEquipmentPreset(BaseModel, BaseCharacterCashitemEquipment
         cash_item_coloring_prism (CharacterCashitemEquipmentColoringPrism or None): 現金道具彩色稜鏡資訊
         item_gender (str or None): 道具可裝備性別
         skills (list[str]): 技能名稱
+        freestyle_flag (str or None): 自由造型券 使用狀態（0：未使用，1：已使用）
     """
     cash_item_equipment_part: str
     cash_item_equipment_slot: str
@@ -69,6 +70,14 @@ class CharacterCashitemEquipmentPreset(BaseModel, BaseCharacterCashitemEquipment
     cash_item_coloring_prism: CharacterCashitemEquipmentColoringPrism | None
     item_gender: str | None
     skills: list[str]
+    freestyle_flag: str | None
+
+    @property
+    def is_freestyle_flag(self) -> bool:
+        """
+        自由造型券 使用狀態
+        """
+        return self.freestyle_flag == '1'
 
     @model_validator(mode="before")
     @classmethod

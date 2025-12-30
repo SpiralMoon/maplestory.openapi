@@ -127,4 +127,17 @@ public class CharacterCashItemEquipmentPresetDTO implements dev.spiralmoon.maple
         }
         return "expired".equals(this.dateOptionExpire);
     }
+
+    /**
+     * Freestyle Coupon application status (0:not applied, 1:applied)
+     */
+    @JsonProperty("freestyle_flag")
+    private String freestyleFlag;
+
+    /**
+     * Freestyle Coupon application status
+     */
+    public boolean isFreestyleFlag() {
+        return "1".equals(this.freestyleFlag);
+    }
 }
