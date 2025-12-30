@@ -342,6 +342,16 @@ describe('Character Information Retrieval', () => {
       console.log(toString(response));
     });
 
+    test('success: getCharacterPropensity with date', async () => {
+      const response = await api.getCharacterPropensity(ocid, {
+        year: 2023,
+        month: 12,
+        day: 22,
+      });
+      expect(response).toBeDefined();
+      console.log(toString(response));
+    });
+
     test('success: getCharacterPropensity on date with no data', async () => {
       const ocid = 'b0187493ec48ddd7b1d304fe8982d0b0';
       const response = await api.getCharacterPropensity(ocid, {
@@ -385,6 +395,16 @@ describe('Character Information Retrieval', () => {
   describe('getCharacterAbility', () => {
     test('success: getCharacterAbility', async () => {
       const response = await api.getCharacterAbility(ocid);
+      expect(response).toBeDefined();
+      console.log(toString(response));
+    });
+
+    test('success: getCharacterAbility with date', async () => {
+      const response = await api.getCharacterAbility(ocid, {
+        year: 2023,
+        month: 12,
+        day: 22,
+      });
       expect(response).toBeDefined();
       console.log(toString(response));
     });
@@ -436,6 +456,16 @@ describe('Character Information Retrieval', () => {
       console.log(toString(response));
     });
 
+    test('success: getCharacterItemEquipment with date', async () => {
+      const response = await api.getCharacterItemEquipment(ocid, {
+        year: 2023,
+        month: 12,
+        day: 22,
+      });
+      expect(response).toBeDefined();
+      console.log(toString(response));
+    });
+
     test('success: getCharacterItemEquipment on date with no data', async () => {
       const ocid = 'b0187493ec48ddd7b1d304fe8982d0b0';
       const response = await api.getCharacterItemEquipment(ocid, {
@@ -479,6 +509,16 @@ describe('Character Information Retrieval', () => {
   describe('getCharacterCashItemEquipment', () => {
     test('success: getCharacterCashItemEquipment', async () => {
       const response = await api.getCharacterCashItemEquipment(ocid);
+      expect(response).toBeDefined();
+      console.log(toString(response));
+    });
+
+    test('success: getCharacterCashItemEquipment with date', async () => {
+      const response = await api.getCharacterCashItemEquipment(ocid, {
+        year: 2023,
+        month: 12,
+        day: 22,
+      });
       expect(response).toBeDefined();
       console.log(toString(response));
     });
@@ -530,6 +570,16 @@ describe('Character Information Retrieval', () => {
       console.log(toString(response));
     });
 
+    test('success: getCharacterSymbolEquipment with date', async () => {
+      const response = await api.getCharacterSymbolEquipment(ocid, {
+        year: 2023,
+        month: 12,
+        day: 22,
+      });
+      expect(response).toBeDefined();
+      console.log(toString(response));
+    });
+
     test('success: getCharacterSymbolEquipment on date with no data', async () => {
       const ocid = 'b0187493ec48ddd7b1d304fe8982d0b0';
       const response = await api.getCharacterSymbolEquipment(ocid, {
@@ -573,6 +623,16 @@ describe('Character Information Retrieval', () => {
   describe('getCharacterSetEffect', () => {
     test('success: getCharacterSetEffect', async () => {
       const response = await api.getCharacterSetEffect(ocid);
+      // nothing to assert because some characters may not have set effects
+      console.log(toString(response));
+    });
+
+    test('success: getCharacterSetEffect with date', async () => {
+      const response = await api.getCharacterSetEffect(ocid, {
+        year: 2023,
+        month: 12,
+        day: 22,
+      });
       // nothing to assert because some characters may not have set effects
       console.log(toString(response));
     });
@@ -624,6 +684,16 @@ describe('Character Information Retrieval', () => {
       console.log(toString(response));
     });
 
+    test('success: getCharacterBeautyEquipment with date', async () => {
+      const response = await api.getCharacterBeautyEquipment(ocid, {
+        year: 2023,
+        month: 12,
+        day: 22,
+      });
+      expect(response).toBeDefined();
+      console.log(toString(response));
+    });
+
     test('success: getCharacterBeautyEquipment on date with no data', async () => {
       const ocid = 'b0187493ec48ddd7b1d304fe8982d0b0';
       const response = await api.getCharacterBeautyEquipment(ocid, {
@@ -667,6 +737,16 @@ describe('Character Information Retrieval', () => {
   describe('getCharacterAndroidEquipment', () => {
     test('success: getCharacterAndroidEquipment', async () => {
       const response = await api.getCharacterAndroidEquipment(ocid);
+      expect(response).toBeDefined();
+      console.log(toString(response));
+    });
+
+    test('success: getCharacterAndroidEquipment with date', async () => {
+      const response = await api.getCharacterAndroidEquipment(ocid, {
+        year: 2023,
+        month: 12,
+        day: 22,
+      });
       expect(response).toBeDefined();
       console.log(toString(response));
     });
@@ -718,6 +798,16 @@ describe('Character Information Retrieval', () => {
       console.log(toString(response));
     });
 
+    test('success: getCharacterPetEquipment with date', async () => {
+      const response = await api.getCharacterPetEquipment(ocid, {
+        year: 2023,
+        month: 12,
+        day: 22,
+      });
+      // nothing to assert because some characters may not have pets
+      console.log(toString(response));
+    });
+
     test('success: getCharacterPetEquipment on date with no data', async () => {
       const ocid = 'b0187493ec48ddd7b1d304fe8982d0b0';
       const response = await api.getCharacterPetEquipment(ocid, {
@@ -762,6 +852,17 @@ describe('Character Information Retrieval', () => {
     test('success: getCharacterSkill with skill grade', async () => {
       const skillGrade = '6';
       const response = await api.getCharacterSkill(ocid, skillGrade);
+      expect(response).toBeDefined();
+      console.log(toString(response));
+    });
+
+    test('success: getCharacterSkill with date', async () => {
+      const skillGrade = '6';
+      const response = await api.getCharacterSkill(ocid, skillGrade, {
+        year: 2023,
+        month: 12,
+        day: 22,
+      });
       expect(response).toBeDefined();
       console.log(toString(response));
     });
@@ -822,6 +923,16 @@ describe('Character Information Retrieval', () => {
       console.log(toString(response));
     });
 
+    test('success: getCharacterLinkSkill with date', async () => {
+      const response = await api.getCharacterLinkSkill(ocid, {
+        year: 2023,
+        month: 12,
+        day: 22,
+      });
+      expect(response).toBeDefined();
+      console.log(toString(response));
+    });
+
     test('success: getCharacterLinkSkill on date with no data', async () => {
       const ocid = 'b0187493ec48ddd7b1d304fe8982d0b0';
       const response = await api.getCharacterLinkSkill(ocid, {
@@ -865,6 +976,16 @@ describe('Character Information Retrieval', () => {
   describe('getCharacterVMatrix', () => {
     test('success: getCharacterVMatrix', async () => {
       const response = await api.getCharacterVMatrix(ocid);
+      // nothing to assert because some characters may not have v matrix
+      console.log(toString(response));
+    });
+
+    test('success: getCharacterVMatrix with date', async () => {
+      const response = await api.getCharacterVMatrix(ocid, {
+        year: 2023,
+        month: 12,
+        day: 22,
+      });
       // nothing to assert because some characters may not have v matrix
       console.log(toString(response));
     });
@@ -916,6 +1037,16 @@ describe('Character Information Retrieval', () => {
       console.log(toString(response));
     });
 
+    test('success: getCharacterHexaMatrix with date', async () => {
+      const response = await api.getCharacterHexaMatrix(ocid, {
+        year: 2023,
+        month: 12,
+        day: 22,
+      });
+      // nothing to assert because some characters may not have hexa matrix
+      console.log(toString(response));
+    });
+
     test('success: getCharacterHexaMatrix on date with no data', async () => {
       const ocid = 'b0187493ec48ddd7b1d304fe8982d0b0';
       const response = await api.getCharacterHexaMatrix(ocid, {
@@ -963,6 +1094,16 @@ describe('Character Information Retrieval', () => {
       console.log(toString(response));
     });
 
+    test('success: getCharacterHexaMatrixStat with date', async () => {
+      const response = await api.getCharacterHexaMatrixStat(ocid, {
+        year: 2023,
+        month: 12,
+        day: 22,
+      });
+      expect(response).toBeDefined();
+      console.log(toString(response));
+    });
+
     test('success: getCharacterHexaMatrixStat on date with no data', async () => {
       const ocid = 'b0187493ec48ddd7b1d304fe8982d0b0';
       const response = await api.getCharacterHexaMatrixStat(ocid, {
@@ -1006,6 +1147,16 @@ describe('Character Information Retrieval', () => {
   describe('getCharacterDojang', () => {
     test('success: getCharacterDojang', async () => {
       const response = await api.getCharacterDojang(ocid);
+      expect(response).toBeDefined();
+      console.log(toString(response));
+    });
+
+    test('success: getCharacterDojang with date', async () => {
+      const response = await api.getCharacterDojang(ocid, {
+        year: 2023,
+        month: 12,
+        day: 22,
+      });
       expect(response).toBeDefined();
       console.log(toString(response));
     });
@@ -1111,6 +1262,16 @@ describe('Character Information Retrieval', () => {
   describe('getCharacterRingExchangeSkillEquipment', () => {
     test('success: getCharacterRingExchangeSkillEquipment', async () => {
       const response = await api.getCharacterRingExchangeSkillEquipment(ocid);
+      expect(response).toBeDefined();
+      console.log(toString(response));
+    });
+
+    test('success: getCharacterRingExchangeSkillEquipment', async () => {
+      const response = await api.getCharacterRingExchangeSkillEquipment(ocid, {
+        year: 2025,
+        month: 8,
+        day: 21,
+      });
       expect(response).toBeDefined();
       console.log(toString(response));
     });

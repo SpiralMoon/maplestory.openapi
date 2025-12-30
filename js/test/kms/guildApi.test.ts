@@ -49,6 +49,16 @@ describe('Guild Information Retrieval', () => {
       console.log(toString(response));
     });
 
+    test('success: getGuildBasic with date', async () => {
+      const response = await api.getGuildBasic(ogid, {
+        year: 2023,
+        month: 12,
+        day: 22,
+      });
+      expect(response).toBeDefined();
+      console.log(toString(response));
+    });
+
     test('fail: getGuildBasic with invalid date', async () => {
       try {
         await api.getGuildBasic(ogid, {

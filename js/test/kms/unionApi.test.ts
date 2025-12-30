@@ -17,6 +17,16 @@ describe('Union Information Retrieval', () => {
       console.log(toString(response));
     });
 
+    test('success: getUnion with date', async () => {
+      const response = await api.getUnion(ocid, {
+        year: 2023,
+        month: 12,
+        day: 22,
+      });
+      // nothing to assert because some characters may not have union
+      console.log(toString(response));
+    });
+
     test('fail: getUnion with invalid date', async () => {
       try {
         await api.getUnion(ocid, {
@@ -50,6 +60,16 @@ describe('Union Information Retrieval', () => {
   describe('getUnionRaider', () => {
     test('success: getUnionRaider', async () => {
       const response = await api.getUnionRaider(ocid);
+      // nothing to assert because some characters may not have union raider
+      console.log(toString(response));
+    });
+
+    test('success: getUnionRaider with date', async () => {
+      const response = await api.getUnionRaider(ocid, {
+        year: 2023,
+        month: 12,
+        day: 22,
+      });
       // nothing to assert because some characters may not have union raider
       console.log(toString(response));
     });
