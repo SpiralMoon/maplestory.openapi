@@ -15,6 +15,7 @@ export abstract class CharacterBeautyEquipmentFaceDto {
   public abstract baseColor: string;
   public abstract mixColor: string | null;
   public abstract mixRate: string;
+  public abstract freestyleFlag: string | null;
 }
 
 export abstract class CharacterBeautyEquipmentHairDto {
@@ -22,6 +23,7 @@ export abstract class CharacterBeautyEquipmentHairDto {
   public abstract baseColor: string;
   public abstract mixColor: string | null;
   public abstract mixRate: string;
+  public abstract freestyleFlag: string | null;
 }
 
 export abstract class CharacterBeautyEquipmentSkinDto {

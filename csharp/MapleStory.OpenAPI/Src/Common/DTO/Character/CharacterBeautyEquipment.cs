@@ -24,6 +24,7 @@
         public abstract string BaseColor { get; set; }
         public abstract string? MixColor { get; set; }
         public abstract string MixRate { get; set; }
+        public abstract string? FreestyleFlag { get; set; }
     }
 
     public abstract class CharacterBeautyEquipmentFaceDTO
@@ -32,6 +33,7 @@
         public abstract string BaseColor { get; set; }
         public abstract string? MixColor { get; set; }
         public abstract string MixRate { get; set; }
+        public abstract string? FreestyleFlag { get; set; }
     }
 
     public abstract class CharacterBeautyEquipmentSkinDTO

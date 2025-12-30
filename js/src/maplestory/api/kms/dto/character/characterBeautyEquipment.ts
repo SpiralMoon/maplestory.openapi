@@ -124,7 +124,7 @@ export class CharacterBeautyEquipmentFaceDto extends base.CharacterBeautyEquipme
   /**
    * 프리스타일 쿠폰 적용 여부 (0:미적용, 1:적용)
    */
-  public freestyleFlag: string | null;
+  public override freestyleFlag: string | null;
 
   constructor(obj: CharacterBeautyEquipmentFaceBody) {
     super();
@@ -173,7 +173,7 @@ export class CharacterBeautyEquipmentHairDto extends base.CharacterBeautyEquipme
   /**
    * 프리스타일 쿠폰 적용 여부 (0:미적용, 1:적용)
    */
-  public freestyleFlag: string | null;
+  public override freestyleFlag: string | null;
 
   constructor(obj: CharacterBeautyEquipmentHairBody) {
     super();

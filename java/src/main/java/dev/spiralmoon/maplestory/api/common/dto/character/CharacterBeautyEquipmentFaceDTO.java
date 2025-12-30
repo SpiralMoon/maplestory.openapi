@@ -5,4 +5,5 @@ public interface CharacterBeautyEquipmentFaceDTO {
     String getBaseColor();
     String getMixColor();
     String getMixRate();
+    String getFreestyleFlag();
 }

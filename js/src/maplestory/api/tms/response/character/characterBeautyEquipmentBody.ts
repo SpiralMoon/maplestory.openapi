@@ -15,6 +15,7 @@ export type CharacterBeautyEquipmentHairBody = {
   base_color: string;
   mix_color: string | null;
   mix_rate: string;
+  freestyle_flag: string | null;
 };
 
 export type CharacterBeautyEquipmentFaceBody = {
@@ -22,6 +23,7 @@ export type CharacterBeautyEquipmentFaceBody = {
   base_color: string;
   mix_color: string | null;
   mix_rate: string;
+  freestyle_flag: string | null;
 };
 
 export type CharacterBeautyEquipmentSkinBody = {

@@ -121,15 +121,28 @@ export class CharacterBeautyEquipmentFaceDto extends base.CharacterBeautyEquipme
    */
   public override mixRate: string;
 
+  /**
+   * Freestyle Coupon application status (0:not applied, 1:applied)
+   */
+  public override freestyleFlag: string | null;
+
   constructor(obj: CharacterBeautyEquipmentFaceBody) {
     super();
 
-    const { face_name, base_color, mix_color, mix_rate } = obj;
+    const { face_name, base_color, mix_color, mix_rate, freestyle_flag } = obj;
 
     this.faceName = face_name;
     this.baseColor = base_color;
     this.mixColor = mix_color;
     this.mixRate = mix_rate;
+    this.freestyleFlag = freestyle_flag;
+  }
+
+  /**
+   * Freestyle Coupon application status
+   */
+  public get isFreestyleFlag() {
+    return this.freestyleFlag === '1';
   }
 }
 
@@ -157,15 +170,28 @@ export class CharacterBeautyEquipmentHairDto extends base.CharacterBeautyEquipme
    */
   public override mixRate: string;
 
+  /**
+   * Freestyle Coupon application status (0:not applied, 1:applied)
+   */
+  public override freestyleFlag: string | null;
+
   constructor(obj: CharacterBeautyEquipmentHairBody) {
     super();
 
-    const { hair_name, base_color, mix_color, mix_rate } = obj;
+    const { hair_name, base_color, mix_color, mix_rate, freestyle_flag } = obj;
 
     this.hairName = hair_name;
     this.baseColor = base_color;
     this.mixColor = mix_color;
     this.mixRate = mix_rate;
+    this.freestyleFlag = freestyle_flag;
+  }
+
+  /**
+   * Freestyle Coupon application status
+   */
+  public get isFreestyleFlag() {
+    return this.freestyleFlag === '1';
   }
 }
 

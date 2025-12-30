@@ -16,11 +16,20 @@ class CharacterBeautyEquipmentHair(BaseModel, BaseCharacterBeautyEquipmentHair):
         base_color (str): Base hair color
         mix_color (str or None): Mixed hair color
         mix_rate (str): Dye ratio for mixed hair color
+        freestyle_flag (str or None): Freestyle Coupon application status (0:not applied, 1:applied)
     """
     hair_name: str
     base_color: str
     mix_color: str | None
     mix_rate: str
+    freestyle_flag: str | None
+
+    @property
+    def is_freestyle_flag(self) -> bool:
+        """
+        Freestyle Coupon application status
+        """
+        return self.freestyle_flag == '1'
 
 
 class CharacterBeautyEquipmentFace(BaseModel, BaseCharacterBeautyEquipmentFace):
@@ -32,11 +41,20 @@ class CharacterBeautyEquipmentFace(BaseModel, BaseCharacterBeautyEquipmentFace):
         base_color (str): Base face color
         mix_color (str or None): Mixed face color
         mix_rate (str): Dye ratio for mixed face color
+        freestyle_flag (str or None): Freestyle Coupon application status (0:not applied, 1:applied)
     """
     face_name: str
     base_color: str
     mix_color: str | None
     mix_rate: str
+    freestyle_flag: str | None
+
+    @property
+    def is_freestyle_flag(self) -> bool:
+        """
+        Freestyle Coupon application status
+        """
+        return self.freestyle_flag == '1'
 
 
 class CharacterBeautyEquipmentSkin(BaseModel, BaseCharacterBeautyEquipmentSkin):

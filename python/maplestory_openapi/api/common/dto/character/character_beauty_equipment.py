@@ -6,6 +6,7 @@ class CharacterBeautyEquipmentHair:
     base_color: str
     mix_color: str | None
     mix_rate: str
+    freestyle_flag: str | None
 
 
 class CharacterBeautyEquipmentFace:
@@ -13,6 +14,7 @@ class CharacterBeautyEquipmentFace:
     base_color: str
     mix_color: str | None
     mix_rate: str
+    freestyle_flag: str | None
 
 
 class CharacterBeautyEquipmentSkin:
