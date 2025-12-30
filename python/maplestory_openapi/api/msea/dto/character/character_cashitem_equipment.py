@@ -53,6 +53,7 @@ class CharacterCashitemEquipmentPreset(BaseModel, BaseCharacterCashitemEquipment
         cash_item_label (str or None): Cash equipment label information
         cash_item_coloring_prism (CharacterCashitemEquipmentColoringPrism or None): Cash equipment coloring prism information
         item_gender (str or None): Gender compatibility for item equipment
+        skills (list[str]): Skill name
         freestyle_flag (str or None): Freestyle Coupon application status (0:not applied, 1:applied)
     """
     cash_item_equipment_part: str
@@ -68,6 +69,7 @@ class CharacterCashitemEquipmentPreset(BaseModel, BaseCharacterCashitemEquipment
     cash_item_label: str | None
     cash_item_coloring_prism: CharacterCashitemEquipmentColoringPrism | None
     item_gender: str | None
+    skills: list[str]
     freestyle_flag: str | None
 
     @property
@@ -88,7 +90,7 @@ class CharacterCashitemEquipmentPreset(BaseModel, BaseCharacterCashitemEquipment
             values["date_option_expire"] = None
         return values
 
-    @field_validator("cash_item_option", mode="before")
+    @field_validator("cash_item_option", "skills", mode="before")
     @classmethod
     def null_as_empty(cls, v):
         if v is None:

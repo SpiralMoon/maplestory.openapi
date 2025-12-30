@@ -286,6 +286,13 @@ namespace MapleStory.OpenAPI.MSEA.DTO
         public override string? ItemGender { get; set; }
 
         /// <summary>
+        /// Skill name
+        /// </summary>
+        [JsonProperty("skills")]
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public override List<string> Skills { get; set; } = new();
+
+        /// <summary>
         /// Freestyle Coupon application status (0:not applied, 1:applied)
         /// </summary>
         [JsonProperty("freestyle_flag")]

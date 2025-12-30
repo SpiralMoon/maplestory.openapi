@@ -326,7 +326,7 @@ namespace MapleStory.OpenAPI.KMS.DTO
         /// </summary>
         [JsonProperty("skills")]
         [JsonConverter(typeof(NullAsEmptyConverter))]
-        public List<string> Skills { get; set; } = new();
+        public override List<string> Skills { get; set; } = new();
 
         /// <summary>
         /// 프리스타일 쿠폰 적용 여부 (0:미적용, 1:적용)

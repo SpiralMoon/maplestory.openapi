@@ -40,5 +40,6 @@ export abstract class CharacterCashItemEquipmentPresetDto {
   public abstract cashItemLabel: string | null;
   public abstract cashItemColoringPrism: CharacterCashItemEquipmentColoringPrismDto | null;
   public abstract itemGender: string | null;
+  public abstract skills: string[];
   public abstract freestyleFlag: string | null;
 }

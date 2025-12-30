@@ -260,6 +260,11 @@ export class CharacterCashItemEquipmentPresetDto extends base.CharacterCashItemE
   public override itemGender: string | null;
 
   /**
+   * Skill name
+   */
+  public override skills: string[];
+
+  /**
    * Freestyle Coupon application status (0:not applied, 1:applied)
    */
   public override freestyleFlag: string | null;
@@ -279,6 +284,7 @@ export class CharacterCashItemEquipmentPresetDto extends base.CharacterCashItemE
       cash_item_label,
       cash_item_coloring_prism,
       item_gender,
+      skills,
       freestyle_flag,
     } = obj;
 
@@ -295,6 +301,7 @@ export class CharacterCashItemEquipmentPresetDto extends base.CharacterCashItemE
       ? new CharacterCashItemEquipmentColoringPrismDto(cash_item_coloring_prism)
       : null;
     this.itemGender = item_gender;
+    this.skills = skills;
     this.freestyleFlag = freestyle_flag;
 
     if (date_expire === 'expired') {

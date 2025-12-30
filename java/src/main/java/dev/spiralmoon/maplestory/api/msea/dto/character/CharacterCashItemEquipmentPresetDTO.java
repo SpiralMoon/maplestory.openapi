@@ -129,6 +129,13 @@ public class CharacterCashItemEquipmentPresetDTO implements dev.spiralmoon.maple
     }
 
     /**
+     * Skill name
+     */
+    @JsonProperty("skills")
+    @JsonSetter(nulls = Nulls.AS_EMPTY)
+    private List<String> skills;
+
+    /**
      * Freestyle Coupon application status (0:not applied, 1:applied)
      */
     @JsonProperty("freestyle_flag")

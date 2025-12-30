@@ -17,5 +17,6 @@ public interface CharacterCashItemEquipmentPresetDTO<CharacterCashItemEquipmentO
     String getCashItemLabel();
     CharacterCashItemEquipmentColoringPrism getCashItemColoringPrism();
     String getItemGender();
+    List<String> getSkills();
     String getFreestyleFlag();
 }

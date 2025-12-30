@@ -302,7 +302,7 @@ export class CharacterCashItemEquipmentPresetDto extends base.CharacterCashItemE
   /**
    * 스킬명
    */
-  public skills: string[];
+  public override skills: string[];
 
   /**
    * 프리스타일 쿠폰 적용 여부 (0:미적용, 1:적용)

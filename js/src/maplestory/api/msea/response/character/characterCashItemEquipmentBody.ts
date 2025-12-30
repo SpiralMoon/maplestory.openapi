@@ -26,6 +26,7 @@ export type CharacterCashItemEquipmentPresetBody = {
   cash_item_label: string | null;
   cash_item_coloring_prism: CharacterCashItemEquipmentColoringPrismBody | null;
   item_gender: string | null;
+  skills: string[];
   freestyle_flag: string | null;
 };
 

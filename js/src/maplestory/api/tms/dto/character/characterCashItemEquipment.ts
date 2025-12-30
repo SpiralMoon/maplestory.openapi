@@ -262,7 +262,7 @@ export class CharacterCashItemEquipmentPresetDto extends base.CharacterCashItemE
   /**
    * 技能名稱
    */
-  public skills: string[];
+  public override skills: string[];
 
   /**
    * 自由造型券 使用狀態（0：未使用，1：已使用）
