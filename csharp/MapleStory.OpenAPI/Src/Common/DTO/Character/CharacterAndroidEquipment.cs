@@ -33,6 +33,7 @@
         public abstract string? BaseColor { get; set; }
         public abstract string? MixColor { get; set; }
         public abstract string MixRate { get; set; }
+        public abstract string? FreestyleFlag { get; set; }
     }
 
     public abstract class CharacterAndroidEquipmentFaceDTO
@@ -41,6 +42,7 @@
         public abstract string? BaseColor { get; set; }
         public abstract string? MixColor { get; set; }
         public abstract string MixRate { get; set; }
+        public abstract string? FreestyleFlag { get; set; }
     }
 
     public abstract class CharacterAndroidEquipmentSkinDTO
@@ -102,6 +104,7 @@
         public abstract string? CashItemLabel { get; set; }
         public abstract TCharacterAndroidCashItemEquipmentColoringPrism? CashItemColoringPrism { get; set; }
         public abstract string? AndroidItemGender { get; set; }
+        public abstract string? FreestyleFlag { get; set; }
     }
 
     public abstract class CharacterAndroidCashItemEquipmentDTO : CharacterAndroidCashItemEquipmentDTO<CharacterAndroidCashItemEquipmentOptionDTO, CharacterAndroidCashItemEquipmentColoringPrismDTO>

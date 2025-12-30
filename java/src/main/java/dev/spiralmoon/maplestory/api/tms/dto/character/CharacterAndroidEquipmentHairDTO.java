@@ -38,4 +38,17 @@ public class CharacterAndroidEquipmentHairDTO implements dev.spiralmoon.maplesto
      */
     @JsonProperty("mix_rate")
     private String mixRate;
+
+    /**
+     * 自由造型券 使用狀態（0：未使用，1：已使用）
+     */
+    @JsonProperty("freestyle_flag")
+    private String freestyleFlag;
+
+    /**
+     * 自由造型券 使用狀態
+     */
+    public boolean isFreestyleFlag() {
+        return "1".equals(this.freestyleFlag);
+    }
 }

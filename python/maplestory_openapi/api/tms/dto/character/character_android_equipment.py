@@ -20,11 +20,20 @@ class CharacterAndroidEquipmentHair(BaseModel, BaseCharacterAndroidEquipmentHair
         base_color (str or None): 機器人髮型基本顏色
         mix_color (str or None): 機器人髮型混染顏色
         mix_rate (str): 機器人髮型混染顏色比例
+        freestyle_flag (str or None): 自由造型券 使用狀態（0：未使用，1：已使用）
     """
     hair_name: str | None
     base_color: str | None
     mix_color: str | None
     mix_rate: str
+    freestyle_flag: str | None
+
+    @property
+    def is_freestyle_flag(self) -> bool:
+        """
+        自由造型券 使用狀態
+        """
+        return self.freestyle_flag == '1'
 
 
 class CharacterAndroidEquipmentFace(BaseModel, BaseCharacterAndroidEquipmentFace):
@@ -36,11 +45,20 @@ class CharacterAndroidEquipmentFace(BaseModel, BaseCharacterAndroidEquipmentFace
         base_color (str or None): 機器人臉型基本顏色
         mix_color (str or None): 機器人臉型混染顏色
         mix_rate (str): 機器人臉型混染顏色比例
+        freestyle_flag (str or None): 自由造型券 使用狀態（0：未使用，1：已使用）
     """
     face_name: str | None
     base_color: str | None
     mix_color: str | None
     mix_rate: str
+    freestyle_flag: str | None
+
+    @property
+    def is_freestyle_flag(self) -> bool:
+        """
+        自由造型券 使用狀態
+        """
+        return self.freestyle_flag == '1'
 
 
 class CharacterAndroidEquipmentSkin(BaseModel, BaseCharacterAndroidEquipmentSkin):
@@ -139,6 +157,7 @@ class CharacterAndroidCashItemEquipment(BaseModel, BaseCharacterAndroidCashItemE
         cash_item_label (str or None): 機器人現金道具標籤資訊 (特殊標籤、紅標籤、黑標籤、大師標籤)
         cash_item_coloring_prism (CharacterAndroidCashItemEquipmentColoringPrism or None): 機器人現金道具彩色稜鏡資訊
         android_item_gender (str or None): 道具可裝備性別
+        freestyle_flag (str or None): 自由造型券 使用狀態（0：未使用，1：已使用）
     """
     cash_item_equipment_part: str
     cash_item_equipment_slot: str
@@ -153,6 +172,7 @@ class CharacterAndroidCashItemEquipment(BaseModel, BaseCharacterAndroidCashItemE
     cash_item_label: str | None
     cash_item_coloring_prism: CharacterAndroidCashItemEquipmentColoringPrism | None
     android_item_gender: str | None
+    freestyle_flag: str | None
 
     @model_validator(mode="before")
     @classmethod
@@ -171,6 +191,13 @@ class CharacterAndroidCashItemEquipment(BaseModel, BaseCharacterAndroidCashItemE
         if v is None:
             return []
         return v
+
+    @property
+    def is_freestyle_flag(self) -> bool:
+        """
+        自由造型券 使用狀態
+        """
+        return self.freestyle_flag == '1'
 
 
 class CharacterAndroidEquipment(BaseModel, BaseCharacterAndroidEquipment):

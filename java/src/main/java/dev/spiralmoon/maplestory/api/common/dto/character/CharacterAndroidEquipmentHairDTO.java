@@ -5,4 +5,5 @@ public interface CharacterAndroidEquipmentHairDTO {
     String getBaseColor();
     String getMixColor();
     String getMixRate();
+    String getFreestyleFlag();
 }

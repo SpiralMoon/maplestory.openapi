@@ -190,7 +190,7 @@ export class CharacterAndroidEquipmentFaceDto extends base.CharacterAndroidEquip
   /**
    * 프리스타일 쿠폰 적용 여부 (0:미적용, 1:적용)
    */
-  public freestyleFlag: string | null;
+  public override freestyleFlag: string | null;
 
   constructor(obj: CharacterAndroidEquipmentFaceBody) {
     super();
@@ -239,7 +239,7 @@ export class CharacterAndroidEquipmentHairDto extends base.CharacterAndroidEquip
   /**
    * 프리스타일 쿠폰 적용 여부 (0:미적용, 1:적용)
    */
-  public freestyleFlag: string | null;
+  public override freestyleFlag: string | null;
 
   constructor(obj: CharacterAndroidEquipmentHairBody) {
     super();
@@ -534,7 +534,7 @@ export class CharacterAndroidCashItemEquipmentDto extends base.CharacterAndroidC
   /**
    * 프리스타일 쿠폰 적용 여부 (0:미적용, 1:적용)
    */
-  public freestyleFlag: string | null;
+  public override freestyleFlag: string | null;
 
   constructor(obj: CharacterAndroidCashItemEquipmentBody) {
     super();

@@ -20,11 +20,20 @@ class CharacterAndroidEquipmentHair(BaseModel, BaseCharacterAndroidEquipmentHair
         base_color (str or None): Android hair base color
         mix_color (str or None): Android hair mix color
         mix_rate (str): Hair mix color dyeing rate
+        freestyle_flag (str or None): Freestyle coupon application status (0: not applied, 1: applied)
     """
     hair_name: str | None
     base_color: str | None
     mix_color: str | None
     mix_rate: str
+    freestyle_flag: str | None
+
+    @property
+    def is_freestyle_flag(self) -> bool:
+        """
+        Freestyle coupon application status
+        """
+        return self.freestyle_flag == '1'
 
 
 class CharacterAndroidEquipmentFace(BaseModel, BaseCharacterAndroidEquipmentFace):
@@ -36,11 +45,20 @@ class CharacterAndroidEquipmentFace(BaseModel, BaseCharacterAndroidEquipmentFace
         base_color (str or None): Android face base color
         mix_color (str or None): Android face mix color
         mix_rate (str): Face mix color dyeing rate
+        freestyle_flag (str or None): Freestyle coupon application status (0: not applied, 1: applied)
     """
     face_name: str | None
     base_color: str | None
     mix_color: str | None
     mix_rate: str
+    freestyle_flag: str | None
+
+    @property
+    def is_freestyle_flag(self) -> bool:
+        """
+        Freestyle coupon application status
+        """
+        return self.freestyle_flag == '1'
 
 
 class CharacterAndroidEquipmentSkin(BaseModel, BaseCharacterAndroidEquipmentSkin):
@@ -139,6 +157,7 @@ class CharacterAndroidCashItemEquipment(BaseModel, BaseCharacterAndroidCashItemE
         cash_item_label (str or None): Cash item label
         cash_item_coloring_prism (CharacterAndroidCashItemEquipmentColoringPrism or None): Coloring prism information
         android_item_gender (str or None): Gender compatibility for item equipment
+        freestyle_flag (str or None): Freestyle coupon application status (0: not applied, 1: applied)
     """
     cash_item_equipment_part: str
     cash_item_equipment_slot: str
@@ -153,6 +172,7 @@ class CharacterAndroidCashItemEquipment(BaseModel, BaseCharacterAndroidCashItemE
     cash_item_label: str | None
     cash_item_coloring_prism: CharacterAndroidCashItemEquipmentColoringPrism | None
     android_item_gender: str | None
+    freestyle_flag: str | None
 
     @model_validator(mode="before")
     @classmethod
@@ -171,6 +191,13 @@ class CharacterAndroidCashItemEquipment(BaseModel, BaseCharacterAndroidCashItemE
         if v is None:
             return []
         return v
+
+    @property
+    def is_freestyle_flag(self) -> bool:
+        """
+        Freestyle coupon application status
+        """
+        return self.freestyle_flag == '1'
 
 
 class CharacterAndroidEquipment(BaseModel, BaseCharacterAndroidEquipment):

@@ -5,4 +5,5 @@ public interface CharacterAndroidEquipmentFaceDTO {
     String getBaseColor();
     String getMixColor();
     String getMixRate();
+    String getFreestyleFlag();
 }

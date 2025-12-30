@@ -24,6 +24,7 @@ export abstract class CharacterAndroidEquipmentFaceDto {
   public abstract baseColor: string | null;
   public abstract mixColor: string | null;
   public abstract mixRate: string;
+  public abstract freestyleFlag: string | null;
 }
 
 export abstract class CharacterAndroidEquipmentHairDto {
@@ -31,6 +32,7 @@ export abstract class CharacterAndroidEquipmentHairDto {
   public abstract baseColor: string | null;
   public abstract mixColor: string | null;
   public abstract mixRate: string;
+  public abstract freestyleFlag: string | null;
 }
 
 export abstract class CharacterAndroidEquipmentSkinDto {
@@ -82,4 +84,5 @@ export abstract class CharacterAndroidCashItemEquipmentDto {
   public abstract cashItemLabel: string | null;
   public abstract cashItemColoringPrism: CharacterAndroidCashItemEquipmentColoringPrismDto | null;
   public abstract androidItemGender: string | null;
+  public abstract freestyleFlag: string | null;
 }

@@ -89,6 +89,12 @@ public class CharacterAndroidCashItemEquipmentDTO implements dev.spiralmoon.mapl
     private String androidItemGender;
 
     /**
+     * Freestyle Coupon application status (0:not applied, 1:applied)
+     */
+    @JsonProperty("freestyle_flag")
+    private String freestyleFlag;
+
+    /**
      * Android cash item validity period (SGT)
      */
     public ZonedDateTime getDateExpire() {
@@ -132,5 +138,12 @@ public class CharacterAndroidCashItemEquipmentDTO implements dev.spiralmoon.mapl
         }
 
         return "expired".equals(this.dateOptionExpire);
+    }
+
+    /**
+     * Freestyle Coupon application status
+     */
+    public boolean isFreestyleFlag() {
+        return "1".equals(this.freestyleFlag);
     }
 }

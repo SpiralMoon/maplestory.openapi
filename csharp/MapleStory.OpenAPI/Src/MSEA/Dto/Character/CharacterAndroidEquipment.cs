@@ -163,6 +163,20 @@ namespace MapleStory.OpenAPI.MSEA.DTO
         /// </summary>
         [JsonProperty("mix_rate")]
         public override string MixRate { get; set; }
+
+        /// <summary>
+        /// Freestyle Coupon application status (0:not applied, 1:applied)
+        /// </summary>
+        [JsonProperty("freestyle_flag")]
+        public override string? FreestyleFlag { get; set; }
+
+        /// <summary>
+        /// Freestyle Coupon application status
+        /// </summary>
+        public bool IsFreestyleFlag
+        {
+            get => this.FreestyleFlag == "1";
+        }
     }
 
     /// <summary>
@@ -193,6 +207,20 @@ namespace MapleStory.OpenAPI.MSEA.DTO
         /// </summary>
         [JsonProperty("mix_rate")]
         public override string MixRate { get; set; }
+
+        /// <summary>
+        /// Freestyle Coupon application status (0:not applied, 1:applied)
+        /// </summary>
+        [JsonProperty("freestyle_flag")]
+        public override string? FreestyleFlag { get; set; }
+
+        /// <summary>
+        /// Freestyle Coupon application status
+        /// </summary>
+        public bool IsFreestyleFlag
+        {
+            get => this.FreestyleFlag == "1";
+        }
     }
 
     /// <summary>
@@ -482,5 +510,19 @@ namespace MapleStory.OpenAPI.MSEA.DTO
         /// </summary>
         [JsonProperty("android_item_gender")]
         public override string? AndroidItemGender { get; set; }
+
+        /// <summary>
+        /// Freestyle Coupon application status (0:not applied, 1:applied)
+        /// </summary>
+        [JsonProperty("freestyle_flag")]
+        public override string? FreestyleFlag { get; set; }
+
+        /// <summary>
+        /// Freestyle Coupon application status
+        /// </summary>
+        public bool IsFreestyleFlag
+        {
+            get => this.FreestyleFlag == "1";
+        }
     }
 }

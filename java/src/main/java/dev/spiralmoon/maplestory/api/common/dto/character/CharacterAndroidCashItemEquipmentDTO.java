@@ -17,4 +17,5 @@ public interface CharacterAndroidCashItemEquipmentDTO<CharacterAndroidCashItemEq
     String getCashItemLabel();
     CharacterAndroidCashItemEquipmentColoringPrism getCashItemColoringPrism();
     String getAndroidItemGender();
+    String getFreestyleFlag();
 }

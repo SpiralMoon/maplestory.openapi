@@ -168,7 +168,7 @@ namespace MapleStory.OpenAPI.KMS.DTO
         /// 프리스타일 쿠폰 적용 여부 (0:미적용, 1:적용)
         /// </summary>
         [JsonProperty("freestyle_flag")]
-        public string? FreestyleFlag { get; set; }
+        public override string? FreestyleFlag { get; set; }
 
         /// <summary>
         /// 프리스타일 쿠폰 적용 여부
@@ -212,7 +212,7 @@ namespace MapleStory.OpenAPI.KMS.DTO
         /// 프리스타일 쿠폰 적용 여부 (0:미적용, 1:적용)
         /// </summary>
         [JsonProperty("freestyle_flag")]
-        public string? FreestyleFlag { get; set; }
+        public override string? FreestyleFlag { get; set; }
 
         /// <summary>
         /// 프리스타일 쿠폰 적용 여부
@@ -519,7 +519,7 @@ namespace MapleStory.OpenAPI.KMS.DTO
         /// 프리스타일 쿠폰 적용 여부 (0:미적용, 1:적용)
         /// </summary>
         [JsonProperty("freestyle_flag")]
-        public string? FreestyleFlag { get; set; }
+        public override string? FreestyleFlag { get; set; }
 
         /// <summary>
         /// 프리스타일 쿠폰 적용 여부

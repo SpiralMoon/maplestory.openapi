@@ -6,6 +6,7 @@ class CharacterAndroidEquipmentHair:
     base_color: str | None
     mix_color: str | None
     mix_rate: str
+    freestyle_flag: str | None
 
 
 class CharacterAndroidEquipmentFace:
@@ -13,6 +14,7 @@ class CharacterAndroidEquipmentFace:
     base_color: str | None
     mix_color: str | None
     mix_rate: str
+    freestyle_flag: str | None
 
 
 class CharacterAndroidEquipmentSkin:
@@ -64,6 +66,7 @@ class CharacterAndroidCashItemEquipment:
     cash_item_label: str | None
     cash_item_coloring_prism: CharacterAndroidCashItemEquipmentColoringPrism | None
     android_item_gender: str | None
+    freestyle_flag: str | None
 
 
 class CharacterAndroidEquipment:

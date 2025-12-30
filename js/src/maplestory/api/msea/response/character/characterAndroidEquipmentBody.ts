@@ -24,6 +24,7 @@ export type CharacterAndroidEquipmentHairBody = {
   base_color: string | null;
   mix_color: string | null;
   mix_rate: string;
+  freestyle_flag: string | null;
 };
 
 export type CharacterAndroidEquipmentFaceBody = {
@@ -31,6 +32,7 @@ export type CharacterAndroidEquipmentFaceBody = {
   base_color: string | null;
   mix_color: string | null;
   mix_rate: string;
+  freestyle_flag: string | null;
 };
 
 export type CharacterAndroidEquipmentSkinBody = {
@@ -68,6 +70,7 @@ export type CharacterAndroidCashItemEquipmentBody = {
   cash_item_label: string | null;
   cash_item_coloring_prism: CharacterAndroidCashItemEquipmentColoringPrismBody | null;
   android_item_gender: string | null;
+  freestyle_flag: string | null;
 };
 
 export type CharacterAndroidCashItemEquipmentOptionBody = {
