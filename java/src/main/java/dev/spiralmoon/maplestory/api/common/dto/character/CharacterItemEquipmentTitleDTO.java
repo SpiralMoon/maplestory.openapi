@@ -10,4 +10,7 @@ public interface CharacterItemEquipmentTitleDTO {
     Boolean isExpired();
     ZonedDateTime getDateOptionExpire();
     Boolean isOptionExpired();
+    String getTitleShapeName();
+    String getTitleShapeIcon();
+    String getTitleShapeDescription();
 }

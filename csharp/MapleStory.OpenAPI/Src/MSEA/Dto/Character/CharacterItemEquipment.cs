@@ -9,6 +9,7 @@ namespace MapleStory.OpenAPI.MSEA.DTO
     public class CharacterItemEquipmentDTO : Base.CharacterItemEquipmentDTO<
         CharacterItemEquipmentInfoDTO,
         CharacterItemEquipmentTitleDTO,
+        CharacterItemEquipmentMedalShapeDTO,
         CharacterItemEquipmentDragonInfoDTO,
         CharacterItemEquipmentMechanicInfoDTO>
     {
@@ -81,6 +82,12 @@ namespace MapleStory.OpenAPI.MSEA.DTO
         /// </summary>
         [JsonProperty("title")]
         public override CharacterItemEquipmentTitleDTO? Title { get; set; }
+
+        /// <summary>
+        /// Medal appearance information registered in the appearance settings
+        /// </summary>
+        [JsonProperty("medal_shape")]
+        public override CharacterItemEquipmentMedalShapeDTO? MedalShape { get; set; }
 
         /// <summary>
         /// Evan Dragon equipment information (response provided if the character is Evan)
@@ -189,6 +196,66 @@ namespace MapleStory.OpenAPI.MSEA.DTO
                 return _dateOptionExpire == "expired";
             }
         }
+
+        /// <summary>
+        /// Title equipment name registered in the appearance settings
+        /// </summary>
+        [JsonProperty("title_shape_name")]
+        public override string? TitleShapeName { get; set; }
+
+        /// <summary>
+        /// Title icon registered in the appearance settings
+        /// </summary>
+        [JsonProperty("title_shape_icon")]
+        public override string? TitleShapeIcon { get; set; }
+
+        /// <summary>
+        /// Title description registered in the appearance settings
+        /// </summary>
+        [JsonProperty("title_shape_description")]
+        public override string? TitleShapeDescription { get; set; }
+    }
+
+    /// <summary>
+    /// Medal appearance information
+    /// </summary>
+    public class CharacterItemEquipmentMedalShapeDTO : Base.CharacterItemEquipmentMedalShapeDTO
+    {
+        /// <summary>
+        /// Medal equipment name registered in the appearance settings
+        /// </summary>
+        [JsonProperty("medal_shape_name")]
+        public override string MedalShapeName { get; set; }
+
+        /// <summary>
+        /// Medal icon registered in the appearance settings
+        /// </summary>
+        [JsonProperty("medal_shape_icon")]
+        public override string MedalShapeIcon { get; set; }
+
+        /// <summary>
+        /// Medal description registered in the appearance settings
+        /// </summary>
+        [JsonProperty("medal_shape_description")]
+        public override string MedalShapeDescription { get; set; }
+
+        /// <summary>
+        /// Fusion Anvil-applied medal equipment name registered in the appearance settings
+        /// </summary>
+        [JsonProperty("medal_shape_changed_name")]
+        public override string MedalShapeChangedName { get; set; }
+
+        /// <summary>
+        /// Fusion Anvil-applied medal icon registered in the appearance settings
+        /// </summary>
+        [JsonProperty("medal_shape_changed_icon")]
+        public override string MedalShapeChangedIcon { get; set; }
+
+        /// <summary>
+        /// Fusion Anvil-applied medal description registered in the appearance settings
+        /// </summary>
+        [JsonProperty("medal_shape_changed_description")]
+        public override string MedalShapeChangedDescription { get; set; }
     }
 
     /// <summary>

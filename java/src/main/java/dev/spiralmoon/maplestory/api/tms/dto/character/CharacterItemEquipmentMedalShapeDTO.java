@@ -1,4 +1,4 @@
-package dev.spiralmoon.maplestory.api.kms.dto.character;
+package dev.spiralmoon.maplestory.api.tms.dto.character;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 /**
- * 캐릭터 외형 설정에 등록한 훈장 외형 정보
+ * 外型設定中已登錄勳章的外型資訊
  */
 @AllArgsConstructor
 @NoArgsConstructor
@@ -16,37 +16,37 @@ import lombok.ToString;
 public class CharacterItemEquipmentMedalShapeDTO implements dev.spiralmoon.maplestory.api.common.dto.character.CharacterItemEquipmentMedalShapeDTO {
 
     /**
-     * 외형 설정에 등록한 훈장 장비 명
+     * 外型設定中已登錄勳章的道具名稱
      */
     @JsonProperty("medal_shape_name")
     private String medalShapeName;
 
     /**
-     * 외형 설정에 등록한 훈장 아이콘
+     * 外型設定中已登錄勳章的圖示
      */
     @JsonProperty("medal_shape_icon")
     private String medalShapeIcon;
 
     /**
-     * 외형 설정에 등록한 훈장 설명
+     * 外型設定中已登錄勳章的描述
      */
     @JsonProperty("medal_shape_description")
     private String medalShapeDescription;
 
     /**
-     * 외형 설정에 등록한 훈장의 모루 적용 장비 명
+     * 外型設定中已登錄勳章的鐵砧套用道具名稱
      */
     @JsonProperty("medal_shape_changed_name")
     private String medalShapeChangedName;
 
     /**
-     * 외형 설정에 등록한 훈장의 모루 적용 아이콘
+     * 外型設定中已登錄勳章的鐵砧套用圖示
      */
     @JsonProperty("medal_shape_changed_icon")
     private String medalShapeChangedIcon;
 
     /**
-     * 외형 설정에 등록한 훈장의 모루 적용 훈장 설명
+     * 外型設定中已登錄勳章的鐵砧套用勳章說明
      */
     @JsonProperty("medal_shape_changed_description")
     private String medalShapeChangedDescription;

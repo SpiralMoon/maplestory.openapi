@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using System.ComponentModel;
 using Base = MapleStory.OpenAPI.Common.DTO;
 
 namespace MapleStory.OpenAPI.KMS.DTO
@@ -10,6 +9,7 @@ namespace MapleStory.OpenAPI.KMS.DTO
     public class CharacterItemEquipmentDTO : Base.CharacterItemEquipmentDTO<
         CharacterItemEquipmentInfoDTO,
         CharacterItemEquipmentTitleDTO,
+        CharacterItemEquipmentMedalShapeDTO,
         CharacterItemEquipmentDragonInfoDTO,
         CharacterItemEquipmentMechanicInfoDTO>
     {
@@ -87,7 +87,7 @@ namespace MapleStory.OpenAPI.KMS.DTO
         /// 외형 설정에 등록한 훈장 외형 정보
         /// </summary>
         [JsonProperty("medal_shape")]
-        public CharacterItemEquipmentMedalShapeDTO? MedalShape { get; set; }
+        public override CharacterItemEquipmentMedalShapeDTO? MedalShape { get; set; }
 
         /// <summary>
         /// 에반 드래곤 장비 정보 (에반인 경우 응답)
@@ -201,61 +201,61 @@ namespace MapleStory.OpenAPI.KMS.DTO
         /// 외형 설정에 등록한 칭호 장비 명
         /// </summary>
         [JsonProperty("title_shape_name")]
-        public string? TitleShapeName { get; set; }
+        public override string? TitleShapeName { get; set; }
 
         /// <summary>
         /// 외형 설정에 등록한 칭호 아이콘
         /// </summary>
         [JsonProperty("title_shape_icon")]
-        public string? TitleShapeIcon { get; set; }
+        public override string? TitleShapeIcon { get; set; }
 
         /// <summary>
         /// 외형 설정에 등록한 칭호 설명
         /// </summary>
         [JsonProperty("title_shape_description")]
-        public string? TitleShapeDescription { get; set; }
+        public override string? TitleShapeDescription { get; set; }
     }
 
     /// <summary>
     /// 캐릭터 외형 설정에 등록한 훈장 외형 정보
     /// </summary>
-    public class CharacterItemEquipmentMedalShapeDTO
+    public class CharacterItemEquipmentMedalShapeDTO : Base.CharacterItemEquipmentMedalShapeDTO
     {
         /// <summary>
         /// 외형 설정에 등록한 훈장 장비 명
         /// </summary>
         [JsonProperty("medal_shape_name")]
-        public string MedalShapeName { get; set; }
+        public override string MedalShapeName { get; set; }
 
         /// <summary>
         /// 외형 설정에 등록한 훈장 아이콘
         /// </summary>
         [JsonProperty("medal_shape_icon")]
-        public string MedalShapeIcon { get; set; }
+        public override string MedalShapeIcon { get; set; }
 
         /// <summary>
         /// 외형 설정에 등록한 훈장 설명
         /// </summary>
         [JsonProperty("medal_shape_description")]
-        public string MedalShapeDescription { get; set; }
+        public override string MedalShapeDescription { get; set; }
 
         /// <summary>
         /// 외형 설정에 등록한 훈장의 모루 적용 장비 명
         /// </summary>
         [JsonProperty("medal_shape_changed_name")]
-        public string MedalShapeChangedName { get; set; }
+        public override string MedalShapeChangedName { get; set; }
 
         /// <summary>
         /// 외형 설정에 등록한 훈장의 모루 적용 아이콘
         /// </summary>
         [JsonProperty("medal_shape_changed_icon")]
-        public string MedalShapeChangedIcon { get; set; }
+        public override string MedalShapeChangedIcon { get; set; }
 
         /// <summary>
         /// 외형 설정에 등록한 훈장의 모루 적용 훈장 설명
         /// </summary>
         [JsonProperty("medal_shape_changed_description")]
-        public string MedalShapeChangedDescription { get; set; }
+        public override string MedalShapeChangedDescription { get; set; }
     }
 
     /// <summary>

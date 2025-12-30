@@ -9,6 +9,7 @@ namespace MapleStory.OpenAPI.TMS.DTO
     public class CharacterItemEquipmentDTO : Base.CharacterItemEquipmentDTO<
         CharacterItemEquipmentInfoDTO,
         CharacterItemEquipmentTitleDTO,
+        CharacterItemEquipmentMedalShapeDTO,
         CharacterItemEquipmentDragonInfoDTO,
         CharacterItemEquipmentMechanicInfoDTO>
     {
@@ -80,6 +81,12 @@ namespace MapleStory.OpenAPI.TMS.DTO
         /// </summary>
         [JsonProperty("title")]
         public override CharacterItemEquipmentTitleDTO? Title { get; set; }
+
+        /// <summary>
+        /// 外型設定中已登錄勳章的外型資訊
+        /// </summary>
+        [JsonProperty("medal_shape")]
+        public override CharacterItemEquipmentMedalShapeDTO? MedalShape { get; set; }
 
         /// <summary>
         /// 龍魔導士的龍道具資訊 (僅在龍魔導士時回應)
@@ -193,19 +200,61 @@ namespace MapleStory.OpenAPI.TMS.DTO
         /// 外型設定中已登錄稱號的道具名稱
         /// </summary>
         [JsonProperty("title_shape_name")]
-        public string? TitleShapeName { get; set; }
+        public override string? TitleShapeName { get; set; }
 
         /// <summary>
         /// 外型設定中已登錄稱號的圖示
         /// </summary>
         [JsonProperty("title_shape_icon")]
-        public string? TitleShapeIcon { get; set; }
+        public override string? TitleShapeIcon { get; set; }
 
         /// <summary>
         /// 外型設定中已登錄稱號的描述
         /// </summary>
         [JsonProperty("title_shape_description")]
-        public string? TitleShapeDescription { get; set; }
+        public override string? TitleShapeDescription { get; set; }
+    }
+
+    /// <summary>
+    /// 外型設定中已登錄勳章的外型資訊
+    /// </summary>
+    public class CharacterItemEquipmentMedalShapeDTO : Base.CharacterItemEquipmentMedalShapeDTO
+    {
+        /// <summary>
+        /// 外型設定中已登錄勳章的道具名稱
+        /// </summary>
+        [JsonProperty("medal_shape_name")]
+        public override string MedalShapeName { get; set; }
+
+        /// <summary>
+        /// 外型設定中已登錄勳章的圖示
+        /// </summary>
+        [JsonProperty("medal_shape_icon")]
+        public override string MedalShapeIcon { get; set; }
+
+        /// <summary>
+        /// 外型設定中已登錄勳章的描述
+        /// </summary>
+        [JsonProperty("medal_shape_description")]
+        public override string MedalShapeDescription { get; set; }
+
+        /// <summary>
+        /// 外型設定中已登錄勳章的鐵砧套用道具名稱
+        /// </summary>
+        [JsonProperty("medal_shape_changed_name")]
+        public override string MedalShapeChangedName { get; set; }
+
+        /// <summary>
+        /// 外型設定中已登錄勳章的鐵砧套用圖示
+        /// </summary>
+        [JsonProperty("medal_shape_changed_icon")]
+        public override string MedalShapeChangedIcon { get; set; }
+
+        /// <summary>
+        /// 外型設定中已登錄勳章的鐵砧套用勳章說明
+        /// </summary>
+        [JsonProperty("medal_shape_changed_description")]
+        public override string MedalShapeChangedDescription { get; set; }
     }
 
     /// <summary>

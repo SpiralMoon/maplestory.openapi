@@ -219,6 +219,15 @@ class CharacterItemEquipmentTitle:
     title_shape_description: str | None
 
 
+class CharacterItemEquipmentMedalShape:
+    medal_shape_name: str
+    medal_shape_icon: str
+    medal_shape_description: str
+    medal_shape_changed_name: str
+    medal_shape_changed_icon: str
+    medal_shape_changed_description: str
+
+
 class CharacterItemEquipment:
     date: datetime | None
     character_gender: str

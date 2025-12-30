@@ -11,6 +11,7 @@ from maplestory_openapi.api.common.dto.character.character_item_equipment import
 from maplestory_openapi.api.common.dto.character.character_item_equipment import CharacterItemEquipmentDragonInfo as BaseCharacterItemEquipmentDragonInfo
 from maplestory_openapi.api.common.dto.character.character_item_equipment import CharacterItemEquipmentMechanicInfo as BaseCharacterItemEquipmentMechanicInfo
 from maplestory_openapi.api.common.dto.character.character_item_equipment import CharacterItemEquipmentTitle as BaseCharacterItemEquipmentTitle
+from maplestory_openapi.api.common.dto.character.character_item_equipment import CharacterItemEquipmentMedalShape as BaseCharacterItemEquipmentMedalShape
 from maplestory_openapi.api.common.dto.character.character_item_equipment import CharacterItemEquipment as BaseCharacterItemEquipment
 
 class CharacterItemEquipmentAddOption(BaseModel, BaseCharacterItemEquipmentAddOption):
@@ -538,7 +539,7 @@ class CharacterItemEquipmentTitle(BaseModel, BaseCharacterItemEquipmentTitle):
         return values
 
 
-class CharacterItemEquipmentMedalShape(BaseModel):
+class CharacterItemEquipmentMedalShape(BaseModel, BaseCharacterItemEquipmentMedalShape):
     """
     캐릭터 외형 설정에 등록한 훈장 외형 정보
 

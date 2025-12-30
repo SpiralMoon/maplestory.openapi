@@ -22,6 +22,7 @@ import java.util.List;
 public class CharacterItemEquipmentDTO implements dev.spiralmoon.maplestory.api.common.dto.character.CharacterItemEquipmentDTO<
         CharacterItemEquipmentInfoDTO,
         CharacterItemEquipmentTitleDTO,
+        CharacterItemEquipmentMedalShapeDTO,
         CharacterItemEquipmentDragonInfoDTO,
         CharacterItemEquipmentMechanicInfoDTO> {
 
@@ -82,6 +83,12 @@ public class CharacterItemEquipmentDTO implements dev.spiralmoon.maplestory.api.
      */
     @JsonProperty("title")
     private CharacterItemEquipmentTitleDTO title;
+
+    /**
+     * 外型設定中已登錄勳章的外型資訊
+     */
+    @JsonProperty("medal_shape")
+    private CharacterItemEquipmentMedalShapeDTO medalShape;
 
     /**
      * 龍魔導士的龍道具資訊 (僅在龍魔導士時回應)

@@ -93,4 +93,22 @@ public class CharacterItemEquipmentTitleDTO implements dev.spiralmoon.maplestory
 
         return "expired".equals(this.dateOptionExpire);
     }
+
+    /**
+     * Title equipment name registered in the appearance settings
+     */
+    @JsonProperty("title_shape_name")
+    private String titleShapeName;
+
+    /**
+     * Title icon registered in the appearance settings
+     */
+    @JsonProperty("title_shape_icon")
+    private String titleShapeIcon;
+
+    /**
+     * Title description registered in the appearance settings
+     */
+    @JsonProperty("title_shape_description")
+    private String titleShapeDescription;
 }

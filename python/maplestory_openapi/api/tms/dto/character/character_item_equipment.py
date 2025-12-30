@@ -11,6 +11,7 @@ from maplestory_openapi.api.common.dto.character.character_item_equipment import
 from maplestory_openapi.api.common.dto.character.character_item_equipment import CharacterItemEquipmentDragonInfo as BaseCharacterItemEquipmentDragonInfo
 from maplestory_openapi.api.common.dto.character.character_item_equipment import CharacterItemEquipmentMechanicInfo as BaseCharacterItemEquipmentMechanicInfo
 from maplestory_openapi.api.common.dto.character.character_item_equipment import CharacterItemEquipmentTitle as BaseCharacterItemEquipmentTitle
+from maplestory_openapi.api.common.dto.character.character_item_equipment import CharacterItemEquipmentMedalShape as BaseCharacterItemEquipmentMedalShape
 from maplestory_openapi.api.common.dto.character.character_item_equipment import CharacterItemEquipment as BaseCharacterItemEquipment
 
 class CharacterItemEquipmentAddOption(BaseModel, BaseCharacterItemEquipmentAddOption):
@@ -511,6 +512,26 @@ class CharacterItemEquipmentTitle(BaseModel, BaseCharacterItemEquipmentTitle):
         return values
 
 
+class CharacterItemEquipmentMedalShape(BaseModel, BaseCharacterItemEquipmentMedalShape):
+    """
+    外型設定中已登錄勳章的外型資訊
+
+    Attributes:
+        medal_shape_name(str): 外型設定中已登錄勳章的道具名稱
+        medal_shape_icon(str): 外型設定中已登錄勳章的圖示
+        medal_shape_description(str): 外型設定中已登錄勳章的描述
+        medal_shape_changed_name(str): 外型設定中已登錄勳章的鐵砧套用道具名稱
+        medal_shape_changed_icon(str): 外型設定中已登錄勳章的鐵砧套用圖示
+        medal_shape_changed_description(str): 外型設定中已登錄勳章的鐵砧套用勳章說明
+    """
+    medal_shape_name: str
+    medal_shape_icon: str
+    medal_shape_description: str
+    medal_shape_changed_name: str
+    medal_shape_changed_icon: str
+    medal_shape_changed_description: str
+
+
 class CharacterItemEquipment(BaseModel, BaseCharacterItemEquipment):
     """
     角色已裝備道具資訊
@@ -525,6 +546,7 @@ class CharacterItemEquipment(BaseModel, BaseCharacterItemEquipment):
         item_equipment_preset_2 (list[CharacterItemEquipmentInfo] or None): 預設 2 的道具資訊
         item_equipment_preset_3 (list[CharacterItemEquipmentInfo] or None): 預設 3 的道具資訊
         title (CharacterItemEquipmentTitle or None): 稱號資訊
+        medal_shape(CharacterItemEquipmentMedalShape or None): 外型設定中已登錄勳章的外型資訊
         dragon_equipment (list[CharacterItemEquipmentDragonInfo]): 龍魔導士的龍道具資訊 (僅在龍魔導士時回應)
         mechanic_equipment (list[CharacterItemEquipmentMechanicInfo]): 機甲戰神道具資訊 (僅在機甲戰神時回應)
     """
@@ -537,6 +559,7 @@ class CharacterItemEquipment(BaseModel, BaseCharacterItemEquipment):
     item_equipment_preset_2: list[CharacterItemEquipmentInfo]
     item_equipment_preset_3: list[CharacterItemEquipmentInfo]
     title: CharacterItemEquipmentTitle | None
+    medal_shape: CharacterItemEquipmentMedalShape | None
     dragon_equipment: list[CharacterItemEquipmentDragonInfo]
     mechanic_equipment: list[CharacterItemEquipmentMechanicInfo]
 

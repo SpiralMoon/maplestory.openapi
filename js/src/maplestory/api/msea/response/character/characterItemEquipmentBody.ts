@@ -8,6 +8,7 @@ export type CharacterItemEquipmentBody = {
   item_equipment_preset_2: CharacterItemEquipmentInfoBody[] | null;
   item_equipment_preset_3: CharacterItemEquipmentInfoBody[] | null;
   title: CharacterItemEquipmentTitleBody | null;
+  medal_shape: CharacterItemEquipmentMedalShapeBody | null;
   dragon_equipment: CharacterItemEquipmentDragonInfoBody[];
   mechanic_equipment: CharacterItemEquipmentMechanicInfoBody[];
 };
@@ -202,4 +203,16 @@ export type CharacterItemEquipmentTitleBody = {
   title_description: string | null;
   date_expire: string | null;
   date_option_expire: string | null;
+  title_shape_name: string | null;
+  title_shape_icon: string | null;
+  title_shape_description: string | null;
+};
+
+export type CharacterItemEquipmentMedalShapeBody = {
+  medal_shape_name: string;
+  medal_shape_icon: string;
+  medal_shape_description: string;
+  medal_shape_changed_name: string;
+  medal_shape_changed_icon: string;
+  medal_shape_changed_description: string;
 };

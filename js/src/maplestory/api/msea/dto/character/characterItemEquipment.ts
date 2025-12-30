@@ -8,6 +8,7 @@ import {
   CharacterItemEquipmentExceptionalOptionBody,
   CharacterItemEquipmentInfoBody,
   CharacterItemEquipmentMechanicInfoBody,
+  CharacterItemEquipmentMedalShapeBody,
   CharacterItemEquipmentStarforceOptionBody,
   CharacterItemEquipmentTitleBody,
   CharacterItemEquipmentTotalOptionBody,
@@ -63,6 +64,11 @@ export class CharacterItemEquipmentDto extends base.CharacterItemEquipmentDto {
   public override title: CharacterItemEquipmentTitleDto | null;
 
   /**
+   * Medal appearance information registered in the appearance settings
+   */
+  public override medalShape: CharacterItemEquipmentMedalShapeDto | null;
+
+  /**
    * Evan Dragon equipment information (response provided if the character is Evan)
    */
   public override dragonEquipment: CharacterItemEquipmentDragonInfoDto[];
@@ -85,6 +91,7 @@ export class CharacterItemEquipmentDto extends base.CharacterItemEquipmentDto {
       item_equipment_preset_2,
       item_equipment_preset_3,
       title,
+      medal_shape,
       dragon_equipment,
       mechanic_equipment,
     } = obj;
@@ -109,6 +116,9 @@ export class CharacterItemEquipmentDto extends base.CharacterItemEquipmentDto {
         (equipment) => new CharacterItemEquipmentInfoDto(equipment),
       ) ?? [];
     this.title = title ? new CharacterItemEquipmentTitleDto(title) : null;
+    this.medalShape = medal_shape
+      ? new CharacterItemEquipmentMedalShapeDto(medal_shape)
+      : null;
     this.dragonEquipment = dragon_equipment.map(
       (equipment) => new CharacterItemEquipmentDragonInfoDto(equipment),
     );
@@ -157,6 +167,21 @@ export class CharacterItemEquipmentTitleDto extends base.CharacterItemEquipmentT
    */
   public override isOptionExpired: boolean | null = null;
 
+  /**
+   * Title equipment name registered in the appearance settings
+   */
+  public override titleShapeName: string | null;
+
+  /**
+   * Title icon registered in the appearance settings
+   */
+  public override titleShapeIcon: string | null;
+
+  /**
+   * Title description registered in the appearance settings
+   */
+  public override titleShapeDescription: string | null;
+
   constructor(obj: CharacterItemEquipmentTitleBody) {
     super();
 
@@ -166,11 +191,17 @@ export class CharacterItemEquipmentTitleDto extends base.CharacterItemEquipmentT
       title_description,
       date_expire,
       date_option_expire,
+      title_shape_name,
+      title_shape_icon,
+      title_shape_description,
     } = obj;
 
     this.titleName = title_name;
     this.titleIcon = title_icon;
     this.titleDescription = title_description;
+    this.titleShapeName = title_shape_name;
+    this.titleShapeIcon = title_shape_icon;
+    this.titleShapeDescription = title_shape_description;
 
     if (date_expire === 'expired') {
       this.isExpired = true;
@@ -185,6 +216,61 @@ export class CharacterItemEquipmentTitleDto extends base.CharacterItemEquipmentT
         ? new Date(date_option_expire)
         : null;
     }
+  }
+}
+
+/**
+ * Medal appearance information
+ */
+export class CharacterItemEquipmentMedalShapeDto extends base.CharacterItemEquipmentMedalShapeDto {
+  /**
+   * Medal equipment name registered in the appearance settings
+   */
+  public override medalShapeName: string;
+
+  /**
+   * Medal icon registered in the appearance settings
+   */
+  public override medalShapeIcon: string;
+
+  /**
+   * Medal description registered in the appearance settings
+   */
+  public override medalShapeDescription: string;
+
+  /**
+   * Fusion Anvil-applied medal equipment name registered in the appearance settings
+   */
+  public override medalShapeChangedName: string;
+
+  /**
+   * Fusion Anvil-applied medal icon registered in the appearance settings
+   */
+  public override medalShapeChangedIcon: string;
+
+  /**
+   * Fusion Anvil-applied medal description registered in the appearance settings
+   */
+  public override medalShapeChangedDescription: string;
+
+  constructor(obj: CharacterItemEquipmentMedalShapeBody) {
+    super();
+
+    const {
+      medal_shape_name,
+      medal_shape_icon,
+      medal_shape_description,
+      medal_shape_changed_name,
+      medal_shape_changed_icon,
+      medal_shape_changed_description,
+    } = obj;
+
+    this.medalShapeName = medal_shape_name;
+    this.medalShapeIcon = medal_shape_icon;
+    this.medalShapeDescription = medal_shape_description;
+    this.medalShapeChangedName = medal_shape_changed_name;
+    this.medalShapeChangedIcon = medal_shape_changed_icon;
+    this.medalShapeChangedDescription = medal_shape_changed_description;
   }
 }
 

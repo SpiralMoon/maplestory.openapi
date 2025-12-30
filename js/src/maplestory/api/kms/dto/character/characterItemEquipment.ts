@@ -66,7 +66,7 @@ export class CharacterItemEquipmentDto extends base.CharacterItemEquipmentDto {
   /**
    * 외형 설정에 등록한 훈장 외형 정보
    */
-  public medalShape: CharacterItemEquipmentMedalShapeDto | null;
+  public override medalShape: CharacterItemEquipmentMedalShapeDto | null;
 
   /**
    * 에반 드래곤 장비 정보 (에반인 경우 응답)
@@ -170,17 +170,17 @@ export class CharacterItemEquipmentTitleDto extends base.CharacterItemEquipmentT
   /**
    * 외형 설정에 등록한 칭호 장비 명
    */
-  public titleShapeName: string | null;
+  public override titleShapeName: string | null;
 
   /**
    * 외형 설정에 등록한 칭호 아이콘
    */
-  public titleShapeIcon: string | null;
+  public override titleShapeIcon: string | null;
 
   /**
    * 외형 설정에 등록한 칭호 설명
    */
-  public titleShapeDescription: string | null;
+  public override titleShapeDescription: string | null;
 
   constructor(obj: CharacterItemEquipmentTitleBody) {
     super();
@@ -222,38 +222,40 @@ export class CharacterItemEquipmentTitleDto extends base.CharacterItemEquipmentT
 /**
  * 캐릭터 외형 설정에 등록한 훈장 외형 정보
  */
-export class CharacterItemEquipmentMedalShapeDto {
+export class CharacterItemEquipmentMedalShapeDto extends base.CharacterItemEquipmentMedalShapeDto {
   /**
    * 외형 설정에 등록한 훈장 장비 명
    */
-  public medalShapeName: string;
+  public override medalShapeName: string;
 
   /**
    * 외형 설정에 등록한 훈장 아이콘
    */
-  public medalShapeIcon: string;
+  public override medalShapeIcon: string;
 
   /**
    * 외형 설정에 등록한 훈장 설명
    */
-  public medalShapeDescription: string;
+  public override medalShapeDescription: string;
 
   /**
    * 외형 설정에 등록한 훈장의 모루 적용 장비 명
    */
-  public medalShapeChangedName: string;
+  public override medalShapeChangedName: string;
 
   /**
    * 외형 설정에 등록한 훈장의 모루 적용 아이콘
    */
-  public medalShapeChangedIcon: string;
+  public override medalShapeChangedIcon: string;
 
   /**
    * 외형 설정에 등록한 훈장의 모루 적용 훈장 설명
    */
-  public medalShapeChangedDescription: string;
+  public override medalShapeChangedDescription: string;
 
   constructor(obj: CharacterItemEquipmentMedalShapeBody) {
+    super();
+
     const {
       medal_shape_name,
       medal_shape_icon,

@@ -11,6 +11,7 @@ from maplestory_openapi.api.common.dto.character.character_item_equipment import
 from maplestory_openapi.api.common.dto.character.character_item_equipment import CharacterItemEquipmentDragonInfo as BaseCharacterItemEquipmentDragonInfo
 from maplestory_openapi.api.common.dto.character.character_item_equipment import CharacterItemEquipmentMechanicInfo as BaseCharacterItemEquipmentMechanicInfo
 from maplestory_openapi.api.common.dto.character.character_item_equipment import CharacterItemEquipmentTitle as BaseCharacterItemEquipmentTitle
+from maplestory_openapi.api.common.dto.character.character_item_equipment import CharacterItemEquipmentMedalShape as BaseCharacterItemEquipmentMedalShape
 from maplestory_openapi.api.common.dto.character.character_item_equipment import CharacterItemEquipment as BaseCharacterItemEquipment
 
 class CharacterItemEquipmentAddOption(BaseModel, BaseCharacterItemEquipmentAddOption):
@@ -511,6 +512,26 @@ class CharacterItemEquipmentTitle(BaseModel, BaseCharacterItemEquipmentTitle):
         return values
 
 
+class CharacterItemEquipmentMedalShape(BaseModel, BaseCharacterItemEquipmentMedalShape):
+    """
+    Medal appearance information registered in the appearance settings
+
+    Attributes:
+        medal_shape_name(str): Medal equipment name registered in the appearance settings
+        medal_shape_icon(str): Medal icon registered in the appearance settings
+        medal_shape_description(str): Medal description registered in the appearance settings
+        medal_shape_changed_name(str): Fusion Anvil-applied medal equipment name registered in the appearance settings
+        medal_shape_changed_icon(str): Fusion Anvil-applied medal icon registered in the appearance settings
+        medal_shape_changed_description(str): Fusion Anvil-applied medal description registered in the appearance settings
+    """
+    medal_shape_name: str
+    medal_shape_icon: str
+    medal_shape_description: str
+    medal_shape_changed_name: str
+    medal_shape_changed_icon: str
+    medal_shape_changed_description: str
+
+
 class CharacterItemEquipment(BaseModel, BaseCharacterItemEquipment):
     """
     Character equipped equipment information
@@ -525,6 +546,7 @@ class CharacterItemEquipment(BaseModel, BaseCharacterItemEquipment):
         item_equipment_preset_2 (list[CharacterItemEquipmentInfo] or None): Equipment information for Preset 2
         item_equipment_preset_3 (list[CharacterItemEquipmentInfo] or None): Equipment information for Preset 3
         title (CharacterItemEquipmentTitle or None): Title information
+        medal_shape(CharacterItemEquipmentMedalShape or None): Medal appearance information registered in the appearance settings
         dragon_equipment (list[CharacterItemEquipmentDragonInfo]): Evan Dragon equipment information (response provided if the character is Evan)
         mechanic_equipment (list[CharacterItemEquipmentMechanicInfo]): Mechanic equipment information (response provided if the character is a Mechanic)
     """
@@ -537,6 +559,7 @@ class CharacterItemEquipment(BaseModel, BaseCharacterItemEquipment):
     item_equipment_preset_2: list[CharacterItemEquipmentInfo]
     item_equipment_preset_3: list[CharacterItemEquipmentInfo]
     title: CharacterItemEquipmentTitle | None
+    medal_shape: CharacterItemEquipmentMedalShape | None
     dragon_equipment: list[CharacterItemEquipmentDragonInfo]
     mechanic_equipment: list[CharacterItemEquipmentMechanicInfo]
 

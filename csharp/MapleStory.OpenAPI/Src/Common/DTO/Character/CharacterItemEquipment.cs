@@ -1,6 +1,6 @@
 ﻿namespace MapleStory.OpenAPI.Common.DTO
 {
-    public abstract class CharacterItemEquipmentDTO<TCharacterItemEquipmentInfo, TCharacterItemEquipmentTitle, TCharacterItemEquipmentDragonInfo, TCharacterItemEquipmentMechanicInfo>
+    public abstract class CharacterItemEquipmentDTO<TCharacterItemEquipmentInfo, TCharacterItemEquipmentTitle, TCharacterItemEquipmentMedalShape, TCharacterItemEquipmentDragonInfo, TCharacterItemEquipmentMechanicInfo>
     {
         public abstract DateTimeOffset? Date { get; set; }
         public abstract string CharacterGender { get; set; }
@@ -11,11 +11,12 @@
         public abstract List<TCharacterItemEquipmentInfo>? ItemEquipmentPreset2 { get; set; }
         public abstract List<TCharacterItemEquipmentInfo>? ItemEquipmentPreset3 { get; set; }
         public abstract TCharacterItemEquipmentTitle? Title { get; set; }
+        public abstract TCharacterItemEquipmentMedalShape? MedalShape { get; set; }
         public abstract List<TCharacterItemEquipmentDragonInfo> DragonEquipment { get; set; }
         public abstract List<TCharacterItemEquipmentMechanicInfo> MechanicEquipment { get; set; }
     }
 
-    public abstract class CharacterItemEquipmentDTO : CharacterItemEquipmentDTO<CharacterItemEquipmentInfoDTO, CharacterItemEquipmentTitleDTO, CharacterItemEquipmentDragonInfoDTO, CharacterItemEquipmentMechanicInfoDTO>
+    public abstract class CharacterItemEquipmentDTO : CharacterItemEquipmentDTO<CharacterItemEquipmentInfoDTO, CharacterItemEquipmentTitleDTO, CharacterItemEquipmentMedalShapeDTO, CharacterItemEquipmentDragonInfoDTO, CharacterItemEquipmentMechanicInfoDTO>
     {
 
     }
@@ -29,6 +30,19 @@
         public abstract bool? IsExpired { get; }
         public abstract DateTimeOffset? DateOptionExpire { get; }
         public abstract bool? IsOptionExpired { get; }
+        public abstract string? TitleShapeName { get; set; }
+        public abstract string? TitleShapeIcon { get; set; }
+        public abstract string? TitleShapeDescription { get; set; }
+    }
+
+    public abstract class CharacterItemEquipmentMedalShapeDTO
+    {
+        public abstract string MedalShapeName { get; set; }
+        public abstract string MedalShapeIcon { get; set; }
+        public abstract string MedalShapeDescription { get; set; }
+        public abstract string MedalShapeChangedName { get; set; }
+        public abstract string MedalShapeChangedIcon { get; set; }
+        public abstract string MedalShapeChangedDescription { get; set; }
     }
 
     public abstract class CharacterItemEquipmentAddOptionDTO

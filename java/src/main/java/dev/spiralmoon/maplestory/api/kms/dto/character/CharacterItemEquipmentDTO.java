@@ -22,6 +22,7 @@ import java.util.List;
 public class CharacterItemEquipmentDTO implements dev.spiralmoon.maplestory.api.common.dto.character.CharacterItemEquipmentDTO<
         CharacterItemEquipmentInfoDTO,
         CharacterItemEquipmentTitleDTO,
+        CharacterItemEquipmentMedalShapeDTO,
         CharacterItemEquipmentDragonInfoDTO,
         CharacterItemEquipmentMechanicInfoDTO> {
 

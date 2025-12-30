@@ -22,6 +22,7 @@ import java.util.List;
 public class CharacterItemEquipmentDTO implements dev.spiralmoon.maplestory.api.common.dto.character.CharacterItemEquipmentDTO<
         CharacterItemEquipmentInfoDTO,
         CharacterItemEquipmentTitleDTO,
+        CharacterItemEquipmentMedalShapeDTO,
         CharacterItemEquipmentDragonInfoDTO,
         CharacterItemEquipmentMechanicInfoDTO> {
 
@@ -82,6 +83,12 @@ public class CharacterItemEquipmentDTO implements dev.spiralmoon.maplestory.api.
      */
     @JsonProperty("title")
     private CharacterItemEquipmentTitleDTO title;
+
+    /**
+     * Medal appearance information registered in the appearance settings
+     */
+    @JsonProperty("medal_shape")
+    private CharacterItemEquipmentMedalShapeDTO medalShape;
 
     /**
      * Evan Dragon equipment information (response provided if the character is Evan)

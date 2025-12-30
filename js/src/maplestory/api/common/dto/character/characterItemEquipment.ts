@@ -8,6 +8,7 @@ export abstract class CharacterItemEquipmentDto {
   public abstract itemEquipmentPreset2: CharacterItemEquipmentInfoDto[];
   public abstract itemEquipmentPreset3: CharacterItemEquipmentInfoDto[];
   public abstract title: CharacterItemEquipmentTitleDto | null;
+  public abstract medalShape: CharacterItemEquipmentMedalShapeDto | null;
   public abstract dragonEquipment: CharacterItemEquipmentDragonInfoDto[];
   public abstract mechanicEquipment: CharacterItemEquipmentMechanicInfoDto[];
 }
@@ -20,6 +21,9 @@ export abstract class CharacterItemEquipmentTitleDto {
   public abstract isExpired: boolean | null;
   public abstract dateOptionExpire: Date | null;
   public abstract isOptionExpired: boolean | null;
+  public abstract titleShapeName: string | null;
+  public abstract titleShapeIcon: string | null;
+  public abstract titleShapeDescription: string | null;
 }
 
 export abstract class CharacterItemEquipmentAddOptionDto {
@@ -119,6 +123,15 @@ export abstract class CharacterItemEquipmentTotalOptionDto {
   public abstract equipmentLevelDecrease: number;
   public abstract maxHpRate: string;
   public abstract maxMpRate: string;
+}
+
+export abstract class CharacterItemEquipmentMedalShapeDto {
+  public abstract medalShapeName: string;
+  public abstract medalShapeIcon: string;
+  public abstract medalShapeDescription: string;
+  public abstract medalShapeChangedName: string;
+  public abstract medalShapeChangedIcon: string;
+  public abstract medalShapeChangedDescription: string;
 }
 
 export abstract class CharacterItemEquipmentDragonInfoDto {

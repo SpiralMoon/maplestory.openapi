@@ -8,6 +8,7 @@ import {
   CharacterItemEquipmentExceptionalOptionBody,
   CharacterItemEquipmentInfoBody,
   CharacterItemEquipmentMechanicInfoBody,
+  CharacterItemEquipmentMedalShapeBody,
   CharacterItemEquipmentStarforceOptionBody,
   CharacterItemEquipmentTitleBody,
   CharacterItemEquipmentTotalOptionBody,
@@ -63,6 +64,11 @@ export class CharacterItemEquipmentDto extends base.CharacterItemEquipmentDto {
   public override title: CharacterItemEquipmentTitleDto | null;
 
   /**
+   * 外型設定中已登錄勳章的外型資訊
+   */
+  public override medalShape: CharacterItemEquipmentMedalShapeDto | null;
+
+  /**
    * 龍魔導士的龍道具資訊 (僅在龍魔導士時回應)
    */
   public override dragonEquipment: CharacterItemEquipmentDragonInfoDto[];
@@ -85,6 +91,7 @@ export class CharacterItemEquipmentDto extends base.CharacterItemEquipmentDto {
       item_equipment_preset_2,
       item_equipment_preset_3,
       title,
+      medal_shape,
       dragon_equipment,
       mechanic_equipment,
     } = obj;
@@ -109,6 +116,9 @@ export class CharacterItemEquipmentDto extends base.CharacterItemEquipmentDto {
         (equipment) => new CharacterItemEquipmentInfoDto(equipment),
       ) ?? [];
     this.title = title ? new CharacterItemEquipmentTitleDto(title) : null;
+    this.medalShape = medal_shape
+      ? new CharacterItemEquipmentMedalShapeDto(medal_shape)
+      : null;
     this.dragonEquipment = dragon_equipment.map(
       (equipment) => new CharacterItemEquipmentDragonInfoDto(equipment),
     );
@@ -160,17 +170,17 @@ export class CharacterItemEquipmentTitleDto extends base.CharacterItemEquipmentT
   /**
    * 外型設定中已登錄稱號的道具名稱
    */
-  public titleShapeName: string | null;
+  public override titleShapeName: string | null;
 
   /**
    * 外型設定中已登錄稱號的圖示
    */
-  public titleShapeIcon: string | null;
+  public override titleShapeIcon: string | null;
 
   /**
    * 外型設定中已登錄稱號的描述
    */
-  public titleShapeDescription: string | null;
+  public override titleShapeDescription: string | null;
 
   constructor(obj: CharacterItemEquipmentTitleBody) {
     super();
@@ -206,6 +216,61 @@ export class CharacterItemEquipmentTitleDto extends base.CharacterItemEquipmentT
         ? new Date(date_option_expire)
         : null;
     }
+  }
+}
+
+/**
+ * 外型設定中已登錄勳章的外型資訊
+ */
+export class CharacterItemEquipmentMedalShapeDto extends base.CharacterItemEquipmentMedalShapeDto {
+  /**
+   * 外型設定中已登錄勳章的道具名稱
+   */
+  public override medalShapeName: string;
+
+  /**
+   * 外型設定中已登錄勳章的圖示
+   */
+  public override medalShapeIcon: string;
+
+  /**
+   * 外型設定中已登錄勳章的描述
+   */
+  public override medalShapeDescription: string;
+
+  /**
+   * 外型設定中已登錄勳章的鐵砧套用道具名稱
+   */
+  public override medalShapeChangedName: string;
+
+  /**
+   * 外型設定中已登錄勳章的鐵砧套用圖示
+   */
+  public override medalShapeChangedIcon: string;
+
+  /**
+   * 外型設定中已登錄勳章的鐵砧套用勳章說明
+   */
+  public override medalShapeChangedDescription: string;
+
+  constructor(obj: CharacterItemEquipmentMedalShapeBody) {
+    super();
+
+    const {
+      medal_shape_name,
+      medal_shape_icon,
+      medal_shape_description,
+      medal_shape_changed_name,
+      medal_shape_changed_icon,
+      medal_shape_changed_description,
+    } = obj;
+
+    this.medalShapeName = medal_shape_name;
+    this.medalShapeIcon = medal_shape_icon;
+    this.medalShapeDescription = medal_shape_description;
+    this.medalShapeChangedName = medal_shape_changed_name;
+    this.medalShapeChangedIcon = medal_shape_changed_icon;
+    this.medalShapeChangedDescription = medal_shape_changed_description;
   }
 }
 
