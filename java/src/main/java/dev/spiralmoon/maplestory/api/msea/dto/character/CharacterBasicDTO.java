@@ -101,10 +101,10 @@ public class CharacterBasicDTO implements dev.spiralmoon.maplestory.api.common.d
     private String accessFlag;
 
     /**
-     * Liberation quest completion status (true:completed, false:not completed)
+     * Liberation Quest completion status (0:not completed, 1:Genesis Weapon liberated, 2:Destiny Weapon Phase 1 liberated)
      */
-    @JsonProperty("liberation_quest_clear_flag")
-    private String liberationQuestClearFlag;
+    @JsonProperty("liberation_quest_clear")
+    private String liberationQuestClear;
 
     /**
      * Reference date for query (SGT, daily data with hours and minutes set to 0)
@@ -129,12 +129,5 @@ public class CharacterBasicDTO implements dev.spiralmoon.maplestory.api.common.d
      */
     public boolean isAccessFlag() {
         return "true".equals(this.accessFlag);
-    }
-
-    /**
-     * Liberation quest completion status
-     */
-    public boolean isLiberationQuestClearFlag() {
-        return "true".equals(this.liberationQuestClearFlag);
     }
 }

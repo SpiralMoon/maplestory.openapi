@@ -134,6 +134,6 @@ namespace MapleStory.OpenAPI.KMS.DTO
         /// 해방 퀘스트 완료 여부 (0:미완료, 1:제네시스 무기 해방, 2:데스티니 무기 1차 해방)
         /// </summary>
         [JsonProperty("liberation_quest_clear")]
-        public string  LiberationQuestClear {  get; set; }
+        public override string  LiberationQuestClear {  get; set; }
     }
 }

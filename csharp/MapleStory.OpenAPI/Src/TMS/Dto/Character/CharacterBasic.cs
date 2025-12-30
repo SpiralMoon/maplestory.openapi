@@ -131,9 +131,9 @@ namespace MapleStory.OpenAPI.TMS.DTO
         private string _accessFlag { get; set; }
 
         /// <summary>
-        /// 解放任務完成狀態 (0：未完成，1：創世武器已解放)
+        /// 解放任務完成狀態 (0：未完成，1：創世武器已解放, 2:命運武器第一階段解放)
         /// </summary>
         [JsonProperty("liberation_quest_clear")]
-        private string LiberationQuestClear { get; set; }
+        public override string LiberationQuestClear { get; set; }
     }
 }

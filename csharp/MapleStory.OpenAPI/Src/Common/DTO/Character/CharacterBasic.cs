@@ -15,5 +15,6 @@
         public abstract string CharacterImage { get; set; }
         public abstract DateTimeOffset? CharacterDateCreate { get; set; }
         public abstract bool AccessFlag { get; }
+        public abstract string LiberationQuestClear { get; set; }
     }
 }

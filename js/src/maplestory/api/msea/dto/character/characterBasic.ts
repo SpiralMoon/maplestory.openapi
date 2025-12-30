@@ -72,9 +72,9 @@ export class CharacterBasicDto extends base.CharacterBasicDto {
   public override accessFlag: 'true' | 'false';
 
   /**
-   * Liberation quest completion status (true:completed, false:not completed)
+   * Liberation Quest completion status (0:not completed, 1:Genesis Weapon liberated, 2:Destiny Weapon Phase 1 liberated)
    */
-  public liberationQuestClearFlag: 'true' | 'false';
+  public override liberationQuestClear: string;
 
   constructor(obj: CharacterBasicBody) {
     super();
@@ -93,7 +93,7 @@ export class CharacterBasicDto extends base.CharacterBasicDto {
       character_image,
       character_date_create,
       access_flag,
-      liberation_quest_clear_flag,
+      liberation_quest_clear,
     } = obj;
 
     this.date = date ? new Date(date) : null;
@@ -109,7 +109,7 @@ export class CharacterBasicDto extends base.CharacterBasicDto {
     this.characterImage = removeQuery(character_image);
     this.characterDateCreate = character_date_create ? new Date(character_date_create) : null;
     this.accessFlag = access_flag;
-    this.liberationQuestClearFlag = liberation_quest_clear_flag;
+    this.liberationQuestClear = liberation_quest_clear;
   }
 
   /**
@@ -117,12 +117,5 @@ export class CharacterBasicDto extends base.CharacterBasicDto {
    */
   public override get isAccessFlag() {
     return super.isAccessFlag;
-  }
-
-  /**
-   * Liberation quest completion status
-   */
-  public get isLiberationQuestClearFlag() {
-    return this.liberationQuestClearFlag === 'true';
   }
 }

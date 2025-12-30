@@ -74,7 +74,7 @@ export class CharacterBasicDto extends base.CharacterBasicDto {
   /**
    * 해방 퀘스트 완료 여부 (0:미완료, 1:제네시스 무기 해방, 2:데스티니 무기 1차 해방)
    */
-  public liberationQuestClear: string;
+  public override liberationQuestClear: string;
 
   constructor(obj: CharacterBasicBody) {
     super();

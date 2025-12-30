@@ -101,7 +101,7 @@ public class CharacterBasicDTO implements dev.spiralmoon.maplestory.api.common.d
     private String accessFlag;
 
     /**
-     * 解放任務完成狀態 (0：未完成，1：創世武器已解放)
+     * 解放任務完成狀態 (0：未完成，1：創世武器已解放, 2:命運武器第一階段解放)
      */
     @JsonProperty("liberation_quest_clear")
     private String liberationQuestClear;

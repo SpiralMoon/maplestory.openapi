@@ -131,17 +131,9 @@ namespace MapleStory.OpenAPI.MSEA.DTO
         private string _accessFlag { get; set; }
 
         /// <summary>
-        /// Liberation quest completion status (true:completed, false:not completed)
+        /// Liberation Quest completion status (0:not completed, 1:Genesis Weapon liberated, 2:Destiny Weapon Phase 1 liberated)
         /// </summary>
-        public bool LiberationQuestClearFlag
-        {
-            get
-            {
-                return _liberationQuestClearFlag == "true";
-            }
-        }
-
-        [JsonProperty("liberation_quest_clear_flag")]
-        private string _liberationQuestClearFlag { get; set; }
+        [JsonProperty("liberation_quest_clear")]
+        public override string LiberationQuestClear { get; set; }
     }
 }

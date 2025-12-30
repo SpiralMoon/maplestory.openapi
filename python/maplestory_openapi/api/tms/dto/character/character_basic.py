@@ -24,7 +24,7 @@ class CharacterBasic(BaseModel, BaseCharacterBasic):
         character_image (str): 角色外型圖片
         character_date_create (datetime): 角色建立日期 (TST，每日資料中的小時與分鐘將顯示為 0)
         access_flag (str): 過去 7 天的登入狀態 (true：已登入，false：未登入)
-        liberation_quest_clear (str): 解放任務完成狀態 (0：未完成，1：創世武器已解放)
+        liberation_quest_clear (str): 解放任務完成狀態 (0：未完成，1：創世武器已解放, 2:命運武器第一階段解放)
     """
 
     date: datetime | None

@@ -24,7 +24,7 @@ class CharacterBasic(BaseModel, BaseCharacterBasic):
         character_image (str): Character appearance image
         character_date_create (datetime): Character creation date (SGT, daily data with hours and minutes set to 0)
         access_flag (str): Login status in the past 7 days (true:logged in, false:not logged in)
-        liberation_quest_clear_flag (str): Liberation quest completion status (true:completed, false:not completed)
+        liberation_quest_clear (str): Liberation Quest completion status (0:not completed, 1:Genesis Weapon liberated, 2:Destiny Weapon Phase 1 liberated)
     """
 
     date: datetime | None
@@ -40,7 +40,7 @@ class CharacterBasic(BaseModel, BaseCharacterBasic):
     character_image: str
     character_date_create: datetime | None
     access_flag: str
-    liberation_quest_clear_flag: str
+    liberation_quest_clear: str
 
     @property
     def is_access_flag(self) -> bool:
@@ -48,13 +48,6 @@ class CharacterBasic(BaseModel, BaseCharacterBasic):
         Login status in the past 7 days
         """
         return self.access_flag == 'true'
-
-    @property
-    def is_liberation_quest_clear_flag(self) -> bool:
-        """
-        Liberation quest completion status
-        """
-        return self.liberation_quest_clear_flag == 'true'
 
     @model_validator(mode="before")
     @classmethod

@@ -72,9 +72,9 @@ export class CharacterBasicDto extends base.CharacterBasicDto {
   public override accessFlag: 'true' | 'false';
 
   /**
-   * 解放任務完成狀態 (0：未完成，1：創世武器已解放)
+   * 解放任務完成狀態 (0：未完成，1：創世武器已解放, 2:命運武器第一階段解放)
    */
-  public liberationQuestClear: string;
+  public override liberationQuestClear: string;
 
   constructor(obj: CharacterBasicBody) {
     super();
