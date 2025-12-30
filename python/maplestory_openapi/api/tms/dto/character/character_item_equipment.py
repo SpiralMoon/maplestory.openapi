@@ -275,6 +275,7 @@ class CharacterItemEquipmentInfo(BaseModel, BaseCharacterItemEquipmentInfo):
         special_ring_level (int): 特殊戒指等級
         date_expire (datetime or None): 道具有效期間 (TST)
         is_expired (bool or None): Whether the equipment is expired
+        freestyle_flag (str or None): 自由造型券 使用狀態（0：未使用，1：已使用）
     """
     item_equipment_part: str
     item_equipment_slot: str
@@ -315,6 +316,7 @@ class CharacterItemEquipmentInfo(BaseModel, BaseCharacterItemEquipmentInfo):
     special_ring_level: int
     date_expire: datetime | None
     is_expired: bool | None
+    freestyle_flag: str | None
 
     @model_validator(mode="before")
     @classmethod
@@ -323,6 +325,13 @@ class CharacterItemEquipmentInfo(BaseModel, BaseCharacterItemEquipmentInfo):
             values["is_expired"] = True
             values["date_expire"] = None
         return values
+
+    @property
+    def is_freestyle_flag(self) -> bool:
+        """
+        自由造型券 使用狀態
+        """
+        return self.freestyle_flag == '1'
 
 
 class CharacterItemEquipmentDragonInfo(BaseModel, BaseCharacterItemEquipmentDragonInfo):
@@ -359,6 +368,7 @@ class CharacterItemEquipmentDragonInfo(BaseModel, BaseCharacterItemEquipmentDrag
         special_ring_level (int): 特殊戒指等級
         date_expire (datetime or None): 道具有效期間 (TST)
         is_expired (bool): Whether the equipment is expired
+        freestyle_flag (str or None): 自由造型券 使用狀態（0：未使用，1：已使用）
     """
     item_equipment_part: str
     item_equipment_slot: str
@@ -389,6 +399,7 @@ class CharacterItemEquipmentDragonInfo(BaseModel, BaseCharacterItemEquipmentDrag
     special_ring_level: int
     date_expire: datetime | None
     is_expired: bool | None
+    freestyle_flag: str | None
 
     @model_validator(mode="before")
     @classmethod
@@ -397,6 +408,13 @@ class CharacterItemEquipmentDragonInfo(BaseModel, BaseCharacterItemEquipmentDrag
             values["is_expired"] = True
             values["date_expire"] = None
         return values
+
+    @property
+    def is_freestyle_flag(self) -> bool:
+        """
+        自由造型券 使用狀態
+        """
+        return self.freestyle_flag == '1'
 
 
 class CharacterItemEquipmentMechanicInfo(BaseModel, BaseCharacterItemEquipmentMechanicInfo):
@@ -433,6 +451,7 @@ class CharacterItemEquipmentMechanicInfo(BaseModel, BaseCharacterItemEquipmentMe
         special_ring_level (int): 特殊戒指等級
         date_expire (datetime or None): 道具有效期間 (TST)
         is_expired (bool): Whether the equipment is expired
+        freestyle_flag (str or None): 自由造型券 使用狀態（0：未使用，1：已使用）
     """
     item_equipment_part: str
     item_equipment_slot: str
@@ -463,6 +482,7 @@ class CharacterItemEquipmentMechanicInfo(BaseModel, BaseCharacterItemEquipmentMe
     special_ring_level: int
     date_expire: datetime | None
     is_expired: bool | None
+    freestyle_flag: str | None
 
     @model_validator(mode="before")
     @classmethod
@@ -471,6 +491,13 @@ class CharacterItemEquipmentMechanicInfo(BaseModel, BaseCharacterItemEquipmentMe
             values["is_expired"] = True
             values["date_expire"] = None
         return values
+
+    @property
+    def is_freestyle_flag(self) -> bool:
+        """
+        自由造型券 使用狀態
+        """
+        return self.freestyle_flag == '1'
 
 
 class CharacterItemEquipmentTitle(BaseModel, BaseCharacterItemEquipmentTitle):

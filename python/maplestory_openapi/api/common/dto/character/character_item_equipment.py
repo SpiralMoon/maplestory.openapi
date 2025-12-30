@@ -140,6 +140,7 @@ class CharacterItemEquipmentInfo:
     special_ring_level: int
     date_expire: datetime | None
     is_expired: bool | None = None
+    freestyle_flag: str | None
 
 
 class CharacterItemEquipmentDragonInfo:
@@ -172,6 +173,7 @@ class CharacterItemEquipmentDragonInfo:
     special_ring_level: int
     date_expire: datetime | None
     is_expired: bool | None = None
+    freestyle_flag: str | None
 
 
 class CharacterItemEquipmentMechanicInfo:
@@ -204,6 +206,7 @@ class CharacterItemEquipmentMechanicInfo:
     special_ring_level: int
     date_expire: datetime | None
     is_expired: bool | None = None
+    freestyle_flag: str | None
 
 
 class CharacterItemEquipmentTitle:
@@ -238,5 +241,6 @@ class CharacterItemEquipment:
     item_equipment_preset_2: list[CharacterItemEquipmentInfo] = []
     item_equipment_preset_3: list[CharacterItemEquipmentInfo] = []
     title: CharacterItemEquipmentTitle | None
+    medal_shape: CharacterItemEquipmentMedalShape | None
     dragon_equipment: list[CharacterItemEquipmentDragonInfo] = []
     mechanic_equipment: list[CharacterItemEquipmentMechanicInfo] = []

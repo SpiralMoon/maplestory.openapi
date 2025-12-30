@@ -187,6 +187,7 @@
         public abstract long SpecialRingLevel { get; set; }
         public abstract DateTimeOffset? DateExpire { get; }
         public abstract bool? IsExpired { get; }
+        public abstract string? FreestyleFlag { get; set; }
     }
 
     public abstract class CharacterItemEquipmentDragonInfoDTO : CharacterItemEquipmentDragonInfoDTO<CharacterItemEquipmentTotalOptionDTO, CharacterItemEquipmentBaseOptionDTO, CharacterItemEquipmentExceptionalOptionDTO, CharacterItemEquipmentAddOptionDTO, CharacterItemEquipmentEtcOptionDTO, CharacterItemEquipmentStarforceOptionDTO>
@@ -226,6 +227,7 @@
         public abstract long SpecialRingLevel { get; set; }
         public abstract DateTimeOffset? DateExpire { get; }
         public abstract bool? IsExpired { get; }
+        public abstract string? FreestyleFlag { get; set; }
     }
 
 
@@ -275,6 +277,7 @@
         public abstract long SpecialRingLevel { get; set; }
         public abstract DateTimeOffset? DateExpire { get; }
         public abstract bool? IsExpired { get; }
+        public abstract string? FreestyleFlag { get; set; }
     }
 
     public abstract class CharacterItemEquipmentInfoDTO : CharacterItemEquipmentInfoDTO<CharacterItemEquipmentTotalOptionDTO, CharacterItemEquipmentBaseOptionDTO, CharacterItemEquipmentExceptionalOptionDTO, CharacterItemEquipmentAddOptionDTO, CharacterItemEquipmentEtcOptionDTO, CharacterItemEquipmentStarforceOptionDTO>

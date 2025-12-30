@@ -38,4 +38,5 @@ public interface CharacterItemEquipmentMechanicInfoDTO<
     long getSpecialRingLevel();
     ZonedDateTime getDateExpire();
     Boolean isExpired();
+    String getFreestyleFlag();
 }

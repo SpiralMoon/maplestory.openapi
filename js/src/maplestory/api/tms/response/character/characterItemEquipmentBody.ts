@@ -52,6 +52,7 @@ export type CharacterItemEquipmentInfoBody = {
   item_starforce_option: CharacterItemEquipmentStarforceOptionBody;
   special_ring_level: number;
   date_expire: string | null;
+  freestyle_flag: string | null;
 };
 
 export type CharacterItemEquipmentMechanicInfoBody = {
@@ -83,6 +84,7 @@ export type CharacterItemEquipmentMechanicInfoBody = {
   item_starforce_option: CharacterItemEquipmentOptionBody;
   special_ring_level: number;
   date_expire: string | null;
+  freestyle_flag: string | null;
 };
 
 export type CharacterItemEquipmentDragonInfoBody =

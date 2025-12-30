@@ -38,4 +38,5 @@ public interface CharacterItemEquipmentDragonInfoDTO<
     long getSpecialRingLevel();
     ZonedDateTime getDateExpire();
     Boolean isExpired();
+    String getFreestyleFlag();
 }

@@ -1071,7 +1071,7 @@ export class CharacterItemEquipmentDragonInfoDto extends base.CharacterItemEquip
   /**
    * 프리스타일 쿠폰 적용 여부 (0:미적용, 1:적용)
    */
-  public freestyleFlag: string | null;
+  public override freestyleFlag: string | null;
 
   constructor(obj: CharacterItemEquipmentDragonInfoBody) {
     super();
@@ -1316,7 +1316,7 @@ export class CharacterItemEquipmentMechanicInfoDto extends base.CharacterItemEqu
   /**
    * 프리스타일 쿠폰 적용 여부 (0:미적용, 1:적용)
    */
-  public freestyleFlag: string | null;
+  public override freestyleFlag: string | null;
 
   constructor(obj: CharacterItemEquipmentMechanicInfoBody) {
     super();
@@ -1611,7 +1611,7 @@ export class CharacterItemEquipmentInfoDto extends base.CharacterItemEquipmentIn
   /**
    * 프리스타일 쿠폰 적용 여부 (0:미적용, 1:적용)
    */
-  public freestyleFlag: string | null;
+  public override freestyleFlag: string | null;
 
   constructor(obj: CharacterItemEquipmentInfoBody) {
     super();

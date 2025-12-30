@@ -164,6 +164,7 @@ export abstract class CharacterItemEquipmentDragonInfoDto {
   public abstract specialRingLevel: number;
   public abstract dateExpire: Date | null;
   public abstract isExpired: boolean | null;
+  public abstract freestyleFlag: string | null;
 }
 
 export abstract class CharacterItemEquipmentMechanicInfoDto {
@@ -196,6 +197,7 @@ export abstract class CharacterItemEquipmentMechanicInfoDto {
   public abstract specialRingLevel: number;
   public abstract dateExpire: Date | null;
   public abstract isExpired: boolean | null;
+  public abstract freestyleFlag: string | null;
 }
 
 export abstract class CharacterItemEquipmentInfoDto {
@@ -238,4 +240,5 @@ export abstract class CharacterItemEquipmentInfoDto {
   public abstract specialRingLevel: number;
   public abstract dateExpire: Date | null;
   public abstract isExpired: boolean | null;
+  public abstract freestyleFlag: string | null;
 }

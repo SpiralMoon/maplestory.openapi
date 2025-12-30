@@ -987,6 +987,20 @@ namespace MapleStory.OpenAPI.MSEA.DTO
                 return _dateExpire == "expired";
             }
         }
+
+        /// <summary>
+        /// Freestyle Coupon application status (0:not applied, 1:applied)
+        /// </summary>
+        [JsonProperty("freestyle_flag")]
+        public override string? FreestyleFlag { get; set; }
+
+        /// <summary>
+        /// Freestyle Coupon application status
+        /// </summary>
+        public bool IsFreestyleFlag
+        {
+            get => this.FreestyleFlag == "1";
+        }
     }
 
 
@@ -1196,6 +1210,20 @@ namespace MapleStory.OpenAPI.MSEA.DTO
 
                 return _dateExpire == "expired";
             }
+        }
+
+        /// <summary>
+        /// Freestyle Coupon application status (0:not applied, 1:applied)
+        /// </summary>
+        [JsonProperty("freestyle_flag")]
+        public override string? FreestyleFlag { get; set; }
+
+        /// <summary>
+        /// Freestyle Coupon application status
+        /// </summary>
+        public bool IsFreestyleFlag
+        {
+            get => this.FreestyleFlag == "1";
         }
     }
 
@@ -1466,6 +1494,19 @@ namespace MapleStory.OpenAPI.MSEA.DTO
                 return _dateExpire == "expired";
             }
         }
-    }
 
+        /// <summary>
+        /// Freestyle Coupon application status (0:not applied, 1:applied)
+        /// </summary>
+        [JsonProperty("freestyle_flag")]
+        public override string? FreestyleFlag { get; set; }
+
+        /// <summary>
+        /// Freestyle Coupon application status
+        /// </summary>
+        public bool IsFreestyleFlag
+        {
+            get => this.FreestyleFlag == "1";
+        }
+    }
 }

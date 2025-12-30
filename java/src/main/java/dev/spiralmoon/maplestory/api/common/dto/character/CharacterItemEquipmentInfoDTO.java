@@ -48,4 +48,5 @@ public interface CharacterItemEquipmentInfoDTO<
     long getSpecialRingLevel();
     ZonedDateTime getDateExpire();
     Boolean isExpired();
+    String getFreestyleFlag();
 }

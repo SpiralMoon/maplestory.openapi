@@ -275,6 +275,7 @@ class CharacterItemEquipmentInfo(BaseModel, BaseCharacterItemEquipmentInfo):
         special_ring_level (int): Special Skill Ring
         date_expire (datetime or None): Equipment expiration date (SGT)
         is_expired (bool or None): Whether the equipment is expired
+        freestyle_flag (str or None): Freestyle Coupon application status (0:not applied, 1:applied)
     """
     item_equipment_part: str
     item_equipment_slot: str
@@ -315,6 +316,7 @@ class CharacterItemEquipmentInfo(BaseModel, BaseCharacterItemEquipmentInfo):
     special_ring_level: int
     date_expire: datetime | None
     is_expired: bool | None
+    freestyle_flag: str | None
 
     @model_validator(mode="before")
     @classmethod
@@ -323,6 +325,13 @@ class CharacterItemEquipmentInfo(BaseModel, BaseCharacterItemEquipmentInfo):
             values["is_expired"] = True
             values["date_expire"] = None
         return values
+
+    @property
+    def is_freestyle_flag(self) -> bool:
+        """
+        Freestyle Coupon application status
+        """
+        return self.freestyle_flag == '1'
 
 
 class CharacterItemEquipmentDragonInfo(BaseModel, BaseCharacterItemEquipmentDragonInfo):
@@ -355,10 +364,11 @@ class CharacterItemEquipmentDragonInfo(BaseModel, BaseCharacterItemEquipmentDrag
         item_etc_option (CharacterItemEquipmentEtcOption): Miscellaneous equipment option information
         starforce (str): Enhancement level
         starforce_scroll_flag (str): Usage status of Miraculous Equip Enhancement Scroll (true: used, false: not used)
-        item_starforce_option (CharacterItemEquipmentExceptionalOption): Equipment Star Force option information
+        item_starforce_option (CharacterItemEquipmentStarforceOption): Equipment Star Force option information
         special_ring_level (int): Special Skill Ring
         date_expire (datetime or None): Equipment expiration date (SGT)
         is_expired (bool): Whether the equipment is expired
+        freestyle_flag (str or None): Freestyle Coupon application status (0:not applied, 1:applied)
     """
     item_equipment_part: str
     item_equipment_slot: str
@@ -389,6 +399,7 @@ class CharacterItemEquipmentDragonInfo(BaseModel, BaseCharacterItemEquipmentDrag
     special_ring_level: int
     date_expire: datetime | None
     is_expired: bool | None
+    freestyle_flag: str | None
 
     @model_validator(mode="before")
     @classmethod
@@ -397,6 +408,13 @@ class CharacterItemEquipmentDragonInfo(BaseModel, BaseCharacterItemEquipmentDrag
             values["is_expired"] = True
             values["date_expire"] = None
         return values
+
+    @property
+    def is_freestyle_flag(self) -> bool:
+        """
+        Freestyle Coupon application status
+        """
+        return self.freestyle_flag == '1'
 
 
 class CharacterItemEquipmentMechanicInfo(BaseModel, BaseCharacterItemEquipmentMechanicInfo):
@@ -433,6 +451,7 @@ class CharacterItemEquipmentMechanicInfo(BaseModel, BaseCharacterItemEquipmentMe
         special_ring_level (int): Special Skill Ring
         date_expire (datetime or None): Equipment expiration date (SGT)
         is_expired (bool): Whether the equipment is expired
+        freestyle_flag (str or None): Freestyle Coupon application status (0:not applied, 1:applied)
     """
     item_equipment_part: str
     item_equipment_slot: str
@@ -463,6 +482,7 @@ class CharacterItemEquipmentMechanicInfo(BaseModel, BaseCharacterItemEquipmentMe
     special_ring_level: int
     date_expire: datetime | None
     is_expired: bool | None
+    freestyle_flag: str | None
 
     @model_validator(mode="before")
     @classmethod
@@ -471,6 +491,13 @@ class CharacterItemEquipmentMechanicInfo(BaseModel, BaseCharacterItemEquipmentMe
             values["is_expired"] = True
             values["date_expire"] = None
         return values
+
+    @property
+    def is_freestyle_flag(self) -> bool:
+        """
+        Freestyle Coupon application status
+        """
+        return self.freestyle_flag == '1'
 
 
 class CharacterItemEquipmentTitle(BaseModel, BaseCharacterItemEquipmentTitle):
