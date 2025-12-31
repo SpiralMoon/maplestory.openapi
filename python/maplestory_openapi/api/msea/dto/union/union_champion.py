@@ -8,24 +8,24 @@ from maplestory_openapi.api.common.dto.union.union_champion import UnionChampion
 
 class UnionChampionBadgeInfo(BaseModel, BaseUnionChampionBadgeInfo):
     """
-    유니온 챔피언 휘장 정보
+    Champion Insignia effects
 
     Attributes:
-        stat (str): 유니온 챔피언 휘장 효과
+        stat (str): Union Champion Insignia information
     """
     stat: str
 
 
 class UnionChampionInfo(BaseModel, BaseUnionChampionInfo):
     """
-    유니온 챔피언 상세 정보
+    Union Champion information
 
     Attributes:
-        champion_name (str): 유니온 챔피언 캐릭터 명
-        champion_slot (int): 유니온 챔피언 슬롯
-        champion_grade (str): 유니온 챔피언 등급
-        champion_class (str): 유니온 챔피언 캐릭터의 직업
-        champion_badge_info (list[UnionChampionBadgeInfo]): 챔피언 휘장 효과 목록
+        champion_name (str): Union Champion character name
+        champion_slot (int): Union Champion slot
+        champion_grade (str): Union Champion level
+        champion_class (str): Union Champion character's job
+        champion_badge_info (list[UnionChampionBadgeInfo]): Union Champion Insignia information
     """
     champion_name: str
     champion_slot: int
@@ -43,12 +43,12 @@ class UnionChampionInfo(BaseModel, BaseUnionChampionInfo):
 
 class UnionChampion(BaseModel, BaseUnionChampion):
     """
-    유니온 챔피언 정보
+    Union Champion information
 
     Attributes:
-        date (datetime or None): 조회 기준일 (KST, 일 단위 데이터로 시, 분은 일괄 0으로 표기)
-        union_champion (list[UnionChampionInfo]): 유니온 챔피언 정보
-        champion_badge_total_info (list[UnionChampionBadgeInfo]): 유니온 챔피언 휘장 정보
+        date (datetime or None): Reference date for query (SGT, daily data with hours and minutes set to 0)
+        union_champion (list[UnionChampionInfo]): Union Champion information
+        champion_badge_total_info (list[UnionChampionBadgeInfo]): Champion Insignia effects
     """
     date: datetime | None
     union_champion: list[UnionChampionInfo]
