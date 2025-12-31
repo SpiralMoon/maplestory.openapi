@@ -1194,7 +1194,7 @@ export class MapleStoryApi extends base.MapleStoryApi {
    * @param ocid 캐릭터 식별자
    * @param dateOptions 조회 기준일 (KST)
    */
-  public async getUnionChampion(
+  public override async getUnionChampion(
     ocid: string,
     dateOptions?: DateOptions,
   ): Promise<UnionChampionDto | null> {

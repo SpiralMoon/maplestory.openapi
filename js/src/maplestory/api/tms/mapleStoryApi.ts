@@ -26,6 +26,7 @@ import { GuildDto } from './dto/guild/guild';
 import { GuildBasicDto } from './dto/guild/guildBasic';
 import { UnionDto } from './dto/union/union';
 import { UnionArtifactDto } from './dto/union/unionArtifact';
+import { UnionChampionDto } from './dto/union/unionChampion';
 import { UnionRaiderDto } from './dto/union/unionRaider';
 import { CharacterAbilityBody } from './response/character/characterAbilityBody';
 import { CharacterAndroidEquipmentBody } from './response/character/characterAndroidEquipmentBody';
@@ -51,6 +52,7 @@ import { GuildBasicBody } from './response/guild/guildBasicBody';
 import { GuildBody } from './response/guild/guildBody';
 import { UnionArtifactBody } from './response/union/unionArtifactBody';
 import { UnionBody } from './response/union/unionBody';
+import { UnionChampionBody } from './response/union/unionChampionBody';
 import { UnionRaiderBody } from './response/union/unionRaiderBody';
 import {
   CharacterImageAction,
@@ -1002,6 +1004,43 @@ export class MapleStoryApi extends base.MapleStoryApi {
     }
 
     return new UnionArtifactDto(data);
+  }
+
+  /**
+   * 查詢聯盟冠軍資訊。
+   * - 楓之谷遊戲資料平均在 15 分鐘後即可使用。
+   * - 您可以從 2025 年 12 月 18 日起搜尋資料。
+   * - 您可以輸入所需日期以搜尋過往資料。前一日的資料將於翌日凌晨 2:00 起提供。(當您搜尋 10 月 15 日的資料時，將會擷取從 15 日 00:00 到 16 日 00:00 的資料。)
+   * - 由於遊戲內容變動，OCID 可能會有所變更。在更新以 OCID 為基礎的服務時，請務必留意。
+   * - 此 API 提供來自楓之谷台灣的資料。
+   * @param ocid 角色辨識器
+   * @param dateOptions 要搜尋的日期 (TST)
+   */
+  public override async getUnionChampion(
+    ocid: string,
+    dateOptions?: DateOptions,
+  ): Promise<UnionChampionDto | null> {
+    const path = `${this.subUrl}/v1/user/union-champion`;
+    const date = dateOptions
+      ? this.toDateString(dateOptions, {
+          year: 2025,
+          month: 12,
+          day: 18,
+        })
+      : undefined;
+    const query: UnionApiQuery = {
+      ocid: ocid,
+      date: date,
+    };
+    const { data } = await this.client.get<UnionChampionBody>(path, {
+      params: query,
+    });
+
+    if (this.isEmptyResponse(data)) {
+      return null;
+    }
+
+    return new UnionChampionDto(data);
   }
 
   //#endregion

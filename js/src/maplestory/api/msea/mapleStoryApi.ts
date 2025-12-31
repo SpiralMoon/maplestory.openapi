@@ -26,6 +26,7 @@ import { GuildDto } from './dto/guild/guild';
 import { GuildBasicDto } from './dto/guild/guildBasic';
 import { UnionDto } from './dto/union/union';
 import { UnionArtifactDto } from './dto/union/unionArtifact';
+import { UnionChampionDto } from './dto/union/unionChampion';
 import { UnionRaiderDto } from './dto/union/unionRaider';
 import { CharacterAbilityBody } from './response/character/characterAbilityBody';
 import { CharacterAndroidEquipmentBody } from './response/character/characterAndroidEquipmentBody';
@@ -51,6 +52,7 @@ import { GuildBasicBody } from './response/guild/guildBasicBody';
 import { GuildBody } from './response/guild/guildBody';
 import { UnionArtifactBody } from './response/union/unionArtifactBody';
 import { UnionBody } from './response/union/unionBody';
+import { UnionChampionBody } from './response/union/unionChampionBody';
 import { UnionRaiderBody } from './response/union/unionRaiderBody';
 import {
   CharacterImageAction,
@@ -1002,6 +1004,43 @@ export class MapleStoryApi extends base.MapleStoryApi {
     }
 
     return new UnionArtifactDto(data);
+  }
+
+  /**
+   * Retrieves Union Champion information.
+   * - MapleStory game data can be verified approximately 15 minutes after updates.
+   * - Data is available starting from December 18, 2025.
+   * - Historical data can be queried by specifying the desired date, and data from the previous day can be accessed starting at 2 AM the next day. (For example, when querying data for December 22, data from 00:00 to 24:00 on December 22 will be retrieved.)
+   * - Due to game content changes, the ocid may be updated. Please pay attention to this when updating services based on ocid.
+   * - This API provides data for MapleStory SEA.
+   * @param ocid Character identifier
+   * @param dateOptions Reference date for query (SGT)
+   */
+  public override async getUnionChampion(
+    ocid: string,
+    dateOptions?: DateOptions,
+  ): Promise<UnionChampionDto | null> {
+    const path = `${this.subUrl}/v1/user/union-champion`;
+    const date = dateOptions
+      ? this.toDateString(dateOptions, {
+          year: 2025,
+          month: 12,
+          day: 18,
+        })
+      : undefined;
+    const query: UnionApiQuery = {
+      ocid: ocid,
+      date: date,
+    };
+    const { data } = await this.client.get<UnionChampionBody>(path, {
+      params: query,
+    });
+
+    if (this.isEmptyResponse(data)) {
+      return null;
+    }
+
+    return new UnionChampionDto(data);
   }
 
   //#endregion

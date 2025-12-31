@@ -28,6 +28,7 @@ import { GuildDto } from './dto/guild/guild';
 import { GuildBasicDto } from './dto/guild/guildBasic';
 import { UnionDto } from './dto/union/union';
 import { UnionArtifactDto } from './dto/union/unionArtifact';
+import { UnionChampionDto } from './dto/union/unionChampion';
 import { UnionRaiderDto } from './dto/union/unionRaider';
 import { CharacterImageAction, CharacterImageEmotion, CharacterImageWeaponMotion } from './enum/characterImage';
 import { MapleStoryApiError } from './mapleStoryApiError';
@@ -115,6 +116,7 @@ export abstract class MapleStoryApi {
   public abstract getUnion(ocid: string, dateOptions?: DateOptions): Promise<UnionDto | null>;
   public abstract getUnionRaider(ocid: string, dateOptions?: DateOptions): Promise<UnionRaiderDto | null>;
   public abstract getUnionArtifact(ocid: string, dateOptions?: DateOptions): Promise<UnionArtifactDto | null>;
+  public abstract getUnionChampion(ocid: string, dateOptions?: DateOptions): Promise<UnionChampionDto | null>;
 
   //#endregion
 
