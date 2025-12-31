@@ -1,4 +1,4 @@
-package dev.spiralmoon.maplestory.api.kms.dto.union;
+package dev.spiralmoon.maplestory.api.tms.dto.union;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
@@ -13,7 +13,7 @@ import java.time.ZonedDateTime;
 import java.util.List;
 
 /**
- * 유니온 챔피언 정보
+ * 聯盟冠軍資訊
  */
 @AllArgsConstructor
 @NoArgsConstructor
@@ -24,20 +24,20 @@ public class UnionChampionDTO implements dev.spiralmoon.maplestory.api.common.dt
         UnionChampionBadgeInfoDTO> {
 
     /**
-     * 조회 기준일 (KST, 일 단위 데이터로 시, 분은 일괄 0으로 표기)
+     * 查詢基準日（TST，以日為單位，時與分一律標示為 0）
      */
     @JsonProperty("date")
     private String date;
 
     /**
-     * 유니온 챔피언 정보
+     * 聯盟冠軍資訊
      */
     @JsonProperty("union_champion")
     @JsonSetter(nulls = Nulls.AS_EMPTY)
     private List<UnionChampionInfoDTO> unionChampion;
 
     /**
-     * 유니온 챔피언 휘장 정보
+     * 冠軍徽章效果
      */
     @JsonProperty("champion_badge_total_info")
     @JsonSetter(nulls = Nulls.AS_EMPTY)
