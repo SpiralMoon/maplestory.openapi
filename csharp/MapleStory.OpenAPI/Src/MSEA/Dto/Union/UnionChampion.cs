@@ -1,23 +1,22 @@
 using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
 using Base = MapleStory.OpenAPI.Common.DTO;
 
-namespace MapleStory.OpenAPI.KMS.DTO
+namespace MapleStory.OpenAPI.MSEA.DTO
 {
     /// <summary>
-    /// 유니온 챔피언 정보
+    /// Union Champion information
     /// </summary>
     public class UnionChampionDTO : Base.UnionChampionDTO<UnionChampionInfoDTO, UnionChampionBadgeInfoDTO>
     {
         /// <summary>
-        /// 조회 기준일 (KST, 일 단위 데이터로 시, 분은 일괄 0으로 표기)
+        /// Reference date for query (SGT, daily data with hours and minutes set to 0)
         /// </summary>
         [JsonProperty("date")]
         public override DateTimeOffset? Date
         {
             get
             {
-                return _date?.ToOffset(TimeSpan.FromHours(9));
+                return _date?.ToOffset(TimeSpan.FromHours(8));
             }
             set
             {
@@ -28,14 +27,14 @@ namespace MapleStory.OpenAPI.KMS.DTO
         private DateTimeOffset? _date;
 
         /// <summary>
-        /// 유니온 챔피언 정보
+        /// Union Champion information
         /// </summary>
         [JsonProperty("union_champion")]
         [JsonConverter(typeof(NullAsEmptyConverter))]
         public override List<UnionChampionInfoDTO> UnionChampion { get; set; } = new();
 
         /// <summary>
-        /// 유니온 챔피언 휘장 정보
+        /// Champion Insignia effects
         /// </summary>
         [JsonProperty("champion_badge_total_info")]
         [JsonConverter(typeof(NullAsEmptyConverter))]
@@ -43,49 +42,48 @@ namespace MapleStory.OpenAPI.KMS.DTO
     }
 
     /// <summary>
-    /// 유니온 챔피언 휘장 정보
+    /// Union Champion Insignia information
     /// </summary>
     public class UnionChampionBadgeInfoDTO : Base.UnionChampionBadgeInfoDTO
     {
         /// <summary>
-        /// 유니온 챔피언 휘장 효과
+        /// Union Champion Insignia information
         /// </summary>
         [JsonProperty("stat")]
         public override string? Stat { get; set; }
     }
 
     /// <summary>
-    /// 유니온 챔피언 상세 정보
-
+    /// Union Champion information
     /// </summary>
     public class UnionChampionInfoDTO : Base.UnionChampionInfoDTO<UnionChampionBadgeInfoDTO>
     {
         /// <summary>
-        /// 유니온 챔피언 캐릭터 명
+        /// Union Champion character name
         /// </summary>
         [JsonProperty("champion_name")]
         public override string ChampionName { get; set; }
 
         /// <summary>
-        /// 유니온 챔피언 슬롯
+        /// Union Champion slot
         /// </summary>
         [JsonProperty("champion_slot")]
         public override int ChampionSlot { get; set; }
 
         /// <summary>
-        /// 유니온 챔피언 등급
+        /// Union Champion level
         /// </summary>
         [JsonProperty("champion_grade")]
         public override string ChampionGrade { get; set; }
 
         /// <summary>
-        /// 유니온 챔피언 캐릭터의 직업
+        /// Union Champion character's job
         /// </summary>
         [JsonProperty("champion_class")]
         public override string ChampionClass { get; set; }
 
         /// <summary>
-        /// 챔피언 휘장 효과
+        /// Union Champion Insignia information
         /// </summary>
         [JsonProperty("champion_badge_info")]
         [JsonConverter(typeof(NullAsEmptyConverter))]
