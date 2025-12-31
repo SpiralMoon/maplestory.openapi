@@ -1115,7 +1115,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <para>- 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.</para>
         /// </summary>
         /// <param name="ocid">캐릭터 식별자</param>
-        public Task<UnionChampionDTO?> GetUnionChampion(string ocid)
+        public override Task<UnionChampionDTO?> GetUnionChampion(string ocid)
         {
             return GetUnionChampion(ocid, null);
         }
@@ -1131,7 +1131,7 @@ namespace MapleStory.OpenAPI.KMS
         /// </summary>
         /// <param name="ocid">캐릭터 식별자</param>
         /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
-        public async Task<UnionChampionDTO?> GetUnionChampion(string ocid, DateTimeOffset? dateTimeOffset)
+        public override async Task<UnionChampionDTO?> GetUnionChampion(string ocid, DateTimeOffset? dateTimeOffset)
         {
             var path = $"{subUrl}/v1/user/union-champion";
             var date = dateTimeOffset != null
@@ -1835,6 +1835,7 @@ namespace MapleStory.OpenAPI.KMS
         UnionDTO,
         UnionRaiderDTO,
         UnionArtifactDTO,
+        UnionChampionDTO,
         GuildDTO,
         GuildBasicDTO,
         CharacterImageOption>

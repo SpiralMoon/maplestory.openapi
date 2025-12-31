@@ -33,6 +33,7 @@ namespace MapleStory.OpenAPI.Common
         TUnion,
         TUnionRaider,
         TUnionArtifact,
+        TUnionChampion,
         TGuild,
         TGuildBasic,
         PCharacterImageOption>
@@ -124,6 +125,8 @@ namespace MapleStory.OpenAPI.Common
         public abstract Task<TUnionRaider?> GetUnionRaider(string ocid, DateTimeOffset? dateTimeOffset);
         public abstract Task<TUnionArtifact?> GetUnionArtifact(string ocid);
         public abstract Task<TUnionArtifact?> GetUnionArtifact(string ocid, DateTimeOffset? dateTimeOffset);
+        public abstract Task<TUnionChampion?> GetUnionChampion(string ocid);
+        public abstract Task<TUnionChampion?> GetUnionChampion(string ocid, DateTimeOffset? dateTimeOffset);
 
         #endregion
 

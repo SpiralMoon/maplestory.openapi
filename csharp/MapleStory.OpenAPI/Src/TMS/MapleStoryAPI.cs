@@ -1002,6 +1002,45 @@ namespace MapleStory.OpenAPI.TMS
             return await Get<UnionArtifactDTO>(path, query, checkEmpty: true);
         }
 
+        /// <summary>
+        /// 查詢聯盟冠軍資訊。
+        /// <para>- 楓之谷遊戲資料平均在 15 分鐘後即可使用。</para>
+        /// <para>- 您可以從 2025 年 12 月 18 日起搜尋資料。</para>
+        /// <para>- 您可以輸入所需日期以搜尋過往資料。前一日的資料將於翌日凌晨 2:00 起提供。(當您搜尋 10 月 15 日的資料時，將會擷取從 15 日 00:00 到 16 日 00:00 的資料。)</para>
+        /// <para>- 由於遊戲內容變動，OCID 可能會有所變更。在更新以 OCID 為基礎的服務時，請務必留意。</para>
+        /// <para>- 此 API 提供來自楓之谷台灣的資料。</para>
+        /// </summary>
+        /// <param name="ocid">角色辨識器</param>
+        public override Task<UnionChampionDTO?> GetUnionChampion(string ocid)
+        {
+            return GetUnionChampion(ocid, null);
+        }
+
+        /// <summary>
+        /// 查詢聯盟冠軍資訊。
+        /// <para>- 楓之谷遊戲資料平均在 15 分鐘後即可使用。</para>
+        /// <para>- 您可以從 2025 年 12 月 18 日起搜尋資料。</para>
+        /// <para>- 您可以輸入所需日期以搜尋過往資料。前一日的資料將於翌日凌晨 2:00 起提供。(當您搜尋 10 月 15 日的資料時，將會擷取從 15 日 00:00 到 16 日 00:00 的資料。)</para>
+        /// <para>- 由於遊戲內容變動，OCID 可能會有所變更。在更新以 OCID 為基礎的服務時，請務必留意。</para>
+        /// <para>- 此 API 提供來自楓之谷台灣的資料。</para>
+        /// </summary>
+        /// <param name="ocid">角色辨識器</param>
+        /// <param name="dateTimeOffset">要搜尋的日期 (TST)</param>
+        public override async Task<UnionChampionDTO?> GetUnionChampion(string ocid, DateTimeOffset? dateTimeOffset)
+        {
+            var path = $"{subUrl}/v1/user/union-champion";
+            var date = dateTimeOffset != null
+                ? ToDateString((DateTimeOffset)dateTimeOffset, MinDate(2025, 12, 18))
+                : null;
+            var query = new Dictionary<string, string?>()
+            {
+                { "ocid", ocid },
+                { "date", date }
+            };
+
+            return await Get<UnionChampionDTO>(path, query, checkEmpty: true);
+        }
+
         #endregion
 
         #region Guild Information Retrieval
@@ -1095,6 +1134,7 @@ namespace MapleStory.OpenAPI.TMS
         UnionDTO,
         UnionRaiderDTO,
         UnionArtifactDTO,
+        UnionChampionDTO,
         GuildDTO,
         GuildBasicDTO,
         CharacterImageOption>

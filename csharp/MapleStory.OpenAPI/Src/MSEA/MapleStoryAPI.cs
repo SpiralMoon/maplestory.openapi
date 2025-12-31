@@ -996,6 +996,43 @@ namespace MapleStory.OpenAPI.MSEA
             return await Get<UnionArtifactDTO>(path, query, checkEmpty: true);
         }
 
+        /// <summary>
+        /// Retrieves Union Champion information.
+        /// <para>- MapleStory game data can be verified approximately 15 minutes after updates.</para>
+        /// <para>- Data is available starting from December 18, 2025.</para>
+        /// <para>- Historical data can be queried by specifying the desired date, and data from the previous day can be accessed starting at 2 AM the next day. (For example, when querying data for December 22, data from 00:00 to 24:00 on December 22 will be retrieved.)</para>
+        /// <para>- Due to game content changes, the ocid may be updated. Please pay attention to this when updating services based on ocid.</para>
+        /// </summary>
+        /// <param name="ocid">Character identifier</param>
+        public override Task<UnionChampionDTO?> GetUnionChampion(string ocid)
+        {
+            return GetUnionChampion(ocid, null);
+        }
+
+        /// <summary>
+        /// Retrieves Union Champion information.
+        /// <para>- MapleStory game data can be verified approximately 15 minutes after updates.</para>
+        /// <para>- Data is available starting from December 18, 2025.</para>
+        /// <para>- Historical data can be queried by specifying the desired date, and data from the previous day can be accessed starting at 2 AM the next day. (For example, when querying data for December 22, data from 00:00 to 24:00 on December 22 will be retrieved.)</para>
+        /// <para>- Due to game content changes, the ocid may be updated. Please pay attention to this when updating services based on ocid.</para>
+        /// </summary>
+        /// <param name="ocid">Character identifier</param>
+        /// <param name="dateTimeOffset">Reference date for query (SGT)</param>
+        public override async Task<UnionChampionDTO?> GetUnionChampion(string ocid, DateTimeOffset? dateTimeOffset)
+        {
+            var path = $"{subUrl}/v1/user/union-champion";
+            var date = dateTimeOffset != null
+                ? ToDateString((DateTimeOffset)dateTimeOffset, MinDate(2025, 12, 18))
+                : null;
+            var query = new Dictionary<string, string?>()
+            {
+                { "ocid", ocid },
+                { "date", date }
+            };
+
+            return await Get<UnionChampionDTO>(path, query, checkEmpty: true);
+        }
+
         #endregion
 
         #region Guild Information Retrieval
@@ -1089,6 +1126,7 @@ namespace MapleStory.OpenAPI.MSEA
         UnionDTO,
         UnionRaiderDTO,
         UnionArtifactDTO,
+        UnionChampionDTO,
         GuildDTO,
         GuildBasicDTO,
         CharacterImageOption>
