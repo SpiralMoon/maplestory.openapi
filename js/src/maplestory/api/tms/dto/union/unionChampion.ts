@@ -6,21 +6,18 @@ import {
 } from '../../response/union/unionChampionBody';
 
 /**
- * 유니온 챔피언 정보
+ * 聯盟冠軍資訊
  */
 export class UnionChampionDto extends base.UnionChampionDto {
-  /**
-   * 조회 기준일 (KST, 일 단위 데이터로 시, 분은 일괄 0으로 표기)
-   */
   public override date: Date | null;
 
   /**
-   * 유니온 챔피언 정보
+   * 聯盟冠軍資訊
    */
   public override unionChampion: UnionChampionInfoDto[];
 
   /**
-   * 유니온 챔피언 휘장 정보
+   * 冠軍徽章效果
    */
   public override championBadgeTotalInfo: UnionChampionBadgeInfoDto[];
 
@@ -40,11 +37,11 @@ export class UnionChampionDto extends base.UnionChampionDto {
 }
 
 /**
- * 유니온 챔피언 휘장 정보
+ * 聯盟冠軍徽章資訊
  */
 export class UnionChampionBadgeInfoDto extends base.UnionChampionBadgeInfoDto {
   /**
-   * 유니온 챔피언 휘장 효과
+   * 聯盟冠軍徽章資訊
    */
   public override stat: string;
 
@@ -58,31 +55,31 @@ export class UnionChampionBadgeInfoDto extends base.UnionChampionBadgeInfoDto {
 }
 
 /**
- * 유니온 챔피언 상세 정보
+ * 聯盟冠軍資訊
  */
 export class UnionChampionInfoDto extends base.UnionChampionInfoDto {
   /**
-   * 유니온 챔피언 캐릭터 명
+   * 聯盟冠軍角色名稱
    */
   public override championName: string;
 
   /**
-   * 유니온 챔피언 슬롯
+   * 聯盟冠軍欄位
    */
   public override championSlot: number;
 
   /**
-   * 유니온 챔피언 등급
+   * 聯盟冠軍等級
    */
   public override championGrade: string;
 
   /**
-   * 유니온 챔피언 캐릭터의 직업
+   * 聯盟冠軍角色職業
    */
   public override championClass: string;
 
   /**
-   * 챔피언 휘장 효과
+   * 聯盟冠軍徽章資訊
    */
   public override championBadgeInfo: UnionChampionBadgeInfoDto[];
 

@@ -30,4 +30,5 @@ export * from './maplestory/api/common/dto/guild/guildBasic';
 
 export * from './maplestory/api/common/dto/union/union';
 export * from './maplestory/api/common/dto/union/unionArtifact';
+export * from './maplestory/api/common/dto/union/unionChampion';
 export * from './maplestory/api/common/dto/union/unionRaider';

@@ -27,4 +27,5 @@ export * from './dto/guild/guildBasic';
 
 export * from './dto/union/union';
 export * from './dto/union/unionArtifact';
+export * from './dto/union/unionChampion';
 export * from './dto/union/unionRaider';
