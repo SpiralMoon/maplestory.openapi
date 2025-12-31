@@ -95,5 +95,30 @@ class TestGetUnionArtifact(unittest.IsolatedAsyncioTestCase):
         print(e.value.error_code, e.value.message)
 
 
+class TestGetUnionChampion(unittest.IsolatedAsyncioTestCase):
+    async def test_success_get_union_champion(self):
+        response = await api.get_union_champion(ocid)
+        # nothing to assert because some characters may not have union champion
+        print(response)
+
+    async def test_success_get_union_champion_with_date(self):
+        response = await api.get_union_champion(ocid, date=datetime(2025, 12, 19))
+        assert response is not None
+        print(response)
+
+    async def test_fail_get_union_champion_with_invalid_date(self):
+        with pytest.raises(Exception) as e:
+            await api.get_union_champion(ocid, date=datetime(2025, 12, 17))
+        assert 'You can only retrieve data after 2025-12-18' in str(e.value)
+        print(e.value)
+
+    async def test_fail_get_union_champion_with_invalid_ocid_throw_OPENAPI00003(self):
+        invalid_ocid = 'invalid_ocid_123'
+        with pytest.raises(MapleStoryApiException) as e:
+            await api.get_union_champion(invalid_ocid)
+        assert e.value.error_code == 'OPENAPI00003'
+        print(e.value.error_code, e.value.message)
+
+
 if __name__ == '__main__':
     unittest.main()
