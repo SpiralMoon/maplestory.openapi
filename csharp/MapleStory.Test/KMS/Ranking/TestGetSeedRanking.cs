@@ -44,7 +44,7 @@ namespace MapleStory.Test.KMS.Ranking
         [Test, Description("success: GetTheSeedRanking with date")]
         public async Task GetTheSeedRanking_With_Date()
         {
-            var date = new DateTime(2023, 12, 23, 0, 0, 0);
+            var date = new DateTime(2025, 1, 1, 0, 0, 0);
             var response = await api.GetTheSeedRanking(worldName: null, ocid: null, page: null, date);
             Console.WriteLine(response.ToJson());
         }

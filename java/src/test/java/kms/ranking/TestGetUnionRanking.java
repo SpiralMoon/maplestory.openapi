@@ -49,7 +49,7 @@ public class TestGetUnionRanking {
     @Test
     @DisplayName("success: getUnionRanking with date")
     void getUnionRanking_with_date() {
-        LocalDateTime date = LocalDateTime.of(2023, 12, 23, 0, 0);
+        LocalDateTime date = LocalDateTime.of(2025, 1, 1, 0, 0);
         UnionRankingResponseDTO response = api.getUnionRanking(null, null, null, date).join();
         System.out.println(response.toString());
     }

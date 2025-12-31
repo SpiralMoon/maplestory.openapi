@@ -76,7 +76,7 @@ public class TestGetOverallRanking {
     @Test
     @DisplayName("success: getOverallRanking with date")
     void getOverallRanking_with_date() {
-        LocalDateTime date = LocalDateTime.of(2023, 12, 23, 0, 0);
+        LocalDateTime date = LocalDateTime.of(2025, 1, 1, 0, 0);
         OverallRankingResponseDTO response = api.getOverallRanking(null, null, null, null, null, date).join();
         System.out.println(response.toString());
     }

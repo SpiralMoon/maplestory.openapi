@@ -57,7 +57,7 @@ public class TestGetGuildRanking {
     @Test
     @DisplayName("success: getGuildRanking with date")
     void getGuildRanking_with_date() {
-        LocalDateTime date = LocalDateTime.of(2023, 12, 23, 0, 0);
+        LocalDateTime date = LocalDateTime.of(2025, 1, 1, 0, 0);
         GuildRankingResponseDTO response = api.getGuildRanking(null, 0, null, null, date).join();
         System.out.println(response.toString());
     }

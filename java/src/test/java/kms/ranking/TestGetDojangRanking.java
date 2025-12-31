@@ -57,7 +57,7 @@ public class TestGetDojangRanking {
     @Test
     @DisplayName("success: getDojangRanking with date")
     void getDojangRanking_with_date() {
-        LocalDateTime date = LocalDateTime.of(2023, 12, 23, 0, 0);
+        LocalDateTime date = LocalDateTime.of(2025, 1, 1, 0, 0);
         DojangRankingResponseDTO response = api.getDojangRanking(null, 1, null, null, null, date).join();
         System.out.println(response.toString());
     }

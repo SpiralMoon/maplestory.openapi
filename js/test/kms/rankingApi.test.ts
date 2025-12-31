@@ -68,9 +68,9 @@ describe('Ranking Information Retrieval', () => {
 
     test('success: getOverallRanking with date', async () => {
       const response = await api.getOverallRanking(undefined, {
-        year: 2023,
-        month: 12,
-        day: 23,
+        year: 2025,
+        month: 1,
+        day: 1,
       });
       console.log(toString(response));
     });
@@ -136,9 +136,9 @@ describe('Ranking Information Retrieval', () => {
 
     test('success: getUnionRanking with date', async () => {
       const response = await api.getUnionRanking(undefined, {
-        year: 2023,
-        month: 12,
-        day: 23,
+        year: 2025,
+        month: 1,
+        day: 1,
       });
       console.log(toString(response));
     });
@@ -217,9 +217,9 @@ describe('Ranking Information Retrieval', () => {
 
     test('success: getGuildRanking with date', async () => {
       const response = await api.getGuildRanking(undefined, {
-        year: 2023,
-        month: 12,
-        day: 23,
+        year: 2025,
+        month: 1,
+        day: 1,
       });
       console.log(toString(response));
     });
@@ -306,9 +306,9 @@ describe('Ranking Information Retrieval', () => {
 
     test('success: getDojangRanking with date', async () => {
       const response = await api.getDojangRanking(undefined, {
-        year: 2023,
-        month: 12,
-        day: 23,
+        year: 2025,
+        month: 1,
+        day: 1,
       });
       console.log(toString(response));
     });
@@ -374,9 +374,9 @@ describe('Ranking Information Retrieval', () => {
 
     test('success: getSeedRanking with date', async () => {
       const response = await api.getSeedRanking(undefined, {
-        year: 2023,
-        month: 12,
-        day: 23,
+        year: 2025,
+        month: 1,
+        day: 1,
       });
       console.log(toString(response));
     });
@@ -434,9 +434,9 @@ describe('Ranking Information Retrieval', () => {
 
     test('success: getAchievementRanking with date', async () => {
       const response = await api.getAchievementRanking(undefined, {
-        year: 2023,
-        month: 12,
-        day: 23,
+        year: 2025,
+        month: 1,
+        day: 1,
       });
       console.log(toString(response));
     });

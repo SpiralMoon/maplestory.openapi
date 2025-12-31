@@ -49,7 +49,7 @@ public class TestGetSeedRanking {
     @Test
     @DisplayName("success: getSeedRanking with date")
     void getSeedRanking_with_date() {
-        LocalDateTime date = LocalDateTime.of(2023, 12, 23, 0, 0);
+        LocalDateTime date = LocalDateTime.of(2025, 1, 1, 0, 0);
         TheSeedRankingResponseDTO response = api.getTheSeedRanking(null, null, null, date).join();
         System.out.println(response.toString());
     }

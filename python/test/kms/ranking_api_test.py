@@ -54,7 +54,7 @@ class TestGetOverallRanking(unittest.IsolatedAsyncioTestCase):
         print(response)
 
     async def test_success_get_overall_ranking_with_date(self):
-        response = await api.get_overall_ranking(date=datetime(2023, 12, 23))
+        response = await api.get_overall_ranking(date=datetime(2025, 1, 1))
         print(response)
 
     async def test_fail_get_overall_ranking_with_invalid_date(self):
@@ -91,7 +91,7 @@ class TestGetUnionRanking(unittest.IsolatedAsyncioTestCase):
         print(response)
 
     async def test_success_get_union_ranking_with_date(self):
-        response = await api.get_union_ranking(date=datetime(2023, 12, 23))
+        response = await api.get_union_ranking(date=datetime(2025, 1, 1))
         print(response)
 
     async def test_fail_get_union_ranking_with_invalid_date(self):
@@ -133,7 +133,7 @@ class TestGetGuildRanking(unittest.IsolatedAsyncioTestCase):
         print(response)
 
     async def test_success_get_guild_ranking_with_date(self):
-        response = await api.get_guild_ranking(date=datetime(2023, 12, 23))
+        response = await api.get_guild_ranking(date=datetime(2025, 1, 1))
         print(response)
 
     async def test_fail_get_guild_ranking_with_invalid_date(self):
@@ -178,7 +178,7 @@ class TestGetDojangRanking(unittest.IsolatedAsyncioTestCase):
         print(response)
 
     async def test_success_get_dojang_ranking_with_date(self):
-        response = await api.get_dojang_ranking(date=datetime(2023, 12, 23))
+        response = await api.get_dojang_ranking(date=datetime(2025, 1, 1))
         print(response)
 
     async def test_fail_get_dojang_ranking_with_invalid_date(self):
@@ -215,7 +215,7 @@ class TestGetTheSeedRanking(unittest.IsolatedAsyncioTestCase):
         print(response)
 
     async def test_success_get_theseed_ranking_with_date(self):
-        response = await api.get_theseed_ranking(date=datetime(2023, 12, 23))
+        response = await api.get_theseed_ranking(date=datetime(2025, 1, 1))
         print(response)
 
     async def test_fail_get_theseed_ranking_with_invalid_date(self):
@@ -247,7 +247,7 @@ class TestGetAchievementRanking(unittest.IsolatedAsyncioTestCase):
         print(response)
 
     async def test_success_get_achievement_ranking_with_date(self):
-        response = await api.get_achievement_ranking(date=datetime(2023, 12, 23))
+        response = await api.get_achievement_ranking(date=datetime(2025, 1, 1))
         print(response)
 
     async def test_fail_get_achievement_ranking_with_invalid_date(self):

@@ -42,7 +42,7 @@ public class TestGetAchievementRanking {
     @Test
     @DisplayName("success: getAchievementRanking with date")
     void getAchievementRanking_with_date() {
-        LocalDateTime date = LocalDateTime.of(2023, 12, 23, 0, 0);
+        LocalDateTime date = LocalDateTime.of(2025, 1, 1, 0, 0);
         AchievementRankingResponseDTO response = api.getAchievementRanking(null, null, date).join();
         System.out.println(response.toString());
     }

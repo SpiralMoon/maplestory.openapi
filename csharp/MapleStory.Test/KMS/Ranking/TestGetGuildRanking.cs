@@ -52,7 +52,7 @@ namespace MapleStory.Test.KMS.Ranking
         [Test, Description("success: GetGuildRanking with date")]
         public async Task GetGuildRanking_With_Date()
         {
-            var date = new DateTime(2023, 12, 23, 0, 0, 0);
+            var date = new DateTime(2025, 1, 1, 0, 0, 0);
             var response = await api.GetGuildRanking(worldName: null, rankingType: 0, guildName: null, page: null, date);
             Console.WriteLine(response.ToJson());
         }
