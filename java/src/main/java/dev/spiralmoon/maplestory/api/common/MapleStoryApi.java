@@ -9,6 +9,7 @@ import dev.spiralmoon.maplestory.api.common.dto.character.*;
 import dev.spiralmoon.maplestory.api.common.dto.guild.GuildBasicDTO;
 import dev.spiralmoon.maplestory.api.common.dto.guild.GuildDTO;
 import dev.spiralmoon.maplestory.api.common.dto.union.UnionArtifactDTO;
+import dev.spiralmoon.maplestory.api.common.dto.union.UnionChampionDTO;
 import dev.spiralmoon.maplestory.api.common.dto.union.UnionDTO;
 import dev.spiralmoon.maplestory.api.common.dto.union.UnionRaiderDTO;
 import dev.spiralmoon.maplestory.api.common.template.CharacterApi;
@@ -155,6 +156,8 @@ public abstract class MapleStoryApi {
     public abstract <UnionRaider extends UnionRaiderDTO<?, ?, ?>> CompletableFuture<UnionRaider> getUnionRaider(@NonNull String ocid, LocalDateTime localDateTime);
     public abstract <UnionArtifact extends UnionArtifactDTO<?, ?>> CompletableFuture<UnionArtifact> getUnionArtifact(@NonNull String ocid);
     public abstract <UnionArtifact extends UnionArtifactDTO<?, ?>> CompletableFuture<UnionArtifact> getUnionArtifact(@NonNull String ocid, LocalDateTime localDateTime);
+    public abstract <UnionChampion extends UnionChampionDTO<?, ?>> CompletableFuture<UnionChampion> getUnionChampion(@NonNull String ocid);
+    public abstract <UnionChampion extends UnionChampionDTO<?, ?>> CompletableFuture<UnionChampion> getUnionChampion(@NonNull String ocid, LocalDateTime localDateTime);
 
     //#endregion
 

@@ -5,6 +5,7 @@ import dev.spiralmoon.maplestory.api.msea.dto.character.*;
 import dev.spiralmoon.maplestory.api.msea.dto.guild.GuildBasicDTO;
 import dev.spiralmoon.maplestory.api.msea.dto.guild.GuildDTO;
 import dev.spiralmoon.maplestory.api.msea.dto.union.UnionArtifactDTO;
+import dev.spiralmoon.maplestory.api.msea.dto.union.UnionChampionDTO;
 import dev.spiralmoon.maplestory.api.msea.dto.union.UnionDTO;
 import dev.spiralmoon.maplestory.api.msea.dto.union.UnionRaiderDTO;
 import dev.spiralmoon.maplestory.api.msea.template.*;
@@ -1081,6 +1082,48 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
                     .create(UnionApi.class)
                     .getUnionArtifact(this.apiKey, ocid, date)
                     .enqueue(createCallback(future, UnionArtifactDTO.class, true));
+        } catch (Exception e) {
+            future.completeExceptionally(e);
+        }
+
+        return future;
+    }
+
+    /**
+     * Retrieves Union Champion information.<br>
+     * - MapleStory game data can be verified approximately 15 minutes after updates.<br>
+     * - Data is available starting from December 18, 2025.<br>
+     * - Historical data can be queried by specifying the desired date, and data from the previous day can be accessed starting at 2 AM the next day. (For example, when querying data for December 22, data from 00:00 to 24:00 on December 22 will be retrieved.)<br>
+     * - Due to game content changes, the ocid may be updated. Please pay attention to this when updating services based on ocid.<br>
+     * - This API provides data for MapleStory SEA.<br>
+     * @param ocid Character identifier
+     */
+    public CompletableFuture<UnionChampionDTO> getUnionChampion(@NonNull String ocid) {
+        return this.getUnionChampion(ocid, null);
+    }
+
+    /**
+     * Retrieves Union Champion information.<br>
+     * - MapleStory game data can be verified approximately 15 minutes after updates.<br>
+     * - Data is available starting from December 18, 2025.<br>
+     * - Historical data can be queried by specifying the desired date, and data from the previous day can be accessed starting at 2 AM the next day. (For example, when querying data for December 22, data from 00:00 to 24:00 on December 22 will be retrieved.)<br>
+     * - Due to game content changes, the ocid may be updated. Please pay attention to this when updating services based on ocid.<br>
+     * - This API provides data for MapleStory SEA.<br>
+     * @param ocid          Character identifier
+     * @param localDateTime Reference date for query (SGT)
+     */
+    public CompletableFuture<UnionChampionDTO> getUnionChampion(@NonNull String ocid, LocalDateTime localDateTime) {
+        final CompletableFuture<UnionChampionDTO> future = new CompletableFuture<>();
+
+        try {
+            final String date = localDateTime != null
+                    ? toDateString(localDateTime, minDate(2025, 12, 18))
+                    : null;
+
+            buildRetrofit()
+                    .create(UnionApi.class)
+                    .getUnionChampion(this.apiKey, ocid, date)
+                    .enqueue(createCallback(future, UnionChampionDTO.class, true));
         } catch (Exception e) {
             future.completeExceptionally(e);
         }

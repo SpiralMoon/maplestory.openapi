@@ -5,6 +5,7 @@ import dev.spiralmoon.maplestory.api.tms.dto.character.*;
 import dev.spiralmoon.maplestory.api.tms.dto.guild.GuildBasicDTO;
 import dev.spiralmoon.maplestory.api.tms.dto.guild.GuildDTO;
 import dev.spiralmoon.maplestory.api.tms.dto.union.UnionArtifactDTO;
+import dev.spiralmoon.maplestory.api.tms.dto.union.UnionChampionDTO;
 import dev.spiralmoon.maplestory.api.tms.dto.union.UnionDTO;
 import dev.spiralmoon.maplestory.api.tms.dto.union.UnionRaiderDTO;
 import dev.spiralmoon.maplestory.api.tms.param.CharacterImageOption;
@@ -1083,6 +1084,48 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
                     .create(UnionApi.class)
                     .getUnionArtifact(this.apiKey, ocid, date)
                     .enqueue(createCallback(future, UnionArtifactDTO.class, true));
+        } catch (Exception e) {
+            future.completeExceptionally(e);
+        }
+
+        return future;
+    }
+
+    /**
+     * 查詢聯盟冠軍資訊。<br>
+     * - 楓之谷遊戲資料平均在 15 分鐘後即可使用。<br>
+     * - 您可以從 2025 年 12 月 18 日起搜尋資料。<br>
+     * - 您可以輸入所需日期以搜尋過往資料。前一日的資料將於翌日凌晨 2:00 起提供。(當您搜尋 10 月 15 日的資料時，將會擷取從 15 日 00:00 到 16 日 00:00 的資料。)<br>
+     * - 由於遊戲內容變動，OCID 可能會有所變更。在更新以 OCID 為基礎的服務時，請務必留意。<br>
+     * - 此 API 提供來自楓之谷台灣的資料。<br>
+     * @param ocid 角色辨識器
+     */
+    public CompletableFuture<UnionChampionDTO> getUnionChampion(@NonNull String ocid) {
+        return this.getUnionChampion(ocid, null);
+    }
+
+    /**
+     * 查詢聯盟冠軍資訊。<br>
+     * - 楓之谷遊戲資料平均在 15 分鐘後即可使用。<br>
+     * - 您可以從 2025 年 12 月 18 日起搜尋資料。<br>
+     * - 您可以輸入所需日期以搜尋過往資料。前一日的資料將於翌日凌晨 2:00 起提供。(當您搜尋 10 月 15 日的資料時，將會擷取從 15 日 00:00 到 16 日 00:00 的資料。)<br>
+     * - 由於遊戲內容變動，OCID 可能會有所變更。在更新以 OCID 為基礎的服務時，請務必留意。<br>
+     * - 此 API 提供來自楓之谷台灣的資料。<br>
+     * @param ocid          角色辨識器
+     * @param localDateTime 要搜尋的日期 (TST)
+     */
+    public CompletableFuture<UnionChampionDTO> getUnionChampion(@NonNull String ocid, LocalDateTime localDateTime) {
+        final CompletableFuture<UnionChampionDTO> future = new CompletableFuture<>();
+
+        try {
+            final String date = localDateTime != null
+                    ? toDateString(localDateTime, minDate(2025, 12, 18))
+                    : null;
+
+            buildRetrofit()
+                    .create(UnionApi.class)
+                    .getUnionChampion(this.apiKey, ocid, date)
+                    .enqueue(createCallback(future, UnionChampionDTO.class, true));
         } catch (Exception e) {
             future.completeExceptionally(e);
         }
