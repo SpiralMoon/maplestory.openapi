@@ -28,6 +28,7 @@ from maplestory_openapi.api.tms.dto.character.character_image import CharacterIm
 from maplestory_openapi.api.tms.dto.union.union import Union
 from maplestory_openapi.api.tms.dto.union.union_artifact import UnionArtifact
 from maplestory_openapi.api.tms.dto.union.union_raider import UnionRaider
+from maplestory_openapi.api.tms.dto.union.union_champion import UnionChampion
 
 from maplestory_openapi.api.tms.dto.guild.guild import Guild
 from maplestory_openapi.api.tms.dto.guild.guild_basic import GuildBasic
@@ -659,6 +660,29 @@ class MapleStoryApi(BaseMapleStoryApi):
         r = await self.fetch(path, query)
         if self._is_empty_response(r): return None
         return UnionArtifact(**r)
+
+    async def get_union_champion(self, ocid: str, date: datetime | None = None) -> UnionChampion | None:
+        """
+        查詢聯盟冠軍資訊。
+
+        - 楓之谷遊戲資料平均在 15 分鐘後即可使用。
+        - 您可以從 2025 年 12 月 18 日起搜尋資料。
+        - 您可以輸入所需日期以搜尋過往資料。前一日的資料將於翌日凌晨 2:00 起提供。(當您搜尋 10 月 15 日的資料時，將會擷取從 15 日 00:00 到 16 日 00:00 的資料。)
+        - 由於遊戲內容變動，OCID 可能會有所變更。在更新以 OCID 為基礎的服務時，請務必留意。
+        - 此 API 提供來自楓之谷台灣的資料。
+
+        Args:
+            ocid (str): 角色辨識器
+            date (datetime or None): 要搜尋的日期 (TST)
+        """
+        path = self.sub_url + '/v1/user/union-champion'
+        query = {
+            'ocid': ocid,
+            'date': self._to_date_string(date, datetime(2025, 12, 18)) if date is not None else None,
+        }
+        r = await self.fetch(path, query)
+        if self._is_empty_response(r): return None
+        return UnionChampion(**r)
 
     #endregion
 

@@ -29,6 +29,7 @@ from maplestory_openapi.api.common.dto.character.character_image import Characte
 
 from maplestory_openapi.api.common.dto.union.union import Union
 from maplestory_openapi.api.common.dto.union.union_artifact import UnionArtifact
+from maplestory_openapi.api.common.dto.union.union_champion import UnionChampion
 from maplestory_openapi.api.common.dto.union.union_raider import UnionRaider
 
 from maplestory_openapi.api.common.dto.guild.guild import Guild
@@ -154,6 +155,10 @@ class MapleStoryApi(ABC, BaseModel):
 
     @abstractmethod
     async def get_union_artifact(self, ocid: str, date: datetime | None = None) -> UnionArtifact | None:
+        pass
+
+    @abstractmethod
+    async def get_union_champion(self, ocid: str, date: datetime | None = None) -> UnionChampion | None:
         pass
 
     #endregion

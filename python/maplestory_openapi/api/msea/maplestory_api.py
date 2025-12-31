@@ -28,6 +28,7 @@ from maplestory_openapi.api.msea.dto.character.character_image import CharacterI
 from maplestory_openapi.api.msea.dto.union.union import Union
 from maplestory_openapi.api.msea.dto.union.union_artifact import UnionArtifact
 from maplestory_openapi.api.msea.dto.union.union_raider import UnionRaider
+from maplestory_openapi.api.msea.dto.union.union_champion import UnionChampion
 
 from maplestory_openapi.api.msea.dto.guild.guild import Guild
 from maplestory_openapi.api.msea.dto.guild.guild_basic import GuildBasic
@@ -659,6 +660,29 @@ class MapleStoryApi(BaseMapleStoryApi):
         r = await self.fetch(path, query)
         if self._is_empty_response(r): return None
         return UnionArtifact(**r)
+
+    async def get_union_champion(self, ocid: str, date: datetime | None = None) -> UnionChampion | None:
+        """
+        Retrieves Union Champion information.
+
+        - MapleStory game data can be verified approximately 15 minutes after updates.
+        - Data is available starting from December 18, 2025.
+        - Historical data can be queried by specifying the desired date, and data from the previous day can be accessed starting at 2 AM the next day. (For example, when querying data for December 22, data from 00:00 to 24:00 on December 22 will be retrieved.)
+        - Due to game content changes, the ocid may be updated. Please pay attention to this when updating services based on ocid.
+        - This API provides data for MapleStory SEA.
+
+        Args:
+            ocid (str): Character identifier
+            date (datetime or None): Reference date for query (SGT)
+        """
+        path = self.sub_url + '/v1/user/union-champion'
+        query = {
+            'ocid': ocid,
+            'date': self._to_date_string(date, datetime(2025, 12, 18)) if date is not None else None,
+        }
+        r = await self.fetch(path, query)
+        if self._is_empty_response(r): return None
+        return UnionChampion(**r)
 
     #endregion
 
