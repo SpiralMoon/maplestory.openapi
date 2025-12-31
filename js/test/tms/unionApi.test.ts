@@ -120,4 +120,51 @@ describe('Union Information Retrieval', () => {
       }
     });
   });
+
+  describe('getUnionChampion', () => {
+    test('success: getUnionChampion', async () => {
+      const response = await api.getUnionChampion(ocid);
+      // nothing to assert because some characters may not have union champion
+      console.log(toString(response));
+    });
+
+    test('success: getUnionChampion with date', async () => {
+      const response = await api.getUnionChampion(ocid, {
+        year: 2025,
+        month: 12,
+        day: 19,
+      })
+      expect(response).toBeDefined()
+      console.log(toString(response))
+    })
+
+    test('fail: getUnionChampion with invalid date', async () => {
+      try {
+        await api.getUnionChampion(ocid, {
+          year: 2025,
+          month: 12,
+          day: 17,
+        });
+        fail('An error should have been thrown.');
+      } catch (e) {
+        const error = e as Error;
+        expect(error).toBeInstanceOf(Error);
+        expect(error.message).toContain('You can only retrieve data after 2025-12-18.');
+        console.log(error.message);
+      }
+    });
+
+    test('fail: getUnionChampion with invalid ocid throw OPENAPI00003', async () => {
+      const invalidOcid = 'invalid_ocid_123';
+      try {
+        await api.getUnionChampion(invalidOcid);
+        fail('An error should have been thrown.');
+      } catch (e) {
+        const error = e as MapleStoryApiError;
+        expect(error).toBeInstanceOf(MapleStoryApiError);
+        expect(error.errorCode).toBe(MapleStoryApiErrorCode.OPENAPI00003);
+        console.log(error.errorCode, error.message);
+      }
+    });
+  });
 });
