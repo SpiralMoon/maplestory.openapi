@@ -119,8 +119,8 @@ public abstract class MapleStoryApi {
     public abstract <CharacterPropensity extends CharacterPropensityDTO> CompletableFuture<CharacterPropensity> getCharacterPropensity(@NonNull String ocid, LocalDateTime localDateTime);
     public abstract <CharacterAbility extends CharacterAbilityDTO<?, ?>> CompletableFuture<CharacterAbility> getCharacterAbility(@NonNull String ocid);
     public abstract <CharacterAbility extends CharacterAbilityDTO<?, ?>> CompletableFuture<CharacterAbility> getCharacterAbility(@NonNull String ocid, LocalDateTime localDateTime);
-    public abstract <CharacterItemEquipment extends CharacterItemEquipmentDTO<?, ?, ?, ?>> CompletableFuture<CharacterItemEquipment> getCharacterItemEquipment(@NonNull String ocid);
-    public abstract <CharacterItemEquipment extends CharacterItemEquipmentDTO<?, ?, ?, ?>> CompletableFuture<CharacterItemEquipment> getCharacterItemEquipment(@NonNull String ocid, LocalDateTime localDateTime);
+    public abstract <CharacterItemEquipment extends CharacterItemEquipmentDTO<?, ?, ?, ?, ?>> CompletableFuture<CharacterItemEquipment> getCharacterItemEquipment(@NonNull String ocid);
+    public abstract <CharacterItemEquipment extends CharacterItemEquipmentDTO<?, ?, ?, ?, ?>> CompletableFuture<CharacterItemEquipment> getCharacterItemEquipment(@NonNull String ocid, LocalDateTime localDateTime);
     public abstract <CharacterCashItemEquipment extends CharacterCashItemEquipmentDTO<?>> CompletableFuture<CharacterCashItemEquipment> getCharacterCashItemEquipment(@NonNull String ocid);
     public abstract <CharacterCashItemEquipment extends CharacterCashItemEquipmentDTO<?>> CompletableFuture<CharacterCashItemEquipment> getCharacterCashItemEquipment(@NonNull String ocid, LocalDateTime localDateTime);
     public abstract <CharacterSymbolEquipment extends CharacterSymbolEquipmentDTO<?>> CompletableFuture<CharacterSymbolEquipment> getCharacterSymbolEquipment(@NonNull String ocid);
