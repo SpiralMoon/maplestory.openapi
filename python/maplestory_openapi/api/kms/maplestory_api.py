@@ -888,7 +888,7 @@ class MapleStoryApi(BaseMapleStoryApi):
         종합 랭킹 정보를 조회합니다.
 
         - 2023년 12월 22일 데이터부터 조회할 수 있습니다.
-        - 오전 8시 30분부터 오늘의 랭킹 정보를 조회할 수 있습니다.
+        - 오늘의 랭킹 정보는 오전 9시 경부터 조회가 가능합니다. 상황에 따라 시간이 더 소요될 수 있습니다.
         - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
 
         Args:
@@ -899,7 +899,7 @@ class MapleStoryApi(BaseMapleStoryApi):
             ocid(str or None): 캐릭터 식별자
             page(int or None): 페이지 번호
         """
-        _date = self._get_proper_default_datetime(update_hour=8, update_minute=30, day_offset=0) if date is None else date
+        _date = self._get_proper_default_datetime(update_hour=9, update_minute=0, day_offset=0) if date is None else date
         path = self.sub_url + '/v1/ranking/overall'
         query = {
             'date': self._to_date_string(_date, datetime(2023, 12, 22)),
@@ -917,7 +917,7 @@ class MapleStoryApi(BaseMapleStoryApi):
         유니온 랭킹 정보를 조회합니다.
 
         - 2023년 12월 22일 데이터부터 조회할 수 있습니다.
-        - 오전 8시 30분부터 오늘의 랭킹 정보를 조회할 수 있습니다.
+        - 오늘의 랭킹 정보는 오전 9시 경부터 조회가 가능합니다. 상황에 따라 시간이 더 소요될 수 있습니다.
         - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
 
         Args:
@@ -926,7 +926,7 @@ class MapleStoryApi(BaseMapleStoryApi):
             ocid(str or None): 캐릭터 식별자
             page(int or None): 페이지 번호
         """
-        _date = self._get_proper_default_datetime(update_hour=8, update_minute=30, day_offset=0) if date is None else date
+        _date = self._get_proper_default_datetime(update_hour=9, update_minute=0, day_offset=0) if date is None else date
         path = self.sub_url + '/v1/ranking/union'
         query = {
             'date': self._to_date_string(_date, datetime(2023, 12, 22)),
@@ -942,7 +942,7 @@ class MapleStoryApi(BaseMapleStoryApi):
         길드 랭킹 정보를 조회합니다.
 
         - 2023년 12월 22일 데이터부터 조회할 수 있습니다.
-        - 오전 8시 30분부터 오늘의 랭킹 정보를 조회할 수 있습니다.
+        - 오늘의 랭킹 정보는 오전 9시 경부터 조회가 가능합니다. 상황에 따라 시간이 더 소요될 수 있습니다.
         - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
 
         Args:
@@ -952,7 +952,7 @@ class MapleStoryApi(BaseMapleStoryApi):
             guild_name(str or None): 길드 명
             page(int or None): 페이지 번호
         """
-        _date = self._get_proper_default_datetime(update_hour=8, update_minute=30, day_offset=0) if date is None else date
+        _date = self._get_proper_default_datetime(update_hour=9, update_minute=0, day_offset=0) if date is None else date
         path = self.sub_url + '/v1/ranking/guild'
         query = {
             'date': self._to_date_string(_date, datetime(2023, 12, 22)),
@@ -969,7 +969,7 @@ class MapleStoryApi(BaseMapleStoryApi):
         무릉도장 랭킹 정보를 조회합니다.
 
         - 2023년 12월 22일 데이터부터 조회할 수 있습니다.
-        - 오전 8시 30분부터 오늘의 랭킹 정보를 조회할 수 있습니다.
+        - 오늘의 랭킹 정보는 오전 9시 경부터 조회가 가능합니다. 상황에 따라 시간이 더 소요될 수 있습니다.
         - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
 
         Args:
@@ -980,7 +980,7 @@ class MapleStoryApi(BaseMapleStoryApi):
             ocid(str or None): 캐릭터 식별자
             page(int or None): 페이지 번호
         """
-        _date = self._get_proper_default_datetime(update_hour=8, update_minute=30, day_offset=0) if date is None else date
+        _date = self._get_proper_default_datetime(update_hour=9, update_minute=0, day_offset=0) if date is None else date
         path = self.sub_url + '/v1/ranking/dojang'
         query = {
             'date': self._to_date_string(_date, datetime(2023, 12, 22)),
@@ -998,7 +998,7 @@ class MapleStoryApi(BaseMapleStoryApi):
         더 시드 랭킹 정보를 조회합니다.
 
         - 2023년 12월 22일 데이터부터 조회할 수 있습니다.
-        - 오전 8시 30분부터 오늘의 랭킹 정보를 조회할 수 있습니다.
+        - 오늘의 랭킹 정보는 오전 9시 경부터 조회가 가능합니다. 상황에 따라 시간이 더 소요될 수 있습니다.
         - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
 
         Args:
@@ -1007,7 +1007,7 @@ class MapleStoryApi(BaseMapleStoryApi):
             ocid(str or None): 캐릭터 식별자
             page(int or None): 페이지 번호
         """
-        _date = self._get_proper_default_datetime(update_hour=8, update_minute=30, day_offset=0) if date is None else date
+        _date = self._get_proper_default_datetime(update_hour=9, update_minute=0, day_offset=0) if date is None else date
         path = self.sub_url + '/v1/ranking/theseed'
         query = {
             'date': self._to_date_string(_date, datetime(2023, 12, 22)),
@@ -1023,7 +1023,7 @@ class MapleStoryApi(BaseMapleStoryApi):
         업적 랭킹 정보를 조회합니다.
 
         - 2023년 12월 22일 데이터부터 조회할 수 있습니다.
-        - 오전 8시 30분부터 오늘의 랭킹 정보를 조회할 수 있습니다.
+        - 오늘의 랭킹 정보는 오전 9시 경부터 조회가 가능합니다. 상황에 따라 시간이 더 소요될 수 있습니다.
         - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
 
         Args:
@@ -1031,7 +1031,7 @@ class MapleStoryApi(BaseMapleStoryApi):
             ocid(str or None): 캐릭터 식별자
             page(int or None): 페이지 번호
         """
-        _date = self._get_proper_default_datetime(update_hour=8, update_minute=30, day_offset=0) if date is None else date
+        _date = self._get_proper_default_datetime(update_hour=9, update_minute=0, day_offset=0) if date is None else date
         path = self.sub_url + '/v1/ranking/achievement'
         query = {
             'date': self._to_date_string(_date, datetime(2023, 12, 22)),

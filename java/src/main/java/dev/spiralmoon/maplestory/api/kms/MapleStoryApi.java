@@ -1574,7 +1574,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
     /**
      * 종합 랭킹 정보를 조회합니다.<br>
      * - 2023년 12월 22일 데이터부터 조회할 수 있습니다.<br>
-     * - 오전 8시 30분부터 오늘의 랭킹 정보를 조회할 수 있습니다.<br>
+     * - 오늘의 랭킹 정보는 오전 9시 경부터 조회가 가능합니다. 상황에 따라 시간이 더 소요될 수 있습니다.<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param worldName      월드 명 <a href="https://openapi.nexon.com/ko/game/maplestory/?id=18">Available values</a>
@@ -1584,7 +1584,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
      * @param page           페이지 번호
      */
     public CompletableFuture<OverallRankingResponseDTO> getOverallRanking(String worldName, Integer worldType, String characterClass, String ocid, Integer page) {
-        return this.getOverallRanking(worldName, worldType, characterClass, ocid, page, getProperDefaultDateTime(new LatestApiUpdateTimeOption(8, 30, 0)));
+        return this.getOverallRanking(worldName, worldType, characterClass, ocid, page, getProperDefaultDateTime(new LatestApiUpdateTimeOption(9, 0, 0)));
     }
 
     /**
@@ -1620,7 +1620,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
     /**
      * 유니온 랭킹 정보를 조회합니다.<br>
      * - 2023년 12월 22일 데이터부터 조회할 수 있습니다.<br>
-     * - 오전 8시 30분부터 오늘의 랭킹 정보를 조회할 수 있습니다.<br>
+     * - 오늘의 랭킹 정보는 오전 9시 경부터 조회가 가능합니다. 상황에 따라 시간이 더 소요될 수 있습니다.<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param worldName 월드 명 <a href="https://openapi.nexon.com/ko/game/maplestory/?id=14">Available values</a>
@@ -1628,7 +1628,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
      * @param page      페이지 번호
      */
     public CompletableFuture<UnionRankingResponseDTO> getUnionRanking(String worldName, String ocid, Integer page) {
-        return this.getUnionRanking(worldName, ocid, page, getProperDefaultDateTime(new LatestApiUpdateTimeOption(8, 30, 0)));
+        return this.getUnionRanking(worldName, ocid, page, getProperDefaultDateTime(new LatestApiUpdateTimeOption(9, 0, 0)));
     }
 
     /**
@@ -1662,7 +1662,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
     /**
      * 길드 랭킹 정보를 조회합니다.<br>
      * - 2023년 12월 22일 데이터부터 조회할 수 있습니다.<br>
-     * - 오전 8시 30분부터 오늘의 랭킹 정보를 조회할 수 있습니다.<br>
+     * - 오늘의 랭킹 정보는 오전 9시 경부터 조회가 가능합니다. 상황에 따라 시간이 더 소요될 수 있습니다.<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param worldName   월드 명 <a href="https://openapi.nexon.com/ko/game/maplestory/?id=14">Available values</a>
@@ -1671,7 +1671,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
      * @param page        페이지 번호
      */
     public CompletableFuture<GuildRankingResponseDTO> getGuildRanking(String worldName, int rankingType, String guildName, Integer page) {
-        return this.getGuildRanking(worldName, rankingType, guildName, page, getProperDefaultDateTime(new LatestApiUpdateTimeOption(8, 30, 0)));
+        return this.getGuildRanking(worldName, rankingType, guildName, page, getProperDefaultDateTime(new LatestApiUpdateTimeOption(9, 0, 0)));
     }
 
     /**
@@ -1706,7 +1706,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
     /**
      * 무릉도장 랭킹 정보를 조회합니다.<br>
      * - 2023년 12월 22일 데이터부터 조회할 수 있습니다.<br>
-     * - 오전 8시 30분부터 오늘의 랭킹 정보를 조회할 수 있습니다.<br>
+     * - 오늘의 랭킹 정보는 오전 9시 경부터 조회가 가능합니다. 상황에 따라 시간이 더 소요될 수 있습니다.<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param worldName      월드 명 <a href="https://openapi.nexon.com/ko/game/maplestory/?id=14">Available values</a>
@@ -1716,7 +1716,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
      * @param page           페이지 번호
      */
     public CompletableFuture<DojangRankingResponseDTO> getDojangRanking(String worldName, int difficulty, String characterClass, String ocid, Integer page) {
-        return this.getDojangRanking(worldName, difficulty, characterClass, ocid, page, getProperDefaultDateTime(new LatestApiUpdateTimeOption(8, 30, 0)));
+        return this.getDojangRanking(worldName, difficulty, characterClass, ocid, page, getProperDefaultDateTime(new LatestApiUpdateTimeOption(9, 0, 0)));
     }
 
     /**
@@ -1752,7 +1752,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
     /**
      * 더 시드 랭킹 정보를 조회합니다.<br>
      * - 2023년 12월 22일 데이터부터 조회할 수 있습니다.<br>
-     * - 오전 8시 30분부터 오늘의 랭킹 정보를 조회할 수 있습니다.<br>
+     * - 오늘의 랭킹 정보는 오전 9시 경부터 조회가 가능합니다. 상황에 따라 시간이 더 소요될 수 있습니다.<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param worldName 월드 명 <a href="https://openapi.nexon.com/ko/game/maplestory/?id=14">Available values</a>
@@ -1760,7 +1760,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
      * @param page      페이지 번호
      */
     public CompletableFuture<TheSeedRankingResponseDTO> getTheSeedRanking(String worldName, String ocid, Integer page) {
-        return this.getTheSeedRanking(worldName, ocid, page, getProperDefaultDateTime(new LatestApiUpdateTimeOption(8, 30, 0)));
+        return this.getTheSeedRanking(worldName, ocid, page, getProperDefaultDateTime(new LatestApiUpdateTimeOption(9, 0, 0)));
     }
 
     /**
@@ -1794,14 +1794,14 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
     /**
      * 업적 랭킹 정보를 조회합니다.<br>
      * - 2023년 12월 22일 데이터부터 조회할 수 있습니다.<br>
-     * - 오전 8시 30분부터 오늘의 랭킹 정보를 조회할 수 있습니다.<br>
+     * - 오늘의 랭킹 정보는 오전 9시 경부터 조회가 가능합니다. 상황에 따라 시간이 더 소요될 수 있습니다.<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
      *
      * @param ocid 캐릭터 식별자
      * @param page 페이지 번호
      */
     public CompletableFuture<AchievementRankingResponseDTO> getAchievementRanking(String ocid, Integer page) {
-        return this.getAchievementRanking(ocid, page, getProperDefaultDateTime(new LatestApiUpdateTimeOption(8, 30, 0)));
+        return this.getAchievementRanking(ocid, page, getProperDefaultDateTime(new LatestApiUpdateTimeOption(9, 0, 0)));
     }
 
     /**

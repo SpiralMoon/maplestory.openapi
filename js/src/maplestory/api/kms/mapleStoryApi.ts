@@ -104,9 +104,9 @@ import {
   CharacterImageEmotion,
   CharacterImageWeaponMotion,
 } from '../common/enum/characterImage';
+import { removeQuery } from '../common/lib'
 import { DateOptions } from '../common/mapleStoryApi';
 import * as base from '../common/mapleStoryApi';
-import { removeQuery } from '../common/lib'
 
 /**
  * MapleStory OpenAPI client for KMS.<br>
@@ -1509,8 +1509,7 @@ export class MapleStoryApi extends base.MapleStoryApi {
 
   /**
    * 종합 랭킹 정보를 조회합니다.
-   * - 2023년 12월 22일 데이터부터 조회할 수 있습니다.
-   * - 오전 8시 30분부터 오늘의 랭킹 정보를 조회할 수 있습니다.
+   * - 오늘의 랭킹 정보는 오전 9시 경부터 조회가 가능합니다. 상황에 따라 시간이 더 소요될 수 있습니다.
    * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
    *
    * @param filterOptions 검색 기준
@@ -1520,8 +1519,8 @@ export class MapleStoryApi extends base.MapleStoryApi {
   public async getOverallRanking(
     filterOptions?: OverallRankingApiFilterOptions,
     dateOptions: DateOptions = this.getProperDefaultDateOptions({
-      hour: 8,
-      minute: 30,
+      hour: 9,
+      minute: 0,
       dateOffset: 0,
     }),
   ): Promise<OverallRankingResponseDto> {
@@ -1555,7 +1554,7 @@ export class MapleStoryApi extends base.MapleStoryApi {
   /**
    * 유니온 랭킹 정보를 조회합니다.
    * - 2023년 12월 22일 데이터부터 조회할 수 있습니다.
-   * - 오전 8시 30분부터 오늘의 랭킹 정보를 조회할 수 있습니다.
+   * - 오늘의 랭킹 정보는 오전 9시 경부터 조회가 가능합니다. 상황에 따라 시간이 더 소요될 수 있습니다.
    * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
    *
    * @param filterOptions 검색 기준
@@ -1564,8 +1563,8 @@ export class MapleStoryApi extends base.MapleStoryApi {
   public async getUnionRanking(
     filterOptions?: UnionRankingApiFilterOptions,
     dateOptions: DateOptions = this.getProperDefaultDateOptions({
-      hour: 8,
-      minute: 30,
+      hour: 9,
+      minute: 0,
       dateOffset: 0,
     }),
   ): Promise<UnionRankingResponseDto> {
@@ -1596,7 +1595,7 @@ export class MapleStoryApi extends base.MapleStoryApi {
   /**
    * 길드 랭킹 정보를 조회합니다.
    * - 2023년 12월 22일 데이터부터 조회할 수 있습니다.
-   * - 오전 8시 30분부터 오늘의 랭킹 정보를 조회할 수 있습니다.
+   * - 오늘의 랭킹 정보는 오전 9시 경부터 조회가 가능합니다. 상황에 따라 시간이 더 소요될 수 있습니다.
    * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
    *
    * @param filterOptions 검색 기준
@@ -1605,8 +1604,8 @@ export class MapleStoryApi extends base.MapleStoryApi {
   public async getGuildRanking(
     filterOptions?: GuildRankingApiFilterOptions,
     dateOptions: DateOptions = this.getProperDefaultDateOptions({
-      hour: 8,
-      minute: 30,
+      hour: 9,
+      minute: 0,
       dateOffset: 0,
     }),
   ): Promise<GuildRankingResponseDto> {
@@ -1639,7 +1638,7 @@ export class MapleStoryApi extends base.MapleStoryApi {
   /**
    * 무릉도장 랭킹 정보를 조회합니다.
    * - 2023년 12월 22일 데이터부터 조회할 수 있습니다.
-   * - 오전 8시 30분부터 오늘의 랭킹 정보를 조회할 수 있습니다.
+   * - 오늘의 랭킹 정보는 오전 9시 경부터 조회가 가능합니다. 상황에 따라 시간이 더 소요될 수 있습니다.
    * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
    *
    * @param filterOptions 검색 기준
@@ -1648,8 +1647,8 @@ export class MapleStoryApi extends base.MapleStoryApi {
   public async getDojangRanking(
     filterOptions?: DojangRankingApiFilterOptions,
     dateOptions: DateOptions = this.getProperDefaultDateOptions({
-      hour: 8,
-      minute: 30,
+      hour: 9,
+      minute: 0,
       dateOffset: 0,
     }),
   ): Promise<DojangRankingResponseDto> {
@@ -1684,7 +1683,7 @@ export class MapleStoryApi extends base.MapleStoryApi {
   /**
    * 더 시드 랭킹 정보를 조회합니다.
    * - 2023년 12월 22일 데이터부터 조회할 수 있습니다.
-   * - 오전 8시 30분부터 오늘의 랭킹 정보를 조회할 수 있습니다.
+   * - 오늘의 랭킹 정보는 오전 9시 경부터 조회가 가능합니다. 상황에 따라 시간이 더 소요될 수 있습니다.
    * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
    *
    * @param filterOptions 검색 기준
@@ -1693,8 +1692,8 @@ export class MapleStoryApi extends base.MapleStoryApi {
   public async getSeedRanking(
     filterOptions?: TheSeedRankingApiFilterOptions,
     dateOptions: DateOptions = this.getProperDefaultDateOptions({
-      hour: 8,
-      minute: 30,
+      hour: 9,
+      minute: 0,
       dateOffset: 0,
     }),
   ): Promise<TheSeedRankingResponseDto> {
@@ -1725,7 +1724,7 @@ export class MapleStoryApi extends base.MapleStoryApi {
   /**
    * 업적 랭킹 정보를 조회합니다.
    * - 2023년 12월 22일 데이터부터 조회할 수 있습니다.
-   * - 오전 8시 30분부터 오늘의 랭킹 정보를 조회할 수 있습니다.
+   * - 오늘의 랭킹 정보는 오전 9시 경부터 조회가 가능합니다. 상황에 따라 시간이 더 소요될 수 있습니다.
    * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
    *
    * @param filterOptions 검색 기준
@@ -1734,8 +1733,8 @@ export class MapleStoryApi extends base.MapleStoryApi {
   public async getAchievementRanking(
     filterOptions?: AchievementRankingApiFilterOptions,
     dateOptions: DateOptions = this.getProperDefaultDateOptions({
-      hour: 8,
-      minute: 30,
+      hour: 9,
+      minute: 0,
       dateOffset: 0,
     }),
   ): Promise<AchievementRankingResponseDto> {
