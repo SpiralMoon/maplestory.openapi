@@ -1509,8 +1509,10 @@ export class MapleStoryApi extends base.MapleStoryApi {
 
   /**
    * 종합 랭킹 정보를 조회합니다.
+   * - 2023년 12월 21일 데이터부터 조회할 수 있습니다.
    * - 오늘의 랭킹 정보는 오전 9시 경부터 조회가 가능합니다. 상황에 따라 시간이 더 소요될 수 있습니다.
    * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
+   * - 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.
    *
    * @param filterOptions 검색 기준
    * @param dateOptions 조회 기준일 (KST).
@@ -1556,6 +1558,7 @@ export class MapleStoryApi extends base.MapleStoryApi {
    * - 2023년 12월 22일 데이터부터 조회할 수 있습니다.
    * - 오늘의 랭킹 정보는 오전 9시 경부터 조회가 가능합니다. 상황에 따라 시간이 더 소요될 수 있습니다.
    * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
+   * - 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.
    *
    * @param filterOptions 검색 기준
    * @param dateOptions 조회 기준일 (KST)
@@ -1597,6 +1600,7 @@ export class MapleStoryApi extends base.MapleStoryApi {
    * - 2023년 12월 22일 데이터부터 조회할 수 있습니다.
    * - 오늘의 랭킹 정보는 오전 9시 경부터 조회가 가능합니다. 상황에 따라 시간이 더 소요될 수 있습니다.
    * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
+   * - 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.
    *
    * @param filterOptions 검색 기준
    * @param dateOptions 조회 기준일 (KST)
@@ -1640,6 +1644,7 @@ export class MapleStoryApi extends base.MapleStoryApi {
    * - 2023년 12월 22일 데이터부터 조회할 수 있습니다.
    * - 오늘의 랭킹 정보는 오전 9시 경부터 조회가 가능합니다. 상황에 따라 시간이 더 소요될 수 있습니다.
    * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
+   * - 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.
    *
    * @param filterOptions 검색 기준
    * @param dateOptions 조회 기준일 (KST)
@@ -1685,6 +1690,7 @@ export class MapleStoryApi extends base.MapleStoryApi {
    * - 2023년 12월 22일 데이터부터 조회할 수 있습니다.
    * - 오늘의 랭킹 정보는 오전 9시 경부터 조회가 가능합니다. 상황에 따라 시간이 더 소요될 수 있습니다.
    * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
+   * - 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.
    *
    * @param filterOptions 검색 기준
    * @param dateOptions 조회 기준일 (KST)
@@ -1726,6 +1732,7 @@ export class MapleStoryApi extends base.MapleStoryApi {
    * - 2023년 12월 22일 데이터부터 조회할 수 있습니다.
    * - 오늘의 랭킹 정보는 오전 9시 경부터 조회가 가능합니다. 상황에 따라 시간이 더 소요될 수 있습니다.
    * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
+   * - 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.
    *
    * @param filterOptions 검색 기준
    * @param dateOptions 조회 기준일 (KST)

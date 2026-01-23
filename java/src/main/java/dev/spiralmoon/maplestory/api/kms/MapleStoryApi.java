@@ -1576,6 +1576,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
      * - 2023년 12월 22일 데이터부터 조회할 수 있습니다.<br>
      * - 오늘의 랭킹 정보는 오전 9시 경부터 조회가 가능합니다. 상황에 따라 시간이 더 소요될 수 있습니다.<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     * - 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.<br>
      *
      * @param worldName      월드 명 <a href="https://openapi.nexon.com/ko/game/maplestory/?id=18">Available values</a>
      * @param worldType      월드 타입 (0:일반, 1:에오스,헬리오스) (기본 값은 0이며, worldName 입력 시 미 반영)
@@ -1592,6 +1593,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
      * - 2023년 12월 22일 데이터부터 조회할 수 있습니다.<br>
      * - 오전 8시 30분부터 오늘의 랭킹 정보를 조회할 수 있습니다.<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     * - 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.<br>
      *
      * @param worldName      월드 명 <a href="https://openapi.nexon.com/ko/game/maplestory/?id=14">Available values</a>
      * @param worldType      월드 타입 (0:일반, 1:에오스,헬리오스) (기본 값은 0이며, worldName 입력 시 미 반영)
@@ -1622,6 +1624,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
      * - 2023년 12월 22일 데이터부터 조회할 수 있습니다.<br>
      * - 오늘의 랭킹 정보는 오전 9시 경부터 조회가 가능합니다. 상황에 따라 시간이 더 소요될 수 있습니다.<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     * - 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.<br>
      *
      * @param worldName 월드 명 <a href="https://openapi.nexon.com/ko/game/maplestory/?id=14">Available values</a>
      * @param ocid      캐릭터 식별자
@@ -1636,6 +1639,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
      * - 2023년 12월 22일 데이터부터 조회할 수 있습니다.<br>
      * - 오전 8시 30분부터 오늘의 랭킹 정보를 조회할 수 있습니다.<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     * - 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.<br>
      *
      * @param worldName     월드 명 <a href="https://openapi.nexon.com/ko/game/maplestory/?id=14">Available values</a>
      * @param ocid          캐릭터 식별자
@@ -1664,6 +1668,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
      * - 2023년 12월 22일 데이터부터 조회할 수 있습니다.<br>
      * - 오늘의 랭킹 정보는 오전 9시 경부터 조회가 가능합니다. 상황에 따라 시간이 더 소요될 수 있습니다.<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     * - 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.<br>
      *
      * @param worldName   월드 명 <a href="https://openapi.nexon.com/ko/game/maplestory/?id=14">Available values</a>
      * @param rankingType 랭킹 타입 (0:주간 명성치, 1:플래그 레이스, 2:지하 수로)
@@ -1679,6 +1684,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
      * - 2023년 12월 22일 데이터부터 조회할 수 있습니다.<br>
      * - 오전 8시 30분부터 오늘의 랭킹 정보를 조회할 수 있습니다.<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     * - 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.<br>
      *
      * @param worldName     월드 명 <a href="https://openapi.nexon.com/ko/game/maplestory/?id=14">Available values</a>
      * @param rankingType   랭킹 타입 (0:주간 명성치, 1:플래그 레이스, 2:지하 수로)
@@ -1708,6 +1714,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
      * - 2023년 12월 22일 데이터부터 조회할 수 있습니다.<br>
      * - 오늘의 랭킹 정보는 오전 9시 경부터 조회가 가능합니다. 상황에 따라 시간이 더 소요될 수 있습니다.<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     * - 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.<br>
      *
      * @param worldName      월드 명 <a href="https://openapi.nexon.com/ko/game/maplestory/?id=14">Available values</a>
      * @param difficulty     구간 (0:일반, 1:통달)
@@ -1724,6 +1731,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
      * - 2023년 12월 22일 데이터부터 조회할 수 있습니다.<br>
      * - 오전 8시 30분부터 오늘의 랭킹 정보를 조회할 수 있습니다.<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     * - 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.<br>
      *
      * @param worldName      월드 명 <a href="https://openapi.nexon.com/ko/game/maplestory/?id=14">Available values</a>
      * @param difficulty     구간 (0:일반, 1:통달)
@@ -1754,6 +1762,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
      * - 2023년 12월 22일 데이터부터 조회할 수 있습니다.<br>
      * - 오늘의 랭킹 정보는 오전 9시 경부터 조회가 가능합니다. 상황에 따라 시간이 더 소요될 수 있습니다.<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     * - 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.<br>
      *
      * @param worldName 월드 명 <a href="https://openapi.nexon.com/ko/game/maplestory/?id=14">Available values</a>
      * @param ocid      캐릭터 식별자
@@ -1768,6 +1777,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
      * - 2023년 12월 22일 데이터부터 조회할 수 있습니다.<br>
      * - 오전 8시 30분부터 오늘의 랭킹 정보를 조회할 수 있습니다.<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     * - 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.<br>
      *
      * @param worldName     월드 명 <a href="https://openapi.nexon.com/ko/game/maplestory/?id=14">Available values</a>
      * @param ocid          캐릭터 식별자
@@ -1796,6 +1806,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
      * - 2023년 12월 22일 데이터부터 조회할 수 있습니다.<br>
      * - 오늘의 랭킹 정보는 오전 9시 경부터 조회가 가능합니다. 상황에 따라 시간이 더 소요될 수 있습니다.<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     * - 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.<br>
      *
      * @param ocid 캐릭터 식별자
      * @param page 페이지 번호
@@ -1809,6 +1820,7 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
      * - 2023년 12월 22일 데이터부터 조회할 수 있습니다.<br>
      * - 오전 8시 30분부터 오늘의 랭킹 정보를 조회할 수 있습니다.<br>
      * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     * - 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.<br>
      *
      * @param ocid          캐릭터 식별자
      * @param page          페이지 번호

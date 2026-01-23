@@ -1387,6 +1387,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <para>- 2023년 12월 22일 데이터부터 조회할 수 있습니다.</para>
         /// <para>- 오늘의 랭킹 정보는 오전 9시 경부터 조회가 가능합니다. 상황에 따라 시간이 더 소요될 수 있습니다.</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
+        /// <para>- 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.</para>
         /// </summary>
         /// <param name="worldName">월드 명 <a href="https://openapi.nexon.com/ko/game/maplestory/?id=18">Available values</a></param>
         /// <param name="worldType">월드 타입 (0:일반, 1:에오스,헬리오스) (기본 값은 0이며, worldName 입력 시 미 반영)</param>
@@ -1408,6 +1409,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <para>- 2023년 12월 22일 데이터부터 조회할 수 있습니다.</para>
         /// <para>- 오전 8시 30분부터 오늘의 랭킹 정보를 조회할 수 있습니다.</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
+        /// <para>- 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.</para>
         /// </summary>
         /// <param name="worldName">월드 명 <a href="https://openapi.nexon.com/ko/game/maplestory/?id=18">Available values</a></param>
         /// <param name="worldType">월드 타입 (0:일반, 1:에오스,헬리오스) (기본 값은 0이며, worldName 입력 시 미 반영)</param>
@@ -1436,6 +1438,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <para>- 2023년 12월 22일 데이터부터 조회할 수 있습니다.</para>
         /// <para>- 오늘의 랭킹 정보는 오전 9시 경부터 조회가 가능합니다. 상황에 따라 시간이 더 소요될 수 있습니다.</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
+        /// <para>- 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.</para>
         /// </summary>
         /// <param name="worldName">월드 명 <a href="https://openapi.nexon.com/ko/game/maplestory/?id=18">Available values</a></param>
         /// <param name="ocid">캐릭터 식별자</param>
@@ -1455,6 +1458,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <para>- 2023년 12월 22일 데이터부터 조회할 수 있습니다.</para>
         /// <para>- 오전 8시 30분부터 오늘의 랭킹 정보를 조회할 수 있습니다.</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
+        /// <para>- 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.</para>
         /// </summary>
         /// <param name="worldName">월드 명 <a href="https://openapi.nexon.com/ko/game/maplestory/?id=18">Available values</a></param>
         /// <param name="ocid">캐릭터 식별자</param>
@@ -1479,6 +1483,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <para>- 2023년 12월 22일 데이터부터 조회할 수 있습니다.</para>
         /// <para>- 오늘의 랭킹 정보는 오전 9시 경부터 조회가 가능합니다. 상황에 따라 시간이 더 소요될 수 있습니다.</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
+        /// <para>- 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.</para>
         /// </summary>
         /// <param name="worldName">월드 명 <a href="https://openapi.nexon.com/ko/game/maplestory/?id=18">Available values</a></param>
         /// <param name="rankingType">랭킹 타입 (0:주간 명성치, 1:플래그 레이스, 2:지하 수로)</param>
@@ -1499,6 +1504,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <para>- 2023년 12월 22일 데이터부터 조회할 수 있습니다.</para>
         /// <para>- 오전 8시 30분부터 오늘의 랭킹 정보를 조회할 수 있습니다.</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
+        /// <para>- 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.</para>
         /// </summary>
         /// <param name="worldName">월드 명 <a href="https://openapi.nexon.com/ko/game/maplestory/?id=18">Available values</a></param>
         /// <param name="rankingType">랭킹 타입 (0:주간 명성치, 1:플래그 레이스, 2:지하 수로)</param>
@@ -1525,6 +1531,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <para>- 2023년 12월 22일 데이터부터 조회할 수 있습니다.</para>
         /// <para>- 오늘의 랭킹 정보는 오전 9시 경부터 조회가 가능합니다. 상황에 따라 시간이 더 소요될 수 있습니다.</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
+        /// <para>- 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.</para>
         /// </summary>
         /// <param name="worldName">월드 명 <a href="https://openapi.nexon.com/ko/game/maplestory/?id=18">Available values</a></param>
         /// <param name="difficulty">구간 (0:일반, 1:통달)</param>
@@ -1546,6 +1553,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <para>- 2023년 12월 22일 데이터부터 조회할 수 있습니다.</para>
         /// <para>- 오전 8시 30분부터 오늘의 랭킹 정보를 조회할 수 있습니다.</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
+        /// <para>- 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.</para>
         /// </summary>
         /// <param name="worldName">월드 명 <a href="https://openapi.nexon.com/ko/game/maplestory/?id=18">Available values</a></param>
         /// <param name="difficulty">구간 (0:일반, 1:통달)</param>
@@ -1574,6 +1582,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <para>- 2023년 12월 22일 데이터부터 조회할 수 있습니다.</para>
         /// <para>- 오늘의 랭킹 정보는 오전 9시 경부터 조회가 가능합니다. 상황에 따라 시간이 더 소요될 수 있습니다.</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
+        /// <para>- 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.</para>
         /// </summary>
         /// <param name="worldName">월드 명 <a href="https://openapi.nexon.com/ko/game/maplestory/?id=18">Available values</a></param>
         /// <param name="ocid">캐릭터 식별자</param>
@@ -1593,6 +1602,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <para>- 2023년 12월 22일 데이터부터 조회할 수 있습니다.</para>
         /// <para>- 오전 8시 30분부터 오늘의 랭킹 정보를 조회할 수 있습니다.</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
+        /// <para>- 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.</para>
         /// </summary>
         /// <param name="worldName">월드 명
         /// <para>스카니아</para> <a href="https://openapi.nexon.com/ko/game/maplestory/?id=18">Available values</a></param>
@@ -1619,6 +1629,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <para>- 2023년 12월 22일 데이터부터 조회할 수 있습니다.</para>
         /// <para>- 오늘의 랭킹 정보는 오전 9시 경부터 조회가 가능합니다. 상황에 따라 시간이 더 소요될 수 있습니다.</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
+        /// <para>- 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.</para>
         /// </summary>
         /// <param name="ocid">캐릭터 식별자</param>
         /// <param name="page">페이지 번호</param>
@@ -1637,6 +1648,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <para>- 2023년 12월 22일 데이터부터 조회할 수 있습니다.</para>
         /// <para>- 오전 8시 30분부터 오늘의 랭킹 정보를 조회할 수 있습니다.</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
+        /// <para>- 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.</para>
         /// </summary>
         /// <param name="ocid">캐릭터 식별자</param>
         /// <param name="page">페이지 번호</param>
