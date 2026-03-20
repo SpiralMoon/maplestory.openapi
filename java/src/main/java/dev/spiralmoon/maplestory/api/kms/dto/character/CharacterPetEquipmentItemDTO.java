@@ -68,4 +68,10 @@ public class CharacterPetEquipmentItemDTO implements dev.spiralmoon.maplestory.a
      */
     @JsonProperty("item_shape_icon")
     private String itemShapeIcon;
+
+    /**
+     * 아이템 만료시간 (KST, 분 단위는 일괄 0으로 표기, null:무제한, -1:미착용)
+     */
+    @JsonProperty("item_date_expire")
+    private String itemDateExpire;
 }

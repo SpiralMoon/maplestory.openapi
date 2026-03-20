@@ -14,7 +14,8 @@ namespace MapleStory.Test.KMS.Character
         [Test, Description("success: GetCharacterRingExchangeSkillEquipment")]
         public async Task GetCharacterRingExchangeSkillEquipment()
         {
-            var response = await api.GetCharacterRingExchangeSkillEquipment(ocid);
+            var date = new DateTime(2026, 3, 18, 0, 0, 0);
+            var response = await api.GetCharacterRingExchangeSkillEquipment(ocid, date);
             Assert.IsNotNull(response);
             Console.WriteLine(response.ToJson());
         }
@@ -37,22 +38,38 @@ namespace MapleStory.Test.KMS.Character
             Assert.IsNull(response);
         }
 
+        [Test, Description("fail: GetCharacterRingExchangeSkillEquipment without date throws error as deprecated")]
+        public void GetCharacterRingExchangeSkillEquipment_Without_Date()
+        {
+            var e = Assert.ThrowsAsync<MapleStoryAPIException>(async () => await api.GetCharacterRingExchangeSkillEquipment(ocid));
+            Console.WriteLine($"{e.ErrorCode} {e.Message}");
+        }
+
         [Test, Description("fail: GetCharacterRingExchangeSkillEquipment with invalid ocid throws OPENAPI00003")]
         public void GetCharacterRingExchangeSkillEquipment_With_Invalid_Ocid_Throws_OPENAPI00003()
         {
             var invalidOcid = "invalid_ocid_123";
-            var e = Assert.ThrowsAsync<MapleStoryAPIException>(async () => await api.GetCharacterRingExchangeSkillEquipment(invalidOcid));
+            var date = new DateTime(2025, 8, 21, 0, 0, 0);
+            var e = Assert.ThrowsAsync<MapleStoryAPIException>(async () => await api.GetCharacterRingExchangeSkillEquipment(invalidOcid, date));
             Assert.That(e.ErrorCode, Is.EqualTo(MapleStoryAPIErrorCode.OPENAPI00003));
             Console.WriteLine($"{e.ErrorCode} {e.Message}");
         }
 
-        [Test, Description("fail: GetCharacterRingExchangeSkillEquipment with invalid date")]
-        public void GetCharacterRingExchangeSkillEquipment_With_Invalid_Date()
+        [Test, Description("fail: GetCharacterRingExchangeSkillEquipment with invalid date before service start")]
+        public void GetCharacterRingExchangeSkillEquipment_With_Invalid_Date_Before_Service_Start()
         {
             var invalidDate = new DateTime(2025, 8, 20, 0, 0, 0);
             var e = Assert.ThrowsAsync<ArgumentException>(async () => await api.GetCharacterRingExchangeSkillEquipment(ocid, invalidDate));
             Assert.That(e.Message, Does.Contain("You can only retrieve data after 2025-08-21."));
             Console.WriteLine(e.Message);
+        }
+
+        [Test, Description("fail: GetCharacterRingExchangeSkillEquipment with invalid date after service end")]
+        public void GetCharacterRingExchangeSkillEquipment_With_Invalid_Date_After_Service_End()
+        {
+            var date = new DateTime(2026, 3, 19, 0, 0, 0);
+            var e = Assert.ThrowsAsync<MapleStoryAPIException>(async () => await api.GetCharacterRingExchangeSkillEquipment(ocid, date));
+            Console.WriteLine($"{e.ErrorCode} {e.Message}");
         }
     }
 }

@@ -22,6 +22,8 @@ export * from './dto/character/characterSetEffect';
 export * from './dto/character/characterSkill';
 export * from './dto/character/characterStat';
 export * from './dto/character/characterSymbolEquipment';
+export * from './dto/character/characterRingExchangeSkillEquipment';
+export * from './dto/character/characterRingReserveSkillEquipment';
 export * from './dto/character/characterVMatrix';
 
 export * from './dto/guild/guild';

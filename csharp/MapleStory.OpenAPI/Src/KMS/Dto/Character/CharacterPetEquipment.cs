@@ -416,5 +416,11 @@ namespace MapleStory.OpenAPI.KMS.DTO
         /// </summary>
         [JsonProperty("item_shape_icon")]
         public override string? ItemShapeIcon { get; set; }
+
+        /// <summary>
+        /// 아이템 만료시간 (KST, 분 단위는 일괄 0으로 표기, null:무제한, -1:미착용)
+        /// </summary>
+        [JsonProperty("item_date_expire")]
+        public string? ItemDateExpire { get; set; }
     }
 }

@@ -695,7 +695,7 @@ class TestGetCharacterOtherStat(unittest.IsolatedAsyncioTestCase):
 
 class TestGetCharacterRingExchangeSkillEquipment(unittest.IsolatedAsyncioTestCase):
     async def test_success_get_character_ring_exchange_skill_equipment(self):
-        response = await api.get_character_ring_exchange_skill_equipment(ocid)
+        response = await api.get_character_ring_exchange_skill_equipment(ocid, date=datetime(2026, 3, 18))
         assert response is not None
         print(response)
 
@@ -709,17 +709,52 @@ class TestGetCharacterRingExchangeSkillEquipment(unittest.IsolatedAsyncioTestCas
         response = await api.get_character_ring_exchange_skill_equipment(ocid, date=datetime(2025, 8, 21))
         assert response is None
 
+    async def test_fail_get_character_ring_exchange_skill_equipment_without_date_throws_error_as_deprecated(self):
+        with pytest.raises(MapleStoryApiException) as e:
+            await api.get_character_ring_exchange_skill_equipment(ocid)
+        print(e.value.error_code, e.value.message)
+
     async def test_fail_get_character_ring_exchange_skill_equipment_with_invalid_ocid_throw_OPENAPI00003(self):
         invalid_ocid = 'invalid_ocid_123'
         with pytest.raises(MapleStoryApiException) as e:
-            await api.get_character_ring_exchange_skill_equipment(invalid_ocid)
+            await api.get_character_ring_exchange_skill_equipment(invalid_ocid, date=datetime(2025, 8, 21))
         assert e.value.error_code == 'OPENAPI00003'
         print(e.value.error_code, e.value.message)
 
-    async def test_fail_get_character_ring_exchange_skill_equipment_with_invalid_date(self):
+    async def test_fail_get_character_ring_exchange_skill_equipment_with_invalid_date_before_service_start(self):
         with pytest.raises(Exception) as e:
             await api.get_character_ring_exchange_skill_equipment(ocid, date=datetime(2025, 8, 20))
         assert 'You can only retrieve data after 2025-08-21' in str(e.value)
+        print(e.value)
+
+    async def test_fail_get_character_ring_exchange_skill_equipment_with_invalid_date_after_service_end(self):
+        with pytest.raises(MapleStoryApiException) as e:
+            await api.get_character_ring_exchange_skill_equipment(ocid, date=datetime(2026, 3, 19))
+        print(e.value.error_code, e.value.message)
+
+
+class TestGetCharacterRingReserveSkillEquipment(unittest.IsolatedAsyncioTestCase):
+    async def test_success_get_character_ring_reserve_skill_equipment(self):
+        response = await api.get_character_ring_reserve_skill_equipment(ocid)
+        assert response is not None
+        print(response)
+
+    async def test_success_get_character_ring_reserve_skill_equipment_with_date(self):
+        response = await api.get_character_ring_reserve_skill_equipment(ocid, date=datetime(2026, 3, 19))
+        assert response is not None
+        print(response)
+
+    async def test_fail_get_character_ring_reserve_skill_equipment_with_invalid_ocid_throw_OPENAPI00003(self):
+        invalid_ocid = 'invalid_ocid_123'
+        with pytest.raises(MapleStoryApiException) as e:
+            await api.get_character_ring_reserve_skill_equipment(invalid_ocid)
+        assert e.value.error_code == 'OPENAPI00003'
+        print(e.value.error_code, e.value.message)
+
+    async def test_fail_get_character_ring_reserve_skill_equipment_with_invalid_date(self):
+        with pytest.raises(Exception) as e:
+            await api.get_character_ring_reserve_skill_equipment(ocid, date=datetime(2026, 3, 18))
+        assert 'You can only retrieve data after 2026-03-19' in str(e.value)
         print(e.value)
 
 

@@ -409,6 +409,11 @@ export class CharacterPetEquipmentItemDto extends base.CharacterPetEquipmentItem
    */
   public override itemShapeIcon: string | null;
 
+  /**
+   * 아이템 만료시간 (KST, 분 단위는 일괄 0으로 표기, null:무제한, -1:미착용)
+   */
+  public itemDateExpire: Date | null;
+
   constructor(obj: CharacterPetEquipmentItemBody) {
     super();
 
@@ -421,6 +426,7 @@ export class CharacterPetEquipmentItemDto extends base.CharacterPetEquipmentItem
       scroll_upgradable,
       item_shape,
       item_shape_icon,
+      item_date_expire,
     } = obj;
 
     this.itemName = item_name;
@@ -433,5 +439,6 @@ export class CharacterPetEquipmentItemDto extends base.CharacterPetEquipmentItem
     this.scrollUpgradable = scroll_upgradable;
     this.itemShape = item_shape;
     this.itemShapeIcon = item_shape_icon;
+    this.itemDateExpire = item_date_expire ? new Date(item_date_expire) : null;
   }
 }

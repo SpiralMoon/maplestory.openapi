@@ -73,4 +73,7 @@ public interface CharacterApi {
 
     @GET("maplestory/v1/character/ring-exchange-skill-equipment")
     Call<ResponseBody> getCharacterRingExchangeSkillEquipment(@Header("x-nxopen-api-key") String apiKey, @Query("ocid") String ocid, @Query("date") String date);
+
+    @GET("maplestory/v1/character/ring-reserve-skill-equipment")
+    Call<ResponseBody> getCharacterRingReserveSkillEquipment(@Header("x-nxopen-api-key") String apiKey, @Query("ocid") String ocid, @Query("date") String date);
 }
