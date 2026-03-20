@@ -1315,4 +1315,61 @@ describe('Character Information Retrieval', () => {
       }
     });
   });
+
+  describe('getCharacterRingReserveSkillEquipment', () => {
+    test('success: getCharacterRingReserveSkillEquipment', async () => {
+      const response = await api.getCharacterRingReserveSkillEquipment(ocid);
+      expect(response).toBeDefined();
+      console.log(toString(response));
+    });
+
+    test('success: getCharacterRingReserveSkillEquipment with date', async () => {
+      const response = await api.getCharacterRingReserveSkillEquipment(ocid, {
+        year: 2026,
+        month: 3,
+        day: 19,
+      });
+      expect(response).toBeDefined();
+      console.log(toString(response));
+    });
+
+    test('success: getCharacterRingReserveSkillEquipment on date with no data', async () => {
+      const ocid = 'b0187493ec48ddd7b1d304fe8982d0b0';
+      const response = await api.getCharacterRingReserveSkillEquipment(ocid, {
+        year: 2026,
+        month: 3,
+        day: 19,
+      });
+      expect(response).toBeNull();
+    });
+
+    test('fail: getCharacterRingReserveSkillEquipment with invalid ocid throw OPENAPI00003', async () => {
+      const invalidOcid = 'invalid_ocid_123';
+      try {
+        await api.getCharacterRingReserveSkillEquipment(invalidOcid);
+        fail('An error should have been thrown.');
+      } catch (e) {
+        const error = e as MapleStoryApiError;
+        expect(error).toBeInstanceOf(MapleStoryApiError);
+        expect(error.errorCode).toBe(MapleStoryApiErrorCode.OPENAPI00003);
+        console.log(error.errorCode, error.message);
+      }
+    });
+
+    test('fail: getCharacterRingReserveSkillEquipment with invalid date', async () => {
+      try {
+        await api.getCharacterRingReserveSkillEquipment(ocid, {
+          year: 2026,
+          month: 3,
+          day: 18,
+        });
+        fail('An error should have been thrown.');
+      } catch (e) {
+        const error = e as Error;
+        expect(error).toBeInstanceOf(Error);
+        expect(error.message).toContain('You can only retrieve data after 2026-03-19.');
+        console.log(error.message);
+      }
+    });
+  });
 });
