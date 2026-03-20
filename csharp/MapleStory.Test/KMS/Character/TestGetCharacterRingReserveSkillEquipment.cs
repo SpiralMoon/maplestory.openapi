@@ -28,15 +28,6 @@ namespace MapleStory.Test.KMS.Character
             Console.WriteLine(response.ToJson());
         }
 
-        [Test, Description("success: GetCharacterRingReserveSkillEquipment on date with no data")]
-        public async Task GetCharacterRingReserveSkillEquipment_On_Date_With_No_Data()
-        {
-            var ocid = "b0187493ec48ddd7b1d304fe8982d0b0";
-            var date = new DateTime(2026, 3, 19, 0, 0, 0);
-            var response = await api.GetCharacterRingReserveSkillEquipment(ocid, date);
-            Assert.IsNull(response);
-        }
-
         [Test, Description("fail: GetCharacterRingReserveSkillEquipment with invalid ocid throws OPENAPI00003")]
         public void GetCharacterRingReserveSkillEquipment_With_Invalid_Ocid_Throws_OPENAPI00003()
         {

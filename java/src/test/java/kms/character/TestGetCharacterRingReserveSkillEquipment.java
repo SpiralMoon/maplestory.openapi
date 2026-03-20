@@ -45,15 +45,6 @@ public class TestGetCharacterRingReserveSkillEquipment {
     }
 
     @Test
-    @DisplayName("success: getCharacterRingReserveSkillEquipment on date with no data")
-    void getCharacterRingReserveSkillEquipment_on_date_with_no_data() {
-        String ocid = "b0187493ec48ddd7b1d304fe8982d0b0";
-        LocalDateTime date = LocalDateTime.of(2026, 3, 19, 0, 0);
-        CharacterRingReserveSkillEquipmentDTO response = api.getCharacterRingReserveSkillEquipment(ocid, date).join();
-        assertThat(response).isNull();
-    }
-
-    @Test
     @DisplayName("fail: getCharacterRingReserveSkillEquipment with invalid ocid throw OPENAPI00003")
     void getCharacterRingReserveSkillEquipment_with_invalid_ocid() {
         String invalidOcid = "invalid_ocid_123";

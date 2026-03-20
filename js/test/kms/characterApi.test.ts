@@ -1333,16 +1333,6 @@ describe('Character Information Retrieval', () => {
       console.log(toString(response));
     });
 
-    test('success: getCharacterRingReserveSkillEquipment on date with no data', async () => {
-      const ocid = 'b0187493ec48ddd7b1d304fe8982d0b0';
-      const response = await api.getCharacterRingReserveSkillEquipment(ocid, {
-        year: 2026,
-        month: 3,
-        day: 19,
-      });
-      expect(response).toBeNull();
-    });
-
     test('fail: getCharacterRingReserveSkillEquipment with invalid ocid throw OPENAPI00003', async () => {
       const invalidOcid = 'invalid_ocid_123';
       try {

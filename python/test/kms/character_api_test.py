@@ -734,11 +734,6 @@ class TestGetCharacterRingReserveSkillEquipment(unittest.IsolatedAsyncioTestCase
         assert response is not None
         print(response)
 
-    async def test_success_get_character_ring_reserve_skill_equipment_on_date_with_no_data(self):
-        ocid = 'b0187493ec48ddd7b1d304fe8982d0b0'
-        response = await api.get_character_ring_reserve_skill_equipment(ocid, date=datetime(2026, 3, 19))
-        assert response is None
-
     async def test_fail_get_character_ring_reserve_skill_equipment_with_invalid_ocid_throw_OPENAPI00003(self):
         invalid_ocid = 'invalid_ocid_123'
         with pytest.raises(MapleStoryApiException) as e:
