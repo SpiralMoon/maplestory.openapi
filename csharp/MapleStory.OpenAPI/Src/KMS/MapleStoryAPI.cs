@@ -984,6 +984,44 @@ namespace MapleStory.OpenAPI.KMS
             return await Get<CharacterRingExchangeSkillEquipmentDTO>(path, query, checkEmpty: true);
         }
 
+        /// <summary>
+        /// 예비 특수 반지 장착 정보를 조회합니다.
+        /// <para>- 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.</para>
+        /// <para>- 2026년 3월 19일 데이터부터 조회할 수 있습니다.</para>
+        /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (3월 20일 데이터 조회 시, 20일 00시부터 21일 00시 사이 데이터가 조회 됩니다.)</para>
+        /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
+        /// <para>- 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.</para>
+        /// </summary>
+        /// <param name="ocid">캐릭터 식별자</param>
+        public async Task<CharacterRingReserveSkillEquipmentDTO?> GetCharacterRingReserveSkillEquipment(string ocid)
+        {
+            return await GetCharacterRingReserveSkillEquipment(ocid, null);
+        }
+
+        /// <summary>
+        /// 예비 특수 반지 장착 정보를 조회합니다.
+        /// <para>- 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.</para>
+        /// <para>- 2026년 3월 19일 데이터부터 조회할 수 있습니다.</para>
+        /// <para>- 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (3월 20일 데이터 조회 시, 20일 00시부터 21일 00시 사이 데이터가 조회 됩니다.)</para>
+        /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
+        /// <para>- 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.</para>
+        /// </summary>
+        /// <param name="ocid">캐릭터 식별자</param>
+        /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
+        public async Task<CharacterRingReserveSkillEquipmentDTO?> GetCharacterRingReserveSkillEquipment(string ocid, DateTimeOffset? dateTimeOffset)
+        {
+            var path = $"{subUrl}/v1/character/ring-reserve-skill-equipment";
+            var date = dateTimeOffset != null
+                ? ToDateString((DateTimeOffset) dateTimeOffset, MinDate(2026, 3, 19))
+                : null;
+            var query = new Dictionary<string, string?>()
+            {
+                { "ocid", ocid },
+                { "date", date }
+            };
+            return await Get<CharacterRingReserveSkillEquipmentDTO>(path, query, checkEmpty: true);
+        }
+
         #endregion
 
         #region 유니온 정보 조회
