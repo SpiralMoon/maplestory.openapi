@@ -20,6 +20,7 @@ import { CharacterPetEquipmentDto } from './dto/character/characterPetEquipment'
 import { CharacterPopularityDto } from './dto/character/characterPopularity';
 import { CharacterPropensityDto } from './dto/character/characterPropensity';
 import { CharacterRingExchangeSkillEquipmentDto } from './dto/character/characterRingExchangeSkillEquipment';
+import { CharacterRingReserveSkillEquipmentDto } from './dto/character/characterRingReserveSkillEquipment';
 import { CharacterSetEffectDto } from './dto/character/characterSetEffect';
 import { CharacterSkillDto } from './dto/character/characterSkill';
 import { CharacterStatDto } from './dto/character/characterStat';
@@ -68,6 +69,7 @@ import { CharacterPetEquipmentBody } from './response/character/characterPetEqui
 import { CharacterPopularityBody } from './response/character/characterPopularityBody';
 import { CharacterPropensityBody } from './response/character/characterPropensityBody';
 import { CharacterRingExchangeSkillEquipmentBody } from './response/character/characterRingExchangeSkillEquipmentBody';
+import { CharacterRingReserveSkillEquipmentBody } from './response/character/characterRingReserveSkillEquipmentBody';
 import { CharacterSetEffectBody } from './response/character/characterSetEffectBody';
 import { CharacterSkillBody } from './response/character/characterSkillBody';
 import { CharacterStatBody } from './response/character/characterStatBody';
@@ -1062,6 +1064,45 @@ export class MapleStoryApi extends base.MapleStoryApi {
     }
 
     return new CharacterRingExchangeSkillEquipmentDto(data);
+  }
+
+  /**
+   * 예비 특수 반지 장착 정보를 조회합니다.
+   * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.
+   * - 2026년 3월 19일 데이터부터 조회할 수 있습니다.
+   * - 과거 데이터는 원하는 일자를 입력해 조회할 수 있으며, 전일 데이터는 다음날 오전 2시부터 확인할 수 있습니다. (3월 20일 데이터 조회 시, 20일 00시부터 21일 00시 사이 데이터가 조회 됩니다.)
+   * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
+   * - 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.
+   *
+   * @param ocid 캐릭터 식별자
+   * @param dateOptions 조회 기준일 (KST)
+   */
+  public async getCharacterRingReserveSkillEquipment(
+    ocid: string,
+    dateOptions?: DateOptions,
+  ): Promise<CharacterRingReserveSkillEquipmentDto | null> {
+    const path = `${this.subUrl}/v1/character/ring-reserve-skill-equipment`;
+    const date = dateOptions
+      ? this.toDateString(dateOptions, {
+          year: 2026,
+          month: 3,
+          day: 19,
+        })
+      : undefined;
+    const query: CharacterApiQuery = {
+      ocid: ocid,
+      date: date,
+    };
+    const { data } =
+      await this.client.get<CharacterRingReserveSkillEquipmentBody>(path, {
+        params: query,
+      });
+
+    if (this.isEmptyResponse(data)) {
+      return null;
+    }
+
+    return new CharacterRingReserveSkillEquipmentDto(data);
   }
 
   //#endregion
