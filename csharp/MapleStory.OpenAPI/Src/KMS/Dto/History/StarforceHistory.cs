@@ -35,7 +35,7 @@ namespace MapleStory.OpenAPI.KMS.DTO
         /// 스타 캐치
         /// </summary>
         [JsonProperty("starcatch_result")]
-        public string StarCatchResult { get; set; }
+        public string? StarCatchResult { get; set; }
 
         /// <summary>
         /// 슈페리얼 장비

@@ -29,7 +29,7 @@ class StarforceHistoryInfo(BaseModel):
         item_upgrade_result (str): 강화 시도 결과
         before_starforce_count (int): 강화 시도 전 스타포스 수치
         after_starforce_count (int): 강화 시도 후 스타포스 수치
-        starcatch_result (str): 스타 캐치
+        starcatch_result (str or None): 스타 캐치
         superior_item_flag (str): 슈페리얼 장비 여부
         destroy_defence (str): 파괴 방지 여부
         chance_time (str): 찬스 타임 여부
@@ -47,7 +47,7 @@ class StarforceHistoryInfo(BaseModel):
     item_upgrade_result: str
     before_starforce_count: int
     after_starforce_count: int
-    starcatch_result: str
+    starcatch_result: str | None
     superior_item_flag: str
     destroy_defence: str
     chance_time: str

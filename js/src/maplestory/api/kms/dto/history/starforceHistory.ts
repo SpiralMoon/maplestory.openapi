@@ -31,7 +31,7 @@ export class StarforceHistoryDto {
   /**
    * 스타 캐치
    */
-  starCatchResult: string;
+  starCatchResult: string | null;
 
   /**
    * 슈페리얼 장비

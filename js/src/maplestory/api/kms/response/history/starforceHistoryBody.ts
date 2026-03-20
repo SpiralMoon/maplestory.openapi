@@ -11,7 +11,7 @@ export type StarforceHistoryBody = {
   item_upgrade_result: string;
   before_starforce_count: number;
   after_starforce_count: number;
-  starcatch_result: string;
+  starcatch_result: string | null;
   superior_item_flag: string;
   destroy_defence: string;
   chance_time: string;
