@@ -21,7 +21,8 @@ public class TestGetCharacterRingExchangeSkillEquipment {
     @Test
     @DisplayName("success: getCharacterRingExchangeSkillEquipment")
     void getCharacterRingExchangeSkillEquipment() {
-        CharacterRingExchangeSkillEquipmentDTO response = api.getCharacterRingExchangeSkillEquipment(ocid).join();
+        LocalDateTime date = LocalDateTime.of(2026, 3, 18, 0, 0);
+        CharacterRingExchangeSkillEquipmentDTO response = api.getCharacterRingExchangeSkillEquipment(ocid, date).join();
         assertThat(response).isNotNull();
         System.out.println(response.toString());
     }
@@ -29,7 +30,8 @@ public class TestGetCharacterRingExchangeSkillEquipment {
     @Test
     @DisplayName("success: async getCharacterRingExchangeSkillEquipment")
     void getCharacterRingExchangeSkillEquipment_async() {
-        api.getCharacterRingExchangeSkillEquipment(ocid).thenAcceptAsync(response -> {
+        LocalDateTime date = LocalDateTime.of(2026, 3, 18, 0, 0);
+        api.getCharacterRingExchangeSkillEquipment(ocid, date).thenAcceptAsync(response -> {
             assertThat(response).isNotNull();
             System.out.println(response.toString());
         }).join();
@@ -54,10 +56,22 @@ public class TestGetCharacterRingExchangeSkillEquipment {
     }
 
     @Test
+    @DisplayName("fail: getCharacterRingExchangeSkillEquipment without date throws error as deprecated")
+    void getCharacterRingExchangeSkillEquipment_without_date_throws_error_as_deprecated() {
+        assertThatThrownBy(() -> api.getCharacterRingExchangeSkillEquipment(ocid).join())
+                .hasCauseInstanceOf(MapleStoryApiException.class)
+                .satisfies(e -> {
+                    MapleStoryApiException apiException = (MapleStoryApiException) e.getCause();
+                    System.out.println(apiException.getErrorCode() + " " + apiException.getMessage());
+                });
+    }
+
+    @Test
     @DisplayName("fail: getCharacterRingExchangeSkillEquipment with invalid ocid throw OPENAPI00003")
     void getCharacterRingExchangeSkillEquipment_with_invalid_ocid() {
         String invalidOcid = "invalid_ocid_123";
-        assertThatThrownBy(() -> api.getCharacterRingExchangeSkillEquipment(invalidOcid).join())
+        LocalDateTime date = LocalDateTime.of(2025, 8, 21, 0, 0);
+        assertThatThrownBy(() -> api.getCharacterRingExchangeSkillEquipment(invalidOcid, date).join())
                 .hasCauseInstanceOf(MapleStoryApiException.class)
                 .satisfies(e -> {
                     MapleStoryApiException apiException = (MapleStoryApiException) e.getCause();
@@ -67,8 +81,8 @@ public class TestGetCharacterRingExchangeSkillEquipment {
     }
 
     @Test
-    @DisplayName("fail: getCharacterRingExchangeSkillEquipment with invalid date")
-    void getCharacterRingExchangeSkillEquipment_with_invalid_date() {
+    @DisplayName("fail: getCharacterRingExchangeSkillEquipment with invalid date before service start")
+    void getCharacterRingExchangeSkillEquipment_with_invalid_date_before_service_start() {
         LocalDateTime invalidDate = LocalDateTime.of(2025, 8, 20, 0, 0);
         assertThatThrownBy(() -> api.getCharacterRingExchangeSkillEquipment(ocid, invalidDate).join())
                 .hasCauseInstanceOf(IllegalArgumentException.class)
@@ -76,6 +90,18 @@ public class TestGetCharacterRingExchangeSkillEquipment {
                     Throwable error = e.getCause();
                     assertThat(error.getMessage()).contains("You can only retrieve data after 2025-08-21.");
                     System.out.println(error.getMessage());
+                });
+    }
+
+    @Test
+    @DisplayName("fail: getCharacterRingExchangeSkillEquipment with invalid date after service end")
+    void getCharacterRingExchangeSkillEquipment_with_invalid_date_after_service_end() {
+        LocalDateTime invalidDate = LocalDateTime.of(2026, 3, 19, 0, 0);
+        assertThatThrownBy(() -> api.getCharacterRingExchangeSkillEquipment(ocid, invalidDate).join())
+                .hasCauseInstanceOf(MapleStoryApiException.class)
+                .satisfies(e -> {
+                    MapleStoryApiException apiException = (MapleStoryApiException) e.getCause();
+                    System.out.println(apiException.getErrorCode() + " " + apiException.getMessage());
                 });
     }
 }

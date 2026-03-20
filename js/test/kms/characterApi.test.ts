@@ -1261,12 +1261,16 @@ describe('Character Information Retrieval', () => {
 
   describe('getCharacterRingExchangeSkillEquipment', () => {
     test('success: getCharacterRingExchangeSkillEquipment', async () => {
-      const response = await api.getCharacterRingExchangeSkillEquipment(ocid);
+      const response = await api.getCharacterRingExchangeSkillEquipment(ocid, {
+        year: 2026,
+        month: 3,
+        day: 18,
+      });
       expect(response).toBeDefined();
       console.log(toString(response));
     });
 
-    test('success: getCharacterRingExchangeSkillEquipment', async () => {
+    test('success: getCharacterRingExchangeSkillEquipment with date', async () => {
       const response = await api.getCharacterRingExchangeSkillEquipment(ocid, {
         year: 2025,
         month: 8,
@@ -1286,10 +1290,25 @@ describe('Character Information Retrieval', () => {
       expect(response).toBeNull();
     });
 
+    test('fail: getCharacterRingExchangeSkillEquipment without date throws error as deprecated', async () => {
+      try {
+        await api.getCharacterRingExchangeSkillEquipment(ocid);
+        fail('An error should have been thrown.');
+      } catch (e) {
+        const error = e as MapleStoryApiError;
+        expect(error).toBeInstanceOf(MapleStoryApiError);
+        console.log(error.errorCode, error.message);
+      }
+    });
+
     test('fail: getCharacterRingExchangeSkillEquipment with invalid ocid throw OPENAPI00003', async () => {
       const invalidOcid = 'invalid_ocid_123';
       try {
-        await api.getCharacterRingExchangeSkillEquipment(invalidOcid);
+        await api.getCharacterRingExchangeSkillEquipment(invalidOcid, {
+          year: 2025,
+          month: 8,
+          day: 21,
+        });
         fail('An error should have been thrown.');
       } catch (e) {
         const error = e as MapleStoryApiError;
@@ -1299,7 +1318,7 @@ describe('Character Information Retrieval', () => {
       }
     });
 
-    test('fail: getCharacterRingExchangeSkillEquipment with invalid date', async () => {
+    test('fail: getCharacterRingExchangeSkillEquipment with invalid date before service start', async () => {
       try {
         await api.getCharacterRingExchangeSkillEquipment(ocid, {
           year: 2025,
@@ -1312,6 +1331,21 @@ describe('Character Information Retrieval', () => {
         expect(error).toBeInstanceOf(Error);
         expect(error.message).toContain('You can only retrieve data after 2025-08-21.');
         console.log(error.message);
+      }
+    });
+
+    test('fail: getCharacterRingExchangeSkillEquipment with invalid date after service end', async () => {
+      try {
+        await api.getCharacterRingExchangeSkillEquipment(ocid, {
+          year: 2026,
+          month: 3,
+          day: 19,
+        });
+        fail('An error should have been thrown.');
+      } catch (e) {
+        const error = e as MapleStoryApiError;
+        expect(error).toBeInstanceOf(MapleStoryApiError);
+        console.log(error.errorCode, error.message);
       }
     });
   });
