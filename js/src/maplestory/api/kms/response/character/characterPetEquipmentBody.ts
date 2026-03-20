@@ -44,6 +44,7 @@ export type CharacterPetEquipmentItemBody = {
   scroll_upgradable: number;
   item_shape: string | null;
   item_shape_icon: string | null;
+  item_date_expire: string | null;
 };
 
 export type CharacterPetEquipmentItemOptionBody = {

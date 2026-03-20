@@ -48,6 +48,7 @@ class CharacterPetEquipmentItem(BaseModel, BaseCharacterPetEquipmentItem):
         scroll_upgradable (int): 업그레이드 가능 횟수
         item_shape (str or None): 아이템 외형
         item_shape_icon (str or None): 아이템 외형 아이콘
+        item_date_expire (datetime or None): 아이템 만료시간 (KST, 분 단위는 일괄 0으로 표기, null:무제한, -1:미착용)
     """
     item_name: str | None
     item_icon: str | None
@@ -57,6 +58,7 @@ class CharacterPetEquipmentItem(BaseModel, BaseCharacterPetEquipmentItem):
     scroll_upgradable: int
     item_shape: str | None
     item_shape_icon: str | None
+    item_date_expire: datetime | None
 
     @field_validator("item_option", mode="before")
     @classmethod
