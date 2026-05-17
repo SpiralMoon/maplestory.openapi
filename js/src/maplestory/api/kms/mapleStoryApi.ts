@@ -1429,7 +1429,7 @@ export class MapleStoryApi extends base.MapleStoryApi {
    */
   public async getBattlePracticeCharacterInfo(
     replayId: string,
-  ): Promise<BattlePracticeCharacterInfoDto | null> {
+  ): Promise<BattlePracticeCharacterInfoDto> {
     const path = `${this.subUrl}/v1/battle-practice/character-info`;
     const query: BattlePracticeReplayApiQuery = {
       replay_id: replayId,
@@ -1440,10 +1440,6 @@ export class MapleStoryApi extends base.MapleStoryApi {
         params: query,
       },
     );
-
-    if (this.isEmptyResponse(data)) {
-      return null;
-    }
 
     return new BattlePracticeCharacterInfoDto(data);
   }
