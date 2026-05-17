@@ -100,7 +100,7 @@ export class BattlePracticeSkillStatisticDto {
   public maxDamage: number;
 
   /**
-   * 최소 데미지 (1타 )
+   * 최소 데미지 (1타)
    */
   public minDamage: number;
 

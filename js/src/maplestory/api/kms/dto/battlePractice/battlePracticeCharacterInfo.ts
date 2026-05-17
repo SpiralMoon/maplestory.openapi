@@ -753,7 +753,7 @@ export class BattlePracticeCharacterItemEquipmentDto {
   public potentialOption3: string | null;
 
   /**
-   * 에디셔널 잠재 력 첫 번째 옵션
+   * 에디셔널 잠재능력 첫 번째 옵션
    */
   public additionalPotentialOption1: string | null;
 
