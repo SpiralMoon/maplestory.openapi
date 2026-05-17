@@ -335,7 +335,7 @@ export class BattlePracticeCharacterSymbolDto {
   /**
    * 심볼 부가 효과 설명
    */
-  public symbolOtherEffectDescription: string;
+  public symbolOtherEffectDescription: string | null;
 
   /**
    * 심볼로 인한 증가 수치
@@ -1877,17 +1877,17 @@ export class BattlePracticeCharacterItemTitleDto {
   /**
    * 외형 설정에 등록한 칭호 장비 명
    */
-  public titleShapeName: string;
+  public titleShapeName: string | null;
 
   /**
    * 외형 설정에 등록한 칭호 아이콘
    */
-  public titleShapeIcon: string;
+  public titleShapeIcon: string | null;
 
   /**
    * 외형 설정에 등록한 칭호 설명
    */
-  public titleShapeDescription: string;
+  public titleShapeDescription: string | null;
 
   constructor(obj: BattlePracticeCharacterItemTitleBody) {
     this.titleName = obj.title_name;
@@ -2414,7 +2414,7 @@ export class BattlePracticeCharacterSkillInfoDto {
   /**
    * 스킬 효과
    */
-  public skillEffect: string;
+  public skillEffect: string | null;
 
   /**
    * 스킬 아이콘

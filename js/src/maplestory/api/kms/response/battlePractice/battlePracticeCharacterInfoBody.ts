@@ -49,7 +49,7 @@ export type BattlePracticeCharacterSymbolBody = {
   symbol_name: string;
   symbol_icon: string;
   symbol_description: string;
-  symbol_other_effect_description: string;
+  symbol_other_effect_description: string | null;
   symbol_force: string;
   symbol_level: number;
   symbol_str: string;
@@ -330,9 +330,9 @@ export type BattlePracticeCharacterItemTitleBody = {
   title_description: string;
   date_expire: string | null;
   date_option_expire: string | null;
-  title_shape_name: string;
-  title_shape_icon: string;
-  title_shape_description: string;
+  title_shape_name: string | null;
+  title_shape_icon: string | null;
+  title_shape_description: string | null;
 };
 
 export type BattlePracticeCharacterSetEffectObjectBody = {
@@ -433,7 +433,7 @@ export type BattlePracticeCharacterSkillInfoBody = {
   skill_name: string;
   skill_description: string;
   skill_level: number;
-  skill_effect: string;
+  skill_effect: string | null;
   skill_icon: string;
 };
 
