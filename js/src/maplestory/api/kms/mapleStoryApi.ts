@@ -2,6 +2,10 @@ import axios from 'axios';
 import { Buffer } from 'buffer/'; // polyfill of Buffer for browser
 import xml2js from 'xml2js';
 
+import { BattlePracticeCharacterInfoDto } from './dto/battlePractice/battlePracticeCharacterInfo';
+import { BattlePracticeReplayIdDto } from './dto/battlePractice/battlePracticeReplayId';
+import { BattlePracticeResultDto } from './dto/battlePractice/battlePracticeResult';
+import { BattlePracticeSkillTimelineDto } from './dto/battlePractice/battlePracticeSkillTimeline';
 import { CharacterDto } from './dto/character/character';
 import { CharacterAbilityDto } from './dto/character/characterAbility';
 import { CharacterAndroidEquipmentDto } from './dto/character/characterAndroidEquipment';
@@ -52,6 +56,10 @@ import { UnionChampionDto } from './dto/union/unionChampion';
 import { UnionRaiderDto } from './dto/union/unionRaider';
 import { AchievementDto } from './dto/user/achievement';
 import { CharacterListDto } from './dto/user/characterList';
+import { BattlePracticeCharacterInfoBody } from './response/battlePractice/battlePracticeCharacterInfoBody';
+import { BattlePracticeReplayIdBody } from './response/battlePractice/battlePracticeReplayIdBody';
+import { BattlePracticeResultBody } from './response/battlePractice/battlePracticeResultBody';
+import { BattlePracticeSkillTimelineBody } from './response/battlePractice/battlePracticeSkillTimelineBody';
 import { CharacterAbilityBody } from './response/character/characterAbilityBody';
 import { CharacterAndroidEquipmentBody } from './response/character/characterAndroidEquipmentBody';
 import { CharacterBasicBody } from './response/character/characterBasicBody';
@@ -1337,6 +1345,111 @@ export class MapleStoryApi extends base.MapleStoryApi {
 
   //#endregion
 
+  //#region 연무장 정보 조회
+
+  /**
+   * 캐릭터의 연무장 리플레이 식별자를 조회합니다. 리플레이를 등록한 캐릭터에 대해서만 조회가 가능합니다.
+   * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.
+   * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
+   * - 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.
+   *
+   * @param ocid 캐릭터 식별자
+   */
+  public async getBattlePracticeReplayId(
+    ocid: string,
+  ): Promise<BattlePracticeReplayIdDto> {
+    const path = `${this.subUrl}/v1/battle-practice/replay-id`;
+    const query: BattlePracticeReplayIdApiQuery = {
+      ocid: ocid,
+    };
+    const { data } = await this.client.get<BattlePracticeReplayIdBody>(path, {
+      params: query,
+    });
+
+    return new BattlePracticeReplayIdDto(data);
+  }
+
+  /**
+   * 연무장 측정 결과 정보를 조회합니다.
+   * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.
+   * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
+   * - 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.
+   *
+   * @param replayId 연무장 리플레이 고유 식별자
+   */
+  public async getBattlePracticeResult(
+    replayId: string,
+  ): Promise<BattlePracticeResultDto> {
+    const path = `${this.subUrl}/v1/battle-practice/result`;
+    const query: BattlePracticeReplayApiQuery = {
+      replay_id: replayId,
+    };
+    const { data } = await this.client.get<BattlePracticeResultBody>(path, {
+      params: query,
+    });
+
+    return new BattlePracticeResultDto(data);
+  }
+
+  /**
+   * 연무장 진행 간 스킬 사용 내역을 조회합니다.
+   * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.
+   * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
+   * - 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.
+   *
+   * @param replayId 연무장 리플레이 고유 식별자
+   * @param pageNo 페이지 번호 (미입력 시 1페이지 조회)
+   */
+  public async getBattlePracticeSkillTimeline(
+    replayId: string,
+    pageNo?: number,
+  ): Promise<BattlePracticeSkillTimelineDto> {
+    const path = `${this.subUrl}/v1/battle-practice/skill-timeline`;
+    const query: BattlePracticeSkillTimelineApiQuery = {
+      replay_id: replayId,
+      page_no: pageNo,
+    };
+    const { data } = await this.client.get<BattlePracticeSkillTimelineBody>(
+      path,
+      {
+        params: query,
+      },
+    );
+
+    return new BattlePracticeSkillTimelineDto(data);
+  }
+
+  /**
+   * 연무장 입장 시의 캐릭터 능력치 관련 정보를 조회합니다.
+   * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.
+   * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
+   * - 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.
+   *
+   * @param replayId 연무장 리플레이 고유 식별자
+   */
+  public async getBattlePracticeCharacterInfo(
+    replayId: string,
+  ): Promise<BattlePracticeCharacterInfoDto | null> {
+    const path = `${this.subUrl}/v1/battle-practice/character-info`;
+    const query: BattlePracticeReplayApiQuery = {
+      replay_id: replayId,
+    };
+    const { data } = await this.client.get<BattlePracticeCharacterInfoBody>(
+      path,
+      {
+        params: query,
+      },
+    );
+
+    if (this.isEmptyResponse(data)) {
+      return null;
+    }
+
+    return new BattlePracticeCharacterInfoDto(data);
+  }
+
+  //#endregion
+
   //#region 확률 정보 조회
 
   /**
@@ -2519,4 +2632,17 @@ type AchievementRankingApiQuery = {
 
 type NoticeApiQuery = {
   notice_id: number;
+};
+
+type BattlePracticeReplayIdApiQuery = {
+  ocid: string;
+};
+
+type BattlePracticeReplayApiQuery = {
+  replay_id: string;
+};
+
+type BattlePracticeSkillTimelineApiQuery = {
+  replay_id: string;
+  page_no?: number;
 };

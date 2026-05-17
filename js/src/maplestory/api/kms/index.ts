@@ -1,6 +1,11 @@
 export * from './mapleStoryApi';
 export * from './mapleStoryFriendsApi';
 
+export * from './dto/battlePractice/battlePracticeCharacterInfo';
+export * from './dto/battlePractice/battlePracticeReplayId';
+export * from './dto/battlePractice/battlePracticeResult';
+export * from './dto/battlePractice/battlePracticeSkillTimeline';
+
 export * from './dto/character/character';
 export * from './dto/character/characterAbility';
 export * from './dto/character/characterAndroidEquipment';
