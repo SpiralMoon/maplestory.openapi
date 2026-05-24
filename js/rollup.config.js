@@ -1,7 +1,7 @@
 import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
 import { terser } from 'rollup-plugin-terser';
-import typescript from 'rollup-plugin-typescript2';
+import typescript from '@rollup/plugin-typescript';
 import pkg from './package.json';
 
 const external = [
@@ -14,10 +14,10 @@ const plugins = [
   resolve(),
   commonjs(),
   typescript({
-    useTsconfigDeclarationDir: true,
-    tsconfigOverride: {
-      exclude: ['test/**/*'],
-    },
+    tsconfig: './tsconfig.json',
+    exclude: ['test/**/*'],
+    declaration: false,
+    declarationDir: undefined,
   }),
 ];
 
