@@ -5,6 +5,7 @@ import dev.spiralmoon.maplestory.api.common.MapleStoryApiErrorCode;
 import dev.spiralmoon.maplestory.api.common.MapleStoryApiException;
 import dev.spiralmoon.maplestory.api.common.param.LatestApiUpdateTimeOption;
 import dev.spiralmoon.maplestory.api.kms.dto.InspectionInfoDTO;
+import dev.spiralmoon.maplestory.api.kms.dto.battlepractice.*;
 import dev.spiralmoon.maplestory.api.kms.dto.character.*;
 import dev.spiralmoon.maplestory.api.kms.dto.guild.*;
 import dev.spiralmoon.maplestory.api.kms.dto.history.*;
@@ -1438,6 +1439,115 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
                     .create(GuildApi.class)
                     .getGuildBasic(this.apiKey, oguildId, date)
                     .enqueue(createCallback(future, GuildBasicDTO.class, true));
+        } catch (Exception e) {
+            future.completeExceptionally(e);
+        }
+
+        return future;
+    }
+
+    //#endregion
+
+    //#region 연무장 정보 조회
+
+    /**
+     * 캐릭터의 연무장 리플레이 식별자를 조회합니다. 리플레이를 등록한 캐릭터에 대해서만 조회가 가능합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     * - 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.<br>
+     *
+     * @param ocid 캐릭터 식별자
+     */
+    public CompletableFuture<BattlePracticeReplayIdDTO> getBattlePracticeReplayId(@NonNull String ocid) {
+        final CompletableFuture<BattlePracticeReplayIdDTO> future = new CompletableFuture<>();
+
+        try {
+            buildRetrofit()
+                    .create(BattlePracticeApi.class)
+                    .getBattlePracticeReplayId(this.apiKey, ocid)
+                    .enqueue(createCallback(future, BattlePracticeReplayIdDTO.class));
+        } catch (Exception e) {
+            future.completeExceptionally(e);
+        }
+
+        return future;
+    }
+
+    /**
+     * 연무장 측정 결과 정보를 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     * - 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.<br>
+     *
+     * @param replayId 연무장 리플레이 고유 식별자
+     */
+    public CompletableFuture<BattlePracticeResultDTO> getBattlePracticeResult(@NonNull String replayId) {
+        final CompletableFuture<BattlePracticeResultDTO> future = new CompletableFuture<>();
+
+        try {
+            buildRetrofit()
+                    .create(BattlePracticeApi.class)
+                    .getBattlePracticeResult(this.apiKey, replayId)
+                    .enqueue(createCallback(future, BattlePracticeResultDTO.class));
+        } catch (Exception e) {
+            future.completeExceptionally(e);
+        }
+
+        return future;
+    }
+
+    /**
+     * 연무장 진행 간 스킬 사용 내역을 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     * - 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.<br>
+     *
+     * @param replayId 연무장 리플레이 고유 식별자
+     */
+    public CompletableFuture<BattlePracticeSkillTimelineDTO> getBattlePracticeSkillTimeline(@NonNull String replayId) {
+        return this.getBattlePracticeSkillTimeline(replayId, null);
+    }
+
+    /**
+     * 연무장 진행 간 스킬 사용 내역을 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     * - 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.<br>
+     *
+     * @param replayId 연무장 리플레이 고유 식별자
+     * @param pageNo   페이지 번호 (미입력 시 1페이지 조회)
+     */
+    public CompletableFuture<BattlePracticeSkillTimelineDTO> getBattlePracticeSkillTimeline(@NonNull String replayId, Integer pageNo) {
+        final CompletableFuture<BattlePracticeSkillTimelineDTO> future = new CompletableFuture<>();
+
+        try {
+            buildRetrofit()
+                    .create(BattlePracticeApi.class)
+                    .getBattlePracticeSkillTimeline(this.apiKey, replayId, pageNo)
+                    .enqueue(createCallback(future, BattlePracticeSkillTimelineDTO.class));
+        } catch (Exception e) {
+            future.completeExceptionally(e);
+        }
+
+        return future;
+    }
+
+    /**
+     * 연무장 입장 시의 캐릭터 능력치 관련 정보를 조회합니다.<br>
+     * - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.<br>
+     * - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.<br>
+     * - 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.<br>
+     *
+     * @param replayId 연무장 리플레이 고유 식별자
+     */
+    public CompletableFuture<BattlePracticeCharacterInfoDTO> getBattlePracticeCharacterInfo(@NonNull String replayId) {
+        final CompletableFuture<BattlePracticeCharacterInfoDTO> future = new CompletableFuture<>();
+
+        try {
+            buildRetrofit()
+                    .create(BattlePracticeApi.class)
+                    .getBattlePracticeCharacterInfo(this.apiKey, replayId)
+                    .enqueue(createCallback(future, BattlePracticeCharacterInfoDTO.class));
         } catch (Exception e) {
             future.completeExceptionally(e);
         }

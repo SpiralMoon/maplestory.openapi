@@ -73,6 +73,7 @@ You can find more examples in the test cases at the following link.
 - [Character Information Retrieval](https://github.com/SpiralMoon/maplestory.openapi/blob/master/python/test/kms/character_api_test.py)
 - [Union Information Retrieval](https://github.com/SpiralMoon/maplestory.openapi/blob/master/python/test/kms/union_api_test.py)
 - [Guild Information Retrieval](https://github.com/SpiralMoon/maplestory.openapi/blob/master/python/test/kms/guild_api_test.py)
+- [Battle Practice Information Retrieval](https://github.com/SpiralMoon/maplestory.openapi/blob/master/python/test/kms/battle_practice_api_test.py)
 - [History Information Retrieval](https://github.com/SpiralMoon/maplestory.openapi/blob/master/python/test/kms/history_api_test.py)
 - [Ranking Information Retrieval](https://github.com/SpiralMoon/maplestory.openapi/blob/master/python/test/kms/ranking_api_test.py)
 - [Notice Information Retrieval](https://github.com/SpiralMoon/maplestory.openapi/blob/master/python/test/kms/notice_api_test.py)

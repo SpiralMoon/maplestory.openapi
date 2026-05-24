@@ -103,6 +103,7 @@ try {
 - [캐릭터 정보 조회](https://github.com/SpiralMoon/maplestory.openapi/blob/master/js/test/kms/characterApi.test.ts)
 - [유니온 정보 조회](https://github.com/SpiralMoon/maplestory.openapi/blob/master/js/test/kms/unionApi.test.ts)
 - [길드 정보 조회](https://github.com/SpiralMoon/maplestory.openapi/blob/master/js/test/kms/guildApi.test.ts)
+- [연무장 정보 조회](https://github.com/SpiralMoon/maplestory.openapi/blob/master/js/test/kms/battlePracticeApi.test.ts)
 - [확률 정보 조회](https://github.com/SpiralMoon/maplestory.openapi/blob/master/js/test/kms/historyApi.test.ts)
 - [랭킹 정보 조회](https://github.com/SpiralMoon/maplestory.openapi/blob/master/js/test/kms/rankingApi.test.ts)
 - [공지 정보 조회](https://github.com/SpiralMoon/maplestory.openapi/blob/master/js/test/kms/noticeApi.test.ts)

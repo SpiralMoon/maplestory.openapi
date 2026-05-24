@@ -36,6 +36,11 @@ from maplestory_openapi.api.kms.dto.union.union_raider import UnionRaider
 from maplestory_openapi.api.kms.dto.guild.guild import Guild
 from maplestory_openapi.api.kms.dto.guild.guild_basic import GuildBasic
 
+from maplestory_openapi.api.kms.dto.battle_practice.battle_practice_replay_id import BattlePracticeReplayId
+from maplestory_openapi.api.kms.dto.battle_practice.battle_practice_result import BattlePracticeResult
+from maplestory_openapi.api.kms.dto.battle_practice.battle_practice_skill_timeline import BattlePracticeSkillTimeline
+from maplestory_openapi.api.kms.dto.battle_practice.battle_practice_character_info import BattlePracticeCharacterInfo
+
 from maplestory_openapi.api.kms.dto.history.cube_history import CubeHistory
 from maplestory_openapi.api.kms.dto.history.potential_history import PotentialHistory
 from maplestory_openapi.api.kms.dto.history.starforce_history import StarforceHistory
@@ -823,6 +828,80 @@ class MapleStoryApi(BaseMapleStoryApi):
         r = await self.fetch(path, query)
         if self._is_empty_response(r): return None
         return GuildBasic(**r)
+
+    #endregion
+
+    #region 연무장 정보 조회
+
+    async def get_battle_practice_replay_id(self, ocid: str) -> BattlePracticeReplayId:
+        """
+        캐릭터의 연무장 리플레이 식별자를 조회합니다. 리플레이를 등록한 캐릭터에 대해서만 조회가 가능합니다.
+        - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.
+        - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
+        - 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.
+
+        Args:
+            ocid(str): 캐릭터 식별자
+        """
+        path = self.sub_url + '/v1/battle-practice/replay-id'
+        query = {
+            'ocid': ocid,
+        }
+        r = await self.fetch(path, query)
+        return BattlePracticeReplayId(**r)
+
+    async def get_battle_practice_result(self, replay_id: str) -> BattlePracticeResult:
+        """
+        연무장 측정 결과 정보를 조회합니다.
+        - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.
+        - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
+        - 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.
+
+        Args:
+            replay_id(str): 연무장 리플레이 고유 식별자
+        """
+        path = self.sub_url + '/v1/battle-practice/result'
+        query = {
+            'replay_id': replay_id,
+        }
+        r = await self.fetch(path, query)
+        return BattlePracticeResult(**r)
+
+    async def get_battle_practice_skill_timeline(self, replay_id: str, page_no: int | None = None) -> BattlePracticeSkillTimeline:
+        """
+        연무장 진행 간 스킬 사용 내역을 조회합니다.
+        - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.
+        - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
+        - 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.
+
+        Args:
+            replay_id(str): 연무장 리플레이 고유 식별자
+            page_no(int or None): 페이지 번호 (미입력 시 1페이지 조회)
+        """
+        path = self.sub_url + '/v1/battle-practice/skill-timeline'
+        query = {
+            'replay_id': replay_id,
+            'page_no': page_no,
+        }
+        r = await self.fetch(path, query)
+        return BattlePracticeSkillTimeline(**r)
+
+    async def get_battle_practice_character_info(self, replay_id: str) -> BattlePracticeCharacterInfo:
+        """
+        연무장 입장 시의 캐릭터 능력치 관련 정보를 조회합니다.
+        - 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.
+        - 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.
+        - 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.
+
+        Args:
+            replay_id(str): 연무장 리플레이 고유 식별자
+        """
+        path = self.sub_url + '/v1/battle-practice/character-info'
+        query = {
+            'replay_id': replay_id,
+        }
+        r = await self.fetch(path, query)
+        return BattlePracticeCharacterInfo(**r)
 
     #endregion
 
