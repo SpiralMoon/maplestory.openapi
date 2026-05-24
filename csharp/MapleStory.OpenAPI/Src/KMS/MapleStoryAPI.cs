@@ -1254,6 +1254,96 @@ namespace MapleStory.OpenAPI.KMS
 
         #endregion
 
+        #region 연무장 정보 조회
+
+        /// <summary>
+        /// 캐릭터의 연무장 리플레이 식별자를 조회합니다. 리플레이를 등록한 캐릭터에 대해서만 조회가 가능합니다.
+        /// <para>- 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.</para>
+        /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
+        /// <para>- 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.</para>
+        /// </summary>
+        /// <param name="ocid">캐릭터 식별자</param>
+        public async Task<BattlePracticeReplayIdDTO> GetBattlePracticeReplayId(string ocid)
+        {
+            var path = $"{subUrl}/v1/battle-practice/replay-id";
+            var query = new Dictionary<string, string?>()
+            {
+                { "ocid", ocid }
+            };
+
+            return await Get<BattlePracticeReplayIdDTO>(path, query);
+        }
+
+        /// <summary>
+        /// 연무장 측정 결과 정보를 조회합니다.
+        /// <para>- 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.</para>
+        /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
+        /// <para>- 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.</para>
+        /// </summary>
+        /// <param name="replayId">연무장 리플레이 고유 식별자</param>
+        public async Task<BattlePracticeResultDTO> GetBattlePracticeResult(string replayId)
+        {
+            var path = $"{subUrl}/v1/battle-practice/result";
+            var query = new Dictionary<string, string?>()
+            {
+                { "replay_id", replayId }
+            };
+
+            return await Get<BattlePracticeResultDTO>(path, query);
+        }
+
+        /// <summary>
+        /// 연무장 진행 간 스킬 사용 내역을 조회합니다.
+        /// <para>- 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.</para>
+        /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
+        /// <para>- 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.</para>
+        /// </summary>
+        /// <param name="replayId">연무장 리플레이 고유 식별자</param>
+        public Task<BattlePracticeSkillTimelineDTO> GetBattlePracticeSkillTimeline(string replayId)
+        {
+            return GetBattlePracticeSkillTimeline(replayId, null);
+        }
+
+        /// <summary>
+        /// 연무장 진행 간 스킬 사용 내역을 조회합니다.
+        /// <para>- 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.</para>
+        /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
+        /// <para>- 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.</para>
+        /// </summary>
+        /// <param name="replayId">연무장 리플레이 고유 식별자</param>
+        /// <param name="pageNo">페이지 번호 (미입력 시 1페이지 조회)</param>
+        public async Task<BattlePracticeSkillTimelineDTO> GetBattlePracticeSkillTimeline(string replayId, int? pageNo)
+        {
+            var path = $"{subUrl}/v1/battle-practice/skill-timeline";
+            var query = new Dictionary<string, string?>()
+            {
+                { "replay_id", replayId },
+                { "page_no", pageNo?.ToString() }
+            };
+
+            return await Get<BattlePracticeSkillTimelineDTO>(path, query);
+        }
+
+        /// <summary>
+        /// 연무장 입장 시의 캐릭터 능력치 관련 정보를 조회합니다.
+        /// <para>- 메이플스토리 게임 데이터는 평균 15분 후 확인 가능합니다.</para>
+        /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
+        /// <para>- 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.</para>
+        /// </summary>
+        /// <param name="replayId">연무장 리플레이 고유 식별자</param>
+        public async Task<BattlePracticeCharacterInfoDTO> GetBattlePracticeCharacterInfo(string replayId)
+        {
+            var path = $"{subUrl}/v1/battle-practice/character-info";
+            var query = new Dictionary<string, string?>()
+            {
+                { "replay_id", replayId }
+            };
+
+            return await Get<BattlePracticeCharacterInfoDTO>(path, query);
+        }
+
+        #endregion
+
         #region 확률 정보 조회
 
         /// <summary>
