@@ -1,6 +1,6 @@
 import * as base from '../../../common/dto/character/characterBasic';
-import { CharacterBasicBody } from '../../response/character/characterBasicBody';
 import { removeQuery } from '../../../common/lib'
+import { CharacterBasicBody } from '../../response/character/characterBasicBody';
 
 /**
  * 角色基本資訊

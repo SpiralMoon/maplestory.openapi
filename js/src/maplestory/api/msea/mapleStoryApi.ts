@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { Buffer } from 'buffer/'; // polyfill of Buffer for browser
 
+import { removeQuery } from '../common/lib'
 import { CharacterDto } from './dto/character/character';
 import { CharacterAbilityDto } from './dto/character/characterAbility';
 import { CharacterAndroidEquipmentDto } from './dto/character/characterAndroidEquipment';
@@ -61,7 +62,6 @@ import {
 } from '../common/enum/characterImage';
 import { DateOptions } from '../common/mapleStoryApi';
 import * as base from '../common/mapleStoryApi';
-import { removeQuery } from '../common/lib'
 
 /**
  * MapleStory OpenAPI client for MSEA.<br>
