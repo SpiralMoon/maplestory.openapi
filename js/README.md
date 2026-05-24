@@ -103,6 +103,7 @@ You can find more examples in the test cases at the following link.
 - [Character Information Retrieval](https://github.com/SpiralMoon/maplestory.openapi/blob/master/js/test/kms/characterApi.test.ts)
 - [Union Information Retrieval](https://github.com/SpiralMoon/maplestory.openapi/blob/master/js/test/kms/unionApi.test.ts)
 - [Guild Information Retrieval](https://github.com/SpiralMoon/maplestory.openapi/blob/master/js/test/kms/guildApi.test.ts)
+- [Battle Practice Information Retrieval](https://github.com/SpiralMoon/maplestory.openapi/blob/master/js/test/kms/battlePracticeApi.test.ts)
 - [History Information Retrieval](https://github.com/SpiralMoon/maplestory.openapi/blob/master/js/test/kms/historyApi.test.ts)
 - [Ranking Information Retrieval](https://github.com/SpiralMoon/maplestory.openapi/blob/master/js/test/kms/rankingApi.test.ts)
 - [Notice Information Retrieval](https://github.com/SpiralMoon/maplestory.openapi/blob/master/js/test/kms/noticeApi.test.ts)
