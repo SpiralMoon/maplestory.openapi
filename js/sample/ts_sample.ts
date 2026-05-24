@@ -1,8 +1,5 @@
-import {
-  MapleStoryApi,
-  MapleStoryApiError,
-  CubeHistoryResponseDto,
-} from '../src';
+import { MapleStoryApiError } from '../src';
+import { MapleStoryApi, CubeHistoryResponseDto } from '../src/maplestory/api/kms';
 
 const apiKey: string = '{Your API Key}';
 const api: MapleStoryApi = new MapleStoryApi(apiKey);

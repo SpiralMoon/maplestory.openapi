@@ -1,4 +1,5 @@
-const { MapleStoryApi, MapleStoryApiError } = require('../dist');
+const { MapleStoryApiError } = require('../src');
+const { MapleStoryApi } = require('../src/maplestory/api/kms');
 
 const apiKey = '{Your API Key}';
 const api = new MapleStoryApi(apiKey);
