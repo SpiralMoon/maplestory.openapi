@@ -2,6 +2,7 @@ import * as base from '../../../common/dto/character/characterVMatrix';
 import {
   CharacterVMatrixBody,
   CharacterVMatrixCoreEquipmentDtoBody,
+  CharacterVMatrixCoreEquipmentPresetBody,
 } from '../../response/character/characterVMatrixBody';
 
 /**
@@ -28,6 +29,31 @@ export class CharacterVMatrixDto extends base.CharacterVMatrixDto {
    */
   public override characterVMatrixRemainSlotUpgradePoint: number;
 
+  /**
+   * 프리셋 1의 V코어 정보
+   */
+  public characterVCoreEquipmentPreset1: CharacterVMatrixCoreEquipmentPresetDto[];
+
+  /**
+   * 프리셋 2의 V코어 정보
+   */
+  public characterVCoreEquipmentPreset2: CharacterVMatrixCoreEquipmentPresetDto[];
+
+  /**
+   * 프리셋 3의 V코어 정보
+   */
+  public characterVCoreEquipmentPreset3: CharacterVMatrixCoreEquipmentPresetDto[];
+
+  /**
+   * 프리셋 4의 V코어 정보
+   */
+  public characterVCoreEquipmentPreset4: CharacterVMatrixCoreEquipmentPresetDto[];
+
+  /**
+   * 프리셋 5의 V코어 정보
+   */
+  public characterVCoreEquipmentPreset5: CharacterVMatrixCoreEquipmentPresetDto[];
+
   constructor(obj: CharacterVMatrixBody) {
     super();
 
@@ -36,6 +62,11 @@ export class CharacterVMatrixDto extends base.CharacterVMatrixDto {
       character_class,
       character_v_core_equipment,
       character_v_matrix_remain_slot_upgrade_point,
+      character_v_core_equipment_preset_1,
+      character_v_core_equipment_preset_2,
+      character_v_core_equipment_preset_3,
+      character_v_core_equipment_preset_4,
+      character_v_core_equipment_preset_5,
     } = obj;
 
     this.date = date ? new Date(date) : null;
@@ -45,6 +76,39 @@ export class CharacterVMatrixDto extends base.CharacterVMatrixDto {
     );
     this.characterVMatrixRemainSlotUpgradePoint =
       character_v_matrix_remain_slot_upgrade_point!;
+    this.characterVCoreEquipmentPreset1 = (character_v_core_equipment_preset_1 ?? []).map((core) => new CharacterVMatrixCoreEquipmentPresetDto(core));
+    this.characterVCoreEquipmentPreset2 = (character_v_core_equipment_preset_2 ?? []).map((core) => new CharacterVMatrixCoreEquipmentPresetDto(core));
+    this.characterVCoreEquipmentPreset3 = (character_v_core_equipment_preset_3 ?? []).map((core) => new CharacterVMatrixCoreEquipmentPresetDto(core));
+    this.characterVCoreEquipmentPreset4 = (character_v_core_equipment_preset_4 ?? []).map((core) => new CharacterVMatrixCoreEquipmentPresetDto(core));
+    this.characterVCoreEquipmentPreset5 = (character_v_core_equipment_preset_5 ?? []).map((core) => new CharacterVMatrixCoreEquipmentPresetDto(core));
+  }
+}
+
+/**
+ * 캐릭터 V코어 프리셋 정보
+ */
+export class CharacterVMatrixCoreEquipmentPresetDto {
+  /**
+   * 코어 명
+   */
+  public vCoreName: string | null;
+
+  /**
+   * 코어 타입
+   */
+  public vCoreType: string | null;
+
+  /**
+   * 코어의 레벨
+   */
+  public vCoreLevel: number;
+
+  constructor(obj: CharacterVMatrixCoreEquipmentPresetBody) {
+    const { v_core_name, v_core_type, v_core_level } = obj;
+
+    this.vCoreName = v_core_name;
+    this.vCoreType = v_core_type;
+    this.vCoreLevel = v_core_level;
   }
 }
 
