@@ -44,6 +44,41 @@ namespace MapleStory.OpenAPI.KMS.DTO
         /// </summary>
         [JsonProperty("character_v_matrix_remain_slot_upgrade_point")]
         public override int CharacterVMatrixRemainSlotUpgradePoint { get; set; }
+
+        /// <summary>
+        /// 프리셋 1의 V코어 정보
+        /// </summary>
+        [JsonProperty("character_v_core_equipment_preset_1")]
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public List<CharacterVMatrixCoreEquipmentPresetDTO> CharacterVCoreEquipmentPreset1 { get; set; } = new();
+
+        /// <summary>
+        /// 프리셋 2의 V코어 정보
+        /// </summary>
+        [JsonProperty("character_v_core_equipment_preset_2")]
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public List<CharacterVMatrixCoreEquipmentPresetDTO> CharacterVCoreEquipmentPreset2 { get; set; } = new();
+
+        /// <summary>
+        /// 프리셋 3의 V코어 정보
+        /// </summary>
+        [JsonProperty("character_v_core_equipment_preset_3")]
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public List<CharacterVMatrixCoreEquipmentPresetDTO> CharacterVCoreEquipmentPreset3 { get; set; } = new();
+
+        /// <summary>
+        /// 프리셋 4의 V코어 정보
+        /// </summary>
+        [JsonProperty("character_v_core_equipment_preset_4")]
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public List<CharacterVMatrixCoreEquipmentPresetDTO> CharacterVCoreEquipmentPreset4 { get; set; } = new();
+
+        /// <summary>
+        /// 프리셋 5의 V코어 정보
+        /// </summary>
+        [JsonProperty("character_v_core_equipment_preset_5")]
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public List<CharacterVMatrixCoreEquipmentPresetDTO> CharacterVCoreEquipmentPreset5 { get; set; } = new();
     }
 
     /// <summary>
@@ -102,5 +137,29 @@ namespace MapleStory.OpenAPI.KMS.DTO
         [JsonProperty("v_core_skill_3")]
         [Obsolete("2025년 12월 18일 점검 이후부터 사용하지 않는 항목입니다.")]
         public override string? VCoreSkill3 { get; set; }
+    }
+
+    /// <summary>
+    /// 캐릭터 V코어 프리셋 정보
+    /// </summary>
+    public class CharacterVMatrixCoreEquipmentPresetDTO
+    {
+        /// <summary>
+        /// 코어 명
+        /// </summary>
+        [JsonProperty("v_core_name")]
+        public string? VCoreName { get; set; }
+
+        /// <summary>
+        /// 코어 타입
+        /// </summary>
+        [JsonProperty("v_core_type")]
+        public string? VCoreType { get; set; }
+
+        /// <summary>
+        /// 코어의 레벨
+        /// </summary>
+        [JsonProperty("v_core_level")]
+        public int VCoreLevel { get; set; }
     }
 }

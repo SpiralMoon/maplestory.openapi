@@ -41,6 +41,41 @@ public class CharacterVMatrixDTO implements dev.spiralmoon.maplestory.api.common
     private List<CharacterVMatrixCoreEquipmentDTO> characterVCoreEquipment;
 
     /**
+     * 프리셋 1의 V코어 정보
+     */
+    @JsonProperty("character_v_core_equipment_preset_1")
+    @JsonSetter(nulls = Nulls.AS_EMPTY)
+    private List<CharacterVMatrixCoreEquipmentPresetDTO> characterVCoreEquipmentPreset1;
+
+    /**
+     * 프리셋 2의 V코어 정보
+     */
+    @JsonProperty("character_v_core_equipment_preset_2")
+    @JsonSetter(nulls = Nulls.AS_EMPTY)
+    private List<CharacterVMatrixCoreEquipmentPresetDTO> characterVCoreEquipmentPreset2;
+
+    /**
+     * 프리셋 3의 V코어 정보
+     */
+    @JsonProperty("character_v_core_equipment_preset_3")
+    @JsonSetter(nulls = Nulls.AS_EMPTY)
+    private List<CharacterVMatrixCoreEquipmentPresetDTO> characterVCoreEquipmentPreset3;
+
+    /**
+     * 프리셋 4의 V코어 정보
+     */
+    @JsonProperty("character_v_core_equipment_preset_4")
+    @JsonSetter(nulls = Nulls.AS_EMPTY)
+    private List<CharacterVMatrixCoreEquipmentPresetDTO> characterVCoreEquipmentPreset4;
+
+    /**
+     * 프리셋 5의 V코어 정보
+     */
+    @JsonProperty("character_v_core_equipment_preset_5")
+    @JsonSetter(nulls = Nulls.AS_EMPTY)
+    private List<CharacterVMatrixCoreEquipmentPresetDTO> characterVCoreEquipmentPreset5;
+
+    /**
      * 캐릭터 잔여 매트릭스 강화 포인트
      */
     @JsonProperty("character_v_matrix_remain_slot_upgrade_point")
