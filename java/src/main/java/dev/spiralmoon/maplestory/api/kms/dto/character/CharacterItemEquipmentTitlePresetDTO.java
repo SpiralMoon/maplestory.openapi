@@ -10,13 +10,13 @@ import lombok.ToString;
 import java.time.ZonedDateTime;
 
 /**
- * 캐릭터 칭호 아이템 정보
+ * 캐릭터 장비 칭호 프리셋 정보
  */
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 @ToString
-public class CharacterItemEquipmentTitleDTO implements dev.spiralmoon.maplestory.api.common.dto.character.CharacterItemEquipmentTitleDTO {
+public class CharacterItemEquipmentTitlePresetDTO {
 
     /**
      * 칭호 장비 명
@@ -43,10 +43,34 @@ public class CharacterItemEquipmentTitleDTO implements dev.spiralmoon.maplestory
     private String dateExpire;
 
     /**
-     * 칭호 옵션 유효 기간 (KST)
+     * 칭호 옵션 유효 기간 (expired:만료, null:무제한) (KST)
      */
     @JsonProperty("date_option_expire")
     private String dateOptionExpire;
+
+    /**
+     * 외형 설정에 등록한 칭호 장비 명
+     */
+    @JsonProperty("title_shape_name")
+    private String titleShapeName;
+
+    /**
+     * 외형 설정에 등록한 칭호 아이콘
+     */
+    @JsonProperty("title_shape_icon")
+    private String titleShapeIcon;
+
+    /**
+     * 외형 설정에 등록한 칭호 설명
+     */
+    @JsonProperty("title_shape_description")
+    private String titleShapeDescription;
+
+    /**
+     * 비활성화 여부
+     */
+    @JsonProperty("disable_flag")
+    private String disableFlag;
 
     /**
      * 칭호 유효 기간 (KST)
@@ -57,18 +81,6 @@ public class CharacterItemEquipmentTitleDTO implements dev.spiralmoon.maplestory
         } else {
             return null;
         }
-    }
-
-    /**
-     * 칭호 유효 기간 만료 여부
-     */
-    public Boolean isExpired() {
-
-        if (this.dateExpire == null) {
-            return null;
-        }
-
-        return "expired".equals(this.dateExpire);
     }
 
     /**
@@ -93,46 +105,4 @@ public class CharacterItemEquipmentTitleDTO implements dev.spiralmoon.maplestory
 
         return "expired".equals(this.dateOptionExpire);
     }
-
-    /**
-     * 외형 설정에 등록한 칭호 장비 명
-     */
-    @JsonProperty("title_shape_name")
-    private String titleShapeName;
-
-    /**
-     * 외형 설정에 등록한 칭호 아이콘
-     */
-    @JsonProperty("title_shape_icon")
-    private String titleShapeIcon;
-
-    /**
-     * 외형 설정에 등록한 칭호 설명
-     */
-    @JsonProperty("title_shape_description")
-    private String titleShapeDescription;
-
-    /**
-     * 적용 중인 프리셋 번호
-     */
-    @JsonProperty("preset_no")
-    private Integer presetNo;
-
-    /**
-     * 프리셋 1번 칭호 정보
-     */
-    @JsonProperty("title_preset_1")
-    private CharacterItemEquipmentTitlePresetDTO titlePreset1;
-
-    /**
-     * 프리셋 2번 칭호 정보
-     */
-    @JsonProperty("title_preset_2")
-    private CharacterItemEquipmentTitlePresetDTO titlePreset2;
-
-    /**
-     * 프리셋 3번 칭호 정보
-     */
-    @JsonProperty("title_preset_3")
-    private CharacterItemEquipmentTitlePresetDTO titlePreset3;
 }

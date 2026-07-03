@@ -11,6 +11,7 @@ import {
   CharacterItemEquipmentMedalShapeBody,
   CharacterItemEquipmentStarforceOptionBody,
   CharacterItemEquipmentTitleBody,
+  CharacterItemEquipmentTitlePresetBody,
   CharacterItemEquipmentTotalOptionBody,
 } from '../../response/character/characterItemEquipmentBody';
 
@@ -133,6 +134,11 @@ export class CharacterItemEquipmentDto extends base.CharacterItemEquipmentDto {
  */
 export class CharacterItemEquipmentTitleDto extends base.CharacterItemEquipmentTitleDto {
   /**
+   * 적용 중인 프리셋 번호
+   */
+  public presetNo: number | null;
+
+  /**
    * 칭호 장비 명
    */
   public override titleName: string | null;
@@ -182,9 +188,127 @@ export class CharacterItemEquipmentTitleDto extends base.CharacterItemEquipmentT
    */
   public override titleShapeDescription: string | null;
 
+  /**
+   * 프리셋 1번 칭호 정보
+   */
+  public titlePreset1: CharacterItemEquipmentTitlePresetDto | null;
+
+  /**
+   * 프리셋 2번 칭호 정보
+   */
+  public titlePreset2: CharacterItemEquipmentTitlePresetDto | null;
+
+  /**
+   * 프리셋 3번 칭호 정보
+   */
+  public titlePreset3: CharacterItemEquipmentTitlePresetDto | null;
+
   constructor(obj: CharacterItemEquipmentTitleBody) {
     super();
 
+    const {
+      preset_no,
+      title_name,
+      title_icon,
+      title_description,
+      date_expire,
+      date_option_expire,
+      title_shape_name,
+      title_shape_icon,
+      title_shape_description,
+      title_preset_1,
+      title_preset_2,
+      title_preset_3,
+    } = obj;
+
+    this.presetNo = preset_no;
+    this.titleName = title_name;
+    this.titleIcon = title_icon;
+    this.titleDescription = title_description;
+    this.titleShapeName = title_shape_name;
+    this.titleShapeIcon = title_shape_icon;
+    this.titleShapeDescription = title_shape_description;
+    this.titlePreset1 = title_preset_1
+      ? new CharacterItemEquipmentTitlePresetDto(title_preset_1)
+      : null;
+    this.titlePreset2 = title_preset_2
+      ? new CharacterItemEquipmentTitlePresetDto(title_preset_2)
+      : null;
+    this.titlePreset3 = title_preset_3
+      ? new CharacterItemEquipmentTitlePresetDto(title_preset_3)
+      : null;
+
+    if (date_expire === 'expired') {
+      this.isExpired = true;
+    } else if (typeof date_expire === 'string') {
+      this.dateExpire = date_expire ? new Date(date_expire) : null;
+    }
+
+    if (date_option_expire === 'expired') {
+      this.isOptionExpired = true;
+    } else if (typeof date_option_expire === 'string') {
+      this.dateOptionExpire = date_option_expire
+        ? new Date(date_option_expire)
+        : null;
+    }
+  }
+}
+
+/**
+ * 캐릭터 장비 칭호 프리셋 정보
+ */
+export class CharacterItemEquipmentTitlePresetDto {
+  /**
+   * 칭호 장비 명
+   */
+  public titleName: string | null;
+
+  /**
+   * 칭호 아이콘
+   */
+  public titleIcon: string | null;
+
+  /**
+   * 칭호 설명
+   */
+  public titleDescription: string | null;
+
+  /**
+   * 칭호 유효 기간 (KST)
+   */
+  public dateExpire: Date | null;
+
+  /**
+   * 칭호 옵션 유효 기간 (expired:만료, null:무제한) (KST)
+   */
+  public dateOptionExpire: Date | null = null;
+
+  /**
+   * 칭호 옵션 유효 기간 만료 여부
+   */
+  public isOptionExpired: boolean | null = null;
+
+  /**
+   * 외형 설정에 등록한 칭호 장비 명
+   */
+  public titleShapeName: string | null;
+
+  /**
+   * 외형 설정에 등록한 칭호 아이콘
+   */
+  public titleShapeIcon: string | null;
+
+  /**
+   * 외형 설정에 등록한 칭호 설명
+   */
+  public titleShapeDescription: string | null;
+
+  /**
+   * 비활성화 여부
+   */
+  public disableFlag: string | null;
+
+  constructor(obj: CharacterItemEquipmentTitlePresetBody) {
     const {
       title_name,
       title_icon,
@@ -194,20 +318,17 @@ export class CharacterItemEquipmentTitleDto extends base.CharacterItemEquipmentT
       title_shape_name,
       title_shape_icon,
       title_shape_description,
+      disable_flag,
     } = obj;
 
     this.titleName = title_name;
     this.titleIcon = title_icon;
     this.titleDescription = title_description;
+    this.dateExpire = date_expire ? new Date(date_expire) : null;
     this.titleShapeName = title_shape_name;
     this.titleShapeIcon = title_shape_icon;
     this.titleShapeDescription = title_shape_description;
-
-    if (date_expire === 'expired') {
-      this.isExpired = true;
-    } else if (typeof date_expire === 'string') {
-      this.dateExpire = date_expire ? new Date(date_expire) : null;
-    }
+    this.disableFlag = disable_flag;
 
     if (date_option_expire === 'expired') {
       this.isOptionExpired = true;

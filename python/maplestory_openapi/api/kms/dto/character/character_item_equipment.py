@@ -500,6 +500,42 @@ class CharacterItemEquipmentMechanicInfo(BaseModel, BaseCharacterItemEquipmentMe
         return self.freestyle_flag == '1'
 
 
+class CharacterItemEquipmentTitlePreset(BaseModel):
+    """
+    캐릭터 칭호 프리셋 정보
+
+    Attributes:
+        title_name (str | None): 칭호 장비 명
+        title_icon (str | None): 칭호 아이콘
+        title_description (str | None): 칭호 설명
+        date_expire (datetime | None): 칭호 유효 기간 (KST)
+        date_option_expire (datetime | None): 칭호 옵션 유효 기간 (expired:만료, null:무제한) (KST)
+        is_option_expired (bool | None): 칭호 옵션 유효 기간 만료 여부
+        title_shape_name (str | None): 외형 설정에 등록한 칭호 장비 명
+        title_shape_icon (str | None): 외형 설정에 등록한 칭호 아이콘
+        title_shape_description (str | None): 외형 설정에 등록한 칭호 설명
+        disable_flag (str | None): 비활성화 여부
+    """
+    title_name: str | None
+    title_icon: str | None
+    title_description: str | None
+    date_expire: datetime | None
+    date_option_expire: datetime | None
+    is_option_expired: bool | None
+    title_shape_name: str | None
+    title_shape_icon: str | None
+    title_shape_description: str | None
+    disable_flag: str | None
+
+    @model_validator(mode="before")
+    @classmethod
+    def set_default(cls, values):
+        if values.get("date_option_expire") == 'expired':
+            values["is_option_expired"] = True
+            values["date_option_expire"] = None
+        return values
+
+
 class CharacterItemEquipmentTitle(BaseModel, BaseCharacterItemEquipmentTitle):
     """
     캐릭터 칭호 아이템 정보
@@ -515,6 +551,10 @@ class CharacterItemEquipmentTitle(BaseModel, BaseCharacterItemEquipmentTitle):
         title_shape_name(str or None): 외형 설정에 등록한 칭호 장비 명
         title_shape_icon(str or None): 외형 설정에 등록한 칭호 아이콘
         title_shape_description(str or None): 외형 설정에 등록한 칭호 설명
+        preset_no (int | None): 적용 중인 프리셋 번호
+        title_preset_1 (CharacterItemEquipmentTitlePreset | None): 프리셋 1번 칭호 정보
+        title_preset_2 (CharacterItemEquipmentTitlePreset | None): 프리셋 2번 칭호 정보
+        title_preset_3 (CharacterItemEquipmentTitlePreset | None): 프리셋 3번 칭호 정보
     """
     title_name: str | None
     title_icon: str | None
@@ -526,6 +566,10 @@ class CharacterItemEquipmentTitle(BaseModel, BaseCharacterItemEquipmentTitle):
     title_shape_name: str | None
     title_shape_icon: str | None
     title_shape_description: str | None
+    preset_no: int | None
+    title_preset_1: CharacterItemEquipmentTitlePreset | None = None
+    title_preset_2: CharacterItemEquipmentTitlePreset | None = None
+    title_preset_3: CharacterItemEquipmentTitlePreset | None = None
 
     @model_validator(mode="before")
     @classmethod

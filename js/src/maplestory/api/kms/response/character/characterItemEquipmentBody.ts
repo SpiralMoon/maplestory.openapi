@@ -200,6 +200,7 @@ export type CharacterItemEquipmentStarforceOptionBody =
   CharacterItemEquipmentEtcOptionBody;
 
 export type CharacterItemEquipmentTitleBody = {
+  preset_no: number | null;
   title_name: string | null;
   title_icon: string | null;
   title_description: string | null;
@@ -208,6 +209,21 @@ export type CharacterItemEquipmentTitleBody = {
   title_shape_name: string | null;
   title_shape_icon: string | null;
   title_shape_description: string | null;
+  title_preset_1: CharacterItemEquipmentTitlePresetBody | null;
+  title_preset_2: CharacterItemEquipmentTitlePresetBody | null;
+  title_preset_3: CharacterItemEquipmentTitlePresetBody | null;
+};
+
+export type CharacterItemEquipmentTitlePresetBody = {
+  title_name: string | null;
+  title_icon: string | null;
+  title_description: string | null;
+  date_expire: string | null;
+  date_option_expire: string | null;
+  title_shape_name: string | null;
+  title_shape_icon: string | null;
+  title_shape_description: string | null;
+  disable_flag: string | null;
 };
 
 export type CharacterItemEquipmentMedalShapeBody = {

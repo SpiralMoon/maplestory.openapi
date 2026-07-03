@@ -214,6 +214,131 @@ namespace MapleStory.OpenAPI.KMS.DTO
         /// </summary>
         [JsonProperty("title_shape_description")]
         public override string? TitleShapeDescription { get; set; }
+
+        /// <summary>
+        /// 적용 중인 프리셋 번호
+        /// </summary>
+        [JsonProperty("preset_no")]
+        public int? PresetNo { get; set; }
+
+        /// <summary>
+        /// 프리셋 1번 칭호 정보
+        /// </summary>
+        [JsonProperty("title_preset_1")]
+        public CharacterItemEquipmentTitlePresetDTO? TitlePreset1 { get; set; }
+
+        /// <summary>
+        /// 프리셋 2번 칭호 정보
+        /// </summary>
+        [JsonProperty("title_preset_2")]
+        public CharacterItemEquipmentTitlePresetDTO? TitlePreset2 { get; set; }
+
+        /// <summary>
+        /// 프리셋 3번 칭호 정보
+        /// </summary>
+        [JsonProperty("title_preset_3")]
+        public CharacterItemEquipmentTitlePresetDTO? TitlePreset3 { get; set; }
+    }
+
+    /// <summary>
+    /// 캐릭터 장비 칭호 프리셋 정보
+    /// </summary>
+    public class CharacterItemEquipmentTitlePresetDTO
+    {
+        /// <summary>
+        /// 칭호 장비 명
+        /// </summary>
+        [JsonProperty("title_name")]
+        public string? TitleName { get; set; }
+
+        /// <summary>
+        /// 칭호 아이콘
+        /// </summary>
+        [JsonProperty("title_icon")]
+        public string? TitleIcon { get; set; }
+
+        /// <summary>
+        /// 칭호 설명
+        /// </summary>
+        [JsonProperty("title_description")]
+        public string? TitleDescription { get; set; }
+
+        /// <summary>
+        /// 칭호 유효 기간 (KST)
+        /// </summary>
+        public DateTimeOffset? DateExpire
+        {
+            get
+            {
+                if (_dateExpire != null && _dateExpire != "expired")
+                {
+                    return DateTimeOffset.Parse(_dateExpire).ToOffset(TimeSpan.FromHours(9));
+                }
+                return null;
+            }
+        }
+
+        [JsonProperty("date_expire")]
+        private string? _dateExpire { get; set; }
+
+        /// <summary>
+        /// 칭호 옵션 유효 기간 (expired:만료, null:무제한) (KST)
+        /// </summary>
+        public DateTimeOffset? DateOptionExpire
+        {
+            get
+            {
+                if (_dateOptionExpire != null && _dateOptionExpire != "expired")
+                {
+                    return DateTimeOffset.Parse(_dateOptionExpire).ToOffset(TimeSpan.FromHours(9));
+                }
+
+                return null;
+            }
+        }
+
+        [JsonProperty("date_option_expire")]
+        private string? _dateOptionExpire { get; set; }
+
+        /// <summary>
+        /// 칭호 옵션 유효 기간 만료 여부
+        /// </summary>
+        public bool? IsOptionExpired
+        {
+            get
+            {
+                if (_dateOptionExpire == null)
+                {
+                    return null;
+                }
+
+                return _dateOptionExpire == "expired";
+            }
+        }
+
+        /// <summary>
+        /// 외형 설정에 등록한 칭호 장비 명
+        /// </summary>
+        [JsonProperty("title_shape_name")]
+        public string? TitleShapeName { get; set; }
+
+        /// <summary>
+        /// 외형 설정에 등록한 칭호 아이콘
+        /// </summary>
+        [JsonProperty("title_shape_icon")]
+        public string? TitleShapeIcon { get; set; }
+
+        /// <summary>
+        /// 외형 설정에 등록한 칭호 설명
+        /// </summary>
+        [JsonProperty("title_shape_description")]
+        public string? TitleShapeDescription { get; set; }
+
+        /// <summary>
+        /// 비활성화 여부
+        /// </summary>
+        [JsonProperty("disable_flag")]
+        public string? DisableFlag { get; set; }
     }
 
     /// <summary>
