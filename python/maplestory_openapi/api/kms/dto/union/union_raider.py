@@ -104,6 +104,25 @@ class UnionRaiderPreset(BaseModel, BaseUnionRaiderPreset):
         return v
 
 
+class UnionRaiderStateStatPreset(BaseModel):
+    """
+    유니온 스탯 프리셋 정보
+
+    Attributes:
+        preset_no (int): 프리셋 번호
+        union_state_stat (list[str]): 유니온 스탯 효과
+    """
+    preset_no: int
+    union_state_stat: list[str]
+
+    @field_validator("union_state_stat", mode="before")
+    @classmethod
+    def null_as_empty(cls, v):
+        if v is None:
+            return []
+        return v
+
+
 class UnionRaider(BaseModel, BaseUnionRaider):
     """
     유니온 공격대 전체 정보
@@ -112,6 +131,9 @@ class UnionRaider(BaseModel, BaseUnionRaider):
         date (datetime or None): 조회 기준일 (KST, 일 단위 데이터로 시, 분은 일괄 0으로 표기)
         union_raider_stat (list[str]): 공격대원 효과
         union_occupied_stat (list[str]): 점령 효과
+        union_state_stat (list[str]): 적용 중인 유니온 스탯 효과
+        union_state_stat_preset (list[UnionRaiderStateStatPreset]): 프리셋 별 유니온 스탯 효과
+        union_max_point (int or None): 총 유니온 포인트
         union_inner_stat (list[UnionRaiderInnerStat]): 공격대 배치
         union_block (list[UnionRaiderBlock]): 블록 정보
         use_preset_no (int): 적용 중인 프리셋 번호
@@ -124,6 +146,9 @@ class UnionRaider(BaseModel, BaseUnionRaider):
     date: datetime | None
     union_raider_stat: list[str]
     union_occupied_stat: list[str]
+    union_state_stat: list[str]
+    union_state_stat_preset: list[UnionRaiderStateStatPreset]
+    union_max_point: int | None
     union_inner_stat: list[UnionRaiderInnerStat]
     union_block: list[UnionRaiderBlock]
     use_preset_no: int
@@ -136,6 +161,8 @@ class UnionRaider(BaseModel, BaseUnionRaider):
     @field_validator(
         "union_raider_stat",
         "union_occupied_stat",
+        "union_state_stat",
+        "union_state_stat_preset",
         "union_inner_stat",
         "union_block",
         mode="before"

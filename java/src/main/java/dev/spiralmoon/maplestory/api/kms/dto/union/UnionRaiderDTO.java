@@ -35,6 +35,26 @@ public class UnionRaiderDTO implements dev.spiralmoon.maplestory.api.common.dto.
     private List<String> unionRaiderStat;
 
     /**
+     * 적용 중인 유니온 스탯 효과
+     */
+    @JsonProperty("union_state_stat")
+    @JsonSetter(nulls = Nulls.AS_EMPTY)
+    private List<String> unionStateStat;
+
+    /**
+     * 프리셋 별 유니온 스탯 효과
+     */
+    @JsonProperty("union_state_stat_preset")
+    @JsonSetter(nulls = Nulls.AS_EMPTY)
+    private List<UnionRaiderStateStatPresetDTO> unionStateStatPreset;
+
+    /**
+     * 총 유니온 포인트
+     */
+    @JsonProperty("union_max_point")
+    private Integer unionMaxPoint;
+
+    /**
      * 유니온 공격대 점령 효과
      */
     @JsonProperty("union_occupied_stat")

@@ -6,6 +6,7 @@ import {
   UnionRaiderBody,
   UnionRaiderInnerStatBody,
   UnionRaiderPresetBody,
+  UnionRaiderStateStatPresetBody,
 } from '../../response/union/unionRaiderBody';
 
 /**
@@ -21,6 +22,21 @@ export class UnionRaiderDto extends base.UnionRaiderDto {
    * 유니온 공격대원 효과
    */
   public override unionRaiderStat: string[];
+
+  /**
+   * 적용 중인 유니온 스탯 효과
+   */
+  public unionStateStat: string[];
+
+  /**
+   * 프리셋 별 유니온 스탯 효과
+   */
+  public unionStateStatPreset: UnionRaiderStateStatPresetDto[];
+
+  /**
+   * 총 유니온 포인트
+   */
+  public unionMaxPoint: number | null;
 
   /**
    * 유니온 공격대 점령 효과
@@ -82,10 +98,18 @@ export class UnionRaiderDto extends base.UnionRaiderDto {
       union_raider_preset_3,
       union_raider_preset_4,
       union_raider_preset_5,
+      union_state_stat,
+      union_state_stat_preset,
+      union_max_point,
     } = obj;
 
     this.date = date ? new Date(date) : null;
     this.unionRaiderStat = union_raider_stat;
+    this.unionStateStat = union_state_stat;
+    this.unionStateStatPreset = (union_state_stat_preset ?? []).map(
+      (preset) => new UnionRaiderStateStatPresetDto(preset),
+    );
+    this.unionMaxPoint = union_max_point;
     this.unionOccupiedStat = union_occupied_stat;
     this.unionInnerStat = union_inner_stat.map(
       (stat) => new UnionRaiderInnerStatDto(stat),
@@ -235,6 +259,28 @@ export class UnionRaiderBlockDto extends base.UnionRaiderBlockDto {
           (position) => new UnionRaiderBlockPositionDto(position),
         )
       : null;
+  }
+}
+
+/**
+ * 유니온 스탯 프리셋 정보
+ */
+export class UnionRaiderStateStatPresetDto {
+  /**
+   * 프리셋 번호
+   */
+  public presetNo: number;
+
+  /**
+   * 유니온 스탯 효과
+   */
+  public unionStateStat: string[];
+
+  constructor(obj: UnionRaiderStateStatPresetBody) {
+    const { preset_no, union_state_stat } = obj;
+
+    this.presetNo = preset_no;
+    this.unionStateStat = union_state_stat;
   }
 }
 

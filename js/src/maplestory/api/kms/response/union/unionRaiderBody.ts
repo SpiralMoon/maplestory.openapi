@@ -10,6 +10,9 @@ export type UnionRaiderBody = {
   union_raider_preset_3: UnionRaiderPresetBody | null;
   union_raider_preset_4: UnionRaiderPresetBody | null;
   union_raider_preset_5: UnionRaiderPresetBody | null;
+  union_state_stat: string[];
+  union_state_stat_preset: UnionRaiderStateStatPresetBody[];
+  union_max_point: number | null;
 };
 
 export type UnionRaiderInnerStatBody = {
@@ -40,4 +43,9 @@ export type UnionRaiderPresetBody = {
   union_occupied_stat: string[];
   union_inner_stat: UnionRaiderInnerStatBody[];
   union_block: UnionRaiderBlockBody[];
+};
+
+export type UnionRaiderStateStatPresetBody = {
+  preset_no: number;
+  union_state_stat: string[];
 };

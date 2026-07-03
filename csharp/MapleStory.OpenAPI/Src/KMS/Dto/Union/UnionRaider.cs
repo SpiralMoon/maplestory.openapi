@@ -34,6 +34,26 @@ namespace MapleStory.OpenAPI.KMS.DTO
         public override List<string> UnionRaiderStat { get; set; } = new();
 
         /// <summary>
+        /// 적용 중인 유니온 스탯 효과
+        /// </summary>
+        [JsonProperty("union_state_stat")]
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public List<string> UnionStateStat { get; set; } = new();
+
+        /// <summary>
+        /// 프리셋 별 유니온 스탯 효과
+        /// </summary>
+        [JsonProperty("union_state_stat_preset")]
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public List<UnionRaiderStateStatPresetDTO> UnionStateStatPreset { get; set; } = new();
+
+        /// <summary>
+        /// 총 유니온 포인트
+        /// </summary>
+        [JsonProperty("union_max_point")]
+        public int? UnionMaxPoint { get; set; }
+
+        /// <summary>
         /// 유니온 공격대 점령 효과
         /// </summary>
         [JsonProperty("union_occupied_stat")]
@@ -89,6 +109,25 @@ namespace MapleStory.OpenAPI.KMS.DTO
         /// </summary>
         [JsonProperty("union_raider_preset_5")]
         public override UnionRaiderPresetDTO? UnionRaiderPreset5 { get; set; }
+    }
+
+    /// <summary>
+    /// 유니온 스탯 프리셋 정보
+    /// </summary>
+    public class UnionRaiderStateStatPresetDTO
+    {
+        /// <summary>
+        /// 프리셋 번호
+        /// </summary>
+        [JsonProperty("preset_no")]
+        public int PresetNo { get; set; }
+
+        /// <summary>
+        /// 유니온 스탯 효과
+        /// </summary>
+        [JsonProperty("union_state_stat")]
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public List<string> UnionStateStat { get; set; } = new();
     }
 
     /// <summary>
