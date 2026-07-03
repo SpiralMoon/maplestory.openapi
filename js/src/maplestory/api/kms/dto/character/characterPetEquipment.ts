@@ -4,6 +4,7 @@ import {
   CharacterPetEquipmentBody,
   CharacterPetEquipmentItemBody,
   CharacterPetEquipmentItemOptionBody,
+  CharacterPetEquipmentPetiteLunaPetSkillBody,
 } from '../../response/character/characterPetEquipmentBody';
 
 /**
@@ -14,6 +15,11 @@ export class CharacterPetEquipmentDto extends base.CharacterPetEquipmentDto {
    * 조회 기준일 (KST, 일 단위 데이터로 시, 분은 일괄 0으로 표기)
    */
   public override date: Date | null;
+
+  /**
+   * 활성화된 펫 유형 (0:캐릭터 펫, 1:월드 공유 펫)
+   */
+  public petActivateFlag: string | null;
 
   /**
    * 펫1 명
@@ -195,11 +201,182 @@ export class CharacterPetEquipmentDto extends base.CharacterPetEquipmentDto {
    */
   public override pet3AppearanceIcon: string | null;
 
+  /**
+   * 월드 공유 펫1 명
+   */
+  public worldSharePet1Name: string | null;
+
+  /**
+   * 월드 공유 펫1 닉네임
+   */
+  public worldSharePet1Nickname: string | null;
+
+  /**
+   * 월드 공유 펫1 아이콘
+   */
+  public worldSharePet1Icon: string | null;
+
+  /**
+   * 월드 공유 펫1 설명
+   */
+  public worldSharePet1Description: string | null;
+
+  /**
+   * 월드 공유 펫1 원더 펫 종류
+   */
+  public worldSharePet1PetType: string | null;
+
+  /**
+   * 월드 공유 펫1 장착 정보
+   */
+  public worldSharePet1Equipment: CharacterPetEquipmentItemDto | null;
+
+  /**
+   * 월드 공유 펫1 버프 자동스킬 정보
+   */
+  public worldSharePet1AutoSkill: CharacterPetEquipmentAutoSkillDto | null;
+
+  /**
+   * 월드 공유 펫1 펫 보유 스킬
+   */
+  public worldSharePet1Skill: string[];
+
+  /**
+   * 월드 공유 펫1 마법의 시간 (KST, 시간 단위 데이터로 분은 일괄 0으로 표기)
+   */
+  public worldSharePet1DateExpire: Date | null;
+
+  /**
+   * 월드 공유 펫1 외형 명
+   */
+  public worldSharePet1Appearance: string | null;
+
+  /**
+   * 월드 공유 펫1 외형 아이콘
+   */
+  public worldSharePet1AppearanceIcon: string | null;
+
+  /**
+   * 월드 공유 펫2 명
+   */
+  public worldSharePet2Name: string | null;
+
+  /**
+   * 월드 공유 펫2 닉네임
+   */
+  public worldSharePet2Nickname: string | null;
+
+  /**
+   * 월드 공유 펫2 아이콘
+   */
+  public worldSharePet2Icon: string | null;
+
+  /**
+   * 월드 공유 펫2 설명
+   */
+  public worldSharePet2Description: string | null;
+
+  /**
+   * 월드 공유 펫2 원더 펫 종류
+   */
+  public worldSharePet2PetType: string | null;
+
+  /**
+   * 월드 공유 펫2 장착 정보
+   */
+  public worldSharePet2Equipment: CharacterPetEquipmentItemDto | null;
+
+  /**
+   * 월드 공유 펫2 버프 자동스킬 정보
+   */
+  public worldSharePet2AutoSkill: CharacterPetEquipmentAutoSkillDto | null;
+
+  /**
+   * 월드 공유 펫2 펫 보유 스킬
+   */
+  public worldSharePet2Skill: string[];
+
+  /**
+   * 월드 공유 펫2 마법의 시간 (KST, 시간 단위 데이터로 분은 일괄 0으로 표기)
+   */
+  public worldSharePet2DateExpire: Date | null;
+
+  /**
+   * 월드 공유 펫2 외형 명
+   */
+  public worldSharePet2Appearance: string | null;
+
+  /**
+   * 월드 공유 펫2 외형 아이콘
+   */
+  public worldSharePet2AppearanceIcon: string | null;
+
+  /**
+   * 월드 공유 펫3 명
+   */
+  public worldSharePet3Name: string | null;
+
+  /**
+   * 월드 공유 펫3 닉네임
+   */
+  public worldSharePet3Nickname: string | null;
+
+  /**
+   * 월드 공유 펫3 아이콘
+   */
+  public worldSharePet3Icon: string | null;
+
+  /**
+   * 월드 공유 펫3 설명
+   */
+  public worldSharePet3Description: string | null;
+
+  /**
+   * 월드 공유 펫3 원더 펫 종류
+   */
+  public worldSharePet3PetType: string | null;
+
+  /**
+   * 월드 공유 펫3 장착 정보
+   */
+  public worldSharePet3Equipment: CharacterPetEquipmentItemDto | null;
+
+  /**
+   * 월드 공유 펫3 버프 자동스킬 정보
+   */
+  public worldSharePet3AutoSkill: CharacterPetEquipmentAutoSkillDto | null;
+
+  /**
+   * 월드 공유 펫3 펫 보유 스킬
+   */
+  public worldSharePet3Skill: string[];
+
+  /**
+   * 월드 공유 펫3 마법의 시간 (KST, 시간 단위 데이터로 분은 일괄 0으로 표기)
+   */
+  public worldSharePet3DateExpire: Date | null;
+
+  /**
+   * 월드 공유 펫3 외형 명
+   */
+  public worldSharePet3Appearance: string | null;
+
+  /**
+   * 월드 공유 펫3 외형 아이콘
+   */
+  public worldSharePet3AppearanceIcon: string | null;
+
+  /**
+   * 루나 쁘띠 펫 스킬 정보
+   */
+  public petiteLunaPetSkill: CharacterPetEquipmentPetiteLunaPetSkillDto[];
+
   constructor(obj: CharacterPetEquipmentBody) {
     super();
 
     const {
       date,
+      pet_activate_flag,
       pet_1_name,
       pet_1_nickname,
       pet_1_icon,
@@ -233,9 +410,44 @@ export class CharacterPetEquipmentDto extends base.CharacterPetEquipmentDto {
       pet_3_date_expire,
       pet_3_appearance,
       pet_3_appearance_icon,
+      world_share_pet_1_name,
+      world_share_pet_1_nickname,
+      world_share_pet_1_icon,
+      world_share_pet_1_description,
+      world_share_pet_1_pet_type,
+      world_share_pet_1_equipment,
+      world_share_pet_1_auto_skill,
+      world_share_pet_1_skill,
+      world_share_pet_1_date_expire,
+      world_share_pet_1_appearance,
+      world_share_pet_1_appearance_icon,
+      world_share_pet_2_name,
+      world_share_pet_2_nickname,
+      world_share_pet_2_icon,
+      world_share_pet_2_description,
+      world_share_pet_2_pet_type,
+      world_share_pet_2_equipment,
+      world_share_pet_2_auto_skill,
+      world_share_pet_2_skill,
+      world_share_pet_2_date_expire,
+      world_share_pet_2_appearance,
+      world_share_pet_2_appearance_icon,
+      world_share_pet_3_name,
+      world_share_pet_3_nickname,
+      world_share_pet_3_icon,
+      world_share_pet_3_description,
+      world_share_pet_3_pet_type,
+      world_share_pet_3_equipment,
+      world_share_pet_3_auto_skill,
+      world_share_pet_3_skill,
+      world_share_pet_3_date_expire,
+      world_share_pet_3_appearance,
+      world_share_pet_3_appearance_icon,
+      petite_luna_pet_skill,
     } = obj;
 
     this.date = date ? new Date(date) : null;
+    this.petActivateFlag = pet_activate_flag;
     this.pet1Name = pet_1_name;
     this.pet1Nickname = pet_1_nickname;
     this.pet1Icon = pet_1_icon;
@@ -302,6 +514,64 @@ export class CharacterPetEquipmentDto extends base.CharacterPetEquipmentDto {
         ? new Date(pet_3_date_expire)
         : null;
     }
+
+    this.worldSharePet1Name = world_share_pet_1_name;
+    this.worldSharePet1Nickname = world_share_pet_1_nickname;
+    this.worldSharePet1Icon = world_share_pet_1_icon;
+    this.worldSharePet1Description = world_share_pet_1_description;
+    this.worldSharePet1PetType = world_share_pet_1_pet_type;
+    this.worldSharePet1Equipment = world_share_pet_1_equipment
+      ? new CharacterPetEquipmentItemDto(world_share_pet_1_equipment)
+      : null;
+    this.worldSharePet1AutoSkill = world_share_pet_1_auto_skill
+      ? new CharacterPetEquipmentAutoSkillDto(world_share_pet_1_auto_skill)
+      : null;
+    this.worldSharePet1Skill = world_share_pet_1_skill;
+    this.worldSharePet1DateExpire = world_share_pet_1_date_expire
+      ? new Date(world_share_pet_1_date_expire)
+      : null;
+    this.worldSharePet1Appearance = world_share_pet_1_appearance;
+    this.worldSharePet1AppearanceIcon = world_share_pet_1_appearance_icon;
+
+    this.worldSharePet2Name = world_share_pet_2_name;
+    this.worldSharePet2Nickname = world_share_pet_2_nickname;
+    this.worldSharePet2Icon = world_share_pet_2_icon;
+    this.worldSharePet2Description = world_share_pet_2_description;
+    this.worldSharePet2PetType = world_share_pet_2_pet_type;
+    this.worldSharePet2Equipment = world_share_pet_2_equipment
+      ? new CharacterPetEquipmentItemDto(world_share_pet_2_equipment)
+      : null;
+    this.worldSharePet2AutoSkill = world_share_pet_2_auto_skill
+      ? new CharacterPetEquipmentAutoSkillDto(world_share_pet_2_auto_skill)
+      : null;
+    this.worldSharePet2Skill = world_share_pet_2_skill;
+    this.worldSharePet2DateExpire = world_share_pet_2_date_expire
+      ? new Date(world_share_pet_2_date_expire)
+      : null;
+    this.worldSharePet2Appearance = world_share_pet_2_appearance;
+    this.worldSharePet2AppearanceIcon = world_share_pet_2_appearance_icon;
+
+    this.worldSharePet3Name = world_share_pet_3_name;
+    this.worldSharePet3Nickname = world_share_pet_3_nickname;
+    this.worldSharePet3Icon = world_share_pet_3_icon;
+    this.worldSharePet3Description = world_share_pet_3_description;
+    this.worldSharePet3PetType = world_share_pet_3_pet_type;
+    this.worldSharePet3Equipment = world_share_pet_3_equipment
+      ? new CharacterPetEquipmentItemDto(world_share_pet_3_equipment)
+      : null;
+    this.worldSharePet3AutoSkill = world_share_pet_3_auto_skill
+      ? new CharacterPetEquipmentAutoSkillDto(world_share_pet_3_auto_skill)
+      : null;
+    this.worldSharePet3Skill = world_share_pet_3_skill;
+    this.worldSharePet3DateExpire = world_share_pet_3_date_expire
+      ? new Date(world_share_pet_3_date_expire)
+      : null;
+    this.worldSharePet3Appearance = world_share_pet_3_appearance;
+    this.worldSharePet3AppearanceIcon = world_share_pet_3_appearance_icon;
+
+    this.petiteLunaPetSkill = (petite_luna_pet_skill ?? []).map(
+      (skill) => new CharacterPetEquipmentPetiteLunaPetSkillDto(skill),
+    );
   }
 }
 
@@ -362,6 +632,40 @@ export class CharacterPetEquipmentItemOptionDto extends base.CharacterPetEquipme
 
     this.optionType = option_type;
     this.optionValue = option_value;
+  }
+}
+
+/**
+ * 캐릭터 펫 루나 쁘띠 펫 스킬 정보
+ */
+export class CharacterPetEquipmentPetiteLunaPetSkillDto {
+  /**
+   * 스킬 명
+   */
+  public skillName: string | null;
+
+  /**
+   * 스킬 설명
+   */
+  public skillDescription: string | null;
+
+  /**
+   * 스킬 효과 설명
+   */
+  public skillEffect: string | null;
+
+  /**
+   * 스킬 아이콘
+   */
+  public skillIcon: string | null;
+
+  constructor(obj: CharacterPetEquipmentPetiteLunaPetSkillBody) {
+    const { skill_name, skill_description, skill_effect, skill_icon } = obj;
+
+    this.skillName = skill_name;
+    this.skillDescription = skill_description;
+    this.skillEffect = skill_effect;
+    this.skillIcon = skill_icon;
   }
 }
 

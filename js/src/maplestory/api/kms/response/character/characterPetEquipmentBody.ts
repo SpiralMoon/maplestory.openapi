@@ -1,5 +1,6 @@
 export type CharacterPetEquipmentBody = {
   date: string | null;
+  pet_activate_flag: string | null;
   pet_1_name: string | null;
   pet_1_nickname: string | null;
   pet_1_icon: string | null;
@@ -33,6 +34,40 @@ export type CharacterPetEquipmentBody = {
   pet_3_date_expire: string | null;
   pet_3_appearance: string | null;
   pet_3_appearance_icon: string | null;
+  world_share_pet_1_name: string | null;
+  world_share_pet_1_nickname: string | null;
+  world_share_pet_1_icon: string | null;
+  world_share_pet_1_description: string | null;
+  world_share_pet_1_pet_type: string | null;
+  world_share_pet_1_equipment: CharacterPetEquipmentItemBody | null;
+  world_share_pet_1_auto_skill: CharacterPetEquipmentAutoSkillBody | null;
+  world_share_pet_1_skill: string[];
+  world_share_pet_1_date_expire: string | null;
+  world_share_pet_1_appearance: string | null;
+  world_share_pet_1_appearance_icon: string | null;
+  world_share_pet_2_name: string | null;
+  world_share_pet_2_nickname: string | null;
+  world_share_pet_2_icon: string | null;
+  world_share_pet_2_description: string | null;
+  world_share_pet_2_pet_type: string | null;
+  world_share_pet_2_equipment: CharacterPetEquipmentItemBody | null;
+  world_share_pet_2_auto_skill: CharacterPetEquipmentAutoSkillBody | null;
+  world_share_pet_2_skill: string[];
+  world_share_pet_2_date_expire: string | null;
+  world_share_pet_2_appearance: string | null;
+  world_share_pet_2_appearance_icon: string | null;
+  world_share_pet_3_name: string | null;
+  world_share_pet_3_nickname: string | null;
+  world_share_pet_3_icon: string | null;
+  world_share_pet_3_description: string | null;
+  world_share_pet_3_pet_type: string | null;
+  world_share_pet_3_equipment: CharacterPetEquipmentItemBody | null;
+  world_share_pet_3_auto_skill: CharacterPetEquipmentAutoSkillBody | null;
+  world_share_pet_3_skill: string[];
+  world_share_pet_3_date_expire: string | null;
+  world_share_pet_3_appearance: string | null;
+  world_share_pet_3_appearance_icon: string | null;
+  petite_luna_pet_skill: CharacterPetEquipmentPetiteLunaPetSkillBody[];
 };
 
 export type CharacterPetEquipmentItemBody = {
@@ -57,4 +92,11 @@ export type CharacterPetEquipmentAutoSkillBody = {
   skill_1_icon: string | null;
   skill_2: string | null;
   skill_2_icon: string | null;
+};
+
+export type CharacterPetEquipmentPetiteLunaPetSkillBody = {
+  skill_name: string | null;
+  skill_description: string | null;
+  skill_effect: string | null;
+  skill_icon: string | null;
 };

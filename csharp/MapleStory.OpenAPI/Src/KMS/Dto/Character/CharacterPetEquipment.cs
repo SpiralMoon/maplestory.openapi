@@ -27,6 +27,12 @@ namespace MapleStory.OpenAPI.KMS.DTO
         private DateTimeOffset? _date;
 
         /// <summary>
+        /// 활성화된 펫 유형 (0:캐릭터 펫, 1:월드 공유 펫)
+        /// </summary>
+        [JsonProperty("pet_activate_flag")]
+        public string? PetActivateFlag { get; set; }
+
+        /// <summary>
         /// 펫1 명
         /// </summary>
         [JsonProperty("pet_1_name")]
@@ -313,6 +319,250 @@ namespace MapleStory.OpenAPI.KMS.DTO
         /// </summary>
         [JsonProperty("pet_3_appearance_icon")]
         public override string? Pet3AppearanceIcon { get; set; }
+
+        /// <summary>
+        /// 월드 공유 펫1 명
+        /// </summary>
+        [JsonProperty("world_share_pet_1_name")]
+        public string? WorldSharePet1Name { get; set; }
+
+        /// <summary>
+        /// 월드 공유 펫1 닉네임
+        /// </summary>
+        [JsonProperty("world_share_pet_1_nickname")]
+        public string? WorldSharePet1Nickname { get; set; }
+
+        /// <summary>
+        /// 월드 공유 펫1 아이콘
+        /// </summary>
+        [JsonProperty("world_share_pet_1_icon")]
+        public string? WorldSharePet1Icon { get; set; }
+
+        /// <summary>
+        /// 월드 공유 펫1 설명
+        /// </summary>
+        [JsonProperty("world_share_pet_1_description")]
+        public string? WorldSharePet1Description { get; set; }
+
+        /// <summary>
+        /// 월드 공유 펫1 원더 펫 종류
+        /// </summary>
+        [JsonProperty("world_share_pet_1_pet_type")]
+        public string? WorldSharePet1PetType { get; set; }
+
+        /// <summary>
+        /// 월드 공유 펫1 장착 정보
+        /// </summary>
+        [JsonProperty("world_share_pet_1_equipment")]
+        public CharacterPetEquipmentItemDTO? WorldSharePet1Equipment { get; set; }
+
+        /// <summary>
+        /// 월드 공유 펫1 버프 자동스킬 정보
+        /// </summary>
+        [JsonProperty("world_share_pet_1_auto_skill")]
+        public CharacterPetEquipmentAutoSkillDTO? WorldSharePet1AutoSkill { get; set; }
+
+        /// <summary>
+        /// 월드 공유 펫1 펫 보유 스킬
+        /// </summary>
+        [JsonProperty("world_share_pet_1_skill")]
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public List<string> WorldSharePet1Skill { get; set; } = new();
+
+        /// <summary>
+        /// 월드 공유 펫1 마법의 시간 (KST, 시간 단위 데이터로 분은 일괄 0으로 표기)
+        /// </summary>
+        public DateTimeOffset? WorldSharePet1DateExpire
+        {
+            get
+            {
+                if (_worldSharePet1DateExpire != null)
+                {
+                    return DateTimeOffset.Parse(_worldSharePet1DateExpire).ToOffset(TimeSpan.FromHours(9));
+                }
+                return null;
+            }
+        }
+
+        [JsonProperty("world_share_pet_1_date_expire")]
+        private string? _worldSharePet1DateExpire { get; set; }
+
+        /// <summary>
+        /// 월드 공유 펫1 외형 명
+        /// </summary>
+        [JsonProperty("world_share_pet_1_appearance")]
+        public string? WorldSharePet1Appearance { get; set; }
+
+        /// <summary>
+        /// 월드 공유 펫1 외형 아이콘
+        /// </summary>
+        [JsonProperty("world_share_pet_1_appearance_icon")]
+        public string? WorldSharePet1AppearanceIcon { get; set; }
+
+        /// <summary>
+        /// 월드 공유 펫2 명
+        /// </summary>
+        [JsonProperty("world_share_pet_2_name")]
+        public string? WorldSharePet2Name { get; set; }
+
+        /// <summary>
+        /// 월드 공유 펫2 닉네임
+        /// </summary>
+        [JsonProperty("world_share_pet_2_nickname")]
+        public string? WorldSharePet2Nickname { get; set; }
+
+        /// <summary>
+        /// 월드 공유 펫2 아이콘
+        /// </summary>
+        [JsonProperty("world_share_pet_2_icon")]
+        public string? WorldSharePet2Icon { get; set; }
+
+        /// <summary>
+        /// 월드 공유 펫2 설명
+        /// </summary>
+        [JsonProperty("world_share_pet_2_description")]
+        public string? WorldSharePet2Description { get; set; }
+
+        /// <summary>
+        /// 월드 공유 펫2 원더 펫 종류
+        /// </summary>
+        [JsonProperty("world_share_pet_2_pet_type")]
+        public string? WorldSharePet2PetType { get; set; }
+
+        /// <summary>
+        /// 월드 공유 펫2 장착 정보
+        /// </summary>
+        [JsonProperty("world_share_pet_2_equipment")]
+        public CharacterPetEquipmentItemDTO? WorldSharePet2Equipment { get; set; }
+
+        /// <summary>
+        /// 월드 공유 펫2 버프 자동스킬 정보
+        /// </summary>
+        [JsonProperty("world_share_pet_2_auto_skill")]
+        public CharacterPetEquipmentAutoSkillDTO? WorldSharePet2AutoSkill { get; set; }
+
+        /// <summary>
+        /// 월드 공유 펫2 펫 보유 스킬
+        /// </summary>
+        [JsonProperty("world_share_pet_2_skill")]
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public List<string> WorldSharePet2Skill { get; set; } = new();
+
+        /// <summary>
+        /// 월드 공유 펫2 마법의 시간 (KST, 시간 단위 데이터로 분은 일괄 0으로 표기)
+        /// </summary>
+        public DateTimeOffset? WorldSharePet2DateExpire
+        {
+            get
+            {
+                if (_worldSharePet2DateExpire != null)
+                {
+                    return DateTimeOffset.Parse(_worldSharePet2DateExpire).ToOffset(TimeSpan.FromHours(9));
+                }
+                return null;
+            }
+        }
+
+        [JsonProperty("world_share_pet_2_date_expire")]
+        private string? _worldSharePet2DateExpire { get; set; }
+
+        /// <summary>
+        /// 월드 공유 펫2 외형 명
+        /// </summary>
+        [JsonProperty("world_share_pet_2_appearance")]
+        public string? WorldSharePet2Appearance { get; set; }
+
+        /// <summary>
+        /// 월드 공유 펫2 외형 아이콘
+        /// </summary>
+        [JsonProperty("world_share_pet_2_appearance_icon")]
+        public string? WorldSharePet2AppearanceIcon { get; set; }
+
+        /// <summary>
+        /// 월드 공유 펫3 명
+        /// </summary>
+        [JsonProperty("world_share_pet_3_name")]
+        public string? WorldSharePet3Name { get; set; }
+
+        /// <summary>
+        /// 월드 공유 펫3 닉네임
+        /// </summary>
+        [JsonProperty("world_share_pet_3_nickname")]
+        public string? WorldSharePet3Nickname { get; set; }
+
+        /// <summary>
+        /// 월드 공유 펫3 아이콘
+        /// </summary>
+        [JsonProperty("world_share_pet_3_icon")]
+        public string? WorldSharePet3Icon { get; set; }
+
+        /// <summary>
+        /// 월드 공유 펫3 설명
+        /// </summary>
+        [JsonProperty("world_share_pet_3_description")]
+        public string? WorldSharePet3Description { get; set; }
+
+        /// <summary>
+        /// 월드 공유 펫3 원더 펫 종류
+        /// </summary>
+        [JsonProperty("world_share_pet_3_pet_type")]
+        public string? WorldSharePet3PetType { get; set; }
+
+        /// <summary>
+        /// 월드 공유 펫3 장착 정보
+        /// </summary>
+        [JsonProperty("world_share_pet_3_equipment")]
+        public CharacterPetEquipmentItemDTO? WorldSharePet3Equipment { get; set; }
+
+        /// <summary>
+        /// 월드 공유 펫3 버프 자동스킬 정보
+        /// </summary>
+        [JsonProperty("world_share_pet_3_auto_skill")]
+        public CharacterPetEquipmentAutoSkillDTO? WorldSharePet3AutoSkill { get; set; }
+
+        /// <summary>
+        /// 월드 공유 펫3 펫 보유 스킬
+        /// </summary>
+        [JsonProperty("world_share_pet_3_skill")]
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public List<string> WorldSharePet3Skill { get; set; } = new();
+
+        /// <summary>
+        /// 월드 공유 펫3 마법의 시간 (KST, 시간 단위 데이터로 분은 일괄 0으로 표기)
+        /// </summary>
+        public DateTimeOffset? WorldSharePet3DateExpire
+        {
+            get
+            {
+                if (_worldSharePet3DateExpire != null)
+                {
+                    return DateTimeOffset.Parse(_worldSharePet3DateExpire).ToOffset(TimeSpan.FromHours(9));
+                }
+                return null;
+            }
+        }
+
+        [JsonProperty("world_share_pet_3_date_expire")]
+        private string? _worldSharePet3DateExpire { get; set; }
+
+        /// <summary>
+        /// 월드 공유 펫3 외형 명
+        /// </summary>
+        [JsonProperty("world_share_pet_3_appearance")]
+        public string? WorldSharePet3Appearance { get; set; }
+
+        /// <summary>
+        /// 월드 공유 펫3 외형 아이콘
+        /// </summary>
+        [JsonProperty("world_share_pet_3_appearance_icon")]
+        public string? WorldSharePet3AppearanceIcon { get; set; }
+
+        /// <summary>
+        /// 루나 쁘띠 펫 스킬 정보
+        /// </summary>
+        [JsonProperty("petite_luna_pet_skill")]
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public List<CharacterPetEquipmentPetiteLunaPetSkillDTO> PetiteLunaPetSkill { get; set; } = new();
     }
 
     /// <summary>
@@ -422,5 +672,35 @@ namespace MapleStory.OpenAPI.KMS.DTO
         /// </summary>
         [JsonProperty("item_date_expire")]
         public string? ItemDateExpire { get; set; }
+    }
+
+    /// <summary>
+    /// 캐릭터 펫 루나 쁘띠 펫 스킬 정보
+    /// </summary>
+    public class CharacterPetEquipmentPetiteLunaPetSkillDTO
+    {
+        /// <summary>
+        /// 스킬 명
+        /// </summary>
+        [JsonProperty("skill_name")]
+        public string? SkillName { get; set; }
+
+        /// <summary>
+        /// 스킬 설명
+        /// </summary>
+        [JsonProperty("skill_description")]
+        public string? SkillDescription { get; set; }
+
+        /// <summary>
+        /// 스킬 효과 설명
+        /// </summary>
+        [JsonProperty("skill_effect")]
+        public string? SkillEffect { get; set; }
+
+        /// <summary>
+        /// 스킬 아이콘
+        /// </summary>
+        [JsonProperty("skill_icon")]
+        public string? SkillIcon { get; set; }
     }
 }
