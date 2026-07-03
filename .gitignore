@@ -9,3 +9,9 @@
 
 # Mac OS
 .DS_Store
+
+# oh-my-claudecode
+.omc/
+
+# Claude Code
+.claude/
