@@ -64,6 +64,12 @@ namespace MapleStory.OpenAPI.KMS.DTO
         public override long HexaCoreLevel { get; set; }
 
         /// <summary>
+        /// 코어 이벤트 레벨
+        /// </summary>
+        [JsonProperty("hexa_core_event_level")]
+        public long HexaCoreEventLevel { get; set; }
+
+        /// <summary>
         /// 코어 타입
         /// </summary>
         [JsonProperty("hexa_core_type")]

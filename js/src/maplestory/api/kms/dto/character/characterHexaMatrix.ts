@@ -65,6 +65,11 @@ export class CharacterHexaMatrixEquipmentDto extends base.CharacterHexaMatrixEqu
   public override hexaCoreLevel: number;
 
   /**
+   * 코어 이벤트 레벨
+   */
+  public hexaCoreEventLevel: number;
+
+  /**
    * 코어 타입
    */
   public override hexaCoreType: string;
@@ -77,11 +82,12 @@ export class CharacterHexaMatrixEquipmentDto extends base.CharacterHexaMatrixEqu
   constructor(obj: CharacterHexaMatrixEquipmentBody) {
     super();
 
-    const { hexa_core_name, hexa_core_level, hexa_core_type, linked_skill } =
+    const { hexa_core_name, hexa_core_level, hexa_core_event_level, hexa_core_type, linked_skill } =
       obj;
 
     this.hexaCoreName = hexa_core_name;
     this.hexaCoreLevel = hexa_core_level;
+    this.hexaCoreEventLevel = hexa_core_event_level;
     this.hexaCoreType = hexa_core_type;
     this.linkedSkill = linked_skill.map(
       (skill) => new CharacterHexaMatrixEquipmentLinkedSkillDto(skill),

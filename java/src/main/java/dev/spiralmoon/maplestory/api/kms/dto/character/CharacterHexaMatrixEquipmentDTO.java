@@ -32,6 +32,12 @@ public class CharacterHexaMatrixEquipmentDTO implements dev.spiralmoon.maplestor
     private Long hexaCoreLevel;
 
     /**
+     * 코어 이벤트 레벨
+     */
+    @JsonProperty("hexa_core_event_level")
+    private Long hexaCoreEventLevel;
+
+    /**
      * 코어 타입
      */
     @JsonProperty("hexa_core_type")

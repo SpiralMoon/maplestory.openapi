@@ -23,11 +23,13 @@ class CharacterHexaMatrixCoreEquipment(BaseModel, BaseCharacterHexaMatrixCoreEqu
     Attributes:
         hexa_core_name (str): 코어 명
         hexa_core_level (int): 코어 레벨
+        hexa_core_event_level (int): 코어 이벤트 레벨
         hexa_core_type (str): 코어 타입
         linked_skill (list[CharacterHexaMatrixEquipmentLinkedSkill]): 연결된 스킬 목록
     """
     hexa_core_name: str
     hexa_core_level: int
+    hexa_core_event_level: int
     hexa_core_type: str
     linked_skill: list[CharacterHexaMatrixEquipmentLinkedSkill]
 
