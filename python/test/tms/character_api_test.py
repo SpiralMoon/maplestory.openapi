@@ -553,5 +553,25 @@ class TestGetCharacterDojang(unittest.IsolatedAsyncioTestCase):
         print(e.value)
 
 
+class TestGetCharacterFamiliar(unittest.IsolatedAsyncioTestCase):
+    async def test_success_get_character_familiar(self):
+        response = await api.get_character_familiar(ocid)
+        assert response is not None
+        print(response)
+
+    async def test_fail_get_character_familiar_with_invalid_ocid_throw_OPENAPI00003(self):
+        invalid_ocid = 'invalid_ocid_123'
+        with pytest.raises(MapleStoryApiException) as e:
+            await api.get_character_familiar(invalid_ocid)
+        assert e.value.error_code == 'OPENAPI00003'
+        print(e.value.error_code, e.value.message)
+
+    async def test_fail_get_character_familiar_with_invalid_date(self):
+        with pytest.raises(Exception) as e:
+            await api.get_character_familiar(ocid, date=datetime(2025, 10, 14))
+        assert 'You can only retrieve data after 2025-10-15' in str(e.value)
+        print(e.value)
+
+
 if __name__ == '__main__':
     unittest.main()

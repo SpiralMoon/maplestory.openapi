@@ -653,4 +653,41 @@ describe('Character Information Retrieval', () => {
       }
     });
   });
+
+  describe('getCharacterFamiliar', () => {
+    test('success: getCharacterFamiliar', async () => {
+      const response = await api.getCharacterFamiliar(ocid);
+      // nothing to assert because some characters may not have familiars
+      console.log(toString(response));
+    });
+
+    test('fail: getCharacterFamiliar with invalid ocid throw OPENAPI00003', async () => {
+      const invalidOcid = 'invalid_ocid_123';
+      try {
+        await api.getCharacterFamiliar(invalidOcid);
+        fail('An error should have been thrown.');
+      } catch (e) {
+        const error = e as MapleStoryApiError;
+        expect(error).toBeInstanceOf(MapleStoryApiError);
+        expect(error.errorCode).toBe(MapleStoryApiErrorCode.OPENAPI00003);
+        console.log(error.errorCode, error.message);
+      }
+    });
+
+    test('fail: getCharacterFamiliar with invalid date', async () => {
+      try {
+        await api.getCharacterFamiliar(ocid, {
+          year: 2025,
+          month: 10,
+          day: 14,
+        });
+        fail('An error should have been thrown.');
+      } catch (e) {
+        const error = e as Error;
+        expect(error).toBeInstanceOf(Error);
+        expect(error.message).toContain('You can only retrieve data after 2025-10-15.');
+        console.log(error.message);
+      }
+    });
+  });
 });
