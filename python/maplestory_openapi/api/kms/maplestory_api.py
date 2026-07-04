@@ -41,6 +41,8 @@ from maplestory_openapi.api.kms.dto.battle_practice.battle_practice_result impor
 from maplestory_openapi.api.kms.dto.battle_practice.battle_practice_skill_timeline import BattlePracticeSkillTimeline
 from maplestory_openapi.api.kms.dto.battle_practice.battle_practice_character_info import BattlePracticeCharacterInfo
 
+from maplestory_openapi.api.kms.dto.scheduler.scheduler_character_state import SchedulerCharacterState
+
 from maplestory_openapi.api.kms.dto.history.cube_history import CubeHistory
 from maplestory_openapi.api.kms.dto.history.potential_history import PotentialHistory
 from maplestory_openapi.api.kms.dto.history.starforce_history import StarforceHistory
@@ -902,6 +904,27 @@ class MapleStoryApi(BaseMapleStoryApi):
         }
         r = await self.fetch(path, query)
         return BattlePracticeCharacterInfo(**r)
+
+    #endregion
+
+    #region 스케줄러 정보 조회
+
+    async def get_scheduler_character_state(self, ocid: str, date: datetime | None = None) -> SchedulerCharacterState | None:
+        """
+        캐릭터에 대한 스케줄러의 수행 현황 정보를 조회하는 API입니다.
+
+        Args:
+            ocid(str): 캐릭터 식별자
+            date(datetime or None): 조회 기준일 (KST)
+        """
+        path = self.sub_url + '/v1/scheduler/character-state'
+        query = {
+            'ocid': ocid,
+            'date': self._to_date_string(date) if date is not None else None,
+        }
+        r = await self.fetch(path, query)
+        if self._is_empty_response(r): return None
+        return SchedulerCharacterState(**r)
 
     #endregion
 

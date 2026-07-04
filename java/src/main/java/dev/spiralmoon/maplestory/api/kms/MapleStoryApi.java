@@ -11,6 +11,7 @@ import dev.spiralmoon.maplestory.api.kms.dto.guild.*;
 import dev.spiralmoon.maplestory.api.kms.dto.history.*;
 import dev.spiralmoon.maplestory.api.kms.dto.notice.*;
 import dev.spiralmoon.maplestory.api.kms.dto.ranking.*;
+import dev.spiralmoon.maplestory.api.kms.dto.scheduler.*;
 import dev.spiralmoon.maplestory.api.kms.dto.union.*;
 import dev.spiralmoon.maplestory.api.kms.dto.user.*;
 import dev.spiralmoon.maplestory.api.kms.template.*;
@@ -1050,6 +1051,40 @@ public class MapleStoryApi extends dev.spiralmoon.maplestory.api.common.MapleSto
                     .create(CharacterApi.class)
                     .getCharacterDojang(this.apiKey, ocid, date)
                     .enqueue(createCallback(future, CharacterDojangDTO.class, true));
+        } catch (Exception e) {
+            future.completeExceptionally(e);
+        }
+
+        return future;
+    }
+
+    /**
+     * 캐릭터에 대한 스케줄러의 수행 현황 정보를 조회하는 API입니다.
+     *
+     * @param ocid 캐릭터 식별자
+     */
+    public CompletableFuture<SchedulerCharacterStateDTO> getSchedulerCharacterState(@NonNull String ocid) {
+        return this.getSchedulerCharacterState(ocid, null);
+    }
+
+    /**
+     * 캐릭터에 대한 스케줄러의 수행 현황 정보를 조회하는 API입니다.
+     *
+     * @param ocid          캐릭터 식별자
+     * @param localDateTime 조회 기준일 (KST)
+     */
+    public CompletableFuture<SchedulerCharacterStateDTO> getSchedulerCharacterState(@NonNull String ocid, LocalDateTime localDateTime) {
+        final CompletableFuture<SchedulerCharacterStateDTO> future = new CompletableFuture<>();
+
+        try {
+            final String date = localDateTime != null
+                    ? toDateString(localDateTime)
+                    : null;
+
+            buildRetrofit()
+                    .create(SchedulerApi.class)
+                    .getSchedulerCharacterState(this.apiKey, ocid, date)
+                    .enqueue(createCallback(future, SchedulerCharacterStateDTO.class, true));
         } catch (Exception e) {
             future.completeExceptionally(e);
         }

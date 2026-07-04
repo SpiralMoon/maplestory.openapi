@@ -54,6 +54,8 @@ export * from './dto/ranking/overallRanking';
 export * from './dto/ranking/theSeedRanking';
 export * from './dto/ranking/unionRanking';
 
+export * from './dto/scheduler/schedulerCharacterState';
+
 export * from './dto/union/union';
 export * from './dto/union/unionArtifact';
 export * from './dto/union/unionChampion';

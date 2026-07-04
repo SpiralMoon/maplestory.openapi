@@ -1918,6 +1918,39 @@ namespace MapleStory.OpenAPI.KMS
 
         #endregion
 
+        #region 스케줄러 정보 조회
+
+        /// <summary>
+        /// 캐릭터에 대한 스케줄러의 수행 현황 정보를 조회하는 API입니다.
+        /// </summary>
+        /// <param name="ocid">캐릭터 식별자</param>
+        public async Task<SchedulerCharacterStateDTO?> GetSchedulerCharacterState(string ocid)
+        {
+            return await GetSchedulerCharacterState(ocid, null);
+        }
+
+        /// <summary>
+        /// 캐릭터에 대한 스케줄러의 수행 현황 정보를 조회하는 API입니다.
+        /// </summary>
+        /// <param name="ocid">캐릭터 식별자</param>
+        /// <param name="dateTimeOffset">조회 기준일 (KST)</param>
+        public async Task<SchedulerCharacterStateDTO?> GetSchedulerCharacterState(string ocid, DateTimeOffset? dateTimeOffset)
+        {
+            var path = $"{subUrl}/v1/scheduler/character-state";
+            var date = dateTimeOffset != null
+                ? ToDateString((DateTimeOffset) dateTimeOffset)
+                : null;
+            var query = new Dictionary<string, string?>()
+            {
+                { "ocid", ocid },
+                { "date", date }
+            };
+
+            return await Get<SchedulerCharacterStateDTO>(path, query, checkEmpty: true);
+        }
+
+        #endregion
+
         /// <summary>
         /// 서버 점검 정보를 조회합니다.
         /// </summary>

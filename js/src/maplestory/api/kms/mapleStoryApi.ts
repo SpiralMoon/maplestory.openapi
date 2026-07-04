@@ -54,6 +54,7 @@ import { UnionDto } from './dto/union/union';
 import { UnionArtifactDto } from './dto/union/unionArtifact';
 import { UnionChampionDto } from './dto/union/unionChampion';
 import { UnionRaiderDto } from './dto/union/unionRaider';
+import { SchedulerCharacterStateDto } from './dto/scheduler/schedulerCharacterState';
 import { AchievementDto } from './dto/user/achievement';
 import { CharacterListDto } from './dto/user/characterList';
 import { BattlePracticeCharacterInfoBody } from './response/battlePractice/battlePracticeCharacterInfoBody';
@@ -107,6 +108,7 @@ import { UnionArtifactBody } from './response/union/unionArtifactBody';
 import { UnionBody } from './response/union/unionBody';
 import { UnionChampionBody } from './response/union/unionChampionBody';
 import { UnionRaiderBody } from './response/union/unionRaiderBody';
+import { SchedulerCharacterStateBody } from './response/scheduler/schedulerCharacterStateBody';
 import { AchievementBody } from './response/user/achievementBody';
 import { CharacterListBody } from './response/user/characterListBody';
 import {
@@ -1442,6 +1444,37 @@ export class MapleStoryApi extends base.MapleStoryApi {
     );
 
     return new BattlePracticeCharacterInfoDto(data);
+  }
+
+  //#endregion
+
+  //#region 스케줄러 정보 조회
+
+  /**
+   * 캐릭터에 대한 스케줄러의 수행 현황 정보를 조회하는 API입니다.
+   *
+   * @param ocid 캐릭터 식별자
+   * @param dateOptions 조회 기준일 (KST)
+   */
+  public async getSchedulerCharacterState(
+    ocid: string,
+    dateOptions?: DateOptions,
+  ): Promise<SchedulerCharacterStateDto | null> {
+    const path = `${this.subUrl}/v1/scheduler/character-state`;
+    const date = dateOptions ? this.toDateString(dateOptions) : undefined;
+    const query: CharacterApiQuery = {
+      ocid: ocid,
+      date: date,
+    };
+    const { data } = await this.client.get<SchedulerCharacterStateBody>(path, {
+      params: query,
+    });
+
+    if (this.isEmptyResponse(data)) {
+      return null;
+    }
+
+    return new SchedulerCharacterStateDto(data);
   }
 
   //#endregion
