@@ -1515,7 +1515,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <summary>
         /// 종합 랭킹 정보를 조회합니다.
         /// <para>- 2023년 12월 22일 데이터부터 조회할 수 있습니다.</para>
-        /// <para>- 오늘의 랭킹 정보는 오전 9시 경부터 조회가 가능합니다. 상황에 따라 시간이 더 소요될 수 있습니다.</para>
+        /// <para>- 오늘의 랭킹 정보는 오전 9시 30분 경부터 조회가 가능합니다. 상황에 따라 시간이 더 소요될 수 있습니다.</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
         /// <para>- 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.</para>
         /// </summary>
@@ -1529,7 +1529,7 @@ namespace MapleStory.OpenAPI.KMS
             return GetOverallRanking(worldName, worldType, characterClass, ocid, page, GetProperDefaultDateTimeOffset(new Base.Param.LatestApiUpdateTimeOption
             {
                 Hour = 9,
-                Minute = 0,
+                Minute = 30,
                 DateOffset = 0
             }));
         }
@@ -1566,7 +1566,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <summary>
         /// 유니온 랭킹 정보를 조회합니다.
         /// <para>- 2023년 12월 22일 데이터부터 조회할 수 있습니다.</para>
-        /// <para>- 오늘의 랭킹 정보는 오전 9시 경부터 조회가 가능합니다. 상황에 따라 시간이 더 소요될 수 있습니다.</para>
+        /// <para>- 오늘의 랭킹 정보는 오전 9시 30분 경부터 조회가 가능합니다. 상황에 따라 시간이 더 소요될 수 있습니다.</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
         /// <para>- 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.</para>
         /// </summary>
@@ -1578,7 +1578,7 @@ namespace MapleStory.OpenAPI.KMS
             return GetUnionRanking(worldName, ocid, page, GetProperDefaultDateTimeOffset(new Base.Param.LatestApiUpdateTimeOption
             {
                 Hour = 9,
-                Minute = 0,
+                Minute = 30,
                 DateOffset = 0
             }));
         }
@@ -1611,7 +1611,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <summary>
         /// 길드 랭킹 정보를 조회합니다.
         /// <para>- 2023년 12월 22일 데이터부터 조회할 수 있습니다.</para>
-        /// <para>- 오늘의 랭킹 정보는 오전 9시 경부터 조회가 가능합니다. 상황에 따라 시간이 더 소요될 수 있습니다.</para>
+        /// <para>- 오늘의 랭킹 정보는 오전 9시 30분 경부터 조회가 가능합니다. 상황에 따라 시간이 더 소요될 수 있습니다.</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
         /// <para>- 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.</para>
         /// </summary>
@@ -1624,7 +1624,7 @@ namespace MapleStory.OpenAPI.KMS
             return GetGuildRanking(worldName, rankingType, guildName, page, GetProperDefaultDateTimeOffset(new Base.Param.LatestApiUpdateTimeOption
             {
                 Hour = 9,
-                Minute = 0,
+                Minute = 30,
                 DateOffset = 0
             }));
         }
@@ -1659,7 +1659,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <summary>
         /// 무릉도장 랭킹 정보를 조회합니다.
         /// <para>- 2023년 12월 22일 데이터부터 조회할 수 있습니다.</para>
-        /// <para>- 오늘의 랭킹 정보는 오전 9시 경부터 조회가 가능합니다. 상황에 따라 시간이 더 소요될 수 있습니다.</para>
+        /// <para>- 오늘의 랭킹 정보는 오전 9시 30분 경부터 조회가 가능합니다. 상황에 따라 시간이 더 소요될 수 있습니다.</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
         /// <para>- 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.</para>
         /// </summary>
@@ -1673,7 +1673,7 @@ namespace MapleStory.OpenAPI.KMS
             return GetDojangRanking(worldName, difficulty, characterClass, ocid, page, GetProperDefaultDateTimeOffset(new Base.Param.LatestApiUpdateTimeOption
             {
                 Hour = 9,
-                Minute = 0,
+                Minute = 30,
                 DateOffset = 0
             }));
         }
@@ -1710,7 +1710,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <summary>
         /// 더 시드 랭킹 정보를 조회합니다.
         /// <para>- 2023년 12월 22일 데이터부터 조회할 수 있습니다.</para>
-        /// <para>- 오늘의 랭킹 정보는 오전 9시 경부터 조회가 가능합니다. 상황에 따라 시간이 더 소요될 수 있습니다.</para>
+        /// <para>- 오늘의 랭킹 정보는 오전 9시 30분 경부터 조회가 가능합니다. 상황에 따라 시간이 더 소요될 수 있습니다.</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
         /// <para>- 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.</para>
         /// </summary>
@@ -1722,7 +1722,7 @@ namespace MapleStory.OpenAPI.KMS
             return GetTheSeedRanking(worldName, ocid, page, GetProperDefaultDateTimeOffset(new Base.Param.LatestApiUpdateTimeOption
             {
                 Hour = 9,
-                Minute = 0,
+                Minute = 30,
                 DateOffset = 0
             }));
         }
@@ -1757,7 +1757,7 @@ namespace MapleStory.OpenAPI.KMS
         /// <summary>
         /// 업적 랭킹 정보를 조회합니다.
         /// <para>- 2023년 12월 22일 데이터부터 조회할 수 있습니다.</para>
-        /// <para>- 오늘의 랭킹 정보는 오전 9시 경부터 조회가 가능합니다. 상황에 따라 시간이 더 소요될 수 있습니다.</para>
+        /// <para>- 오늘의 랭킹 정보는 오전 9시 30분 경부터 조회가 가능합니다. 상황에 따라 시간이 더 소요될 수 있습니다.</para>
         /// <para>- 게임 콘텐츠 변경으로 ocid가 변경될 수 있습니다. ocid 기반 서비스 갱신 시 유의해 주시길 바랍니다.</para>
         /// <para>- 해당 API는 메이플스토리 한국의 데이터가 제공됩니다.</para>
         /// </summary>
@@ -1768,7 +1768,7 @@ namespace MapleStory.OpenAPI.KMS
             return GetAchievementRanking(ocid, page, GetProperDefaultDateTimeOffset(new Base.Param.LatestApiUpdateTimeOption
             {
                 Hour = 9,
-                Minute = 0,
+                Minute = 30,
                 DateOffset = 0
             }));
         }
