@@ -9,6 +9,7 @@ import { CharacterBasicDto } from './dto/character/characterBasic';
 import { CharacterBeautyEquipmentDto } from './dto/character/characterBeautyEquipment';
 import { CharacterCashItemEquipmentDto } from './dto/character/characterCashItemEquipment';
 import { CharacterDojangDto } from './dto/character/characterDojang';
+import { CharacterFamiliarDto } from './dto/character/characterFamiliar';
 import { CharacterHexaMatrixDto } from './dto/character/characterHexaMatrix';
 import { CharacterHexaMatrixStatDto } from './dto/character/characterHexaMatrixStat';
 import { CharacterHyperStatDto } from './dto/character/characterHyperStat';
@@ -36,6 +37,7 @@ import { CharacterBeautyEquipmentBody } from './response/character/characterBeau
 import { CharacterBody } from './response/character/characterBody';
 import { CharacterCashItemEquipmentBody } from './response/character/characterCashItemEquipmentBody';
 import { CharacterDojangBody } from './response/character/characterDojangBody';
+import { CharacterFamiliarBody } from './response/character/characterFamiliarBody';
 import { CharacterHexaMatrixBody } from './response/character/characterHexaMatrixBody';
 import { CharacterHexaMatrixStatBody } from './response/character/characterHexaMatrixStatBody';
 import { CharacterHyperStatBody } from './response/character/characterHyperStatBody';
@@ -889,6 +891,43 @@ export class MapleStoryApi extends base.MapleStoryApi {
     }
 
     return new CharacterDojangDto(data);
+  }
+
+  /**
+   * 檢視萌獸資訊。
+   * - 楓之谷遊戲資料平均在 15 分鐘後即可使用。
+   * - 您可以從 2025 年 10 月 15 日起搜尋資料。
+   * - 您可以輸入所需日期以搜尋過往資料。前一日的資料將於翌日凌晨 2:00 起提供。(當您搜尋 10 月 15 日的資料時，將會擷取從 15 日 00:00 到 16 日 00:00 的資料。)
+   * - 由於遊戲內容變動，OCID 可能會有所變更。在更新以 OCID 為基礎的服務時，請務必留意。
+   * - 此 API 提供來自楓之谷台灣的資料。
+   * @param ocid 角色辨識器
+   * @param dateOptions 要搜尋的日期 (TST)
+   */
+  public async getCharacterFamiliar(
+    ocid: string,
+    dateOptions?: DateOptions,
+  ): Promise<CharacterFamiliarDto | null> {
+    const path = `${this.subUrl}/v1/character/familiar`;
+    const date = dateOptions
+      ? this.toDateString(dateOptions, {
+          year: 2025,
+          month: 10,
+          day: 15,
+        })
+      : undefined;
+    const query: CharacterApiQuery = {
+      ocid: ocid,
+      date: date,
+    };
+    const { data } = await this.client.get<CharacterFamiliarBody>(path, {
+      params: query,
+    });
+
+    if (this.isEmptyResponse(data)) {
+      return null;
+    }
+
+    return new CharacterFamiliarDto(data);
   }
 
   //#endregion

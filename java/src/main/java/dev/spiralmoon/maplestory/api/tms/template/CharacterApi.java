@@ -67,4 +67,7 @@ public interface CharacterApi {
 
     @GET("maplestorytw/v1/character/dojang")
     Call<ResponseBody> getCharacterDojang(@Header("x-nxopen-api-key") String apiKey, @Query("ocid") String ocid, @Query("date") String date);
+
+    @GET("maplestorytw/v1/character/familiar")
+    Call<ResponseBody> getCharacterFamiliar(@Header("x-nxopen-api-key") String apiKey, @Query("ocid") String ocid, @Query("date") String date);
 }

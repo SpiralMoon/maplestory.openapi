@@ -7,6 +7,7 @@ export * from './dto/character/characterBasic';
 export * from './dto/character/characterBeautyEquipment';
 export * from './dto/character/characterCashItemEquipment';
 export * from './dto/character/characterDojang';
+export * from './dto/character/characterFamiliar';
 export * from './dto/character/characterHexaMatrix';
 export * from './dto/character/characterHexaMatrixStat';
 export * from './dto/character/characterHyperStat';
