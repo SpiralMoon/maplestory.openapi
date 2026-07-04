@@ -19,7 +19,6 @@ api_key = os.environ['API_KEY_KMS'] # Your API Key
 api = MapleStoryApi(api_key)
 
 ocid = 'e0a4f439e53c369866b55297d2f5f4eb'
-# ocid = 'b6cb4f0020f0dcb1a7ec20b8214bb7d9'
 
 # Character Information Retrieval
 
