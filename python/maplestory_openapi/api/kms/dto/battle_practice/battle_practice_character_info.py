@@ -1,5 +1,5 @@
 from datetime import datetime
-from pydantic import BaseModel
+from pydantic import BaseModel, field_validator
 
 
 class BattlePracticeCharacterBasic(BaseModel):
@@ -826,11 +826,28 @@ class BattlePracticeCharacterPetAutoSkill(BaseModel):
     skill_2_icon: str | None
 
 
+class BattlePracticeCharacterPetiteLunaPetSkill(BaseModel):
+    """
+    연무장 입장 시 루나 쁘띠 펫 스킬 정보
+
+    Attributes:
+        skill_name (str or None): 스킬 명
+        skill_description (str or None): 스킬 설명
+        skill_effect (str or None): 스킬 효과 설명
+        skill_icon (str or None): 스킬 아이콘
+    """
+    skill_name: str | None
+    skill_description: str | None
+    skill_effect: str | None
+    skill_icon: str | None
+
+
 class BattlePracticeCharacterPetObject(BaseModel):
     """
     연무장 입장 시 캐릭터 장착 펫 정보
 
     Attributes:
+        pet_activate_flag (str or None): 활성화된 펫 유형 (0:캐릭터 펫, 1:월드 공유 펫)
         pet_1_name (str or None): 펫1 명
         pet_1_nickname (str or None): 펫1 닉네임
         pet_1_icon (str or None): 펫1 아이콘
@@ -858,7 +875,36 @@ class BattlePracticeCharacterPetObject(BaseModel):
         pet_3_pet_type (str or None): 펫3 원더 펫 종류
         pet_3_skill (list[str]): 펫3 펫 보유 스킬
         pet_3_date_expire (datetime or None): 펫3 마법의 시간 (KST, 시간 단위 데이터로 분은 일괄 0으로 표기)
+        world_share_pet_1_name (str or None): 월드 공유 펫1 명
+        world_share_pet_1_nickname (str or None): 월드 공유 펫1 닉네임
+        world_share_pet_1_icon (str or None): 월드 공유 펫1 아이콘
+        world_share_pet_1_description (str or None): 월드 공유 펫1 설명
+        world_share_pet_1_pet_type (str or None): 월드 공유 펫1 원더 펫 종류
+        world_share_pet_1_equipment (BattlePracticeCharacterPetEquipment or None): 월드 공유 펫1 장착 정보
+        world_share_pet_1_auto_skill (BattlePracticeCharacterPetAutoSkill or None): 월드 공유 펫1 버프 자동스킬 정보
+        world_share_pet_1_skill (list[str]): 월드 공유 펫1 펫 보유 스킬
+        world_share_pet_1_date_expire (datetime or None): 월드 공유 펫1 마법의 시간 (KST, 시간 단위 데이터로 분은 일괄 0으로 표기)
+        world_share_pet_2_name (str or None): 월드 공유 펫2 명
+        world_share_pet_2_nickname (str or None): 월드 공유 펫2 닉네임
+        world_share_pet_2_icon (str or None): 월드 공유 펫2 아이콘
+        world_share_pet_2_description (str or None): 월드 공유 펫2 설명
+        world_share_pet_2_pet_type (str or None): 월드 공유 펫2 원더 펫 종류
+        world_share_pet_2_equipment (BattlePracticeCharacterPetEquipment or None): 월드 공유 펫2 장착 정보
+        world_share_pet_2_auto_skill (BattlePracticeCharacterPetAutoSkill or None): 월드 공유 펫2 버프 자동스킬 정보
+        world_share_pet_2_skill (list[str]): 월드 공유 펫2 펫 보유 스킬
+        world_share_pet_2_date_expire (datetime or None): 월드 공유 펫2 마법의 시간 (KST, 시간 단위 데이터로 분은 일괄 0으로 표기)
+        world_share_pet_3_name (str or None): 월드 공유 펫3 명
+        world_share_pet_3_nickname (str or None): 월드 공유 펫3 닉네임
+        world_share_pet_3_icon (str or None): 월드 공유 펫3 아이콘
+        world_share_pet_3_description (str or None): 월드 공유 펫3 설명
+        world_share_pet_3_pet_type (str or None): 월드 공유 펫3 원더 펫 종류
+        world_share_pet_3_equipment (BattlePracticeCharacterPetEquipment or None): 월드 공유 펫3 장착 정보
+        world_share_pet_3_auto_skill (BattlePracticeCharacterPetAutoSkill or None): 월드 공유 펫3 버프 자동스킬 정보
+        world_share_pet_3_skill (list[str]): 월드 공유 펫3 펫 보유 스킬
+        world_share_pet_3_date_expire (datetime or None): 월드 공유 펫3 마법의 시간 (KST, 시간 단위 데이터로 분은 일괄 0으로 표기)
+        petite_luna_pet_skill (list[BattlePracticeCharacterPetiteLunaPetSkill]): 루나 쁘띠 펫 스킬 정보
     """
+    pet_activate_flag: str | None = None
     pet_1_name: str | None
     pet_1_nickname: str | None
     pet_1_icon: str | None
@@ -886,6 +932,48 @@ class BattlePracticeCharacterPetObject(BaseModel):
     pet_3_pet_type: str | None
     pet_3_skill: list[str]
     pet_3_date_expire: datetime | None
+    world_share_pet_1_name: str | None = None
+    world_share_pet_1_nickname: str | None = None
+    world_share_pet_1_icon: str | None = None
+    world_share_pet_1_description: str | None = None
+    world_share_pet_1_pet_type: str | None = None
+    world_share_pet_1_equipment: BattlePracticeCharacterPetEquipment | None = None
+    world_share_pet_1_auto_skill: BattlePracticeCharacterPetAutoSkill | None = None
+    world_share_pet_1_skill: list[str] = []
+    world_share_pet_1_date_expire: datetime | None = None
+    world_share_pet_2_name: str | None = None
+    world_share_pet_2_nickname: str | None = None
+    world_share_pet_2_icon: str | None = None
+    world_share_pet_2_description: str | None = None
+    world_share_pet_2_pet_type: str | None = None
+    world_share_pet_2_equipment: BattlePracticeCharacterPetEquipment | None = None
+    world_share_pet_2_auto_skill: BattlePracticeCharacterPetAutoSkill | None = None
+    world_share_pet_2_skill: list[str] = []
+    world_share_pet_2_date_expire: datetime | None = None
+    world_share_pet_3_name: str | None = None
+    world_share_pet_3_nickname: str | None = None
+    world_share_pet_3_icon: str | None = None
+    world_share_pet_3_description: str | None = None
+    world_share_pet_3_pet_type: str | None = None
+    world_share_pet_3_equipment: BattlePracticeCharacterPetEquipment | None = None
+    world_share_pet_3_auto_skill: BattlePracticeCharacterPetAutoSkill | None = None
+    world_share_pet_3_skill: list[str] = []
+    world_share_pet_3_date_expire: datetime | None = None
+    petite_luna_pet_skill: list[BattlePracticeCharacterPetiteLunaPetSkill] = []
+
+    @field_validator(
+        'pet_1_skill',
+        'pet_2_skill',
+        'pet_3_skill',
+        'world_share_pet_1_skill',
+        'world_share_pet_2_skill',
+        'world_share_pet_3_skill',
+        'petite_luna_pet_skill',
+        mode='before',
+    )
+    @classmethod
+    def null_as_empty(cls, v):
+        return v if v is not None else []
 
 
 class BattlePracticeCharacterSkillInfo(BaseModel):
@@ -1071,9 +1159,21 @@ class BattlePracticeUnionRaiderObject(BaseModel):
     Attributes:
         union_raider_stat (list[str]): 유니온 공격대원 효과
         union_occupied_stat (list[str]): 유니온 공격대 점령 효과
+        union_state_stat (list[str]): 적용 중인 유니온 스탯 효과
     """
     union_raider_stat: list[str]
     union_occupied_stat: list[str]
+    union_state_stat: list[str] = []
+
+    @field_validator(
+        'union_raider_stat',
+        'union_occupied_stat',
+        'union_state_stat',
+        mode='before',
+    )
+    @classmethod
+    def null_as_empty(cls, v):
+        return v if v is not None else []
 
 
 class BattlePracticeUnionArtifactEffect(BaseModel):

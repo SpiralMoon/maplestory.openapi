@@ -1948,6 +1948,12 @@ namespace MapleStory.OpenAPI.KMS.DTO
     public class BattlePracticeCharacterPetObjectDTO
     {
         /// <summary>
+        /// 활성화된 펫 유형 (0:캐릭터 펫, 1:월드 공유 펫)
+        /// </summary>
+        [JsonProperty("pet_activate_flag")]
+        public string? PetActivateFlag { get; set; }
+
+        /// <summary>
         /// 펫1 명
         /// </summary>
         [JsonProperty("pet_1_name")]
@@ -2147,6 +2153,244 @@ namespace MapleStory.OpenAPI.KMS.DTO
         }
 
         private DateTimeOffset? _pet3DateExpire;
+
+        /// <summary>
+        /// 월드 공유 펫1 명
+        /// </summary>
+        [JsonProperty("world_share_pet_1_name")]
+        public string? WorldSharePet1Name { get; set; }
+
+        /// <summary>
+        /// 월드 공유 펫1 닉네임
+        /// </summary>
+        [JsonProperty("world_share_pet_1_nickname")]
+        public string? WorldSharePet1Nickname { get; set; }
+
+        /// <summary>
+        /// 월드 공유 펫1 아이콘
+        /// </summary>
+        [JsonProperty("world_share_pet_1_icon")]
+        public string? WorldSharePet1Icon { get; set; }
+
+        /// <summary>
+        /// 월드 공유 펫1 설명
+        /// </summary>
+        [JsonProperty("world_share_pet_1_description")]
+        public string? WorldSharePet1Description { get; set; }
+
+        /// <summary>
+        /// 월드 공유 펫1 원더 펫 종류
+        /// </summary>
+        [JsonProperty("world_share_pet_1_pet_type")]
+        public string? WorldSharePet1PetType { get; set; }
+
+        /// <summary>
+        /// 월드 공유 펫1 장착 정보
+        /// </summary>
+        [JsonProperty("world_share_pet_1_equipment")]
+        public BattlePracticeCharacterPetEquipmentDTO? WorldSharePet1Equipment { get; set; }
+
+        /// <summary>
+        /// 월드 공유 펫1 버프 자동스킬 정보
+        /// </summary>
+        [JsonProperty("world_share_pet_1_auto_skill")]
+        public BattlePracticeCharacterPetAutoSkillDTO? WorldSharePet1AutoSkill { get; set; }
+
+        /// <summary>
+        /// 월드 공유 펫1 펫 보유 스킬
+        /// </summary>
+        [JsonProperty("world_share_pet_1_skill")]
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public List<string> WorldSharePet1Skill { get; set; } = new();
+
+        /// <summary>
+        /// 월드 공유 펫1 마법의 시간 (KST, 시간 단위 데이터로 분은 일괄 0으로 표기)
+        /// </summary>
+        [JsonProperty("world_share_pet_1_date_expire")]
+        public DateTimeOffset? WorldSharePet1DateExpire
+        {
+            get
+            {
+                return _worldSharePet1DateExpire?.ToOffset(TimeSpan.FromHours(9));
+            }
+            set
+            {
+                _worldSharePet1DateExpire = value;
+            }
+        }
+
+        private DateTimeOffset? _worldSharePet1DateExpire;
+
+        /// <summary>
+        /// 월드 공유 펫2 명
+        /// </summary>
+        [JsonProperty("world_share_pet_2_name")]
+        public string? WorldSharePet2Name { get; set; }
+
+        /// <summary>
+        /// 월드 공유 펫2 닉네임
+        /// </summary>
+        [JsonProperty("world_share_pet_2_nickname")]
+        public string? WorldSharePet2Nickname { get; set; }
+
+        /// <summary>
+        /// 월드 공유 펫2 아이콘
+        /// </summary>
+        [JsonProperty("world_share_pet_2_icon")]
+        public string? WorldSharePet2Icon { get; set; }
+
+        /// <summary>
+        /// 월드 공유 펫2 설명
+        /// </summary>
+        [JsonProperty("world_share_pet_2_description")]
+        public string? WorldSharePet2Description { get; set; }
+
+        /// <summary>
+        /// 월드 공유 펫2 원더 펫 종류
+        /// </summary>
+        [JsonProperty("world_share_pet_2_pet_type")]
+        public string? WorldSharePet2PetType { get; set; }
+
+        /// <summary>
+        /// 월드 공유 펫2 장착 정보
+        /// </summary>
+        [JsonProperty("world_share_pet_2_equipment")]
+        public BattlePracticeCharacterPetEquipmentDTO? WorldSharePet2Equipment { get; set; }
+
+        /// <summary>
+        /// 월드 공유 펫2 버프 자동스킬 정보
+        /// </summary>
+        [JsonProperty("world_share_pet_2_auto_skill")]
+        public BattlePracticeCharacterPetAutoSkillDTO? WorldSharePet2AutoSkill { get; set; }
+
+        /// <summary>
+        /// 월드 공유 펫2 펫 보유 스킬
+        /// </summary>
+        [JsonProperty("world_share_pet_2_skill")]
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public List<string> WorldSharePet2Skill { get; set; } = new();
+
+        /// <summary>
+        /// 월드 공유 펫2 마법의 시간 (KST, 시간 단위 데이터로 분은 일괄 0으로 표기)
+        /// </summary>
+        [JsonProperty("world_share_pet_2_date_expire")]
+        public DateTimeOffset? WorldSharePet2DateExpire
+        {
+            get
+            {
+                return _worldSharePet2DateExpire?.ToOffset(TimeSpan.FromHours(9));
+            }
+            set
+            {
+                _worldSharePet2DateExpire = value;
+            }
+        }
+
+        private DateTimeOffset? _worldSharePet2DateExpire;
+
+        /// <summary>
+        /// 월드 공유 펫3 명
+        /// </summary>
+        [JsonProperty("world_share_pet_3_name")]
+        public string? WorldSharePet3Name { get; set; }
+
+        /// <summary>
+        /// 월드 공유 펫3 닉네임
+        /// </summary>
+        [JsonProperty("world_share_pet_3_nickname")]
+        public string? WorldSharePet3Nickname { get; set; }
+
+        /// <summary>
+        /// 월드 공유 펫3 아이콘
+        /// </summary>
+        [JsonProperty("world_share_pet_3_icon")]
+        public string? WorldSharePet3Icon { get; set; }
+
+        /// <summary>
+        /// 월드 공유 펫3 설명
+        /// </summary>
+        [JsonProperty("world_share_pet_3_description")]
+        public string? WorldSharePet3Description { get; set; }
+
+        /// <summary>
+        /// 월드 공유 펫3 원더 펫 종류
+        /// </summary>
+        [JsonProperty("world_share_pet_3_pet_type")]
+        public string? WorldSharePet3PetType { get; set; }
+
+        /// <summary>
+        /// 월드 공유 펫3 장착 정보
+        /// </summary>
+        [JsonProperty("world_share_pet_3_equipment")]
+        public BattlePracticeCharacterPetEquipmentDTO? WorldSharePet3Equipment { get; set; }
+
+        /// <summary>
+        /// 월드 공유 펫3 버프 자동스킬 정보
+        /// </summary>
+        [JsonProperty("world_share_pet_3_auto_skill")]
+        public BattlePracticeCharacterPetAutoSkillDTO? WorldSharePet3AutoSkill { get; set; }
+
+        /// <summary>
+        /// 월드 공유 펫3 펫 보유 스킬
+        /// </summary>
+        [JsonProperty("world_share_pet_3_skill")]
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public List<string> WorldSharePet3Skill { get; set; } = new();
+
+        /// <summary>
+        /// 월드 공유 펫3 마법의 시간 (KST, 시간 단위 데이터로 분은 일괄 0으로 표기)
+        /// </summary>
+        [JsonProperty("world_share_pet_3_date_expire")]
+        public DateTimeOffset? WorldSharePet3DateExpire
+        {
+            get
+            {
+                return _worldSharePet3DateExpire?.ToOffset(TimeSpan.FromHours(9));
+            }
+            set
+            {
+                _worldSharePet3DateExpire = value;
+            }
+        }
+
+        private DateTimeOffset? _worldSharePet3DateExpire;
+
+        /// <summary>
+        /// 루나 쁘띠 펫 스킬 정보
+        /// </summary>
+        [JsonProperty("petite_luna_pet_skill")]
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public List<BattlePracticeCharacterPetiteLunaPetSkillDTO> PetiteLunaPetSkill { get; set; } = new();
+    }
+
+    /// <summary>
+    /// 연무장 입장 시 루나 쁘띠 펫 스킬 정보
+    /// </summary>
+    public class BattlePracticeCharacterPetiteLunaPetSkillDTO
+    {
+        /// <summary>
+        /// 스킬 명
+        /// </summary>
+        [JsonProperty("skill_name")]
+        public string? SkillName { get; set; }
+
+        /// <summary>
+        /// 스킬 설명
+        /// </summary>
+        [JsonProperty("skill_description")]
+        public string? SkillDescription { get; set; }
+
+        /// <summary>
+        /// 스킬 효과 설명
+        /// </summary>
+        [JsonProperty("skill_effect")]
+        public string? SkillEffect { get; set; }
+
+        /// <summary>
+        /// 스킬 아이콘
+        /// </summary>
+        [JsonProperty("skill_icon")]
+        public string? SkillIcon { get; set; }
     }
 
     /// <summary>
@@ -2608,6 +2852,13 @@ namespace MapleStory.OpenAPI.KMS.DTO
         [JsonProperty("union_occupied_stat")]
         [JsonConverter(typeof(NullAsEmptyConverter))]
         public List<string> UnionOccupiedStat { get; set; } = new();
+
+        /// <summary>
+        /// 적용 중인 유니온 스탯 효과
+        /// </summary>
+        [JsonProperty("union_state_stat")]
+        [JsonConverter(typeof(NullAsEmptyConverter))]
+        public List<string> UnionStateStat { get; set; } = new();
     }
 
     /// <summary>

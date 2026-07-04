@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.util.List;
+import java.util.ArrayList;
 
 /**
  * 연무장 입장 시 유니온 공격대 정보
@@ -32,4 +33,11 @@ public class BattlePracticeUnionRaiderObjectDTO {
     @JsonProperty("union_occupied_stat")
     @JsonSetter(nulls = Nulls.AS_EMPTY)
     private List<String> unionOccupiedStat;
+
+    /**
+     * 적용 중인 유니온 스탯 효과
+     */
+    @JsonProperty("union_state_stat")
+    @JsonSetter(nulls = Nulls.AS_EMPTY)
+    private List<String> unionStateStat = new ArrayList<>();
 }

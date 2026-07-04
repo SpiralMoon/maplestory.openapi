@@ -37,6 +37,7 @@ import {
   BattlePracticeCharacterPetAutoSkillBody,
   BattlePracticeCharacterPetEquipmentBody,
   BattlePracticeCharacterPetEquipmentOptionBody,
+  BattlePracticeCharacterPetiteLunaPetSkillBody,
   BattlePracticeCharacterPetObjectBody,
   BattlePracticeCharacterPropensityBody,
   BattlePracticeCharacterRingReserveSkillObjectBody,
@@ -2075,6 +2076,11 @@ export class BattlePracticeCharacterCashItemOptionDto {
  */
 export class BattlePracticeCharacterPetObjectDto {
   /**
+   * 활성화된 펫 유형 (0:캐릭터 펫, 1:월드 공유 펫)
+   */
+  public petActivateFlag: string | null;
+
+  /**
    * 펫1 명
    */
   public pet1Name: string | null;
@@ -2209,7 +2215,148 @@ export class BattlePracticeCharacterPetObjectDto {
    */
   public pet3DateExpire: Date | null;
 
+  /**
+   * 월드 공유 펫1 명
+   */
+  public worldSharePet1Name: string | null;
+
+  /**
+   * 월드 공유 펫1 닉네임
+   */
+  public worldSharePet1Nickname: string | null;
+
+  /**
+   * 월드 공유 펫1 아이콘
+   */
+  public worldSharePet1Icon: string | null;
+
+  /**
+   * 월드 공유 펫1 설명
+   */
+  public worldSharePet1Description: string | null;
+
+  /**
+   * 월드 공유 펫1 원더 펫 종류
+   */
+  public worldSharePet1PetType: string | null;
+
+  /**
+   * 월드 공유 펫1 장착 정보
+   */
+  public worldSharePet1Equipment: BattlePracticeCharacterPetEquipmentDto | null;
+
+  /**
+   * 월드 공유 펫1 버프 자동스킬 정보
+   */
+  public worldSharePet1AutoSkill: BattlePracticeCharacterPetAutoSkillDto | null;
+
+  /**
+   * 월드 공유 펫1 펫 보유 스킬
+   */
+  public worldSharePet1Skill: string[];
+
+  /**
+   * 월드 공유 펫1 마법의 시간 (KST, 시간 단위 데이터로 분은 일괄 0으로 표기)
+   */
+  public worldSharePet1DateExpire: Date | null;
+
+  /**
+   * 월드 공유 펫2 명
+   */
+  public worldSharePet2Name: string | null;
+
+  /**
+   * 월드 공유 펫2 닉네임
+   */
+  public worldSharePet2Nickname: string | null;
+
+  /**
+   * 월드 공유 펫2 아이콘
+   */
+  public worldSharePet2Icon: string | null;
+
+  /**
+   * 월드 공유 펫2 설명
+   */
+  public worldSharePet2Description: string | null;
+
+  /**
+   * 월드 공유 펫2 원더 펫 종류
+   */
+  public worldSharePet2PetType: string | null;
+
+  /**
+   * 월드 공유 펫2 장착 정보
+   */
+  public worldSharePet2Equipment: BattlePracticeCharacterPetEquipmentDto | null;
+
+  /**
+   * 월드 공유 펫2 버프 자동스킬 정보
+   */
+  public worldSharePet2AutoSkill: BattlePracticeCharacterPetAutoSkillDto | null;
+
+  /**
+   * 월드 공유 펫2 펫 보유 스킬
+   */
+  public worldSharePet2Skill: string[];
+
+  /**
+   * 월드 공유 펫2 마법의 시간 (KST, 시간 단위 데이터로 분은 일괄 0으로 표기)
+   */
+  public worldSharePet2DateExpire: Date | null;
+
+  /**
+   * 월드 공유 펫3 명
+   */
+  public worldSharePet3Name: string | null;
+
+  /**
+   * 월드 공유 펫3 닉네임
+   */
+  public worldSharePet3Nickname: string | null;
+
+  /**
+   * 월드 공유 펫3 아이콘
+   */
+  public worldSharePet3Icon: string | null;
+
+  /**
+   * 월드 공유 펫3 설명
+   */
+  public worldSharePet3Description: string | null;
+
+  /**
+   * 월드 공유 펫3 원더 펫 종류
+   */
+  public worldSharePet3PetType: string | null;
+
+  /**
+   * 월드 공유 펫3 장착 정보
+   */
+  public worldSharePet3Equipment: BattlePracticeCharacterPetEquipmentDto | null;
+
+  /**
+   * 월드 공유 펫3 버프 자동스킬 정보
+   */
+  public worldSharePet3AutoSkill: BattlePracticeCharacterPetAutoSkillDto | null;
+
+  /**
+   * 월드 공유 펫3 펫 보유 스킬
+   */
+  public worldSharePet3Skill: string[];
+
+  /**
+   * 월드 공유 펫3 마법의 시간 (KST, 시간 단위 데이터로 분은 일괄 0으로 표기)
+   */
+  public worldSharePet3DateExpire: Date | null;
+
+  /**
+   * 루나 쁘띠 펫 스킬 정보
+   */
+  public petiteLunaPetSkill: BattlePracticeCharacterPetiteLunaPetSkillDto[];
+
   constructor(obj: BattlePracticeCharacterPetObjectBody) {
+    this.petActivateFlag = obj.pet_activate_flag ?? null;
     this.pet1Name = obj.pet_1_name;
     this.pet1Nickname = obj.pet_1_nickname;
     this.pet1Icon = obj.pet_1_icon;
@@ -2255,6 +2402,54 @@ export class BattlePracticeCharacterPetObjectDto {
     this.pet3DateExpire = obj.pet_3_date_expire
       ? new Date(obj.pet_3_date_expire)
       : null;
+    this.worldSharePet1Name = obj.world_share_pet_1_name ?? null;
+    this.worldSharePet1Nickname = obj.world_share_pet_1_nickname ?? null;
+    this.worldSharePet1Icon = obj.world_share_pet_1_icon ?? null;
+    this.worldSharePet1Description = obj.world_share_pet_1_description ?? null;
+    this.worldSharePet1PetType = obj.world_share_pet_1_pet_type ?? null;
+    this.worldSharePet1Equipment = obj.world_share_pet_1_equipment
+      ? new BattlePracticeCharacterPetEquipmentDto(obj.world_share_pet_1_equipment)
+      : null;
+    this.worldSharePet1AutoSkill = obj.world_share_pet_1_auto_skill
+      ? new BattlePracticeCharacterPetAutoSkillDto(obj.world_share_pet_1_auto_skill)
+      : null;
+    this.worldSharePet1Skill = obj.world_share_pet_1_skill ?? [];
+    this.worldSharePet1DateExpire = obj.world_share_pet_1_date_expire
+      ? new Date(obj.world_share_pet_1_date_expire)
+      : null;
+    this.worldSharePet2Name = obj.world_share_pet_2_name ?? null;
+    this.worldSharePet2Nickname = obj.world_share_pet_2_nickname ?? null;
+    this.worldSharePet2Icon = obj.world_share_pet_2_icon ?? null;
+    this.worldSharePet2Description = obj.world_share_pet_2_description ?? null;
+    this.worldSharePet2PetType = obj.world_share_pet_2_pet_type ?? null;
+    this.worldSharePet2Equipment = obj.world_share_pet_2_equipment
+      ? new BattlePracticeCharacterPetEquipmentDto(obj.world_share_pet_2_equipment)
+      : null;
+    this.worldSharePet2AutoSkill = obj.world_share_pet_2_auto_skill
+      ? new BattlePracticeCharacterPetAutoSkillDto(obj.world_share_pet_2_auto_skill)
+      : null;
+    this.worldSharePet2Skill = obj.world_share_pet_2_skill ?? [];
+    this.worldSharePet2DateExpire = obj.world_share_pet_2_date_expire
+      ? new Date(obj.world_share_pet_2_date_expire)
+      : null;
+    this.worldSharePet3Name = obj.world_share_pet_3_name ?? null;
+    this.worldSharePet3Nickname = obj.world_share_pet_3_nickname ?? null;
+    this.worldSharePet3Icon = obj.world_share_pet_3_icon ?? null;
+    this.worldSharePet3Description = obj.world_share_pet_3_description ?? null;
+    this.worldSharePet3PetType = obj.world_share_pet_3_pet_type ?? null;
+    this.worldSharePet3Equipment = obj.world_share_pet_3_equipment
+      ? new BattlePracticeCharacterPetEquipmentDto(obj.world_share_pet_3_equipment)
+      : null;
+    this.worldSharePet3AutoSkill = obj.world_share_pet_3_auto_skill
+      ? new BattlePracticeCharacterPetAutoSkillDto(obj.world_share_pet_3_auto_skill)
+      : null;
+    this.worldSharePet3Skill = obj.world_share_pet_3_skill ?? [];
+    this.worldSharePet3DateExpire = obj.world_share_pet_3_date_expire
+      ? new Date(obj.world_share_pet_3_date_expire)
+      : null;
+    this.petiteLunaPetSkill = (obj.petite_luna_pet_skill ?? []).map(
+      (s) => new BattlePracticeCharacterPetiteLunaPetSkillDto(s),
+    );
   }
 }
 
@@ -2373,6 +2568,38 @@ export class BattlePracticeCharacterPetAutoSkillDto {
     this.skill1Icon = obj.skill_1_icon;
     this.skill2 = obj.skill_2;
     this.skill2Icon = obj.skill_2_icon;
+  }
+}
+
+/**
+ * 연무장 입장 시 루나 쁘띠 펫 스킬 정보
+ */
+export class BattlePracticeCharacterPetiteLunaPetSkillDto {
+  /**
+   * 스킬 명
+   */
+  public skillName: string | null;
+
+  /**
+   * 스킬 설명
+   */
+  public skillDescription: string | null;
+
+  /**
+   * 스킬 효과 설명
+   */
+  public skillEffect: string | null;
+
+  /**
+   * 스킬 아이콘
+   */
+  public skillIcon: string | null;
+
+  constructor(obj: BattlePracticeCharacterPetiteLunaPetSkillBody) {
+    this.skillName = obj.skill_name;
+    this.skillDescription = obj.skill_description;
+    this.skillEffect = obj.skill_effect;
+    this.skillIcon = obj.skill_icon;
   }
 }
 
@@ -2746,9 +2973,15 @@ export class BattlePracticeUnionRaiderObjectDto {
    */
   public unionOccupiedStat: string[];
 
+  /**
+   * 적용 중인 유니온 스탯 효과
+   */
+  public unionStateStat: string[];
+
   constructor(obj: BattlePracticeUnionRaiderObjectBody) {
     this.unionRaiderStat = obj.union_raider_stat;
     this.unionOccupiedStat = obj.union_occupied_stat;
+    this.unionStateStat = obj.union_state_stat ?? [];
   }
 }
 

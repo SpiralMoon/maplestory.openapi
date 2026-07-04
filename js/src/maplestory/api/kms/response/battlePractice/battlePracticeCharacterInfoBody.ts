@@ -372,6 +372,7 @@ export type BattlePracticeCharacterCashItemOptionBody = {
 };
 
 export type BattlePracticeCharacterPetObjectBody = {
+  pet_activate_flag: string | null;
   pet_1_name: string | null;
   pet_1_nickname: string | null;
   pet_1_icon: string | null;
@@ -399,6 +400,41 @@ export type BattlePracticeCharacterPetObjectBody = {
   pet_3_pet_type: string | null;
   pet_3_skill: string[];
   pet_3_date_expire: string | null;
+  world_share_pet_1_name: string | null;
+  world_share_pet_1_nickname: string | null;
+  world_share_pet_1_icon: string | null;
+  world_share_pet_1_description: string | null;
+  world_share_pet_1_pet_type: string | null;
+  world_share_pet_1_equipment: BattlePracticeCharacterPetEquipmentBody | null;
+  world_share_pet_1_auto_skill: BattlePracticeCharacterPetAutoSkillBody | null;
+  world_share_pet_1_skill: string[];
+  world_share_pet_1_date_expire: string | null;
+  world_share_pet_2_name: string | null;
+  world_share_pet_2_nickname: string | null;
+  world_share_pet_2_icon: string | null;
+  world_share_pet_2_description: string | null;
+  world_share_pet_2_pet_type: string | null;
+  world_share_pet_2_equipment: BattlePracticeCharacterPetEquipmentBody | null;
+  world_share_pet_2_auto_skill: BattlePracticeCharacterPetAutoSkillBody | null;
+  world_share_pet_2_skill: string[];
+  world_share_pet_2_date_expire: string | null;
+  world_share_pet_3_name: string | null;
+  world_share_pet_3_nickname: string | null;
+  world_share_pet_3_icon: string | null;
+  world_share_pet_3_description: string | null;
+  world_share_pet_3_pet_type: string | null;
+  world_share_pet_3_equipment: BattlePracticeCharacterPetEquipmentBody | null;
+  world_share_pet_3_auto_skill: BattlePracticeCharacterPetAutoSkillBody | null;
+  world_share_pet_3_skill: string[];
+  world_share_pet_3_date_expire: string | null;
+  petite_luna_pet_skill: BattlePracticeCharacterPetiteLunaPetSkillBody[];
+};
+
+export type BattlePracticeCharacterPetiteLunaPetSkillBody = {
+  skill_name: string | null;
+  skill_description: string | null;
+  skill_effect: string | null;
+  skill_icon: string | null;
 };
 
 export type BattlePracticeCharacterPetEquipmentBody = {
@@ -504,6 +540,7 @@ export type BattlePracticeCharacterRingReserveSkillObjectBody = {
 export type BattlePracticeUnionRaiderObjectBody = {
   union_raider_stat: string[];
   union_occupied_stat: string[];
+  union_state_stat: string[];
 };
 
 export type BattlePracticeUnionArtifactObjectBody = {
