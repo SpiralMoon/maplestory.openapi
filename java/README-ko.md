@@ -93,6 +93,7 @@ class Sample {
 - [길드 정보 조회](https://github.com/SpiralMoon/maplestory.openapi/blob/master/java/src/test/java/kms/guild)
 - [연무장 정보 조회](https://github.com/SpiralMoon/maplestory.openapi/blob/master/java/src/test/java/kms/battlepractice)
 - [확률 정보 조회](https://github.com/SpiralMoon/maplestory.openapi/blob/master/java/src/test/java/kms/history)
+- [스케줄러 정보 조회](https://github.com/SpiralMoon/maplestory.openapi/blob/master/java/src/test/java/kms/scheduler)
 - [랭킹 정보 조회](https://github.com/SpiralMoon/maplestory.openapi/blob/master/java/src/test/java/kms/ranking)
 - [공지 정보 조회](https://github.com/SpiralMoon/maplestory.openapi/blob/master/java/src/test/java/kms/notice)
 

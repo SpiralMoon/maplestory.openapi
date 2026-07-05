@@ -186,6 +186,7 @@ This library supports all apis published in the MapleStory OpenAPI official docs
 - Guild Information Retrieval
 - Battle Practice Information Retrieval
 - History Information Retrieval
+- Scheduler Information Retrieval
 - Ranking Information Retrieval
 - Notice Information Retrieval
 

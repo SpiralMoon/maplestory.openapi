@@ -82,6 +82,7 @@ catch (HttpRequestException e)
 - [길드 정보 조회](https://github.com/SpiralMoon/maplestory.openapi/blob/master/csharp/MapleStory.Test/KMS/Guild)
 - [연무장 정보 조회](https://github.com/SpiralMoon/maplestory.openapi/blob/master/csharp/MapleStory.Test/KMS/BattlePractice)
 - [확률 정보 조회](https://github.com/SpiralMoon/maplestory.openapi/blob/master/csharp/MapleStory.Test/KMS/History)
+- [스케줄러 정보 조회](https://github.com/SpiralMoon/maplestory.openapi/blob/master/csharp/MapleStory.Test/KMS/Scheduler)
 - [랭킹 정보 조회](https://github.com/SpiralMoon/maplestory.openapi/blob/master/csharp/MapleStory.Test/KMS/Ranking)
 - [공지 정보 조회](https://github.com/SpiralMoon/maplestory.openapi/blob/master/csharp/MapleStory.Test/KMS/Notice)
 

@@ -93,6 +93,7 @@ You can find more examples in the test cases at the following link.
 - [Guild Information Retrieval](https://github.com/SpiralMoon/maplestory.openapi/blob/master/java/src/test/java/kms/guild)
 - [Battle Practice Information Retrieval](https://github.com/SpiralMoon/maplestory.openapi/blob/master/java/src/test/java/kms/battlepractice)
 - [History Information Retrieval](https://github.com/SpiralMoon/maplestory.openapi/blob/master/java/src/test/java/kms/history)
+- [Scheduler Information Retrieval](https://github.com/SpiralMoon/maplestory.openapi/blob/master/java/src/test/java/kms/scheduler)
 - [Ranking Information Retrieval](https://github.com/SpiralMoon/maplestory.openapi/blob/master/java/src/test/java/kms/ranking)
 - [Notice Information Retrieval](https://github.com/SpiralMoon/maplestory.openapi/blob/master/java/src/test/java/kms/notice)
 
