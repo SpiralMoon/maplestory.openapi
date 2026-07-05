@@ -11,6 +11,7 @@ export type CharacterPetEquipmentBody = {
   pet_1_date_expire: string | null;
   pet_1_appearance: string | null;
   pet_1_appearance_icon: string | null;
+  pet_1_potential: CharacterPetEquipmentPotentialBody[];
   pet_2_name: string | null;
   pet_2_nickname: string | null;
   pet_2_icon: string | null;
@@ -22,6 +23,7 @@ export type CharacterPetEquipmentBody = {
   pet_2_date_expire: string | null;
   pet_2_appearance: string | null;
   pet_2_appearance_icon: string | null;
+  pet_2_potential: CharacterPetEquipmentPotentialBody[];
   pet_3_name: string | null;
   pet_3_nickname: string | null;
   pet_3_icon: string | null;
@@ -33,6 +35,7 @@ export type CharacterPetEquipmentBody = {
   pet_3_date_expire: string | null;
   pet_3_appearance: string | null;
   pet_3_appearance_icon: string | null;
+  pet_3_potential: CharacterPetEquipmentPotentialBody[];
 };
 
 export type CharacterPetEquipmentItemBody = {
@@ -56,4 +59,11 @@ export type CharacterPetEquipmentAutoSkillBody = {
   skill_1_icon: string | null;
   skill_2: string | null;
   skill_2_icon: string | null;
+};
+
+export type CharacterPetEquipmentPotentialBody = {
+  potential_step: string;
+  potential_type: string | null;
+  potential_increase1: string | null;
+  potential_increase2: string | null;
 };

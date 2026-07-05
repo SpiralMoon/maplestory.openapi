@@ -95,6 +95,13 @@ public class CharacterPetEquipmentDTO implements dev.spiralmoon.maplestory.api.c
     private String pet1AppearanceIcon;
 
     /**
+     * 寵物1 潛在的
+     */
+    @JsonProperty("pet_1_potential")
+    @JsonSetter(nulls = Nulls.AS_EMPTY)
+    private List<CharacterPetEquipmentPotentialDTO> pet1Potential;
+
+    /**
      * 寵物 2 名稱
      */
     @JsonProperty("pet_2_name")
@@ -162,6 +169,13 @@ public class CharacterPetEquipmentDTO implements dev.spiralmoon.maplestory.api.c
     private String pet2AppearanceIcon;
 
     /**
+     * 寵物2 潛在的
+     */
+    @JsonProperty("pet_2_potential")
+    @JsonSetter(nulls = Nulls.AS_EMPTY)
+    private List<CharacterPetEquipmentPotentialDTO> pet2Potential;
+
+    /**
      * 寵物 3 名稱
      */
     @JsonProperty("pet_3_name")
@@ -227,6 +241,13 @@ public class CharacterPetEquipmentDTO implements dev.spiralmoon.maplestory.api.c
      */
     @JsonProperty("pet_3_appearance_icon")
     private String pet3AppearanceIcon;
+
+    /**
+     * 寵物3 潛在的
+     */
+    @JsonProperty("pet_3_potential")
+    @JsonSetter(nulls = Nulls.AS_EMPTY)
+    private List<CharacterPetEquipmentPotentialDTO> pet3Potential;
 
     /**
      * 要搜尋的日期 (TST，每日資料中的小時與分鐘將顯示為 0)

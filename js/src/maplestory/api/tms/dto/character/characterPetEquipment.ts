@@ -4,6 +4,7 @@ import {
   CharacterPetEquipmentBody,
   CharacterPetEquipmentItemBody,
   CharacterPetEquipmentItemOptionBody,
+  CharacterPetEquipmentPotentialBody,
 } from '../../response/character/characterPetEquipmentBody';
 
 /**
@@ -76,6 +77,11 @@ export class CharacterPetEquipmentDto extends base.CharacterPetEquipmentDto {
   public override pet1AppearanceIcon: string | null;
 
   /**
+   * 寵物1 潛在的
+   */
+  public pet1Potential: CharacterPetEquipmentPotentialDto[];
+
+  /**
    * 寵物 2 名稱
    */
   public override pet2Name: string | null;
@@ -134,6 +140,11 @@ export class CharacterPetEquipmentDto extends base.CharacterPetEquipmentDto {
    * 寵物 2 外型圖示
    */
   public override pet2AppearanceIcon: string | null;
+
+  /**
+   * 寵物2 潛在的
+   */
+  public pet2Potential: CharacterPetEquipmentPotentialDto[];
 
   /**
    * 寵物 3 名稱
@@ -195,6 +206,11 @@ export class CharacterPetEquipmentDto extends base.CharacterPetEquipmentDto {
    */
   public override pet3AppearanceIcon: string | null;
 
+  /**
+   * 寵物3 潛在的
+   */
+  public pet3Potential: CharacterPetEquipmentPotentialDto[];
+
   constructor(obj: CharacterPetEquipmentBody) {
     super();
 
@@ -211,6 +227,7 @@ export class CharacterPetEquipmentDto extends base.CharacterPetEquipmentDto {
       pet_1_date_expire,
       pet_1_appearance,
       pet_1_appearance_icon,
+      pet_1_potential,
       pet_2_name,
       pet_2_nickname,
       pet_2_icon,
@@ -222,6 +239,7 @@ export class CharacterPetEquipmentDto extends base.CharacterPetEquipmentDto {
       pet_2_date_expire,
       pet_2_appearance,
       pet_2_appearance_icon,
+      pet_2_potential,
       pet_3_name,
       pet_3_nickname,
       pet_3_icon,
@@ -233,6 +251,7 @@ export class CharacterPetEquipmentDto extends base.CharacterPetEquipmentDto {
       pet_3_date_expire,
       pet_3_appearance,
       pet_3_appearance_icon,
+      pet_3_potential,
     } = obj;
 
     this.date = date ? new Date(date) : null;
@@ -250,6 +269,9 @@ export class CharacterPetEquipmentDto extends base.CharacterPetEquipmentDto {
     this.pet1Skill = pet_1_skill;
     this.pet1Appearance = pet_1_appearance;
     this.pet1AppearanceIcon = pet_1_appearance_icon;
+    this.pet1Potential = pet_1_potential.map(
+      (potential) => new CharacterPetEquipmentPotentialDto(potential),
+    );
     this.pet2Name = pet_2_name;
     this.pet2Nickname = pet_2_nickname;
     this.pet2Icon = pet_2_icon;
@@ -264,6 +286,9 @@ export class CharacterPetEquipmentDto extends base.CharacterPetEquipmentDto {
     this.pet2Skill = pet_2_skill;
     this.pet2Appearance = pet_2_appearance;
     this.pet2AppearanceIcon = pet_2_appearance_icon;
+    this.pet2Potential = pet_2_potential.map(
+      (potential) => new CharacterPetEquipmentPotentialDto(potential),
+    );
     this.pet3Name = pet_3_name;
     this.pet3Nickname = pet_3_nickname;
     this.pet3Icon = pet_3_icon;
@@ -278,6 +303,9 @@ export class CharacterPetEquipmentDto extends base.CharacterPetEquipmentDto {
     this.pet3Skill = pet_3_skill;
     this.pet3Appearance = pet_3_appearance;
     this.pet3AppearanceIcon = pet_3_appearance_icon;
+    this.pet3Potential = pet_3_potential.map(
+      (potential) => new CharacterPetEquipmentPotentialDto(potential),
+    );
 
     if (pet_1_date_expire === 'expired') {
       this.pet1Expired = true;
@@ -433,5 +461,44 @@ export class CharacterPetEquipmentItemDto extends base.CharacterPetEquipmentItem
     this.scrollUpgradable = scroll_upgradable;
     this.itemShape = item_shape;
     this.itemShapeIcon = item_shape_icon;
+  }
+}
+
+/**
+ * 寵物 潛在的
+ */
+export class CharacterPetEquipmentPotentialDto {
+  /**
+   * 潛在的 步 (1~3, 0:停用)
+   */
+  public potentialStep: string;
+
+  /**
+   * 潛在的 類型
+   */
+  public potentialType: string | null;
+
+  /**
+   * 潛在的 增加 (對於攻擊力/魔法攻擊力以外的其他潛在能力類型，百分比)
+   */
+  public potentialIncrease1: string | null;
+
+  /**
+   * 潛在的 增加 2 (如果潛在能力類型為攻擊力/魔法攻擊力，則攻擊力分配給 potential_increase_1，魔法攻擊力分配給 potential_increase_2；如果潛在能力類型為最大生命值/最大魔法值，則最大生命值分配給 potential_increase_1，最大魔法值分配給 potential_increase_2。)
+   */
+  public potentialIncrease2: string | null;
+
+  constructor(obj: CharacterPetEquipmentPotentialBody) {
+    const {
+      potential_step,
+      potential_type,
+      potential_increase1,
+      potential_increase2,
+    } = obj;
+
+    this.potentialStep = potential_step;
+    this.potentialType = potential_type;
+    this.potentialIncrease1 = potential_increase1;
+    this.potentialIncrease2 = potential_increase2;
   }
 }

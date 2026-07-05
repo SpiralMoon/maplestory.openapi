@@ -66,6 +66,22 @@ class CharacterPetEquipmentItem(BaseModel, BaseCharacterPetEquipmentItem):
         return v
 
 
+class CharacterPetEquipmentPotential(BaseModel):
+    """
+    寵物 潛在的
+
+    Attributes:
+        potential_step (str): 潛在的 步 (1~3, 0:停用)
+        potential_type (str or None): 潛在的 類型
+        potential_increase1 (str or None): 潛在的 增加 (對於攻擊力/魔法攻擊力以外的其他潛在能力類型，百分比)
+        potential_increase2 (str or None): 潛在的 增加 2 (如果潛在能力類型為攻擊力/魔法攻擊力，則攻擊力分配給 potential_increase_1，魔法攻擊力分配給 potential_increase_2；如果潛在能力類型為最大生命值/最大魔法值，則最大生命值分配給 potential_increase_1，最大魔法值分配給 potential_increase_2。)
+    """
+    potential_step: str
+    potential_type: str | None
+    potential_increase1: str | None
+    potential_increase2: str | None
+
+
 class CharacterPetEquipment(BaseModel, BaseCharacterPetEquipment):
     """
    角色已裝備寵物資訊
@@ -84,6 +100,7 @@ class CharacterPetEquipment(BaseModel, BaseCharacterPetEquipment):
         pet_1_expired (bool or None): Whether the magic time for pet 1 is expired
         pet_1_appearance (str or None): 寵物 1 外型
         pet_1_appearance_icon (str or None): 寵物 1 外型圖示
+        pet_1_potential (list[CharacterPetEquipmentPotential]): 寵物1 潛在的
         pet_2_name (str or None): 寵物 2 名稱
         pet_2_nickname (str or None): 寵物 2 暱稱
         pet_2_icon (str or None): 寵物 2 圖示
@@ -96,6 +113,7 @@ class CharacterPetEquipment(BaseModel, BaseCharacterPetEquipment):
         pet_2_expired (bool or None): Whether the magic time for pet 2 is expired
         pet_2_appearance (str or None): 寵物 2 外型
         pet_2_appearance_icon (str or None): 寵物 2 外型圖示
+        pet_2_potential (list[CharacterPetEquipmentPotential]): 寵物2 潛在的
         pet_3_name (str or None): 寵物 3 名稱
         pet_3_nickname (str or None): 寵物 3 暱稱
         pet_3_icon (str or None): 寵物 3 圖示
@@ -108,6 +126,7 @@ class CharacterPetEquipment(BaseModel, BaseCharacterPetEquipment):
         pet_3_expired (bool or None): Whether the magic time for pet 3 is expired
         pet_3_appearance (str or None): 寵物 3 外型
         pet_3_appearance_icon (str or None): 寵物 3 外型圖示
+        pet_3_potential (list[CharacterPetEquipmentPotential]): 寵物3 潛在的
     """
     date: datetime | None
     pet_1_name: str | None
@@ -122,6 +141,7 @@ class CharacterPetEquipment(BaseModel, BaseCharacterPetEquipment):
     pet_1_expired: bool | None
     pet_1_appearance: str | None
     pet_1_appearance_icon: str | None
+    pet_1_potential: list[CharacterPetEquipmentPotential]
     pet_2_name: str | None
     pet_2_nickname: str | None
     pet_2_icon: str | None
@@ -134,6 +154,7 @@ class CharacterPetEquipment(BaseModel, BaseCharacterPetEquipment):
     pet_2_expired: bool | None
     pet_2_appearance: str | None
     pet_2_appearance_icon: str | None
+    pet_2_potential: list[CharacterPetEquipmentPotential]
     pet_3_name: str | None
     pet_3_nickname: str | None
     pet_3_icon: str | None
@@ -146,6 +167,7 @@ class CharacterPetEquipment(BaseModel, BaseCharacterPetEquipment):
     pet_3_expired: bool | None
     pet_3_appearance: str | None
     pet_3_appearance_icon: str | None
+    pet_3_potential: list[CharacterPetEquipmentPotential]
 
     @model_validator(mode="before")
     @classmethod
@@ -174,6 +196,13 @@ class CharacterPetEquipment(BaseModel, BaseCharacterPetEquipment):
     @field_validator("pet_1_skill", "pet_2_skill", "pet_3_skill", mode="before")
     @classmethod
     def null_as_empty(cls, v):
+        if v is None:
+            return []
+        return v
+
+    @field_validator("pet_1_potential", "pet_2_potential", "pet_3_potential", mode="before")
+    @classmethod
+    def potential_null_as_empty(cls, v):
         if v is None:
             return []
         return v
